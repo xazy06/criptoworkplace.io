@@ -1,0 +1,22 @@
+{
+  "name": "cwp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "truffle.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "zeppelin-solidity": "^1.4.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cryptoworkplace/cryptoworkplace.io/tree/new_etherium_contract/res/Etherium/CWP"
+  },
+  "author": "",
+  "license": "MIT"
+}
