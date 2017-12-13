@@ -288,4 +288,4 @@ __pycache__/
 *.xsd.cs
 
 # Solidity build output
-[Bb]uild/contracts
+**/[Bb]uild/contracts/*.js
