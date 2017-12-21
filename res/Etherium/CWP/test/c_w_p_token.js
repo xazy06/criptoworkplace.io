@@ -20,7 +20,7 @@ contract('CWPToken', function(accounts) {
     try {
       let token = await CWPToken.deployed();
       assert.equal((await token.name()), "CryptoWorkPlace Token", "Name of contract is worng");
-      assert.equal((await token.symbol()), "CWP", "Symbol of contract is worng");
+      assert.equal((await token.symbol()), "CWT", "Symbol of contract is worng");
     } catch (e) {
       if (e.name == "AssertionError") {
         throw e;
@@ -204,20 +204,20 @@ contract('CWPToken', function(accounts) {
 
   });
 
-it("should total supply count correctly", async() => {
-  try {
-    let token = await CWPToken.deployed();
-    let supply = (await token.totalSupply()).toNumber();
-    assert.equal(supply, 20, "Total Supply count incorrectly");
+  it("should total supply count correctly", async () => {
+    try {
+      let token = await CWPToken.deployed();
+      let supply = (await token.totalSupply()).toNumber();
+      assert.equal(supply, 20, "Total Supply count incorrectly");
 
-  } catch (e) {
-    if (e.name == "AssertionError") {
-      throw e;
-    } else {
-      console.log(e);
-      assert.fail();
+    } catch (e) {
+      if (e.name == "AssertionError") {
+        throw e;
+      } else {
+        console.log(e);
+        assert.fail();
+      }
     }
-  }
-});
+  });
 
 });

@@ -21,7 +21,7 @@ contract('CWPTokenSale', function(accounts) {
     try {
       let sale = await CWPTokenSale.deployed();
       let token = await CWPToken.deployed();
-      assert.equal((await sale.token()), token.address,  "Token is not CWPToken contract");
+      assert.equal((await sale.token()), token.address, "Token is not CWPToken contract");
     } catch (e) {
       if (e.name == "AssertionError") {
         throw e;
@@ -32,11 +32,24 @@ contract('CWPTokenSale', function(accounts) {
     }
   });
 
-  it("Shoud store cap and goal", async() => {
+  it("Shoud store cap, goal and rate", async () => {
     try {
       let sale = await CWPTokenSale.deployed();
-      assert.equal((await sale.cap()).toNumber(), 40, "Cap is wrong");
-      assert.equal((await sale.goal()).toNumber(), 20, "Goal is wrong");
+      assert.equal((await sale.cap()).toNumber(), (await sale.CAP0()).toNumber(), "Cap is wrong");
+      assert.equal((await sale.goal()).toNumber(), (await sale.REFUND_CAP()).toNumber(), "Goal is wrong");
+    } catch (e) {
+      if (e.name == "AssertionError") {
+        throw e;
+      } else {
+        console.log(e);
+        assert.fail();
+      }
+    }
+  });
+
+  it("Should save", async () => {
+    try {
+
     } catch (e) {
       if (e.name == "AssertionError") {
         throw e;
