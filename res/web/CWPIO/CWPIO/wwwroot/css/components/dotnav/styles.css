@@ -1,0 +1,19 @@
+.dots-nav {
+	text-align:center;
+	position: fixed;
+	right:40px;
+	top:100px;
+	z-index: 1000;
+}
+.dots-nav-i {
+	width:22px;
+	height:22px;
+	color:#fff;
+	cursor:pointer;
+	border-radius:50%;
+}
+
+.dots-nav-i.active {
+	padding:5px;
+	border:1px solid #fff;
+}

@@ -1,0 +1,17 @@
+.s-logo {
+	display: inline-block;
+	vertical-align: middle;
+	margin-right:18px;
+	
+}
+.s-logo-2 {
+	display: inline-block;
+	vertical-align: middle;
+	
+}
+
+.s-icon,
+img.s-icon{
+	display: inline-block;
+	vertical-align: middle;
+}
