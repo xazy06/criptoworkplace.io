@@ -48,7 +48,11 @@
 }
 
 body{font:14px/inherit 'segoeuil', sans-serif;height:100%;-webkit-font-smoothing:antialiased}
-.body_no-select *{-moz-user-select:none;-khtml-user-select:none;user-select:none}
+.body_no-select *{
+	-moz-user-select:none;
+	-khtml-user-select:none;
+	user-select:none;
+}
 body * {font-family: 'segoeuil', sans-serif;}
 
 Rbody {
