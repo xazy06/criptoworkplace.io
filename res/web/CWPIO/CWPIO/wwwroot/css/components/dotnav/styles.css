@@ -22,13 +22,13 @@
 	transition: all cubic-bezier(0.6, -0.28, 0.74, 0.05) .35s;
 	opacity: .85;
 	display: block;
-	box-shadow: 0px 0 5px 0px #34418f;
 }
 
 .radio-nav:checked + .dots-nav-i,
 .dots-nav-i:hover{
 	border:2px solid #fff;
 	opacity: 1;
+	box-shadow: 0 0 5px 0 #34418f;
 }
 
 .dots-nav-i:before {
@@ -45,5 +45,5 @@
 	border-radius: 50%;
 	text-align: center;
 	margin: auto;
-	box-shadow: 0px 0 5px 0px #34418f;
+	box-shadow: 0 0 5px 0 #34418f;
 }
