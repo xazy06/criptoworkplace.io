@@ -65,11 +65,29 @@
 				font-weight: bold;
 				text-align:center;
 			}
+			
+			#c{
+				position: fixed;
+				left: 0;
+				right: 0;
+				top: 0;
+				bottom: 0;
+			}
 
 			a {
 				color:#0078ff;
 			}
-			
+			svg {
+				height: 16px;
+				width: 16px;
+				padding: 12px;
+				margin-right: 10px;
+				background: rgba(255, 255, 255, .4);
+				-webkit-border-radius: 50px;
+				-moz-border-radius: 50px;
+				border-radius: 50px;
+				float: left;
+			}
 			.cloud-wrapper {
 /*				background: #444 !important;*/
 			}
@@ -108,10 +126,25 @@
 	</head>
 	<body>
 		@Html.Partial("_Header")
+	
 @*	<div class="b-block">*@
 @*		контент*@
+	@*	</div>*@
+	
+@*	<canvas id="c"></canvas>*@
+@*	<div class="content">*@
+@*		*@
+@*		<a class="btn" href="https://themeforest.net/user/squirrellabs/portfolio?ref=SquirrelLabs">*@
+@*			<svg width="64" version="1.1" xmlns="http://www.w3.org/2000/svg" height="64" viewBox="0 0 64 64" xmlns:xlink="http://www.w3.org/1999/xlink" enable-background="new 0 0 64 64">*@
+@*				<g>*@
+@*					<path fill="#fff" d="M22.154,54.727c0.394,0.393,0.907,0.59,1.422,0.59s1.029-0.197,1.422-0.59c0.785-0.785,0.785-2.058,0-2.843   L7.193,34.078h54.781c1.111,0,2.011-0.9,2.011-2.01c0-1.11-0.899-2.011-2.011-2.011H7.193L24.998,12.25   c0.785-0.785,0.785-2.058,0-2.843s-2.058-0.786-2.844,0L0.917,30.646c-0.785,0.786-0.785,2.058,0,2.843L22.154,54.727z"/>*@
+@*				</g>*@
+@*			</svg>*@
+@*		</a>*@
 @*	</div>*@
 	
+	<script type="text/javascript" src="/js/cloud/Detector.js"></script>
+@*	<script type="text/javascript" src="/js/particle/index.js"></script>*@
 	<script type="text/javascript" src="/js/cloud/three.min.js"></script>
 	<script type="text/javascript" src="/js/cloud/Detector.js"></script>
 	
@@ -287,6 +320,7 @@
 		}
 
 	</script>
-@*	<script type="text/javascript" src="/js/cloud/orig.js"></script>*@
+	@*	<script type="text/javascript" src="/js/cloud/orig.js"></script>*@
+	
 	</body>
 </html>
