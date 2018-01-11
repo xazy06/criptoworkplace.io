@@ -32,6 +32,29 @@
 		
 		<style type="text/css">
 
+			.b-block {
+				background: none;
+				/* position: fixed; */
+				/* z-index: 1111111; */
+				float: left;
+				/* overflow: hidden; */
+				margin: 63px auto 0;
+				position: fixed;
+				width: 960px;
+				height: 100%;
+				right: 0;
+				left: 0;
+				font-size: 58px;
+				color: #e4e4e4;
+				text-align: left;
+				background-color: #1e477254;
+				text-shadow: 0 -1px #1e4772;
+				padding: 15px;
+				box-shadow: 0px 36px 20px 20px #000000;
+				background: linear-gradient;
+				background: linear-gradient(180deg, rgb(31, 73, 117) 0%, rgba(0, 0, 0,.1) 100%);
+			}
+			
 			body {
 				background-color: #444;
 				margin: 0px;
@@ -85,7 +108,9 @@
 	</head>
 	<body>
 		@Html.Partial("_Header")
-	
+@*	<div class="b-block">*@
+@*		контент*@
+@*	</div>*@
 	
 	<script type="text/javascript" src="/js/cloud/three.min.js"></script>
 	<script type="text/javascript" src="/js/cloud/Detector.js"></script>
