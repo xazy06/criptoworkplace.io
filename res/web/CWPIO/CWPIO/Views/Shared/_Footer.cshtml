@@ -8,17 +8,22 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="subscribe">
-                            <form action="#">
+                            
+                            <div data-bind="popup:{removalDelay:500, callbacks:{}}"
+                                 class="white-popup mfp-with-anim mfp-hide"></div>
+                            
+                            <form action="javascript:void(0)">
                                 <div class="subscribe-input-box sib-name">
                                     <span><i class="fa fa-user-o"></i></span>
-                                    <input type="text" placeholder="Name">
+                                    <input data-bind="textInput:models.feedModel.name" type="text" placeholder="Name"/>
                                 </div>
                                 <div class="subscribe-input-box sib-email">
                                     <span><i class="fa fa-envelope-o"></i></span>
-                                    <input type="email" placeholder="Email">
+                                    <input data-bind="textInput:models.feedModel.email" type="email" placeholder="Email">
                                 </div>
                                 <div class="subscribe-input-box sib-submit">
-                                    <input type="submit" class="button no-h" value="Participate *">
+                                    <input data-bind="enable:actions.form.sendEnabled, click: actions.form.send" 
+                                           type="submit" class="button no-h" value="Participate *">
                                 </div>
                             </form>
                             <p class="subscribe-text">* Be the first.</p>
