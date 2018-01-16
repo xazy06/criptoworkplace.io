@@ -1485,7 +1485,7 @@ header {
 }
 
 .s-mb_60 {
-    margin-bottom:60px !important;
+    margin-bottom:100px !important;
 }
 
 .single-team {
@@ -1495,8 +1495,10 @@ header {
     height: 340px;
     width: 100%;
     border-radius: 50%;
-    box-shadow: -6px -13px 4px 0px #eaeaea;
-}
+    /*box-shadow: -6px -13px 4px 0px #eaeaea;*/
+    box-shadow: -2px -5px 5px 0px #eaeaea;
+    /*box-shadow: -6px -13px 0px 0px #eaeaea;*/
+    border: 24px solid #fff;}
 
 .single-team img {
     width:100%;
@@ -1548,8 +1550,8 @@ background: rgb(255, 255, 255) none repeat scroll 0 0;
     /* filter: blur(0px); */
 }
 h2.duga {
-    border-top: 15px solid #eaeaea;
-    border-radius: 400px/50px;
+    border-top: 7px solid #eaeaea;
+    border-radius: 1000px/27px;
     padding-top: 20px;
 }
 h2.duga::after {
@@ -2616,6 +2618,7 @@ footer {
     margin: 0 auto;
     top: 37px;
     width: 40px;
+    opacity: .75;
 }
 .s-logo:hover {
     -webkit-animation-name: rotation;
