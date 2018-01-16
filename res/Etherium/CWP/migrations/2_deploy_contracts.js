@@ -1,5 +1,5 @@
-var CWPToken = artifacts.require("CWPToken");
+var pCWTToken = artifacts.require("pCWTToken");
 
 module.exports = function(deployer) {
-  deployer.deploy(CWPToken);
+  deployer.deploy(pCWTToken);
 };
