@@ -11,6 +11,9 @@ using Microsoft.Extensions.DependencyInjection;
 using CWPIO.Data;
 using CWPIO.Models;
 using CWPIO.Services;
+using Microsoft.AspNetCore.Mvc.Razor;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
 
 namespace CWPIO
 {
@@ -26,6 +29,17 @@ namespace CWPIO
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            /*services.Configure<RequestLocalizationOptions>(options =>
+            {
+                options.RequestCultureProviders.Insert(0, new CustomRequestCultureProvider(async context =>
+                {
+                    Get culture from DB
+                    return new ProviderCultureResult("en");
+                }));
+            });*/
+
+            services.AddLocalization(options => options.ResourcesPath = "Resources");
+
             services
                 .AddEntityFrameworkNpgsql()
                 .AddDbContext<ApplicationDbContext>(options =>
@@ -38,12 +52,28 @@ namespace CWPIO
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
-            services.AddMvc();
+            services.AddMvc()
+                .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+                .AddDataAnnotationsLocalization();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            var supportedCultures = new[]
+            {
+                new CultureInfo("en-US"),
+                new CultureInfo("ru-RU"),
+            };
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture("en-US"),
+                // Formatting numbers, dates, etc.
+                SupportedCultures = supportedCultures,
+                // UI strings that we have localized.
+                SupportedUICultures = supportedCultures
+            });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
