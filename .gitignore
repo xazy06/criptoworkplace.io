@@ -121,11 +121,3 @@ PublishScripts/
 # Node.js Tools for Visual Studio
 .ntvs_analysis.dat
 node_modules/
-
-# Solidity build output
-**/build/contracts/*.json
-!**/build/contracts/*Token*.json
-!**/build/contracts/ERC20*.json
-!**/build/contracts/Migrations.json
-!**/build/contracts/Ownable.json
-!**/build/contracts/SafeMath.json
