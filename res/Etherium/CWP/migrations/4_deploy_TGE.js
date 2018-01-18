@@ -3,7 +3,7 @@ var CWTToken = artifacts.require("CWTToken");
 var CWPTokenSale = artifacts.require("CWPTokenSale");
 
 module.exports = function(deployer, network) {
-    if (network == "ropsten" && CWPToken.isDeployed() && pCWTToken.isDeployed()) //ropsten
+    if (network == "ropsten" && CWTToken.isDeployed() && CWTPToken.isDeployed()) //ropsten
     {
       const walletAddr = "0x0a0c2318d11807d465c6886a5a4707872fbdd82f";
       var cwpInstance;
@@ -19,5 +19,7 @@ module.exports = function(deployer, network) {
             });
         });
     }
-    throw 0;
+    else {
+      throw 0;
+    }
 };
