@@ -2,6 +2,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <UserSecretsId>aspnet-CWPIO-87372571-7F70-4C68-8BDF-E4117983CA51</UserSecretsId>
+    <PublishWithAspNetCoreTargetManifest>false</PublishWithAspNetCoreTargetManifest>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="DnsClient" Version="1.0.7" />
@@ -16,16 +17,6 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.1" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Resources\Controllers - Copy.HomeController.Designer.cs">
-      <DependentUpon>Controllers - Copy.HomeController.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Update="Resources\Controllers - Copy.HomeController.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Controllers.HomeController.resx</DependentUpon>
-    </Compile>
     <Compile Update="Resources\Controllers.HomeController.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
