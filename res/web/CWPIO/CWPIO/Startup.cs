@@ -55,6 +55,8 @@ namespace CWPIO
             services.AddMvc()
                 .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
                 .AddDataAnnotationsLocalization();
+
+            services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
