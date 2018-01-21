@@ -970,7 +970,9 @@ header {
     text-align: right;
 }
 
-.home1-hero-right img {}
+.home1-hero-right img {
+    max-width: 96%;
+}
 
 
 
@@ -1526,6 +1528,15 @@ header {
 
 .single-team:hover > img {
     filter: blur(5px);
+}
+
+.h-grey {
+    filter: grayscale();
+    transition: all 1s ease;
+}
+
+.h-grey:hover {
+    filter: none;
 }
 
 .single-team .st-content {
