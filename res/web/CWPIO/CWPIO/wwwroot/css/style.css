@@ -1491,7 +1491,7 @@ header {
 }
 
 .s-mb_60 {
-    margin-bottom:100px !important;
+    margin-bottom:60px !important;
 }
 
 .single-team {
@@ -1521,7 +1521,7 @@ header {
 .st-content-under{
     text-align:center;
     font-size: 20px;
-    padding:18px 15px 0;
+    padding:0 15px 49px;
     
     /*position: absolute;*/
     /*left:0;*/
@@ -1999,7 +1999,7 @@ footer {
     background: transparent none repeat scroll 0 0;
     border: 0 none;
     border-bottom: 1px solid #c7c7c7;
-    color: #404040;
+    color: #fff;
     font-size: 14px;
     height: 48px;
     letter-spacing: 0;
