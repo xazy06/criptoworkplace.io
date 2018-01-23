@@ -1244,6 +1244,10 @@ header {
     text-align: center;    
 }
 
+.s-mr_10 {
+    margin-right:10px;
+}
+
 .single-team.s-ta_c{
     display:block;
 }
@@ -1560,7 +1564,7 @@ background: rgb(255, 255, 255) none repeat scroll 0 0;
     /* border-top: 3px solid #ffc918; */
     /* filter: blur(0px); */
 }
-h2.duga {
+h2.duga, .duga {
     border-top: 7px solid #eaeaea;
     border-radius: 1000px/27px;
     padding-top: 20px;
@@ -1982,7 +1986,7 @@ footer {
     background: transparent none repeat scroll 0 0;
     border: 0 none;
     border-bottom: 1px solid #c7c7c7;
-    color: #404040;
+    color: #fff;
     font-size: 14px;
     height: 48px;
     letter-spacing: 0;
