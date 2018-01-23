@@ -1,5 +1,8 @@
 ﻿using CWPIO.Models;
+using Mailjet.Client;
+using Mailjet.Client.Resources;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,19 +15,30 @@ namespace CWPIO.Services
     // For more details see https://go.microsoft.com/fwlink/?LinkID=532713
     public class EmailSender : IEmailSender
     {
-        SmtpClient _client;
+        MailjetClient _client;
         public EmailSender(IOptions<MailSettings> mailSettings)
         {
-            _client = new SmtpClient(mailSettings.Value.Host, mailSettings.Value.Port)
-            {
-                Credentials = new System.Net.NetworkCredential(mailSettings.Value.UserName, mailSettings.Value.Password),
-                EnableSsl = true
-            };
+            _client = new MailjetClient(mailSettings.Value.ApiKey, mailSettings.Value.ApiSecret);
         }
 
-        public Task SendEmailAsync(string email, string subject, string message)
+        public async Task<bool> SendEmailAsync(string email, string subject, string message, string html = null)
         {
-            return _client.SendMailAsync("robot@cryptoworkplace.io", email, subject, message);
+
+            MailjetRequest request = new MailjetRequest() { Resource = Send.Resource }
+                .Property(Send.FromEmail, "robot@cryptoworkplace.io")
+                .Property(Send.FromName, "CryptoWorkPlace Robot")
+                .Property(Send.Subject, subject)
+                .Property(Send.TextPart, message);
+            if (!string.IsNullOrEmpty(html))
+                request.Property(Send.HtmlPart, html);
+
+            request.Property(Send.Recipients, new JArray {
+                    new JObject { {"Email", email } }
+                    });
+
+
+            MailjetResponse response = await _client.GetAsync(request);
+            return response.IsSuccessStatusCode;
         }
     }
 }

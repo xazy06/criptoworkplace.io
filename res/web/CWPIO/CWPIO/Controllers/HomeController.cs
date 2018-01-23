@@ -61,8 +61,8 @@ namespace CWPIO.Controllers
             if (await dbSet.AnyAsync(s => s.Email == model.Email))
                 return Json(new { result = false, Error = _localizer["Subscribe_EmailExist"] });
             await dbSet.AddAsync(new Subscriber { Name = model.Name, Email = model.Email });
-            await _emailSender.SendEmailSubscription(model.Email, model.Name);
-            return Json(new { result = true, Error = "" });
+            var sendResult = await _emailSender.SendEmailSubscription(model.Email, model.Name);
+            return Json(new { result = sendResult, Error = "" });
         }
 
         private Task<bool> IsValidAsync(string email)
