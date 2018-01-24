@@ -13,18 +13,18 @@
       "type": "constructor"
     }
   ],
-  "bytecode": "0x60606040523415600e57600080fd5b60405160208060e783398101604052808051906020019091905050600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff1614151515606457600080fd5b806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055505060358060b26000396000f3006060604052600080fd00a165627a7a72305820bd24cc6a7f3e056fb75162d98ab60cb8f8fe61e3f0270a64f1ad1dcd67c924790029",
-  "deployedBytecode": "0x6060604052600080fd00a165627a7a72305820bd24cc6a7f3e056fb75162d98ab60cb8f8fe61e3f0270a64f1ad1dcd67c924790029",
-  "sourceMap": "345:205:0:-;;;408:139;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;503:1;478:27;;:13;:27;;;;470:36;;;;;;;;528:13;513:12;;:28;;;;;;;;;;;;;;;;;;408:139;345:205;;;;;;",
-  "deployedSourceMap": "345:205:0:-;;;;;",
-  "source": "pragma solidity ^0.4.18;\r\n\r\nimport \"./CWTToken.sol\";\r\nimport \"./CWTPToken.sol\";\r\nimport \"zeppelin-solidity/contracts/token/MintableToken.sol\";\r\nimport \"zeppelin-solidity/contracts/crowdsale/CappedCrowdsale.sol\";\r\nimport \"zeppelin-solidity/contracts/crowdsale/RefundableCrowdsale.sol\";\r\nimport \"zeppelin-solidity/contracts/math/SafeMath.sol\";\r\n\r\ncontract CWPTokenAddr {\r\n  address internal tokenAddress;\r\n\r\n  function CWPTokenAddr(address _tokenAddress) public\r\n  {\r\n    require(_tokenAddress != address(0));\r\n    tokenAddress = _tokenAddress;\r\n  }\r\n}\r\n\r\ncontract CWPTokenSale is CWPTokenAddr, CappedCrowdsale, RefundableCrowdsale {\r\n  uint256 public constant REFUND_CAP = 1802 * 1 ether;\r\n  uint16 public constant RATE50 = 13320;\r\n  uint256 public constant CAP50 = 2252 * 1 ether;\r\n  uint16 public constant RATE25 = 8880;\r\n  uint256 public constant CAP25 = CAP50 + (7883 * 1 ether);\r\n  uint16 public constant RATE0 = 6660;\r\n  uint256 public constant CAP0 = CAP25 + (22523 * 1 ether);\r\n  CWTPToken public presaleToken;\r\n\r\n  /**\r\n   * event for token convert logging\r\n   * @param converter who convert presale tokens\r\n   * @param beneficiary who got the tokens\r\n   * @param amount amount of tokens converted\r\n   */\r\n  event PresaleTokenConvert(address indexed converter, address indexed beneficiary, uint256 amount);\r\n\r\n  modifier checkNextRate() {\r\n    if (rate == RATE50 && weiRaised >= CAP50 * 1 ether) {\r\n      rate = RATE25;\r\n    } else if (rate == RATE25 && weiRaised >= CAP25 * 1 ether) {\r\n      rate = RATE0;\r\n    }\r\n    _;\r\n  }\r\n\r\n  /**\r\n   * CWPTokenSale - Contract for CryptoWorkPlace Token Sale\r\n   *\r\n   * @param _startTime UNIX Timestamp in seconds, when Token Sale start\r\n   * @param _duration  Token Sale duration in days\r\n   * @param _wallet    Address of multisig wallet, using for refund if Token Sale failed\r\n   * @param  _tokenAddress  Address of Pre-sale CWPToken contract, deployed to blockchain\r\n   */\r\n  function CWPTokenSale(uint256 _startTime, uint8 _duration, address _wallet, address _tokenAddress, address _presaleTokenAddress) public\r\n    CWPTokenAddr(_tokenAddress)\r\n    CappedCrowdsale(CAP0)\r\n    FinalizableCrowdsale()\r\n    RefundableCrowdsale(REFUND_CAP)\r\n    Crowdsale(_startTime, _startTime + _duration * 1 days, RATE50, _wallet)\r\n  {\r\n    require(_presaleTokenAddress != address(0));\r\n    presaleToken = CWTPToken(_presaleTokenAddress);\r\n  }\r\n\r\n  function buyTokens(address beneficiary) checkNextRate public payable{\r\n    super.buyTokens(beneficiary);\r\n  }\r\n\r\n  /*Use CWPToken for sale*/\r\n  function createTokenContract() internal returns (MintableToken) {\r\n    //return new MintableToken();\r\n    return CWTToken(tokenAddress);\r\n  }\r\n\r\n  function convertFromPresale(uint256 _value) public returns (bool)\r\n  {\r\n    require(msg.sender != address(0));\r\n    require(_value > 0);\r\n    presaleToken.transferFrom(msg.sender, address(this), _value);\r\n    token.mint(msg.sender, _value);\r\n    PresaleTokenConvert(msg.sender, msg.sender, _value);\r\n    return true;\r\n  }\r\n}\r\n",
-  "sourcePath": "C:\\Users\\mmaslich.CISLINK\\Source\\Repos\\cryptoworkplace.io\\res\\Etherium\\CWP\\contracts\\CWPTokenSale.sol",
+  "bytecode": "0x60606040523415600e57600080fd5b60405160208060e783398101604052808051906020019091905050600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff1614151515606457600080fd5b806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055505060358060b26000396000f3006060604052600080fd00a165627a7a723058206ee7dd1a51fec7d9b10f353bf026d424260af99ac07330898ee928ad65184b380029",
+  "deployedBytecode": "0x6060604052600080fd00a165627a7a723058206ee7dd1a51fec7d9b10f353bf026d424260af99ac07330898ee928ad65184b380029",
+  "sourceMap": "0:205:0:-;;;63:139;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;158:1;133:27;;:13;:27;;;;125:36;;;;;;;;183:13;168:12;;:28;;;;;;;;;;;;;;;;;;63:139;0:205;;;;;;",
+  "deployedSourceMap": "0:205:0:-;;;;;",
+  "source": "contract CWPTokenAddr {\r\n  address internal tokenAddress;\r\n\r\n  function CWPTokenAddr(address _tokenAddress) public\r\n  {\r\n    require(_tokenAddress != address(0));\r\n    tokenAddress = _tokenAddress;\r\n  }\r\n}\r\n",
+  "sourcePath": "C:\\Users\\mmaslich.CISLINK\\Source\\Repos\\cryptoworkplace.io\\res\\Etherium\\CWP\\contracts\\CWPTokenAddr.sol",
   "ast": {
     "attributes": {
-      "absolutePath": "/C/Users/mmaslich.CISLINK/Source/Repos/cryptoworkplace.io/res/Etherium/CWP/contracts/CWPTokenSale.sol",
+      "absolutePath": "/C/Users/mmaslich.CISLINK/Source/Repos/cryptoworkplace.io/res/Etherium/CWP/contracts/CWPTokenAddr.sol",
       "exportedSymbols": {
         "CWPTokenAddr": [
-          28
+          21
         ],
         "CWPTokenSale": [
           239
@@ -39,11 +39,312 @@
             "^",
             "0.4",
             ".18"
-          ]
+          ],
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            21
+          ],
+          "name": "CWPTokenAddr",
+          "scope": 22
         },
-        "id": 1,
-        "name": "PragmaDirective",
-        "src": "0:24:0"
+        "id": 21,
+        "name": "ContractDefinition",
+        "src": "0:205:0",
+        "children": [
+          {
+            "attributes": {
+              "constant": false,
+              "name": "tokenAddress",
+              "scope": 21,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "address",
+              "value": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "address",
+                  "type": "address"
+                },
+                "id": 1,
+                "name": "ElementaryTypeName",
+                "src": "27:7:0"
+              }
+            ],
+            "id": 2,
+            "name": "VariableDeclaration",
+            "src": "27:29:0"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "implemented": true,
+              "isConstructor": true,
+              "modifiers": [
+                null
+              ],
+              "name": "CWPTokenAddr",
+              "payable": false,
+              "scope": 21,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_tokenAddress",
+                      "scope": 20,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 3,
+                        "name": "ElementaryTypeName",
+                        "src": "85:7:0"
+                      }
+                    ],
+                    "id": 4,
+                    "name": "VariableDeclaration",
+                    "src": "85:21:0"
+                  }
+                ],
+                "id": 5,
+                "name": "ParameterList",
+                "src": "84:23:0"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 6,
+                "name": "ParameterList",
+                "src": "118:0:0"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bool",
+                                  "typeString": "bool"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 1715,
+                              "type": "function (bool) pure",
+                              "value": "require"
+                            },
+                            "id": 7,
+                            "name": "Identifier",
+                            "src": "125:7:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "commonType": {
+                                "typeIdentifier": "t_address",
+                                "typeString": "address"
+                              },
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "operator": "!=",
+                              "type": "bool"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 4,
+                                  "type": "address",
+                                  "value": "_tokenAddress"
+                                },
+                                "id": 8,
+                                "name": "Identifier",
+                                "src": "133:13:0"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "isStructConstructorCall": false,
+                                  "lValueRequested": false,
+                                  "names": [
+                                    null
+                                  ],
+                                  "type": "address",
+                                  "type_conversion": true
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": [
+                                        {
+                                          "typeIdentifier": "t_rational_0_by_1",
+                                          "typeString": "int_const 0"
+                                        }
+                                      ],
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": true,
+                                      "lValueRequested": false,
+                                      "type": "type(address)",
+                                      "value": "address"
+                                    },
+                                    "id": 9,
+                                    "name": "ElementaryTypeNameExpression",
+                                    "src": "150:7:0"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "hexvalue": "30",
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": true,
+                                      "lValueRequested": false,
+                                      "subdenomination": null,
+                                      "token": "number",
+                                      "type": "int_const 0",
+                                      "value": "0"
+                                    },
+                                    "id": 10,
+                                    "name": "Literal",
+                                    "src": "158:1:0"
+                                  }
+                                ],
+                                "id": 11,
+                                "name": "FunctionCall",
+                                "src": "150:10:0"
+                              }
+                            ],
+                            "id": 12,
+                            "name": "BinaryOperation",
+                            "src": "133:27:0"
+                          }
+                        ],
+                        "id": 13,
+                        "name": "FunctionCall",
+                        "src": "125:36:0"
+                      }
+                    ],
+                    "id": 14,
+                    "name": "ExpressionStatement",
+                    "src": "125:36:0"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "address"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 2,
+                              "type": "address",
+                              "value": "tokenAddress"
+                            },
+                            "id": 15,
+                            "name": "Identifier",
+                            "src": "168:12:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 4,
+                              "type": "address",
+                              "value": "_tokenAddress"
+                            },
+                            "id": 16,
+                            "name": "Identifier",
+                            "src": "183:13:0"
+                          }
+                        ],
+                        "id": 17,
+                        "name": "Assignment",
+                        "src": "168:28:0"
+                      }
+                    ],
+                    "id": 18,
+                    "name": "ExpressionStatement",
+                    "src": "168:28:0"
+                  }
+                ],
+                "id": 19,
+                "name": "Block",
+                "src": "118:84:0"
+              }
+            ],
+            "id": 20,
+            "name": "FunctionDefinition",
+            "src": "63:139:0"
+          }
+        ]
       },
       {
         "attributes": {
@@ -3455,9 +3756,9 @@
         "src": "554:2444:0"
       }
     ],
-    "id": 240,
+    "id": 22,
     "name": "SourceUnit",
-    "src": "0:3000:0"
+    "src": "0:207:0"
   },
   "compiler": {
     "name": "solc",
@@ -3465,5 +3766,5 @@
   },
   "networks": {},
   "schemaVersion": "1.0.1",
-  "updatedAt": "2018-01-17T21:28:23.730Z"
+  "updatedAt": "2018-01-24T09:55:00.916Z"
 }

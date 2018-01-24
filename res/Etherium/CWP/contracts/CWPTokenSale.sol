@@ -2,20 +2,13 @@ pragma solidity ^0.4.18;
 
 import "./CWTToken.sol";
 import "./CWTPToken.sol";
+import "./CWPTokenAddr.sol";
 import "zeppelin-solidity/contracts/token/MintableToken.sol";
 import "zeppelin-solidity/contracts/crowdsale/CappedCrowdsale.sol";
 import "zeppelin-solidity/contracts/crowdsale/RefundableCrowdsale.sol";
 import "zeppelin-solidity/contracts/math/SafeMath.sol";
 
-contract CWPTokenAddr {
-  address internal tokenAddress;
 
-  function CWPTokenAddr(address _tokenAddress) public
-  {
-    require(_tokenAddress != address(0));
-    tokenAddress = _tokenAddress;
-  }
-}
 
 contract CWPTokenSale is CWPTokenAddr, CappedCrowdsale, RefundableCrowdsale {
   uint256 public constant REFUND_CAP = 1802 * 1 ether;

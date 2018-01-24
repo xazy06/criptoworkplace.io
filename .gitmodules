@@ -1,0 +1,3 @@
+[submodule "res/Etherium/MultiSigWallet"]
+	path = res/Etherium/MultiSigWallet
+	url = https://github.com/gnosis/MultiSigWallet
