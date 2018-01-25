@@ -14,11 +14,6 @@ namespace CWPIO.Services
             return emailSender.SendEmailAsync(email, "Confirm your email", 
                 $"Please confirm your account by following this link: '{HtmlEncoder.Default.Encode(link)}'",
                 $"Please confirm your account by clicking this link: <a href='{HtmlEncoder.Default.Encode(link)}'>link</a>");
-        }
-
-        public static Task<bool> SendEmailSubscription(this IEmailSender emailSender, string email, string name)
-        {
-            return emailSender.SendEmailAsync(email, "CWP Subscription", $"Hello, {name}. Info here", $"<h1>Html here</h1>");
-        }
+        }        
     }
 }

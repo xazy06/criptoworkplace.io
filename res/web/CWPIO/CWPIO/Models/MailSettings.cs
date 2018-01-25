@@ -11,5 +11,7 @@ namespace CWPIO.Models
         public int Port { get; set; }
         public string ApiKey { get; set; }
         public string ApiSecret { get; set; }
+        public string StaticFileServerAddress { get; set; }
+        public string WebServerAddress { get; set; }
     }
 }

@@ -11,5 +11,7 @@ namespace CWPIO.Data
         public string Name { get; set; }
         public string Email { get; set; }
         public bool EmailSend { get; set; }
+        public DateTime DateCreated { get; set; }
+
     }
 }

@@ -58,10 +58,13 @@ namespace CWPIO.Controllers
                 return Json(new { result = false, Error = _localizer["Subscribe_NoEmail"] });
 
             var dbSet = _context.Set<Subscriber>();
-            if (await dbSet.AnyAsync(s => s.Email == model.Email))
-                return Json(new { result = false, Error = _localizer["Subscribe_EmailExist"] });
-            await dbSet.AddAsync(new Subscriber { Name = model.Name, Email = model.Email });
+            if (!(await dbSet.AnyAsync(s => s.Email == model.Email)))
+            {
+                var entry = await dbSet.AddAsync(new Subscriber { Name = model.Name, Email = model.Email, EmailSend = true });
+                await _context.SaveChangesAsync();
+            }
             var sendResult = await _emailSender.SendEmailSubscription(model.Email, model.Name);
+
             return Json(new { result = sendResult, Error = "" });
         }
 
