@@ -31,8 +31,8 @@ namespace CWPIO.Services
         {
 
             MailjetRequest request = new MailjetRequest() { Resource = Send.Resource }
-                .Property(Send.FromEmail, "robot@cryptoworkplace.io")
-                .Property(Send.FromName, "CryptoWorkPlace Robot")
+                .Property(Send.FromEmail, "info@cryptoworkplace.io")
+                .Property(Send.FromName, "CryptoWorkPlace Info")
                 .Property(Send.Subject, subject)
                 .Property(Send.TextPart, message);
             if (!string.IsNullOrEmpty(html))
