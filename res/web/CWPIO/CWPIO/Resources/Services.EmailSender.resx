@@ -124,12 +124,172 @@
     <value>Email sent to </value>
     <comment>В конце пробел</comment>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Subscribe_Mail_Html" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>subscribe_mail_html.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  <data name="Subscribe_Mail_Html" xml:space="preserve">
+    <value>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;&lt;head&gt;&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;
+&lt;meta name="viewport" content="initial-scale=1.0"&gt;
+&lt;meta name="format-detection" content="telephone=no"&gt;
+&lt;title&gt;{0}&lt;/title&gt;
+&lt;style type="text/css"&gt;.socialLinks {{font-size: 6px;}}
+.socialLinks a {{display: inline-block;}}
+.socialIcon {{display: inline-block;vertical-align: top;padding-bottom: 0px;border-radius: 100%;}}
+table.vb-row.fullwidth {{border-spacing: 0;padding: 0;}}
+table.vb-container.fullwidth {{padding-left: 0;padding-right: 0;}}&lt;/style&gt;&lt;style type="text/css"&gt;
+    /* yahoo, hotmail */
+    .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div{{ line-height: 100%; }}
+    .yshortcuts a{{ border-bottom: none !important; }}
+    .vb-outer{{ min-width: 0 !important; }}
+    .RMsgBdy, .ExternalClass{{
+      width: 100%;
+      background-color: #3f3f3f;
+      background-color: #3f3f3f}}
+
+    /* outlook */
+    table{{ mso-table-rspace: 0pt; mso-table-lspace: 0pt; }}
+    #outlook a{{ padding: 0; }}
+    img{{ outline: none; text-decoration: none; border: none; -ms-interpolation-mode: bicubic; }}
+    a img{{ border: none; }}
+
+    @media screen and (max-device-width: 600px), screen and (max-width: 600px) {{
+      table.vb-container, table.vb-row{{
+        width: 95% !important;
+      }}
+
+      .mobile-hide{{ display: none !important; }}
+      .mobile-textcenter{{ text-align: center !important; }}
+
+      .mobile-full{{
+        float: none !important;
+        width: 100% !important;
+        max-width: none !important;
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+      }}
+      img.mobile-full{{
+        width: 100% !important;
+        max-width: none !important;
+        height: auto !important;
+      }}   
+    }}
+  &lt;/style&gt;&lt;style type="text/css"&gt;#ko_textBlock_7 .links-color a, #ko_textBlock_7 .links-color a:link, #ko_textBlock_7 .links-color a:visited, #ko_textBlock_7 .links-color a:hover {{color: #3f3f3f;color: #3f3f3f;text-decoration: underline;}}
+#ko_sideArticleBlock_4 .links-color a, #ko_sideArticleBlock_4 .links-color a:link, #ko_sideArticleBlock_4 .links-color a:visited, #ko_sideArticleBlock_4 .links-color a:hover {{color: #3f3f3f;color: #3f3f3f;text-decoration: underline;}}
+#ko_footerBlock_2 .links-color a:visited, #ko_footerBlock_2 .links-color a:hover {{color: #ccc;color: #ccc;text-decoration: underline;}}&lt;/style&gt;&lt;/head&gt;&lt;body bgcolor="#3f3f3f" text="#919191" alink="#cccccc" vlink="#cccccc" style="margin: 0;padding: 0;background-color: #3f3f3f;color: #919191;"&gt;
+
+  &lt;center&gt;
+
+  &lt;!-- preheaderBlock --&gt;
+  
+
+  &lt;table class="vb-outer" width="100%" cellpadding="0" border="0" cellspacing="0" bgcolor="#3f3f3f" style="background-color: #3f3f3f;" id="ko_preheaderBlock_1"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="vb-outer" align="center" valign="top" bgcolor="#3f3f3f" style="padding-left: 9px;padding-right: 9px;background-color: #3f3f3f;"&gt;
+        &lt;div style="display: none; font-size: 1px; color: #333333; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;"&gt;&lt;/div&gt;
+
+&lt;!--[if (gte mso 9)|(lte ie 8)]&gt;&lt;table align="center" border="0" cellspacing="0" cellpadding="0" width="570"&gt;&lt;tr&gt;&lt;td align="center" valign="top"&gt;&lt;![endif]--&gt;
+        &lt;div class="oldwebkit" style="max-width: 570px;"&gt;
+        &lt;table width="570" border="0" cellpadding="0" cellspacing="0" class="vb-row halfpad" bgcolor="#3f3f3f" style="border-collapse: separate;border-spacing: 0;padding-left: 9px;padding-right: 9px;width: 100%;max-width: 570px;background-color: #3f3f3f;"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td align="center" valign="top" bgcolor="#3f3f3f" style="font-size: 0; background-color: #3f3f3f;"&gt;
+
+&lt;!--[if (gte mso 9)|(lte ie 8)]&gt;&lt;table align="center" border="0" cellspacing="0" cellpadding="0" width="552"&gt;&lt;tr&gt;&lt;![endif]--&gt;
+&lt;!--[if (gte mso 9)|(lte ie 8)]&gt;&lt;td align="left" valign="top" width="276"&gt;&lt;![endif]--&gt; 
+&lt;div style="display: inline-block; max-width: 276px; vertical-align: top; width: 100%;" class="mobile-full"&gt; 
+                    &lt;table class="vb-content" border="0" cellspacing="9" cellpadding="0" width="276" style="border-collapse: separate;width: 100%;" align="left"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td width="100%" valign="top" align="left" style="font-weight: normal; text-align: left; font-size: 13px; font-family: Arial, Helvetica, sans-serif; color: #ffffff;"&gt;
+                          &lt;a style="text-decoration: underline; color: #ffffff;" target="_new" href="{9}"&gt;{10}&lt;/a&gt; 
+                          
+                        &lt;/td&gt;
+                      &lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;!--[if (gte mso 9)|(lte ie 8)]&gt;
+&lt;/td&gt;&lt;td align="left" valign="top" width="276"&gt;
+&lt;![endif]--&gt;&lt;div style="display: inline-block; max-width: 276px; vertical-align: top; width: 100%;" class="mobile-full mobile-hide"&gt; 
+
+                    &lt;table class="vb-content" border="0" cellspacing="9" cellpadding="0" width="276" style="border-collapse: separate;width: 100%;text-align: right;" align="left"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td width="100%" valign="top" style="font-weight: normal; font-size: 13px; font-family: Arial, Helvetica, sans-serif; color: #ffffff;"&gt;
+                      &lt;span style="color: #ffffff; text-decoration: underline;"&gt;
+                          &lt;a href="http://cryptoworkplace.io/" style="text-decoration: underline; color: #ffffff;" target="_new"&gt;{2}&lt;/a&gt;
+                         &lt;/span&gt;
+                       &lt;/td&gt;
+                      &lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;!--[if (gte mso 9)|(lte ie 8)]&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;![endif]--&gt;
+
+            &lt;/td&gt;
+          &lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;!--[if (gte mso 9)|(lte ie 8)]&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;![endif]--&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;!-- /preheaderBlock --&gt;&lt;table class="vb-outer" width="100%" cellpadding="0" border="0" cellspacing="0" bgcolor="#bfbfbf" style="background-color: #bfbfbf;" id="ko_titleBlock_5"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="vb-outer" align="center" valign="top" bgcolor="#bfbfbf" style="padding-left: 9px;padding-right: 9px;background-color: #bfbfbf;"&gt;
+
+&lt;!--[if (gte mso 9)|(lte ie 8)]&gt;&lt;table align="center" border="0" cellspacing="0" cellpadding="0" width="570"&gt;&lt;tr&gt;&lt;td align="center" valign="top"&gt;&lt;![endif]--&gt;
+        &lt;div class="oldwebkit" style="max-width: 570px;"&gt;
+        &lt;table width="570" border="0" cellpadding="0" cellspacing="9" class="vb-container halfpad" bgcolor="#ffffff" style="border-collapse: separate;border-spacing: 9px;padding-left: 9px;padding-right: 9px;width: 100%;max-width: 570px;background-color: #fff;"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td bgcolor="#ffffff" align="center" style="background-color: #ffffff; font-size: 22px; font-family: Arial, Helvetica, sans-serif; color: #3f3f3f; text-align: center;"&gt;
+              &lt;span style="color:#0099ff;"&gt;{3}&lt;br&gt;&lt;/span&gt;
+            &lt;/td&gt;
+          &lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;!--[if (gte mso 9)|(lte ie 8)]&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;![endif]--&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;table class="vb-outer" width="100%" cellpadding="0" border="0" cellspacing="0" bgcolor="#bfbfbf" style="background-color: #bfbfbf;" id="ko_sideArticleBlock_4"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="vb-outer" align="center" valign="top" bgcolor="#bfbfbf" style="padding-left: 9px;padding-right: 9px;background-color: #bfbfbf;"&gt;
+
+&lt;!--[if (gte mso 9)|(lte ie 8)]&gt;&lt;table align="center" border="0" cellspacing="0" cellpadding="0" width="570"&gt;&lt;tr&gt;&lt;td align="center" valign="top"&gt;&lt;![endif]--&gt;
+        &lt;div class="oldwebkit" style="max-width: 570px;"&gt;
+        &lt;table width="570" border="0" cellpadding="0" cellspacing="9" class="vb-row fullpad" bgcolor="#ffffff" style="border-collapse: separate;border-spacing: 9px;width: 100%;max-width: 570px;background-color: #fff;"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td align="center" class="mobile-row" valign="top" style="font-size: 0;"&gt;
+
+&lt;!--[if (gte mso 9)|(lte ie 8)]&gt;&lt;table align="center" border="0" cellspacing="0" cellpadding="0" width="552"&gt;&lt;tr&gt;&lt;![endif]--&gt;
+
+&lt;!--[if (gte mso 9)|(lte ie 8)]&gt;&lt;td align="left" valign="top" width="138"&gt;&lt;![endif]--&gt; 
+&lt;div class="mobile-full" style="display: inline-block; max-width: 138px; vertical-align: top; width: 100%;"&gt; 
+
+                    &lt;table class="vb-content" border="0" cellspacing="9" cellpadding="0" width="138" align="left" style="border-collapse: separate;width: 100%;"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td width="100%" valign="top" align="left" class="links-color"&gt;
+                          
+                            &lt;img border="0" hspace="0" vspace="0" width="120" class="mobile-full" alt="" style="border: 0px;display: block;vertical-align: top;width: 100%;height: auto;max-width: 120px;" src="{7}"&gt;&lt;/td&gt;
+                      &lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;!--[if (gte mso 9)|(lte ie 8)]&gt;&lt;/td&gt;
+&lt;![endif]--&gt;&lt;!--[if (gte mso 9)|(lte ie 8)]&gt;
+&lt;td align="left" valign="top" width="414"&gt;
+&lt;![endif]--&gt;&lt;div class="mobile-full" style="display: inline-block; max-width: 414px; vertical-align: top; width: 100%;"&gt; 
+
+                    &lt;table class="vb-content" border="0" cellspacing="9" cellpadding="0" width="414" align="left" style="border-collapse: separate;width: 100%;"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style="font-size: 18px; font-family: Arial, Helvetica, sans-serif; color: #3f3f3f; text-align: left;"&gt;
+                          &lt;span style="color: #3f3f3f;"&gt;{0}&lt;/span&gt;
+                        &lt;/td&gt;
+                      &lt;/tr&gt;&lt;tr&gt;&lt;td align="left" class="long-text links-color" style="text-align: left; font-size: 13px; font-family: Arial, Helvetica, sans-serif; color: #3f3f3f;"&gt;&lt;p style="margin: 1em 0px;margin-top: 0px;"&gt;{4}&lt;/p&gt;&lt;p style="margin: 1em 0px;margin-bottom: 0px;"&gt;{5}&lt;/p&gt;&lt;/td&gt;
+                      &lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;!--[if (gte mso 9)|(lte ie 8)]&gt;&lt;/td&gt;
+&lt;![endif]--&gt;
+&lt;!--[if (gte mso 9)|(lte ie 8)]&gt;&lt;/tr&gt;&lt;/table&gt;&lt;![endif]--&gt;
+
+            &lt;/td&gt;
+          &lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;!--[if (gte mso 9)|(lte ie 8)]&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;![endif]--&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;table class="vb-outer" width="100%" cellpadding="0" border="0" cellspacing="0" bgcolor="#bfbfbf" style="background-color: #bfbfbf;" id="ko_hrBlock_6"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="vb-outer" align="center" valign="top" bgcolor="#bfbfbf" style="padding-left: 9px;padding-right: 9px;background-color: #bfbfbf;"&gt;
+
+&lt;!--[if (gte mso 9)|(lte ie 8)]&gt;&lt;table align="center" border="0" cellspacing="0" cellpadding="0" width="570"&gt;&lt;tr&gt;&lt;td align="center" valign="top"&gt;&lt;![endif]--&gt;
+        &lt;div class="oldwebkit" style="max-width: 570px;"&gt;
+        &lt;table width="570" border="0" cellpadding="0" cellspacing="9" class="vb-container halfpad" bgcolor="#ffffff" style="border-collapse: separate;border-spacing: 9px;padding-left: 9px;padding-right: 9px;width: 100%;max-width: 570px;background-color: #fff;"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td valign="top" bgcolor="#ffffff" align="center" style="background-color: #ffffff;"&gt;
+              &lt;table width="100%" cellspacing="0" cellpadding="0" border="0" style="width: 100%;"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td width="100%" height="1" style="font-size: 1px; line-height: 1px; width: 100%; background-color: #3f3f3f;"&gt;&lt;/td&gt;
+                &lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/td&gt;
+          &lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;!--[if (gte mso 9)|(lte ie 8)]&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;![endif]--&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;table class="vb-outer" width="100%" cellpadding="0" border="0" cellspacing="0" bgcolor="#bfbfbf" style="background-color: #bfbfbf;" id="ko_textBlock_7"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="vb-outer" align="center" valign="top" bgcolor="#bfbfbf" style="padding-left: 9px;padding-right: 9px;background-color: #bfbfbf;"&gt;
+
+&lt;!--[if (gte mso 9)|(lte ie 8)]&gt;&lt;table align="center" border="0" cellspacing="0" cellpadding="0" width="570"&gt;&lt;tr&gt;&lt;td align="center" valign="top"&gt;&lt;![endif]--&gt;
+        &lt;div class="oldwebkit" style="max-width: 570px;"&gt;
+        &lt;table width="570" border="0" cellpadding="0" cellspacing="18" class="vb-container fullpad" bgcolor="#ffffff" style="border-collapse: separate;border-spacing: 18px;padding-left: 0;padding-right: 0;width: 100%;max-width: 570px;background-color: #fff;"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td align="left" class="long-text links-color" style="text-align: left; font-size: 13px; font-family: Arial, Helvetica, sans-serif; color: #3f3f3f;"&gt;&lt;p style="margin: 1em 0px;margin-bottom: 0px;margin-top: 0px;"&gt;&lt;strong&gt;{6}&lt;/strong&gt;&lt;/p&gt;&lt;/td&gt;
+          &lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;!--[if (gte mso 9)|(lte ie 8)]&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;![endif]--&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;!-- footerBlock --&gt;&lt;table width="100%" cellpadding="0" border="0" cellspacing="0" bgcolor="#3f3f3f" style="background-color: #3f3f3f;" id="ko_footerBlock_2"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td align="center" valign="top" bgcolor="#3f3f3f" style="background-color: #3f3f3f;"&gt;
+
+&lt;!--[if (gte mso 9)|(lte ie 8)]&gt;&lt;table align="center" border="0" cellspacing="0" cellpadding="0" width="570"&gt;&lt;tr&gt;&lt;td align="center" valign="top"&gt;&lt;![endif]--&gt;
+        &lt;div class="oldwebkit" style="max-width: 570px;"&gt;
+        &lt;table width="570" style="border-collapse: separate;border-spacing: 9px;padding-left: 9px;padding-right: 9px;width: 100%;max-width: 570px;" border="0" cellpadding="0" cellspacing="9" class="vb-container halfpad" align="center"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="long-text links-color" style="text-align: center; font-size: 13px; color: #919191; font-weight: normal; text-align: center; font-family: Arial, Helvetica, sans-serif;"&gt;&lt;p style="margin: 1em 0px;margin-bottom: 0px;margin-top: 0px;"&gt;{1}&lt;a href="mailto:{8}" style="color: #ccc;text-decoration: underline;"&gt;{8}&lt;/a&gt;&lt;/p&gt;&lt;/td&gt;
+          &lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align: center;"&gt;
+              &lt;a href="{9}" style="text-decoration: underline; color: #ffffff; text-align: center; font-size: 13px; font-weight: normal; font-family: Arial, Helvetica, sans-serif;" target="_new"&gt;&lt;span&gt;{10}&lt;/span&gt;&lt;/a&gt;
+            &lt;/td&gt;
+          &lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;
+&lt;!--[if (gte mso 9)|(lte ie 8)]&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;![endif]--&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;!-- /footerBlock --&gt;&lt;/center&gt;
+
+&lt;/body&gt;&lt;/html&gt;</value>
   </data>
-  <data name="Subscribe_Mail_Text" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>subscribe_mail_text.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  <data name="Subscribe_Mail_Text" xml:space="preserve">
+    <value>{0}
+{1}
+{2}
+{3}
+{5}: {4}</value>
   </data>
   <data name="Subscribe_Paragraph_One" xml:space="preserve">
     <value>We`ll be sharing important information with you, feel free to check out the website for frequent updates.</value>

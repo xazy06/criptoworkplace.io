@@ -70,6 +70,35 @@ namespace CWPIO.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+        ///&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;&lt;head&gt;&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;
+        ///&lt;meta name=&quot;viewport&quot; content=&quot;initial-scale=1.0&quot;&gt;
+        ///&lt;meta name=&quot;format-detection&quot; content=&quot;telephone=no&quot;&gt;
+        ///&lt;title&gt;{0}&lt;/title&gt;
+        ///&lt;style type=&quot;text/css&quot;&gt;.socialLinks {{font-size: 6px;}}
+        ///.socialLinks a {{display: inline-block;}}
+        ///.socialIcon {{display: inline-block;vertical [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Subscribe_Mail_Html {
+            get {
+                return ResourceManager.GetString("Subscribe_Mail_Html", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}
+        ///{1}
+        ///{2}
+        ///{3}
+        ///{5}: {4}.
+        /// </summary>
+        internal static string Subscribe_Mail_Text {
+            get {
+                return ResourceManager.GetString("Subscribe_Mail_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Field email required.
         /// </summary>
         internal static string Subscribe_NoEmail {

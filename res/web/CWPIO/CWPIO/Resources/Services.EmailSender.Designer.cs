@@ -75,9 +75,9 @@ namespace CWPIO.Resources {
         ///&lt;meta name=&quot;viewport&quot; content=&quot;initial-scale=1.0&quot;&gt;
         ///&lt;meta name=&quot;format-detection&quot; content=&quot;telephone=no&quot;&gt;
         ///&lt;title&gt;{0}&lt;/title&gt;
-        ///&lt;style type=&quot;text/css&quot;&gt;.socialLinks {font-size: 6px;}
-        ///.socialLinks a {display: inline-block;}
-        ///.socialIcon {display: inline-block;vertical-alig [rest of string was truncated]&quot;;.
+        ///&lt;style type=&quot;text/css&quot;&gt;.socialLinks {{font-size: 6px;}}
+        ///.socialLinks a {{display: inline-block;}}
+        ///.socialIcon {{display: inline-block;vertical [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Subscribe_Mail_Html {
             get {
