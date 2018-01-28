@@ -157,23 +157,43 @@
             <div class="row">
                 <a data-toggle="collapse" href="#token-code">TOGGLE TOKEN CODE</a>
 
-                <pre class="s-ta_l collapse in" id="token-code">
+                <pre class="s-ta_l collapse" id="token-code">
     pragma solidity ^0.4.18;
     
-    import "./CWPToken.sol";
+    import "./CWTToken.sol";
+    import "./CWTPToken.sol";
+    import "zeppelin-solidity/contracts/token/MintableToken.sol";
     import "zeppelin-solidity/contracts/crowdsale/CappedCrowdsale.sol";
     import "zeppelin-solidity/contracts/crowdsale/RefundableCrowdsale.sol";
+    import "zeppelin-solidity/contracts/math/SafeMath.sol";
     
-    contract CWPTokenSale is CappedCrowdsale, RefundableCrowdsale {
-      uint256 public constant REFUND_CAP = 4000 * 1 ether;
-      uint8 public constant RATE50 = 6;
-      uint256 public constant CAP50 = 5000 * 1 ether;
-      uint8 public constant RATE25 = 4;
-      uint256 public constant CAP25 = CAP50 + (17500 * 1 ether);
-      uint8 public constant RATE0 = 3;
-      uint256 public constant CAP0 = CAP25 + (50000 * 1 ether);
+    contract CWPTokenAddr {
+      address internal tokenAddress;
     
-      address public token; //this maybe must be private
+      function CWPTokenAddr(address _tokenAddress) public
+      {
+        require(_tokenAddress != address(0));
+        tokenAddress = _tokenAddress;
+      }
+    }
+    
+    contract CWPTokenSale is CWPTokenAddr, CappedCrowdsale, RefundableCrowdsale {
+      uint256 public constant REFUND_CAP = 1802 * 1 ether;
+      uint16 public constant RATE50 = 13320;
+      uint256 public constant CAP50 = 2252 * 1 ether;
+      uint16 public constant RATE25 = 8880;
+      uint256 public constant CAP25 = CAP50 + (7883 * 1 ether);
+      uint16 public constant RATE0 = 6660;
+      uint256 public constant CAP0 = CAP25 + (22523 * 1 ether);
+      CWTPToken public presaleToken;
+    
+      /**
+       * event for token convert logging
+       * @@param converter who convert presale tokens
+       * @@param beneficiary who got the tokens
+       * @@param amount amount of tokens converted
+       */
+      event PresaleTokenConvert(address indexed converter, address indexed beneficiary, uint256 amount);
     
       modifier checkNextRate() {
         if (rate == RATE50 && weiRaised >= CAP50 * 1 ether) {
@@ -187,21 +207,20 @@
       /**
        * CWPTokenSale - Contract for CryptoWorkPlace Token Sale
        *
-       * @@param  _token     Address of CWPToken contract, deployed to blockchain
        * @@param _startTime UNIX Timestamp in seconds, when Token Sale start
        * @@param _duration  Token Sale duration in days
        * @@param _wallet    Address of multisig wallet, using for refund if Token Sale failed
+       * @@param  _tokenAddress  Address of Pre-sale CWPToken contract, deployed to blockchain
        */
-      function CWPTokenSale(address _token, uint256 _startTime, uint8 _duration, address _wallet) public
+      function CWPTokenSale(uint256 _startTime, uint8 _duration, address _wallet, address _tokenAddress, address _presaleTokenAddress) public
+        CWPTokenAddr(_tokenAddress)
         CappedCrowdsale(CAP0)
         FinalizableCrowdsale()
         RefundableCrowdsale(REFUND_CAP)
         Crowdsale(_startTime, _startTime + _duration * 1 days, RATE50, _wallet)
       {
-        //As goal needs to be met for a successful crowdsale
-        //the value needs to less or equal than a cap which is limit for accepted funds
-        require(_token != address(0));
-        token = _token;
+        require(_presaleTokenAddress != address(0));
+        presaleToken = CWTPToken(_presaleTokenAddress);
       }
     
       function buyTokens(address beneficiary) checkNextRate public payable{
@@ -210,15 +229,78 @@
     
       /*Use CWPToken for sale*/
       function createTokenContract() internal returns (MintableToken) {
-        return CWPToken(token);
+        //return new MintableToken();
+        return CWTToken(tokenAddress);
       }
-    }
-    </pre>
+    
+      function convertFromPresale(uint256 _value) public returns (bool)
+      {
+        require(msg.sender != address(0));
+        require(_value > 0);
+        presaleToken.transferFrom(msg.sender, address(this), _value);
+        token.mint(msg.sender, _value);
+        PresaleTokenConvert(msg.sender, msg.sender, _value);
+        return true;
+      }
+    }</pre>
             </div>
 
         </div>
+        
     </div>
 </section>
+<div class="counter-area">
+            <div class="container-s">
+                <div class="row">
+                    <div class="col-md-2 col-sm-4 col-xs-12 col-md-offset-1">
+                        <div class="counter-box">
+                            <h2 class="s-icon counter counter-up" data-counterup-time="1500" data-counterup-delay="30">1802</h2> <span class="s-icon">ETH</span>
+                            <p class="counter-text">Hard CAP</p>
+                            <span class="counter-icon">
+                                <i class="fas fa-gavel"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-12">
+                        <div class="counter-box">
+                            <h2 class="counter counter-up s-icon" data-counterup-time="1500" data-counterup-delay="30">500</h2> <span class="s-icon">M pieces</span>
+                            <p class="counter-text">Maximum emission of Tokens</p>
+                            <span class="counter-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-12">
+                        <div class="counter-box">
+                            <h2 class="counter counter-up s-icon" data-counterup-time="1500" data-counterup-delay="30">250</h2> <span class="s-icon">M pieces</span>
+                            <p class="counter-text">Number of tokens for sale (50% of total)</p>
+                            <span class="counter-icon">
+                                <i class="far fa-money-bill-alt"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-12">
+                        <div class="counter-box">
+                            <h2 class="counter counter-up s-icon" data-counterup-time="1500" data-counterup-delay="30">0.20</h2> <span class="s-icon">$</span>
+                            <p class="counter-text">Price of the token</p>
+                            <span class="counter-icon">
+                                <i class="far fa-credit-card"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-4 col-xs-12">
+                        <div class="counter-box">
+                            <span class="s-icon">Up to </span>
+                            <h2 class="counter counter-up s-icon" data-counterup-time="1500" data-counterup-delay="30">40</h2> <span class="s-icon">%</span>
+                            <p class="counter-text">Early birds discounts</p>
+                            <span class="counter-icon">
+                                <i class="fas fa-thumbs-up"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 <!-- download-area-end -->
 <!-- download-area-start -->
 <section class="download-area" id="docs">
@@ -277,58 +359,7 @@
 @*            </div>*@
 @*        </div>*@
 @*    </div>*@
-<div class="counter-area">
-    <div class="container-s">
-        <div class="row">
-            <div class="col-md-2 col-sm-4 col-xs-12 col-md-offset-1">
-                <div class="counter-box">
-                    <h2 class="s-icon counter counter-up" data-counterup-time="1500" data-counterup-delay="30">1802</h2> <span class="s-icon">ETH</span>
-                    <p class="counter-text">Hard CAP</p>
-                    <span class="counter-icon">
-                        <i class="fas fa-gavel"></i>
-                    </span>
-                </div>
-            </div>
-            <div class="col-md-2 col-sm-4 col-xs-12">
-                <div class="counter-box">
-                    <h2 class="counter counter-up s-icon" data-counterup-time="1500" data-counterup-delay="30">500</h2> <span class="s-icon">M pieces</span>
-                    <p class="counter-text">Maximum emission of Tokens</p>
-                    <span class="counter-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </span>
-                </div>
-            </div>
-            <div class="col-md-2 col-sm-4 col-xs-12">
-                <div class="counter-box">
-                    <h2 class="counter counter-up s-icon" data-counterup-time="1500" data-counterup-delay="30">250</h2> <span class="s-icon">M pieces</span>
-                    <p class="counter-text">Number of tokens for sale (50% of total)</p>
-                    <span class="counter-icon">
-                        <i class="far fa-money-bill-alt"></i>
-                    </span>
-                </div>
-            </div>
-            <div class="col-md-2 col-sm-4 col-xs-12">
-                <div class="counter-box">
-                    <h2 class="counter counter-up s-icon" data-counterup-time="1500" data-counterup-delay="30">0.20</h2> <span class="s-icon">$</span>
-                    <p class="counter-text">Price of the token</p>
-                    <span class="counter-icon">
-                        <i class="far fa-credit-card"></i>
-                    </span>
-                </div>
-            </div>
-            <div class="col-md-2 col-sm-4 col-xs-12">
-                <div class="counter-box">
-                    <span class="s-icon">Up to </span>
-                    <h2 class="counter counter-up s-icon" data-counterup-time="1500" data-counterup-delay="30">40</h2> <span class="s-icon">%</span>
-                    <p class="counter-text">Early birds discounts</p>
-                    <span class="counter-icon">
-                        <i class="fas fa-thumbs-up"></i>
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 <!-- counter-area-end -->
 <!-- feature-area-start -->
 <section class="feature-area" id="feature">
@@ -615,502 +646,503 @@
 <!-- screenshot-area-end -->
 <!-- team-area-start -->
 <section class="team-area" id="team">
-    <div style="margin-bottom: 138px" class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1 col-xs-12">
-                <div class="screenshot-head">
-                    <div class="section-title">
-                        <h4>Meet Our</h4>
-                        <h2>TEAM</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row s-mb_60">
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <div class="single-team">
-                    <img src="/static/team/ykf.png?v=@DateTime.Now.Year" />
-                    <div class="st-content">
-                        <h5>Yoji Kishi</h5>
-                        <p>
-                            Rare type of High-edge Japanese technology specialist with wide international marketing experience.
-                            <br />Shin-Nippon Research (Hong Kong) Co., Ltd. Vice-President
-                            <br />International Society of Stem Cells Development , Director
-                            <br />5hz Medical Supplies (Xiamen, China) Co., Ltd. Vice-president
-                            <br />Kintaro Cells Power Co., Member of Board of Director
-                            <br />Ryukyukan International Kobudo Karate Federation, Honor Member
-                        </p>
-
-                        <div class="social-w">
-                            <a target="_blank" href="https://www.linkedin.com/in/yoji-kishi-70108610b/">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="st-content-under">
-                    CEO<br />Yoji Kishi
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <div class="single-team">
-                    <img src="/static/team/alexey.jpg" />
-                    <div class="st-content">
-                        <h5>CVO Alexey Gladkov</h5>
-                        <p>
-                            @*                        Президент Kintaro Power Cells Japan*@
-                            @*                        <br/>Региональный директор MapMess Inc.*@
-                            @*                        <br/>Директор-основатель научно-исследовательской компании AV-Cells Singapore*@
-                            @*                        <br/>30 летний опыт ведения собственного бизнеса*@
-                            @*                        <br/>20 лет ведения бизнеса в Сингапуре и Японии*@
-
-                            Kintaro Power Cells Japan President<br />
-                            MapMess Inc. Regional Director<br />
-                            Founding director of the research company AV-Cells Singapore<br />
-                            30 years of experience in running own business<br />
-                            20 years of doing business in Singapore and Japan<br />
-
-
-                        </p>
-                        <div class="social-w">
-                            <a target="_blank" href="https://www.linkedin.com/in/alexei-gladkov-04b03b14b/">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="st-content-under">
-                    CVO<br />Alexey Gladkov
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <div class="single-team">
-                    <img src="/static/team/max.png" />
-                    <div class="st-content">
-                        <h5>Maxim Maslich</h5>
-
-                        <p>
-                            @*                        Microsoft Certified Professional<br/>*@
-                            @*                        Microsoft Certified Technology Specialist Exam 511<br/>*@
-                            @*                        Blockchain and smart contracts developer<br/>*@
-                            @*                        Эксперт в управлении процессом разработки ПО, построении распределенных, высоконагруженных и защищенных систем<br/>*@
-                            @*                        Разработка систем мониторинга транспорта (грузовой, легковой, спецтехника, пассажирские перевозки, весовой контроль, контроль производственных линий, автоматизация таксопарка) для компаний Алроса, ГАЗПРОМ, Лукойл, Русал, РЖД, Сатори, Автолайн, городское такси.<br/>*@
-                            @*                        Разработка систем документооборота, проведения тендеров и торгов для X5 Retail Group, Лента, Metro C&C*@
-                            Microsoft Certified Professional<br />
-                            Microsoft Certified Technology Specialist Exam 511<br />
-                            Blockchain and smart contracts developer<br />
-                            An expert in the management of the software development process, the construction of distributed, highly loaded and secure systems<br />
-                            Development of transport monitoring systems (cargo, passenger cars, special equipment, passenger transportation, weight control,
-                            production line control, taxi park automation) for Alrosa, GAZPROM, Lukoil, Rusal, RZD, Satori, Autoline, city taxi.
-
-                        </p>
-
-                        <div class="social-w">
-
-                            <a target="_blank" href="https://www.linkedin.com/in/mmaslich/">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="st-content-under">
-                    CTO<br />Maxim Maslich
-                </div>
-            </div>
-        </div>
-
-        <div class="row  s-mb_60">
-
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <div class="single-team">
-                    <img src="/static/team/art.jpg" />
-                    <div class="st-content">
-                        <h5>Software Engineer Artur Enokyan</h5>
-
-                        <p>
-                            Senior JavaScript Developer Full-Stack<br />
-                            Certified Middle End Android Developer<br />
-                            Certified Middle End iOS Developer<br />
-                            Java EE, С#, PHP, Lua, Python, GO developer,<br />
-                            Unity 3D developer,<br />
-                            @*                        Эксперт в разработке Highload приложений<br/>*@
-                            Expert in developing Highload applications<br />
-                            @*                        Разработка трейдинг-платформ<br/>*@
-                            Custom Trading Platforms Development<br />
-                            Development of special software for major retailers<br />
-                            Cryptography, electronic document management<br />
-
-                            @*                        Разработка специального программного обеспечения для крупных ритейлеров<br/>*@
-                            @*                        Специалист по криптографии<br/>*@
-                            @*                        Разработка систем электронного документооборота<br/>*@
-                            @*                        Разработка специального программного обеспечения для Минобороны России<br/>*@
-
-                            Development of special software for the Ministry of Defense of Russia<br />
-                            @*                        Разработка специального программного обеспечения и участие в разработке программно-аппаратных комплексов для федеральных ведомств РФ<br/>*@
-
-                            Development of special software and participation in the development of software and hardware for federal agencies of the Russian Federation<br />
-                            @*                        Разработка специального программного обеспечения- для мониторинга и управления безопасностью в сети<br/>*@
-                            Development of special software - for monitoring and managing network security<br />
-                            @*                        Разработка внедряемых агентов-коллекторов для анализа и сбора данных о сетевой и переферийной активности ПК<br/>*@
-
-                            Development of implemented collector agents for analyzing and collecting data on network and peripheral PC activity<br />
-                            @*                        Государственная тайна*@
-                        </p>
-
-                        <div class="social-w">
-
-                            <a target="_blank" href="https://www.linkedin.com">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="st-content-under">
-                    Software Engineer<br />Artur Enokyan
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <div class="single-team">
-                    <img src="/static/team/ant.png" />
-                    <div class="st-content">
-                        <h5>Anton Polyansky</h5>
-
-                        <p>
-                            @*                        Руководитель производства аппаратных средств<br/>*@
-                            @*                        Инженер-разработчик аппаратных средств<br/>*@
-                            @*                        Инженер-программист встраиваемых систем<br/>*@
-                            @*                        Специалист по вычислительным системам микро исполнения<br/>*@
-                            @*                        Разработка схемотехнических решений, трассировка печатных плат и разработка встраиваемого программного обеспечения для тепловизионных приборов<br/>*@
-                            @*                        Разработка схемотехнических решений, трассировка печатных плат для устройств нижнего уровня системы распознавания музыкальных произведений Quinta<br/>*@
-                            @*                        Разработка схемотехнических решений и трассировка печатных плат для устройств системы Умного дома<br/>*@
-                            @*                        Разработка микроминиатюрных биометрических датчиков и процессорной системы управления биоэлектрическим протезом верхних конечностей<br/>*@
-                            @*                        Разработка встраиваемых систем передачи данных на основе технологий Wi-Fi, GSM и Bluetooth*@
-                            Hardware Engineer<br />
-                            Embedded Software Engineer<br />
-                            Microcomputer Systems Expert<br />
-                            Development of circuit solutions, trace of printed circuit boards and development of embedded software for thermal imaging devices<br />
-                            Development of circuit design solutions, trace of printed circuit boards for low-level devices of the Quinta music recognition system<br />
-                            Development of circuit solutions and trace of printed circuit boards for Smart House devices<br />
-                            Development of microminiature biometric sensors and processor control system for bioelectrical upper limb prosthesis<br />
-                            Development of embedded data transmission systems based on Wi-Fi, GSM and Bluetooth technologies
-                        </p>
-
-                        <div class="social-w">
-
-                            <a target="_blank" href="https://www.linkedin.com/in/anton-polyansky-400a5a156/">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="st-content-under">
-                    Head of Hardware Production<br />Anton Polyansky
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <div class="single-team">
-                    <img src="/static/team/den.jpg" />
-                    <div class="st-content">
-                        <h5>Denis Kuznetsov</h5>
-                        <p>
-                            Lead Mathematician, Senior Architect Developer<br />
-                            @*                        Программист встраиваемых систем<br/>*@
-                            @*                        Специалист нейронных систем и глубокого обучения<br/>*@
-                            @*                        Разработка агента для ведения нецелевого диалога в банковской системе<br/>*@
-                            @*                        Разработка Telegram-ботов с поддержкой искусственного интеллекта<br/>*@
-                            @*                        Разработка встраиваемого программного обеспечения для устройств системы распознавания музыкальных произведений Quinta<br/>*@
-                            @*                        Соавтор патентов для алгоритмов распознавания музыкальных произведений<br/>*@
-                            Lead Mathematician, Senior Architect Developer<br />
-                            Embedded Systems Programmer<br />
-                            Expert in Machine Learning and AI<br />
-                            Development of an agent for the conduct of non-targeted dialogue in the banking system<br />
-                            Development Telegram-bots with AI support<br />
-                            Embedded Software Development for Quinta Music Recognition System Devices<br />
-                            Co-author of a patent for music recognition algorithms
-
-
-                        </p>
-
-                        <div class="social-w">
-
-                            <a target="_blank" href="https://www.linkedin.com/in/%D0%B4%D0%B5%D0%BD%D0%B8%D1%81-%D0%BA%D1%83%D0%B7%D0%BD%D0%B5%D1%86%D0%BE%D0%B2-814352118/">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="st-content-under">
-                    Lead Mathematician<br />Denis Kuznetsov
-                </div>
-            </div>
-
-        </div>
-        <div class="row">
-            <div class="col-lg-4 col-md-4 col-md-offset-4 col-sm-6 col-xs-12">
-                <div class="single-team">
-                    <img src="/static/team/anton.png" />
-                    <div class="st-content">
-                        <h5>Anton Maslov</h5>
-
-                        <p>
-                            Senior System Analyst, PHP-Developer<br />
-                            @*                    Оптимизация и автоматизация логистических бизнес-процессов DAICHI<br/>*@
-                            @*                    Системная аналитика многомодульных высоконагруженных систем с различными интеграциями для METRO C&C, Lenta<br/>*@
-                            @*                    Разработка системы планирования поставок по TOC (Theory of Constraints) для производства IKEA, интегрированной с 1С<br/>*@
-                            @*                    Управление разработкой и позиционированием продукта<br/>*@
-                            Senior System Analyst, PHP-Developer<br />
-                            Optimization and automation of DAICHI logistics business processes<br />
-                            System analytics of multimodule high-loaded systems with various integrations for METRO C & C, Lenta<br />
-                            The development of a supply planning system for TOC (Theory of Constraints) for the production of IKEA, integrated with 1C<br />
-                            Product development and positioning management<br />
-
-                        </p>
-
-                        <div class="social-w">
-
-                            <a target="_blank" href="https://www.linkedin.com/in/%D0%B0%D0%BD%D1%82%D0%BE%D0%BD-%D0%BC%D0%B0%D1%81%D0%BB%D0%BE%D0%B2-232701156/">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="st-content-under">
-                    Senior System Analyst<br />Anton Maslov
-                </div>
+<div style="margin-bottom: 138px" class="container">
+<div class="row">
+    <div class="col-md-10 col-md-offset-1 col-xs-12">
+        <div class="screenshot-head">
+            <div class="section-title">
+                <h4>Meet Our</h4>
+                <h2>TEAM</h2>
             </div>
         </div>
     </div>
+</div>
+<div class="row s-mb_60">
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <div class="single-team">
+            <img src="/static/team/ykf.png?v=@DateTime.Now.Year" />
+            <div class="st-content">
+                <h5>Yoji Kishi</h5>
+                <p>
+                    Rare type of High-edge Japanese technology specialist with wide international marketing experience.
+                    <br />Shin-Nippon Research (Hong Kong) Co., Ltd. Vice-President
+                    <br />International Society of Stem Cells Development , Director
+                    <br />5hz Medical Supplies (Xiamen, China) Co., Ltd. Vice-president
+                    <br />Kintaro Cells Power Co., Member of Board of Director
+                    <br />Ryukyukan International Kobudo Karate Federation, Honor Member
+                </p>
 
-    <div style="margin-bottom: 138px" class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1 col-xs-12">
-                <div class="screenshot-head">
-                    <div class="section-title">
-                        <h2 class="duga">ADVISERS</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div style="margin-bottom: 60px;" class="row s-mb_60">
-            <div class="col-md-4 col-sm-4 col-xs-12">
-                <div class="single-team">
-                    <img src="/static/team/podelko.jpg" />
-                    <div class="st-content">
-                        <h5>Ph.D., MBA/Alexander Podelko</h5>
-                        <p>
-                            @*                        К.т.н., эксперт по разработке и тестированию ПО<br/> *@
-                            @*                        Член совета директоров группы компьютерных измерений.<br/> *@
-                            @*                        Oracle, Consulting Member of Technical Staff<br/>*@
-                            @*                        Hyperion, Distinguished Performance Engineer <br/>*@
-                            @*                        Aetna, Sr. Architect II<br/>*@
-                            @*                        Александр осуществляет координацию продаж и производства продукта для американского рынка, управление филиалом проекта в США, взаимодействие с крупными американскими компаниями-партнерами, обеспечивающими научную и техническую поддержку проекта.<br/>*@
-                            @*                        Александр имеет 30 летний опыт в тестировании программного обеспечения, что позволяет ему организовать взаимодействие проекта с крупнейшими игроками рынка тестирования ПО, такими как QAMentor.*@
-                            An expert in software development and testing<br />
-                            Member of the Board of Directors of the Computer Measurement Group<br />
-                            Oracle, Consulting Member of Technical Staff<br />
-                            Hyperion, Distinguished Performance Engineer <br />
-                            Aetna, Sr. Architect II<br /><br />
-
-                            Alexander coordinates the sales and production of the product for the US market, the management of the project's branch in the United States, the interaction with major US partner companies that provide scientific and technical support for the project.<br /><br />
-
-
-                            Alexander has 30 years of experience in software testing, which allows him to organize the interaction of the project with the largest players in the software testing market, such as QAMentor.
-
-                        </p>
-                        <div class="social-w">
-                            <a target="_blank" href="https://www.facebook.com/alexander.podelko?ref=br_rs">
-                                <i class="fab fa-facebook"></i>
-                            </a>
-                            <a target="_blank" href="https://www.linkedin.com/in/alexanderpodelko/">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                            <a target="_blank" href="http://alexanderpodelko.com/">
-                                pp
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="st-content-under">
-                    Ph.D., MBA<br />Alexander Podelko
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-4 col-xs-12">
-                <div class="single-team">
-                    <img src="/static/team/rus.png" alt="" />
-                    <div class="st-content">
-                        <h5>CEO & Founder SandCoin <br />Ruslan Pichugin</h5>
-                        <p>
-                            @*                        Основатель SandCoin, соучредитель «Ревитал» Основатель Yocto Games<br/> *@
-                            @*                        Сотрудничество с Chillingo, Electronic Arts, Microsoft Studios<br/>*@
-                            @*                        Руслан руководитель нескольких проектов, один из которых недавно успешно завершил ICO.<br/>*@
-                            @*                        Руслан является популярным блокчейн экспертом, юристом и экономистом, это позволяет ему курировать важные организационные, маркетинговые и экономические вопросы, с которыми сталкиваются основатели проекта.*@
-                            CEO & Founder SandCoin<br />
-                            Founder Yocto Games <br />
-                            Collaboration with Chillingo, Electronic Arts, Microsoft Studios<br /><br />
-
-                            Ruslan is the head of several projects, one of which recently successfully completed the ICO.<br /><br />
-                            Ruslan is a popular blockchain expert, lawyer and economist, all this allows him to oversee the important organizational, marketing and economic issues faced by the founders of the project.
-
-
-                        </p>
-
-                        <div class="social-w">
-                            <a target="_blank" href="https://www.facebook.com/ruslanpichugin">
-                                <i class="fab fa-facebook"></i>
-                            </a>
-                            <a target="_blank" href="https://www.linkedin.com/in/pichugin-ruslan-170a9641/">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="st-content-under">
-                    CEO & Founder SandCoin <br />Ruslan Pichugin
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-4 col-xs-12">
-                <div class="single-team">
-                    <img src="/static/team/pley.png" alt="">
-                    <div class="st-content">
-                        <h5>CTO Playkey<br />Alexey Lykov</h5>
-                        <p>
-                            Alexey is a technical specialist with 20 years of experience. He has extensive experience working with high-loaded systems. He develops platform solutions of any complexity.<br />
-                            Alexey is working on the development of the blockchain system in Playkey for 1.5 years. Manages the infrastructure of more than 1,000 video cards. Developed a unique solution for the mining of cryptocurrency on gaming platforms.<br />
-                            Alexey's competencies help the project in the technical issues of TGE.<br />
-
-                        </p>
-                        <div class="social-w">
-                            <a target="_blank" href="https://www.facebook.com/lykovaleksey">
-                                <i class="fab fa-facebook"></i>
-                            </a>
-                            <a target="_blank" href="https://www.linkedin.com/in/lykovaleksey/">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="st-content-under">
-                    CTO Playkey<br />Alexey Lykov
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-4 col-md-offset-4 col-sm-offset-4 col-sm-4 col-xs-12">
-                <div class="single-team">
-                    <img src="/static/team/vag.png" alt="">
-                    <div class="st-content">
-                        <h5>CEO Flexlab<br />Wagan Sarukhanov</h5>
-                        <p>
-                            CEO Flexlab<br />
-                            @*                        Блокчейн-исследователь и эксперт<br/>*@
-                            @*                        30-летний опыт в контрактном производстве электроники и ПО<br/>*@
-                            @*                        Более 20 проектов в различных отраслях<br/>*@
-                            @*                        Ментор проектов<br/>*@
-                            @*                        Wagan's competencies help the project in the business development and technical issues of product development and manufacturing.*@
-                            Blockchain researcher and expert<br />
-                            30 years of experience in contract manufacturing of electronics and software<br />
-                            More than 20 projects in various industries<br />
-                            Mentor<br /><br />
-
-                            Wagan's competencies help the project in the business development and technical issues of product development and manufacturing
-
-                        </p>
-                        <div class="social-w">
-                            <a target="_blank" href="https://www.facebook.com/wagan.sarukhanov">
-                                <i class="fab fa-facebook"></i>
-                            </a>
-                            <a target="_blank" href="https://www.linkedin.com/in/sarukhanov/">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="st-content-under">
-                    CEO Flexlab<br />Wagan Sarukhanov
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1 col-xs-12">
-                <div class="screenshot-head">
-                    <div class="section-title">
-                        <h2>PARTNERS</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4 col-sm-4 col-xs-12 s-ta_c">
-                <div class="_single-team s-ta_c">
-                    <div class="s-mb_9">
-                        <a target="_blank" href="http://www.icape-group.com/">ICAPE GROUP</a>
-                    </div>
-                    <a target="_blank" href="http://www.icape-group.com/">
-                        <img class="h-grey" width="100" src="/static/partners/icape.png" alt="ICAPE GROUP"/>
+                <div class="social-w">
+                    <a target="_blank" href="https://www.linkedin.com/in/yoji-kishi-70108610b/">
+                        <i class="fab fa-linkedin"></i>
                     </a>
-
-                    @*                        <div class="st-content">*@
-                    @*                            <h5>ALEX SWEET</h5>*@
-                    @*                            <p>Web Designer</p>*@
-                    @*                            <a href="#">+</a>*@
-                    @*                        </div>*@
                 </div>
             </div>
 
-            <div class="col-md-4 col-sm-4 col-xs-12 s-ta_c">
-                <div class="_single-team s-ta_c">
-                    <div class="s-mb_9">
-                        <a target="_blank" href="http://www.qamentor.com/">QA MENTOR</a>
+        </div>
+        <div class="st-content-under">
+            CEO<br />Yoji Kishi
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <div class="single-team">
+            <img src="/static/team/alexey.jpg" />
+            <div class="st-content">
+                <h5>CVO Alexey Gladkov</h5>
+                <p>
+                    @*                        Президент Kintaro Power Cells Japan*@
+                    @*                        <br/>Региональный директор MapMess Inc.*@
+                    @*                        <br/>Директор-основатель научно-исследовательской компании AV-Cells Singapore*@
+                    @*                        <br/>30 летний опыт ведения собственного бизнеса*@
+                    @*                        <br/>20 лет ведения бизнеса в Сингапуре и Японии*@
+
+                    Kintaro Power Cells Japan President<br />
+                    MapMess Inc. Regional Director<br />
+                    Founding director of the research company AV-Cells Singapore<br />
+                    30 years of experience in running own business<br />
+                    20 years of doing business in Singapore and Japan<br />
+
+
+                </p>
+                <div class="social-w">
+                    <a target="_blank" href="https://www.linkedin.com/in/alexei-gladkov-04b03b14b/">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <div class="st-content-under">
+            CVO<br />Alexey Gladkov
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <div class="single-team">
+            <img src="/static/team/max.png" />
+            <div class="st-content">
+                <h5>Maxim Maslich</h5>
+
+                <p>
+                    @*                        Microsoft Certified Professional<br/>*@
+                    @*                        Microsoft Certified Technology Specialist Exam 511<br/>*@
+                    @*                        Blockchain and smart contracts developer<br/>*@
+                    @*                        Эксперт в управлении процессом разработки ПО, построении распределенных, высоконагруженных и защищенных систем<br/>*@
+                    @*                        Разработка систем мониторинга транспорта (грузовой, легковой, спецтехника, пассажирские перевозки, весовой контроль, контроль производственных линий, автоматизация таксопарка) для компаний Алроса, ГАЗПРОМ, Лукойл, Русал, РЖД, Сатори, Автолайн, городское такси.<br/>*@
+                    @*                        Разработка систем документооборота, проведения тендеров и торгов для X5 Retail Group, Лента, Metro C&C*@
+                    Microsoft Certified Professional<br />
+                    Microsoft Certified Technology Specialist Exam 511<br />
+                    Blockchain and smart contracts developer<br />
+                    An expert in the management of the software development process, the construction of distributed, highly loaded and secure systems<br />
+                    Development of transport monitoring systems (cargo, passenger cars, special equipment, passenger transportation, weight control,
+                    production line control, taxi park automation) for Alrosa, GAZPROM, Lukoil, Rusal, RZD, Satori, Autoline, city taxi.
+
+                </p>
+
+                <div class="social-w">
+
+                    <a target="_blank" href="https://www.linkedin.com/in/mmaslich/">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <div class="st-content-under">
+            CTO<br />Maxim Maslich
+        </div>
+    </div>
+</div>
+
+<div class="row  s-mb_60">
+
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <div class="single-team">
+            <img src="/static/team/art.jpg" />
+            <div class="st-content">
+                <h5>Software Engineer Artur Enokyan</h5>
+
+                <p>
+                    Senior JavaScript Developer Full-Stack<br />
+                    Certified Middle End Android Developer<br />
+                    Certified Middle End iOS Developer<br />
+                    Java EE, С#, PHP, Lua, Python, GO developer,<br />
+                    Unity 3D developer,<br />
+                    @*                        Эксперт в разработке Highload приложений<br/>*@
+                    Expert in developing Highload applications<br />
+                    @*                        Разработка трейдинг-платформ<br/>*@
+                    Custom Trading Platforms Development<br />
+                    Development of special software for major retailers<br />
+                    Cryptography, electronic document management<br />
+
+                    @*                        Разработка специального программного обеспечения для крупных ритейлеров<br/>*@
+                    @*                        Специалист по криптографии<br/>*@
+                    @*                        Разработка систем электронного документооборота<br/>*@
+                    @*                        Разработка специального программного обеспечения для Минобороны России<br/>*@
+
+                    Development of special software for the Ministry of Defense of Russia<br />
+                    @*                        Разработка специального программного обеспечения и участие в разработке программно-аппаратных комплексов для федеральных ведомств РФ<br/>*@
+
+                    Development of special software and participation in the development of software and hardware for federal agencies of the Russian Federation<br />
+                    @*                        Разработка специального программного обеспечения- для мониторинга и управления безопасностью в сети<br/>*@
+                    Development of special software - for monitoring and managing network security<br />
+                    @*                        Разработка внедряемых агентов-коллекторов для анализа и сбора данных о сетевой и переферийной активности ПК<br/>*@
+
+                    Development of implemented collector agents for analyzing and collecting data on network and peripheral PC activity<br />
+                    @*                        Государственная тайна*@
+                </p>
+
+                <div class="social-w">
+
+                    <a target="_blank" href="https://www.linkedin.com">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <div class="st-content-under">
+            Software Engineer<br />Artur Enokyan
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <div class="single-team">
+            <img src="/static/team/ant.png" />
+            <div class="st-content">
+                <h5>Anton Polyansky</h5>
+
+                <p>
+                    @*                        Руководитель производства аппаратных средств<br/>*@
+                    @*                        Инженер-разработчик аппаратных средств<br/>*@
+                    @*                        Инженер-программист встраиваемых систем<br/>*@
+                    @*                        Специалист по вычислительным системам микро исполнения<br/>*@
+                    @*                        Разработка схемотехнических решений, трассировка печатных плат и разработка встраиваемого программного обеспечения для тепловизионных приборов<br/>*@
+                    @*                        Разработка схемотехнических решений, трассировка печатных плат для устройств нижнего уровня системы распознавания музыкальных произведений Quinta<br/>*@
+                    @*                        Разработка схемотехнических решений и трассировка печатных плат для устройств системы Умного дома<br/>*@
+                    @*                        Разработка микроминиатюрных биометрических датчиков и процессорной системы управления биоэлектрическим протезом верхних конечностей<br/>*@
+                    @*                        Разработка встраиваемых систем передачи данных на основе технологий Wi-Fi, GSM и Bluetooth*@
+                    Hardware Engineer<br />
+                    Embedded Software Engineer<br />
+                    Microcomputer Systems Expert<br />
+                    Development of circuit solutions, trace of printed circuit boards and development of embedded software for thermal imaging devices<br />
+                    Development of circuit design solutions, trace of printed circuit boards for low-level devices of the Quinta music recognition system<br />
+                    Development of circuit solutions and trace of printed circuit boards for Smart House devices<br />
+                    Development of microminiature biometric sensors and processor control system for bioelectrical upper limb prosthesis<br />
+                    Development of embedded data transmission systems based on Wi-Fi, GSM and Bluetooth technologies
+                </p>
+
+                <div class="social-w">
+
+                    <a target="_blank" href="https://www.linkedin.com/in/anton-polyansky-400a5a156/">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <div class="st-content-under">
+            Head of Hardware Production<br />Anton Polyansky
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <div class="single-team">
+            <img src="/static/team/den.jpg" />
+            <div class="st-content">
+                <h5>Denis Kuznetsov</h5>
+                <p>
+                    Lead Mathematician, Senior Architect Developer<br />
+                    @*                        Программист встраиваемых систем<br/>*@
+                    @*                        Специалист нейронных систем и глубокого обучения<br/>*@
+                    @*                        Разработка агента для ведения нецелевого диалога в банковской системе<br/>*@
+                    @*                        Разработка Telegram-ботов с поддержкой искусственного интеллекта<br/>*@
+                    @*                        Разработка встраиваемого программного обеспечения для устройств системы распознавания музыкальных произведений Quinta<br/>*@
+                    @*                        Соавтор патентов для алгоритмов распознавания музыкальных произведений<br/>*@
+                    Lead Mathematician, Senior Architect Developer<br />
+                    Embedded Systems Programmer<br />
+                    Expert in Machine Learning and AI<br />
+                    Development of an agent for the conduct of non-targeted dialogue in the banking system<br />
+                    Development Telegram-bots with AI support<br />
+                    Embedded Software Development for Quinta Music Recognition System Devices<br />
+                    Co-author of a patent for music recognition algorithms
+
+
+                </p>
+
+                <div class="social-w">
+
+                    <a target="_blank" href="https://www.linkedin.com/in/%D0%B4%D0%B5%D0%BD%D0%B8%D1%81-%D0%BA%D1%83%D0%B7%D0%BD%D0%B5%D1%86%D0%BE%D0%B2-814352118/">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <div class="st-content-under">
+            Lead Mathematician<br />Denis Kuznetsov
+        </div>
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-lg-4 col-md-4 col-md-offset-4 col-sm-6 col-xs-12">
+        <div class="single-team">
+            <img src="/static/team/anton.png" />
+            <div class="st-content">
+                <h5>Anton Maslov</h5>
+
+                <p>
+                    Senior System Analyst, PHP-Developer<br />
+                    @*                    Оптимизация и автоматизация логистических бизнес-процессов DAICHI<br/>*@
+                    @*                    Системная аналитика многомодульных высоконагруженных систем с различными интеграциями для METRO C&C, Lenta<br/>*@
+                    @*                    Разработка системы планирования поставок по TOC (Theory of Constraints) для производства IKEA, интегрированной с 1С<br/>*@
+                    @*                    Управление разработкой и позиционированием продукта<br/>*@
+                    Senior System Analyst, PHP-Developer<br />
+                    Optimization and automation of DAICHI logistics business processes<br />
+                    System analytics of multimodule high-loaded systems with various integrations for METRO C & C, Lenta<br />
+                    The development of a supply planning system for TOC (Theory of Constraints) for the production of IKEA, integrated with 1C<br />
+                    Product development and positioning management<br />
+
+                </p>
+
+                <div class="social-w">
+
+                    <a target="_blank" href="https://www.linkedin.com/in/%D0%B0%D0%BD%D1%82%D0%BE%D0%BD-%D0%BC%D0%B0%D1%81%D0%BB%D0%BE%D0%B2-232701156/">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <div class="st-content-under">
+            Senior System Analyst<br />Anton Maslov
+        </div>
+    </div>
+</div>
+</div>
+
+<div style="margin-bottom: 138px" class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1 col-xs-12">
+            <div class="screenshot-head">
+                <div class="section-title">
+                    <h2 class="duga">ADVISERS</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-bottom: 60px;" class="row s-mb_60">
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="single-team">
+                <img src="/static/team/podelko.jpg" />
+                <div class="st-content">
+                    <h5>Ph.D., MBA/Alexander Podelko</h5>
+                    <p>
+                        @*                        К.т.н., эксперт по разработке и тестированию ПО<br/> *@
+                        @*                        Член совета директоров группы компьютерных измерений.<br/> *@
+                        @*                        Oracle, Consulting Member of Technical Staff<br/>*@
+                        @*                        Hyperion, Distinguished Performance Engineer <br/>*@
+                        @*                        Aetna, Sr. Architect II<br/>*@
+                        @*                        Александр осуществляет координацию продаж и производства продукта для американского рынка, управление филиалом проекта в США, взаимодействие с крупными американскими компаниями-партнерами, обеспечивающими научную и техническую поддержку проекта.<br/>*@
+                        @*                        Александр имеет 30 летний опыт в тестировании программного обеспечения, что позволяет ему организовать взаимодействие проекта с крупнейшими игроками рынка тестирования ПО, такими как QAMentor.*@
+                        An expert in software development and testing<br />
+                        Member of the Board of Directors of the Computer Measurement Group<br />
+                        Oracle, Consulting Member of Technical Staff<br />
+                        Hyperion, Distinguished Performance Engineer <br />
+                        Aetna, Sr. Architect II<br /><br />
+
+                        Alexander coordinates the sales and production of the product for the US market, the management of the project's branch in the United States, the interaction with major US partner companies that provide scientific and technical support for the project.<br /><br />
+
+
+                        Alexander has 30 years of experience in software testing, which allows him to organize the interaction of the project with the largest players in the software testing market, such as QAMentor.
+
+                    </p>
+                    <div class="social-w">
+                        <a target="_blank" href="https://www.facebook.com/alexander.podelko?ref=br_rs">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a target="_blank" href="https://www.linkedin.com/in/alexanderpodelko/">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a target="_blank" href="http://alexanderpodelko.com/">
+                            pp
+                        </a>
                     </div>
-                    <a target="_blank" href="http://www.qamentor.com/">
+                </div>
+
+            </div>
+            <div class="st-content-under">
+                Ph.D., MBA<br />Alexander Podelko
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="single-team">
+                <img src="/static/team/rus.png" alt="" />
+                <div class="st-content">
+                    <h5>CEO & Founder SandCoin <br />Ruslan Pichugin</h5>
+                    <p>
+                        @*                        Основатель SandCoin, соучредитель «Ревитал» Основатель Yocto Games<br/> *@
+                        @*                        Сотрудничество с Chillingo, Electronic Arts, Microsoft Studios<br/>*@
+                        @*                        Руслан руководитель нескольких проектов, один из которых недавно успешно завершил ICO.<br/>*@
+                        @*                        Руслан является популярным блокчейн экспертом, юристом и экономистом, это позволяет ему курировать важные организационные, маркетинговые и экономические вопросы, с которыми сталкиваются основатели проекта.*@
+                        CEO & Founder SandCoin<br />
+                        Founder Yocto Games <br />
+                        Collaboration with Chillingo, Electronic Arts, Microsoft Studios<br /><br />
+
+                        Ruslan is the head of several projects, one of which recently successfully completed the ICO.<br /><br />
+                        Ruslan is a popular blockchain expert, lawyer and economist, all this allows him to oversee the important organizational, marketing and economic issues faced by the founders of the project.
+
+
+                    </p>
+
+                    <div class="social-w">
+                        <a target="_blank" href="https://www.facebook.com/ruslanpichugin">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a target="_blank" href="https://www.linkedin.com/in/pichugin-ruslan-170a9641/">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="st-content-under">
+                CEO & Founder SandCoin <br />Ruslan Pichugin
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="single-team">
+                <img src="/static/team/pley.png" alt="">
+                <div class="st-content">
+                    <h5>CTO Playkey<br />Alexey Lykov</h5>
+                    <p>
+                        Alexey is a technical specialist with 20 years of experience. He has extensive experience working with high-loaded systems. He develops platform solutions of any complexity.<br />
+                        Alexey is working on the development of the blockchain system in Playkey for 1.5 years. Manages the infrastructure of more than 1,000 video cards. Developed a unique solution for the mining of cryptocurrency on gaming platforms.<br />
+                        Alexey's competencies help the project in the technical issues of TGE.<br />
+
+                    </p>
+                    <div class="social-w">
+                        <a target="_blank" href="https://www.facebook.com/lykovaleksey">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a target="_blank" href="https://www.linkedin.com/in/lykovaleksey/">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="st-content-under">
+                CTO Playkey<br />Alexey Lykov
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4 col-sm-offset-4 col-sm-4 col-xs-12">
+            <div class="single-team">
+                <img src="/static/team/vag.png" alt="">
+                <div class="st-content">
+                    <h5>CEO Flexlab<br />Wagan Sarukhanov</h5>
+                    <p>
+                        CEO Flexlab<br />
+                        @*                        Блокчейн-исследователь и эксперт<br/>*@
+                        @*                        30-летний опыт в контрактном производстве электроники и ПО<br/>*@
+                        @*                        Более 20 проектов в различных отраслях<br/>*@
+                        @*                        Ментор проектов<br/>*@
+                        @*                        Wagan's competencies help the project in the business development and technical issues of product development and manufacturing.*@
+                        Blockchain researcher and expert<br />
+                        30 years of experience in contract manufacturing of electronics and software<br />
+                        More than 20 projects in various industries<br />
+                        Mentor<br /><br />
+
+                        Wagan's competencies help the project in the business development and technical issues of product development and manufacturing
+
+                    </p>
+                    <div class="social-w">
+                        <a target="_blank" href="https://www.facebook.com/wagan.sarukhanov">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a target="_blank" href="https://www.linkedin.com/in/sarukhanov/">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="st-content-under">
+                CEO Flexlab<br />Wagan Sarukhanov
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1 col-xs-12">
+            <div class="screenshot-head">
+                <div class="section-title">
+                    <h2>PARTNERS</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-sm-4 col-xs-12 s-ta_c">
+            <div class="_single-team s-ta_c">
+                <div class="s-mb_9">
+                    <a target="_blank" href="http://www.icape-group.com/">ICAPE GROUP</a>
+                </div>
+                <a target="_blank" href="http://www.icape-group.com/">
+                    <img class="h-grey" width="100" src="/static/partners/icape.png" alt="ICAPE GROUP"/>
+                </a>
+
+                @*                        <div class="st-content">*@
+                @*                            <h5>ALEX SWEET</h5>*@
+                @*                            <p>Web Designer</p>*@
+                @*                            <a href="#">+</a>*@
+                @*                        </div>*@
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4 col-xs-12 s-ta_c">
+            <div class="_single-team s-ta_c">
+                <div class="s-mb_9">
+                    <a target="_blank" href="http://www.qamentor.com/">QA MENTOR</a>
+                </div>
+                <a target="_blank" href="http://www.qamentor.com/">
                     <img class="h-grey" width="200" src="/static/partners/qa.png" alt="QA MENTOR" />
-                    </a>
-                    @*                        <div class="st-content">*@
-                    @*                            <h5>ALEX SWEET</h5>*@
-                    @*                            <p>Web Designer</p>*@
-                    @*                            <a href="#">+</a>*@
-                    @*                        </div>*@
-                </div>
+                </a>
+                @*                        <div class="st-content">*@
+                @*                            <h5>ALEX SWEET</h5>*@
+                @*                            <p>Web Designer</p>*@
+                @*                            <a href="#">+</a>*@
+                @*                        </div>*@
             </div>
+        </div>
 
-            <div class="col-md-4 col-sm-4 col-xs-12 s-ta_c">
-                <div class="_single-team s-ta_c">
-                    <div class="s-mb_9">
-                        <a target="_blank" href="https://kintarocells.com">CELLS POWER JAPAN</a>
-                    </div>
-                    <a target="_blank" href="https://kintarocells.com">
-                    <img class="h-grey" width="100" src="/static/partners/cells.png" alt="CELLS POWER JAPAN" />
-                    </a>
-                    @*                        <div class="st-content">*@
-                    @*                            <h5>ALEX SWEET</h5>*@
-                    @*                            <p>Web Designer</p>*@
-                    @*                            <a href="#">+</a>*@
-                    @*                        </div>*@
+        <div class="col-md-4 col-sm-4 col-xs-12 s-ta_c">
+            <div class="_single-team s-ta_c">
+                <div class="s-mb_9">
+                    <a target="_blank" href="https://kintarocells.com">CELLS POWER JAPAN</a>
                 </div>
+                <a target="_blank" href="https://kintarocells.com">
+                    <img class="h-grey" width="100" src="/static/partners/cells.png" alt="CELLS POWER JAPAN" />
+                </a>
+                @*                        <div class="st-content">*@
+                @*                            <h5>ALEX SWEET</h5>*@
+                @*                            <p>Web Designer</p>*@
+                @*                            <a href="#">+</a>*@
+                @*                        </div>*@
             </div>
         </div>
     </div>
+</div>
 </section>
+
 <!-- team-area-end -->
 <!-- pricing-area-start -->
 @*    <section class="pricing-area" id="price">*@
