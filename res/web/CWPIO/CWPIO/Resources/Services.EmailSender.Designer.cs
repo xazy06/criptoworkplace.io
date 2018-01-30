@@ -109,7 +109,7 @@ namespace CWPIO.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to We`ll be sharing important information with you, feel free to check out the website for frequent updates..
+        ///   Looks up a localized string similar to We`ll be sharing important information with you, feel free to check out the website for more frequent updates..
         /// </summary>
         internal static string Subscribe_Paragraph_One {
             get {
@@ -127,7 +127,7 @@ namespace CWPIO.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If you are interested in purchasing over $1000 in CWT-P tokens with assured allocation, you can join our pre-sale by responding to this email indicating how much you want to spend. A member of our team will contact you via email shortly with details. We`ll be processing pre-sale / pre-funding requests starting on January 1th through to February 15th, depending on availability, and may choose to limit or suspend depending on demand..
+        ///   Looks up a localized string similar to If you are interested in buying over $1000 in CWT-P tokens with assured allocation, you can join our pre-sale. Please email us how much you want to purchase and a member of our team will contact you shortly with details. We`ll be processing pre-sale / pre-funding requests starting on January 1th through to February 15th, depending on availability, and may choose to limit or suspend depending on demand..
         /// </summary>
         internal static string Subscribe_Paragraph_Two {
             get {
