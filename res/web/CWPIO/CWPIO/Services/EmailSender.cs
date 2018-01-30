@@ -61,7 +61,7 @@ namespace CWPIO.Services
             //email
             var unsubsribe_link = new Uri(new Uri(_mailSettings.Value.WebServerAddress, UriKind.Absolute), $"/Home/Unsubscribe?email={email}").ToString();
             var unsubsribe_text = _localizer["Subscribe_Unsubscribe_Text"];
-
+            var third_text = _localizer["Subscribe_Paragraph_Three"];
 
             var templateHtml = _localizer["Subscribe_Mail_Html", 
                 title, 
@@ -74,7 +74,8 @@ namespace CWPIO.Services
                 img_link,
                 email, 
                 unsubsribe_link, 
-                unsubsribe_text];
+                unsubsribe_text,
+                third_text];
 
             var templateText = _localizer["Subscribe_Mail_Text",
                 topic,
@@ -82,7 +83,8 @@ namespace CWPIO.Services
                 second_text,
                 footer,
                 unsubsribe_link,
-                unsubsribe_text];
+                unsubsribe_text,
+                third_text];
 
             return SendEmailAsync(email, _localizer["Subscribe_Subject"], templateText, templateHtml);
         }

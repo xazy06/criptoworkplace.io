@@ -178,7 +178,7 @@ table.vb-container.fullwidth {{padding-left: 0;padding-right: 0;}}&lt;/style&gt;
   &lt;center&gt;
 
   &lt;!-- preheaderBlock --&gt;
-  
+&lt;div style="dislpay:none;font-size:1px;color:#333333;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;"&gt;{3}&lt;/div&gt;  
 
   &lt;table class="vb-outer" width="100%" cellpadding="0" border="0" cellspacing="0" bgcolor="#3f3f3f" style="background-color: #3f3f3f;" id="ko_preheaderBlock_1"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="vb-outer" align="center" valign="top" bgcolor="#3f3f3f" style="padding-left: 9px;padding-right: 9px;background-color: #3f3f3f;"&gt;
         &lt;div style="display: none; font-size: 1px; color: #333333; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;"&gt;&lt;/div&gt;
@@ -242,7 +242,7 @@ table.vb-container.fullwidth {{padding-left: 0;padding-right: 0;}}&lt;/style&gt;
                     &lt;table class="vb-content" border="0" cellspacing="9" cellpadding="0" width="414" align="left" style="border-collapse: separate;width: 100%;"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td style="font-size: 18px; font-family: Arial, Helvetica, sans-serif; color: #3f3f3f; text-align: left;"&gt;
                           &lt;span style="color: #3f3f3f;"&gt;{0}&lt;/span&gt;
                         &lt;/td&gt;
-                      &lt;/tr&gt;&lt;tr&gt;&lt;td align="left" class="long-text links-color" style="text-align: left; font-size: 13px; font-family: Arial, Helvetica, sans-serif; color: #3f3f3f;"&gt;&lt;p style="margin: 1em 0px;margin-top: 0px;"&gt;{4}&lt;/p&gt;&lt;p style="margin: 1em 0px;margin-bottom: 0px;"&gt;{5}&lt;/p&gt;&lt;/td&gt;
+                      &lt;/tr&gt;&lt;tr&gt;&lt;td align="left" class="long-text links-color" style="text-align: left; font-size: 13px; font-family: Arial, Helvetica, sans-serif; color: #3f3f3f;"&gt;&lt;p style="margin: 1em 0px;margin-top: 0px;"&gt;{4}&lt;/p&gt;&lt;p style="margin: 1em 0px;margin-bottom: 0px;"&gt;{5}&lt;/p&gt;&lt;p style="margin: 1em 0px;margin-bottom: 0px;"&gt;{11}&lt;/p&gt;&lt;/td&gt;
                       &lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;!--[if (gte mso 9)|(lte ie 8)]&gt;&lt;/td&gt;
 &lt;![endif]--&gt;
 &lt;!--[if (gte mso 9)|(lte ie 8)]&gt;&lt;/tr&gt;&lt;/table&gt;&lt;![endif]--&gt;
@@ -288,6 +288,7 @@ table.vb-container.fullwidth {{padding-left: 0;padding-right: 0;}}&lt;/style&gt;
     <value>{0}
 {1}
 {2}
+{6}
 {3}
 {5}: {4}</value>
   </data>
@@ -295,7 +296,8 @@ table.vb-container.fullwidth {{padding-left: 0;padding-right: 0;}}&lt;/style&gt;
     <value>We`ll be sharing important information with you, feel free to check out the website for frequent updates.</value>
   </data>
   <data name="Subscribe_Paragraph_Two" xml:space="preserve">
-    <value>If you have indicated that you are interested in purchasing over $1000 in CWT-P tokens with assured allocation, you can join our pre-sale. Please write us how much you want to spend. A member of our team will contact you via email shortly with details. We`ll be processing pre-sale / pre-funding requests starting on January 1th through to February 15th, depending on availability, and may choose to limit or suspend depending on demand.</value>
+    <value>If you are interested in purchasing over $1000 in CWT-P tokens with assured allocation, you can join our pre-sale by responding to this email indicating how much you want to spend. A member of our team will contact you via email shortly with details. We`ll be processing pre-sale / pre-funding requests starting on January 1th through to February 15th, depending on availability, and may choose to limit or suspend depending on demand.</value>
+    <comment>OLD: If you have indicated that you are interested in purchasing over $1000 in CWT-P tokens with assured allocation, you can join our pre-sale. Please write us how much you want to spend. A member of our team will contact you via email shortly with details. We`ll be processing pre-sale / pre-funding requests starting on January 1th through to February 15th, depending on availability, and may choose to limit or suspend depending on demand.</comment>
   </data>
   <data name="Subscribe_Subject" xml:space="preserve">
     <value>CryptoWorkPlace Token Presale</value>
@@ -311,5 +313,8 @@ table.vb-container.fullwidth {{padding-left: 0;padding-right: 0;}}&lt;/style&gt;
   </data>
   <data name="Subscribe_View_Browser" xml:space="preserve">
     <value>View in your browser</value>
+  </data>
+  <data name="Subscribe_Paragraph_Three" xml:space="preserve">
+    <value>Otherwise we will inform you when the public sale starts.</value>
   </data>
 </root>
