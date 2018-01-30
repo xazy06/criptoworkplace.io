@@ -441,13 +441,20 @@ Version      : 1.0
     }
     .fba-logo {
         margin: 0 0 30px;
+        text-align: center;
     }
     .fba-links {
         margin: 0 0 30px;
     }
     .fba-social {
-        text-align: left;
+        text-align: center;
     }
+    
+    .sib-submit{
+        width:100% !important; 
+        text-align: center;
+    }
+    
     .sib-submit input[type="submit"] {
         padding: 14px 60px;
     }
