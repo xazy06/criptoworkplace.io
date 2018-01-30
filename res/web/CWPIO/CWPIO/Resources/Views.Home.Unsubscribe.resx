@@ -118,9 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Unsibscribe_Failed" xml:space="preserve">
-    <value>Head towards the cemetery, holding the gun on elongated hands, so that the melted iron does not drip onto the official boots</value>
+    <value>Head towards the cemetery, holding the gun on elongated hands, so that the melted iron does not drip onto the official boots.</value>
   </data>
   <data name="Unsibscribe_Successful" xml:space="preserve">
-    <value>Your '{0}' has been successfully unsubscribed.</value>
+    <value>Your email address '{0}' has been successfully unsubscribed.</value>
   </data>
 </root>

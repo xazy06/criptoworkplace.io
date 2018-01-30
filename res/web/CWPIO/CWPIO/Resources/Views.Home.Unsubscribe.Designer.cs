@@ -61,7 +61,7 @@ namespace CWPIO.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Head towards the cemetery, holding the gun on elongated hands, so that the melted iron does not drip onto the official boots.
+        ///   Looks up a localized string similar to Head towards the cemetery, holding the gun on elongated hands, so that the melted iron does not drip onto the official boots..
         /// </summary>
         internal static string Unsibscribe_Failed {
             get {
@@ -70,7 +70,7 @@ namespace CWPIO.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your &apos;{0}&apos; has been successfully unsubscribed..
+        ///   Looks up a localized string similar to Your email address &apos;{0}&apos; has been successfully unsubscribed..
         /// </summary>
         internal static string Unsibscribe_Successful {
             get {
