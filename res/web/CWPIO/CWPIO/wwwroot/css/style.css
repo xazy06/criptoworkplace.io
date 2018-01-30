@@ -746,6 +746,7 @@ header {
 
 .navbar-fixed-top  .mobile-menu button {
     opacity:1;
+    position: relative;
 }
 
 .mobile-menu button {
@@ -759,7 +760,8 @@ header {
     width: auto;
     display: inline-block;
     font-size: 32px;
-    OPACITY:0;
+    opacity:0;
+    position: absolute;
 }
 
 .mobile-menu i {
@@ -1498,7 +1500,8 @@ header {
     /*display: inline-block;*/
     overflow: hidden;
     position: relative;
-    height: 340px;
+    /*height: 340px;*/
+    height: auto;
     width: 100%;
     border-radius: 50%;
     /*box-shadow: -6px -13px 4px 0px #eaeaea;*/
@@ -2634,6 +2637,26 @@ footer {
     width: 40px;
     opacity: .75;
 }
+
+img.hue {
+    -webkit-animation-name: hue-rotate;
+    -webkit-animation-duration: 15s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-name: hue-rotate;
+    -moz-animation-duration: 15s;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+    -o-animation-name: hue-rotate;
+    -o-animation-duration: 15s;
+    -o-animation-iteration-count: infinite;
+    -o-animation-timing-function: linear;
+    animation-name: hue-rotate;
+    animation-duration: 15s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
 .s-logo:hover {
     -webkit-animation-name: rotation;
     -webkit-animation-duration: 5s;
@@ -2651,6 +2674,89 @@ footer {
     animation-duration: 5s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
+}
+
+@-webkit-keyframes hue-rotate {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+    20% {
+        filter: hue-rotate(45deg);
+    }
+    40% {
+        filter: hue-rotate(90deg);
+    }
+    60% {
+        filter: hue-rotate(120deg);
+    }
+    80% {
+        filter: hue-rotate(180deg);
+    }
+    100% {
+        filter: hue-rotate(270deg);
+    }
+}
+
+@-moz-keyframes hue-rotate {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+    20% {
+        filter: hue-rotate(45deg);
+    }
+    40% {
+        filter: hue-rotate(90deg);
+    }
+    60% {
+        filter: hue-rotate(120deg);
+    }
+    80% {
+        filter: hue-rotate(180deg);
+    }
+    100% {
+        filter: hue-rotate(270deg);
+    }
+}
+
+@-o-keyframes hue-rotate {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+    20% {
+        filter: hue-rotate(45deg);
+    }
+    40% {
+        filter: hue-rotate(90deg);
+    }
+    60% {
+        filter: hue-rotate(120deg);
+    }
+    80% {
+        filter: hue-rotate(180deg);
+    }
+    100% {
+        filter: hue-rotate(270deg);
+    }
+}
+@keyframes hue-rotate {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+    20% {
+        filter: hue-rotate(45deg);
+    }
+    40% {
+        filter: hue-rotate(90deg);
+    }
+    60% {
+        filter: hue-rotate(120deg);
+    }
+    80% {
+        filter: hue-rotate(180deg);
+    }
+    100% {
+        filter: hue-rotate(270deg);
+    }
 }
 
 @-webkit-keyframes rotation {

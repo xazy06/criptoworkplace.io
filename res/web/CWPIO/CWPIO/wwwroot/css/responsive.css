@@ -454,6 +454,23 @@ Version      : 1.0
         width:100% !important; 
         text-align: center;
     }
+
+    a.button, .button{
+        padding: 14px 80px;
+    }
+    
+    .team-area .col-md-4 {
+        padding: 30px;
+    }
+
+    .single-team {
+        /*height: auto;*/
+        border: 34px solid #fff;
+    }
+    
+    img.hue {
+        display: block;
+    }
     
     .sib-submit input[type="submit"] {
         padding: 14px 60px;
