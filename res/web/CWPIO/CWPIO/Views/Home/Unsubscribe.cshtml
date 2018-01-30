@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewData["Title"] = "Unsubscribe";
+}
+@inject IViewLocalizer Localizer
+@model UnsubscribeViewModel
+
+<h2 class="text-center">@if (Model.Result)
+{
+    @Localizer["Unsibscribe_Successful", Model.Email];
+}
+else
+{ 
+    <span>ALARMA!</span>
+    @Localizer["Unsibscribe_Failed"];
+}</h2>
+<br/>
+
