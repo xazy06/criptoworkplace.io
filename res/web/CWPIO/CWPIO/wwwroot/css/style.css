@@ -3827,6 +3827,11 @@ body.darkside  .mobile-menu i {
     color: #bfbfbf;
 }
 
+body.darkside a.button:hover,
+body.darkside .button:hover {
+    color: #fff;
+}
+
 .single-team .st-content a {
     background: #fff;
     color:#444;
