@@ -34,10 +34,11 @@ Version      : 1.0
 
 	    if ($(window).scrollTop() > 100) {
 		    $('.custom-mobile-menu-area').addClass('navbar-fixed-top');
-		    document.body.classList = 'nohue';
+		    $('body').addClass('nohue');
 	    } else {
 		    $('.custom-mobile-menu-area').removeClass('navbar-fixed-top');
-		    document.body.classList = '';
+		    $('body').removeClass('nohue');
+		    
 	    }
 
 	    activeMenuItem($(".menu-list"));

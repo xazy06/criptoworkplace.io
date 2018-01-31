@@ -36,7 +36,7 @@
     <link rel="stylesheet" asp-append-version="true" href="~/css/responsive.css">
     @RenderSection("Styles", required: false)
 </head>
-<body class="">
+<body class="darkside">
 
     <div class="b-main">
         <div id="preloader"></div>
@@ -82,19 +82,19 @@
         gtag('config', 'UA-112761687-1');
 
         
-        var a = setTimeout(function() {
-                document.body.classList = 'darkside';
-            },180000);
-
-        $(document).on('mousemove', function() {
-                clearTimeout(a);
-                
-                document.body.classList = '';
-                
-                a = setTimeout(function() {
-                    document.body.classList = 'darkside';
-                },180000);
-            });
+//        var a = setTimeout(function() {
+//                document.body.classList = 'darkside';
+//            },180000);
+//
+//        $(document).on('mousemove', function() {
+//                clearTimeout(a);
+//                
+//                //document.body.classList = '';
+//                
+//                a = setTimeout(function() {
+//                    document.body.classList = 'darkside';
+//                },180000);
+//            });
     </script>
 
 </body>
