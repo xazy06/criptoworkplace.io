@@ -2640,6 +2640,10 @@ footer {
     opacity: .75;
 }
 
+.nohue img.hue {
+    animation-name: unset;
+}
+
 img.hue {
     -webkit-animation-name: hue-rotate;
     -webkit-animation-duration: 15s;

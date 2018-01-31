@@ -31,29 +31,42 @@ Version      : 1.0
         } else {
             $('header').removeClass('navbar-fixed-top');
         }
+
+	    if ($(window).scrollTop() > 100) {
+		    $('.custom-mobile-menu-area').addClass('navbar-fixed-top');
+		    document.body.classList = 'nohue';
+	    } else {
+		    $('.custom-mobile-menu-area').removeClass('navbar-fixed-top');
+		    document.body.classList = '';
+	    }
+
+	    activeMenuItem($(".menu-list"));
+        
     });
 
-    /*-----------------
-    sticky-mobile
-    -----------------*/
-    $(window).on('scroll', function() {
-        if ($(window).scrollTop() > 100) {
-            $('.custom-mobile-menu-area').addClass('navbar-fixed-top');
-        } else {
-            $('.custom-mobile-menu-area').removeClass('navbar-fixed-top');
-        }
-    });
-
-
-    /*-----------------------------------------
-     Active current menu while scrolling
-    -----------------------------------------*/
-
-    $(window).on("scroll", function() {
-
-        activeMenuItem($(".menu-list"));
-
-    });
+    // /*-----------------
+    // sticky-mobile
+    // -----------------*/
+    // $(window).on('scroll', function() {
+    //     if ($(window).scrollTop() > 100) {
+    //         $('.custom-mobile-menu-area').addClass('navbar-fixed-top');
+    //         document.body.classList = 'nohue';
+    //     } else {
+    //         $('.custom-mobile-menu-area').removeClass('navbar-fixed-top');
+	   //      document.body.classList = '';
+    //     }
+    // });
+    //
+    //
+    // /*-----------------------------------------
+    //  Active current menu while scrolling
+    // -----------------------------------------*/
+    //
+    // $(window).on("scroll", function() {
+    //
+    //     activeMenuItem($(".menu-list"));
+    //
+    // });
 
     // function for active menuitem
     function activeMenuItem($links) {
