@@ -1507,7 +1507,9 @@ header {
     /*box-shadow: -6px -13px 4px 0px #eaeaea;*/
     box-shadow: -2px -5px 5px 0px #eaeaea;
     /*box-shadow: -6px -13px 0px 0px #eaeaea;*/
-    border: 24px solid #fff;}
+    border: 24px solid #fff;
+    margin-bottom: 18px;
+}
 
 .single-team img {
     width:100%;
@@ -3728,4 +3730,100 @@ header.coming-header {
 .white-popup.success {
     background: #007fff;
     color:#fefefe;
+}
+
+body.darkside {
+    background: #000;
+    color: #888;
+}
+
+body.darkside::-webkit-scrollbar-thumb{
+    background: #7b7b7b;
+}
+
+body.darkside .counter-area {
+    background: #0e0e0e none repeat scroll 0 0;
+}
+
+body.darkside .counter-box .counter-icon {
+    color: #7b7b7b;
+}
+
+body.darkside .section-title h2 {
+    color: #dadada;
+}
+
+body.darkside .feature-box .feature-content h2 {
+    color: #607d8b;
+}
+
+body.darkside footer{
+    border-top:0;
+}
+
+body.darkside .single-team {
+    /* display: inline-block; */
+    /*overflow: hidden;*/
+    position: relative;
+    /* height: 340px; */
+    height: auto;
+    width: 100%;
+    border-radius: 50%;
+    /* box-shadow: -6px -13px 4px 0px #eaeaea; */
+    box-shadow: -2px -2px 5px 0px #212121;
+    /* box-shadow: -6px -13px 0px 0px #eaeaea; */
+    border: 24px solid #0c0c0c;
+    margin-bottom: 18px;
+    /* border-top-color: #151515; */
+    /* border-left-color: #1b1b1b; */
+    max-height: 370px;
+}
+
+body.darkside header.navbar-fixed-top {
+    background: #101010 none repeat scroll 0 0;
+}
+
+.chart.black, 
+body.darkside .chart{
+    display: none;
+}
+
+.chart,
+body.darkside .chart.black{
+    display: block;
+}
+
+body.darkside .menu ul li a {
+    color:#908f8f;
+}
+
+body.darkside .menu ul li.active a {
+    color:#ffc600;
+}
+
+body.darkside a, body.darkside, a:visited {
+    color:#d6d6d6;
+}
+
+body.darkside .h1hl-title {
+    color: #d4d4d4;
+}
+
+body.darkside .navbar-fixed-top .mobile-menu {
+    background-color: #000000;
+}
+
+body.darkside .navbar-fixed-top .mobile-menu button{
+    background: #000000 none repeat scroll 0 0;
+    color: #cecece;
+}
+
+body.darkside  .mobile-menu i {
+    background-color: #000;
+    color: #bfbfbf;
+}
+
+.single-team .st-content a {
+    background: #fff;
+    color:#444;
 }
