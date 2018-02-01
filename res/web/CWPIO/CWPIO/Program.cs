@@ -7,6 +7,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Slack;
 
 namespace CWPIO
 {
@@ -19,6 +20,9 @@ namespace CWPIO
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .ConfigureLogging((context, logging) => {
+                    
+                })
                 .UseStartup<Startup>()
                 .Build();
     }

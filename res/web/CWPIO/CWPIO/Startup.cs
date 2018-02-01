@@ -14,6 +14,8 @@ using CWPIO.Services;
 using Microsoft.AspNetCore.Mvc.Razor;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.Extensions.Logging.Slack;
+using Microsoft.Extensions.Logging;
 
 namespace CWPIO
 {
@@ -37,6 +39,7 @@ namespace CWPIO
                     return new ProviderCultureResult("en");
                 }));
             });*/
+
 
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 
