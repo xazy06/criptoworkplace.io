@@ -11,12 +11,15 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Slack" Version="1.1.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.1" PrivateAssets="All" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.0.1" />
-    <PackageReference Include="Slack.Webhooks" Version="1.0.0-rc2" />
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.1" />
     <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.0" />
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Microsoft.Extensions.Logging.Slack\Microsoft.Extensions.Logging.Slack\Microsoft.Extensions.Logging.Slack.csproj" />
+    <ProjectReference Include="..\Slack.Webhooks.Core\Slack.Webhooks.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Resources\Controllers.HomeController.Designer.cs">

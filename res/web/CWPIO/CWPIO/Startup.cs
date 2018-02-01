@@ -14,8 +14,8 @@ using CWPIO.Services;
 using Microsoft.AspNetCore.Mvc.Razor;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
-using Microsoft.Extensions.Logging.Slack;
-using Microsoft.Extensions.Logging;
+using Slack.Webhooks;
+using Microsoft.Extensions.Options;
 
 namespace CWPIO
 {
@@ -60,6 +60,13 @@ namespace CWPIO
                 .AddDataAnnotationsLocalization();
 
             services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
+            services.Configure<SlackSettings>(Configuration.GetSection("SlackWebHooks"));
+
+            services.AddSingleton<ISlackClient, SlackClient>((s) =>
+            {
+                var conf = s.GetService<IOptions<SlackSettings>>();
+                return new SlackClient(conf.Value.SubscribeChannelUrl);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
