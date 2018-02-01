@@ -1,22 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Description>Slack logger provider implementation for Microsoft.Extensions.Logging.</Description>
-    <VersionPrefix>1.1.0</VersionPrefix>
-    <Authors>imperugo</Authors>
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <AssemblyName>Microsoft.Extensions.Logging.Slack</AssemblyName>
-    <PackageId>Microsoft.Extensions.Logging.Slack</PackageId>
-    <PackageTags>ASP.NET Core;Logging;Slack;aspnetcore</PackageTags>
-    <PackageReleaseNotes>initial version</PackageReleaseNotes>
-    <PackageProjectUrl>https://github.com/imperugo/Microsoft.Extensions.Logging.Slack</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/imperugo/Microsoft.Extensions.Logging.Slack/blob/master/LICENSE</PackageLicenseUrl>
-    <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/imperugo/Microsoft.Extensions.Logging.Slack.git</RepositoryUrl>
-    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
-    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
