@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Slack;
 
 namespace CWPIO
 {
@@ -19,6 +21,11 @@ namespace CWPIO
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .ConfigureLogging((context, logging) =>
+                {
+                    logging.Services.Configure<SlackConfiguration>(context.Configuration.GetSection("Logging:Slack"));
+                    logging.AddSlack(context.HostingEnvironment);
+                })
                 .UseStartup<Startup>()
                 .Build();
     }

@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Net.Mail;
 using DnsClient;
 using CWPIO.Services;
+using Slack.Webhooks;
 
 namespace CWPIO.Controllers
 {
@@ -19,11 +20,13 @@ namespace CWPIO.Controllers
         private ApplicationDbContext _context;
         private IStringLocalizer<HomeController> _localizer;
         private IEmailSender _emailSender;
-        public HomeController(ApplicationDbContext context, IStringLocalizer<HomeController> localizer, IEmailSender emailSender)
+        private ISlackClient _slack;
+        public HomeController(ApplicationDbContext context, IStringLocalizer<HomeController> localizer, IEmailSender emailSender, ISlackClient slack)
         {
             _context = context;
             _localizer = localizer;
             _emailSender = emailSender;
+            _slack = slack;
         }
         public IActionResult Index()
         {
@@ -57,6 +60,7 @@ namespace CWPIO.Controllers
             if (string.IsNullOrEmpty(model.Email) || !(await IsValidAsync(model.Email)))
                 return Json(new { result = false, Error = _localizer["Subscribe_NoEmail"] });
 
+            var postToSlack = false;
             var dbSet = _context.Set<Subscriber>();
             var entry = await dbSet.FirstOrDefaultAsync(s => s.Email == model.Email);
             if (entry == null)
@@ -68,13 +72,45 @@ namespace CWPIO.Controllers
                     EmailSend = true,
                     DateCreated = DateTime.Now
                 })).Entity;
+                postToSlack = true;
+                
             }
             else
             {
-                entry.Name = model.Name;
+                if (entry.Name != model.Name)
+                    entry.Name = model.Name;
+                if (entry.Unsubscribe)
+                {
+                    entry.Unsubscribe = false;
+                    postToSlack = true;
+                }
             }
-
+            
             await _context.SaveChangesAsync();
+
+            if (postToSlack)
+            {
+                _slack.Post(new SlackMessage
+                {
+                    Attachments = new List<SlackAttachment> {
+                    new SlackAttachment
+                    {
+                        Color = "#120a8f",
+                        Title = $"Подписка пользователя {entry.Name}",
+                        TitleLink = $"mailto:{entry.Email}",
+                        Fields = new List<SlackField>
+                        {
+                            new SlackField{
+                                Title = $"Подписка: {(entry.Unsubscribe ? "Нет":"Да")}",
+                                Value = $"Email: {entry.Email}",
+                                Short = false
+                            }
+                        },
+                        Pretext = $"Дата регистрации: {entry.DateCreated.ToString("dd:MM:yyyy HH:mm")}"
+                    }
+                }
+                });
+            }
 
             var sendResult = await _emailSender.SendEmailSubscription(model.Email, model.Name);
 
@@ -87,9 +123,34 @@ namespace CWPIO.Controllers
             var entry = await dbSet.FirstOrDefaultAsync(s => s.Email == email);
             if (entry == null)
             {
-                return View(new UnsubscribeViewModel {Result = false });
+                return View(new UnsubscribeViewModel { Result = false });
             }
-            return View(new UnsubscribeViewModel {Result = true, Email = email });
+
+            entry.Unsubscribe = true;
+            await _context.SaveChangesAsync();
+
+            _slack.Post(new SlackMessage
+            {
+                Attachments = new List<SlackAttachment> {
+                    new SlackAttachment
+                    {
+                        Color = "red",
+                        Title = $"Отписка пользователя {entry.Name}",
+                        TitleLink = $"mailto:{entry.Email}",
+                        Fields = new List<SlackField>
+                        {
+                            new SlackField{
+                                Title = $"Подписка: {(entry.Unsubscribe ? "Нет":"Да")}",
+                                Value = $"Email: {entry.Email}",
+                                Short = false
+                            }
+                        },
+                        Pretext = $"Дата регистрации: {entry.DateCreated.ToString("dd:MM:yyyy HH:mm")}"
+                    }
+                },
+            });
+
+            return View(new UnsubscribeViewModel { Result = true, Email = email });
         }
 
 

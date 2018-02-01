@@ -1,0 +1,139 @@
+﻿using System;
+using System.Net.Http;
+using System.Text;
+using Newtonsoft.Json;
+
+namespace Microsoft.Extensions.Logging.Slack
+{
+	public class SlackLogger : ILogger
+	{
+		private readonly Uri _webhookUri;
+		private readonly HttpClient _httpClient;
+		private readonly string _applicationName;
+		private readonly string _environmentName;
+		private readonly string _name;
+		private Func<string, LogLevel, Exception, bool> _filter;
+
+		public SlackLogger(string name, Func<string, LogLevel, Exception, bool> filter, 
+									HttpClient httpClient, 
+									string environmentName, 
+									string applicationName, 
+									Uri webhookUri)
+		{
+			Filter = filter ?? ((category, logLevel, exception) => true);
+			_environmentName = environmentName;
+			_applicationName = applicationName;
+			_webhookUri = webhookUri;
+			_name = name;
+			_httpClient = httpClient;
+		}
+
+		private Func<string, LogLevel, Exception, bool> Filter
+		{
+			get { return _filter; }
+			set
+			{
+                _filter = value ?? throw new ArgumentNullException(nameof(value));
+			}
+		}
+
+		/// <summary>
+		/// Writes a log entry.
+		/// </summary>
+		/// <param name="logLevel">Entry will be written on this level.</param>
+		/// <param name="eventId">Id of the event.</param>
+		/// <param name="state">The entry to be written. Can be also an object.</param>
+		/// <param name="exception">The exception related to this entry.</param>
+		/// <param name="formatter">Function to create a <c>string</c> message of the <paramref name="state"/> and <paramref name="exception"/>.</param>
+		public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
+		{
+			if (!IsEnabled(logLevel, exception))
+			{
+				return;
+			}
+
+			if (formatter == null)
+			{
+				throw new ArgumentNullException(nameof(formatter));
+			}
+
+			var color = "good";
+
+			switch (logLevel)
+			{
+				case LogLevel.None:
+				case LogLevel.Trace:
+				case LogLevel.Debug:
+				case LogLevel.Information:
+					color = "good";
+					break;
+				case LogLevel.Warning:
+					color = "warning";
+					break;
+				case LogLevel.Error:
+				case LogLevel.Critical:
+					color = "danger";
+					break;
+			}
+
+			var title = formatter(state, exception);
+			var exceptinon = exception?.ToString();
+
+			var obj = new
+			{
+				attachments = new[]
+				{
+					new
+					{
+						fallback = $"[{_applicationName}] [{_environmentName}] [{_name}] [{title}].",
+						color,
+						title,
+						text = exceptinon,
+						fields = new[]
+						{
+							new
+							{
+								title = "Project",
+								value = _applicationName,
+								@short = "true"
+							},
+							new
+							{
+								title = "Environment",
+								value = _environmentName,
+								@short = "true"
+							}
+						}
+					}
+				}
+			};
+
+			_httpClient.PostAsync(_webhookUri,new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json")).Wait();
+		}
+
+		/// <summary>
+		/// Checks if the given <paramref name="logLevel"/> is enabled.
+		/// </summary>
+		/// <param name="logLevel">level to be checked.</param>
+		/// <returns><c>true</c> if enabled.</returns>
+		public bool IsEnabled(LogLevel logLevel)
+		{
+			return IsEnabled(logLevel, null);
+		}
+
+		public bool IsEnabled(LogLevel logLevel, Exception exc)
+		{
+			return Filter(_name, logLevel, exc);
+		}
+
+		/// <summary>
+		/// Begins a logical operation scope.
+		/// </summary>
+		/// <param name="state">The identifier for the scope.</param>
+		/// <returns>An IDisposable that ends the logical operation scope on dispose.</returns>
+		public IDisposable BeginScope<TState>(TState state)
+		{
+			return null;
+		}
+	}
+}
