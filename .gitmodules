@@ -1,3 +1,0 @@
-[submodule "res/Microsoft.Extensions.Logging.Slack"]
-	path = res/Microsoft.Extensions.Logging.Slack
-	url = https://github.com/cryptoworkplace/Microsoft.Extensions.Logging.Slack
