@@ -5,9 +5,9 @@ VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CWPIO", "CWPIO\CWPIO.csproj", "{A66CE7FB-67F0-4134-8103-75E9173C2F65}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Extensions.Logging.Slack", "..\..\Microsoft.Extensions.Logging.Slack\Microsoft.Extensions.Logging.Slack\Microsoft.Extensions.Logging.Slack.csproj", "{89A6DEF4-884A-41F9-BBFE-5396B9F0DE16}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slack.Webhooks.Core", "Slack.Webhooks.Core\Slack.Webhooks.Core.csproj", "{839C1639-C5D9-4CAB-94C6-05690C9BD858}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Extensions.Logging.Slack", "Microsoft.Extensions.Logging.Slack\Microsoft.Extensions.Logging.Slack.csproj", "{9984EF17-53D0-4461-972D-616114588ACB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,18 +31,6 @@ Global
 		{A66CE7FB-67F0-4134-8103-75E9173C2F65}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A66CE7FB-67F0-4134-8103-75E9173C2F65}.Release|x86.ActiveCfg = Release|Any CPU
 		{A66CE7FB-67F0-4134-8103-75E9173C2F65}.Release|x86.Build.0 = Release|Any CPU
-		{89A6DEF4-884A-41F9-BBFE-5396B9F0DE16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{89A6DEF4-884A-41F9-BBFE-5396B9F0DE16}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{89A6DEF4-884A-41F9-BBFE-5396B9F0DE16}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{89A6DEF4-884A-41F9-BBFE-5396B9F0DE16}.Debug|x86.Build.0 = Debug|Any CPU
-		{89A6DEF4-884A-41F9-BBFE-5396B9F0DE16}.Release 3.5|Any CPU.ActiveCfg = Release|Any CPU
-		{89A6DEF4-884A-41F9-BBFE-5396B9F0DE16}.Release 3.5|Any CPU.Build.0 = Release|Any CPU
-		{89A6DEF4-884A-41F9-BBFE-5396B9F0DE16}.Release 3.5|x86.ActiveCfg = Release|Any CPU
-		{89A6DEF4-884A-41F9-BBFE-5396B9F0DE16}.Release 3.5|x86.Build.0 = Release|Any CPU
-		{89A6DEF4-884A-41F9-BBFE-5396B9F0DE16}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{89A6DEF4-884A-41F9-BBFE-5396B9F0DE16}.Release|Any CPU.Build.0 = Release|Any CPU
-		{89A6DEF4-884A-41F9-BBFE-5396B9F0DE16}.Release|x86.ActiveCfg = Release|Any CPU
-		{89A6DEF4-884A-41F9-BBFE-5396B9F0DE16}.Release|x86.Build.0 = Release|Any CPU
 		{839C1639-C5D9-4CAB-94C6-05690C9BD858}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{839C1639-C5D9-4CAB-94C6-05690C9BD858}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{839C1639-C5D9-4CAB-94C6-05690C9BD858}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -55,6 +43,18 @@ Global
 		{839C1639-C5D9-4CAB-94C6-05690C9BD858}.Release|Any CPU.Build.0 = Release|Any CPU
 		{839C1639-C5D9-4CAB-94C6-05690C9BD858}.Release|x86.ActiveCfg = Release|Any CPU
 		{839C1639-C5D9-4CAB-94C6-05690C9BD858}.Release|x86.Build.0 = Release|Any CPU
+		{9984EF17-53D0-4461-972D-616114588ACB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9984EF17-53D0-4461-972D-616114588ACB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9984EF17-53D0-4461-972D-616114588ACB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9984EF17-53D0-4461-972D-616114588ACB}.Debug|x86.Build.0 = Debug|Any CPU
+		{9984EF17-53D0-4461-972D-616114588ACB}.Release 3.5|Any CPU.ActiveCfg = Release|Any CPU
+		{9984EF17-53D0-4461-972D-616114588ACB}.Release 3.5|Any CPU.Build.0 = Release|Any CPU
+		{9984EF17-53D0-4461-972D-616114588ACB}.Release 3.5|x86.ActiveCfg = Release|Any CPU
+		{9984EF17-53D0-4461-972D-616114588ACB}.Release 3.5|x86.Build.0 = Release|Any CPU
+		{9984EF17-53D0-4461-972D-616114588ACB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9984EF17-53D0-4461-972D-616114588ACB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9984EF17-53D0-4461-972D-616114588ACB}.Release|x86.ActiveCfg = Release|Any CPU
+		{9984EF17-53D0-4461-972D-616114588ACB}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

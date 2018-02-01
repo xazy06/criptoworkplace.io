@@ -18,7 +18,7 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.1" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Microsoft.Extensions.Logging.Slack\Microsoft.Extensions.Logging.Slack\Microsoft.Extensions.Logging.Slack.csproj" />
+    <ProjectReference Include="..\Microsoft.Extensions.Logging.Slack\Microsoft.Extensions.Logging.Slack.csproj" />
     <ProjectReference Include="..\Slack.Webhooks.Core\Slack.Webhooks.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
