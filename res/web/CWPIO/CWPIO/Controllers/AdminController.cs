@@ -4,8 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Google.Apis.analytics.v3;
-using Google.Apis.analytics.v3.Data;
 
 namespace CWPIO.Controllers
 {
