@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CWPIO</title>
+    <link rel="apple-touch-icon" sizes="57x57" href="~/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="~/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="~/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="~/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="~/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="~/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="~/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="~/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="~/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="~/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="~/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/favicon-16x16.png">
+    <link rel="manifest" href="~/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="~/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
+
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" asp-append-version="false" href="~/vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" asp-append-version="false" href="~/vendor/font-awesome/css/font-awesome.min.css">
+    <!-- Custom Font Icons CSS-->
+    <link rel="stylesheet" asp-append-version="false" href="~/css/font.css">
+    <!-- Google fonts - Muli-->
+    <link rel="stylesheet" asp-append-version="false" href="https://fonts.googleapis.com/css?family=Muli:300,400,700">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" asp-append-version="false" href="~/css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" asp-append-version="false" href="~/css/custom.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="~/img/favicon.ico">
+
+
+    @RenderSection("Styles", required: false)
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar navbar-expand-lg">
+            @await  Html.PartialAsync("_Navigation")
+        </nav>
+
+    </header>
+    <div class="d-flex align-items-stretch">
+        <!-- Sidebar Navigation-->
+        <nav id="sidebar">
+            @await Html.PartialAsync("_LoginUser")
+            @await  Html.PartialAsync("_LeftMenu")
+        </nav>
+        <div class="page-content">
+            <div class="page-header">
+                <div class="container-fluid">
+                    <h2 class="h5 no-margin-bottom">@ViewData["Title"]</h2>
+                </div>
+            </div>
+            @RenderBody()
+            <footer class="footer">
+                <div class="footer__block block no-margin-bottom">
+                    <div class="container-fluid text-center">
+                        @*@await Html.PartialAsync("_Footer")*@
+                        <!-- Please do not remove the backlink to us unless you support us at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
+                        <p class="no-margin-bottom">@DateTime.Now.Year &copy; Your company. Design by <a href="https://bootstrapious.com">Bootstrapious</a>.</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- JavaScript files-->
+    <script asp-append-version="true" src="~/js/jquery-3.2.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"> </script>
+    <script asp-append-version="true" src="~/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script asp-append-version="true" src="~/vendor/jquery.cookie/jquery.cookie.js"> </script>
+    <script asp-append-version="true" src="~/vendor/chart.js/Chart.min.js"></script>
+    <script asp-append-version="true" src="~/js/charts-home.js"></script>
+    <script asp-append-version="true" src="~/js/front.js"></script>
+
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>
