@@ -20,6 +20,7 @@ module.exports = function(deployer, network) {
         });
     }
     else {
+      const walletAddr = "0x312c8cdb4520196c9000036b58296cad2579f541"; //multisig
       throw 0;
     }
 };
