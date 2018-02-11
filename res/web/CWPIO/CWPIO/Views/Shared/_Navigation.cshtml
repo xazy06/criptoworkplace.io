@@ -10,7 +10,21 @@
     <ul class="right-menu list-inline no-margin-bottom">
         @*<li class="list-inline-item"><a href="#" class="search-open nav-link"><i class="icon-magnifying-glass-browser"></i></a></li>*@
         <li class="list-inline-item logout">
-            <a id="logout" asp-controller="Account" asp-action="Logout" class="nav-link">Logout <i class="icon-logout"></i></a>
+            <form id="logout_form" asp-action="Logout" asp-controller="Account" method="post">
+                <button type="submit" id="perform_logout_button">Logout</button>
+                <a id="logout_link" class="nav-link" href="#">Logout <i class="icon-logout"></i></a>
+            </form>
+            <script type="text/javascript">
+                (function () {
+                    var el = document.getElementById('perform_logout_button');
+                    el.style.display = 'none';
+                    var link = document.getElementById('logout_link');
+                    link.addEventListener('click', function () {
+                        document.forms.logout_form.submit(); return false;
+                    });
+                    link.style.display = 'visible';
+                })();
+            </script>
         </li>
     </ul>
 
