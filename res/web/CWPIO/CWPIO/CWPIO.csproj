@@ -32,6 +32,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Services.EmailSender.resx</DependentUpon>
     </Compile>
+    <Compile Update="Resources\SharedResource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SharedResource.resx</DependentUpon>
+    </Compile>
     <Compile Update="Resources\Views.Home.Unsubscribe.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -55,6 +60,10 @@
     <EmbeddedResource Update="Resources\Services.EmailSender.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Services.EmailSender.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\SharedResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SharedResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Views.Home.Unsubscribe.resx">
       <Generator>ResXFileCodeGenerator</Generator>
