@@ -31,14 +31,39 @@ namespace CWPIO
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            /*services.Configure<RequestLocalizationOptions>(options =>
+            var supportedCultures = new[]
             {
-                options.RequestCultureProviders.Insert(0, new CustomRequestCultureProvider(async context =>
-                {
-                    Get culture from DB
-                    return new ProviderCultureResult("en");
-                }));
-            });*/
+                  new CultureInfo("en-US")
+                , new CultureInfo("ru-RU")
+                //, new CultureInfo("cn")
+                //, new CultureInfo("jp")
+                //, new CultureInfo("ru")
+            };
+
+            services.Configure<RequestLocalizationOptions>(options =>
+            {
+                options.DefaultRequestCulture = new RequestCulture("en-US");
+                // Formatting numbers, dates, etc.
+                options.SupportedCultures = supportedCultures;
+                // UI strings that we have localized.
+                options.SupportedUICultures = supportedCultures;
+
+                var remove = options.RequestCultureProviders.OfType<AcceptLanguageHeaderRequestCultureProvider>().FirstOrDefault();
+                if (remove != null)
+                    options.RequestCultureProviders.Remove(remove);
+
+                // Find the cookie provider with LINQ
+                var cookieProvider = options.RequestCultureProviders.OfType<CookieRequestCultureProvider>().FirstOrDefault();
+                if (cookieProvider != null)
+                // Set the new cookie name
+                    cookieProvider.CookieName = "CWP.UserCulture";
+
+                //options.RequestCultureProviders.Insert(0, new CustomRequestCultureProvider(async context =>
+                //{
+                //    //Get culture from DB
+                //    return new ProviderCultureResult("en");
+                //}));
+            });
 
 
             services.AddLocalization(options => options.ResourcesPath = "Resources");
@@ -56,11 +81,10 @@ namespace CWPIO
             services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddMvc()
-                .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
-                .AddDataAnnotationsLocalization(options => {
-                    options.DataAnnotationLocalizerProvider = (type, factory) =>
-                        factory.Create(typeof(SharedResource));  
-                })
+                //.AddDataAnnotationsLocalization(options => {
+                //    options.DataAnnotationLocalizerProvider = (type, factory) =>
+                //        factory.Create(typeof(SharedResource));  
+                //})
                 .AddViewLocalization();
 
             services.Configure<IdentityOptions>(options =>
@@ -100,22 +124,8 @@ namespace CWPIO
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            var supportedCultures = new[]
-            {
-                  new CultureInfo("en-US")
-                , new CultureInfo("ru-RU")
-                //, new CultureInfo("cn")
-                //, new CultureInfo("jp")
-                //, new CultureInfo("ru")
-            };
-            app.UseRequestLocalization(new RequestLocalizationOptions
-            {
-                DefaultRequestCulture = new RequestCulture("en-US"),
-                // Formatting numbers, dates, etc.
-                SupportedCultures = supportedCultures,
-                // UI strings that we have localized.
-                SupportedUICultures = supportedCultures
-            });
+
+            app.UseRequestLocalization();
 
             if (env.IsDevelopment())
             {

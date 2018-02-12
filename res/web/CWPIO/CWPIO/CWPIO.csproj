@@ -22,28 +22,6 @@
     <ProjectReference Include="..\Slack.Webhooks.Core\Slack.Webhooks.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Resources\Controllers.HomeController.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Controllers.HomeController.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Resources\Services.EmailSender.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Services.EmailSender.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Resources\SharedResource.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>SharedResource.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Resources\Views.Home.Unsubscribe.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Views.Home.Unsubscribe.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <None Update="app.yaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -54,20 +32,16 @@
       </Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Controllers.HomeController.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Controllers.HomeController.Designer.cs</LastGenOutput>
+      <Generator></Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Services.EmailSender.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Services.EmailSender.Designer.cs</LastGenOutput>
+      <Generator></Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\SharedResource.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>SharedResource.Designer.cs</LastGenOutput>
+      <Generator></Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Views.Home.Unsubscribe.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Views.Home.Unsubscribe.Designer.cs</LastGenOutput>
+      <Generator></Generator>
     </EmbeddedResource>
   </ItemGroup>
 </Project>

@@ -42,18 +42,7 @@ namespace CWPIO.Controllers
 
         public IActionResult Index()
         {
-            IndexViewModel model = new IndexViewModel {LocaleName = CultureInfo.CurrentCulture.Name};
-
-            ViewBag.IsLocale = new Func<string, bool>(IsLocale);
-
-            return View(model);
-        }
-        
-        private bool IsLocale(string locale)
-        {
-            var current = CultureInfo.CurrentCulture;
-        
-            return current.Name.Equals(locale);
+            return View();
         }
 
         public IActionResult About()

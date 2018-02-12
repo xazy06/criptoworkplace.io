@@ -1,7 +1,4 @@
-﻿@using Microsoft.AspNetCore.Mvc.Localization
-@inject IViewLocalizer Locale
-@model CWPIO.Models.ManageViewModels.IndexViewModel
-@{
+﻿@{
     ViewData["Title"] = "Home";
 }
 
@@ -96,8 +93,8 @@
             </div>
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="">
-                    <img class="chart" src="/static/proble-@Model.LocaleName-.svg?@DateTime.Now.Day" alt="Problem" />
-                    <img class="chart black" src="/static/proble-black-@Model.LocaleName-.svg?@DateTime.Now.Day" alt="Problem" />
+                    <img class="chart" src="/static/proble-@Context.GetCurrentCulture()-.svg?@DateTime.Now.Day" alt="Problem" />
+                    <img class="chart black" src="/static/proble-black-@Context.GetCurrentCulture()-.svg?@DateTime.Now.Day" alt="Problem" />
                 </div>
             </div>
         </div>
