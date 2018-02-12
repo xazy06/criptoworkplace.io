@@ -1,5 +1,5 @@
 (function (app, w) {
-
+    
     var Vm = function (app, w) {
 
         var _ko = ko.observable, controller = c = this;
@@ -53,7 +53,8 @@
 
                     for (var i in fields) {
                         if (fields.hasOwnProperty(i) && ko.unwrap(fields[i]).length === 0) {
-                            res = false; break;
+                            res = false; 
+                            break;
                         }
                     }
 
@@ -83,6 +84,20 @@
         };
 
     };
+    
+    (function() {
+	    $("#change-color").on('click', function () {
+        $('body').toggleClass('darkside');
+            if (document.body.className.indexOf('darkside') > -1) {
+              window.sessionStorage.setItem('color', 'darkside');
+              $("#meta-theme").prop('content', '#000');
+            }else{
+              window.sessionStorage.setItem('color', '');
+                $("#meta-theme").prop('content', '#fff');
+            }
+        
+	    });
+    })();
 
     Vm = new Vm(app, w);
 

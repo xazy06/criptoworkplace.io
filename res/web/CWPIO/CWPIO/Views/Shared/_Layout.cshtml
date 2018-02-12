@@ -4,6 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CWPIO - @ViewData["Title"]</title>
+    <meta id="meta-theme" name="theme-color" content="#000"/>
     <link rel="apple-touch-icon" sizes="57x57" href="~/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="~/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="~/apple-icon-72x72.png">
@@ -34,23 +35,29 @@
     <link rel="stylesheet" asp-append-version="true" href="~/css/meanmenu.css">
     <link rel="stylesheet" asp-append-version="true" href="~/css/style.css">
     <link rel="stylesheet" asp-append-version="true" href="~/css/responsive.css">
-
+    
     <locale include="ru-RU">
-        <style>
-            h1, h2, h3, h4, h5, h6 {
-                font-family: segoe ui light, sans-serif;
-            }
-
-            @@media only screen and (max-width: 480px) and (min-width: 240px) {
+        
+                <style>
+                    h1, h2, h3, h4, h5, h6 {
+                        font-family: segoe ui light, sans-serif;
+                    }
+                    @@media only screen and (max-width: 480px) and (min-width: 240px){
+                                                                                   .h1hl-title {
+                                                                                       font-size: 33px;
+                                                                                       line-height: 48px;
+                                                                                   }
+                    }
                 .h1hl-title {
-                    font-size: 33px;
-                    line-height: 48px;
-                }
-            }
-        </style>
-    </locale>
-
+                        font-size: 57px;
+                    }</style>
+                
+            </locale>
+    
     @RenderSection("Styles", required: false)
+    <script>
+        setTimeout("document.body.className = window.sessionStorage.getItem('color')", 0);
+    </script>
 </head>
 
 <body class="darkside">
@@ -66,6 +73,7 @@
 
     @Html.Partial("_Footer")
 
+    
 
     <script src="~/js/jquery-3.2.0.min.js"></script>
     <script src="~/js/jquery-ui.js"></script>
@@ -92,11 +100,11 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112761687-1"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
 
-        gtag('config', 'UA-112761687-1');
+      gtag('config', 'UA-112761687-1');
 
 
 //        var a = setTimeout(function() {

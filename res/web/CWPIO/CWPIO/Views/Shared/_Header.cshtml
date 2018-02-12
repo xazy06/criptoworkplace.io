@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3 col-xs-8">
-                <div class="logo">
+                <div class="logo hidden-sm hidden-xs">
                     <a class="smoothscroll" href="#home">Crypto<span class="semibold">WorkPlace</span></a>
                 </div>
             </div>
@@ -28,9 +28,10 @@
                 </div>
             </div>
             <div class="col-md-1 col-xs-4">
-                <div class="search dropdown s-pos_r">
-                    <a class="dropdown-toggle" href="#" data-toggle="dropdown">
-                        
+                <div id="change-color" class="b-change-color"></div>
+                <div class="search dropdown hidden-sm hidden-xs">
+                    <a class="dropdown-toggle" href="#" style="color: #908f8f" data-toggle="dropdown">
+
                         @if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName.Equals("en"))
                         {
                             <i class="fa fa-globe"></i>
@@ -47,12 +48,12 @@
                         <li>
                             <a asp-controller="Home" asp-action="Index" asp-route-culture="ru-RU">Русский</a>
                         </li>
-@*                        <li>*@
-@*                            <a href="/?culture=zh-CN">中國</a>*@
-@*                        </li>*@
-@*                        <li>*@
-@*                            <a href="/?culture=ja-JP">日本</a>*@
-@*                        </li>*@
+                        @*                        <li>*@
+                        @*                            <a href="/?culture=zh-CN">中國</a>*@
+                        @*                        </li>*@
+                        @*                        <li>*@
+                        @*                            <a href="/?culture=ja-JP">日本</a>*@
+                        @*                        </li>*@
                     </ul>
                     <!-- search-modal-start -->
                     <div id="myModal" class="search-modal modal fade" role="dialog">
@@ -80,6 +81,37 @@
 <div class="custom-mobile-menu-area visible-sm visible-xs">
     <div class="mobile-menu">
         <button type="button" data-toggle="collapse" data-target="#mobile_menu_show">CWP</button>
+        <div class="l-switcher visible-sm visible-xs">
+            <div class="dropdown">
+                <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                        
+                    @if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName.Equals("en"))
+                    {
+                        <i class="fa fa-globe fa-2x"></i>
+                    }
+                    else
+                    {
+                        <span class="c-locale">
+                            @CultureInfo.CurrentCulture.TwoLetterISOLanguageName
+                        </span>
+                    }
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="language-switch">
+                    <li>
+                        <a href="/">English</a>
+                    </li>
+                    <li>
+                        <a href="/?culture=ru-RU">Русский</a>
+                    </li>
+                    @*                        <li>*@
+                    @*                            <a href="/?culture=zh-CN">中國</a>*@
+                    @*                        </li>*@
+                    @*                        <li>*@
+                    @*                            <a href="/?culture=ja-JP">日本</a>*@
+                    @*                        </li>*@
+                </ul>
+            </div>
+        </div>
         <i class="fas fa-align-justify" data-toggle="collapse" data-target="#mobile_menu_show"></i>
         <div id="mobile_menu_show" class="collapse">
             <ul>

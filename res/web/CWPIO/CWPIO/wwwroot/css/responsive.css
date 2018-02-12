@@ -76,6 +76,13 @@ Version      : 1.0
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
 
+    .b-change-color {
+        right: 0;
+        left: 0;
+        margin: auto;
+        bottom: 16px;
+        top: auto !important;
+    }
 
     header.navbar-fixed-top {
         position: unset !important;
@@ -154,7 +161,15 @@ Version      : 1.0
 
 /* Mobile Layout: 320px. */
 
-@media only screen and (max-width: 767px) {}
+@media only screen and (max-width: 767px) {
+    .b-change-color {
+        right: 0;
+        left: 0;
+        margin: auto;
+        bottom: 16px;
+        top: auto !important;
+    }
+}
 
 
 
@@ -163,6 +178,14 @@ Version      : 1.0
 
 @media only screen and (min-width: 481px) and (max-width: 767px) {
 
+    .b-change-color {
+        right: 0;
+        left: 0;
+        margin: auto;
+        bottom: 16px;
+        top: auto !important;
+    }
+    
     header.navbar-fixed-top {
         position: unset !important;
     }
@@ -456,7 +479,7 @@ Version      : 1.0
     }
 
     a.button, .button{
-        padding: 14px 80px;
+        padding: 14px 42px;
     }
     
     .team-area .col-md-4 {
@@ -556,5 +579,13 @@ Version      : 1.0
     }
     .coming .timer-area .cdown:last-child::after {
         display: block;
+    }
+
+    .b-change-color {
+        right: 0;
+        left: 0;
+        margin: auto;
+        bottom: 16px;
+        top: auto !important;
     }
 }
