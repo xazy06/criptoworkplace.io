@@ -392,4 +392,95 @@ on the network, and a distributed registry of statuses</value>
   <data name="up2" xml:space="preserve">
     <value>Up to</value>
   </data>
+  <data name="t1" xml:space="preserve">
+    <value>Kintaro Power Cells Japan President
+MapMess Inc. Regional Director
+Founding director of the research company AV-Cells Singapore
+30 years of experience in running own business
+20 years of doing business in Singapore and Japan</value>
+  </data>
+  <data name="t10" xml:space="preserve">
+    <value>CEO Flexlab
+Blockchain researcher and expert
+30 years of experience in contract manufacturing of electronics and software
+More than 20 projects in various industries
+Mentor
+
+Wagan's competencies help the project in the business development and technical issues of product development and manufacturing</value>
+  </data>
+  <data name="t2" xml:space="preserve">
+    <value>Microsoft Certified Professional
+Microsoft Certified Technology Specialist Exam 511
+Blockchain and smart contracts developer
+An expert in the management of the software development process, the construction of distributed, highly loaded and secure systems
+Development of transport monitoring systems (cargo, passenger cars, special equipment, passenger transportation, weight control, production line control, taxi park automation) for Alrosa, GAZPROM, Lukoil, Rusal, RZD, Satori, Autoline, city taxi.</value>
+  </data>
+  <data name="t3" xml:space="preserve">
+    <value>Senior JavaScript Developer Full-Stack
+Certified Middle End Android Developer
+Certified Middle End iOS Developer
+Java EE, С#, PHP, Lua, Python, GO developer,
+Unity 3D developer,
+Expert in developing Highload applications
+Custom Trading Platforms Development
+Development of special software for major retailers
+Cryptography, electronic document management
+Development of special software for the Ministry of Defense of Russia
+Development of special software and participation in the development of software and hardware for federal agencies of the Russian Federation
+Development of special software - for monitoring and managing network security
+Development of implemented collector agents for analyzing and collecting data on network and peripheral PC activity</value>
+  </data>
+  <data name="t4" xml:space="preserve">
+    <value>Hardware Engineer
+Embedded Software Engineer
+Microcomputer Systems Expert
+Development of circuit solutions, trace of printed circuit boards and development of embedded software for thermal imaging devices
+Development of circuit design solutions, trace of printed circuit boards for low-level devices of the Quinta music recognition system
+Development of circuit solutions and trace of printed circuit boards for Smart House devices
+Development of microminiature biometric sensors and processor control system for bioelectrical upper limb prosthesis
+Development of embedded data transmission systems based on Wi-Fi, GSM and Bluetooth technologies</value>
+  </data>
+  <data name="t5" xml:space="preserve">
+    <value>Lead Mathematician, Senior Architect Developer
+Lead Mathematician, Senior Architect Developer
+Embedded Systems Programmer
+Expert in Machine Learning and AI
+Development of an agent for the conduct of non-targeted dialogue in the banking system
+Development Telegram-bots with AI support
+Embedded Software Development for Quinta Music Recognition System Devices
+Co-author of a patent for music recognition algorithms</value>
+  </data>
+  <data name="t6" xml:space="preserve">
+    <value>Senior System Analyst, PHP-Developer
+Senior System Analyst, PHP-Developer
+Optimization and automation of DAICHI logistics business processes
+System analytics of multimodule high-loaded systems with various integrations for METRO C &amp; C, Lenta
+The development of a supply planning system for TOC (Theory of Constraints) for the production of IKEA, integrated with 1C
+Product development and positioning management</value>
+  </data>
+  <data name="t7" xml:space="preserve">
+    <value>An expert in software development and testing
+Member of the Board of Directors of the Computer Measurement Group
+Oracle, Consulting Member of Technical Staff
+Hyperion, Distinguished Performance Engineer 
+Aetna, Sr. Architect II
+
+Alexander coordinates the sales and production of the product for the US market, the management of the project's branch in the United States, the interaction with major US partner companies that provide scientific and technical support for the project.
+
+Alexander has 30 years of experience in software testing, which allows him to organize the interaction of the project with the largest players in the software testing market, such as QAMentor.</value>
+  </data>
+  <data name="t8" xml:space="preserve">
+    <value>CEO &amp; Founder SandCoin
+Founder Yocto Games 
+Collaboration with Chillingo, Electronic Arts, Microsoft Studios
+
+Ruslan is the head of several projects, one of which recently successfully completed the ICO.
+
+Ruslan is a popular blockchain expert, lawyer and economist, all this allows him to oversee the important organizational, marketing and economic issues faced by the founders of the project.</value>
+  </data>
+  <data name="t9" xml:space="preserve">
+    <value>Alexey is a technical specialist with 20 years of experience. He has extensive experience working with high-loaded systems. He develops platform solutions of any complexity.
+Alexey is working on the development of the blockchain system in Playkey for 1.5 years. Manages the infrastructure of more than 1,000 video cards. Developed a unique solution for the mining of cryptocurrency on gaming platforms.
+Alexey's competencies help the project in the technical issues of TGE.</value>
+  </data>
 </root>

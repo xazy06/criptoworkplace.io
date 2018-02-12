@@ -92,6 +92,32 @@
                 <li><a data-toggle="collapse" data-target="#mobile_menu_show" class="smoothscroll" href="#team">@Locale["team"]</a></li>
 @*                <li><a data-toggle="collapse" data-target="#mobile_menu_show" class="smoothscroll" href="#price">PRICE</a></li>*@
                 <li><a data-toggle="collapse" data-target="#mobile_menu_show" class="smoothscroll" href="#contact">@Locale["contacts"]</a></li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <div class="dropdown s-pos_r">
+                            <a style="text-transform: uppercase" class="dropdown-toggle" href="#" data-toggle="dropdown">
+                                @CultureInfo.CurrentCulture.TwoLetterISOLanguageName
+                                
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="language-switch">
+                                <li>
+                                    <a href="/">English</a>
+                                </li>
+                                <li>
+                                    <a href="/?culture=ru-RU">Русский</a>
+                                </li>
+                                @*                        <li>*@
+                                @*                            <a href="/?culture=zh-CN">中國</a>*@
+                                @*                        </li>*@
+                                @*                        <li>*@
+                                @*                            <a href="/?culture=ja-JP">日本</a>*@
+                                @*                        </li>*@
+                            </ul>
+                    
+                        </div>
+                    </a>
+                </li>
+                
                
             </ul>
         </div>
