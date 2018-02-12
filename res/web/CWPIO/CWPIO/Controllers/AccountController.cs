@@ -13,6 +13,7 @@ using Microsoft.Extensions.Options;
 using CWPIO.Models;
 using CWPIO.Models.AccountViewModels;
 using CWPIO.Services;
+using System.Diagnostics;
 
 namespace CWPIO.Controllers
 {
@@ -343,7 +344,9 @@ namespace CWPIO.Controllers
                 throw new ApplicationException($"Unable to load user with ID '{userId}'.");
             }
             var result = await _userManager.ConfirmEmailAsync(user, code);
-            return View(result.Succeeded ? "ConfirmEmail" : "Error");
+            if (result.Succeeded)
+                return View("ConfirmEmail");
+            return View("Error", new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
         [HttpGet]

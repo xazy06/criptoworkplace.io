@@ -157,7 +157,7 @@ namespace CWPIO.Controllers
                 Attachments = new List<SlackAttachment> {
                     new SlackAttachment
                     {
-                        Color = "red",
+                        Color = "#ff6347",
                         Title = $"Отписка пользователя {entry.Name}",
                         TitleLink = $"mailto:{entry.Email}",
                         Fields = new List<SlackField>

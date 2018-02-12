@@ -11,10 +11,13 @@ namespace CWPIO.Controllers
     [Route("[controller]/[action]")]
     public class AdminController : Controller
     {
+        private const string API_KEY = "LIgskaeb32789dsalfnq3eo8dc=[km";
+
         public IActionResult Index()
         {
 
             return View();
         }
+        
     }
 }
