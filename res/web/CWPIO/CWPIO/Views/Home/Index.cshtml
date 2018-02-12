@@ -1,4 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Locale
+@model CWPIO.Models.ManageViewModels.IndexViewModel
 @{
     ViewData["Title"] = "Home";
 }
@@ -10,11 +12,10 @@
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="home1-hero-left">
                     <h1 class="h1hl-title">
-                        <span class="bold">Decentralized system</span> based on a personal computer the size of a USB flash drive
+                        <span class="bold">@Locale["decentralizedsystem"]</span> @Locale["head"]
                     </h1>
                     <p class="h1hl-text">
-                        The CryptoWorkPlace Micro-PC is not only a secure key storage, it is a fully
-                        independent PC with an operating system and applications
+                        @Locale["head sub"]
                     </p>
                     <div style="margin-bottom: 36px;" class="how-can-help">
                         <div class="hch-img">
@@ -41,7 +42,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="available">
-                    <h5 class="available-title">Wallet soon on:</h5>
+                    <h5 class="available-title">@Locale["wallet"]:</h5>
                     <ul class="available-links">
                         <li>
                             <a href="javascript:void(0)">
@@ -72,7 +73,7 @@
                     <h2 class="available-counter">
                         <span class="counter">
                             <img src="/static/infinityb.svg" />
-                        </span> downloads
+                        </span> @Locale["downloads"]
                     </h2>
                 </div>
             </div>
@@ -84,15 +85,10 @@
                 <div class="download-right">
                     <div class="section-title">
                         <h2>
-                            Blockchain <br><span>Problem</span>
+                            @Locale["problem"]
                         </h2>
                         <p>
-                            According to a Chainalysis
-                            <a href="https://blog.chainalysis.com/the-rise-of-cybercrime-on-ethereum/" target="_blank">report</a>
-                            <br />
-                            the world is seeing a meteoric rise in cybercrime targeting ICOs. In June 2017 alone<br />
-                            investors loses from such actions reached $100M while in August they were above<br />
-                            <strong>$220M</strong>.
+                            @Locale["report"]
 
                         </p>
                     </div>
@@ -100,8 +96,8 @@
             </div>
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="">
-                    <img class="chart" src="/static/proble.svg?@DateTime.Now.Day" alt="Problem" />
-                    <img class="chart black" src="/static/proble-black.svg?@DateTime.Now.Day" alt="Problem" />
+                    <img class="chart" src="/static/proble-@Model.LocaleName-.svg?@DateTime.Now.Day" alt="Problem" />
+                    <img class="chart black" src="/static/proble-black-@Model.LocaleName-.svg?@DateTime.Now.Day" alt="Problem" />
                 </div>
             </div>
         </div>
@@ -119,13 +115,10 @@
                 <div class="download-right">
                     <div class="section-title">
                         <h2>
-                            CWP is the <br><span>solution</span>
+                            @Locale["solution"]
                         </h2>
                         <p>
-                            <strong>CWP</strong> is a decentralized ecosystem based on a blockchain technology that includes a<br />
-                            <strong>Micro-PC</strong> that enables applications to run in a secure, isolated environment, special<br />
-                            software, a set of web portal services designed to organize <strong>protection</strong> against threats<br />
-                            on the network, and a distributed registry of statuses
+                           @Locale["decentrsys"]
 
                         </p>
                     </div>
@@ -148,18 +141,18 @@
 <section class="download-area" id="token">
     <div class="section-title">
         <h2>
-            TOKEN <span>SALE</span>
+            @Locale["sale"]
         </h2>
-        <p style="margin-bottom: 36px;">ROUND OF TOKEN PRE-SALE</p>
+        <p style="margin-bottom: 36px;">@Locale["round"]</p>
 
         <div style="margin-bottom: 60px;" class="">
-            <a class="smoothscroll button" href="#contact">Participate in the Token Sale</a>
+            <a class="smoothscroll button" href="#contact">@Locale["particsale"]</a>
         </div>
 
 
         <div class="container">
             <div class="row">
-                <a data-toggle="collapse" href="#token-code">TOGGLE TOKEN CODE</a>
+                <a data-toggle="collapse" href="#token-code">@Locale["toggle"]</a>
 
                 <pre class="s-ta_l collapse" id="token-code">
     pragma solidity ^0.4.18;
@@ -259,7 +252,7 @@
                     <div class="col-md-2 col-sm-4 col-xs-12 col-md-offset-1">
                         <div class="counter-box">
                             <h2 class="s-icon counter counter-up" data-counterup-time="1500" data-counterup-delay="30">1802</h2> <span class="s-icon">ETH</span>
-                            <p class="counter-text">Hard CAP</p>
+                            <p class="counter-text">@Locale["hcap"]</p>
                             <span class="counter-icon">
                                 <i class="fas fa-crosshairs"></i>
                             </span>
@@ -268,7 +261,7 @@
                     <div class="col-md-2 col-sm-4 col-xs-12">
                         <div class="counter-box">
                             <h2 class="counter counter-up s-icon" data-counterup-time="1500" data-counterup-delay="30">500</h2> <span class="s-icon">M pieces</span>
-                            <p class="counter-text">Max. emission of Tokens</p>
+                            <p class="counter-text">@Locale["memiss"]</p>
                             <span class="counter-icon">
                                 <i class="fas fa fa-rocket"></i>
                             </span>
@@ -277,7 +270,7 @@
                     <div class="col-md-2 col-sm-4 col-xs-12">
                         <div class="counter-box">
                             <h2 class="counter counter-up s-icon" data-counterup-time="1500" data-counterup-delay="30">250</h2> <span class="s-icon">M pieces</span>
-                            <p class="counter-text">Number of tokens for sale (50% of total)</p>
+                            <p class="counter-text">@Locale["sailingt"] (@Locale["50part"])</p>
                             <span class="counter-icon">
                                 <i class="far fa fa-puzzle-piece"></i>
                             </span>
@@ -286,7 +279,7 @@
                     <div class="col-md-2 col-sm-4 col-xs-12">
                         <div class="counter-box">
                             <h2 class="counter counter-up s-icon" data-counterup-time="1500" data-counterup-delay="30">0.20</h2> <span class="s-icon">$</span>
-                            <p class="counter-text">Price of the token</p>
+                            <p class="counter-text">@Locale["tc"]</p>
                             <span class="counter-icon">
                                 <i class="far fa fa-thumbs-up"></i>
                             </span>
@@ -294,9 +287,9 @@
                     </div>
                     <div class="col-md-2 col-sm-4 col-xs-12">
                         <div class="counter-box">
-                            <span class="s-icon">Up to </span>
+                            <span class="s-icon">@Locale["up2"] </span>
                             <h2 class="counter counter-up s-icon" data-counterup-time="1500" data-counterup-delay="30">40</h2> <span class="s-icon">%</span>
-                            <p class="counter-text">Early birds discounts</p>
+                            <p class="counter-text">@Locale["disc"]</p>
                             <span class="counter-icon">
                                 <i class="fas fa fa-percent"></i>
                             </span>
@@ -310,20 +303,20 @@
 <section class="download-area" id="docs">
     <div class="section-title">
         <h2 class="">
-            DOCUMENTS
+            @Locale["documents"]
         </h2>
         <div style="margin-bottom: 36px; font-size: 18px; text-transform: uppercase">
-            White Paper 
+            @Locale["wp"]
             <div class="s-ta_c">
-                <a class="s-mr_10" target="_blank" href="~/static/docs/CWP_White_Paper_ru.pdf">&mdash;RU&mdash;</a>
-                <a target="_blank" href="~/static/docs/CWP_White_Paper_en.pdf">&mdash;EN&mdash;</a>
+                <a class="s-mr_10" target="_blank" href="~/static/docs/CWP_White_Paper_ru.pdf">&mdash;@Locale["ru"]&mdash;</a>
+                <a target="_blank" href="~/static/docs/CWP_White_Paper_en.pdf">&mdash;@Locale["en"]&mdash;</a>
             </div>
         </div>
         <div style="margin-bottom: 36px; font-size: 18px; text-transform: uppercase">
-            One Page
+            @Locale["1page"]
             <div class="s-ta_c">
-                <a class="s-mr_10" target="_blank" href="~/static/docs/CWP_OnePage_RU.pdf">&mdash;RU&mdash;</a>
-                <a target="_blank" href="~/static/docs/CWP_OnePage_EN.pdf">&mdash;EN&mdash;</a>
+                <a class="s-mr_10" target="_blank" href="~/static/docs/CWP_OnePage_RU.pdf">&mdash;@Locale["ru"]&mdash;</a>
+                <a target="_blank" href="~/static/docs/CWP_OnePage_EN.pdf">&mdash;@Locale["en"]&mdash;</a>
             </div>
         </div>
     </div>
@@ -374,16 +367,15 @@
                 <div class="feature-head">
                     <div class="section-title">
                         <h2>
-                            ROAD<span>MAP</span>
+                            @Locale["roadmaph"]
                         </h2>
-                        @*                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation</p>*@
                     </div>
                 </div>
 
                 <table class="table">
                     <thead>
                         <tr>
-                            <th class="g-style">YEAR</th>
+                            <th class="g-style">@Locale["year"]</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -391,77 +383,66 @@
                     <tbody>
                         <tr>
                             <td>2008</td>
-                            <td>The idea of a microcomputer</td>
+                            <td>@Locale["idea"]</td>
                         </tr>
                         <tr>
                             <td>2009</td>
-                            <td>Patenting</td>
+                            <td>@Locale["pat"]</td>
                         </tr>
                         <tr>
                             <td>2009</td>
-                            <td>Product version 1.0 for system administrators</td>
+                            <td>@Locale["r1"]</td>
                         </tr>
                         <tr>
                             <td>2010</td>
-                            <td>Product version 2.0 thin client</td>
+                            <td>@Locale["r2"]</td>
                         </tr>
                         <tr>
                             <td>2011</td>
-                            <td>Product version 3.0 VPN client and the access key to the medical database</td>
+                            <td>@Locale["r3"]</td>
                         </tr>
                         <tr>
                             <td>2012</td>
-                            <td>Product version 4.0 a researcher's workplace for access to remote knowledge bases</td>
+                            <td>@Locale["r4"]</td>
                         </tr>
                         <tr>
                             <td>2015</td>
-                            <td>Product version 5.0 portable workplace with business and gaming applications</td>
+                            <td>@Locale["r5"]</td>
                         </tr>
                         <tr>
                             <td>2016</td>
-                            <td>Product version 6.0 portable workstation oriented to client-server applications</td>
+                            <td>@Locale["r6"]</td>
                         </tr>
                         <tr>
                             <td>2017</td>
-                            <td>Creating a CryptoWorkPlace concept</td>
+                            <td>@Locale["r7"]</td>
                         </tr>
                         <tr>
                             <td>2018</td>
-                            <td>Token Pre-Sale</td>
+                            <td>@Locale["r8"]</td>
                         </tr>
                         <tr>
-                            <td class="s-fs_06">March</td>
+                            <td class="s-fs_06">@Locale["march"]</td>
                             <td>
-                                Token Sale,
-                                Launching of the
-                                Web Portal beta
+                                @Locale["r9"]
                             </td>
                         </tr>
                         <tr>
-                            <td class="s-fs_06">April</td>
+                            <td class="s-fs_06">@Locale["april"]</td>
                             <td>
-                                Testing of the
-                                product in
-                                independent
-                                laboratories
+                                @Locale["r10"]
                             </td>
                         </tr>
                         <tr>
-                            <td class="s-fs_06">Q2-Q3</td>
+                            <td class="s-fs_06">@Locale["r11"]</td>
                             <td>
-                                The start of mass
-                                production and
-                                launching of
-                                technical support
-                                services
+                                @Locale["r12"]
                             </td>
                         </tr>
                         <tr>
-                            <td class="s-fs_06">Q4</td>
+                            <td class="s-fs_06">@Locale["r13"]</td>
                             <td>
-                                The start of sales in
-                                USA, Europe and
-                                Asian markets
+                                @Locale["r14"]
                             </td>
                         </tr>
                     </tbody>
@@ -490,9 +471,8 @@
                 <div class="feature-head">
                     <div class="section-title">
                         <h2>
-                            AMAZING <span>FEATURES</span>
+                            @Locale["amfeac"]
                         </h2>
-                        @*                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation</p>*@
                     </div>
                 </div>
             </div>
@@ -506,7 +486,7 @@
                     </div>
                     <div class="feature-content">
                         <h2>
-                            BUILT-IN <span class="bold">CRYPTO-STORAGE</span>
+                            @Locale["buildin"]
                         </h2>
                         @*                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing do eiusmod tempor Lorem ipsum</p>*@
                     </div>
@@ -521,7 +501,7 @@
                     </div>
                     <div class="feature-content">
                         <h2>
-                            PREVENTING MELTDOWN & <span class="bold">SPECTRE ATTACKS</span>
+                            @Locale["prevmelt"]
                         </h2>
                         @*                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing do eiusmod tempor Lorem ipsum</p>*@
                     </div>
@@ -536,7 +516,7 @@
                     </div>
                     <div class="feature-content">
                         <h2>
-                            AWESOME <span class="bold">PERFORMANCE</span>
+                            @Locale["awsperf"]
                         </h2>
                         @*                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing do eiusmod tempor Lorem ipsum</p>*@
                     </div>
@@ -655,8 +635,7 @@
     <div class="col-md-10 col-md-offset-1 col-xs-12">
         <div class="screenshot-head">
             <div class="section-title">
-                <h4>Meet Our</h4>
-                <h2>TEAM</h2>
+                @Locale["meet"]
             </div>
         </div>
     </div>
@@ -666,7 +645,7 @@
         <div class="single-team">
             <img src="/static/team/ykf.png?v=@DateTime.Now.Millisecond" />
             <div class="st-content">
-                <h5>Yoji Kishi</h5>
+                <h5>@Locale["Yoji Kishi"]</h5>
                 <p>
                     Rare type of High-edge Japanese technology specialist with wide international marketing experience.
                     <br />Shin-Nippon Research (Hong Kong) Co., Ltd. Vice-President
@@ -685,7 +664,7 @@
 
         </div>
         <div class="st-content-under">
-            CEO<br />Yoji Kishi
+            @Locale["ceo"]<br/>@Locale["Yoji Kishi"]
         </div>
     </div>
 
@@ -693,7 +672,7 @@
         <div class="single-team">
             <img src="/static/team/alexey.jpg" />
             <div class="st-content">
-                <h5>CVO Alexey Gladkov</h5>
+                <h5>@Locale["cvo"] @Locale["Alexey Gladkov"]</h5>
                 <p>
                     @*                        Президент Kintaro Power Cells Japan*@
                     @*                        <br/>Региональный директор MapMess Inc.*@
@@ -718,7 +697,7 @@
 
         </div>
         <div class="st-content-under">
-            CVO<br />Alexey Gladkov
+            @Locale["cvo"]<br />@Locale["Alexey Gladkov"]
         </div>
     </div>
 
@@ -726,7 +705,7 @@
         <div class="single-team">
             <img src="/static/team/max.png" />
             <div class="st-content">
-                <h5>Maxim Maslich</h5>
+                <h5>@Locale["Maxim Maslich"]</h5>
 
                 <p>
                     @*                        Microsoft Certified Professional<br/>*@
@@ -754,7 +733,7 @@
 
         </div>
         <div class="st-content-under">
-            CTO<br />Maxim Maslich
+            @Locale["cto"]<br />@Locale["Maxim Maslich"]
         </div>
     </div>
 </div>
@@ -765,7 +744,7 @@
         <div class="single-team">
             <img src="/static/team/art.jpg" />
             <div class="st-content">
-                <h5>Software Engineer Artur Enokyan</h5>
+                <h5>@Locale["Software Engineer"] @Locale["Artur Enokyan"]</h5>
 
                 <p>
                     Senior JavaScript Developer Full-Stack<br />
@@ -807,7 +786,7 @@
 
         </div>
         <div class="st-content-under">
-            Software Engineer<br />Artur Enokyan
+            @Locale["Software Engineer"]<br />@Locale["Artur Enokyan"]
         </div>
     </div>
 
@@ -815,7 +794,7 @@
         <div class="single-team">
             <img src="/static/team/ant.png" />
             <div class="st-content">
-                <h5>Anton Polyansky</h5>
+                <h5>@Locale["Anton Polyansky"]</h5>
 
                 <p>
                     @*                        Руководитель производства аппаратных средств<br/>*@
@@ -847,7 +826,7 @@
 
         </div>
         <div class="st-content-under">
-            Head of Hardware Production<br />Anton Polyansky
+            @Locale["Head of Hardware Production"]<br />@Locale["Anton Polyansky"]
         </div>
     </div>
 
@@ -855,7 +834,7 @@
         <div class="single-team">
             <img src="/static/team/den.jpg" />
             <div class="st-content">
-                <h5>Denis Kuznetsov</h5>
+                <h5>@Locale["Denis Kuznetsov"]</h5>
                 <p>
                     Lead Mathematician, Senior Architect Developer<br />
                     @*                        Программист встраиваемых систем<br/>*@
@@ -885,7 +864,7 @@
 
         </div>
         <div class="st-content-under">
-            Lead Mathematician<br />Denis Kuznetsov
+            @Locale["Lead Mathematician"]<br />@Locale["Denis Kuznetsov"]
         </div>
     </div>
 
@@ -895,7 +874,7 @@
         <div class="single-team">
             <img src="/static/team/anton.png" />
             <div class="st-content">
-                <h5>Anton Maslov</h5>
+                <h5>@Locale["Anton Maslov"]</h5>
 
                 <p>
                     Senior System Analyst, PHP-Developer<br />
@@ -921,7 +900,7 @@
 
         </div>
         <div class="st-content-under">
-            Senior System Analyst<br />Anton Maslov
+            @Locale["Senior System Analyst"]<br />@Locale["Anton Maslov"]
         </div>
     </div>
 </div>
@@ -932,7 +911,7 @@
         <div class="col-md-10 col-md-offset-1 col-xs-12">
             <div class="screenshot-head">
                 <div class="section-title">
-                    <h2 class="duga">ADVISERS</h2>
+                    <h2 class="duga">@Locale["adv"]</h2>
                 </div>
             </div>
         </div>
@@ -943,7 +922,7 @@
             <div class="single-team">
                 <img src="/static/team/podelko.jpg" />
                 <div class="st-content">
-                    <h5>Ph.D., MBA/Alexander Podelko</h5>
+                    <h5>Ph.D., MBA/@Locale["Alexander Podelko"]</h5>
                     <p>
                         @*                        К.т.н., эксперт по разработке и тестированию ПО<br/> *@
                         @*                        Член совета директоров группы компьютерных измерений.<br/> *@
@@ -979,14 +958,14 @@
 
             </div>
             <div class="st-content-under">
-                Ph.D., MBA<br />Alexander Podelko
+                Ph.D., MBA<br />@Locale["Alexander Podelko"]
             </div>
         </div>
         <div class="col-md-4 col-sm-4 col-xs-12">
             <div class="single-team">
                 <img src="/static/team/rus.png" alt="" />
                 <div class="st-content">
-                    <h5>CEO & Founder SandCoin <br />Ruslan Pichugin</h5>
+                    <h5>CEO & Founder SandCoin <br />@Locale["Ruslan Pichugin"]</h5>
                     <p>
                         @*                        Основатель SandCoin, соучредитель «Ревитал» Основатель Yocto Games<br/> *@
                         @*                        Сотрудничество с Chillingo, Electronic Arts, Microsoft Studios<br/>*@
@@ -1014,14 +993,14 @@
 
             </div>
             <div class="st-content-under">
-                CEO & Founder SandCoin <br />Ruslan Pichugin
+                CEO & Founder SandCoin <br />@Locale["Ruslan Pichugin"]
             </div>
         </div>
         <div class="col-md-4 col-sm-4 col-xs-12">
             <div class="single-team">
                 <img src="/static/team/pley.png" alt="">
                 <div class="st-content">
-                    <h5>CTO Playkey<br />Alexey Lykov</h5>
+                    <h5>@Locale["cto"] Playkey<br />@Locale["Alexey Lykov"]</h5>
                     <p>
                         Alexey is a technical specialist with 20 years of experience. He has extensive experience working with high-loaded systems. He develops platform solutions of any complexity.<br />
                         Alexey is working on the development of the blockchain system in Playkey for 1.5 years. Manages the infrastructure of more than 1,000 video cards. Developed a unique solution for the mining of cryptocurrency on gaming platforms.<br />
@@ -1040,7 +1019,7 @@
 
             </div>
             <div class="st-content-under">
-                CTO Playkey<br />Alexey Lykov
+                @Locale["cto"] Playkey<br />@Locale["Alexey Lykov"]
             </div>
         </div>
     </div>
@@ -1050,7 +1029,7 @@
             <div class="single-team">
                 <img src="/static/team/vag.png" alt="">
                 <div class="st-content">
-                    <h5>CEO Flexlab<br />Wagan Sarukhanov</h5>
+                    <h5>CEO Flexlab<br />@Locale["Wagan Sarukhanov"]</h5>
                     <p>
                         CEO Flexlab<br />
                         @*                        Блокчейн-исследователь и эксперт<br/>*@
@@ -1078,7 +1057,7 @@
 
             </div>
             <div class="st-content-under">
-                CEO Flexlab<br />Wagan Sarukhanov
+                CEO Flexlab<br />@Locale["Wagan Sarukhanov"]
             </div>
         </div>
     </div>
@@ -1089,7 +1068,7 @@
         <div class="col-md-10 col-md-offset-1 col-xs-12">
             <div class="screenshot-head">
                 <div class="section-title">
-                    <h2>PARTNERS</h2>
+                    <h2>@Locale["partners"]</h2>
                 </div>
             </div>
         </div>

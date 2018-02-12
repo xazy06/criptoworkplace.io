@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="1page" xml:space="preserve">
+    <value>Одностраничник</value>
+  </data>
+  <data name="50part" xml:space="preserve">
+    <value>50% от общего количества</value>
+  </data>
+  <data name="adv" xml:space="preserve">
+    <value>ЭДВАЙЗЕРЫ</value>
+  </data>
+  <data name="Alexander Podelko" xml:space="preserve">
+    <value>Александр Поделько</value>
+  </data>
+  <data name="Alexey Gladkov" xml:space="preserve">
+    <value>Алексей Гладков</value>
+  </data>
+  <data name="Alexey Lykov" xml:space="preserve">
+    <value>Алексей Лыков</value>
+  </data>
+  <data name="amfeac" xml:space="preserve">
+    <value>ОСОБЕННОСТИ</value>
+  </data>
+  <data name="Anton Maslov" xml:space="preserve">
+    <value>Антон Маслов</value>
+  </data>
+  <data name="Anton Polyansky" xml:space="preserve">
+    <value>Антон Полянский</value>
+  </data>
+  <data name="april" xml:space="preserve">
+    <value>Апрель</value>
+  </data>
+  <data name="Artur Enokyan" xml:space="preserve">
+    <value>Артур Енокян</value>
+  </data>
+  <data name="awsperf" xml:space="preserve">
+    <value>Высокая производительность</value>
+  </data>
+  <data name="buildin" xml:space="preserve">
+    <value>ВСТРОЕННОЕ КРИПТО-ХРАНИЛИЩЕ</value>
+  </data>
+  <data name="ceo" xml:space="preserve">
+    <value>CEO Yoji Kishi</value>
+  </data>
+  <data name="contacts" xml:space="preserve">
+    <value>Контакты</value>
+  </data>
+  <data name="cto" xml:space="preserve">
+    <value>Технический директор</value>
+  </data>
+  <data name="decentralizedsystem" xml:space="preserve">
+    <value>Децентрализованная система</value>
+  </data>
+  <data name="decentrsys" xml:space="preserve">
+    <value>CWP - децентрализованная экосистема на основе блокчейн-технологии,
+включающей в себя микрокомпьютер, обеспечивающий запуск приложений в
+безопасной изолированной среде, специальное программное обеспечение,
+набор сервисов веб-портала, призванных организовать защиту от угроз в сети,
+и распределенный реестр состояний</value>
+  </data>
+  <data name="Denis Kuznetsov" xml:space="preserve">
+    <value>Денис Кузнецов</value>
+  </data>
+  <data name="disc" xml:space="preserve">
+    <value>Скидка на пресейле</value>
+  </data>
+  <data name="documents" xml:space="preserve">
+    <value>Документы</value>
+  </data>
+  <data name="downloads" xml:space="preserve">
+    <value>Загрузки</value>
+  </data>
+  <data name="en" xml:space="preserve">
+    <value>En</value>
+  </data>
+  <data name="exploit" xml:space="preserve">
+    <value>Эксплойт</value>
+  </data>
+  <data name="hack" xml:space="preserve">
+    <value>Взлом</value>
+  </data>
+  <data name="hcap" xml:space="preserve">
+    <value>hard cap</value>
+  </data>
+  <data name="head" xml:space="preserve">
+    <value>на базе персонального компьютера размером с флешку</value>
+  </data>
+  <data name="Head of Hardware Production" xml:space="preserve">
+    <value>Руководитель производства аппаратных средств</value>
+  </data>
+  <data name="head sub" xml:space="preserve">
+    <value>Микрокомпьютер CWP представляет собой не просто хранилище ключей, а автономно функционирующий полноценный специализированный персональный компьютер с собственной операционной системой и набором приложений</value>
+  </data>
+  <data name="icape" xml:space="preserve">
+    <value />
+  </data>
+  <data name="icape1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="idea" xml:space="preserve">
+    <value>Идея создания Микро-ПК</value>
+  </data>
+  <data name="kcells" xml:space="preserve">
+    <value />
+  </data>
+  <data name="kcells1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Lead Mathematician" xml:space="preserve">
+    <value>Lead Mathematician</value>
+  </data>
+  <data name="looses" xml:space="preserve">
+    <value />
+  </data>
+  <data name="mail" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="march" xml:space="preserve">
+    <value>Март</value>
+  </data>
+  <data name="Maxim Maslich" xml:space="preserve">
+    <value>Максим Маслич</value>
+  </data>
+  <data name="meet" xml:space="preserve">
+    <value>&lt;h4&gt;Наша&lt;/h4&gt;&lt;h2&gt;КОМАНДА&lt;/h2&gt;</value>
+  </data>
+  <data name="memiss" xml:space="preserve">
+    <value>Максимальная эмиссия токенов</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="participate" xml:space="preserve">
+    <value>Участвовать *</value>
+  </data>
+  <data name="particsale" xml:space="preserve">
+    <value>Участвовать в пресейле</value>
+  </data>
+  <data name="partners" xml:space="preserve">
+    <value>ПАРТНЕРЫ</value>
+  </data>
+  <data name="pat" xml:space="preserve">
+    <value>Патентование</value>
+  </data>
+  <data name="phishing" xml:space="preserve">
+    <value>Фишинг</value>
+  </data>
+  <data name="prevmelt" xml:space="preserve">
+    <value>Предотвращение MELTDOWN &amp; SPECTRE ATTACKS</value>
+  </data>
+  <data name="problem" xml:space="preserve">
+    <value>Проблема &lt;br&gt;&lt;span&gt;блокчейн&lt;/span&gt;</value>
+  </data>
+  <data name="product" xml:space="preserve">
+    <value>Продукт</value>
+  </data>
+  <data name="qa" xml:space="preserve">
+    <value />
+  </data>
+  <data name="r1" xml:space="preserve">
+    <value>Продукт версии 1.0 для системных администраторов</value>
+  </data>
+  <data name="r10" xml:space="preserve">
+    <value>Тестирование
+продукта в
+независимой
+лаборатории</value>
+  </data>
+  <data name="r11" xml:space="preserve">
+    <value>Q2-Q3</value>
+  </data>
+  <data name="r12" xml:space="preserve">
+    <value>Начало серийного
+производства
+устройств и запуск
+технической
+поддержки</value>
+  </data>
+  <data name="r13" xml:space="preserve">
+    <value>Q4</value>
+  </data>
+  <data name="r14" xml:space="preserve">
+    <value>Начало продаж в
+Европе, США и
+странах
+Тихоокеанского
+региона</value>
+  </data>
+  <data name="r2" xml:space="preserve">
+    <value>Продукт версии 2.0 тонкий клиент</value>
+  </data>
+  <data name="r3" xml:space="preserve">
+    <value>Продукт версии 3.0 VPN-клиент и ключ доступа к медицинской базе данных</value>
+  </data>
+  <data name="r4" xml:space="preserve">
+    <value>Продукт версии 4.0 рабочее место научного сотрудника для доступа к удаленным базам знаний</value>
+  </data>
+  <data name="r5" xml:space="preserve">
+    <value>Продукт версии 5.0  портативное рабочее место с деловыми и игровыми приложениями</value>
+  </data>
+  <data name="r6" xml:space="preserve">
+    <value>Продукт версии 6.0 портативное рабочее место, ориентированное на клиент-серверные приложения</value>
+  </data>
+  <data name="r7" xml:space="preserve">
+    <value>Создание концепции CryptoWorkPlace</value>
+  </data>
+  <data name="r8" xml:space="preserve">
+    <value>Предпродажа токенов</value>
+  </data>
+  <data name="r9" xml:space="preserve">
+    <value>Token Sale,
+Запуск
+бета-версии
+портала</value>
+  </data>
+  <data name="reghelp" xml:space="preserve">
+    <value>Пройдите регистрацию для участия в нашем ICO! После регистрации проверьте свою почту, а так же папку спам и промоакции.</value>
+  </data>
+  <data name="report" xml:space="preserve">
+    <value>Согласно 
+                            &lt;a href="https://blog.chainalysis.com/the-rise-of-cybercrime-on-ethereum/" target="_blank"&gt;отчету&lt;/a&gt;, опубликованному компанией Chainalysis
+                            &lt;br&gt;
+                           в мире наблюдается взрывной рост киберпреступлений, направленных на ICO-
+проекты. &lt;br&gt;
+                            Так, в июне 2017 года объем потерь инвесторов от действий
+преступников составлял $100 миллионов, в августе этот показатель уже
+превысил &lt;strong&gt;$220 миллионов&lt;/strong&gt;.</value>
+  </data>
+  <data name="reportlink" xml:space="preserve">
+    <value>отчету</value>
+  </data>
+  <data name="roadmap" xml:space="preserve">
+    <value>roadmap</value>
+  </data>
+  <data name="roadmaph" xml:space="preserve">
+    <value>ДОРОЖНАЯ&lt;span&gt;КАРТА&lt;/span&gt;</value>
+  </data>
+  <data name="round" xml:space="preserve">
+    <value>Этап пресейла токенов</value>
+  </data>
+  <data name="ru" xml:space="preserve">
+    <value>Ru</value>
+  </data>
+  <data name="Ruslan Pichugin" xml:space="preserve">
+    <value>Руслан Пичугин</value>
+  </data>
+  <data name="sailingt" xml:space="preserve">
+    <value>количество токенов в пресейл</value>
+  </data>
+  <data name="sale" xml:space="preserve">
+    <value>ПРОДАЖА  &lt;span&gt;ТОКЕНОВ&lt;/span&gt;</value>
+  </data>
+  <data name="Senior System Analyst" xml:space="preserve">
+    <value>Ведущий системный аналитик</value>
+  </data>
+  <data name="Software Engineer" xml:space="preserve">
+    <value>Инженер-программист</value>
+  </data>
+  <data name="solution" xml:space="preserve">
+    <value>CWP- &lt;br&gt;&lt;span&gt;РЕШЕНИЕ&lt;/span&gt;</value>
+  </data>
+  <data name="tc" xml:space="preserve">
+    <value>Цена токена</value>
+  </data>
+  <data name="team" xml:space="preserve">
+    <value>Команда</value>
+  </data>
+  <data name="toggle" xml:space="preserve">
+    <value>Показать код токена</value>
+  </data>
+  <data name="token" xml:space="preserve">
+    <value>Токен</value>
+  </data>
+  <data name="up2" xml:space="preserve">
+    <value>До</value>
+  </data>
+  <data name="Wagan Sarukhanov" xml:space="preserve">
+    <value>Ваган Саруханов</value>
+  </data>
+  <data name="wallet" xml:space="preserve">
+    <value>Электронный кошелек, скоро</value>
+  </data>
+  <data name="wp" xml:space="preserve">
+    <value>white paper</value>
+  </data>
+  <data name="year" xml:space="preserve">
+    <value>Год</value>
+  </data>
+  <data name="Yoji Kishi" xml:space="preserve">
+    <value>Yoji Kishi</value>
+  </data>
+  <data name="сvo" xml:space="preserve">
+    <value />
+  </data>
+</root>

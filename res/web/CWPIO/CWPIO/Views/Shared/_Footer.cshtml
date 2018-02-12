@@ -1,4 +1,10 @@
-﻿<!-- footer-area-start -->
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+
+@inject IHtmlLocalizer<SharedResource> Locale
+
+<!-- footer-area-start -->
     <footer>
         <section class="subscribe-area" id="contact">
             <div class="container">
@@ -15,18 +21,18 @@
                             <form action="javascript:void(0)">
                                 <div class="subscribe-input-box sib-name">
                                     <span><i class="far fa-user"></i></span>
-                                    <input data-bind="textInput:models.feedModel.name" type="text" placeholder="Name"/>
+                                    <input data-bind="textInput:models.feedModel.name" type="text" placeholder="@Locale["name"]"/>
                                 </div>
                                 <div class="subscribe-input-box sib-email">
                                     <span><i class="far fa-envelope"></i></span>
-                                    <input data-bind="textInput:models.feedModel.email" type="email" placeholder="Email">
+                                    <input data-bind="textInput:models.feedModel.email" type="email" placeholder="@Locale["mail"]">
                                 </div>
                                 <div class="subscribe-input-box sib-submit">
                                     <input data-bind="enable:actions.form.sendEnabled, click: actions.form.send" 
-                                           type="submit" class="button no-h" value="Participate *">
+                                           type="submit" class="button no-h" value="@Locale["participate"]">
                                 </div>
                             </form>
-                            <p class="subscribe-text">* Please register to participate in our ICO! After registration please also check your Spam/Promotion email folder.</p>
+                            <p class="subscribe-text">@Locale["reghelp"]</p>
                         </div>
                     </div>
                 </div>
@@ -38,7 +44,7 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="available">
-                            <h5 class="available-title">Wallet soon on:</h5>
+                            <h5 class="available-title">@Locale["wallet"]:</h5>
                             <ul class="available-links">
                                 <li>
                                     <a href="javascript:void(0)"><img src="/img/home1/download1.png" alt="app store"></a></li>
@@ -59,7 +65,7 @@
                             <h2 class="available-counter">
                                 <span class="counter">
                                     <img src="/static/infinityb.svg"/>
-                                </span> downloads
+                                </span> @Locale["downloads"]
                             </h2>
                         </div>
                     </div>

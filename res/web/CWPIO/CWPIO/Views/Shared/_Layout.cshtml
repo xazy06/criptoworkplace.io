@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using System.Globalization
+@using CWPIO.Controllers
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Locale
+@model CWPIO.Models.ManageViewModels.IndexViewModel
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -34,8 +40,25 @@
     <link rel="stylesheet" asp-append-version="true" href="~/css/meanmenu.css">
     <link rel="stylesheet" asp-append-version="true" href="~/css/style.css">
     <link rel="stylesheet" asp-append-version="true" href="~/css/responsive.css">
+    
+    @{
+        if (Model.LocaleName.Equals("ru-RU"))
+        {
+    
+            <text>
+                <style>
+                    h1, h2, h3, h4, h5, h6 {
+                        font-family: segoe ui light, sans-serif;
+                    }
+                </style>
+            </text>
+        }
+                   
+    }
+    
     @RenderSection("Styles", required: false)
 </head>
+
 <body class="darkside">
 
     <div class="b-main">

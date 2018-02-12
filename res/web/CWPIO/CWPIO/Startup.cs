@@ -57,7 +57,11 @@ namespace CWPIO
 
             services.AddMvc()
                 .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
-                .AddDataAnnotationsLocalization();
+                .AddDataAnnotationsLocalization(options => {
+                    options.DataAnnotationLocalizerProvider = (type, factory) =>
+                        factory.Create(typeof(SharedResource));  
+                })
+                .AddViewLocalization();
 
             services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
             services.Configure<SlackSettings>(Configuration.GetSection("SlackWebHooks"));
@@ -74,8 +78,11 @@ namespace CWPIO
         {
             var supportedCultures = new[]
             {
-                new CultureInfo("en-US"),
-                new CultureInfo("ru-RU"),
+                  new CultureInfo("en-US")
+                , new CultureInfo("ru-RU")
+                //, new CultureInfo("cn")
+                //, new CultureInfo("jp")
+                //, new CultureInfo("ru")
             };
             app.UseRequestLocalization(new RequestLocalizationOptions
             {

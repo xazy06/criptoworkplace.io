@@ -1,17 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using CWPIO.Models;
-using CWPIO.Data;
-using Microsoft.Extensions.Localization;
-using Microsoft.EntityFrameworkCore;
 using System.Net.Mail;
-using DnsClient;
+using System.Threading.Tasks;
+using CWPIO.Data;
+using CWPIO.Models;
+using CWPIO.Models.ManageViewModels;
 using CWPIO.Services;
+using DnsClient;
+using DnsClient.Protocol;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Localization;
 using Slack.Webhooks;
+
 
 namespace CWPIO.Controllers
 {
@@ -19,18 +24,36 @@ namespace CWPIO.Controllers
     {
         private ApplicationDbContext _context;
         private IStringLocalizer<HomeController> _localizer;
+        private readonly IStringLocalizer<SharedResource> _sharedLocalizer;
         private IEmailSender _emailSender;
         private ISlackClient _slack;
-        public HomeController(ApplicationDbContext context, IStringLocalizer<HomeController> localizer, IEmailSender emailSender, ISlackClient slack)
+        public HomeController(ApplicationDbContext context, 
+            IStringLocalizer<HomeController> localizer,   
+            IEmailSender emailSender, 
+            ISlackClient slack,
+            IStringLocalizer<SharedResource> sharedLocalizer)
         {
             _context = context;
             _localizer = localizer;
             _emailSender = emailSender;
             _slack = slack;
+            _sharedLocalizer = sharedLocalizer;
         }
+
         public IActionResult Index()
         {
-            return View();
+            IndexViewModel model = new IndexViewModel {LocaleName = CultureInfo.CurrentCulture.Name};
+
+            ViewBag.IsLocale = new Func<string, bool>(IsLocale);
+
+            return View(model);
+        }
+        
+        private bool IsLocale(string locale)
+        {
+            var current = CultureInfo.CurrentCulture;
+        
+            return current.Name.Equals(locale);
         }
 
         public IActionResult About()
@@ -147,7 +170,7 @@ namespace CWPIO.Controllers
                         },
                         Pretext = $"Дата регистрации: {entry.DateCreated.ToString("dd:MM:yyyy HH:mm")}"
                     }
-                },
+                }
             });
 
             return View(new UnsubscribeViewModel { Result = true, Email = email });
@@ -178,7 +201,7 @@ namespace CWPIO.Controllers
                 };
                 var result = await lookup.QueryAsync(domain, QueryType.ANY).ConfigureAwait(false);
 
-                var records = result.Answers.Where(record => record.RecordType == DnsClient.Protocol.ResourceRecordType.MX);
+                var records = result.Answers.Where(record => record.RecordType == ResourceRecordType.MX);
                 return records.Any();
             }
             catch (DnsResponseException)
