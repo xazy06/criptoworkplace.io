@@ -27,9 +27,10 @@ namespace CWPIO.Controllers
         private readonly IStringLocalizer<SharedResource> _sharedLocalizer;
         private IEmailSender _emailSender;
         private ISlackClient _slack;
-        public HomeController(ApplicationDbContext context, 
-            IStringLocalizer<HomeController> localizer,   
-            IEmailSender emailSender, 
+
+        public HomeController(ApplicationDbContext context,
+            IStringLocalizer<HomeController> localizer,
+            IEmailSender emailSender,
             ISlackClient slack,
             IStringLocalizer<SharedResource> sharedLocalizer)
         {
@@ -85,7 +86,7 @@ namespace CWPIO.Controllers
                     DateCreated = DateTime.Now
                 })).Entity;
                 postToSlack = true;
-                
+
             }
             else
             {
@@ -97,7 +98,7 @@ namespace CWPIO.Controllers
                     postToSlack = true;
                 }
             }
-            
+
             await _context.SaveChangesAsync();
 
             if (postToSlack)

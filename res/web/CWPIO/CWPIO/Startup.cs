@@ -55,8 +55,9 @@ namespace CWPIO
                 // Find the cookie provider with LINQ
                 var cookieProvider = options.RequestCultureProviders.OfType<CookieRequestCultureProvider>().FirstOrDefault();
                 if (cookieProvider != null)
-                // Set the new cookie name
-                    cookieProvider.CookieName = "CWP.UserCulture";
+                    // Set the new cookie name
+                    options.RequestCultureProviders.Remove(cookieProvider);
+                //cookieProvider.CookieName = "CWP.UserCulture";
 
                 //options.RequestCultureProviders.Insert(0, new CustomRequestCultureProvider(async context =>
                 //{
