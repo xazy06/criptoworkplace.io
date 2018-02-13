@@ -36,8 +36,8 @@ namespace CWPIO.Data
                 b.ToTable("DataProtectionKeys");
 
                 b.HasKey(x => x.FriendlyName);
-                b.Property(p => p.FriendlyName).HasColumnName("FriendlyName").HasColumnType("nvarchar(max)");
-                b.Property(p => p.XmlData).HasColumnName("XmlData").HasColumnType("nvarchar(max)");
+                b.Property(p => p.FriendlyName).HasColumnName("FriendlyName").HasColumnType("text");
+                b.Property(p => p.XmlData).HasColumnName("XmlData").HasColumnType("text");
             });
         }
     }

@@ -12,8 +12,8 @@ namespace CWPIO.Data.Migrations
                 name: "DataProtectionKeys",
                 columns: table => new
                 {
-                    FriendlyName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    XmlData = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    FriendlyName = table.Column<string>(type: "text", nullable: false),
+                    XmlData = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
