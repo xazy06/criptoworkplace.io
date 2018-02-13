@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -11,13 +9,11 @@ using Microsoft.Extensions.DependencyInjection;
 using CWPIO.Data;
 using CWPIO.Models;
 using CWPIO.Services;
-using Microsoft.AspNetCore.Mvc.Razor;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using Slack.Webhooks;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.DataProtection;
-using StackExchange.Redis;
 
 namespace CWPIO
 {
@@ -26,6 +22,7 @@ namespace CWPIO
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
         }
 
         public IConfiguration Configuration { get; }
@@ -74,7 +71,7 @@ namespace CWPIO
                 .AddEntityFrameworkNpgsql()
                 .AddDbContext<ApplicationDbContext>(options =>
                     options.UseNpgsql(Configuration.GetConnectionString("CWPConnection")));
-
+            
             services.AddDataProtection()
                 .PersistKeysToSql()
                 .SetDefaultKeyLifetime(TimeSpan.FromDays(7))
@@ -84,15 +81,11 @@ namespace CWPIO
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
+            services.AddAuthentication().
+
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
-            services.AddMvc()
-                //.AddDataAnnotationsLocalization(options => {
-                //    options.DataAnnotationLocalizerProvider = (type, factory) =>
-                //        factory.Create(typeof(SharedResource));  
-                //})
-                .AddViewLocalization();
 
             services.Configure<IdentityOptions>(options =>
              {

@@ -45,7 +45,7 @@
 <body>
     <header class="header">
         <nav class="navbar navbar-expand-lg">
-            @await  Html.PartialAsync("_Navigation")
+            @await Html.PartialAsync("_Navigation")
         </nav>
 
     </header>
@@ -53,7 +53,7 @@
         <!-- Sidebar Navigation-->
         <nav id="sidebar">
             @await Html.PartialAsync("_LoginUser")
-            @await  Html.PartialAsync("_LeftMenu")
+            @await Html.PartialAsync("_LeftMenu")
         </nav>
         <div class="page-content">
             <div class="page-header">
@@ -74,11 +74,12 @@
         </div>
     </div>
 
+    @Html.Raw(snippet.FullScript)
     <!-- JavaScript files-->
     <script asp-append-version="true" src="~/js/jquery-3.2.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"> </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
     <script asp-append-version="true" src="~/vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script asp-append-version="true" src="~/vendor/jquery.cookie/jquery.cookie.js"> </script>
+    <script asp-append-version="true" src="~/vendor/jquery.cookie/jquery.cookie.js"></script>
     <script asp-append-version="true" src="~/vendor/chart.js/Chart.min.js"></script>
     <script asp-append-version="true" src="~/js/charts-home.js"></script>
     <script asp-append-version="true" src="~/js/front.js"></script>

@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -51,6 +52,7 @@
     </locale>
 
     @RenderSection("Styles", required: false)
+    @Html.Raw(JavaScriptSnippet.FullScript)
 </head>
 
 <body class="darkside">
@@ -66,6 +68,7 @@
 
     @Html.Partial("_Footer")
 
+    @Html.Raw(snippet.FullScript)
 
     <script src="~/js/jquery-3.2.0.min.js"></script>
     <script src="~/js/jquery-ui.js"></script>

@@ -2,11 +2,14 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <UserSecretsId>aspnet-CWPIO-87372571-7F70-4C68-8BDF-E4117983CA51</UserSecretsId>
+    <ApplicationInsightsResourceId>/subscriptions/63fdc60a-be64-455c-b85c-a8a844dedaf2/resourcegroups/CWPIO/providers/microsoft.insights/components/CWPIO</ApplicationInsightsResourceId>
+    <ApplicationInsightsAnnotationResourceId>/subscriptions/63fdc60a-be64-455c-b85c-a8a844dedaf2/resourcegroups/CWPIO/providers/microsoft.insights/components/CWPIO</ApplicationInsightsAnnotationResourceId>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="DnsClient" Version="1.0.7" />
     <PackageReference Include="Google.Apis" Version="1.32.1" />
     <PackageReference Include="Mailjet.Api" Version="1.0.1" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.1" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.1" PrivateAssets="All" />
@@ -43,5 +46,8 @@
     <EmbeddedResource Update="Resources\Views.Home.Unsubscribe.resx">
       <Generator></Generator>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services" />
   </ItemGroup>
 </Project>

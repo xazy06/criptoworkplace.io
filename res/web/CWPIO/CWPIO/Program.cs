@@ -21,6 +21,7 @@ namespace CWPIO
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseApplicationInsights()
                 .ConfigureLogging((context, logging) =>
                 {
                     logging.Services.Configure<SlackConfiguration>(context.Configuration.GetSection("Logging:Slack"));
