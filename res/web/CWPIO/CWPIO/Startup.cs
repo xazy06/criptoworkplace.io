@@ -98,14 +98,6 @@ namespace CWPIO
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
-
-
-
-            services.ConfigureApplicationCookie(options =>
-            {
-                
-            });
-
             services.Configure<IdentityOptions>(options =>
              {
                  // Password settings
