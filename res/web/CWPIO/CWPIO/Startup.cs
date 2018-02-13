@@ -67,11 +67,14 @@ namespace CWPIO
 
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 
+            services.AddMvc()
+                .AddViewLocalization(); //IViewLocalizer
+
             services
                 .AddEntityFrameworkNpgsql()
                 .AddDbContext<ApplicationDbContext>(options =>
-                    options.UseNpgsql(Configuration.GetConnectionString("CWPConnection")));
-            
+                    options.UseNpgsql(Configuration.GetConnectionString("CWPConnection")), ServiceLifetime.Singleton, ServiceLifetime.Singleton );
+
             services.AddDataProtection()
                 .PersistKeysToSql()
                 .SetDefaultKeyLifetime(TimeSpan.FromDays(7))

@@ -18,16 +18,16 @@ namespace CWPIO.Services
 
         public Task SendSmsAsync(string number, string message)
         {
-            ASPSMS.SMS SMSSender = new ASPSMS.SMS();
+            //ASPSMS.SMS SMSSender = new ASPSMS.SMS();
 
-            SMSSender.Userkey = Options.SMSAccountIdentification;
-            SMSSender.Password = Options.SMSAccountPassword;
-            SMSSender.Originator = Options.SMSAccountFrom;
+            //SMSSender.Userkey = Options.SMSAccountIdentification;
+            //SMSSender.Password = Options.SMSAccountPassword;
+            //SMSSender.Originator = Options.SMSAccountFrom;
 
-            SMSSender.AddRecipient(number);
-            SMSSender.MessageData = message;
+            //SMSSender.AddRecipient(number);
+            //SMSSender.MessageData = message;
 
-            SMSSender.SendTextSMS();
+            //SMSSender.SendTextSMS();
 
             return Task.FromResult(0);
         }

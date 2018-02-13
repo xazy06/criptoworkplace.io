@@ -1,6 +1,8 @@
 ﻿using CWPIO.Data;
+using Microsoft.AspNetCore.DataProtection.KeyManagement;
 using Microsoft.AspNetCore.DataProtection.Repositories;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,31 +18,15 @@ namespace Microsoft.AspNetCore.DataProtection
             {
                 throw new ArgumentNullException(nameof(builder));
             }
-            
-            return builder.Use(ServiceDescriptor.Singleton<IXmlRepository, DataProtectionKeyRepository>());
-        }
 
-        public static IDataProtectionBuilder Use(this IDataProtectionBuilder builder, ServiceDescriptor descriptor)
-        {
-            if (builder == null)
+            builder.Services.AddSingleton<IConfigureOptions<KeyManagementOptions>>(services =>
             {
-                throw new ArgumentNullException(nameof(builder));
-            }
-
-            if (descriptor == null)
-            {
-                throw new ArgumentNullException(nameof(descriptor));
-            }
-
-            for (int i = builder.Services.Count - 1; i >= 0; i--)
-            {
-                if (builder.Services[i]?.ServiceType == descriptor.ServiceType)
+                var dbContext = services.GetService<ApplicationDbContext>() ?? new ApplicationDbContext(new EntityFrameworkCore.DbContextOptions<ApplicationDbContext>());
+                return new ConfigureOptions<KeyManagementOptions>(options =>
                 {
-                    builder.Services.RemoveAt(i);
-                }
-            }
-
-            builder.Services.Add(descriptor);
+                    options.XmlRepository = new DataProtectionKeyRepository(dbContext);
+                });
+            });
 
             return builder;
         }
