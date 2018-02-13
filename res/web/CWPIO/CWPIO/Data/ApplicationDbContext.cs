@@ -31,6 +31,14 @@ namespace CWPIO.Data
                 b.Property(s => s.Email).IsRequired().HasMaxLength(100);
                 b.Property(s => s.EmailSend).IsRequired().HasDefaultValue(false);
             });
+
+            builder.Entity<DataProtectionKey>(b => {
+                b.ToTable("DataProtectionKeys");
+
+                b.HasKey(x => x.FriendlyName);
+                b.Property(p => p.FriendlyName).HasColumnName("FriendlyName").HasColumnType("nvarchar(max)");
+                b.Property(p => p.XmlData).HasColumnName("XmlData").HasColumnType("nvarchar(max)");
+            });
         }
     }
 }

@@ -16,6 +16,8 @@ using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using Slack.Webhooks;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.DataProtection;
+using StackExchange.Redis;
 
 namespace CWPIO
 {
@@ -65,14 +67,18 @@ namespace CWPIO
                 //    return new ProviderCultureResult("en");
                 //}));
             });
-
-
+            
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 
             services
                 .AddEntityFrameworkNpgsql()
                 .AddDbContext<ApplicationDbContext>(options =>
                     options.UseNpgsql(Configuration.GetConnectionString("CWPConnection")));
+
+            services.AddDataProtection()
+                .PersistKeysToSql()
+                .SetDefaultKeyLifetime(TimeSpan.FromDays(7))
+                .SetApplicationName("CWPIO");
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
