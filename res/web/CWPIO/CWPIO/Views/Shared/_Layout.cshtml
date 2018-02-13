@@ -1,10 +1,16 @@
-﻿<!DOCTYPE html>
+﻿@using System.Globalization
+@using CWPIO.Controllers
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.AspNetCore.Mvc.Rendering
+@inject IViewLocalizer Locale
+@model CWPIO.Models.ManageViewModels.IndexViewModel
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CWPIO - @ViewData["Title"]</title>
-    <meta id="meta-theme" name="theme-color" content="#000"/>
     <link rel="apple-touch-icon" sizes="57x57" href="~/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="~/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="~/apple-icon-72x72.png">
@@ -37,7 +43,6 @@
     <link rel="stylesheet" asp-append-version="true" href="~/css/responsive.css">
     
     <locale include="ru-RU">
-        
                 <style>
                     h1, h2, h3, h4, h5, h6 {
                         font-family: segoe ui light, sans-serif;
@@ -48,16 +53,11 @@
                                                                                        line-height: 48px;
                                                                                    }
                     }
-                .h1hl-title {
-                        font-size: 57px;
-                    }</style>
+                </style>
                 
-            </locale>
+    </locale>
     
     @RenderSection("Styles", required: false)
-    <script>
-        setTimeout("document.body.className = window.sessionStorage.getItem('color')", 0);
-    </script>
 </head>
 
 <body class="darkside">
@@ -73,7 +73,6 @@
 
     @Html.Partial("_Footer")
 
-    
 
     <script src="~/js/jquery-3.2.0.min.js"></script>
     <script src="~/js/jquery-ui.js"></script>
@@ -100,22 +99,22 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112761687-1"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-      gtag('config', 'UA-112761687-1');
+        gtag('config', 'UA-112761687-1');
 
-
+        
 //        var a = setTimeout(function() {
 //                document.body.classList = 'darkside';
 //            },180000);
 //
 //        $(document).on('mousemove', function() {
 //                clearTimeout(a);
-//
+//                
 //                //document.body.classList = '';
-//
+//                
 //                a = setTimeout(function() {
 //                    document.body.classList = 'darkside';
 //                },180000);
