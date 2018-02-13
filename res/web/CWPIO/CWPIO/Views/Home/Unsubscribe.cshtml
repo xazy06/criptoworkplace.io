@@ -4,15 +4,17 @@
 }
 @inject IViewLocalizer Localizer
 @model UnsubscribeViewModel
-
-<h2 class="text-center" style="color: inherit;">@if (Model.Result)
-{
-    @Localizer["Unsibscribe_Successful", Model.Email];
-}
-else
-{ 
-    <span>ALARMA!</span>
-    @Localizer["Unsibscribe_Failed"];
-}</h2>
-<br/>
-
+<div class="container">
+    <h2 class="text-center" style="color: inherit;">
+        @if (Model.Result)
+    {
+        @Localizer["Unsibscribe_Successful", Model.Email];
+    }
+    else
+    {
+        <span>ALARMA!</span>
+        @Localizer["Unsibscribe_Failed"];
+    }
+</h2>
+<br />
+</div>
