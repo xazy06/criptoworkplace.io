@@ -6,6 +6,7 @@
     <ApplicationInsightsAnnotationResourceId>/subscriptions/63fdc60a-be64-455c-b85c-a8a844dedaf2/resourcegroups/CWPIO/providers/microsoft.insights/components/CWPIO</ApplicationInsightsAnnotationResourceId>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="ASPSMS" Version="0.0.2" />
     <PackageReference Include="DnsClient" Version="1.0.7" />
     <PackageReference Include="Google.Apis" Version="1.32.1" />
     <PackageReference Include="Mailjet.Api" Version="1.0.1" />

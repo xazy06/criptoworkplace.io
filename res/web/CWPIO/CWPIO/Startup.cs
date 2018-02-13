@@ -64,7 +64,7 @@ namespace CWPIO
                 //    return new ProviderCultureResult("en");
                 //}));
             });
-            
+
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 
             services
@@ -81,11 +81,30 @@ namespace CWPIO
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddAuthentication().
+            services.AddAuthentication()
+                .AddFacebook(options => {
+                    options.AppId = Configuration["Authentication:Facebook:AppId"];
+                    options.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+                })
+                .AddGoogle(options => {
+                    options.ClientId = Configuration["Authentication:Google:ClientId"];
+                    options.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+                })
+                .AddTwitter(options => {
+                    options.ConsumerKey = Configuration["Authentication:Twitter:ConsumerKey"];
+                    options.ConsumerSecret = Configuration["Authentication:Twitter:ConsumerSecret"];
+                });
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
+
+
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                
+            });
 
             services.Configure<IdentityOptions>(options =>
              {

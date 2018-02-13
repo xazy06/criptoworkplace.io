@@ -17,7 +17,7 @@ namespace Microsoft.AspNetCore.DataProtection
                 throw new ArgumentNullException(nameof(builder));
             }
             
-            return builder.Use(ServiceDescriptor.Scoped<IXmlRepository, DataProtectionKeyRepository>());
+            return builder.Use(ServiceDescriptor.Singleton<IXmlRepository, DataProtectionKeyRepository>());
         }
 
         public static IDataProtectionBuilder Use(this IDataProtectionBuilder builder, ServiceDescriptor descriptor)
