@@ -8,11 +8,12 @@ using System.Threading.Tasks;
 namespace CWPIO.Controllers
 {
     [Authorize]
-    [Route("[controller]/[action]")]
-    public class AdminController : Controller
+    [Route("my")]
+    public class CabinetController : Controller
     {
         private const string API_KEY = "LIgskaeb32789dsalfnq3eo8dc=[km";
 
+        [HttpGet("")]
         public IActionResult Index()
         {
 
