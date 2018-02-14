@@ -9,5 +9,11 @@ namespace CWPIO.Models
     // Add profile data for application users by adding properties to the ApplicationUser class
     public class ApplicationUser : IdentityUser
     {
+        public ApplicationUser()
+        {
+            Claims = new HashSet<IdentityUserClaim<string>>();
+        }
+
+        public virtual ICollection<IdentityUserClaim<string>> Claims { get; set; }
     }
 }

@@ -73,7 +73,7 @@ namespace CWPIO
             services
                 .AddEntityFrameworkNpgsql()
                 .AddDbContext<ApplicationDbContext>(options =>
-                    options.UseNpgsql(Configuration.GetConnectionString("CWPConnection")), ServiceLifetime.Singleton, ServiceLifetime.Singleton );
+                    options.UseNpgsql(Configuration.GetConnectionString("CWPConnection")), ServiceLifetime.Singleton, ServiceLifetime.Singleton);
 
             services.AddDataProtection()
                 .PersistKeysToSql()
@@ -83,20 +83,34 @@ namespace CWPIO
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
-
+            
             services.AddAuthentication()
-                .AddFacebook(options => {
+                .AddFacebook(options =>
+                {
                     options.AppId = Configuration["Authentication:Facebook:AppId"];
                     options.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
                 })
-                .AddGoogle(options => {
+                .AddGoogle(options =>
+                {
                     options.ClientId = Configuration["Authentication:Google:ClientId"];
                     options.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
                 })
-                .AddTwitter(options => {
+                .AddTwitter(options =>
+                {
                     options.ConsumerKey = Configuration["Authentication:Twitter:ConsumerKey"];
                     options.ConsumerSecret = Configuration["Authentication:Twitter:ConsumerSecret"];
                 });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy(
+                    "CanAccessUsers",
+                    policyBuilder => policyBuilder.RequireClaim("IsAdmin", "True"));
+
+                options.AddPolicy(
+                    "CanAccessBounty",
+                    policyBuilder => policyBuilder.RequireClaim("IsEmailConfirmed", "True").RequireClaim("IsExtendedProfileFilled", "True"));
+            });
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();

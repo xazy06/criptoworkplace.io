@@ -22,6 +22,13 @@ namespace CWPIO.Data
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
 
+            builder.Entity<ApplicationUser>()
+                .HasMany(e => e.Claims)
+                .WithOne()
+                .HasForeignKey(e => e.UserId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Cascade);
+
             builder.Entity<Subscriber>(b =>
             {
                 b.ToTable("Subscribers");
@@ -32,7 +39,8 @@ namespace CWPIO.Data
                 b.Property(s => s.EmailSend).IsRequired().HasDefaultValue(false);
             });
 
-            builder.Entity<DataProtectionKey>(b => {
+            builder.Entity<DataProtectionKey>(b =>
+            {
                 b.ToTable("DataProtectionKeys");
 
                 b.HasKey(x => x.FriendlyName);

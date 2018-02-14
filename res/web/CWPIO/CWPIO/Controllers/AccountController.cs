@@ -233,6 +233,9 @@ namespace CWPIO.Controllers
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation("User created a new account with password.");
+
+                    var addclaimresult = await _userManager.AddClaimAsync(user, new Claim("IsAdmin", "True", ClaimValueTypes.Boolean));
+
                     return RedirectToLocal(returnUrl);
                 }
                 AddErrors(result);
