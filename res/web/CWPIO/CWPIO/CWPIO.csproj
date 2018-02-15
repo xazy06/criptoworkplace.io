@@ -36,19 +36,26 @@
       </Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Controllers.HomeController.resx">
-      <Generator></Generator>
+      <Generator>
+      </Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Services.EmailSender.resx">
-      <Generator></Generator>
+      <Generator>
+      </Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\SharedResource.resx">
-      <Generator></Generator>
+      <Generator>
+      </Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Views.Home.Unsubscribe.resx">
-      <Generator></Generator>
+      <Generator>
+      </Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\static\docs" />
   </ItemGroup>
 </Project>
