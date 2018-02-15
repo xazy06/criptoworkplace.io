@@ -37,6 +37,7 @@ namespace CWPIO.Data
                 b.Property(s => s.Name).IsRequired().HasMaxLength(100);
                 b.Property(s => s.Email).IsRequired().HasMaxLength(100);
                 b.Property(s => s.EmailSend).IsRequired().HasDefaultValue(false);
+                b.Property(s => s.Culture).IsRequired().HasDefaultValue("");
             });
 
             builder.Entity<DataProtectionKey>(b =>

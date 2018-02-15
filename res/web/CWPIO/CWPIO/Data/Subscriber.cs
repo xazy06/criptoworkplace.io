@@ -14,5 +14,6 @@ namespace CWPIO.Data
         public DateTime DateCreated { get; set; }
 
         public bool Unsubscribe { get; set; }
+        public string Culture { get; set; }
     }
 }

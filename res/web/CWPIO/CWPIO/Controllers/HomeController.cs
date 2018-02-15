@@ -83,7 +83,8 @@ namespace CWPIO.Controllers
                     Name = model.Name,
                     Email = model.Email,
                     EmailSend = true,
-                    DateCreated = DateTime.Now
+                    DateCreated = DateTime.Now,
+                    Culture = CultureInfo.CurrentUICulture.ToString()
                 })).Entity;
                 postToSlack = true;
 
