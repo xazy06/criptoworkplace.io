@@ -1,4 +1,6 @@
 ﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+@using System.Globalization
+@inject IViewLocalizer Localizer
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,6 +70,9 @@
 
     @Html.Partial("_Footer")
 
+<script>
+    window.culture = "@CultureInfo.CurrentCulture.Name";
+</script>
     @Html.Raw(snippet.FullScript)
 
     <script src="~/js/jquery-3.2.0.min.js"></script>
@@ -95,11 +100,11 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112761687-1"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
 
-        gtag('config', 'UA-112761687-1');
+      gtag('config', 'UA-112761687-1');
 
 
 //        var a = setTimeout(function() {
