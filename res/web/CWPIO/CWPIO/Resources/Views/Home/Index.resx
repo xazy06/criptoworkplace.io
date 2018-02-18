@@ -222,6 +222,9 @@ on the network, and a distributed registry of statuses</value>
   <data name="looses" xml:space="preserve">
     <value />
   </data>
+    <data name="feb" xml:space="preserve">
+    <value>February</value>
+  </data>
   <data name="march" xml:space="preserve">
     <value>March</value>
   </data>
@@ -268,13 +271,13 @@ on the network, and a distributed registry of statuses</value>
     <value>Testing of the product in independent laboratories</value>
   </data>
   <data name="r11" xml:space="preserve">
-    <value>Q2-Q3</value>
+    <value>Q2</value>
   </data>
   <data name="r12" xml:space="preserve">
     <value>The start of mass production and launching of technical support services</value>
   </data>
   <data name="r13" xml:space="preserve">
-    <value>Q4</value>
+    <value>Q3</value>
   </data>
   <data name="r14" xml:space="preserve">
     <value>The start of sales in USA, Europe and Asian markets</value>
