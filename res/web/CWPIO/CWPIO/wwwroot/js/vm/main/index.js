@@ -39,7 +39,7 @@
                     var name = this.models.feedModel.name(),
                         email = this.models.feedModel.email();
 
-                    $.post(this.api.form.send, { name: name, email: email, culture: window.culture })
+                    $.post((this.api.form.send + '?culture='+ window.culture), { name: name, email: email })
                         .done(controller.actions.form.sendDone)
                         .fail(controller.actions.form.sendFail);
                     
