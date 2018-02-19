@@ -1,7 +1,7 @@
 pragma solidity ^0.4.18;
 
-import "./CWPToken.sol";
-import "./pCWTToken.sol";
+import "./CWTToken.sol";
+import "./CWTPToken.sol";
 import "zeppelin-solidity/contracts/token/MintableToken.sol";
 import "zeppelin-solidity/contracts/crowdsale/CappedCrowdsale.sol";
 import "zeppelin-solidity/contracts/crowdsale/RefundableCrowdsale.sol";
@@ -25,7 +25,7 @@ contract CWPTokenSale is CWPTokenAddr, CappedCrowdsale, RefundableCrowdsale {
   uint256 public constant CAP25 = CAP50 + (7883 * 1 ether);
   uint16 public constant RATE0 = 6660;
   uint256 public constant CAP0 = CAP25 + (22523 * 1 ether);
-  pCWTToken public presaleToken;
+  CWTPToken public presaleToken;
 
   /**
    * event for token convert logging
@@ -60,7 +60,7 @@ contract CWPTokenSale is CWPTokenAddr, CappedCrowdsale, RefundableCrowdsale {
     Crowdsale(_startTime, _startTime + _duration * 1 days, RATE50, _wallet)
   {
     require(_presaleTokenAddress != address(0));
-    presaleToken = pCWTToken(_presaleTokenAddress);
+    presaleToken = CWTPToken(_presaleTokenAddress);
   }
 
   function buyTokens(address beneficiary) checkNextRate public payable{
@@ -70,7 +70,7 @@ contract CWPTokenSale is CWPTokenAddr, CappedCrowdsale, RefundableCrowdsale {
   /*Use CWPToken for sale*/
   function createTokenContract() internal returns (MintableToken) {
     //return new MintableToken();
-    return CWPToken(tokenAddress);
+    return CWTToken(tokenAddress);
   }
 
   function convertFromPresale(uint256 _value) public returns (bool)
