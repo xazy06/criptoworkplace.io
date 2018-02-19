@@ -117,7 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="wallet" xml:space="preserve">
-    <value>Wallet soon on</value>
+  <data name="downloads" xml:space="preserve">
+    <value />
+  </data>
+  <data name="mail" xml:space="preserve">
+    <value />
+  </data>
+  <data name="name" xml:space="preserve">
+    <value />
+  </data>
+  <data name="participate" xml:space="preserve">
+    <value />
+  </data>
+  <data name="reghelp" xml:space="preserve">
+    <value />
   </data>
 </root>

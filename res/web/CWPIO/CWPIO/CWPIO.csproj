@@ -31,11 +31,15 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Update="Resources\Controllers.HomeController.ru.resx">
+    <EmbeddedResource Update="Resources\Controllers\HomeController.ru.resx">
       <Generator>
       </Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Controllers.HomeController.resx">
+    <EmbeddedResource Update="Resources\Controllers\HomeController.resx">
+      <Generator>
+      </Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Services.EmailSender.ru.resx">
       <Generator>
       </Generator>
     </EmbeddedResource>
@@ -43,11 +47,43 @@
       <Generator>
       </Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resources\SharedResource.cn.resx">
+      <Generator>
+      </Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\SharedResource.jp.resx">
+      <Generator>
+      </Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\SharedResource.resx">
       <Generator>
       </Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Views.Home.Unsubscribe.resx">
+    <EmbeddedResource Update="Resources\Views\Home\Unsubscribe.cn.resx">
+      <Generator>
+      </Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Home\Unsubscribe.jp.resx">
+      <Generator>
+      </Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Home\Unsubscribe.ru.resx">
+      <Generator>
+      </Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Home\Unsubscribe.resx">
+      <Generator>
+      </Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Shared\_Header.cn.resx">
+      <Generator>
+      </Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Shared\_Header.jp.resx">
+      <Generator>
+      </Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views\Shared\_Header.resx">
       <Generator>
       </Generator>
     </EmbeddedResource>

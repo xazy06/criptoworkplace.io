@@ -159,9 +159,6 @@
   <data name="ceo" xml:space="preserve">
     <value />
   </data>
-  <data name="contacts" xml:space="preserve">
-    <value />
-  </data>
   <data name="cto" xml:space="preserve">
     <value />
   </data>
@@ -172,12 +169,6 @@
     <value />
   </data>
   <data name="disc" xml:space="preserve">
-    <value />
-  </data>
-  <data name="documents" xml:space="preserve">
-    <value />
-  </data>
-  <data name="downloads" xml:space="preserve">
     <value />
   </data>
   <data name="en" xml:space="preserve">
@@ -228,9 +219,6 @@
   <data name="memiss" xml:space="preserve">
     <value />
   </data>
-  <data name="participate" xml:space="preserve">
-    <value />
-  </data>
   <data name="particsale" xml:space="preserve">
     <value />
   </data>
@@ -247,9 +235,6 @@
     <value />
   </data>
   <data name="problem" xml:space="preserve">
-    <value />
-  </data>
-  <data name="product" xml:space="preserve">
     <value />
   </data>
   <data name="qa" xml:space="preserve">
@@ -297,16 +282,10 @@
   <data name="r9" xml:space="preserve">
     <value />
   </data>
-  <data name="reghelp" xml:space="preserve">
-    <value />
-  </data>
   <data name="report" xml:space="preserve">
     <value />
   </data>
   <data name="reportlink" xml:space="preserve">
-    <value />
-  </data>
-  <data name="roadmap" xml:space="preserve">
     <value />
   </data>
   <data name="round" xml:space="preserve">
@@ -333,19 +312,10 @@
   <data name="tc" xml:space="preserve">
     <value />
   </data>
-  <data name="team" xml:space="preserve">
-    <value />
-  </data>
   <data name="toggle" xml:space="preserve">
     <value />
   </data>
-  <data name="token" xml:space="preserve">
-    <value />
-  </data>
   <data name="Wagan Sarukhanov" xml:space="preserve">
-    <value />
-  </data>
-  <data name="wallet" xml:space="preserve">
     <value />
   </data>
   <data name="wp" xml:space="preserve">

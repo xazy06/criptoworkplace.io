@@ -24,39 +24,22 @@ namespace CWPIO.Controllers
     {
         private ApplicationDbContext _context;
         private IStringLocalizer<HomeController> _localizer;
-        private readonly IStringLocalizer<SharedResource> _sharedLocalizer;
         private IEmailSender _emailSender;
         private ISlackClient _slack;
 
         public HomeController(ApplicationDbContext context,
             IStringLocalizer<HomeController> localizer,
             IEmailSender emailSender,
-            ISlackClient slack,
-            IStringLocalizer<SharedResource> sharedLocalizer)
+            ISlackClient slack)
         {
             _context = context;
             _localizer = localizer;
             _emailSender = emailSender;
             _slack = slack;
-            _sharedLocalizer = sharedLocalizer;
         }
 
         public IActionResult Index()
         {
-            return View();
-        }
-
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
             return View();
         }
 
@@ -125,7 +108,6 @@ namespace CWPIO.Controllers
                 }
                 });
             }
-
             var sendResult = await _emailSender.SendEmailSubscription(model.Email, model.Name);
 
             return Json(new { result = sendResult, Error = "" });

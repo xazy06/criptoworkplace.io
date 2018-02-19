@@ -1,106 +1,102 @@
-﻿@using Microsoft.AspNetCore.Mvc.Localization
-
-@inject IViewLocalizer Localizer
-
-@inject IHtmlLocalizer<SharedResource> Locale
-
-<!-- footer-area-start -->
-    <footer>
-        <section class="subscribe-area" id="contact">
-            <div class="container">
-                <div class="s-ta_c">
-                    <img class="s-logo s-icon" src="/static/Index_0002s_0002s_0002s_0001_CWP2.png"/>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="subscribe">
-                            
-                            <div data-bind="popup:{removalDelay:500, callbacks:{}}"
-                                 class="white-popup mfp-with-anim mfp-hide"></div>
-                            
-                            <form action="javascript:void(0)">
-                                <div class="subscribe-input-box sib-name">
-                                    <span><i class="far fa-user"></i></span>
-                                    <input data-bind="textInput:models.feedModel.name" type="text" placeholder="@Locale["name"]"/>
-                                </div>
-                                <div class="subscribe-input-box sib-email">
-                                    <span><i class="far fa-envelope"></i></span>
-                                    <input data-bind="textInput:models.feedModel.email" type="email" placeholder="@Locale["mail"]">
-                                </div>
-                                <div class="subscribe-input-box sib-submit">
-                                    <input data-bind="enable:actions.form.sendEnabled, click: actions.form.send" 
-                                           type="submit" class="button no-h" value="@Locale["participate"]">
-                                </div>
-                            </form>
-                            <p class="subscribe-text">@Locale["reghelp"]</p>
-                        </div>
-                    </div>
-                </div>
+﻿<!-- footer-area-start -->
+<footer>
+    <section class="subscribe-area" id="contact">
+        <div class="container">
+            <div class="s-ta_c">
+                <img class="s-logo s-icon" src="/static/Index_0002s_0002s_0002s_0001_CWP2.png" />
             </div>
-            <h4 class="hidden">hi</h4>
-        </section>
-        <div class="footer-available-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="available">
-                            <h5 class="available-title">@Locale["wallet"]:</h5>
-                            <ul class="available-links">
-                                <li>
-                                    <a href="javascript:void(0)"><img src="/img/home1/download1.png" alt="app store"></a></li>
-                                <li>
-                                    <a href="javascript:void(0)">
-                                        <img src="/img/home1/download2.png" alt="google play"/>
-                                    </a></li>
-@*                                <li>*@
-@*                                    <a href="javascript:void(0)">*@
-@*                                        <img src="/img/home1/download3.png" alt="windows Store"/>*@
-@*                                    </a></li>*@
-@*                                <li>*@
-@*                                    <a href="javascript:void(0)">*@
-@*                                        <img src="/img/home1/download4.png" alt="amazon"/>*@
-@*                                    </a></li>*@
-                            </ul>
-                            @*                            <h2 class="available-counter"><span class="counter counter-up" data-counterup-delay="30" data-counterup-time="1500">133</span>K downloads</h2>*@
-                            <h2 class="available-counter">
-                                <span class="counter">
-                                    <img src="/static/infinityb.svg"/>
-                                </span> @Locale["downloads"]
-                            </h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-5 col-sm-6 col-xs-12">
-                        <div class="fba-logo">
-                            <div class="logo">
-                                <a href="/">Crypto<span class="semibold">WorkPlace</span></a>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="subscribe">
+
+                        <div data-bind="popup:{removalDelay:500, callbacks:{}}"
+                             class="white-popup mfp-with-anim mfp-hide"></div>
+
+                        <form action="javascript:void(0)">
+                            <div class="subscribe-input-box sib-name">
+                                <span><i class="far fa-user"></i></span>
+                                <input data-bind="textInput:models.feedModel.name" type="text" placeholder="@Locale["name"]" />
                             </div>
-                            <p>© @DateTime.Now.Year All rights reserved</p>
-                        </div>
-                    </div>
-                    <div class="col-md-5 col-sm-6 col-xs-12">
-                        <ul class="fba-links">
-@*                            <li><a href="#">Terms of service</a></li>*@
-@*                            <li><a href="#">Privacy policy</a></li>*@
-@*                            <li><a href="#">Contacts</a></li>*@
-@*                            <li><a href="#">Support</a></li>*@
-                        </ul>
-                    </div>
-                    <div class="col-md-2 col-sm-12 col-xs-12">
-                        <ul class="fba-social">
-                            <li><a href="#" data-toggle="tooltip" title="Facebook"><i class="fab fa-facebook"></i></a></li>
-                            <li><a href="#" data-toggle="tooltip" title="Twitter"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="#" data-toggle="tooltip" title="Google-Plus"><i class="fab fa-google-plus"></i></a></li>
-                            <li><a href="https://github.com/cryptoworkplace" target="_blank" data-toggle="tooltip" title="GitHub"><i class="fab fa-github"></i></a></li>
-                        </ul>
+                            <div class="subscribe-input-box sib-email">
+                                <span><i class="far fa-envelope"></i></span>
+                                <input data-bind="textInput:models.feedModel.email" type="email" placeholder="@Locale["mail"]">
+                            </div>
+                            <div class="subscribe-input-box sib-submit">
+                                <input data-bind="enable:actions.form.sendEnabled, click: actions.form.send"
+                                       type="submit" class="button no-h" value="@Locale["participate"]">
+                            </div>
+                        </form>
+                        <p class="subscribe-text">@Locale["reghelp"]</p>
                     </div>
                 </div>
             </div>
         </div>
-    </footer>
-    <!-- footer-area-end -->
+        <h4 class="hidden">hi</h4>
+    </section>
+    <div class="footer-available-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="available">
+                        <h5 class="available-title">@SharedLocale["wallet"]:</h5>
+                        <ul class="available-links">
+                            <li>
+                                <a href="javascript:void(0)"><img src="/img/home1/download1.png" alt="app store"></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <img src="/img/home1/download2.png" alt="google play" />
+                                </a>
+                            </li>
+                            @*                                <li>*@
+                            @*                                    <a href="javascript:void(0)">*@
+                            @*                                        <img src="/img/home1/download3.png" alt="windows Store"/>*@
+                            @*                                    </a></li>*@
+                            @*                                <li>*@
+                            @*                                    <a href="javascript:void(0)">*@
+                            @*                                        <img src="/img/home1/download4.png" alt="amazon"/>*@
+                            @*                                    </a></li>*@
+                        </ul>
+                        @*                            <h2 class="available-counter"><span class="counter counter-up" data-counterup-delay="30" data-counterup-time="1500">133</span>K downloads</h2>*@
+                        <h2 class="available-counter">
+                            <span class="counter">
+                                <img src="/static/infinityb.svg" />
+                            </span> @Locale["downloads"]
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 col-sm-6 col-xs-12">
+                    <div class="fba-logo">
+                        <div class="logo">
+                            <a href="/">Crypto<span class="semibold">WorkPlace</span></a>
+                        </div>
+                        <p>© @DateTime.Now.Year All rights reserved</p>
+                    </div>
+                </div>
+                <div class="col-md-5 col-sm-6 col-xs-12">
+                    <ul class="fba-links">
+                        @*                            <li><a href="#">Terms of service</a></li>*@
+                        @*                            <li><a href="#">Privacy policy</a></li>*@
+                        @*                            <li><a href="#">Contacts</a></li>*@
+                        @*                            <li><a href="#">Support</a></li>*@
+                    </ul>
+                </div>
+                <div class="col-md-2 col-sm-12 col-xs-12">
+                    <ul class="fba-social">
+                        <li><a href="#" data-toggle="tooltip" title="Facebook"><i class="fab fa-facebook"></i></a></li>
+                        <li><a href="#" data-toggle="tooltip" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#" data-toggle="tooltip" title="Google-Plus"><i class="fab fa-google-plus"></i></a></li>
+                        <li><a href="https://github.com/cryptoworkplace" target="_blank" data-toggle="tooltip" title="GitHub"><i class="fab fa-github"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer-area-end -->

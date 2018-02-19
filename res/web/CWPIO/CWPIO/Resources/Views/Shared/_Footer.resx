@@ -117,7 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="wallet" xml:space="preserve">
-    <value>Wallet soon on</value>
+  <data name="downloads" xml:space="preserve">
+    <value>downloads</value>
+  </data>
+  <data name="participate" xml:space="preserve">
+    <value>Participate *</value>
+  </data>
+  <data name="reghelp" xml:space="preserve">
+    <value>* Please register to participate in our Token Sale! After registration please also check your Spam/Promotion email folder.</value>
+  </data>
+  <data name="mail" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>Name</value>
   </data>
 </root>

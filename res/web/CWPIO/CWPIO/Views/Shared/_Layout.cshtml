@@ -1,7 +1,4 @@
-﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
-@using System.Globalization
-@inject IViewLocalizer Localizer
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -54,7 +51,6 @@
     </locale>
 
     @RenderSection("Styles", required: false)
-    @Html.Raw(JavaScriptSnippet.FullScript)
 </head>
 
 <body class="darkside">
@@ -70,9 +66,9 @@
 
     @Html.Partial("_Footer")
 
-<script>
-    window.culture = "@CultureInfo.CurrentCulture.Name";
-</script>
+    <script>
+        window.culture = "@Context.GetCurrentCulture()";
+    </script>
     @Html.Raw(snippet.FullScript)
 
     <script src="~/js/jquery-3.2.0.min.js"></script>

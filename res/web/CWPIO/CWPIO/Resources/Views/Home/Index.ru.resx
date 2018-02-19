@@ -159,9 +159,6 @@
   <data name="ceo" xml:space="preserve">
     <value>CEO Yoji Kishi</value>
   </data>
-  <data name="contacts" xml:space="preserve">
-    <value>Контакты</value>
-  </data>
   <data name="cto" xml:space="preserve">
     <value>Технический директор</value>
   </data>
@@ -180,12 +177,6 @@
   </data>
   <data name="disc" xml:space="preserve">
     <value>Скидка на пресейле</value>
-  </data>
-  <data name="documents" xml:space="preserve">
-    <value>Документы</value>
-  </data>
-  <data name="downloads" xml:space="preserve">
-    <value>Загрузки</value>
   </data>
   <data name="en" xml:space="preserve">
     <value>En</value>
@@ -229,9 +220,6 @@
   <data name="looses" xml:space="preserve">
     <value />
   </data>
-  <data name="mail" xml:space="preserve">
-    <value>E-mail</value>
-  </data>
   <data name="feb" xml:space="preserve">
     <value>Февраль</value>
   </data>
@@ -246,12 +234,6 @@
   </data>
   <data name="memiss" xml:space="preserve">
     <value>Максимальная эмиссия токенов</value>
-  </data>
-  <data name="name" xml:space="preserve">
-    <value>Имя</value>
-  </data>
-  <data name="participate" xml:space="preserve">
-    <value>Участвовать *</value>
   </data>
   <data name="particsale" xml:space="preserve">
     <value>Участвовать в пресейле</value>
@@ -270,9 +252,6 @@
   </data>
   <data name="problem" xml:space="preserve">
     <value>Проблема &lt;br&gt;&lt;span&gt;блокчейн&lt;/span&gt;</value>
-  </data>
-  <data name="product" xml:space="preserve">
-    <value>Продукт</value>
   </data>
   <data name="qa" xml:space="preserve">
     <value />
@@ -333,9 +312,6 @@
 бета-версии
 портала</value>
   </data>
-  <data name="reghelp" xml:space="preserve">
-    <value>* Пройдите регистрацию для участия в нашем Token Sale! После регистрации проверьте свою почту, а так же папку спам и промоакции.</value>
-  </data>
   <data name="report" xml:space="preserve">
     <value>Согласно 
                             &lt;a href="https://blog.chainalysis.com/the-rise-of-cybercrime-on-ethereum/" target="_blank"&gt;отчету&lt;/a&gt;, опубликованному компанией Chainalysis
@@ -348,9 +324,6 @@
   </data>
   <data name="reportlink" xml:space="preserve">
     <value>отчету</value>
-  </data>
-  <data name="roadmap" xml:space="preserve">
-    <value>roadmap</value>
   </data>
   <data name="roadmaph" xml:space="preserve">
     <value>ДОРОЖНАЯ&lt;span&gt;КАРТА&lt;/span&gt;</value>
@@ -382,23 +355,14 @@
   <data name="tc" xml:space="preserve">
     <value>Цена токена</value>
   </data>
-  <data name="team" xml:space="preserve">
-    <value>Команда</value>
-  </data>
   <data name="toggle" xml:space="preserve">
     <value>Показать код токена</value>
-  </data>
-  <data name="token" xml:space="preserve">
-    <value>Токен</value>
   </data>
   <data name="up2" xml:space="preserve">
     <value>До</value>
   </data>
   <data name="Wagan Sarukhanov" xml:space="preserve">
     <value>Ваган Саруханов</value>
-  </data>
-  <data name="wallet" xml:space="preserve">
-    <value>Электронный кошелек, скоро</value>
   </data>
   <data name="wp" xml:space="preserve">
     <value>white paper</value>
