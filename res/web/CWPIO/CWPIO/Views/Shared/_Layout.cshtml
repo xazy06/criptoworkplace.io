@@ -51,6 +51,13 @@
     </locale>
 
     @RenderSection("Styles", required: false)
+    
+    @*Макс это должно быть тут и именно так*@
+    
+    <script>
+        setTimeout("document.body.className = window.sessionStorage.getItem('color')", 0);
+    </script>
+    @Html.Raw(JavaScriptSnippet.FullScript)
 </head>
 
 <body class="darkside">
