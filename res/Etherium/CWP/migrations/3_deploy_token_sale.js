@@ -10,7 +10,7 @@ module.exports = function(deployer, network) {
         .then(() => CWTPToken.deployed())
         .then(function(cwp) {
           cwpInstance = cwp;
-          return deployer.deploy(CWPPTokenSale, (Date.now() / 1000 | 0) + 100, 1, walletAddr, cwpInstance.address)
+          return deployer.deploy(CWPPTokenSale, (Date.now() / 1000 | 0) + 10, (Date.now() / 1000 | 0) + 400, walletAddr, cwpInstance.address)
             .then(function(t) {
               console.log("transfer Ownership to: " + CWPPTokenSale.address);
               return cwpInstance.transferOwnership(CWPPTokenSale.address);
@@ -18,6 +18,18 @@ module.exports = function(deployer, network) {
         });
     }
     else {
-      throw 0;
+      const walletAddr = "0x312c8cdb4520196c9000036b58296cad2579f541";
+      var cwpInstance;
+
+      deployer.chain
+        .then(() => CWTPToken.deployed())
+        .then(function(cwp) {
+          cwpInstance = cwp;
+          return deployer.deploy(CWPPTokenSale, (Date.now() / 1000 | 0) + 60, 1522540799, walletAddr, cwpInstance.address)
+            .then(function(t) {
+              console.log("transfer Ownership to: " + CWPPTokenSale.address);
+              return cwpInstance.transferOwnership(CWPPTokenSale.address);
+            });
+        });
     }
 };

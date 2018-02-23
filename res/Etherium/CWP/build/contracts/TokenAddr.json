@@ -13,18 +13,18 @@
       "type": "constructor"
     }
   ],
-  "bytecode": "0x60606040523415600e57600080fd5b60405160208060e783398101604052808051906020019091905050600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff1614151515606457600080fd5b806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055505060358060b26000396000f3006060604052600080fd00a165627a7a72305820b6c77ed9692d52643e7bcc41e3ee9680094bf1a2951c219c9260b5afa1819db00029",
-  "deployedBytecode": "0x6060604052600080fd00a165627a7a72305820b6c77ed9692d52643e7bcc41e3ee9680094bf1a2951c219c9260b5afa1819db00029",
-  "sourceMap": "28:199:3:-;;;88:136;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;180:1;155:27;;:13;:27;;;;147:36;;;;;;;;205:13;190:12;;:28;;;;;;;;;;;;;;;;;;88:136;28:199;;;;;;",
-  "deployedSourceMap": "28:199:3:-;;;;;",
+  "bytecode": "0x60606040523415600e57600080fd5b60405160208060e783398101604052808051906020019091905050600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff1614151515606457600080fd5b806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055505060358060b26000396000f3006060604052600080fd00a165627a7a723058209e665954b1215774c1f8c2fe7e8eaf5a02d418536cab5999b518c431e33bbc990029",
+  "deployedBytecode": "0x6060604052600080fd00a165627a7a723058209e665954b1215774c1f8c2fe7e8eaf5a02d418536cab5999b518c431e33bbc990029",
+  "sourceMap": "28:199:2:-;;;88:136;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;180:1;155:27;;:13;:27;;;;147:36;;;;;;;;205:13;190:12;;:28;;;;;;;;;;;;;;;;;;88:136;28:199;;;;;;",
+  "deployedSourceMap": "28:199:2:-;;;;;",
   "source": "pragma solidity ^0.4.18;\r\n\r\ncontract TokenAddr {\r\n  address internal tokenAddress;\r\n\r\n  function TokenAddr(address _tokenAddress) public\r\n  {\r\n    require(_tokenAddress != address(0));\r\n    tokenAddress = _tokenAddress;\r\n  }\r\n}\r\n",
-  "sourcePath": "C:\\Users\\mmaslich.CISLINK\\Source\\Repos\\cryptoworkplace.io\\res\\Etherium\\CWP\\contracts\\TokenAddr.sol",
+  "sourcePath": "C:\\Users\\mmasl\\source\\repos\\cryptoworkplace.io\\res\\Etherium\\CWP\\contracts\\TokenAddr.sol",
   "ast": {
     "attributes": {
-      "absolutePath": "/C/Users/mmaslich.CISLINK/Source/Repos/cryptoworkplace.io/res/Etherium/CWP/contracts/TokenAddr.sol",
+      "absolutePath": "/C/Users/mmasl/source/repos/cryptoworkplace.io/res/Etherium/CWP/contracts/TokenAddr.sol",
       "exportedSymbols": {
         "TokenAddr": [
-          306
+          156
         ]
       }
     },
@@ -38,9 +38,9 @@
             ".18"
           ]
         },
-        "id": 285,
+        "id": 135,
         "name": "PragmaDirective",
-        "src": "0:24:3"
+        "src": "0:24:2"
       },
       {
         "attributes": {
@@ -54,17 +54,17 @@
           "documentation": null,
           "fullyImplemented": true,
           "linearizedBaseContracts": [
-            306
+            156
           ],
           "name": "TokenAddr",
-          "scope": 307
+          "scope": 157
         },
         "children": [
           {
             "attributes": {
               "constant": false,
               "name": "tokenAddress",
-              "scope": 306,
+              "scope": 156,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "address",
@@ -77,14 +77,14 @@
                   "name": "address",
                   "type": "address"
                 },
-                "id": 286,
+                "id": 136,
                 "name": "ElementaryTypeName",
-                "src": "52:7:3"
+                "src": "52:7:2"
               }
             ],
-            "id": 287,
+            "id": 137,
             "name": "VariableDeclaration",
-            "src": "52:29:3"
+            "src": "52:29:2"
           },
           {
             "attributes": {
@@ -96,7 +96,7 @@
               ],
               "name": "TokenAddr",
               "payable": false,
-              "scope": 306,
+              "scope": 156,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "public"
@@ -108,7 +108,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "_tokenAddress",
-                      "scope": 305,
+                      "scope": 155,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -121,19 +121,19 @@
                           "name": "address",
                           "type": "address"
                         },
-                        "id": 288,
+                        "id": 138,
                         "name": "ElementaryTypeName",
-                        "src": "107:7:3"
+                        "src": "107:7:2"
                       }
                     ],
-                    "id": 289,
+                    "id": 139,
                     "name": "VariableDeclaration",
-                    "src": "107:21:3"
+                    "src": "107:21:2"
                   }
                 ],
-                "id": 290,
+                "id": 140,
                 "name": "ParameterList",
-                "src": "106:23:3"
+                "src": "106:23:2"
               },
               {
                 "attributes": {
@@ -142,9 +142,9 @@
                   ]
                 },
                 "children": [],
-                "id": 291,
+                "id": 141,
                 "name": "ParameterList",
-                "src": "140:0:3"
+                "src": "140:0:2"
               },
               {
                 "children": [
@@ -176,13 +176,13 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1631,
+                              "referencedDeclaration": 1157,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
-                            "id": 292,
+                            "id": 142,
                             "name": "Identifier",
-                            "src": "147:7:3"
+                            "src": "147:7:2"
                           },
                           {
                             "attributes": {
@@ -205,13 +205,13 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 289,
+                                  "referencedDeclaration": 139,
                                   "type": "address",
                                   "value": "_tokenAddress"
                                 },
-                                "id": 293,
+                                "id": 143,
                                 "name": "Identifier",
-                                "src": "155:13:3"
+                                "src": "155:13:2"
                               },
                               {
                                 "attributes": {
@@ -243,9 +243,9 @@
                                       "type": "type(address)",
                                       "value": "address"
                                     },
-                                    "id": 294,
+                                    "id": 144,
                                     "name": "ElementaryTypeNameExpression",
-                                    "src": "172:7:3"
+                                    "src": "172:7:2"
                                   },
                                   {
                                     "attributes": {
@@ -260,29 +260,29 @@
                                       "type": "int_const 0",
                                       "value": "0"
                                     },
-                                    "id": 295,
+                                    "id": 145,
                                     "name": "Literal",
-                                    "src": "180:1:3"
+                                    "src": "180:1:2"
                                   }
                                 ],
-                                "id": 296,
+                                "id": 146,
                                 "name": "FunctionCall",
-                                "src": "172:10:3"
+                                "src": "172:10:2"
                               }
                             ],
-                            "id": 297,
+                            "id": 147,
                             "name": "BinaryOperation",
-                            "src": "155:27:3"
+                            "src": "155:27:2"
                           }
                         ],
-                        "id": 298,
+                        "id": 148,
                         "name": "FunctionCall",
-                        "src": "147:36:3"
+                        "src": "147:36:2"
                       }
                     ],
-                    "id": 299,
+                    "id": 149,
                     "name": "ExpressionStatement",
-                    "src": "147:36:3"
+                    "src": "147:36:2"
                   },
                   {
                     "children": [
@@ -303,13 +303,13 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 287,
+                              "referencedDeclaration": 137,
                               "type": "address",
                               "value": "tokenAddress"
                             },
-                            "id": 300,
+                            "id": 150,
                             "name": "Identifier",
-                            "src": "190:12:3"
+                            "src": "190:12:2"
                           },
                           {
                             "attributes": {
@@ -317,43 +317,43 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 289,
+                              "referencedDeclaration": 139,
                               "type": "address",
                               "value": "_tokenAddress"
                             },
-                            "id": 301,
+                            "id": 151,
                             "name": "Identifier",
-                            "src": "205:13:3"
+                            "src": "205:13:2"
                           }
                         ],
-                        "id": 302,
+                        "id": 152,
                         "name": "Assignment",
-                        "src": "190:28:3"
+                        "src": "190:28:2"
                       }
                     ],
-                    "id": 303,
+                    "id": 153,
                     "name": "ExpressionStatement",
-                    "src": "190:28:3"
+                    "src": "190:28:2"
                   }
                 ],
-                "id": 304,
+                "id": 154,
                 "name": "Block",
-                "src": "140:84:3"
+                "src": "140:84:2"
               }
             ],
-            "id": 305,
+            "id": 155,
             "name": "FunctionDefinition",
-            "src": "88:136:3"
+            "src": "88:136:2"
           }
         ],
-        "id": 306,
+        "id": 156,
         "name": "ContractDefinition",
-        "src": "28:199:3"
+        "src": "28:199:2"
       }
     ],
-    "id": 307,
+    "id": 157,
     "name": "SourceUnit",
-    "src": "0:229:3"
+    "src": "0:229:2"
   },
   "compiler": {
     "name": "solc",
@@ -361,5 +361,5 @@
   },
   "networks": {},
   "schemaVersion": "1.0.1",
-  "updatedAt": "2018-02-22T13:19:05.707Z"
+  "updatedAt": "2018-02-23T20:13:37.036Z"
 }

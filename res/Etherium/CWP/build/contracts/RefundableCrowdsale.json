@@ -293,7 +293,7 @@
       "absolutePath": "zeppelin-solidity/contracts/crowdsale/RefundableCrowdsale.sol",
       "exportedSymbols": {
         "RefundableCrowdsale": [
-          910
+          1073
         ]
       }
     },
@@ -307,74 +307,74 @@
             ".18"
           ]
         },
-        "id": 803,
+        "id": 966,
         "name": "PragmaDirective",
-        "src": "0:24:8"
+        "src": "0:24:10"
       },
       {
         "attributes": {
-          "SourceUnit": 1009,
+          "SourceUnit": 1172,
           "absolutePath": "zeppelin-solidity/contracts/math/SafeMath.sol",
           "file": "../math/SafeMath.sol",
-          "scope": 911,
+          "scope": 1074,
           "symbolAliases": [
             null
           ],
           "unitAlias": ""
         },
-        "id": 804,
+        "id": 967,
         "name": "ImportDirective",
-        "src": "27:30:8"
+        "src": "27:30:10"
       },
       {
         "attributes": {
-          "SourceUnit": 635,
+          "SourceUnit": 798,
           "absolutePath": "zeppelin-solidity/contracts/crowdsale/FinalizableCrowdsale.sol",
           "file": "./FinalizableCrowdsale.sol",
-          "scope": 911,
+          "scope": 1074,
           "symbolAliases": [
             null
           ],
           "unitAlias": ""
         },
-        "id": 805,
+        "id": 968,
         "name": "ImportDirective",
-        "src": "58:36:8"
+        "src": "58:36:10"
       },
       {
         "attributes": {
-          "SourceUnit": 802,
+          "SourceUnit": 965,
           "absolutePath": "zeppelin-solidity/contracts/crowdsale/RefundVault.sol",
           "file": "./RefundVault.sol",
-          "scope": 911,
+          "scope": 1074,
           "symbolAliases": [
             null
           ],
           "unitAlias": ""
         },
-        "id": 806,
+        "id": 969,
         "name": "ImportDirective",
-        "src": "95:27:8"
+        "src": "95:27:10"
       },
       {
         "attributes": {
           "contractDependencies": [
-            586,
-            634,
-            801,
-            1064
+            749,
+            797,
+            964,
+            1227
           ],
           "contractKind": "contract",
           "documentation": "@title RefundableCrowdsale\n@dev Extension of Crowdsale contract that adds a funding goal, and\nthe possibility of users getting a refund if goal is not met.\nUses a RefundVault as the crowdsale's vault.",
           "fullyImplemented": false,
           "linearizedBaseContracts": [
-            910,
-            634,
-            1064,
-            586
+            1073,
+            797,
+            1227,
+            749
           ],
           "name": "RefundableCrowdsale",
-          "scope": 911
+          "scope": 1074
         },
         "children": [
           {
@@ -388,17 +388,17 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "FinalizableCrowdsale",
-                  "referencedDeclaration": 634,
+                  "referencedDeclaration": 797,
                   "type": "contract FinalizableCrowdsale"
                 },
-                "id": 807,
+                "id": 970,
                 "name": "UserDefinedTypeName",
-                "src": "378:20:8"
+                "src": "378:20:10"
               }
             ],
-            "id": 808,
+            "id": 971,
             "name": "InheritanceSpecifier",
-            "src": "378:20:8"
+            "src": "378:20:10"
           },
           {
             "children": [
@@ -406,32 +406,32 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "SafeMath",
-                  "referencedDeclaration": 1008,
+                  "referencedDeclaration": 1171,
                   "type": "library SafeMath"
                 },
-                "id": 809,
+                "id": 972,
                 "name": "UserDefinedTypeName",
-                "src": "409:8:8"
+                "src": "409:8:10"
               },
               {
                 "attributes": {
                   "name": "uint256",
                   "type": "uint256"
                 },
-                "id": 810,
+                "id": 973,
                 "name": "ElementaryTypeName",
-                "src": "422:7:8"
+                "src": "422:7:10"
               }
             ],
-            "id": 811,
+            "id": 974,
             "name": "UsingForDirective",
-            "src": "403:27:8"
+            "src": "403:27:10"
           },
           {
             "attributes": {
               "constant": false,
               "name": "goal",
-              "scope": 910,
+              "scope": 1073,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "uint256",
@@ -444,20 +444,20 @@
                   "name": "uint256",
                   "type": "uint256"
                 },
-                "id": 812,
+                "id": 975,
                 "name": "ElementaryTypeName",
-                "src": "484:7:8"
+                "src": "484:7:10"
               }
             ],
-            "id": 813,
+            "id": 976,
             "name": "VariableDeclaration",
-            "src": "484:19:8"
+            "src": "484:19:10"
           },
           {
             "attributes": {
               "constant": false,
               "name": "vault",
-              "scope": 910,
+              "scope": 1073,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "contract RefundVault",
@@ -469,17 +469,17 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "RefundVault",
-                  "referencedDeclaration": 801,
+                  "referencedDeclaration": 964,
                   "type": "contract RefundVault"
                 },
-                "id": 814,
+                "id": 977,
                 "name": "UserDefinedTypeName",
-                "src": "572:11:8"
+                "src": "572:11:10"
               }
             ],
-            "id": 815,
+            "id": 978,
             "name": "VariableDeclaration",
-            "src": "572:24:8"
+            "src": "572:24:10"
           },
           {
             "attributes": {
@@ -491,7 +491,7 @@
               ],
               "name": "RefundableCrowdsale",
               "payable": false,
-              "scope": 910,
+              "scope": 1073,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "public"
@@ -503,7 +503,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "_goal",
-                      "scope": 838,
+                      "scope": 1001,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "uint256",
@@ -516,19 +516,19 @@
                           "name": "uint256",
                           "type": "uint256"
                         },
-                        "id": 816,
+                        "id": 979,
                         "name": "ElementaryTypeName",
-                        "src": "630:7:8"
+                        "src": "630:7:10"
                       }
                     ],
-                    "id": 817,
+                    "id": 980,
                     "name": "VariableDeclaration",
-                    "src": "630:13:8"
+                    "src": "630:13:10"
                   }
                 ],
-                "id": 818,
+                "id": 981,
                 "name": "ParameterList",
-                "src": "629:15:8"
+                "src": "629:15:10"
               },
               {
                 "attributes": {
@@ -537,9 +537,9 @@
                   ]
                 },
                 "children": [],
-                "id": 819,
+                "id": 982,
                 "name": "ParameterList",
-                "src": "652:0:8"
+                "src": "652:0:10"
               },
               {
                 "children": [
@@ -571,13 +571,13 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1631,
+                              "referencedDeclaration": 1794,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
-                            "id": 820,
+                            "id": 983,
                             "name": "Identifier",
-                            "src": "658:7:8"
+                            "src": "658:7:10"
                           },
                           {
                             "attributes": {
@@ -600,13 +600,13 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 817,
+                                  "referencedDeclaration": 980,
                                   "type": "uint256",
                                   "value": "_goal"
                                 },
-                                "id": 821,
+                                "id": 984,
                                 "name": "Identifier",
-                                "src": "666:5:8"
+                                "src": "666:5:10"
                               },
                               {
                                 "attributes": {
@@ -621,24 +621,24 @@
                                   "type": "int_const 0",
                                   "value": "0"
                                 },
-                                "id": 822,
+                                "id": 985,
                                 "name": "Literal",
-                                "src": "674:1:8"
+                                "src": "674:1:10"
                               }
                             ],
-                            "id": 823,
+                            "id": 986,
                             "name": "BinaryOperation",
-                            "src": "666:9:8"
+                            "src": "666:9:10"
                           }
                         ],
-                        "id": 824,
+                        "id": 987,
                         "name": "FunctionCall",
-                        "src": "658:18:8"
+                        "src": "658:18:10"
                       }
                     ],
-                    "id": 825,
+                    "id": 988,
                     "name": "ExpressionStatement",
-                    "src": "658:18:8"
+                    "src": "658:18:10"
                   },
                   {
                     "children": [
@@ -659,13 +659,13 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 815,
+                              "referencedDeclaration": 978,
                               "type": "contract RefundVault",
                               "value": "vault"
                             },
-                            "id": 826,
+                            "id": 989,
                             "name": "Identifier",
-                            "src": "682:5:8"
+                            "src": "682:5:10"
                           },
                           {
                             "attributes": {
@@ -701,17 +701,17 @@
                                     "attributes": {
                                       "contractScope": null,
                                       "name": "RefundVault",
-                                      "referencedDeclaration": 801,
+                                      "referencedDeclaration": 964,
                                       "type": "contract RefundVault"
                                     },
-                                    "id": 827,
+                                    "id": 990,
                                     "name": "UserDefinedTypeName",
-                                    "src": "694:11:8"
+                                    "src": "694:11:10"
                                   }
                                 ],
-                                "id": 828,
+                                "id": 991,
                                 "name": "NewExpression",
-                                "src": "690:15:8"
+                                "src": "690:15:10"
                               },
                               {
                                 "attributes": {
@@ -719,28 +719,28 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 389,
+                                  "referencedDeclaration": 552,
                                   "type": "address",
                                   "value": "wallet"
                                 },
-                                "id": 829,
+                                "id": 992,
                                 "name": "Identifier",
-                                "src": "706:6:8"
+                                "src": "706:6:10"
                               }
                             ],
-                            "id": 830,
+                            "id": 993,
                             "name": "FunctionCall",
-                            "src": "690:23:8"
+                            "src": "690:23:10"
                           }
                         ],
-                        "id": 831,
+                        "id": 994,
                         "name": "Assignment",
-                        "src": "682:31:8"
+                        "src": "682:31:10"
                       }
                     ],
-                    "id": 832,
+                    "id": 995,
                     "name": "ExpressionStatement",
-                    "src": "682:31:8"
+                    "src": "682:31:10"
                   },
                   {
                     "children": [
@@ -761,13 +761,13 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 813,
+                              "referencedDeclaration": 976,
                               "type": "uint256",
                               "value": "goal"
                             },
-                            "id": 833,
+                            "id": 996,
                             "name": "Identifier",
-                            "src": "719:4:8"
+                            "src": "719:4:10"
                           },
                           {
                             "attributes": {
@@ -775,33 +775,33 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 817,
+                              "referencedDeclaration": 980,
                               "type": "uint256",
                               "value": "_goal"
                             },
-                            "id": 834,
+                            "id": 997,
                             "name": "Identifier",
-                            "src": "726:5:8"
+                            "src": "726:5:10"
                           }
                         ],
-                        "id": 835,
+                        "id": 998,
                         "name": "Assignment",
-                        "src": "719:12:8"
+                        "src": "719:12:10"
                       }
                     ],
-                    "id": 836,
+                    "id": 999,
                     "name": "ExpressionStatement",
-                    "src": "719:12:8"
+                    "src": "719:12:10"
                   }
                 ],
-                "id": 837,
+                "id": 1000,
                 "name": "Block",
-                "src": "652:84:8"
+                "src": "652:84:10"
               }
             ],
-            "id": 838,
+            "id": 1001,
             "name": "FunctionDefinition",
-            "src": "601:135:8"
+            "src": "601:135:10"
           },
           {
             "attributes": {
@@ -813,9 +813,9 @@
               ],
               "name": "forwardFunds",
               "payable": false,
-              "scope": 910,
+              "scope": 1073,
               "stateMutability": "nonpayable",
-              "superFunction": 548,
+              "superFunction": 711,
               "visibility": "internal"
             },
             "children": [
@@ -826,9 +826,9 @@
                   ]
                 },
                 "children": [],
-                "id": 839,
+                "id": 1002,
                 "name": "ParameterList",
-                "src": "912:2:8"
+                "src": "912:2:10"
               },
               {
                 "attributes": {
@@ -837,9 +837,9 @@
                   ]
                 },
                 "children": [],
-                "id": 840,
+                "id": 1003,
                 "name": "ParameterList",
-                "src": "924:0:8"
+                "src": "924:0:10"
               },
               {
                 "children": [
@@ -905,7 +905,7 @@
                                       "isPure": false,
                                       "lValueRequested": false,
                                       "member_name": "deposit",
-                                      "referencedDeclaration": 715,
+                                      "referencedDeclaration": 878,
                                       "type": "function (address) payable external"
                                     },
                                     "children": [
@@ -915,23 +915,23 @@
                                           "overloadedDeclarations": [
                                             null
                                           ],
-                                          "referencedDeclaration": 815,
+                                          "referencedDeclaration": 978,
                                           "type": "contract RefundVault",
                                           "value": "vault"
                                         },
-                                        "id": 841,
+                                        "id": 1004,
                                         "name": "Identifier",
-                                        "src": "930:5:8"
+                                        "src": "930:5:10"
                                       }
                                     ],
-                                    "id": 844,
+                                    "id": 1007,
                                     "name": "MemberAccess",
-                                    "src": "930:13:8"
+                                    "src": "930:13:10"
                                   }
                                 ],
-                                "id": 845,
+                                "id": 1008,
                                 "name": "MemberAccess",
-                                "src": "930:19:8"
+                                "src": "930:19:10"
                               },
                               {
                                 "attributes": {
@@ -951,23 +951,23 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 1628,
+                                      "referencedDeclaration": 1791,
                                       "type": "msg",
                                       "value": "msg"
                                     },
-                                    "id": 846,
+                                    "id": 1009,
                                     "name": "Identifier",
-                                    "src": "950:3:8"
+                                    "src": "950:3:10"
                                   }
                                 ],
-                                "id": 847,
+                                "id": 1010,
                                 "name": "MemberAccess",
-                                "src": "950:9:8"
+                                "src": "950:9:10"
                               }
                             ],
-                            "id": 848,
+                            "id": 1011,
                             "name": "FunctionCall",
-                            "src": "930:30:8"
+                            "src": "930:30:10"
                           },
                           {
                             "attributes": {
@@ -987,38 +987,38 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1628,
+                                  "referencedDeclaration": 1791,
                                   "type": "msg",
                                   "value": "msg"
                                 },
-                                "id": 849,
+                                "id": 1012,
                                 "name": "Identifier",
-                                "src": "961:3:8"
+                                "src": "961:3:10"
                               }
                             ],
-                            "id": 850,
+                            "id": 1013,
                             "name": "MemberAccess",
-                            "src": "961:10:8"
+                            "src": "961:10:10"
                           }
                         ],
-                        "id": 851,
+                        "id": 1014,
                         "name": "FunctionCall",
-                        "src": "930:42:8"
+                        "src": "930:42:10"
                       }
                     ],
-                    "id": 852,
+                    "id": 1015,
                     "name": "ExpressionStatement",
-                    "src": "930:42:8"
+                    "src": "930:42:10"
                   }
                 ],
-                "id": 853,
+                "id": 1016,
                 "name": "Block",
-                "src": "924:53:8"
+                "src": "924:53:10"
               }
             ],
-            "id": 854,
+            "id": 1017,
             "name": "FunctionDefinition",
-            "src": "891:86:8"
+            "src": "891:86:10"
           },
           {
             "attributes": {
@@ -1030,7 +1030,7 @@
               ],
               "name": "claimRefund",
               "payable": false,
-              "scope": 910,
+              "scope": 1073,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "public"
@@ -1043,9 +1043,9 @@
                   ]
                 },
                 "children": [],
-                "id": 855,
+                "id": 1018,
                 "name": "ParameterList",
-                "src": "1069:2:8"
+                "src": "1069:2:10"
               },
               {
                 "attributes": {
@@ -1054,9 +1054,9 @@
                   ]
                 },
                 "children": [],
-                "id": 856,
+                "id": 1019,
                 "name": "ParameterList",
-                "src": "1079:0:8"
+                "src": "1079:0:10"
               },
               {
                 "children": [
@@ -1088,13 +1088,13 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1631,
+                              "referencedDeclaration": 1794,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
-                            "id": 857,
+                            "id": 1020,
                             "name": "Identifier",
-                            "src": "1085:7:8"
+                            "src": "1085:7:10"
                           },
                           {
                             "attributes": {
@@ -1102,23 +1102,23 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 601,
+                              "referencedDeclaration": 764,
                               "type": "bool",
                               "value": "isFinalized"
                             },
-                            "id": 858,
+                            "id": 1021,
                             "name": "Identifier",
-                            "src": "1093:11:8"
+                            "src": "1093:11:10"
                           }
                         ],
-                        "id": 859,
+                        "id": 1022,
                         "name": "FunctionCall",
-                        "src": "1085:20:8"
+                        "src": "1085:20:10"
                       }
                     ],
-                    "id": 860,
+                    "id": 1023,
                     "name": "ExpressionStatement",
-                    "src": "1085:20:8"
+                    "src": "1085:20:10"
                   },
                   {
                     "children": [
@@ -1148,13 +1148,13 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 1631,
+                              "referencedDeclaration": 1794,
                               "type": "function (bool) pure",
                               "value": "require"
                             },
-                            "id": 861,
+                            "id": 1024,
                             "name": "Identifier",
-                            "src": "1111:7:8"
+                            "src": "1111:7:10"
                           },
                           {
                             "attributes": {
@@ -1194,33 +1194,33 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 909,
+                                      "referencedDeclaration": 1072,
                                       "type": "function () view returns (bool)",
                                       "value": "goalReached"
                                     },
-                                    "id": 862,
+                                    "id": 1025,
                                     "name": "Identifier",
-                                    "src": "1120:11:8"
+                                    "src": "1120:11:10"
                                   }
                                 ],
-                                "id": 863,
+                                "id": 1026,
                                 "name": "FunctionCall",
-                                "src": "1120:13:8"
+                                "src": "1120:13:10"
                               }
                             ],
-                            "id": 864,
+                            "id": 1027,
                             "name": "UnaryOperation",
-                            "src": "1119:14:8"
+                            "src": "1119:14:10"
                           }
                         ],
-                        "id": 865,
+                        "id": 1028,
                         "name": "FunctionCall",
-                        "src": "1111:23:8"
+                        "src": "1111:23:10"
                       }
                     ],
-                    "id": 866,
+                    "id": 1029,
                     "name": "ExpressionStatement",
-                    "src": "1111:23:8"
+                    "src": "1111:23:10"
                   },
                   {
                     "children": [
@@ -1252,7 +1252,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "refund",
-                              "referencedDeclaration": 800,
+                              "referencedDeclaration": 963,
                               "type": "function (address) external"
                             },
                             "children": [
@@ -1262,18 +1262,18 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 815,
+                                  "referencedDeclaration": 978,
                                   "type": "contract RefundVault",
                                   "value": "vault"
                                 },
-                                "id": 867,
+                                "id": 1030,
                                 "name": "Identifier",
-                                "src": "1141:5:8"
+                                "src": "1141:5:10"
                               }
                             ],
-                            "id": 869,
+                            "id": 1032,
                             "name": "MemberAccess",
-                            "src": "1141:12:8"
+                            "src": "1141:12:10"
                           },
                           {
                             "attributes": {
@@ -1293,38 +1293,38 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1628,
+                                  "referencedDeclaration": 1791,
                                   "type": "msg",
                                   "value": "msg"
                                 },
-                                "id": 870,
+                                "id": 1033,
                                 "name": "Identifier",
-                                "src": "1154:3:8"
+                                "src": "1154:3:10"
                               }
                             ],
-                            "id": 871,
+                            "id": 1034,
                             "name": "MemberAccess",
-                            "src": "1154:10:8"
+                            "src": "1154:10:10"
                           }
                         ],
-                        "id": 872,
+                        "id": 1035,
                         "name": "FunctionCall",
-                        "src": "1141:24:8"
+                        "src": "1141:24:10"
                       }
                     ],
-                    "id": 873,
+                    "id": 1036,
                     "name": "ExpressionStatement",
-                    "src": "1141:24:8"
+                    "src": "1141:24:10"
                   }
                 ],
-                "id": 874,
+                "id": 1037,
                 "name": "Block",
-                "src": "1079:91:8"
+                "src": "1079:91:10"
               }
             ],
-            "id": 875,
+            "id": 1038,
             "name": "FunctionDefinition",
-            "src": "1049:121:8"
+            "src": "1049:121:10"
           },
           {
             "attributes": {
@@ -1336,9 +1336,9 @@
               ],
               "name": "finalization",
               "payable": false,
-              "scope": 910,
+              "scope": 1073,
               "stateMutability": "nonpayable",
-              "superFunction": 633,
+              "superFunction": 796,
               "visibility": "internal"
             },
             "children": [
@@ -1349,9 +1349,9 @@
                   ]
                 },
                 "children": [],
-                "id": 876,
+                "id": 1039,
                 "name": "ParameterList",
-                "src": "1260:2:8"
+                "src": "1260:2:10"
               },
               {
                 "attributes": {
@@ -1360,9 +1360,9 @@
                   ]
                 },
                 "children": [],
-                "id": 877,
+                "id": 1040,
                 "name": "ParameterList",
-                "src": "1272:0:8"
+                "src": "1272:0:10"
               },
               {
                 "children": [
@@ -1394,18 +1394,18 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 909,
+                              "referencedDeclaration": 1072,
                               "type": "function () view returns (bool)",
                               "value": "goalReached"
                             },
-                            "id": 878,
+                            "id": 1041,
                             "name": "Identifier",
-                            "src": "1282:11:8"
+                            "src": "1282:11:10"
                           }
                         ],
-                        "id": 879,
+                        "id": 1042,
                         "name": "FunctionCall",
-                        "src": "1282:13:8"
+                        "src": "1282:13:10"
                       },
                       {
                         "children": [
@@ -1439,7 +1439,7 @@
                                       "isPure": false,
                                       "lValueRequested": false,
                                       "member_name": "close",
-                                      "referencedDeclaration": 743,
+                                      "referencedDeclaration": 906,
                                       "type": "function () external"
                                     },
                                     "children": [
@@ -1449,33 +1449,33 @@
                                           "overloadedDeclarations": [
                                             null
                                           ],
-                                          "referencedDeclaration": 815,
+                                          "referencedDeclaration": 978,
                                           "type": "contract RefundVault",
                                           "value": "vault"
                                         },
-                                        "id": 880,
+                                        "id": 1043,
                                         "name": "Identifier",
-                                        "src": "1305:5:8"
+                                        "src": "1305:5:10"
                                       }
                                     ],
-                                    "id": 882,
+                                    "id": 1045,
                                     "name": "MemberAccess",
-                                    "src": "1305:11:8"
+                                    "src": "1305:11:10"
                                   }
                                 ],
-                                "id": 883,
+                                "id": 1046,
                                 "name": "FunctionCall",
-                                "src": "1305:13:8"
+                                "src": "1305:13:10"
                               }
                             ],
-                            "id": 884,
+                            "id": 1047,
                             "name": "ExpressionStatement",
-                            "src": "1305:13:8"
+                            "src": "1305:13:10"
                           }
                         ],
-                        "id": 885,
+                        "id": 1048,
                         "name": "Block",
-                        "src": "1297:28:8"
+                        "src": "1297:28:10"
                       },
                       {
                         "children": [
@@ -1509,7 +1509,7 @@
                                       "isPure": false,
                                       "lValueRequested": false,
                                       "member_name": "enableRefunds",
-                                      "referencedDeclaration": 764,
+                                      "referencedDeclaration": 927,
                                       "type": "function () external"
                                     },
                                     "children": [
@@ -1519,38 +1519,38 @@
                                           "overloadedDeclarations": [
                                             null
                                           ],
-                                          "referencedDeclaration": 815,
+                                          "referencedDeclaration": 978,
                                           "type": "contract RefundVault",
                                           "value": "vault"
                                         },
-                                        "id": 886,
+                                        "id": 1049,
                                         "name": "Identifier",
-                                        "src": "1339:5:8"
+                                        "src": "1339:5:10"
                                       }
                                     ],
-                                    "id": 888,
+                                    "id": 1051,
                                     "name": "MemberAccess",
-                                    "src": "1339:19:8"
+                                    "src": "1339:19:10"
                                   }
                                 ],
-                                "id": 889,
+                                "id": 1052,
                                 "name": "FunctionCall",
-                                "src": "1339:21:8"
+                                "src": "1339:21:10"
                               }
                             ],
-                            "id": 890,
+                            "id": 1053,
                             "name": "ExpressionStatement",
-                            "src": "1339:21:8"
+                            "src": "1339:21:10"
                           }
                         ],
-                        "id": 891,
+                        "id": 1054,
                         "name": "Block",
-                        "src": "1331:36:8"
+                        "src": "1331:36:10"
                       }
                     ],
-                    "id": 892,
+                    "id": 1055,
                     "name": "IfStatement",
-                    "src": "1278:89:8"
+                    "src": "1278:89:10"
                   },
                   {
                     "children": [
@@ -1582,7 +1582,7 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "finalization",
-                              "referencedDeclaration": 633,
+                              "referencedDeclaration": 796,
                               "type": "function ()"
                             },
                             "children": [
@@ -1592,38 +1592,38 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 1670,
+                                  "referencedDeclaration": 1835,
                                   "type": "contract super RefundableCrowdsale",
                                   "value": "super"
                                 },
-                                "id": 893,
+                                "id": 1056,
                                 "name": "Identifier",
-                                "src": "1373:5:8"
+                                "src": "1373:5:10"
                               }
                             ],
-                            "id": 895,
+                            "id": 1058,
                             "name": "MemberAccess",
-                            "src": "1373:18:8"
+                            "src": "1373:18:10"
                           }
                         ],
-                        "id": 896,
+                        "id": 1059,
                         "name": "FunctionCall",
-                        "src": "1373:20:8"
+                        "src": "1373:20:10"
                       }
                     ],
-                    "id": 897,
+                    "id": 1060,
                     "name": "ExpressionStatement",
-                    "src": "1373:20:8"
+                    "src": "1373:20:10"
                   }
                 ],
-                "id": 898,
+                "id": 1061,
                 "name": "Block",
-                "src": "1272:126:8"
+                "src": "1272:126:10"
               }
             ],
-            "id": 899,
+            "id": 1062,
             "name": "FunctionDefinition",
-            "src": "1239:159:8"
+            "src": "1239:159:10"
           },
           {
             "attributes": {
@@ -1635,7 +1635,7 @@
               ],
               "name": "goalReached",
               "payable": false,
-              "scope": 910,
+              "scope": 1073,
               "stateMutability": "view",
               "superFunction": null,
               "visibility": "public"
@@ -1648,9 +1648,9 @@
                   ]
                 },
                 "children": [],
-                "id": 900,
+                "id": 1063,
                 "name": "ParameterList",
-                "src": "1422:2:8"
+                "src": "1422:2:10"
               },
               {
                 "children": [
@@ -1658,7 +1658,7 @@
                     "attributes": {
                       "constant": false,
                       "name": "",
-                      "scope": 909,
+                      "scope": 1072,
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "bool",
@@ -1671,25 +1671,25 @@
                           "name": "bool",
                           "type": "bool"
                         },
-                        "id": 901,
+                        "id": 1064,
                         "name": "ElementaryTypeName",
-                        "src": "1446:4:8"
+                        "src": "1446:4:10"
                       }
                     ],
-                    "id": 902,
+                    "id": 1065,
                     "name": "VariableDeclaration",
-                    "src": "1446:4:8"
+                    "src": "1446:4:10"
                   }
                 ],
-                "id": 903,
+                "id": 1066,
                 "name": "ParameterList",
-                "src": "1445:6:8"
+                "src": "1445:6:10"
               },
               {
                 "children": [
                   {
                     "attributes": {
-                      "functionReturnParameters": 903
+                      "functionReturnParameters": 1066
                     },
                     "children": [
                       {
@@ -1713,13 +1713,13 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 393,
+                              "referencedDeclaration": 556,
                               "type": "uint256",
                               "value": "weiRaised"
                             },
-                            "id": 904,
+                            "id": 1067,
                             "name": "Identifier",
-                            "src": "1465:9:8"
+                            "src": "1465:9:10"
                           },
                           {
                             "attributes": {
@@ -1727,43 +1727,43 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 813,
+                              "referencedDeclaration": 976,
                               "type": "uint256",
                               "value": "goal"
                             },
-                            "id": 905,
+                            "id": 1068,
                             "name": "Identifier",
-                            "src": "1478:4:8"
+                            "src": "1478:4:10"
                           }
                         ],
-                        "id": 906,
+                        "id": 1069,
                         "name": "BinaryOperation",
-                        "src": "1465:17:8"
+                        "src": "1465:17:10"
                       }
                     ],
-                    "id": 907,
+                    "id": 1070,
                     "name": "Return",
-                    "src": "1458:24:8"
+                    "src": "1458:24:10"
                   }
                 ],
-                "id": 908,
+                "id": 1071,
                 "name": "Block",
-                "src": "1452:35:8"
+                "src": "1452:35:10"
               }
             ],
-            "id": 909,
+            "id": 1072,
             "name": "FunctionDefinition",
-            "src": "1402:85:8"
+            "src": "1402:85:10"
           }
         ],
-        "id": 910,
+        "id": 1073,
         "name": "ContractDefinition",
-        "src": "346:1144:8"
+        "src": "346:1144:10"
       }
     ],
-    "id": 911,
+    "id": 1074,
     "name": "SourceUnit",
-    "src": "0:1491:8"
+    "src": "0:1491:10"
   },
   "compiler": {
     "name": "solc",
@@ -1771,5 +1771,5 @@
   },
   "networks": {},
   "schemaVersion": "1.0.1",
-  "updatedAt": "2018-02-22T13:19:05.713Z"
+  "updatedAt": "2018-02-23T17:45:57.796Z"
 }
