@@ -24,6 +24,9 @@ namespace CWPIO
                 .UseApplicationInsights()
                 .ConfigureLogging((context, logging) =>
                 {
+                    logging.AddConfiguration(context.Configuration.GetSection("Logging"));
+                    logging.AddConsole();
+                    logging.AddDebug();
                     logging.Services.Configure<SlackConfiguration>(context.Configuration.GetSection("Logging:Slack"));
                     logging.AddSlack(context.HostingEnvironment);
                 })

@@ -2,6 +2,6 @@
     <div class="avatar"><img src="~/android-icon-48x48.png" alt="..." class="img-fluid rounded-circle"></div>
     <div class="title">
         <h1 class="h5">@User.Identity.Name</h1>
-        <p>@string.Join(",",User.Claims.Select(c => c.Value))</p>
+        <p>@(User.Claims.Where(c => c.Type == "UserTitle").FirstOrDefault()?.Value ?? "User")</p>
     </div>
 </div>

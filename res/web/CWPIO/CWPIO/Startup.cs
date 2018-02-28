@@ -65,15 +65,59 @@ namespace CWPIO
                 //}));
             });
 
-            services.AddLocalization(options => options.ResourcesPath = "Resources");
+            services
+                .AddLocalization(options => options.ResourcesPath = "Resources")
+                .AddEntityFrameworkNpgsql()
+                .AddDbContext<ApplicationDbContext>(options =>
+                    options.UseNpgsql(Configuration.GetConnectionString("CWPConnection")), ServiceLifetime.Singleton, ServiceLifetime.Singleton)
+                .AddAuthorization(options =>
+                    {
+                        options.AddPolicy(
+                            "CanAccessUsers",
+                            policyBuilder => policyBuilder.RequireAuthenticatedUser().RequireClaim("IsAdmin", "True"));
+
+                        options.AddPolicy(
+                            "CanEditUsers",
+                            policyBuilder => policyBuilder.RequireAuthenticatedUser().RequireClaim("IsAdmin", "True"));
+
+                        options.AddPolicy(
+                            "CanAccessBounty",
+                            policyBuilder => policyBuilder.RequireAuthenticatedUser().RequireClaim("IsEmailConfirmed", "True").RequireClaim("IsExtendedProfileFilled", "True"));
+                    })
+                .AddTransient<IEmailSender, EmailSender>()
+                .AddSingleton<ISlackClient, SlackClient>(config =>
+                    {
+                        var conf = config.GetService<IOptions<SlackSettings>>();
+                        return new SlackClient(conf.Value.SubscribeChannelUrl);
+                    })
+                .Configure<MailSettings>(Configuration.GetSection("MailSettings"))
+                .Configure<SlackSettings>(Configuration.GetSection("SlackWebHooks"))
+                .Configure<IdentityOptions>(options =>
+                    {
+                        // Password settings
+                        options.Password.RequireDigit = true;
+                        options.Password.RequiredLength = 8;
+                        options.Password.RequireNonAlphanumeric = false;
+                        options.Password.RequireUppercase = true;
+                        options.Password.RequireLowercase = true;
+                        options.Password.RequiredUniqueChars = 6;
+
+                        // Lockout settings
+                        options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+                        options.Lockout.MaxFailedAccessAttempts = 5;
+                        options.Lockout.AllowedForNewUsers = true;
+
+                        // User settings
+                        options.User.RequireUniqueEmail = true;
+
+                        // Confirmations
+                        options.SignIn.RequireConfirmedEmail = false;
+                        options.SignIn.RequireConfirmedPhoneNumber = false;
+                    });
 
             services.AddMvc()
                 .AddViewLocalization(); //IViewLocalizer
 
-            services
-                .AddEntityFrameworkNpgsql()
-                .AddDbContext<ApplicationDbContext>(options =>
-                    options.UseNpgsql(Configuration.GetConnectionString("CWPConnection")), ServiceLifetime.Singleton, ServiceLifetime.Singleton);
 
             services.AddDataProtection()
                 .PersistKeysToSql()
@@ -83,7 +127,7 @@ namespace CWPIO
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
-            
+
             services.AddAuthentication()
                 .AddFacebook(options =>
                 {
@@ -100,53 +144,7 @@ namespace CWPIO
                     options.ConsumerKey = Configuration["Authentication:Twitter:ConsumerKey"];
                     options.ConsumerSecret = Configuration["Authentication:Twitter:ConsumerSecret"];
                 });
-
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy(
-                    "CanAccessUsers",
-                    policyBuilder => policyBuilder.RequireClaim("IsAdmin", "True"));
-
-                options.AddPolicy(
-                    "CanAccessBounty",
-                    policyBuilder => policyBuilder.RequireClaim("IsEmailConfirmed", "True").RequireClaim("IsExtendedProfileFilled", "True"));
-            });
-
-            // Add application services.
-            services.AddTransient<IEmailSender, EmailSender>();
-
-            services.Configure<IdentityOptions>(options =>
-             {
-                 // Password settings
-                 options.Password.RequireDigit = true;
-                 options.Password.RequiredLength = 8;
-                 options.Password.RequireNonAlphanumeric = false;
-                 options.Password.RequireUppercase = true;
-                 options.Password.RequireLowercase = true;
-                 options.Password.RequiredUniqueChars = 6;
-
-                 // Lockout settings
-                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
-                 options.Lockout.MaxFailedAccessAttempts = 5;
-                 options.Lockout.AllowedForNewUsers = true;
-
-                 // User settings
-                 options.User.RequireUniqueEmail = true;
-
-                 // Confirmations
-                 options.SignIn.RequireConfirmedEmail = false;
-                 options.SignIn.RequireConfirmedPhoneNumber = false;
-             });
-
-
-            services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
-            services.Configure<SlackSettings>(Configuration.GetSection("SlackWebHooks"));
-
-            services.AddSingleton<ISlackClient, SlackClient>((s) =>
-            {
-                var conf = s.GetService<IOptions<SlackSettings>>();
-                return new SlackClient(conf.Value.SubscribeChannelUrl);
-            });
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
