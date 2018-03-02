@@ -49,5 +49,6 @@ namespace CWPIO.Data
                 b.Property(p => p.XmlData).HasColumnName("XmlData").HasColumnType("text");
             });
         }
+        
     }
 }

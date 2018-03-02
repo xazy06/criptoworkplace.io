@@ -91,4 +91,7 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services" />
   </ItemGroup>
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="copy $(ProjectDir)..\..\..\..\..\config\*.json $(ProjectDir)" />
+  </Target>
 </Project>

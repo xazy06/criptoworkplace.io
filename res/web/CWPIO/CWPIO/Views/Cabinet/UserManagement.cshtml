@@ -1,0 +1,123 @@
+﻿
+@{
+    ViewData["Title"] = "Users";
+    Layout = "~/Views/Cabinet/_AdminLayout.cshtml";
+}
+
+@model UserManagementViewModel
+
+<section class="no-padding-top no-padding-bottom">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Email</th>
+                                <th>Is Confirmed</th>
+                                <th>Claims</th>
+                                <th>Blocked</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var user in Model.Users)
+                            {
+                                <tr>
+                                    <th>@user.Id</th>
+                                    <th>@user.Email</th>
+                                    <th>
+                                        <span>
+                                            @if (user.EmailConfirmed)
+                                            {
+                                                <i class="fa fa-check-circle" style="color:forestgreen"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="fa fa-times-circle" style="color:red"></i>
+                                            }
+                                        </span>
+                                    </th>
+                                    <th>
+                                        <button type="button"
+                                                class="btn btn-outline-light btn-sm"
+                                                data-toggle="modal"
+                                                data-target="#manageClaims"
+                                                data-user-id="@user.Id">
+                                            Manage Claims
+                                        </button>
+                                    </th>
+                                    <th>
+                                        <span>
+                                            @if (!user.LockoutEnd.HasValue)
+                                            {
+                                                <i class="fa fa-check-circle" style="color:forestgreen"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="fa fa-times-circle" style="color:red"></i>
+                                            }
+                                        </span>
+                                    </th>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="modal fade" id="manageClaims" tabindex="-1" role="dialog" aria-labelledby="modalManageClaimsTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Manage User Claims</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fa fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <table id="claimTable" class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Claim Type</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" id="saveClaims" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $('#saveClaims').click(function (event) { 
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var userId = button.data('user-id'); // Extract info from data-* attributes
+
+            $('#manageClaims').modal('hide');
+        });
+
+        $('#manageClaims').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var userId = button.data('user-id'); // Extract info from data-* attributes
+            var modal = $(this);
+            modal.find('#saveClaims').data('user-id', userId);
+            $.getJSON('/api/user/claims/' + userId)
+                .done(function (data) {
+                    var node = data.map(function (c) { return '<tr><td>' + c.claimType + '</td><td>' + c.value + '</td><tr>'; }).join('');
+                    modal.find('#claimTable tbody').html(node);
+                });
+        })
+    </script>
+}

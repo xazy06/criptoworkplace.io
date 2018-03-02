@@ -1,14 +1,14 @@
 ﻿<!-- Sidebar Navidation Menus-->
 <span class="heading">Main</span>
 <ul class="list-unstyled">
-    <li class="active">
+    <li active-class="active" active-controller="Admin" active-action="Index">
         <a asp-controller="Admin" asp-action="Index"> <i class="icon-home"></i>Dashboard</a>
     </li>
-    <li>
+    <li active-class="active" active-controller="Blockchain" active-action="Index">
         <a asp-controller="Admin" asp-action="Blockchain"> <i class="icon-grid"></i>Blockchain</a>
     </li>
-    <li>
-        <a href="charts.html"> <i class="fa fa-bar-chart"></i>Analitycs</a>
+    <li active-fragment="#" active-class="active">
+        <a href="#"> <i class="fa fa-bar-chart"></i>Analitycs</a>
     </li>
     @*<li>
             <a href="forms.html"> <i class="icon-padnote"></i>Forms </a>
@@ -23,7 +23,9 @@
         </li>*@
     @if ((await Authorization.AuthorizeAsync(User, "CanAccessUsers")).Succeeded)
     {
-        <li><a asp-controller="Admin" asp-action="UserManagement"> <i class="fa fa-users"></i>Users</a></li>
+        <li active-route="UserManagement" active-class="active">
+            <a asp-route="UserManagement"> <i class="fa fa-users"></i>Users</a>
+        </li>
     }
 </ul>
 
