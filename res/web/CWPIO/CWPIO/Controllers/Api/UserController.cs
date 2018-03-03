@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using CWPIO.Data;
 using CWPIO.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging;
 
 namespace CWPIO.Controllers.Api
 {
@@ -16,18 +18,22 @@ namespace CWPIO.Controllers.Api
     [Route("api/user")]
     public class UserController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        //private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly ILogger _logger;
 
-        public UserController(ApplicationDbContext context)
+        public UserController(/*ApplicationDbContext context*/UserManager<ApplicationUser> userManager, ILogger<UserController> logger)
         {
-            _context = context;
+            //_context = context;
+            _userManager = userManager;
+            _logger = logger;
         }
 
         // GET: api/user
         [HttpGet]
         public IEnumerable<ApplicationUser> GetApplicationUser()
         {
-            return _context.Users;
+            return _userManager.Users;
         }
 
         // GET: api/user/5
@@ -39,7 +45,7 @@ namespace CWPIO.Controllers.Api
                 return BadRequest(ModelState);
             }
 
-            var applicationUser = await _context.Users.SingleOrDefaultAsync(m => m.Id == id);
+            var applicationUser = await _userManager.FindByIdAsync(id);
 
             if (applicationUser == null)
             {
@@ -58,14 +64,15 @@ namespace CWPIO.Controllers.Api
                 return BadRequest(ModelState);
             }
 
-            var applicationUser = await _context.Users.Include(u => u.Claims).SingleOrDefaultAsync(m => m.Id == id);
+            var applicationUser = await _userManager.FindByIdAsync(id);
 
             if (applicationUser == null)
             {
                 return NotFound();
             }
 
-            return Ok(applicationUser.Claims.Select(c => new { c.ClaimType, Value = c.ClaimValue }));
+            var claims = await _userManager.GetClaimsAsync(applicationUser);
+            return Ok(claims.Select(c => new { c.Type, c.Value, c.Issuer }));
         }
 
         // PUT: api/user/5
@@ -83,23 +90,12 @@ namespace CWPIO.Controllers.Api
                 return BadRequest();
             }
 
-            _context.Entry(applicationUser).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ApplicationUserExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            var result = await _userManager.UpdateAsync(applicationUser);
+            if (!result.Succeeded)
+                return NotFound();
+            else
+                foreach (var err in result.Errors)
+                    _logger.LogError($"{err.Code}:{err.Description}");
 
             return NoContent();
         }
@@ -114,8 +110,13 @@ namespace CWPIO.Controllers.Api
                 return BadRequest(ModelState);
             }
 
-            _context.Users.Add(applicationUser);
-            await _context.SaveChangesAsync();
+            var result = await _userManager.CreateAsync(applicationUser);
+            if (!result.Succeeded)
+                return NotFound();
+            else
+                foreach (var err in result.Errors)
+                    _logger.LogError($"{err.Code}:{err.Description}");
+
 
             return CreatedAtAction("GetApplicationUser", new { id = applicationUser.Id }, applicationUser);
         }
@@ -130,21 +131,15 @@ namespace CWPIO.Controllers.Api
                 return BadRequest(ModelState);
             }
 
-            var applicationUser = await _context.Users.SingleOrDefaultAsync(m => m.Id == id);
-            if (applicationUser == null)
-            {
+            var applicationUser = await _userManager.FindByIdAsync(id);
+            var result = await _userManager.DeleteAsync(applicationUser);
+            if (!result.Succeeded)
                 return NotFound();
-            }
-
-            _context.Users.Remove(applicationUser);
-            await _context.SaveChangesAsync();
+            else
+                foreach (var err in result.Errors)
+                    _logger.LogError($"{err.Code}:{err.Description}");
 
             return Ok(applicationUser);
-        }
-
-        private bool ApplicationUserExists(string id)
-        {
-            return _context.Users.Any(e => e.Id == id);
         }
     }
 }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using CWPIO.Models;
 
+
 namespace CWPIO.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
@@ -34,9 +35,10 @@ namespace CWPIO.Data
                 b.ToTable("Subscribers");
 
                 b.HasKey(s => s.Id);
+
                 b.Property(s => s.Name).IsRequired().HasMaxLength(100);
                 b.Property(s => s.Email).IsRequired().HasMaxLength(100);
-                b.Property(s => s.EmailSend).IsRequired().HasDefaultValue(false);
+                b.Property(s => s.EmailSend).IsRequired();
                 b.Property(s => s.Culture).IsRequired().HasDefaultValue("");
             });
 
@@ -48,7 +50,37 @@ namespace CWPIO.Data
                 b.Property(p => p.FriendlyName).HasColumnName("FriendlyName").HasColumnType("text");
                 b.Property(p => p.XmlData).HasColumnName("XmlData").HasColumnType("text");
             });
+
+            builder.Entity<BountyCampaing>(b =>
+            {
+                b.ToTable("BountyCampaing");
+
+                b.HasKey(x => x.Id);
+                b.Property(x => x.Id).ValueGeneratedOnAdd();
+                b.Property(x => x.Name).HasColumnName("Name").IsRequired().HasMaxLength(100);
+            });
+
+            builder.Entity<UserBountyCampaing>(b =>
+            {
+                b.ToTable("UserBountyCampaing");
+
+                b.HasKey(x => new { x.UserId, x.BountyCampaingId });
+                b.Property(x => x.TotalItemCount).IsRequired(true).HasDefaultValue(0);
+                b.Property(x => x.TotalCoinEarned).IsRequired(true).HasDefaultValue(0m);
+
+                b.HasOne(x => x.BountyCampaing)
+                    .WithMany(x => x.UserBounties)
+                    .HasForeignKey(x => x.BountyCampaingId)
+                    .IsRequired(true)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                b.HasOne(x => x.User)
+                    .WithMany(x => x.UserBounties)
+                    .HasForeignKey(x => x.UserId)
+                    .IsRequired(true)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
         }
-        
+
     }
 }

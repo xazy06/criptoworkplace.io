@@ -2,6 +2,7 @@
 using CWPIO.Models;
 using CWPIO.Models.CabinetViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -9,6 +10,7 @@ using Slack.Webhooks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace CWPIO.Controllers
@@ -19,15 +21,17 @@ namespace CWPIO.Controllers
     {
         private const string API_KEY = "LIgskaeb32789dsalfnq3eo8dc=[km";
 
-        private ApplicationDbContext _context;
-        private ILogger _logger;
-        private ISlackClient _slackClient;
+        private readonly ApplicationDbContext _context;
+        private readonly ILogger _logger;
+        private readonly ISlackClient _slackClient;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public CabinetController(ApplicationDbContext context, ILogger<CabinetController> logger, ISlackClient slackClient)
+        public CabinetController(ApplicationDbContext context, ILogger<CabinetController> logger, ISlackClient slackClient, UserManager<ApplicationUser> userManager)
         {
             _context = context;
             _logger = logger;
             _slackClient = slackClient;
+            _userManager = userManager;
         }
 
         [HttpGet("")]
@@ -40,8 +44,19 @@ namespace CWPIO.Controllers
         [HttpGet("users", Name = "UserManagement")]
         public IActionResult UserManagement()
         {
-            var model = new UserManagementViewModel() { Users = _context.Users.Include(u => u.Claims).ToList() };
+            
+            var model = new UserManagementViewModel() { Users = _userManager.Users.ToList() };
             return View(model);
+        }
+
+        [HttpGet("bounty", Name = "BountyDashboard")]
+        public async Task<IActionResult> Bounty()
+        {
+            var claim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (claim == null)
+                return NotFound();
+            var user = await _context.Users.SingleAsync(u => u.Id == claim.Value);
+            return View(user);
         }
     }
 }

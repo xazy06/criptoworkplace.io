@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Localization;
 using Slack.Webhooks;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CWPIO
 {
@@ -82,7 +83,10 @@ namespace CWPIO
 
                         options.AddPolicy(
                             "CanAccessBounty",
-                            policyBuilder => policyBuilder.RequireAuthenticatedUser().RequireClaim("IsEmailConfirmed", "True").RequireClaim("IsExtendedProfileFilled", "True"));
+                            policyBuilder => policyBuilder
+                                .RequireAuthenticatedUser()
+                                .RequireClaim("IsExtendedProfileCompleted", "True")
+                                .RequireClaim("IsEmailCompleted", "True"));
                     })
                 .AddTransient<IEmailSender, EmailSender>()
                 .AddSingleton<ISlackClient, SlackClient>(config =>
@@ -144,7 +148,6 @@ namespace CWPIO
                     options.ConsumerKey = Configuration["Authentication:Twitter:ConsumerKey"];
                     options.ConsumerSecret = Configuration["Authentication:Twitter:ConsumerSecret"];
                 });
-            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,26 +1,33 @@
 ﻿<!-- Sidebar Navidation Menus-->
 <span class="heading">Main</span>
 <ul class="list-unstyled">
-    <li active-class="active" active-controller="Admin" active-action="Index">
-        <a asp-controller="Admin" asp-action="Index"> <i class="icon-home"></i>Dashboard</a>
+    <li active-class="active" active-controller="Cabinet" active-action="Index">
+        <a asp-controller="Cabinet" asp-action="Index"> <i class="icon-home"></i>Dashboard</a>
     </li>
     <li active-class="active" active-controller="Blockchain" active-action="Index">
         <a asp-controller="Admin" asp-action="Blockchain"> <i class="icon-grid"></i>Blockchain</a>
     </li>
-    <li active-fragment="#" active-class="active">
-        <a href="#"> <i class="fa fa-bar-chart"></i>Analitycs</a>
+
+    <li>
+        <a href="#exampledropdownDropdown" aria-expanded="true" data-toggle="collapse"> <i class="fa fa-bar-chart"></i>Bounty</a>
+        <ul id="exampledropdownDropdown" class="list-unstyled ">
+            <li active-class="active" active-route="BountyDashboard"><a asp-route="BountyDashboard">Dashboard</a></li>
+            <li active-class="active" active-route="BountyWorkplace"><a asp-route="BountyWorkplace">Work Place</a></li>
+            <li active-class="active" active-route="BountyCommunication"><a asp-route="BountyCommunication">Communication</a></li>
+        </ul>
     </li>
+
     @*<li>
-            <a href="forms.html"> <i class="icon-padnote"></i>Forms </a>
-        </li>
-        <li>
-            <a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Example dropdown </a>
-            <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-                <li><a href="#">Page</a></li>
-                <li><a href="#">Page</a></li>
-                <li><a href="#">Page</a></li>
-            </ul>
-        </li>*@
+        <a href="forms.html"> <i class="icon-padnote"></i>Forms </a>
+    </li>
+    <li>
+        <a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>Example dropdown </a>
+        <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
+            <li><a href="#">Page</a></li>
+            <li><a href="#">Page</a></li>
+            <li><a href="#">Page</a></li>
+        </ul>
+    </li>*@
     @if ((await Authorization.AuthorizeAsync(User, "CanAccessUsers")).Succeeded)
     {
         <li active-route="UserManagement" active-class="active">

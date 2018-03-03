@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CWPIO.Models
+namespace CWPIO.Data
 {
     // Add profile data for application users by adding properties to the ApplicationUser class
     public class ApplicationUser : IdentityUser
@@ -15,5 +15,7 @@ namespace CWPIO.Models
         }
 
         public virtual ICollection<IdentityUserClaim<string>> Claims { get; set; }
+
+        public virtual ICollection<UserBountyCampaing> UserBounties { get; set; }
     }
 }
