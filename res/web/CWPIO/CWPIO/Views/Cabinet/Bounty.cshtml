@@ -17,7 +17,7 @@
                     </div><a href="#" class="user-title">
                         <h5 >@Model.UserName</h5><span></span>
                     </a>
-                    <div class="contributions">@Model.Bounty. Contributions</div>
+                    <div class="contributions">@(Model.UserBounties?.Sum(b => b.TotalItemCount)??0)</div>
                     <div class="details d-flex">
                         <div class="item"><i class="icon-info"></i><strong>150</strong></div>
                         <div class="item"><i class="fa fa-gg"></i><strong>340</strong></div>
