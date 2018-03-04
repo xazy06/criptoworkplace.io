@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Users";
     Layout = "~/Views/Cabinet/_AdminLayout.cshtml";
 }
@@ -102,7 +101,7 @@
 @section Scripts {
     <script type="text/javascript">
         $('#saveClaims').click(function (event) { 
-            var button = $(event.relatedTarget); // Button that triggered the modal
+            var button = $(event.target); // Button that triggered the modal
             var userId = button.data('user-id'); // Extract info from data-* attributes
 
             $('#manageClaims').modal('hide');
@@ -118,6 +117,6 @@
                     var node = data.map(function (c) { return '<tr><td>' + c.claimType + '</td><td>' + c.value + '</td><tr>'; }).join('');
                     modal.find('#claimTable tbody').html(node);
                 });
-        })
+        });
     </script>
 }

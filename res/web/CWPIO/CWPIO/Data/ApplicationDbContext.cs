@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using CWPIO.Models;
+using CWPIO.Data;
 
 
 namespace CWPIO.Data
@@ -57,7 +58,9 @@ namespace CWPIO.Data
 
                 b.HasKey(x => x.Id);
                 b.Property(x => x.Id).ValueGeneratedOnAdd();
-                b.Property(x => x.Name).HasColumnName("Name").IsRequired().HasMaxLength(100);
+                b.Property(x => x.IsDeleted).IsRequired(true);
+                b.Property(x => x.Name).IsRequired().HasMaxLength(100);
+                b.Property(x => x.FaClass).IsRequired(false).HasMaxLength(100);
             });
 
             builder.Entity<UserBountyCampaing>(b =>
@@ -80,7 +83,55 @@ namespace CWPIO.Data
                     .IsRequired(true)
                     .OnDelete(DeleteBehavior.Restrict);
             });
+
+            builder.Entity<UserBountyCampaingItem>(b =>
+            {
+                b.ToTable("UserBountyCampaingItem");
+
+                b.HasKey(x => x.Id);
+                b.Property(x => x.Id).ValueGeneratedOnAdd();
+                b.Property(x => x.IsAccepted).IsRequired(false);
+                b.Property(x => x.IsDeleted).IsRequired(true);
+                b.Property(x => x.Url).IsRequired(true).HasMaxLength(255);
+                b.Property(x => x.ItemType).IsRequired(true);
+
+                b.HasOne<BountyCampaingItemType>()
+                    .WithMany()
+                    .HasForeignKey(c => c.ItemType)
+                    .HasPrincipalKey(p=> p.TypeId)
+                    .IsRequired(true)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                b.HasOne(x => x.UserBounty)
+                    .WithMany(x => x.Items)
+                    .HasForeignKey(x => new { x.UserId, x.BountyCampaingId })
+                    .IsRequired(true)
+                    .OnDelete(DeleteBehavior.Restrict);
+                
+            });
+
+            builder.Entity<BountyCampaingItemType>(b =>
+            {
+                b.ToTable("BountyCampaingItemType");
+
+                b.HasKey(x => x.Id);
+                b.Property(x => x.Id).ValueGeneratedOnAdd();
+                b.Property(x => x.Name).IsRequired(true).HasMaxLength(200);
+                b.Property(x => x.TypeId).IsRequired(true);
+                b.Property(x => x.Price).IsRequired(true).HasDefaultValue(0m);
+                b.Property(x => x.NeedToApprove).IsRequired(true);
+                b.Property(x => x.IsDeleted).IsRequired(true);
+
+                b.HasOne(x => x.BountyCampaing)
+                    .WithMany(x => x.ItemTypes)
+                    .HasForeignKey(x => x.BountyCampaingId)
+                    .IsRequired(true)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
         }
 
+        public DbSet<BountyCampaing> Bounties { get; set; }
+        public DbSet<UserBountyCampaing> UserBounties { get; set; }
+        public DbSet<UserBountyCampaingItem> UserBountyItems { get; set; }
     }
 }

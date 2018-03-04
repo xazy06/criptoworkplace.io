@@ -11,9 +11,10 @@ using System;
 namespace CWPIO.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180304081200_AddBountyProperties")]
+    partial class AddBountyProperties
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -75,47 +76,18 @@ namespace CWPIO.Data.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("FaClass")
-                        .HasMaxLength(100);
+                    b.Property<string>("FaClass");
 
-                    b.Property<bool>("IsDeleted");
+                    b.Property<bool>("IsBlocked");
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasColumnName("Name")
                         .HasMaxLength(100);
 
                     b.HasKey("Id");
 
                     b.ToTable("BountyCampaing");
-                });
-
-            modelBuilder.Entity("CWPIO.Data.BountyCampaingItemType", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("BountyCampaingId")
-                        .IsRequired();
-
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(200);
-
-                    b.Property<bool>("NeedToApprove");
-
-                    b.Property<decimal>("Price")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValue(0m);
-
-                    b.Property<int>("TypeId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BountyCampaingId");
-
-                    b.ToTable("BountyCampaingItemType");
                 });
 
             modelBuilder.Entity("CWPIO.Data.DataProtectionKey", b =>
@@ -182,36 +154,6 @@ namespace CWPIO.Data.Migrations
                     b.HasIndex("BountyCampaingId");
 
                     b.ToTable("UserBountyCampaing");
-                });
-
-            modelBuilder.Entity("CWPIO.Data.UserBountyCampaingItem", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("BountyCampaingId")
-                        .IsRequired();
-
-                    b.Property<bool?>("IsAccepted");
-
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<int>("ItemType");
-
-                    b.Property<string>("Url")
-                        .IsRequired()
-                        .HasMaxLength(255);
-
-                    b.Property<string>("UserId")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ItemType");
-
-                    b.HasIndex("UserId", "BountyCampaingId");
-
-                    b.ToTable("UserBountyCampaingItem");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -321,14 +263,6 @@ namespace CWPIO.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("CWPIO.Data.BountyCampaingItemType", b =>
-                {
-                    b.HasOne("CWPIO.Data.BountyCampaing", "BountyCampaing")
-                        .WithMany("ItemTypes")
-                        .HasForeignKey("BountyCampaingId")
-                        .OnDelete(DeleteBehavior.Restrict);
-                });
-
             modelBuilder.Entity("CWPIO.Data.UserBountyCampaing", b =>
                 {
                     b.HasOne("CWPIO.Data.BountyCampaing", "BountyCampaing")
@@ -339,20 +273,6 @@ namespace CWPIO.Data.Migrations
                     b.HasOne("CWPIO.Data.ApplicationUser", "User")
                         .WithMany("UserBounties")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
-                });
-
-            modelBuilder.Entity("CWPIO.Data.UserBountyCampaingItem", b =>
-                {
-                    b.HasOne("CWPIO.Data.BountyCampaingItemType")
-                        .WithMany()
-                        .HasForeignKey("ItemType")
-                        .HasPrincipalKey("TypeId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("CWPIO.Data.UserBountyCampaing", "UserBounty")
-                        .WithMany("Items")
-                        .HasForeignKey("UserId", "BountyCampaingId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 

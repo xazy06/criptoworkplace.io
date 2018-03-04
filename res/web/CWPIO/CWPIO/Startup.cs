@@ -15,6 +15,7 @@ using Slack.Webhooks;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Authorization;
+using Newtonsoft.Json;
 
 namespace CWPIO
 {
@@ -120,6 +121,7 @@ namespace CWPIO
                     });
 
             services.AddMvc()
+                .AddJsonOptions(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore)
                 .AddViewLocalization(); //IViewLocalizer
 
 

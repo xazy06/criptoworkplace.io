@@ -49,14 +49,6 @@ namespace CWPIO.Controllers
             return View(model);
         }
 
-        [HttpGet("bounty", Name = "BountyDashboard")]
-        public async Task<IActionResult> Bounty()
-        {
-            var claim = User.FindFirst(ClaimTypes.NameIdentifier);
-            if (claim == null)
-                return NotFound();
-            var user = await _context.Users.SingleAsync(u => u.Id == claim.Value);
-            return View(user);
-        }
+        
     }
 }

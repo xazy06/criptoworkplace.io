@@ -1,0 +1,194 @@
+﻿
+@{
+    ViewData["Title"] = "My Bounty Workplace";
+    Layout = "~/Views/Cabinet/_AdminLayout.cshtml";
+}
+
+@model WorkplaceViewModel
+
+<section class="no-padding-top no-padding-bottom">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title">
+                    <strong>Current bounties</strong>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped" id="bountyCampaingsTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Icon</th>
+                                <th>Participate</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var bounty in Model.Bounties)
+                            {
+                                <tr data-bounty-id="@bounty.Id">
+                                    <td>@bounty.Name</td>
+                                    <td>
+                                        <span><i class="fa @bounty.FaClass"></i></span>
+                                    </td>
+                                    <td>
+                                        @if (!Model.MyBounties.Any(b => b.BountyCampaingId == bounty.Id))
+                                        {
+                                            <button class="btn btn-light btn-participate">Participate</button>
+                                        }
+                                        else
+                                        {
+                                            <span>
+                                                <i class="fa fa-check-circle" style="color:forestgreen"></i>
+                                            </span>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<hr />
+<section class="p-xl-3 no-padding-bottom">
+    <div class="container-fluid">
+        @foreach (var bounty in Model.MyBounties)
+        {
+            <div class="row p-xl-3">
+                <div class="title col-md-10">
+                    <strong>@bounty.BountyCampaing.Name</strong>
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-default" data-bounty-id="@bounty.BountyCampaingId" data-target="#addNewLink" data-toggle="modal">Add link</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Url</th>
+                                    <th>Price</th>
+                                    <th>Accepted</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in bounty.Items)
+                                {
+                                    <tr>
+                                        <td>@item.Id</td>
+                                        <td>@item.Url</td>
+                                        <td>@item.UserBounty.BountyCampaing.Prices[item.ItemType]</td>
+                                        <td>
+                                            <span>
+                                                @if (item.IsAccepted.HasValue && item.IsAccepted.Value)
+                                                {
+                                                    <i class="fa fa-check-circle" style="color:forestgreen"></i>
+                                                }
+                                                else if (item.IsAccepted.HasValue)
+                                                {
+                                                    <i class="fa fa-times-circle" style="color:red"></i>
+                                                }
+                                            </span>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</section>
+
+<div class="modal fade" id="addNewLink" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add new campaing link</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fa fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row pb-5">
+                        <div class="col-md-6">Campaing name:</div>
+                        <div class="col-md-6" id="campaingName"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="url">Url</label>
+                        <input type="text" class="form-control" id="url" name="url" placeholder="Url">
+                    </div>
+                    <div class="form-group">
+                        <label for="campaingName">Activity type</label>
+                        <select class="form-control" id="itemType" name="itemType">
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" id="saveLink" class="btn btn-primary">Register</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $('.btn-participate').click(function (event) {
+            var button = $(event.target); // Button that triggered the modal
+            var row = button.closest('tr');
+            var bountyId = row.data('bounty-id'); // Extract info from data-* attributes
+
+            $.post({
+                url: '/api/bounty/' + bountyId + '/participate',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json"
+            })
+                .done(function (data) {
+                    row.children('td:nth-child(3)').html('<span><i class="fa fa-check-circle" style="color:forestgreen"></i></span>');
+                });
+        });
+
+        $('#saveLink').click(function () {
+            var button = $(event.target);
+            var bountyId = button.data('bounty-id'); // Extract info from data-* attributes
+            var modal = $('#addNewLink');
+            var urlData = modal.find('#url').val();
+            var itemType = modal.find('#itemType').val();
+
+            $.post({
+                url: '/api/bounty/' + bountyId + '/register',
+                data: JSON.stringify({ url: urlData, itemType: itemType }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json"
+            })
+                .done(function () { modal.modal('hide'); });
+
+            
+         });
+
+        $('#addNewLink').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var bountyId = button.data('bounty-id'); // Extract info from data-* attributes
+            var modal = $(this);
+            modal.find('#saveLink').data('bounty-id', bountyId);
+            $.getJSON('/api/bounty/' + bountyId)
+                .done(function (data) {
+                    modal.find('#campaingName').html('<span><i class="fa ' + data.faClass + '"></i>&nbsp;' + data.name + '</span>');
+                    var options = data.itemTypes.map(function (item) {
+                        return '<option value="' + item.typeId + '">' + item.name+ '</option>';
+                    }).join('');
+                    modal.find('#itemType').html(options)
+                });
+        })
+    </script>
+}

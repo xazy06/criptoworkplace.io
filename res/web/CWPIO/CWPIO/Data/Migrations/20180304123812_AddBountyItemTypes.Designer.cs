@@ -11,9 +11,10 @@ using System;
 namespace CWPIO.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180304123812_AddBountyItemTypes")]
+    partial class AddBountyItemTypes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -192,7 +193,7 @@ namespace CWPIO.Data.Migrations
                     b.Property<string>("BountyCampaingId")
                         .IsRequired();
 
-                    b.Property<bool?>("IsAccepted");
+                    b.Property<bool>("IsAccepted");
 
                     b.Property<bool>("IsDeleted");
 
@@ -206,8 +207,6 @@ namespace CWPIO.Data.Migrations
                         .IsRequired();
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ItemType");
 
                     b.HasIndex("UserId", "BountyCampaingId");
 
@@ -344,12 +343,6 @@ namespace CWPIO.Data.Migrations
 
             modelBuilder.Entity("CWPIO.Data.UserBountyCampaingItem", b =>
                 {
-                    b.HasOne("CWPIO.Data.BountyCampaingItemType")
-                        .WithMany()
-                        .HasForeignKey("ItemType")
-                        .HasPrincipalKey("TypeId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
                     b.HasOne("CWPIO.Data.UserBountyCampaing", "UserBounty")
                         .WithMany("Items")
                         .HasForeignKey("UserId", "BountyCampaingId")

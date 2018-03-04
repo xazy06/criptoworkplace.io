@@ -1,0 +1,188 @@
+﻿
+@{
+    ViewData["Title"] = "Manage Bounty Programs";
+    Layout = "~/Views/Cabinet/_AdminLayout.cshtml";
+}
+@model BountyManagementViewModel
+
+<section class="no-padding-top no-padding-bottom">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-1 offset-md-11">
+                <button data-target="#addNewCampaing" data-toggle="modal" class="btn btn-default">
+                    <span><i class="fa fa-lg fa-2x fa-plus-square-o"></i></span>
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-striped" id="bountyCampaingsTable">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Icon</th>
+                                <th>Blocked</th>
+                                <th>Activities</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var bounty in Model.Bounties)
+                            {
+                                <tr>
+                                    <td>@bounty.Id</td>
+                                    <td>@bounty.Name</td>
+                                    <td>
+                                        <span><i class="fa @bounty.FaClass"></i></span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            @if (!bounty.IsDeleted)
+                                            {
+                                                <i class="fa fa-check-circle" style="color:forestgreen"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="fa fa-times-circle" style="color:red"></i>
+                                            }
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <button type="button"
+                                                class="btn btn-outline-light btn-sm"
+                                                data-toggle="modal"
+                                                data-target="#manageActivities"
+                                                data-bounty-id="@bounty.Id">
+                                            Manage
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="modal fade" id="addNewCampaing" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add new bounty campain</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fa fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="form-group">
+                        <label for="campaingName">Name</label>
+                        <input type="text" class="form-control" id="campaingName" name="campaingName" placeholder="Campaing name (e.g. Facebook)">
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="campaingIcon" name="campaingIcon" value="fa-search" />
+                            <span class="input-group-append">
+                                <span class="input-group-text">
+                                    <i class="fa fa-search"></i>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" id="saveCampaing" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="manageActivities" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Manage Activities</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fa fa-times"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <table id="activityTable" class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Activity Type</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Must approved</th>
+                                <th>Deleted</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" id="saveActivities" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $('#saveCampaing').click(function (event) {
+            var $modal = $('#addNewCampaing'),
+                $campaingName = $('#campaingName'),
+                $campaingIcon = $('#campaingIcon');
+
+            $.post({
+                url: '/api/bounty',
+                data: JSON.stringify({ name: $campaingName.val(), faClass: $campaingIcon.val() }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json"
+            })
+                .done(function (data) {
+                    $('#bountyCampaingsTable tbody').append('<tr><td>' + data.id +
+                        '</td><td>' + data.name +
+                        '</td><td><span><i class="fa ' + data.faClass +
+                        '"></i></span></td><td><span>' +
+                        (isBlocked ?
+                        '<i class="fa fa-times-circle" style="color:red"></i>' :
+                            '<i class="fa fa-check-circle" style="color:forestgreen"></i>') + '</span></td>');
+                    $modal.modal('hide');
+                })
+                .fail(function () {  })
+            
+        });
+
+        $('#saveActivities').click(function (event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var userId = button.data('bounty-id'); // Extract info from data-* attributes
+
+            $('#manageActivities').modal('hide');
+        });
+
+        $('#manageActivities').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var bountyId = button.data('bounty-id'); // Extract info from data-* attributes
+            var modal = $(this);
+            modal.find('#saveActivities').data('bounty-id', bountyId);
+            $.getJSON('/api/bounty/' + bountyId +'/itemtype')
+                .done(function (data) {
+                    var node = data.map(function (c) {
+                        return '<tr><td>' + c.typeId + '</td><td>' +
+                            c.name + '</td><td>' +
+                            c.price + '</td><td>' +
+                            c.needToApprove + '</td><td>' +
+                            c.isDeleted + '</td><tr>';
+                    }).join('');
+                    modal.find('#activityTable tbody').html(node);
+                });
+        });
+    </script>
+}
