@@ -118,55 +118,58 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="1page" xml:space="preserve">
-    <value />
+    <value>单页</value>
   </data>
   <data name="50part" xml:space="preserve">
-    <value />
+    <value>总数的50%</value>
   </data>
   <data name="adv" xml:space="preserve">
-    <value />
+    <value>顾问</value>
   </data>
   <data name="Alexander Podelko" xml:space="preserve">
-    <value />
+    <value>亚历山大 波德尔科</value>
   </data>
   <data name="Alexey Gladkov" xml:space="preserve">
-    <value />
+    <value>阿列克谢 格拉德科夫</value>
   </data>
   <data name="Alexey Lykov" xml:space="preserve">
-    <value />
+    <value>阿列克谢 雷科夫</value>
   </data>
   <data name="amfeac" xml:space="preserve">
-    <value />
+    <value>特别的功能</value>
   </data>
   <data name="Anton Maslov" xml:space="preserve">
-    <value />
+    <value>安东 马斯洛夫</value>
   </data>
   <data name="Anton Polyansky" xml:space="preserve">
-    <value />
+    <value>安东 波利安斯基</value>
   </data>
   <data name="april" xml:space="preserve">
-    <value />
+    <value>四月</value>
   </data>
   <data name="Artur Enokyan" xml:space="preserve">
-    <value />
+    <value>阿勒杜勒 耶努刊</value>
   </data>
   <data name="awsperf" xml:space="preserve">
-    <value />
+    <value>高性能</value>
   </data>
   <data name="buildin" xml:space="preserve">
-    <value />
+    <value>内置的CRYPTO-STORAGE</value>
   </data>
   <data name="ceo" xml:space="preserve">
-    <value />
+    <value>首席执行官</value>
   </data>
   <data name="cto" xml:space="preserve">
-    <value />
+    <value>技术总监</value>
   </data>
   <data name="decentrsys" xml:space="preserve">
-    <value />
+    <value>CWP是基于区块链技术的分散式生态系统，其中包括
+微型PC，在安全的隔离的环境中运行特殊
+软件，这是一套旨在网络上组织抵御威胁的门户网站服务
+，以及分布式状态注册表</value>
   </data>
   <data name="Denis Kuznetsov" xml:space="preserve">
-    <value />
+    <value>丹尼斯 库兹涅佐夫</value>
   </data>
   <data name="disc" xml:space="preserve">
     <value />
