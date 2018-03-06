@@ -172,25 +172,25 @@
     <value>丹尼斯 库兹涅佐夫</value>
   </data>
   <data name="disc" xml:space="preserve">
-    <value />
+    <value>预售折扣</value>
   </data>
   <data name="en" xml:space="preserve">
-    <value />
+    <value>英</value>
   </data>
   <data name="exploit" xml:space="preserve">
-    <value />
+    <value>利用</value>
   </data>
   <data name="hack" xml:space="preserve">
-    <value />
+    <value>突破</value>
   </data>
   <data name="hcap" xml:space="preserve">
-    <value />
+    <value>Hard Cap</value>
   </data>
   <data name="head" xml:space="preserve">
-    <value />
+    <value>分散式系统在个人电脑存储器的大小基础上</value>
   </data>
   <data name="head sub" xml:space="preserve">
-    <value />
+    <value>CryptoWorkPlace微型电脑不仅是一个安全密钥存储，也是一个完全独立的个人电脑，具有操作系统和应用程序</value>
   </data>
   <data name="icape" xml:space="preserve">
     <value />
@@ -199,7 +199,7 @@
     <value />
   </data>
   <data name="idea" xml:space="preserve">
-    <value />
+    <value>创建Micro-PC的想法</value>
   </data>
   <data name="kcells" xml:space="preserve">
     <value />
@@ -211,40 +211,40 @@
     <value />
   </data>
   <data name="march" xml:space="preserve">
-    <value />
+    <value>三月</value>
   </data>
   <data name="Maxim Maslich" xml:space="preserve">
-    <value />
+    <value>马克西姆 马斯利克</value>
   </data>
   <data name="meet" xml:space="preserve">
-    <value />
+    <value>&lt;h2&gt;团队&lt;/h2&gt;</value>
   </data>
   <data name="memiss" xml:space="preserve">
-    <value />
+    <value>代币的最大问题</value>
   </data>
   <data name="particsale" xml:space="preserve">
-    <value />
+    <value>参与预售</value>
   </data>
   <data name="partners" xml:space="preserve">
-    <value />
+    <value>合作伙伴</value>
   </data>
   <data name="pat" xml:space="preserve">
-    <value />
+    <value>享有专利权</value>
   </data>
   <data name="phishing" xml:space="preserve">
-    <value />
+    <value>网络钓鱼</value>
   </data>
   <data name="prevmelt" xml:space="preserve">
-    <value />
+    <value>预防MELTDOWN &amp; SPECTRE ATTACKS</value>
   </data>
   <data name="problem" xml:space="preserve">
-    <value />
+    <value>区域链 &lt;br&gt;&lt;span&gt;问题&lt;/span&gt;</value>
   </data>
   <data name="qa" xml:space="preserve">
     <value />
   </data>
   <data name="r1" xml:space="preserve">
-    <value />
+    <value>产品版本1.0用于系统管理员</value>
   </data>
   <data name="r10" xml:space="preserve">
     <value />
@@ -286,25 +286,28 @@
     <value />
   </data>
   <data name="report" xml:space="preserve">
-    <value />
+    <value>据Chainalysis报道
+全球网络犯罪以ICO为目标而迅速崛起。 仅在2017年6月，
+投资者的损失就达到1亿美元，而8月份则高于上述数字
+2.2亿美元。</value>
   </data>
   <data name="reportlink" xml:space="preserve">
-    <value />
+    <value>报表</value>
   </data>
   <data name="round" xml:space="preserve">
-    <value />
+    <value>预售代币阶段</value>
   </data>
   <data name="ru" xml:space="preserve">
-    <value />
+    <value>俄</value>
   </data>
   <data name="Ruslan Pichugin" xml:space="preserve">
-    <value />
+    <value>鲁斯兰 皮丘金</value>
   </data>
   <data name="sailingt" xml:space="preserve">
     <value />
   </data>
   <data name="sale" xml:space="preserve">
-    <value />
+    <value>销售代币</value>
   </data>
   <data name="solution" xml:space="preserve">
     <value />
@@ -328,6 +331,9 @@
     <value />
   </data>
   <data name="Yoji Kishi" xml:space="preserve">
-    <value />
+    <value>Yoji Kishi</value>
+  </data>
+  <data name="Lead Mathematican" xml:space="preserve">
+    <value>数学家</value>
   </data>
 </root>
