@@ -373,9 +373,6 @@
   <data name="Yoji Kishi" xml:space="preserve">
     <value>Yoji Kishi</value>
   </data>
-  <data name="сvo" xml:space="preserve">
-    <value />
-  </data>
   <data name="t1" xml:space="preserve">
     <value>Президент Kintaro Power Cells Japan
 Региональный директор MapMess Inc.
@@ -458,8 +455,5 @@ Alexey's competencies help the project in the technical issues of TGE.</value>
   </data>
   <data name="documents" xml:space="preserve">
     <value>Документы</value>
-  </data>
-  <data name="String1" xml:space="preserve">
-    <value />
   </data>
 </root>

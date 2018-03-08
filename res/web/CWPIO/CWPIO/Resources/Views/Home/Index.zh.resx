@@ -162,6 +162,9 @@
   <data name="cto" xml:space="preserve">
     <value>技术总监</value>
   </data>
+  <data name="decentralizedsystem" xml:space="preserve">
+    <value>分散系统</value>
+  </data>
   <data name="decentrsys" xml:space="preserve">
     <value>CWP是基于区块链技术的分散式生态系统，其中包括
 微型PC，在安全的隔离的环境中运行特殊
@@ -174,11 +177,20 @@
   <data name="disc" xml:space="preserve">
     <value>预售折扣</value>
   </data>
+  <data name="documents" xml:space="preserve">
+    <value>文件</value>
+  </data>
+  <data name="downloads" xml:space="preserve">
+    <value>加载</value>
+  </data>
   <data name="en" xml:space="preserve">
     <value>英</value>
   </data>
   <data name="exploit" xml:space="preserve">
     <value>利用</value>
+  </data>
+  <data name="feb" xml:space="preserve">
+    <value>二月</value>
   </data>
   <data name="hack" xml:space="preserve">
     <value>突破</value>
@@ -206,6 +218,9 @@
   </data>
   <data name="kcells1" xml:space="preserve">
     <value />
+  </data>
+  <data name="Lead Mathematican" xml:space="preserve">
+    <value>数学家</value>
   </data>
   <data name="looses" xml:space="preserve">
     <value />
@@ -294,6 +309,9 @@
   <data name="reportlink" xml:space="preserve">
     <value>报表</value>
   </data>
+  <data name="roadmaph" xml:space="preserve">
+    <value>公路地图</value>
+  </data>
   <data name="round" xml:space="preserve">
     <value>预售代币阶段</value>
   </data>
@@ -309,20 +327,117 @@
   <data name="sale" xml:space="preserve">
     <value>销售代币</value>
   </data>
+  <data name="Senior System Analyst" xml:space="preserve">
+    <value>高级系统分析师</value>
+  </data>
+  <data name="Software Engineer" xml:space="preserve">
+    <value>“软件工程师</value>
+  </data>
   <data name="solution" xml:space="preserve">
     <value>CWP-就是解决方案</value>
   </data>
-  <data name="svo" xml:space="preserve">
-    <value />
+  <data name="t1" xml:space="preserve">
+    <value>Kintaro Power Cells日本总裁
+MapMess公司区域总监
+AV-Cells新加坡研究公司的创始人
+拥有30年的自营业务经验
+在新加坡和日本做生意20年</value>
+  </data>
+  <data name="t10" xml:space="preserve">
+    <value>首席执行官Flexlab 区块链研究员和专家
+30年电子和软件合同制㐀经验
+各行业20多个项目
+导师</value>
+  </data>
+  <data name="t2" xml:space="preserve">
+    <value>微软认证专家
+微软认证技术专家考试511 区块链和智能合约开发商
+一位软件开发过程管理专家，分布式，高负载和安全系统的构建
+为Alrosa，GAZPROM，Lukoil，Rusal，RZD，Satori，Autoline，城市出租车开
+发运输监控系统（货物，客车，特种设备，客运，体重控制，生产线控制，城市
+出租车）开发文档系统，为X5 Retail Group，Tape，Metro C＆C进行招标和投
+标。</value>
+  </data>
+  <data name="t3" xml:space="preserve">
+    <value>高级JavaScript开发人员Full-Stack 认证的中端Android开发人员
+认证的中端iOS开发人员
+Java EE，С＃，PHP，Lua，Python，GO开发人员， Unity 3D开发者， 专家开发Highload应用程序
+自定义交易平台开发
+为主要零售商开发专用软件
+密码学，电子文件管理
+为俄罗斯国防部开发专用软件
+为俄罗斯联邦的联邦机构开发特殊软件并参与软件和硬件的开发
+开发特殊软件 - 用于监控和管理网络安全
+开发已实施的收集器代理，用于分析和收集网络和外设PC活动的数据“</value>
+  </data>
+  <data name="t4" xml:space="preserve">
+    <value>硬件工程师
+嵌入式软件工程师
+微型计算机系统专家
+电路解决方案的开发，印刷电路板的开发以及热成像设备的嵌入式软件的开
+发
+开发电路设计解决方案，为Quinta音乐识别系统的低级设备开发印刷电路板
+开发智能家居设备的电路解决方案和印刷电路板
+生物电子上肢假体的微型生物传感器和处理器控制系统的研制
+基于Wi-Fi，GSM和蓝牙技术的嵌入式数据传输系统的开发</value>
+  </data>
+  <data name="t5" xml:space="preserve">
+    <value>首席数学家，高级架构师开发人员
+首席数学家，高级架构师开发人员
+嵌入式系统程序员
+机器学习和AI专家
+发展银行系统进行非目标对话的代理人
+开发具有AI支持的电报机器人
+Quinta音乐识别系统设备的嵌入式软件开发
+音乐识别算法专利的共同作者</value>
+  </data>
+  <data name="t6" xml:space="preserve">
+    <value>高级系统分析师，PHP开发人员
+高级系统分析师，PHP开发人员
+DAICHI物流业务流程的优化和自动化
+对METRO C＆C，Lenta进行各种集成的多模块高负载系统的系统分析
+制定宜家生产宜家的TOC（约束理论）供应计划系统，并与1C集成
+产品开发和定位管理</value>
+  </data>
+  <data name="t7" xml:space="preserve">
+    <value>博士，MBA 软件开发和测试方面的专家
+计算机测量组的董事会成员
+Oracle，技术人员咨询会员
+Hyperion杰出表现工程师
+Aetna，Sr. 建筑师II
+
+亚历山大负责协调美国市场产品的销售和生产，美国项目分支机构的管理，
+与为项目提供科学和技术支持的美国主要合作公司的互动。
+
+亚历山大在软件测试方面拥有30年的经验，这使他能够成为组织项目与软件
+测试市场中最大的角色（如QAMentor）。</value>
+  </data>
+  <data name="t8" xml:space="preserve">
+    <value>首席执行官和SandCoin创始人
+SandCoinCEO和创始人
+创始人Yocto Games 与Chillingo，Electronic Arts，Microsoft Studios合作
+鲁斯兰是几个项目的负责人，其中一个项目最近成功完成了ICO。 鲁斯兰是一位流行的区块链专家，律师和经济学家，所有这一切使他能够监
+督项目创始人面临的重要组织，市场和经济问题。</value>
+  </data>
+  <data name="t9" xml:space="preserve">
+    <value>阿列克谢是一位拥有20年经验的技术专家。”他在高负载系统方面拥有丰富的
+经验。 阿列克谢开发Playkey区块链系统1.5年。 管理超过1,000个视频卡的基础设
+施。 为游戏平台上的加密货币开发一个独特的解决方案。 阿列克谢的能帮助该项目解决TGE的技术问题。“</value>
   </data>
   <data name="tc" xml:space="preserve">
     <value>代币价格</value>
   </data>
   <data name="toggle" xml:space="preserve">
+    <value>展示代币码</value>
+  </data>
+  <data name="up2" xml:space="preserve">
     <value />
   </data>
   <data name="Wagan Sarukhanov" xml:space="preserve">
-    <value />
+    <value>瓦甘 撒卢翰欧夫</value>
+  </data>
+  <data name="wallet" xml:space="preserve">
+    <value>电子钱包，不久</value>
   </data>
   <data name="wp" xml:space="preserve">
     <value>白纸</value>
@@ -332,23 +447,5 @@
   </data>
   <data name="Yoji Kishi" xml:space="preserve">
     <value>Yoji Kishi</value>
-  </data>
-  <data name="Lead Mathematican" xml:space="preserve">
-    <value>数学家</value>
-  </data>
-  <data name="decentralizedsystem" xml:space="preserve">
-    <value>分散系统</value>
-  </data>
-  <data name="documents" xml:space="preserve">
-    <value>文件</value>
-  </data>
-  <data name="downloads" xml:space="preserve">
-    <value>加载</value>
-  </data>
-  <data name="feb" xml:space="preserve">
-    <value>二月</value>
-  </data>
-  <data name="wallet" xml:space="preserve">
-    <value>电子钱包，不久</value>
   </data>
 </root>
