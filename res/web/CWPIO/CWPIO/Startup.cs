@@ -36,7 +36,7 @@ namespace CWPIO
             {
                   new CultureInfo("en-US")
                 , new CultureInfo("ru-RU")
-                //, new CultureInfo("cn")
+                , new CultureInfo("zh-CN")
                 //, new CultureInfo("jp")
                 //, new CultureInfo("ru")
             };

@@ -117,7 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="downloads" xml:space="preserve">
+    <value>加载</value>
+  </data>
+  <data name="mail" xml:space="preserve">
+    <value>邮箱</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>名字</value>
+  </data>
+  <data name="participate" xml:space="preserve">
+    <value>参加</value>
+  </data>
+  <data name="reghelp" xml:space="preserve">
+    <value>请注册参加我们的ICO！ 注册后，请检查您的垃圾邮件/促销电子邮件文件夹。</value>
+  </data>
   <data name="wallet" xml:space="preserve">
-    <value>Wallet soon on</value>
+    <value>电子钱包，不久</value>
   </data>
 </root>

@@ -247,43 +247,43 @@
     <value>产品版本1.0用于系统管理员</value>
   </data>
   <data name="r10" xml:space="preserve">
-    <value />
+    <value>在独立实验室对产品进行测试</value>
   </data>
   <data name="r11" xml:space="preserve">
-    <value />
+    <value>Q2</value>
   </data>
   <data name="r12" xml:space="preserve">
-    <value />
+    <value>大规模生产的开始和技术支持服务的启动</value>
   </data>
   <data name="r13" xml:space="preserve">
-    <value />
+    <value>Q3</value>
   </data>
   <data name="r14" xml:space="preserve">
-    <value />
+    <value>开始销售在美国，欧洲和亚洲市场</value>
   </data>
   <data name="r2" xml:space="preserve">
-    <value />
+    <value>产品版本2.0瘦客户机</value>
   </data>
   <data name="r3" xml:space="preserve">
-    <value />
+    <value>产品版本3.0 VPN客户端和医疗数据库的访问密钥</value>
   </data>
   <data name="r4" xml:space="preserve">
-    <value />
+    <value>产品版本4.0是工作场所研究人员访问远程知识库</value>
   </data>
   <data name="r5" xml:space="preserve">
-    <value />
+    <value>产品版本5.0便携式工作场所与商业和游戏应用</value>
   </data>
   <data name="r6" xml:space="preserve">
-    <value />
+    <value>产品版本6.0便携式工作场所面向客户端 - 服务器应用程序</value>
   </data>
   <data name="r7" xml:space="preserve">
-    <value />
+    <value>创建CryptoWorkPlace概念</value>
   </data>
   <data name="r8" xml:space="preserve">
-    <value />
+    <value>预售代币</value>
   </data>
   <data name="r9" xml:space="preserve">
-    <value />
+    <value>预售代币</value>
   </data>
   <data name="report" xml:space="preserve">
     <value>据Chainalysis报道
@@ -304,19 +304,19 @@
     <value>鲁斯兰 皮丘金</value>
   </data>
   <data name="sailingt" xml:space="preserve">
-    <value />
+    <value>代币的预售数量</value>
   </data>
   <data name="sale" xml:space="preserve">
     <value>销售代币</value>
   </data>
   <data name="solution" xml:space="preserve">
-    <value />
+    <value>CWP-就是解决方案</value>
   </data>
   <data name="svo" xml:space="preserve">
     <value />
   </data>
   <data name="tc" xml:space="preserve">
-    <value />
+    <value>代币价格</value>
   </data>
   <data name="toggle" xml:space="preserve">
     <value />
@@ -325,15 +325,30 @@
     <value />
   </data>
   <data name="wp" xml:space="preserve">
-    <value />
+    <value>白纸</value>
   </data>
   <data name="year" xml:space="preserve">
-    <value />
+    <value>年</value>
   </data>
   <data name="Yoji Kishi" xml:space="preserve">
     <value>Yoji Kishi</value>
   </data>
   <data name="Lead Mathematican" xml:space="preserve">
     <value>数学家</value>
+  </data>
+  <data name="decentralizedsystem" xml:space="preserve">
+    <value>分散系统</value>
+  </data>
+  <data name="documents" xml:space="preserve">
+    <value>文件</value>
+  </data>
+  <data name="downloads" xml:space="preserve">
+    <value>加载</value>
+  </data>
+  <data name="feb" xml:space="preserve">
+    <value>二月</value>
+  </data>
+  <data name="wallet" xml:space="preserve">
+    <value>电子钱包，不久</value>
   </data>
 </root>
