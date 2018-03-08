@@ -94,10 +94,4 @@
   <ItemGroup>
     <Folder Include="Auth\" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Remove="appsettings.Development.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Remove="appsettings.json" />
-  </ItemGroup>
 </Project>
