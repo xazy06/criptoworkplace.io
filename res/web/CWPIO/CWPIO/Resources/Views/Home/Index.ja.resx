@@ -162,6 +162,9 @@
   <data name="cto" xml:space="preserve">
     <value>CTO</value>
   </data>
+  <data name="cvo" xml:space="preserve">
+    <value>CVO</value>
+  </data>
   <data name="decentralizedsystem" xml:space="preserve">
     <value>Decentralized system</value>
   </data>
@@ -183,6 +186,9 @@ on the network, and a distributed registry of statuses</value>
   <data name="exploit" xml:space="preserve">
     <value>Exploit</value>
   </data>
+  <data name="feb" xml:space="preserve">
+    <value>February</value>
+  </data>
   <data name="hack" xml:space="preserve">
     <value>Взлом</value>
   </data>
@@ -191,6 +197,9 @@ on the network, and a distributed registry of statuses</value>
   </data>
   <data name="head" xml:space="preserve">
     <value>based on a personal computer the size of a USB flash drive</value>
+  </data>
+  <data name="Head of Hardware Production" xml:space="preserve">
+    <value>Head of Hardware Production</value>
   </data>
   <data name="head sub" xml:space="preserve">
     <value>The CryptoWorkPlace Micro-PC is not only a secure key storage, it is a fully independent PC with an operating system and applications</value>
@@ -210,11 +219,11 @@ on the network, and a distributed registry of statuses</value>
   <data name="kcells1" xml:space="preserve">
     <value />
   </data>
+  <data name="Lead Mathematician" xml:space="preserve">
+    <value>Lead Mathematician</value>
+  </data>
   <data name="looses" xml:space="preserve">
     <value />
-  </data>
-  <data name="feb" xml:space="preserve">
-    <value>February</value>
   </data>
   <data name="march" xml:space="preserve">
     <value>March</value>
@@ -302,6 +311,9 @@ on the network, and a distributed registry of statuses</value>
   <data name="reportlink" xml:space="preserve">
     <value>report</value>
   </data>
+  <data name="roadmaph" xml:space="preserve">
+    <value>ROAD&lt;span&gt;MAP&lt;/span&gt;</value>
+  </data>
   <data name="round" xml:space="preserve">
     <value>ROUND OF TOKEN PRE-SALE</value>
   </data>
@@ -317,47 +329,14 @@ on the network, and a distributed registry of statuses</value>
   <data name="sale" xml:space="preserve">
     <value>TOKEN &lt;span&gt;SALE&lt;/span&gt;</value>
   </data>
-  <data name="solution" xml:space="preserve">
-    <value>CWP is the &lt;br&gt;&lt;span&gt;solution&lt;/span&gt;</value>
-  </data>
-  <data name="cvo" xml:space="preserve">
-    <value>CVO</value>
-  </data>
-  <data name="tc" xml:space="preserve">
-    <value>PRICE OF THE TOKEN</value>
-  </data>
-  <data name="toggle" xml:space="preserve">
-    <value>TOGGLE TOKEN CODE</value>
-  </data>
-  <data name="Wagan Sarukhanov" xml:space="preserve">
-    <value>Wagan Sarukhanov</value>
-  </data>
-  <data name="wp" xml:space="preserve">
-    <value>WHITE PAPER</value>
-  </data>
-  <data name="year" xml:space="preserve">
-    <value>YEAR</value>
-  </data>
-  <data name="Yoji Kishi" xml:space="preserve">
-    <value>Yoji Kishi</value>
-  </data>
-  <data name="roadmaph" xml:space="preserve">
-    <value>ROAD&lt;span&gt;MAP&lt;/span&gt;</value>
-  </data>
-  <data name="Head of Hardware Production" xml:space="preserve">
-    <value>Head of Hardware Production</value>
-  </data>
-  <data name="Lead Mathematician" xml:space="preserve">
-    <value>Lead Mathematician</value>
-  </data>
   <data name="Senior System Analyst" xml:space="preserve">
     <value>Senior System Analyst</value>
   </data>
   <data name="Software Engineer" xml:space="preserve">
     <value>Software Engineer</value>
   </data>
-  <data name="up2" xml:space="preserve">
-    <value>Up to</value>
+  <data name="solution" xml:space="preserve">
+    <value>CWP is the &lt;br&gt;&lt;span&gt;solution&lt;/span&gt;</value>
   </data>
   <data name="t1" xml:space="preserve">
     <value>Kintaro Power Cells Japan President
@@ -374,6 +353,14 @@ More than 20 projects in various industries
 Mentor
 
 Wagan's competencies help the project in the business development and technical issues of product development and manufacturing</value>
+  </data>
+  <data name="t11" xml:space="preserve">
+    <value>Rare type of High-edge Japanese technology specialist with wide international marketing experience.
+                            &lt;br /&gt;Shin-Nippon Research (Hong Kong) Co., Ltd. Vice-President
+                            &lt;br /&gt;International Society of Stem Cells Development , Director
+                            &lt;br /&gt;5hz Medical Supplies (Xiamen, China) Co., Ltd. Vice-president
+                            &lt;br /&gt;Kintaro Cells Power Co., Member of Board of Director
+                            &lt;br /&gt;Ryukyukan International Kobudo Karate Federation, Honor Member</value>
   </data>
   <data name="t2" xml:space="preserve">
     <value>Microsoft Certified Professional
@@ -450,12 +437,25 @@ Ruslan is a popular blockchain expert, lawyer and economist, all this allows him
 Alexey is working on the development of the blockchain system in Playkey for 1.5 years. Manages the infrastructure of more than 1,000 video cards. Developed a unique solution for the mining of cryptocurrency on gaming platforms.
 Alexey's competencies help the project in the technical issues of TGE.</value>
   </data>
-  <data name="t11" xml:space="preserve">
-    <value>Rare type of High-edge Japanese technology specialist with wide international marketing experience.
-                            &lt;br /&gt;Shin-Nippon Research (Hong Kong) Co., Ltd. Vice-President
-                            &lt;br /&gt;International Society of Stem Cells Development , Director
-                            &lt;br /&gt;5hz Medical Supplies (Xiamen, China) Co., Ltd. Vice-president
-                            &lt;br /&gt;Kintaro Cells Power Co., Member of Board of Director
-                            &lt;br /&gt;Ryukyukan International Kobudo Karate Federation, Honor Member</value>
+  <data name="tc" xml:space="preserve">
+    <value>PRICE OF THE TOKEN</value>
+  </data>
+  <data name="toggle" xml:space="preserve">
+    <value>TOGGLE TOKEN CODE</value>
+  </data>
+  <data name="up2" xml:space="preserve">
+    <value>Up to</value>
+  </data>
+  <data name="Wagan Sarukhanov" xml:space="preserve">
+    <value>Wagan Sarukhanov</value>
+  </data>
+  <data name="wp" xml:space="preserve">
+    <value>WHITE PAPER</value>
+  </data>
+  <data name="year" xml:space="preserve">
+    <value>YEAR</value>
+  </data>
+  <data name="Yoji Kishi" xml:space="preserve">
+    <value>Yoji Kishi</value>
   </data>
 </root>

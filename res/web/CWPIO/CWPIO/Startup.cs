@@ -37,8 +37,7 @@ namespace CWPIO
                   new CultureInfo("en-US")
                 , new CultureInfo("ru-RU")
                 , new CultureInfo("zh-CN")
-                //, new CultureInfo("jp")
-                //, new CultureInfo("ru")
+                //, new CultureInfo("ja-JP")
             };
 
             services.Configure<RequestLocalizationOptions>(options =>
