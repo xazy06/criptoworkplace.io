@@ -123,3 +123,4 @@ PublishScripts/
 node_modules/
 res/web/CWPIO/CWPIO/appsettings.Development.json
 res/web/CWPIO/CWPIO/appsettings.json
+tx.exe
