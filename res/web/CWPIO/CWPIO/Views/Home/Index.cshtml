@@ -9,7 +9,17 @@
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="home1-hero-left">
                     <h1 class="h1hl-title">
-                        <span class="bold">@Locale["decentralizedsystem"]</span> @Locale["head"]
+                        <locale exclude="ja-JP">
+                            <span class="bold">
+                                @Locale["decentralizedsystem"]
+                            </span> 
+                            
+                            @Locale["head"]
+                        </locale>
+                        
+                        <locale include="ja-JP">
+                            @Locale["head"]
+                        </locale>
                     </h1>
                     <p class="h1hl-text">
                         @Locale["head sub"]
