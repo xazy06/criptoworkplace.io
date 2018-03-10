@@ -1,0 +1,51 @@
+[main]
+host = https://www.transifex.com
+
+[cryptoworkplace-io-website.sharedresource-resx]
+file_filter = res/web/CWPIO/CWPIO/Resources/SharedResource.<lang>.resx
+minimum_perc = 0
+source_file = res/web/CWPIO/CWPIO/Resources/SharedResource.resx
+source_lang = en
+type = RESX
+
+[cryptoworkplace-io-website.services-emailsender-resx]
+file_filter = res/web/CWPIO/CWPIO/Resources/Services.EmailSender.<lang>.resx
+minimum_perc = 0
+source_file = res/web/CWPIO/CWPIO/Resources/Services.EmailSender.resx
+source_lang = en
+type = RESX
+
+[cryptoworkplace-io-website.homecontroller-resx]
+file_filter = res/web/CWPIO/CWPIO/Resources/Controllers/HomeController.<lang>.resx
+minimum_perc = 0
+source_file = res/web/CWPIO/CWPIO/Resources/Controllers/HomeController.resx
+source_lang = en
+type = RESX
+
+[cryptoworkplace-io-website.index-resx]
+file_filter = res/web/CWPIO/CWPIO/Resources/Views/Home/Index.<lang>.resx
+minimum_perc = 0
+source_file = res/web/CWPIO/CWPIO/Resources/Views/Home/Index.resx
+source_lang = en
+type = RESX
+
+[cryptoworkplace-io-website.unsubscribe-resx]
+file_filter = res/web/CWPIO/CWPIO/Resources/Views/Home/Unsubscribe.<lang>.resx
+minimum_perc = 0
+source_file = res/web/CWPIO/CWPIO/Resources/Views/Home/Unsubscribe.resx
+source_lang = en
+type = RESX
+
+[cryptoworkplace-io-website.header-resx]
+file_filter = res/web/CWPIO/CWPIO/Resources/Views/Shared/_Header.<lang>.resx
+minimum_perc = 0
+source_file = res/web/CWPIO/CWPIO/Resources/Views/Shared/_Header.resx
+source_lang = en
+type = RESX
+
+[cryptoworkplace-io-website.footer-resx]
+file_filter = res/web/CWPIO/CWPIO/Resources/Views/Shared/_Footer.<lang>.resx
+minimum_perc = 0
+source_file = res/web/CWPIO/CWPIO/Resources/Views/Shared/_Footer.resx
+source_lang = en
+type = RESX
