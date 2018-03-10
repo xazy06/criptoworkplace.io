@@ -118,43 +118,43 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="1page" xml:space="preserve">
-    <value>ONE PAGE</value>
+    <value>1 ページ</value>
   </data>
   <data name="50part" xml:space="preserve">
-    <value>50% OF TOTAL</value>
+    <value>合計の50%</value>
   </data>
   <data name="adv" xml:space="preserve">
-    <value>ADVISERS</value>
+    <value>アドバイザー</value>
   </data>
   <data name="Alexander Podelko" xml:space="preserve">
-    <value>Alexander Podelko</value>
+    <value>アレキサンドル・ポデルコ</value>
   </data>
   <data name="Alexey Gladkov" xml:space="preserve">
-    <value>Alexey Gladkov</value>
+    <value>アレクセイ・グラドコフ</value>
   </data>
   <data name="Alexey Lykov" xml:space="preserve">
     <value>Alexey Lykov</value>
   </data>
   <data name="amfeac" xml:space="preserve">
-    <value>AMAZING FEATURES</value>
+    <value>特別機能</value>
   </data>
   <data name="Anton Maslov" xml:space="preserve">
-    <value>Anton Maslov</value>
+    <value>アントン・マスロフ</value>
   </data>
   <data name="Anton Polyansky" xml:space="preserve">
-    <value>Anton Polyansky</value>
+    <value>アントン・ポリアンスキー</value>
   </data>
   <data name="april" xml:space="preserve">
-    <value>April</value>
+    <value>４月</value>
   </data>
   <data name="Artur Enokyan" xml:space="preserve">
-    <value>Artur Enokyan</value>
+    <value>アルトュール・エノキアン</value>
   </data>
   <data name="awsperf" xml:space="preserve">
-    <value>AWESOME &lt;span class="bold"&gt;PERFORMANCE&lt;/span&gt;</value>
+    <value>高性能</value>
   </data>
   <data name="buildin" xml:space="preserve">
-    <value>BUILT-IN &lt;span class="bold"&gt;CRYPTO-STORAGE&lt;/span&gt;</value>
+    <value>クリプトストレージを内蔵</value>
   </data>
   <data name="ceo" xml:space="preserve">
     <value>CEO</value>
@@ -166,43 +166,42 @@
     <value>CVO</value>
   </data>
   <data name="decentralizedsystem" xml:space="preserve">
-    <value>Decentralized system</value>
+    <value>分散システム</value>
   </data>
   <data name="decentrsys" xml:space="preserve">
-    <value>CWP is a decentralized ecosystem based on a blockchain technology that includes a
-Micro-PC that enables applications to run in a secure, isolated environment, special
-software, a set of web portal services designed to organize protection against threats
-on the network, and a distributed registry of statuses</value>
+    <value>CWPは、ブロックチェーン技術に基づいた分散型エコシステムです。 アプリケーションを安全で隔離された環境で動作させるマイクロパソコン
+ソフトウェアと脅威から保護を組織するために設計された一連のWeb ポータルサービスネットワーク上の状態の分散レジストリーを備えていま す</value>
   </data>
   <data name="Denis Kuznetsov" xml:space="preserve">
-    <value>Denis Kuznetsov</value>
+    <value>デニス・クズネツォフ</value>
   </data>
   <data name="disc" xml:space="preserve">
-    <value>EARLY BIRDS DISCOUNTS</value>
+    <value>前売り割引</value>
   </data>
   <data name="en" xml:space="preserve">
-    <value>En</value>
+    <value>英語</value>
   </data>
   <data name="exploit" xml:space="preserve">
     <value>Exploit</value>
   </data>
   <data name="feb" xml:space="preserve">
-    <value>February</value>
+    <value>２月</value>
   </data>
   <data name="hack" xml:space="preserve">
     <value>Взлом</value>
   </data>
   <data name="hcap" xml:space="preserve">
-    <value>hard cap</value>
+    <value>ハードキャップ</value>
   </data>
   <data name="head" xml:space="preserve">
-    <value>based on a personal computer the size of a USB flash drive</value>
+    <value>USBサイズの分散型システムコンピューター</value>
   </data>
   <data name="Head of Hardware Production" xml:space="preserve">
-    <value>Head of Hardware Production</value>
+    <value>ハードウェアエンジニア</value>
   </data>
   <data name="head sub" xml:space="preserve">
-    <value>The CryptoWorkPlace Micro-PC is not only a secure key storage, it is a fully independent PC with an operating system and applications</value>
+    <value>CryptoWorkPlaceのマイクロパソコンは安全な鍵ストレージであるだけで
+なく、オペレーティングシステムとアプリケーションを備えた完全に独立し たパソコンです</value>
   </data>
   <data name="icape" xml:space="preserve">
     <value />
@@ -211,7 +210,7 @@ on the network, and a distributed registry of statuses</value>
     <value />
   </data>
   <data name="idea" xml:space="preserve">
-    <value>The idea of a microcomputer</value>
+    <value>マイクロコンピューター</value>
   </data>
   <data name="kcells" xml:space="preserve">
     <value />
@@ -220,169 +219,165 @@ on the network, and a distributed registry of statuses</value>
     <value />
   </data>
   <data name="Lead Mathematician" xml:space="preserve">
-    <value>Lead Mathematician</value>
+    <value>数学者
+数学者</value>
   </data>
   <data name="looses" xml:space="preserve">
     <value />
   </data>
   <data name="march" xml:space="preserve">
-    <value>March</value>
+    <value>３月</value>
   </data>
   <data name="Maxim Maslich" xml:space="preserve">
-    <value>Maxim Maslich</value>
+    <value>マクシム・マスリッヒ</value>
   </data>
   <data name="meet" xml:space="preserve">
-    <value>&lt;h4&gt;Meet Our&lt;/h4&gt;&lt;h2&gt;TEAM&lt;/h2&gt;</value>
+    <value>&lt;h4&gt;チーム紹介&lt;/h4&gt;</value>
   </data>
   <data name="memiss" xml:space="preserve">
-    <value>MAX. EMISSION OF TOKENS</value>
+    <value>トークンの最大販売数</value>
   </data>
   <data name="particsale" xml:space="preserve">
-    <value>Participate in the Token Sale</value>
+    <value>トークン販売に参加する</value>
   </data>
   <data name="partners" xml:space="preserve">
-    <value>Partners</value>
+    <value>パートナー</value>
   </data>
   <data name="pat" xml:space="preserve">
-    <value>Patenting</value>
+    <value>特許</value>
   </data>
   <data name="phishing" xml:space="preserve">
     <value>Phishing</value>
   </data>
   <data name="prevmelt" xml:space="preserve">
-    <value>PREVENTING MELTDOWN &amp;amp; &lt;span class="bold"&gt;SPECTRE ATTACKS&lt;/span&gt;</value>
+    <value>メルトダウンとスペクター攻撃を予防</value>
   </data>
   <data name="problem" xml:space="preserve">
-    <value>Blockchain &lt;br&gt;&lt;span&gt;Problem&lt;/span&gt;</value>
+    <value>ブロックチェーン問題</value>
   </data>
   <data name="qa" xml:space="preserve">
     <value />
   </data>
   <data name="r1" xml:space="preserve">
-    <value>Product version 1.0 for system administrators</value>
+    <value>システム管理者用製品バージョン1.0</value>
   </data>
   <data name="r10" xml:space="preserve">
-    <value>Testing of the product in independent laboratories</value>
+    <value>独立した試験場での製品のテスト</value>
   </data>
   <data name="r11" xml:space="preserve">
     <value>Q2</value>
   </data>
   <data name="r12" xml:space="preserve">
-    <value>The start of mass production and launching of technical support services</value>
+    <value>大量生産の開始と技術サポートサービスの開始</value>
   </data>
   <data name="r13" xml:space="preserve">
     <value>Q3</value>
   </data>
   <data name="r14" xml:space="preserve">
-    <value>The start of sales in USA, Europe and Asian markets</value>
+    <value>米国、欧州、アジア市場での販売開始</value>
   </data>
   <data name="r2" xml:space="preserve">
-    <value>Product version 2.0 thin client</value>
+    <value>顧客用の製品バージョン2.0</value>
   </data>
   <data name="r3" xml:space="preserve">
-    <value>Product version 3.0 VPN client and the access key to the medical database</value>
+    <value>製品バージョン3.0およびVPNクライアントと医療データベースへのアクセ
+スキー</value>
   </data>
   <data name="r4" xml:space="preserve">
-    <value>Product version 4.0 a researcher's workplace for access to remote knowledge bases</value>
+    <value>リモートナレッジベースにアクセスするためのの製品バージョン4.0の研
+究者の職場</value>
   </data>
   <data name="r5" xml:space="preserve">
-    <value>Product version 5.0 portable workplace with business and gaming applications</value>
+    <value>ビジネスおよびゲームアプリケーションを備えた製品バージョン5.0</value>
   </data>
   <data name="r6" xml:space="preserve">
-    <value>Product version 6.0 portable workstation oriented to client-server applications</value>
+    <value>クラアインと/サーバーアプリケーション向けの製品バージョン6.0ポータブ ルワークステーション</value>
   </data>
   <data name="r7" xml:space="preserve">
-    <value>Creating a CryptoWorkPlace concept</value>
+    <value>CryptoWorkPlace コンセプトの作成</value>
   </data>
   <data name="r8" xml:space="preserve">
-    <value>Token Pre-Sale</value>
+    <value>トークンの前売</value>
   </data>
   <data name="r9" xml:space="preserve">
-    <value>Token Sale, Launching of the Web Portal beta</value>
+    <value>トークン販売・ WEBポータルベータの開始</value>
   </data>
   <data name="report" xml:space="preserve">
-    <value>According to a Chainalysis
-                            &lt;a href="https://blog.chainalysis.com/the-rise-of-cybercrime-on-ethereum/" target="_blank"&gt;report&lt;/a&gt;
-                            &lt;br&gt;
-                            the world is seeing a meteoric rise in cybercrime targeting ICOs. In June 2017 alone&lt;br&gt;
-                            investors loses from such actions reached $100M while in August they were above&lt;br&gt;
-                            &lt;strong&gt;$220M&lt;/strong&gt;.</value>
+    <value>チェーンアナラシスの報告書によると、ICOを対象としたサイバー犯罪が
+世界的に急増しています。 2017年6月だけでも、投資家の損失は1億ド ルに達し、同年8月には2200万ドルを超えました。</value>
   </data>
   <data name="reportlink" xml:space="preserve">
-    <value>report</value>
+    <value>報告</value>
   </data>
   <data name="roadmaph" xml:space="preserve">
     <value>ROAD&lt;span&gt;MAP&lt;/span&gt;</value>
   </data>
   <data name="round" xml:space="preserve">
-    <value>ROUND OF TOKEN PRE-SALE</value>
+    <value>トークン事前販売のラウンド</value>
   </data>
   <data name="ru" xml:space="preserve">
-    <value>Ru</value>
+    <value>ロシア語</value>
   </data>
   <data name="Ruslan Pichugin" xml:space="preserve">
-    <value>Ruslan Pichugin</value>
+    <value>ルスラン・ピチュギンn</value>
   </data>
   <data name="sailingt" xml:space="preserve">
-    <value>NUMBER OF TOKENS FOR SALE</value>
+    <value>トークンの販売数</value>
   </data>
   <data name="sale" xml:space="preserve">
-    <value>TOKEN &lt;span&gt;SALE&lt;/span&gt;</value>
+    <value>トークン販売</value>
   </data>
   <data name="Senior System Analyst" xml:space="preserve">
-    <value>Senior System Analyst</value>
+    <value>シニアシステムアナリスト</value>
   </data>
   <data name="Software Engineer" xml:space="preserve">
-    <value>Software Engineer</value>
+    <value>ソフトウェアエンジニア</value>
   </data>
   <data name="solution" xml:space="preserve">
-    <value>CWP is the &lt;br&gt;&lt;span&gt;solution&lt;/span&gt;</value>
+    <value>CWPは解決策です</value>
   </data>
   <data name="t1" xml:space="preserve">
-    <value>Kintaro Power Cells Japan President
-MapMess Inc. Regional Director
-Founding director of the research company AV-Cells Singapore
-30 years of experience in running own business
-20 years of doing business in Singapore and Japan</value>
+    <value>株式会社金太郎 Cells Power表取締役
+MapMess Inc.地域ディレクター 調査会社AV-Cells Singaporeの創立者
+自らの事業を営む30年の経験
+シンガポールと日本での20年間のビジネス経験</value>
   </data>
   <data name="t10" xml:space="preserve">
-    <value>CEO Flexlab
-Blockchain researcher and expert
-30 years of experience in contract manufacturing of electronics and software
-More than 20 projects in various industries
-Mentor
-
-Wagan's competencies help the project in the business development and technical issues of product development and manufacturing</value>
+    <value>CEO Flexlab ブロックチェーンの研究者と専門家
+電子製品とソフトウェアの契約製㐀における30年の経験
+さまざまな業界で20個以上のプロジェクトを管理
+メンター 事業開発、製品開発と製㐀の技術的課題のプロジェクトを援助します</value>
   </data>
   <data name="t11" xml:space="preserve">
-    <value>Rare type of High-edge Japanese technology specialist with wide international marketing experience.
-                            &lt;br /&gt;Shin-Nippon Research (Hong Kong) Co., Ltd. Vice-President
-                            &lt;br /&gt;International Society of Stem Cells Development , Director
-                            &lt;br /&gt;5hz Medical Supplies (Xiamen, China) Co., Ltd. Vice-president
-                            &lt;br /&gt;Kintaro Cells Power Co., Member of Board of Director
-                            &lt;br /&gt;Ryukyukan International Kobudo Karate Federation, Honor Member</value>
+    <value>幅広い国際的なマーケティング経験を持つ、ハイエンド日本の技術専門
+&lt;br/&gt;家。新日本メディカルリサーチ有限公司（香港）副社長
+&lt;br/&gt;国際幹細胞開発学会理事
+&lt;br/&gt;5hz（厦門）医療用品有限公司　副総経理
+&lt;br/&gt;株式会社金太郎Cells Power取締役
+&lt;br/&gt;琉球大学国際空手連盟名誉会員</value>
   </data>
   <data name="t2" xml:space="preserve">
-    <value>Microsoft Certified Professional
-Microsoft Certified Technology Specialist Exam 511
-Blockchain and smart contracts developer
-An expert in the management of the software development process, the construction of distributed, highly loaded and secure systems
-Development of transport monitoring systems (cargo, passenger cars, special equipment, passenger transportation, weight control, production line control, taxi park automation) for Alrosa, GAZPROM, Lukoil, Rusal, RZD, Satori, Autoline, city taxi.</value>
+    <value>マイクロソフト認定プロフェッショナル
+マイクロソフト認定技術スペシャリスト試験511 ブロックチェーンとスマート契約開発者
+ソフトウェア開発プロセスの管理、分散された高負荷の安全なシステム の構築
+Alrosa、GAZPROM、Lukoil、Rusal、RZD、Satori、Autoline、タクシー
+などの輸送監視システム（貨物、乗用車、特殊装備、旅客輸送、重量制
+御、生産ライン制御、タクシーパーク自動化）の開発</value>
   </data>
   <data name="t3" xml:space="preserve">
-    <value>Senior JavaScript Developer Full-Stack
-Certified Middle End Android Developer
-Certified Middle End iOS Developer
-Java EE, С#, PHP, Lua, Python, GO developer,
-Unity 3D developer,
-Expert in developing Highload applications
-Custom Trading Platforms Development
-Development of special software for major retailers
-Cryptography, electronic document management
-Development of special software for the Ministry of Defense of Russia
-Development of special software and participation in the development of software and hardware for federal agencies of the Russian Federation
-Development of special software - for monitoring and managing network security
-Development of implemented collector agents for analyzing and collecting data on network and peripheral PC activity</value>
+    <value>
+シニアJavaScript開発者フルスタック 公認ミドルエンドAndroid開発者
+認定済みミドルエンドiOS開発者
+Java EE、С＃、PHP、Lua、Python、GO開発者、 Unity 3D開発者、 Highloadアプリケーション開発の専門家
+カスタム取引プラットフォームの開発
+大手小売業向けの特別なソフトウェアの開発
+暗号化、電子文書管理
+ロシア国防総省専用ソフトウェアの開発
+特別ソフトウェアの開発とロシア連邦政府機関向けのソフトウェアとハー
+ドウェアの開発への参加
+特別なソフトウェアの開発 - ネットワークセキュリティの監視と管理
+ネットワークや周辺PCの活動でデータを分析および収集するための実
+装コレクタエージェントの開発</value>
   </data>
   <data name="t4" xml:space="preserve">
     <value>Hardware Engineer
@@ -395,67 +390,72 @@ Development of microminiature biometric sensors and processor control system for
 Development of embedded data transmission systems based on Wi-Fi, GSM and Bluetooth technologies</value>
   </data>
   <data name="t5" xml:space="preserve">
-    <value>Lead Mathematician, Senior Architect Developer
-Lead Mathematician, Senior Architect Developer
-Embedded Systems Programmer
-Expert in Machine Learning and AI
-Development of an agent for the conduct of non-targeted dialogue in the banking system
-Development Telegram-bots with AI support
-Embedded Software Development for Quinta Music Recognition System Devices
-Co-author of a patent for music recognition algorithms</value>
+    <value>数学者
+シニアシステムアナリスト、PHPデベロッパー
+DAICHI物流ビジネスプロセスの最適化と自動化
+METRO C＆C、Lentaのさまざまな統合によるマルチモジュール高負荷
+システムのシステム解析
+1Cと統合されたIKEAの生産のためのTOC（制約の理論）のための供給
+計画システムの開発
+音楽認識アルゴリズムの特許の共同開発者</value>
   </data>
   <data name="t6" xml:space="preserve">
-    <value>Senior System Analyst, PHP-Developer
-Senior System Analyst, PHP-Developer
-Optimization and automation of DAICHI logistics business processes
-System analytics of multimodule high-loaded systems with various integrations for METRO C &amp; C, Lenta
-The development of a supply planning system for TOC (Theory of Constraints) for the production of IKEA, integrated with 1C
-Product development and positioning management</value>
+    <value>シニアシステムアナリスト シニアシステムアナリスト、PHPデベロッパー
+DAICHI物流ビジネスプロセスの最適化と自動化
+METRO C＆C、Lentaのさまざまな統合によるマルチモジュール高負荷
+システムのシステム解析
+1Cと統合されたIKEAの生産のためのTOC（制約の理論）のための供給
+計画システムの開発
+製品開発とポジショニング管理</value>
   </data>
   <data name="t7" xml:space="preserve">
-    <value>An expert in software development and testing
-Member of the Board of Directors of the Computer Measurement Group
-Oracle, Consulting Member of Technical Staff
-Hyperion, Distinguished Performance Engineer 
-Aetna, Sr. Architect II
-
-Alexander coordinates the sales and production of the product for the US market, the management of the project's branch in the United States, the interaction with major US partner companies that provide scientific and technical support for the project.
-
-Alexander has 30 years of experience in software testing, which allows him to organize the interaction of the project with the largest players in the software testing market, such as QAMentor.</value>
+    <value>博士号、MBA
+ソフトウェア開発とテストの専門家
+コンピュータ計測グループ取締役会会員
+オラクル、コンサルティングの技術スタッフ
+Hyperion、著名なパフォーマンスエンジニア
+Aetna、Sr. Architect II&lt;br/&gt;アレクサンダーは、米国市場向けの製品の販売と生産、米国のプロジェ クト支店の管理、プロジェクトの科学的および技術的サポートを提供する 主要な米国のパートナー企業との交流を調整します。&lt;br/&gt;アレクサンダーはソフトウェアテストで30年の経験を持ち、QAMentorな
+どのソフトウェアテスト市場の大手プロジェクトのやりとりを組織すること ができます。</value>
   </data>
   <data name="t8" xml:space="preserve">
-    <value>CEO &amp; Founder SandCoin
-Founder Yocto Games 
-Collaboration with Chillingo, Electronic Arts, Microsoft Studios
-
-Ruslan is the head of several projects, one of which recently successfully completed the ICO.
-
-Ruslan is a popular blockchain expert, lawyer and economist, all this allows him to oversee the important organizational, marketing and economic issues faced by the founders of the project.</value>
+    <value>サンドコイン　創立者兼CEO サンドコイン　創立者兼CEO
+ヨクトゲームズ　創立者
+Chillingo、Electronic Arts、Microsoft Studiosとのコラボレーション 最近ICOを成功さたプロジェクトを含めた多数のプロジェクトの管理経験
+あるブロックチェーンの専門家、弁護士および経済学者です。これによ
+り、プロジェクトの創設者が直面する重要な組織面、マーケティング面や
+経済面の問題を監督することができます。</value>
   </data>
   <data name="t9" xml:space="preserve">
-    <value>Alexey is a technical specialist with 20 years of experience. He has extensive experience working with high-loaded systems. He develops platform solutions of any complexity.
-Alexey is working on the development of the blockchain system in Playkey for 1.5 years. Manages the infrastructure of more than 1,000 video cards. Developed a unique solution for the mining of cryptocurrency on gaming platforms.
-Alexey's competencies help the project in the technical issues of TGE.</value>
+    <value>CTOプレイキー&lt;br/&gt;20年の経験を持つ技術専門家であり、高負荷システムでの豊富な経験
+を持ち、複雑なプラットフォームソリューションを開発しています。 アレクセイは、Playkeyのブロックチェーンシステムを1年半開発し、
+1,000以上のビデオカードのインフラストラクチャを管理しています。 ゲー ムプラットフォームでの暗号侵害のマイニングのための独特なソリュー
+ションを開発しました。 アレクセイの専門知識は、TGEの技術面の問題の解決に役立ちます</value>
   </data>
   <data name="tc" xml:space="preserve">
-    <value>PRICE OF THE TOKEN</value>
+    <value>トークンの値段</value>
   </data>
   <data name="toggle" xml:space="preserve">
-    <value>TOGGLE TOKEN CODE</value>
+    <value>トークンコードをTOGGLE</value>
   </data>
   <data name="up2" xml:space="preserve">
     <value>Up to</value>
   </data>
   <data name="Wagan Sarukhanov" xml:space="preserve">
-    <value>Wagan Sarukhanov</value>
+    <value>ワガン・サルカノフ</value>
   </data>
   <data name="wp" xml:space="preserve">
-    <value>WHITE PAPER</value>
+    <value>フワイトペーパー</value>
   </data>
   <data name="year" xml:space="preserve">
-    <value>YEAR</value>
+    <value>一年</value>
   </data>
   <data name="Yoji Kishi" xml:space="preserve">
-    <value>Yoji Kishi</value>
+    <value>岸洋路</value>
+  </data>
+  <data name="documents" xml:space="preserve">
+    <value>書類</value>
+  </data>
+  <data name="downloads" xml:space="preserve">
+    <value>ダウンロード</value>
   </data>
 </root>

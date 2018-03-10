@@ -118,21 +118,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="contacts" xml:space="preserve">
-    <value>Contacts</value>
+    <value>連絡先</value>
   </data>
   <data name="documents" xml:space="preserve">
-    <value>DOCUMENTS</value>
+    <value>書類</value>
   </data>
   <data name="product" xml:space="preserve">
-    <value>PRODUCT</value>
+    <value>製品</value>
   </data>
   <data name="roadmap" xml:space="preserve">
-    <value>ROADMAP</value>
+    <value>ロードマップ</value>
   </data>
   <data name="team" xml:space="preserve">
-    <value>Team</value>
+    <value>チーム</value>
   </data>
   <data name="token" xml:space="preserve">
-    <value>TOKEN</value>
+    <value>トークン</value>
   </data>
 </root>

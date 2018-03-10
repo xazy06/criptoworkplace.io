@@ -118,18 +118,22 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="downloads" xml:space="preserve">
-    <value />
+    <value>ダウンロード</value>
   </data>
   <data name="mail" xml:space="preserve">
-    <value />
+    <value>メールアドレス</value>
   </data>
   <data name="name" xml:space="preserve">
-    <value />
+    <value>名前</value>
   </data>
   <data name="participate" xml:space="preserve">
-    <value />
+    <value>参加</value>
   </data>
   <data name="reghelp" xml:space="preserve">
-    <value />
+    <value>弊社のICOの参加登録をお願いします。 登録後、迷惑メール/プロモー
+ションのメールフォルダーも確認してください。</value>
+  </data>
+  <data name="wallet" xml:space="preserve">
+    <value>ウエブ財布</value>
   </data>
 </root>
