@@ -1,7 +1,7 @@
 ﻿<div class="sidebar-header d-flex align-items-center">
     <div class="avatar"><img src="~/android-icon-48x48.png" alt="..." class="img-fluid rounded-circle"></div>
     <div class="title">
-        <h5>@User.Identity.Name</h5>
+        <h5 class="s-ellipsis">@User.Identity.Name</h5>
         <p>@(User.Claims.Where(c => c.Type == "UserTitle").FirstOrDefault()?.Value ?? "User")</p>
     </div>
 </div>
