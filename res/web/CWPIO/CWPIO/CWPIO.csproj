@@ -93,5 +93,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Auth\" />
+    <Folder Include="wwwroot\js\adapters" />
+    <Folder Include="wwwroot\js\components" />
+    <Folder Include="wwwroot\js\helpers" />
+    <Folder Include="wwwroot\js\models" />
+    <Folder Include="wwwroot\js\routes" />
+    <Folder Include="wwwroot\js\services" />
   </ItemGroup>
 </Project>
