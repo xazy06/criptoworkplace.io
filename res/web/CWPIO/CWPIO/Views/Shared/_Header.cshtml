@@ -3,24 +3,35 @@
         <div class="row">
             <div class="col-md-3 col-xs-8">
                 <div class="logo hidden-sm hidden-xs">
+                @if (ViewData["area"] == "my" )
+                {
+                    <a href="/">Crypto<span class="semibold">WorkPlace</span></a>
+                }
+                else
+                {
                     <a class="smoothscroll" href="#home">Crypto<span class="semibold">WorkPlace</span></a>
+                }
                 </div>
             </div>
             <div class="col-md-8 hidden-sm hidden-xs">
-                <div class="menu">
-                    <nav class="menu-list">
-                        <ul>
-                            <li class="active"><a class="smoothscroll" href="#home">@Locale["product"]</a></li>
-                            <li><a class="smoothscroll" href="#token">@Locale["token"]</a></li>
-                            @*                            <li><a target="_blank" href="~/static/wp.pdf">DOCUMENTS</a></li>*@
-                            <li><a class="smoothscroll" href="#docs">@Locale["documents"]</a></li>
-                            <li><a class="smoothscroll" href="#ROADMAP">@Locale["roadmap"]</a></li>
-                            <li><a class="smoothscroll" href="#team">@Locale["team"]</a></li>
-@*                            <li><a class="smoothscroll" href="#price">PRICE</a></li>*@
-                            <li><a class="smoothscroll" href="#contact">@Locale["contacts"]</a></li>
-                        </ul>
-                    </nav>
-                </div>
+                @if (ViewData["menu"] != "false")
+                {
+                
+                    <div class="menu">
+                        <nav class="menu-list">
+                            <ul>
+                                <li class="active"><a class="smoothscroll" href="#home">@Locale["product"]</a></li>
+                                <li><a class="smoothscroll" href="#token">@Locale["token"]</a></li>
+                                @*                            <li><a target="_blank" href="~/static/wp.pdf">DOCUMENTS</a></li>*@
+                                <li><a class="smoothscroll" href="#docs">@Locale["documents"]</a></li>
+                                <li><a class="smoothscroll" href="#ROADMAP">@Locale["roadmap"]</a></li>
+                                <li><a class="smoothscroll" href="#team">@Locale["team"]</a></li>
+                                @*                            <li><a class="smoothscroll" href="#price">PRICE</a></li>*@
+                                <li><a class="smoothscroll" href="#contact">@Locale["contacts"]</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                }
             </div>
             <div class="col-md-1 col-xs-4">
                 <div id="change-color" class="b-change-color"></div>
