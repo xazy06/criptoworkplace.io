@@ -55,6 +55,10 @@ namespace CWPIO.Services
             var res = await AddUserToContactList(email, name);
             if (res)
             {
+                var welcomeTemplateId = _mailSettings.Value.WelcomeTemplateId.ContainsKey(CultureInfo.CurrentUICulture.Name) ? 
+                        _mailSettings.Value.WelcomeTemplateId[CultureInfo.CurrentUICulture.Name] :
+                        _mailSettings.Value.WelcomeTemplateId["en-US"];
+            
                 MailjetRequest request = new MailjetRequest { Resource = Send.Resource }
                     .Property(Send.FromEmail, "info@cryptoworkplace.io")
                     .Property(Send.FromName, "CryptoWorkPlace Info")
@@ -149,10 +153,13 @@ namespace CWPIO.Services
 
                 if (response.IsSuccessStatusCode)
                 {
+                    var contactId = _mailSettings.Value.ContacListId.ContainsKey(CultureInfo.CurrentUICulture.Name) ? 
+                        _mailSettings.Value.ContacListId[CultureInfo.CurrentUICulture.Name] :
+                        _mailSettings.Value.ContacListId["en-US"];
                     request = new MailjetRequest { Resource = ContactManagecontactslists.Resource, ResourceId = ResourceId.Numeric(contactId) }
                         .Property(ContactManagecontactslists.ContactsLists, new JArray {
                             new JObject {
-                                { "ListId", _mailSettings.Value.ContacListId[CultureInfo.CurrentUICulture.Name].ToString() },
+                                { "ListId", contactId.ToString() },
                                 { "Action", "addnoforce" }
                             }
                         });
