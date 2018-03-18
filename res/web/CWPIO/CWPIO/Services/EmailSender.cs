@@ -63,7 +63,7 @@ namespace CWPIO.Services
                     .Property(Send.FromEmail, "info@cryptoworkplace.io")
                     .Property(Send.FromName, "CryptoWorkPlace Info")
                     .Property(Send.Subject, _localizer["Subscribe_Subject"].Value)
-                    .Property(Send.MjTemplateID, _mailSettings.Value.WelcomeTemplateId[CultureInfo.CurrentUICulture.Name])
+                    .Property(Send.MjTemplateID, welcomeTemplateId.ToString())
                     .Property(Send.MjTemplateLanguage, true)
                     .Property(Send.Vars, new JObject {
                     { "header", _localizer["Subscribe_Topic"].Value },
