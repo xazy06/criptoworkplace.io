@@ -153,13 +153,13 @@ namespace CWPIO.Services
 
                 if (response.IsSuccessStatusCode)
                 {
-                    var contactId = _mailSettings.Value.ContacListId.ContainsKey(CultureInfo.CurrentUICulture.Name) ? 
+                    var contactListId = _mailSettings.Value.ContacListId.ContainsKey(CultureInfo.CurrentUICulture.Name) ? 
                         _mailSettings.Value.ContacListId[CultureInfo.CurrentUICulture.Name] :
                         _mailSettings.Value.ContacListId["en-US"];
                     request = new MailjetRequest { Resource = ContactManagecontactslists.Resource, ResourceId = ResourceId.Numeric(contactId) }
                         .Property(ContactManagecontactslists.ContactsLists, new JArray {
                             new JObject {
-                                { "ListId", contactId.ToString() },
+                                { "ListId", contactListId.ToString() },
                                 { "Action", "addnoforce" }
                             }
                         });
