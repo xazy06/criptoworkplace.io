@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "target": "es5",
+    "lib": [
+      "dom",
+      "es2015",
+      "es2015.promise"
+    ],
+    "types": [
+      "vue-typescript-import-dts"
+    ],
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "module": "es2015",
+    "outFile": "wwwroot/dist/app-bandle.js",
+    "moduleResolution": "node"
+  },
+  "include": [
+    "./ClientApp/**/*.ts"
+  ],
+  "compileOnSave": true
+}
