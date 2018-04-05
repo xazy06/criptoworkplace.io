@@ -9,7 +9,12 @@
                 }
                 else
                 {
-                    <a class="smoothscroll" href="#home">Crypto<span class="semibold">WorkPlace</span></a>
+                    <a class="smoothscroll" href="#home">
+                        <span class="s-main-logo">
+                            <img src="~/static/Index_0002s_0002s_0002s_0001_CWP2.png"/>
+                        </span>
+                        <span class="semibold">CryptoWorkPlace</span>
+                    </a>
                 }
                 </div>
             </div>
@@ -20,6 +25,9 @@
                     <div class="menu">
                         <nav class="menu-list">
                             <ul>
+                                <li>
+                                    <a class="btn btn-sm btn-round btn-g" href="/">@Locale["white paper"]</a>
+                                </li>
                                 <li class="active"><a class="smoothscroll" href="#home">@Locale["product"]</a></li>
                                 <li><a class="smoothscroll" href="#token">@Locale["token"]</a></li>
                                 @*                            <li><a target="_blank" href="~/static/wp.pdf">DOCUMENTS</a></li>*@
@@ -36,16 +44,12 @@
             <div class="col-md-1 col-xs-4">
                 <div id="change-color" class="b-change-color"></div>
                 <div class="search dropdown hidden-sm hidden-xs">
-                    <a class="dropdown-toggle" href="#" style="color: #908f8f" data-toggle="dropdown">
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown">
 
-                        @if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName.Equals("en"))
-                        {
-                            <i class="fa fa-globe"></i>
-                        }
-                        else
-                        {
-                            @CultureInfo.CurrentCulture.ThreeLetterWindowsLanguageName
-                        }
+                        
+                        @CultureInfo.CurrentCulture.ThreeLetterWindowsLanguageName
+                        
+                        <i class="fa fa-angle-down"></i>    
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="language-switch">
                         <li>

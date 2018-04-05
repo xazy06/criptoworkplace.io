@@ -99,5 +99,6 @@
     <Folder Include="wwwroot\js\models" />
     <Folder Include="wwwroot\js\routes" />
     <Folder Include="wwwroot\js\services" />
+    <Folder Include="wwwroot\static\adv" />
   </ItemGroup>
 </Project>
