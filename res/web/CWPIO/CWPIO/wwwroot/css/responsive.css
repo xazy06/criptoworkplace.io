@@ -168,6 +168,11 @@ Version      : 1.0
         margin: auto;
         bottom: 16px;
         top: auto !important;
+        
+    }
+
+    .b-2-devices {
+        margin-top: 0; width: 100%;
     }
 }
 
@@ -184,6 +189,15 @@ Version      : 1.0
         margin: auto;
         bottom: 16px;
         top: auto !important;
+    }
+
+    .download-area {
+        padding: 138px 0 0;
+        
+    }
+    
+    .b-2-devices {
+        margin-top: 0; width: 100%;
     }
     
     header.navbar-fixed-top {
@@ -207,7 +221,8 @@ Version      : 1.0
         line-height: 40px;
     }
     .donwload-left {
-        margin: 0 0 60px;
+        margin: 0;
+        left:auto;
     }
     .download-right .dl-download li {
         margin: 0 0 10px;
@@ -256,7 +271,7 @@ Version      : 1.0
         padding: 90px 0;
     }
     .team-area {
-        padding: 70px 0;
+        /*padding: 70px 0;*/
     }
     .single-pricing {
         margin: 0 0 30px;
@@ -397,7 +412,8 @@ Version      : 1.0
         line-height: 40px;
     }
     .donwload-left {
-        margin: 0 0 60px;
+        margin: 0;
+        left: auto;
     }
     .download-right .dl-download li {
         margin: 0 0 10px;

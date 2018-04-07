@@ -26,12 +26,23 @@
                         <nav class="menu-list">
                             <ul>
                                 <li>
-                                    <a class="btn btn-sm btn-round btn-g" href="/">@Locale["white paper"]</a>
+                                    @{
+                                        var loc = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+                                        if (!loc.Equals("ru") &&  !loc.Equals("en"))
+                                        {
+                                            loc = "en";
+                                        }
+                                        
+                                        var link = "/static/docs_/CWP_White_Paper_" + loc + ".pdf";
+                                    }
+                                    <a class="btn btn-sm btn-round btn-g" target="_blank"
+                                       href="@link">@Locale["white paper"]</a>
+
                                 </li>
                                 <li class="active"><a class="smoothscroll" href="#home">@Locale["product"]</a></li>
                                 <li><a class="smoothscroll" href="#token">@Locale["token"]</a></li>
                                 @*                            <li><a target="_blank" href="~/static/wp.pdf">DOCUMENTS</a></li>*@
-                                <li><a class="smoothscroll" href="#docs">@Locale["documents"]</a></li>
+@*                                <li><a class="smoothscroll" href="#docs">@Locale["documents"]</a></li>*@
                                 <li><a class="smoothscroll" href="#ROADMAP">@Locale["roadmap"]</a></li>
                                 <li><a class="smoothscroll" href="#team">@Locale["team"]</a></li>
                                 @*                            <li><a class="smoothscroll" href="#price">PRICE</a></li>*@
@@ -128,7 +139,7 @@
                 <li><a data-toggle="collapse" data-target="#mobile_menu_show" class="smoothscroll" href="#home">@Locale["product"]</a></li>
                 <li><a data-toggle="collapse" data-target="#mobile_menu_show" class="smoothscroll" href="#token">@Locale["token"]</a></li>
                 @*                <li><a data-toggle="collapse" data-target="#mobile_menu_show" target="_blank" href="~/static/wp_.pdf" href="#feature">DOCUMENTS</a></li>*@
-                <li><a data-toggle="collapse" data-target="#mobile_menu_show" href="#docs">@Locale["documents"]</a></li>
+@*                <li><a data-toggle="collapse" data-target="#mobile_menu_show" href="#docs">@Locale["documents"]</a></li>*@
                 
                 <li><a data-toggle="collapse" data-target="#mobile_menu_show" class="smoothscroll" href="#ROADMAP">@Locale["roadmap"]</a></li>
                 <li><a data-toggle="collapse" data-target="#mobile_menu_show" class="smoothscroll" href="#team">@Locale["team"]</a></li>
