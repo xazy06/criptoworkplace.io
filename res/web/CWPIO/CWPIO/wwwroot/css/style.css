@@ -772,6 +772,7 @@ header > .container {
     letter-spacing: 0;
     line-height: 18px;
     padding: 16px 5px;
+    text-transform:uppercase;
 }
 
 .menu ul li.active a {
