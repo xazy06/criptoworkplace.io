@@ -4051,6 +4051,10 @@ a.btn, .btn {
     outline: none !important;
 }
 
+a.btn:visited {
+	color:#fff;
+}
+
 .btn.btn-default {
     color: #333;
     background-color: #fff;
