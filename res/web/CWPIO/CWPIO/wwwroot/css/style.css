@@ -4051,7 +4051,8 @@ a.btn, .btn {
     outline: none !important;
 }
 
-a.btn:visited {
+a.btn:visited,
+a.btn:focus{
 	color:#fff;
 }
 
