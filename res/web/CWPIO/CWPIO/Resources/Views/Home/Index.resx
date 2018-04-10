@@ -223,7 +223,7 @@ on the network, and a distributed registry of statuses</value>
     <value>Maxim Maslich</value>
   </data>
   <data name="meet" xml:space="preserve">
-    <value>&lt;h4&gt;Meet Our&lt;/h4&gt;&lt;h2&gt;TEAM&lt;/h2&gt;</value>
+    <value>&lt;h2&gt;TEAM&lt;/h2&gt;</value>
   </data>
   <data name="memiss" xml:space="preserve">
     <value>MAX. EMISSION OF TOKENS</value>
@@ -460,5 +460,29 @@ Alexey's competencies help the project in the technical issues of TGE.</value>
   </data>
   <data name="may" xml:space="preserve">
     <value>may</value>
+  </data>
+  <data name="CMO" xml:space="preserve">
+    <value>CMO</value>
+  </data>
+  <data name="news" xml:space="preserve">
+    <value>news</value>
+  </data>
+  <data name="news1" xml:space="preserve">
+    <value>CWP лаборатория в Чехии</value>
+  </data>
+  <data name="news2" xml:space="preserve">
+    <value>Промышленный дизайн</value>
+  </data>
+  <data name="news3" xml:space="preserve">
+    <value>Интервью с ментором проекта</value>
+  </data>
+  <data name="news4" xml:space="preserve">
+    <value>Гарантия качества</value>
+  </data>
+  <data name="Oleg Sarukhanov" xml:space="preserve">
+    <value>Oleg Sarukhanov</value>
+  </data>
+  <data name="t15" xml:space="preserve">
+    <value>Co-founder and CEO of Glory Event Agency LLC., In event &amp; marketing since 2006, experience with international brands on major projects (BIC, General Electric)</value>
   </data>
 </root>
