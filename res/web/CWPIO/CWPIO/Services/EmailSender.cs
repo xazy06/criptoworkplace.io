@@ -83,45 +83,6 @@ namespace CWPIO.Services
 
             }
             return false;
-
-            /*var title = _localizer["Subscribe_Title"];
-            var mailto_text = _localizer["Subscribe_Mailto_Text"];
-            var view_browser = _localizer["Subscribe_View_Browser"];
-            var topic = _localizer["Subscribe_Topic"];
-            var first_text = _localizer["Subscribe_Paragraph_One"];
-            var second_text = _localizer["Subscribe_Paragraph_Two"];
-            var footer = _localizer["Subscribe_Footer"];
-
-            var img_link = new Uri(new Uri(_mailSettings.Value.StaticFileServerAddress, UriKind.Absolute), "/static/MailLogo.png").ToString();
-            //email
-            var unsubsribe_link = new Uri(new Uri(_mailSettings.Value.WebServerAddress, UriKind.Absolute), $"/Home/Unsubscribe?email={email}").ToString();
-            var unsubsribe_text = _localizer["Subscribe_Unsubscribe_Text"];
-            var third_text = _localizer["Subscribe_Paragraph_Three"];
-
-            var templateHtml = _localizer["Subscribe_Mail_Html",
-                title,
-                mailto_text,
-                view_browser,
-                topic,
-                first_text,
-                second_text,
-                footer,
-                img_link,
-                email,
-                unsubsribe_link,
-                unsubsribe_text,
-                third_text];
-
-            var templateText = _localizer["Subscribe_Mail_Text",
-                topic,
-                first_text,
-                second_text,
-                footer,
-                unsubsribe_link,
-                unsubsribe_text,
-                third_text];
-
-            return SendEmailAsync(email, _localizer["Subscribe_Subject"], templateText, templateHtml);*/
         }
 
         private async Task<bool> AddUserToContactList(string email, string name)
