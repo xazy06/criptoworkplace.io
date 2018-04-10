@@ -51,11 +51,11 @@
                                         <span>
                                             @if (!user.LockoutEnd.HasValue)
                                             {
-                                                <i class="fa fa-check-circle" style="color:forestgreen"></i>
+                                                <i class="fa fa-times-circle" style="color:forestgreen"></i>
                                             }
                                             else
                                             {
-                                                <i class="fa fa-times-circle" style="color:red"></i>
+                                                <i class="fa fa-check-circle" style="color:red"></i>
                                             }
                                         </span>
                                     </th>
@@ -100,7 +100,7 @@
 
 @section Scripts {
     <script type="text/javascript">
-        $('#saveClaims').click(function (event) { 
+        $('#saveClaims').click(function (event) {
             var button = $(event.target); // Button that triggered the modal
             var userId = button.data('user-id'); // Extract info from data-* attributes
 
@@ -114,7 +114,7 @@
             modal.find('#saveClaims').data('user-id', userId);
             $.getJSON('/api/user/claims/' + userId)
                 .done(function (data) {
-                    var node = data.map(function (c) { return '<tr><td>' + c.claimType + '</td><td>' + c.value + '</td><tr>'; }).join('');
+                    var node = data.map(function (c) { return '<tr><td>' + c.type + '</td><td>' + c.value + '</td><tr>'; }).join('');
                     modal.find('#claimTable tbody').html(node);
                 });
         });

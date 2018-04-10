@@ -15,7 +15,7 @@
                 </div>
                 <div class="table-responsive">
                     <table class="table table-striped" id="bountyCampaingsTable">
-                        <thead>
+                        <thead class="thead-dark">
                             <tr>
                                 <th>Name</th>
                                 <th>Icon</th>
@@ -52,10 +52,11 @@
     </div>
 </section>
 <hr />
-<section class="p-xl-3 no-padding-bottom">
-    <div class="container-fluid">
-        @foreach (var bounty in Model.MyBounties)
-        {
+@foreach (var bounty in Model.MyBounties)
+{
+    <section class="p-xl-3 no-padding-bottom">
+        <div class="container-fluid">
+
             <div class="row p-xl-3">
                 <div class="title col-md-10">
                     <strong>@bounty.BountyCampaing.Name</strong>
@@ -68,12 +69,13 @@
                 <div class="col-md-12">
                     <div class="table-responsive">
                         <table class="table table-striped">
-                            <thead>
+                            <thead class="thead-dark">
                                 <tr>
                                     <th>Id</th>
                                     <th>Url</th>
                                     <th>Price</th>
                                     <th>Accepted</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -95,6 +97,15 @@
                                                 }
                                             </span>
                                         </td>
+                                        <td>
+                                            @if(!item.IsAccepted.HasValue || !item.IsAccepted.Value)
+                                            {
+                                                <span onclick="console.log(this)" style="cursor:pointer;">
+                                                    <i class="fa fa-trash" style="color:red;"></i>
+                                                </span>
+
+                                            }
+                                        </td>
                                     </tr>
                                 }
                             </tbody>
@@ -102,10 +113,12 @@
                     </div>
                 </div>
             </div>
-        }
 
-    </div>
-</section>
+        </div>
+    </section>
+    <hr />
+}
+
 
 <div class="modal fade" id="addNewLink" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -128,8 +141,7 @@
                     </div>
                     <div class="form-group">
                         <label for="campaingName">Activity type</label>
-                        <select class="form-control" id="itemType" name="itemType">
-                        </select>
+                        <select class="form-control" id="itemType" name="itemType"></select>
                     </div>
                 </div>
             </div>
@@ -173,8 +185,8 @@
             })
                 .done(function () { modal.modal('hide'); });
 
-            
-         });
+
+        });
 
         $('#addNewLink').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget); // Button that triggered the modal
@@ -185,7 +197,7 @@
                 .done(function (data) {
                     modal.find('#campaingName').html('<span><i class="fa ' + data.faClass + '"></i>&nbsp;' + data.name + '</span>');
                     var options = data.itemTypes.map(function (item) {
-                        return '<option value="' + item.typeId + '">' + item.name+ '</option>';
+                        return '<option value="' + item.typeId + '">' + item.name + '</option>';
                     }).join('');
                     modal.find('#itemType').html(options)
                 });

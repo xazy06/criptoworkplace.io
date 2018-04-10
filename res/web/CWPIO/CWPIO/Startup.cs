@@ -121,7 +121,8 @@ namespace CWPIO
 
             services.AddMvc()
                 .AddJsonOptions(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore)
-                .AddViewLocalization(); //IViewLocalizer
+                .AddViewLocalization()
+                .AddControllersAsServices();
 
 
             services.AddDataProtection()
