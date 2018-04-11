@@ -2050,7 +2050,9 @@ h2.duga::after {
 
 /*2.14 Footer*/
 
+footer,
 footer a,
+footer p,
 footer span{
     /*background: #f4f4f4 none repeat scroll 0 0;*/
     color: #e8e8e8 !important;    
