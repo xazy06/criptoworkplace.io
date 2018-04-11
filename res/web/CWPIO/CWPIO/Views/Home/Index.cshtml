@@ -29,7 +29,7 @@
                         <div style="margin-bottom: 27px; text-align: center;" id="digital_led"></div>
                         <div class="">
                             <a style="width:100%" href="#presale" class="smoothscroll btn btn-round btn-b btn-lg s">
-                                Get discount
+                                @Locale["Get discount"]
                             </a>
                         </div>
 
@@ -102,7 +102,7 @@
                     @Locale["Interview"]
                 </h2>
                 <p>
-                    @Locale["The CWP Mentor Wagan Sarukhanov told in detail about the project in the Aurora Blockchain Capital studio."]
+                    @Locale["INTERVIEWSUB"]
 
                 </p>
             </div>
@@ -126,7 +126,7 @@
                     </h2>
 
                     <p>
-                        <strong>CWP LITE</strong> @Locale["compatible with any os"]
+                        <strong>CWP LITE</strong> @Locale["compatible"]
 
                     </p>
                 </div>
@@ -1815,14 +1815,14 @@
 
                             <form action="javascript:void(0)">
                                 <div style="margin-right: 40px;" class="subscribe-input-box">
-                                    <input data-bind="textInput:models.feedModel.name" type="text" placeholder="Name">
+                                    <input data-bind="textInput:models.feedModel.name" type="text" placeholder="@Locale["name"]">
                                 </div>
                                 <div class="subscribe-input-box sib-email">
-                                    <input data-bind="textInput:models.feedModel.email" type="email" placeholder="E-mail">
+                                    <input data-bind="textInput:models.feedModel.email" type="email" placeholder="@Locale["mail"]">
                                 </div>
                                 <div class="subscribe-input-box sib-submit">
                                     <button data-bind="enable:actions.form.sendEnabled, click: actions.form.send" type="submit" class="btn btn-round btn-g">
-                                        <i class="fa fa-angle-left"></i> @Locale["Contact"]
+                                        <i class="fa fa-angle-left"></i> @Locale["contactus"]
                                     </button>
                                 </div>
                             </form>

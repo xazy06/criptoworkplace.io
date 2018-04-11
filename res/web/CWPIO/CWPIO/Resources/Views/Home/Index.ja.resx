@@ -499,4 +499,34 @@ CWP provides unprecedented protection of personal data of users, files and money
     <value>弊社のICOの参加登録をお願いします。 登録後、迷惑メール/プロモー
 ションのメールフォルダーも確認してください。</value>
   </data>
+  <data name="compatible" xml:space="preserve">
+    <value>compatible with any os</value>
+  </data>
+  <data name="contactus" xml:space="preserve">
+    <value>Сontact</value>
+  </data>
+  <data name="documents" xml:space="preserve">
+    <value>documents</value>
+  </data>
+  <data name="Get discount" xml:space="preserve">
+    <value>Get discount</value>
+  </data>
+  <data name="INTERVIEW" xml:space="preserve">
+    <value>INTERVIEW</value>
+  </data>
+  <data name="INTERVIEWSUB" xml:space="preserve">
+    <value>The CWP Mentor Wagan Sarukhanov told in detail about the project in the Aurora Blockchain Capital studio.</value>
+  </data>
+  <data name="mail" xml:space="preserve">
+    <value>メールアドレス</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>名前</value>
+  </data>
+  <data name="presentation" xml:space="preserve">
+    <value>presentation</value>
+  </data>
+  <data name="Specifications" xml:space="preserve">
+    <value>Specifications</value>
+  </data>
 </root>
