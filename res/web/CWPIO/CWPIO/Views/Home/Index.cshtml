@@ -1803,9 +1803,7 @@
                     </h2>
                 </div>
 
-                <p style="margin-bottom: 30px;" class="subscribe-text">
-                    @Locale["reghelp"]
-                </p>
+                
 
                 <div class="row">
                     <div class="col-xs-12">
@@ -1817,7 +1815,7 @@
                                 <div style="margin-right: 40px;" class="subscribe-input-box">
                                     <input data-bind="textInput:models.feedModel.name" type="text" placeholder="@Locale["name"]">
                                 </div>
-                                <div class="subscribe-input-box sib-email">
+                                <div style="margin-right: 20px;" class="subscribe-input-box sib-email">
                                     <input data-bind="textInput:models.feedModel.email" type="email" placeholder="@Locale["mail"]">
                                 </div>
                                 <div class="subscribe-input-box sib-submit">
@@ -1830,6 +1828,10 @@
                         </div>
                     </div>
                 </div>
+                <p style="margin-bottom: 30px;" class="subscribe-text">
+                    @Locale["reghelp"]
+                </p>
+                
             </div>
             <div class="col-md-5">
                 <img src="~/static/cwp-s.png">
