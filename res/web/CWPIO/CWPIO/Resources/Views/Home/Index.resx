@@ -342,7 +342,7 @@ on the network, and a distributed registry of statuses</value>
     <value>Yoji Kishi</value>
   </data>
   <data name="roadmaph" xml:space="preserve">
-    <value>ROAD&lt;span&gt;MAP&lt;/span&gt;</value>
+    <value>ROAD &lt;span&gt;MAP&lt;/span&gt;</value>
   </data>
   <data name="Head of Hardware Production" xml:space="preserve">
     <value>Head of Hardware Production</value>

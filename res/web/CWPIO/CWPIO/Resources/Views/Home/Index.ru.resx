@@ -359,7 +359,7 @@
     <value>Yoji Kishi</value>
   </data>
   <data name="roadmaph" xml:space="preserve">
-    <value>ДОРОЖНАЯ&lt;span&gt;КАРТА&lt;/span&gt;</value>
+    <value>ДОРОЖНАЯ &lt;span&gt;КАРТА&lt;/span&gt;</value>
   </data>
   <data name="Head of Hardware Production" xml:space="preserve">
     <value>Руководитель производства аппаратных средств</value>
