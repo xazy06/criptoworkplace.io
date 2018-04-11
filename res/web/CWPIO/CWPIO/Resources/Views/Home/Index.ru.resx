@@ -491,4 +491,22 @@ Alexey's competencies help the project in the technical issues of TGE.</value>
   <data name="t15" xml:space="preserve">
     <value>Соучредитель и исполнительный директор Glory Event Agency LLC., в event&amp;marketing с 2006 года, опыт работы с международными брендами по крупным проектам (BIC, General Electric)​</value>
   </data>
+  <data name="address" xml:space="preserve">
+    <value>Czech Republic, Prague
+Stepanska 704/61, 11000 Praha 1-Nove Mesto
+&lt;a href="tel:+420 728 931 549"&gt;+420 728 931 549&lt;/a&gt;</value>
+  </data>
+  <data name="bestsolution" xml:space="preserve">
+    <value>Лучшее решение</value>
+  </data>
+  <data name="besttext" xml:space="preserve">
+    <value>CWP – это не просто хранилище ключей, а полноценный персональный компьютер с собственной операционной системой и набором приложений. Работает автономно или в паре с компьютером-донором.&lt;br/&gt;
+CWP обеспечивает беспрецедентную защиту личных данных пользователей, файлов и денежных средств.</value>
+  </data>
+  <data name="JOINCWP" xml:space="preserve">
+    <value>Просоединяйтесь к CWP</value>
+  </data>
+  <data name="reghelp" xml:space="preserve">
+    <value>* Пройдите регистрацию для участия в нашем Token Sale! После регистрации проверьте свою почту, а так же папку спам и промоакции.</value>
+  </data>
 </root>

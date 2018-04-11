@@ -132,4 +132,9 @@
   <data name="name" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="address" xml:space="preserve">
+    <value>Czech Republic, Prague
+Stepanska 704/61, 11000 Praha 1-Nove Mesto
+&lt;a href="tel:+420 728 931 549"&gt;+420 728 931 549&lt;/a&gt;</value>
+  </data>
 </root>

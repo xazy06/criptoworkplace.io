@@ -1,0 +1,134 @@
+.cw {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.cw-stack {
+	position: relative;
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	line-height: 1em;
+	vertical-align: middle;
+}
+
+.cw-stack-1x {
+	line-height: inherit;
+}
+
+.cw-stack-2x {
+	/*font-size: 2em;*/
+	line-height: inherit;
+}
+
+.cw-stack-1x, .cw-stack-2x {
+	position: absolute;
+	left: 0;
+	width: 100%;
+	text-align: center;
+}
+
+.cw-lg {
+	font-size: 1.33333333em;
+	line-height: 0.75em;
+	vertical-align: -15%;
+}
+
+.cw-2x {
+	font-size: 2em;
+}
+
+.cw-2-5x {
+	font-size: 2.5em;
+}
+
+.cw-3x {
+	font-size: 3em;
+}
+
+.cw-4x {
+	font-size: 4em;
+}
+
+.cw-5x {
+	font-size: 5em;
+}
+
+.cw-10x {
+	font-size: 10em;
+}
+
+.cw-spin {
+	-webkit-animation: iq-spin 2s infinite linear;
+	animation: iq-spin 2s infinite linear;
+}
+
+.cw-pulse {
+	-webkit-animation: iq-spin 1s infinite steps(8);
+	animation: iq-spin 1s infinite steps(8);
+}
+@-webkit-keyframes iq-spin {
+	0% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(359deg);
+		transform: rotate(359deg);
+	}
+}
+@keyframes iq-spin {
+	0% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(359deg);
+		transform: rotate(359deg);
+	}
+}
+
+:root .cw-rotate-90, :root .cw-rotate-180, :root .cw-rotate-270, :root .cw-flip-horizontal, :root .cw-flip-vertical {
+	filter: none;
+}
+
+.cw-rotate-90{
+	-ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
+	-webkit-transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+	transform: rotate(90deg);
+}
+
+.cw-rotate-45{
+	-ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0.5)";
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+.cw-rotate-180{
+	-ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2)";
+	-webkit-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	transform: rotate(180deg);
+}
+.cw-rotate-270{
+	-ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
+	-webkit-transform: rotate(270deg);
+	-ms-transform: rotate(270deg);
+	transform: rotate(270deg);
+}
+
+.cw-flip-horizontal {
+	-ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1)";
+	-webkit-transform: scale(-1, 1);
+	-ms-transform: scale(-1, 1);
+	transform: scale(-1, 1);
+}
+
+.cw-flip-vertical {
+	-ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1)";
+	-webkit-transform: scale(1, -1);
+	-ms-transform: scale(1, -1);
+	transform: scale(1, -1);
+}
