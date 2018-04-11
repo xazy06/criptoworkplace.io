@@ -509,4 +509,34 @@ CWP обеспечивает беспрецедентную защиту лич�
   <data name="reghelp" xml:space="preserve">
     <value>* Пройдите регистрацию для участия в нашем Token Sale! После регистрации проверьте свою почту, а так же папку спам и промоакции.</value>
   </data>
+  <data name="compatible" xml:space="preserve">
+    <value>Совместим с любой ОС</value>
+  </data>
+  <data name="contactus" xml:space="preserve">
+    <value>Связаться</value>
+  </data>
+  <data name="documents" xml:space="preserve">
+    <value>Документы</value>
+  </data>
+  <data name="Get discount" xml:space="preserve">
+    <value>Получить скидку</value>
+  </data>
+  <data name="INTERVIEW" xml:space="preserve">
+    <value>Интервью</value>
+  </data>
+  <data name="INTERVIEWSUB" xml:space="preserve">
+    <value>Ментор проекта Ваган Саруханов рассказал подробно о проекте в студии Aurora Blockchain Capital.</value>
+  </data>
+  <data name="mail" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="presentation" xml:space="preserve">
+    <value>презентация</value>
+  </data>
+  <data name="Specifications" xml:space="preserve">
+    <value>Спецификация</value>
+  </data>
 </root>

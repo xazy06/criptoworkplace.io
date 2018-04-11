@@ -495,4 +495,34 @@ CWP provides unprecedented protection of personal data of users, files and money
   <data name="reghelp" xml:space="preserve">
     <value>请注册参加我们的ICO！ 注册后，请检查您的垃圾邮件/促销电子邮件文件夹。</value>
   </data>
+  <data name="compatible" xml:space="preserve">
+    <value>compatible with any os</value>
+  </data>
+  <data name="contactus" xml:space="preserve">
+    <value>Сontact</value>
+  </data>
+  <data name="documents" xml:space="preserve">
+    <value>documents</value>
+  </data>
+  <data name="Get discount" xml:space="preserve">
+    <value>Get discount</value>
+  </data>
+  <data name="INTERVIEW" xml:space="preserve">
+    <value>INTERVIEW</value>
+  </data>
+  <data name="INTERVIEWSUB" xml:space="preserve">
+    <value>The CWP Mentor Wagan Sarukhanov told in detail about the project in the Aurora Blockchain Capital studio.</value>
+  </data>
+  <data name="mail" xml:space="preserve">
+    <value>邮箱</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>名字</value>
+  </data>
+  <data name="presentation" xml:space="preserve">
+    <value>presentation</value>
+  </data>
+  <data name="Specifications" xml:space="preserve">
+    <value>Specifications</value>
+  </data>
 </root>
