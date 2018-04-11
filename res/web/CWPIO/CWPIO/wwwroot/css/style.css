@@ -148,7 +148,7 @@ header.navbar-fixed-top {
 }
 
 .navbar-fixed-top .container {
-    padding: 10px 0;
+    padding: 10px 15px;
 }
 
 .mar-bot-50 {
@@ -703,7 +703,7 @@ header {
 }
 
 header > .container {
-    padding: 20px 0;
+    padding: 20px 15px;
 }
 
 .logo {}
@@ -833,7 +833,7 @@ header > .container {
     right: 0;
 
     top: 54px;
-    background: #fff;
+    /*background: #fff;*/
     color: #222;
     font-size: 37px;
 }
@@ -987,7 +987,7 @@ header > .container {
     font-size: 17px;
     font-weight: 300;
     line-height: 27px;
-    margin: 0 0 79px;
+    margin: 0 0 48px;
 }
 
 .h1hl-text span {
@@ -2795,19 +2795,19 @@ img.hue {
         filter: hue-rotate(0deg);
     }
     20% {
-        filter: hue-rotate(45deg);
+        filter: hue-rotate(5deg);
     }
     40% {
-        filter: hue-rotate(90deg);
+        filter: hue-rotate(10deg);
     }
     60% {
-        filter: hue-rotate(120deg);
+        filter: hue-rotate(15deg);
     }
     80% {
-        filter: hue-rotate(180deg);
+        filter: hue-rotate(20deg);
     }
     100% {
-        filter: hue-rotate(270deg);
+        filter: hue-rotate(25deg);
     }
 }
 
@@ -2816,19 +2816,19 @@ img.hue {
         filter: hue-rotate(0deg);
     }
     20% {
-        filter: hue-rotate(45deg);
+        filter: hue-rotate(5deg);
     }
     40% {
-        filter: hue-rotate(90deg);
+        filter: hue-rotate(10deg);
     }
     60% {
-        filter: hue-rotate(120deg);
+        filter: hue-rotate(15deg);
     }
     80% {
-        filter: hue-rotate(180deg);
+        filter: hue-rotate(20deg);
     }
     100% {
-        filter: hue-rotate(270deg);
+        filter: hue-rotate(25deg);
     }
 }
 
@@ -2837,19 +2837,19 @@ img.hue {
         filter: hue-rotate(0deg);
     }
     20% {
-        filter: hue-rotate(45deg);
+        filter: hue-rotate(5deg);
     }
     40% {
-        filter: hue-rotate(90deg);
+        filter: hue-rotate(10deg);
     }
     60% {
-        filter: hue-rotate(120deg);
+        filter: hue-rotate(15deg);
     }
     80% {
-        filter: hue-rotate(180deg);
+        filter: hue-rotate(20deg);
     }
     100% {
-        filter: hue-rotate(270deg);
+        filter: hue-rotate(25deg);
     }
 }
 @keyframes hue-rotate {
@@ -2857,19 +2857,19 @@ img.hue {
         filter: hue-rotate(0deg);
     }
     20% {
-        filter: hue-rotate(45deg);
+        filter: hue-rotate(5deg);
     }
     40% {
-        filter: hue-rotate(90deg);
+        filter: hue-rotate(10deg);
     }
     60% {
-        filter: hue-rotate(120deg);
+        filter: hue-rotate(15deg);
     }
     80% {
-        filter: hue-rotate(180deg);
+        filter: hue-rotate(20deg);
     }
     100% {
-        filter: hue-rotate(270deg);
+        filter: hue-rotate(25deg);
     }
 }
 
@@ -4181,6 +4181,17 @@ a.btn.btn-lg,
     padding: 40px 50px;
     margin-bottom: 0;
     font-size: 28px;    
+}
+
+
+a.btn.btn-lg.s,
+.btn.btn-lg.s {
+    padding: 30px 40px;
+    font-size: 48px;
+    border: 6px solid #fff;
+    text-transform: uppercase;
+    text-shadow: 1px 2px 6px #0c1c3a;
+    font-weight: 700;
 }
 
 a.btn.btn-lg.btn-round,
