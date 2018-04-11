@@ -13,7 +13,8 @@
       "wwwroot/css/magnific-popup.css",
       "wwwroot/css/animate.css",
       "wwwroot/css/style.css",
-      "wwwroot/css/responsive.css"
+      "wwwroot/css/components/cwp-font/styles.css",
+      "wwwroot/css/components/cwp-font/extentions.css"
     ]
   },
   {

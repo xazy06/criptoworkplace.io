@@ -480,4 +480,23 @@ Chillingo、Electronic Arts、Microsoft Studiosとのコラボレーション �
   <data name="t15" xml:space="preserve">
     <value>Co-founder and CEO of Glory Event Agency LLC., In event &amp; marketing since 2006, experience with international brands on major projects (BIC, General Electric)</value>
   </data>
+  <data name="address" xml:space="preserve">
+    <value>Czech Republic, Prague
+Stepanska 704/61, 11000 Praha 1-Nove Mesto
+&lt;a href="tel:+420 728 931 549"&gt;+420 728 931 549&lt;/a&gt;</value>
+  </data>
+  <data name="bestsolution" xml:space="preserve">
+    <value>Best Solution</value>
+  </data>
+  <data name="besttext" xml:space="preserve">
+    <value>CWP is not just a keystore, but a full-fledged personal computer with its own operating system and set of applications. Works autonomously or paired with a donor computer.&lt;br/&gt;
+CWP provides unprecedented protection of personal data of users, files and money.</value>
+  </data>
+  <data name="JOINCWP" xml:space="preserve">
+    <value>JOIN CWP</value>
+  </data>
+  <data name="reghelp" xml:space="preserve">
+    <value>弊社のICOの参加登録をお願いします。 登録後、迷惑メール/プロモー
+ションのメールフォルダーも確認してください。</value>
+  </data>
 </root>

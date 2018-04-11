@@ -636,10 +636,10 @@ span.semibold {
 
 .section-title h2 {
     color: #000000;
-    font-size: 32px;
+    font-size: 44px;
     font-weight: 300;
     letter-spacing: 0;
-    line-height: 40px;
+    line-height: 46px;
     margin: 0 0 33px;
     padding: 0 0 26px;
     position: relative;
@@ -944,6 +944,7 @@ header > .container {
     background: #ffc80a none repeat scroll 0 0;
     border: 0 none;
     color: #fff;
+ 
     padding: 10px 40px;
     text-transform: uppercase;
 }
@@ -1588,8 +1589,6 @@ header > .container {
     border-radius: 25px;
     /* box-shadow: -6px -13px 4px 0px #eaeaea; */
     /* box-shadow: -6px -13px 0px 0px #eaeaea; */
-    margin-bottom: 18px;
-    overflow: hidden;
     margin: 0 auto 18px;
 }
 
@@ -2051,10 +2050,12 @@ h2.duga::after {
 
 /*2.14 Footer*/
 
-footer {
+footer a,
+footer span{
     /*background: #f4f4f4 none repeat scroll 0 0;*/
-    
+    color: #e8e8e8 !important;    
 }
+
 
 .subscribe-area {
     padding: 144px 0 50px;
@@ -2156,7 +2157,7 @@ footer {
 .s-specs {
     color: #fff;
     font-size: 13px;
-    margin-bottom: 20px;
+    margin-bottom: 36px;
     line-height: 1.4;
 }
 
@@ -4112,7 +4113,8 @@ a.btn:focus{
 }
 
 .white .section-title p,
-.white .section-title h2 {
+.white .section-title h2,
+.white .section-title h4 {
     color: #fff;
 }
 
@@ -4151,7 +4153,7 @@ a.btn:focus{
     margin: 0;
 }
 .b-2-devices {
-    position: relative; margin-top: -100px; width: 90%;
+    position: relative; margin-top: -100px; width: 100%;
 }
 .s-padd {
     padding-top: 70px;
@@ -4536,4 +4538,8 @@ width:100%;
 
 .example-centered * {
     color:#fff;
+}
+
+.s-mb_18 {
+    margin-bottom:18px;
 }
