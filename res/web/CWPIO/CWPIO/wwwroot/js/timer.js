@@ -61,7 +61,7 @@ ident.Led = function(conf) {
 		bgcolor = conf.bgcolor
 	}
 	
-	conf.bgcolor == "#000";
+	bgcolor = "#073049";
 	
 	function mtimer(timer, m) {
 		n_t = timer.split(":");
