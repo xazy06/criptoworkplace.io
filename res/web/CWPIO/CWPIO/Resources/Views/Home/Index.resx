@@ -120,9 +120,6 @@
   <data name="1page" xml:space="preserve">
     <value>ONE PAGE</value>
   </data>
-  <data name="50part" xml:space="preserve">
-    <value>50% OF TOTAL</value>
-  </data>
   <data name="adv" xml:space="preserve">
     <value>ADVISERS</value>
   </data>
@@ -135,26 +132,14 @@
   <data name="Alexey Lykov" xml:space="preserve">
     <value>Alexey Lykov</value>
   </data>
-  <data name="amfeac" xml:space="preserve">
-    <value>AMAZING FEATURES</value>
-  </data>
   <data name="Anton Maslov" xml:space="preserve">
     <value>Anton Maslov</value>
   </data>
   <data name="Anton Polyansky" xml:space="preserve">
     <value>Anton Polyansky</value>
   </data>
-  <data name="april" xml:space="preserve">
-    <value>April</value>
-  </data>
   <data name="Artur Enokyan" xml:space="preserve">
     <value>Artur Enokyan</value>
-  </data>
-  <data name="awsperf" xml:space="preserve">
-    <value>AWESOME &lt;span class="bold"&gt;PERFORMANCE&lt;/span&gt;</value>
-  </data>
-  <data name="buildin" xml:space="preserve">
-    <value>BUILT-IN &lt;span class="bold"&gt;CRYPTO-STORAGE&lt;/span&gt;</value>
   </data>
   <data name="ceo" xml:space="preserve">
     <value>CEO</value>
@@ -174,44 +159,14 @@ on the network, and a distributed registry of statuses</value>
   <data name="Denis Kuznetsov" xml:space="preserve">
     <value>Denis Kuznetsov</value>
   </data>
-  <data name="disc" xml:space="preserve">
-    <value>EARLY BIRDS DISCOUNTS</value>
-  </data>
   <data name="en" xml:space="preserve">
     <value>En</value>
-  </data>
-  <data name="exploit" xml:space="preserve">
-    <value>Exploit</value>
-  </data>
-  <data name="hack" xml:space="preserve">
-    <value>Взлом</value>
-  </data>
-  <data name="hcap" xml:space="preserve">
-    <value>hard cap</value>
   </data>
   <data name="head" xml:space="preserve">
     <value>based on a personal computer the size of a USB flash drive</value>
   </data>
-  <data name="head sub" xml:space="preserve">
-    <value>The CryptoWorkPlace Micro-PC is not only a secure key storage, it is a fully independent PC with an operating system and applications</value>
-  </data>
-  <data name="icape" xml:space="preserve">
-    <value />
-  </data>
-  <data name="icape1" xml:space="preserve">
-    <value />
-  </data>
   <data name="idea" xml:space="preserve">
     <value>The idea of a microcomputer</value>
-  </data>
-  <data name="kcells" xml:space="preserve">
-    <value />
-  </data>
-  <data name="kcells1" xml:space="preserve">
-    <value />
-  </data>
-  <data name="looses" xml:space="preserve">
-    <value />
   </data>
   <data name="feb" xml:space="preserve">
     <value>February</value>
@@ -225,32 +180,11 @@ on the network, and a distributed registry of statuses</value>
   <data name="meet" xml:space="preserve">
     <value>&lt;h2&gt;TEAM&lt;/h2&gt;</value>
   </data>
-  <data name="memiss" xml:space="preserve">
-    <value>MAX. EMISSION OF TOKENS</value>
-  </data>
-  <data name="particsale" xml:space="preserve">
-    <value>Participate in the Token Sale</value>
-  </data>
   <data name="partners" xml:space="preserve">
     <value>Partners</value>
   </data>
   <data name="pat" xml:space="preserve">
     <value>Patenting</value>
-  </data>
-  <data name="phishing" xml:space="preserve">
-    <value>Phishing</value>
-  </data>
-  <data name="prevmelt" xml:space="preserve">
-    <value>PREVENTING MELTDOWN &amp;amp; &lt;span class="bold"&gt;SPECTRE ATTACKS&lt;/span&gt;</value>
-  </data>
-  <data name="problem" xml:space="preserve">
-    <value>Blockchain &lt;br&gt;&lt;span&gt;Problem&lt;/span&gt;</value>
-  </data>
-  <data name="qa" xml:space="preserve">
-    <value />
-  </data>
-  <data name="r1" xml:space="preserve">
-    <value>Product version 1.0 for system administrators</value>
   </data>
   <data name="r10" xml:space="preserve">
     <value>Testing of the product in independent laboratories</value>
@@ -291,28 +225,11 @@ on the network, and a distributed registry of statuses</value>
   <data name="r9" xml:space="preserve">
     <value>Token Sale, Launching of the Web Portal beta</value>
   </data>
-  <data name="report" xml:space="preserve">
-    <value>According to a Chainalysis
-                            &lt;a href="https://blog.chainalysis.com/the-rise-of-cybercrime-on-ethereum/" target="_blank"&gt;report&lt;/a&gt;
-                            &lt;br&gt;
-                            the world is seeing a meteoric rise in cybercrime targeting ICOs. In June 2017 alone&lt;br&gt;
-                            investors loses from such actions reached $100M while in August they were above&lt;br&gt;
-                            &lt;strong&gt;$220M&lt;/strong&gt;.</value>
-  </data>
-  <data name="reportlink" xml:space="preserve">
-    <value>report</value>
-  </data>
-  <data name="round" xml:space="preserve">
-    <value>ROUND OF TOKEN PRE-SALE</value>
-  </data>
   <data name="ru" xml:space="preserve">
     <value>Ru</value>
   </data>
   <data name="Ruslan Pichugin" xml:space="preserve">
     <value>Ruslan Pichugin</value>
-  </data>
-  <data name="sailingt" xml:space="preserve">
-    <value>NUMBER OF TOKENS FOR SALE</value>
   </data>
   <data name="sale" xml:space="preserve">
     <value>TOKEN &lt;span&gt;SALE&lt;/span&gt;</value>
@@ -323,20 +240,11 @@ on the network, and a distributed registry of statuses</value>
   <data name="cvo" xml:space="preserve">
     <value>CVO</value>
   </data>
-  <data name="tc" xml:space="preserve">
-    <value>PRICE OF THE TOKEN</value>
-  </data>
-  <data name="toggle" xml:space="preserve">
-    <value>TOGGLE TOKEN CODE</value>
-  </data>
   <data name="Wagan Sarukhanov" xml:space="preserve">
     <value>Wagan Sarukhanov</value>
   </data>
   <data name="wp" xml:space="preserve">
     <value>WHITE PAPER</value>
-  </data>
-  <data name="year" xml:space="preserve">
-    <value>YEAR</value>
   </data>
   <data name="Yoji Kishi" xml:space="preserve">
     <value>Yoji Kishi</value>
@@ -355,9 +263,6 @@ on the network, and a distributed registry of statuses</value>
   </data>
   <data name="Software Engineer" xml:space="preserve">
     <value>Software Engineer</value>
-  </data>
-  <data name="up2" xml:space="preserve">
-    <value>Up to</value>
   </data>
   <data name="t1" xml:space="preserve">
     <value>Kintaro Power Cells Japan President
@@ -464,31 +369,11 @@ Alexey's competencies help the project in the technical issues of TGE.</value>
   <data name="CMO" xml:space="preserve">
     <value>CMO</value>
   </data>
-  <data name="news" xml:space="preserve">
-    <value>news</value>
-  </data>
-  <data name="news1" xml:space="preserve">
-    <value>CWP лаборатория в Чехии</value>
-  </data>
-  <data name="news2" xml:space="preserve">
-    <value>Промышленный дизайн</value>
-  </data>
-  <data name="news3" xml:space="preserve">
-    <value>Интервью с ментором проекта</value>
-  </data>
-  <data name="news4" xml:space="preserve">
-    <value>Гарантия качества</value>
-  </data>
   <data name="Oleg Sarukhanov" xml:space="preserve">
     <value>Oleg Sarukhanov</value>
   </data>
   <data name="t15" xml:space="preserve">
     <value>Co-founder and CEO of Glory Event Agency LLC., In event &amp; marketing since 2006, experience with international brands on major projects (BIC, General Electric)</value>
-  </data>
-  <data name="address" xml:space="preserve">
-    <value>Czech Republic, Prague
-Stepanska 704/61, 11000 Praha 1-Nove Mesto
-&lt;a href="tel:+420 728 931 549"&gt;+420 728 931 549&lt;/a&gt;</value>
   </data>
   <data name="bestsolution" xml:space="preserve">
     <value>Best Solution</value>
@@ -527,10 +412,16 @@ CWP provides unprecedented protection of personal data of users, files and money
   <data name="name" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="Specifications" xml:space="preserve">
+    <value>Specifications</value>
+  </data>
   <data name="presentation" xml:space="preserve">
     <value>presentation</value>
   </data>
-  <data name="Specifications" xml:space="preserve">
-    <value>Specifications</value>
+  <data name="Private Pre-Sale" xml:space="preserve">
+    <value>Private Pre-Sale</value>
+  </data>
+  <data name="Token Sale" xml:space="preserve">
+    <value>Token Sale</value>
   </data>
 </root>

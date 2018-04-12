@@ -118,10 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="contacts" xml:space="preserve">
-    <value>Contacts</value>
-  </data>
-  <data name="documents" xml:space="preserve">
-    <value>DOCUMENTS</value>
+    <value>CONTACTS</value>
   </data>
   <data name="product" xml:space="preserve">
     <value>PRODUCT</value>
@@ -130,9 +127,12 @@
     <value>ROADMAP</value>
   </data>
   <data name="team" xml:space="preserve">
-    <value>Team</value>
+    <value>TEAM</value>
   </data>
   <data name="token" xml:space="preserve">
     <value>TOKEN</value>
+  </data>
+  <data name="wp" xml:space="preserve">
+    <value>WHITE PAPER</value>
   </data>
 </root>
