@@ -271,21 +271,21 @@ h4,
 h5,
 h6 {
     margin: 0;
-    font-family: segoe ui, sans-serif;
+    /*font-family: segoe ui, sans-serif;*/
     font-weight: 700;
     color: #000;
     letter-spacing: 1.5px;
 }
 
-h1 a,
-h2 a,
-h3 a,
-h4 a,
-h5 a,
-h6 a {
-    font-weight: inherit;
-    font-family: 'Raleway', sans-serif;
-}
+    h1 a,
+    h2 a,
+    h3 a,
+    h4 a,
+    h5 a,
+    h6 a {
+        font-weight: inherit;
+        /*font-family: 'Raleway', sans-serif;*/
+    }
 
 h1 {
     font-size: 36px;
@@ -322,7 +322,7 @@ h6 {
 }
 
 p {
-    font-family: 'Open Sans', sans-serif;
+    /*font-family: 'Open Sans', sans-serif;*/
     font-size: 14px;
     font-weight: normal;
     letter-spacing: 0;
@@ -335,7 +335,7 @@ p img {
 }
 
 span {
-    font-family: 'Open Sans', sans-serif;
+    /*font-family: 'Open Sans', sans-serif;*/
 }
 
 
@@ -428,7 +428,7 @@ abbr:hover {
 a,
 a:visited{
     text-decoration: none;
-    font-family: 'Raleway', sans-serif;
+    /*font-family: 'Raleway', sans-serif;*/
     font-weight: normal;
     font-size: 12px;
     color: #111;
@@ -617,12 +617,12 @@ button {
 }
 
 span.bold {
-    font-family: "Raleway", sans-serif;
+    /*font-family: "Raleway", sans-serif;*/
     font-weight: 700;
 }
 
 span.semibold {
-    font-family: "Raleway", sans-serif;
+    /*font-family: "Raleway", sans-serif;*/
     font-weight: 600;
 }
 
@@ -1723,7 +1723,7 @@ h2.duga::after {
     margin-right: 8px;
     padding-right: 26px;
     position: relative;
-    font-family: "Raleway", sans-serif;
+    /*font-family: "Raleway", sans-serif;*/
     margin-bottom: 20px;
 }
 
@@ -1838,7 +1838,7 @@ h2.duga::after {
 
 .single-pricing .sp-price {
     color: #21b9ca;
-    font-family: open sans;
+    /*font-family: open sans;*/
     font-size: 72px;
     font-weight: 300;
     letter-spacing: 0;
@@ -2175,7 +2175,7 @@ footer span{
 .footer-bottom-area {
     border-top: 1px solid #cecece;
     padding: 46px 0 26px;
-    font-family: 'Raleway', sans-serif;
+    /*font-family: 'Raleway', sans-serif;*/
 }
 
 .s-mb_40 {
@@ -2502,7 +2502,7 @@ footer span{
 .sbs-content .sbsc-meta li a {
     color: #777777;
     display: inline-block;
-    font-family: open sans;
+    /*font-family: open sans;*/
     font-size: 12px;
     letter-spacing: 0;
     line-height: 24px;
@@ -3754,7 +3754,7 @@ img.hue {
 
 .error h1 {
     color: #333333;
-    font-family: open sans;
+    /*font-family: open sans;*/
     font-size: 150px;
     letter-spacing: 0;
     line-height: 160px;
