@@ -373,7 +373,7 @@ Alexey's competencies help the project in the technical issues of TGE.</value>
     <value>Oleg Sarukhanov</value>
   </data>
   <data name="t15" xml:space="preserve">
-    <value>Co-founder and CEO of Glory Event Agency LLC., In event &amp; marketing since 2006, experience with international brands on major projects (BIC, General Electric)</value>
+    <value>Co-founder and COO of Glory Event Agency LLC., In event &amp; marketing since 2006, experience with international brands on major projects (BIC, General Electric)</value>
   </data>
   <data name="bestsolution" xml:space="preserve">
     <value>Best Solution</value>
@@ -423,5 +423,17 @@ CWP provides unprecedented protection of personal data of users, files and money
   </data>
   <data name="Token Sale" xml:space="preserve">
     <value>Token Sale</value>
+  </data>
+  <data name="April" xml:space="preserve">
+    <value>April</value>
+  </data>
+  <data name="Sales start" xml:space="preserve">
+    <value>Sales start</value>
+  </data>
+  <data name="Token" xml:space="preserve">
+    <value>Token</value>
+  </data>
+  <data name="Token for sale" xml:space="preserve">
+    <value>Token for sale</value>
   </data>
 </root>
