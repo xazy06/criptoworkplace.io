@@ -101,7 +101,7 @@ Version      : 1.0
     /*------------------------------
          counter
     ------------------------------ */
-    $('.counter-up').counterUp();
+    //$('.counter-up').counterUp();
 
 
     /*---------------------
@@ -177,7 +177,7 @@ Version      : 1.0
             }
         });
     }
-    testimonial_carousel();
+    //testimonial_carousel();
 
     /*---------------------
     smb-carousel
@@ -210,7 +210,7 @@ Version      : 1.0
             }
         });
     }
-    smb_carousel();
+    //smb_carousel();
 
     /*---------------------
     screenshot-carousel
@@ -243,7 +243,7 @@ Version      : 1.0
             }
         });
     }
-    screenshot_carousel();
+    //screenshot_carousel();
 
 
     /*-----------------------------
