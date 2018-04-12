@@ -65,12 +65,12 @@ namespace CWPIO.Services
                     .Property(Send.Subject, _localizer["Subscribe_Subject"].Value)
                     .Property(Send.MjTemplateID, welcomeTemplateId.ToString())
                     .Property(Send.MjTemplateLanguage, true)
-                    .Property(Send.Vars, new JObject {
-                    { "header", _localizer["Subscribe_Topic"].Value },
-                    { "text1", _localizer["Subscribe_Paragraph_One"].Value },
-                    { "text2", _localizer["Subscribe_Paragraph_Two"].Value },
-                    { "text3", _localizer["Subscribe_Paragraph_Three"].Value }
-                    })
+                    //.Property(Send.Vars, new JObject {
+                    //{ "header", _localizer["Subscribe_Topic"].Value },
+                    //{ "text1", _localizer["Subscribe_Paragraph_One"].Value },
+                    //{ "text2", _localizer["Subscribe_Paragraph_Two"].Value },
+                    //{ "text3", _localizer["Subscribe_Paragraph_Three"].Value }
+                    //})
                     .Property(Send.Recipients, new JArray { new JObject { { "Email", email } } });
 
                 MailjetResponse response = await _client.PostAsync(request);
