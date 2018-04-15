@@ -85,22 +85,22 @@
 
     };
     
-    (function() {
-	    $("#change-color").on('click', function () {
-        $('body').toggleClass('darkside');
-            if (document.body.className.indexOf('darkside') > -1) {
-              window.sessionStorage.setItem('color', 'darkside');
-              $("#meta-theme").prop('content', '#000');
-            }else{
-              window.sessionStorage.setItem('color', '');
-                $("#meta-theme").prop('content', '#fff');
-            }
-        
-	    });
-    })();
+    // (function() {
+	   //  $("#change-color").on('click', function () {
+    //     $('body').toggleClass('darkside');
+    //         if (document.body.className.indexOf('darkside') > -1) {
+    //           window.sessionStorage.setItem('color', 'darkside');
+    //           $("#meta-theme").prop('content', '#000');
+    //         }else{
+    //           window.sessionStorage.setItem('color', '');
+    //             $("#meta-theme").prop('content', '#fff');
+    //         }
+    //    
+	   //  });
+    // })();
 
     Vm = new Vm(app, w);
 
-    return ko.applyBindings(Vm, w.hel.ge('contact'));
+    return ko.applyBindings(Vm, w.hel.ge('cont-form'));
 
 }).call(null, App, window);
