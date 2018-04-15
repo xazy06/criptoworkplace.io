@@ -96,10 +96,7 @@
     <script asp-append-version="true" src="~/js/bootstrap.min.js"></script>
     <script asp-append-version="true" src="~/js/theme.js"></script>
     <script asp-append-version="true" src="~/js/knockout.js"></script>
-    <script asp-append-version="true" src="~/js/App.js"></script>
-    <script asp-append-version="true" src="~/js/vm/main/index.js"></script>
-<script asp-append-version="true" src="~/js/raphael.js"></script>
-<script asp-append-version="true" src="~/js/timer.js"></script>
+    
 
     @RenderSection("Scripts", required: false)
 
@@ -153,19 +150,6 @@
               }
           });
       });
-
-      var sizes = [6,3];
-      
-      var config = {
-          id : "digital_led",
-          type : "countdown",
-          format : "dd:hh:mm:ss",
-          color : "#fff",
-          bgcolor : "#000",
-          size : sizes[(480 / window.screen.width).toString()[0]],
-          rounded : 1,
-          led : "font1"};
-      var myLed = new Led(config);
     </script>
 
 </body>

@@ -31,15 +31,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Update="Resources\Controllers\HomeController.ru.resx">
-      <Generator>
-      </Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Resources\Controllers\HomeController.resx">
-      <Generator>
-      </Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Services.EmailSender.ru.resx">
       <Generator>
       </Generator>
     </EmbeddedResource>
@@ -64,10 +56,6 @@
       </Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Views\Home\Unsubscribe.jp.resx">
-      <Generator>
-      </Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Views\Home\Unsubscribe.ru.resx">
       <Generator>
       </Generator>
     </EmbeddedResource>

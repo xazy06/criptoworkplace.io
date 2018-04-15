@@ -1,48 +1,48 @@
- <header>
+<header>
     <div class="container">
         <div class="row">
             <div class="col-md-3 col-xs-8">
                 <div class="logo hidden-sm hidden-xs">
-                @if (ViewData["area"] == "my" )
-                {
-                    <a href="/">Crypto<span class="semibold">WorkPlace</span></a>
-                }
-                else
-                {
-                    <a class="smoothscroll" href="#home">
-                        <span class="s-main-logo">
-                            <img src="~/static/Index_0002s_0002s_0002s_0001_CWP2.png"/>
-                        </span>
-                        <span class="semibold">CryptoWorkPlace</span>
-                    </a>
-                }
+                    @if (ViewBag.Area == "my")
+                    {
+                        <a href="/">Crypto<span class="semibold">WorkPlace</span></a>
+                    }
+                    else
+                    {
+                        <a class="smoothscroll" href="#home">
+                            <span class="s-main-logo">
+                                <img src="~/static/Index_0002s_0002s_0002s_0001_CWP2.png" />
+                            </span>
+                            <span class="semibold">CryptoWorkPlace</span>
+                        </a>
+                    }
                 </div>
             </div>
             <div class="col-md-8 hidden-sm hidden-xs">
-                @if (ViewData["menu"] != "false")
+                @if (ViewBag.Menu == null || ViewBag.Menu)
                 {
-                
+
                     <div class="menu">
                         <nav class="menu-list">
                             <ul>
                                 <li>
                                     @{
                                         var loc = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
-                                        if (!loc.Equals("ru") &&  !loc.Equals("en"))
+                                        if (!loc.Equals("ru") && !loc.Equals("en"))
                                         {
                                             loc = "en";
                                         }
-                                        
+
                                         var link = "/static/docs_/CWP_White_Paper_" + loc + ".pdf";
                                     }
                                     <a style="" class="btn btn-sm btn-round btn-g" target="_blank"
-                                       href="@link">@Locale["white paper"]</a>
+                                       href="@link">@Locale["wp"]</a>
 
                                 </li>
                                 <li class="active"><a class="smoothscroll" href="#home">@Locale["product"]</a></li>
                                 <li><a class="smoothscroll" href="#token">@Locale["token"]</a></li>
                                 @*                            <li><a target="_blank" href="~/static/wp.pdf">DOCUMENTS</a></li>*@
-@*                                <li><a class="smoothscroll" href="#docs">@Locale["documents"]</a></li>*@
+                                @*                                <li><a class="smoothscroll" href="#docs">@Locale["documents"]</a></li>*@
                                 <li><a class="smoothscroll" href="#ROADMAP">@Locale["roadmap"]</a></li>
                                 <li><a class="smoothscroll" href="#team">@Locale["team"]</a></li>
                                 @*                            <li><a class="smoothscroll" href="#price">PRICE</a></li>*@
@@ -57,10 +57,10 @@
                 <div class="search dropdown hidden-sm hidden-xs">
                     <a style="text-transform:uppercase" class="dropdown-toggle" href="#" data-toggle="dropdown">
 
-                        
+
                         @CultureInfo.CurrentCulture.ThreeLetterISOLanguageName
-                        
-                        <i class="fa fa-angle-down"></i>    
+
+                        <i class="fa fa-angle-down"></i>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="language-switch">
                         <li>
@@ -69,12 +69,12 @@
                         <li>
                             <a asp-controller="Home" asp-action="Index" asp-route-culture="ru-RU">Русский</a>
                         </li>
-@*                        <li>*@
-@*                            <a href="/?culture=zh-CN">中國</a>*@
-@*                        </li>*@
-@*                                                <li>*@
-@*                                                    <a href="/?culture=ja-JP">日本</a>*@
-@*                                                </li>*@
+                        @*                        <li>*@
+                        @*                            <a href="/?culture=zh-CN">中國</a>*@
+                        @*                        </li>*@
+                        @*                                                <li>*@
+                        @*                                                    <a href="/?culture=ja-JP">日本</a>*@
+                        @*                                                </li>*@
                     </ul>
                     <!-- search-modal-start -->
                     <div id="myModal" class="search-modal modal fade" role="dialog">
@@ -105,7 +105,7 @@
         <div class="l-switcher visible-sm visible-xs">
             <div class="dropdown">
                 <a class="dropdown-toggle" href="#" data-toggle="dropdown">
-                        
+
                     @if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName.Equals("en"))
                     {
                         <i class="fa fa-globe fa-2x"></i>
@@ -124,56 +124,59 @@
                     <li>
                         <a href="/?culture=ru-RU">Русский</a>
                     </li>
-@*                    <li>*@
-@*                        <a href="/?culture=zh-CN">中國</a>*@
-@*                    </li>*@
-@*                    <li>*@
-@*                        <a href="/?culture=ja-JP">日本</a>*@
-@*                    </li>*@
+                    @*                    <li>*@
+                    @*                        <a href="/?culture=zh-CN">中國</a>*@
+                    @*                    </li>*@
+                    @*                    <li>*@
+                    @*                        <a href="/?culture=ja-JP">日本</a>*@
+                    @*                    </li>*@
                 </ul>
             </div>
         </div>
-        <i class="fas fa-align-justify" data-toggle="collapse" data-target="#mobile_menu_show"></i>
-        <div id="mobile_menu_show" class="collapse">
-            <ul>
-                <li><a data-toggle="collapse" data-target="#mobile_menu_show" class="smoothscroll" href="#home">@Locale["product"]</a></li>
-                <li><a data-toggle="collapse" data-target="#mobile_menu_show" class="smoothscroll" href="#token">@Locale["token"]</a></li>
-                @*                <li><a data-toggle="collapse" data-target="#mobile_menu_show" target="_blank" href="~/static/wp_.pdf" href="#feature">DOCUMENTS</a></li>*@
-@*                <li><a data-toggle="collapse" data-target="#mobile_menu_show" href="#docs">@Locale["documents"]</a></li>*@
-                
-                <li><a data-toggle="collapse" data-target="#mobile_menu_show" class="smoothscroll" href="#ROADMAP">@Locale["roadmap"]</a></li>
-                <li><a data-toggle="collapse" data-target="#mobile_menu_show" class="smoothscroll" href="#team">@Locale["team"]</a></li>
-@*                <li><a data-toggle="collapse" data-target="#mobile_menu_show" class="smoothscroll" href="#price">PRICE</a></li>*@
-                <li><a data-toggle="collapse" data-target="#mobile_menu_show" class="smoothscroll" href="#contact">@Locale["contacts"]</a></li>
-                <li>
-                    <a href="javascript:void(0)">
-                        <div class="dropdown s-pos_r">
-                            <a style="text-transform: uppercase" class="dropdown-toggle" href="#" data-toggle="dropdown">
-                                @CultureInfo.CurrentCulture.TwoLetterISOLanguageName
-                                
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="language-switch">
-                                <li>
-                                    <a asp-controller="Home" asp-action="Index" asp-route-culture="en-US">English</a>
-                                </li>
-                                <li>
-                                    <a asp-controller="Home" asp-action="Index" asp-route-culture="ru-RU">Русский</a>
-                                </li>
-@*                                                        <li>*@
-@*                                                            <a href="/?culture=zh-CN">中國</a>*@
-@*                                                        </li>*@
-@*                                                        <li>*@
-@*                                                            <a href="/?culture=ja-JP">日本</a>*@
-@*                                                        </li>*@
-                            </ul>
-                    
-                        </div>
-                    </a>
-                </li>
-                
-               
-            </ul>
-        </div>
+        @if (ViewBag.Menu == null || ViewBag.Menu)
+        {
+            <i class="fas fa-align-justify" data-toggle="collapse" data-target="#mobile_menu_show"></i>
+            <div id="mobile_menu_show" class="collapse">
+                <ul>
+                    <li><a data-toggle="collapse" data-target="#mobile_menu_show" class="smoothscroll" href="#home">@Locale["product"]</a></li>
+                    <li><a data-toggle="collapse" data-target="#mobile_menu_show" class="smoothscroll" href="#token">@Locale["token"]</a></li>
+                    @*                <li><a data-toggle="collapse" data-target="#mobile_menu_show" target="_blank" href="~/static/wp_.pdf" href="#feature">DOCUMENTS</a></li>*@
+                    @*                <li><a data-toggle="collapse" data-target="#mobile_menu_show" href="#docs">@Locale["documents"]</a></li>*@
+
+                    <li><a data-toggle="collapse" data-target="#mobile_menu_show" class="smoothscroll" href="#ROADMAP">@Locale["roadmap"]</a></li>
+                    <li><a data-toggle="collapse" data-target="#mobile_menu_show" class="smoothscroll" href="#team">@Locale["team"]</a></li>
+                    @*                <li><a data-toggle="collapse" data-target="#mobile_menu_show" class="smoothscroll" href="#price">PRICE</a></li>*@
+                    <li><a data-toggle="collapse" data-target="#mobile_menu_show" class="smoothscroll" href="#contact">@Locale["contacts"]</a></li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <div class="dropdown s-pos_r">
+                                <a style="text-transform: uppercase" class="dropdown-toggle" href="#" data-toggle="dropdown">
+                                    @CultureInfo.CurrentCulture.TwoLetterISOLanguageName
+
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="language-switch">
+                                    <li>
+                                        <a asp-controller="Home" asp-action="Index" asp-route-culture="en-US">English</a>
+                                    </li>
+                                    <li>
+                                        <a asp-controller="Home" asp-action="Index" asp-route-culture="ru-RU">Русский</a>
+                                    </li>
+                                    @*                                                        <li>*@
+                                    @*                                                            <a href="/?culture=zh-CN">中國</a>*@
+                                    @*                                                        </li>*@
+                                    @*                                                        <li>*@
+                                    @*                                                            <a href="/?culture=ja-JP">日本</a>*@
+                                    @*                                                        </li>*@
+                                </ul>
+
+                            </div>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </div>
+        }
     </div>
 </div>
 <!-- mobile-menu-end -->
