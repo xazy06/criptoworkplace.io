@@ -1,6 +1,16 @@
 ﻿@{
     ViewData["Title"] = "Home";
 }
+@{
+    var loc = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+    if (!loc.Equals("ru") && !loc.Equals("en"))
+    {
+        loc = "en";
+    }
+
+    var RoadMapPath = "/static/docs_/road_" + loc + ".svg";
+    var PresentationPath = "/static/docs_/CWP 360Secured-" + loc + ".pdf";
+}
 
 <!-- home1-hero-area-start -->
 <div class="home-a">
@@ -11,9 +21,9 @@
                     <div class="home1-hero-left">
                         <h1 class="h1hl-title">
                             <locale exclude="ja-JP">
-                                <span class="bold">
+@*                                <span class="bold">*@
                                     @Locale["decentralizedsystem"]
-                                </span>
+@*                                </span>*@
 
                                 @Locale["head"]
                             </locale>
@@ -25,9 +35,10 @@
                         @*                    <p class="h1hl-text">*@
                         @*                        @Locale["head sub"]*@
                         @*                    </p>*@
+                        <h2 class="h1-h2sub">@Locale["Private Pre-Sale"]</h2>
                         <div style="margin-bottom: 0;" class="how-can-help">
                             <div style="z-index: -1; position: absolute;" id="h"></div>
-                            <div style="margin-bottom: 27px; text-align: left;" id="digital_led"></div>
+                            <div style="margin-bottom: 27px; text-align: center;" id="digital_led"></div>
                             <div class="">
                                 <a style="width:100%" href="#presale" class="smoothscroll btn btn-round btn-b btn-lg s">
                                     @Locale["Get discount"]
@@ -40,8 +51,8 @@
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     <div class="home1-hero-right">
                         @*                    <img src="http://www.compbegin.ru/data/image/intel2_(2).jpg" />*@
-                        <img class="chart " src="~/static/block-1-1.png" alt="cwp" />
-                        <img class="chart black" src="~/static/block-1-1.png" alt="cwp" />
+                        <img class="chart home1-hero-right_img" src="~/static/block-1-1.png" alt="cwp" />
+@*                        <img class="chart black" src="~/static/block-1-1.png" alt="cwp" />*@
                     </div>
                 </div>
             </div>
@@ -91,7 +102,7 @@
 
                     </p>
                 </div>
-                <a class="btn btn-b btn-round" target="_blank" href="~/static/docs_/CWP The Power of Safety.pdf">@Locale["presentation"]</a>
+                <a class="btn btn-b btn-round" target="_blank" href="@PresentationPath">@Locale["presentation"]</a>
             </div>
         </div>
     </div>
@@ -111,11 +122,11 @@
 
         </div>
         <div class="col-md-6 col-sm-6 col-xs-12">
-            <div id="ytplayer"></div>
+@*            <div id="ytplayer"></div>*@
 
-            @*<div class="">
+            <div class="">
                     <iframe width="100%" height="311px" src="https://www.youtube.com/embed/t97dZ7UjSOc?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                </div>*@
+                </div>
         </div>
     </div>
 </div>
@@ -130,8 +141,11 @@
                     </h2>
 
                     <p>
-                        <strong>CWP LITE</strong> @Locale["compatible"]
+                        <strong class="s-fs_20">CWP LITE</strong> 
 
+                    </p>
+                    <p>
+                        @Locale["compatible"]
                     </p>
                 </div>
 
@@ -159,9 +173,9 @@
                         <div class="s-mb_40 s-specs">
                             <i class="cw cw-3x cw-usb s-mr_10"></i>
                             <span class="s-icon">
-                                USB2.0 HS HOST<br>
-                                USB2.0 HS Device(OTG)<br>
-                                HDMI 1280x800 @@60
+                                USB HOST<br>
+                                USB OTG<br>
+                                HDMI
                             </span>
 
                         </div>
@@ -196,9 +210,9 @@
     </div>
 </div>
 <!-- available-area-end -->
-<div id="token" class="c-000211 s-black-o">
+<div class="c-000211 s-black-o">
     <div style="padding: 100px 15px" class="container white">
-        <div class="row">
+        <div id="token" class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="section-title">
                     <h2>
@@ -206,7 +220,7 @@
                     </h2>
 
                 </div>
-            </div>.
+            </div>
         </div>
         <div class="row s-delim">
             <div class="col-md-6 col-sm-6 col-xs-12 s-ta_c">
@@ -672,234 +686,247 @@
 @*        </div>*@
 @*    </div>*@
 
+
 <!-- counter-area-end -->
 <!-- feature-area-start -->
-<section class="feature-area" id="ROADMAP">
-    <div style="padding: 80px;margin-bottom: 0;background: #0aafc2 url(/static/road.svg) center center no-repeat;background-size: contain;" class="white grad">
-        <div style="margin-bottom: 27px;" class="container ">
+<section class="feature-area" id="ROADMAP">@*background: #0aafc2 url(RoadMapPath) center center no-repeat; background-size: contain;*@
+<div style="padding: 80px 0; margin-bottom: 0;" class="white grad">
+<div class="container">
 
-            <div class="row">
-                <div class="col-md-10 col-md-offset-1 col-xs-12">
-                    <div class="feature-head">
-                        <div class="section-title">
-                            <h2>
-                                @Locale["roadmaph"]
-                            </h2>
-                        </div>
-                    </div>
-                    <div class="row example-centered">
-
-                        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
-                            <ul class="timeline timeline-centered">
-                                <li class="timeline-item">
-                                    <div class="timeline-info">
-                                        <span>2008</span>
-                                    </div>
-                                    <div class="timeline-marker"></div>
-                                    <div class="timeline-content">
-                                        <h3 class="timeline-title">@Locale["idea"]</h3>
-
-                                    </div>
-                                </li>
-                                <li class="timeline-item">
-                                    <div class="timeline-info">
-                                        <span>2009</span>
-                                    </div>
-                                    <div class="timeline-marker"></div>
-                                    <div class="timeline-content">
-                                        <h3 class="timeline-title">@Locale["pat"]</h3>
-
-                                    </div>
-                                </li>
-
-                                <li class="timeline-item">
-                                    <div class="timeline-info">
-                                        <span>2010</span>
-                                    </div>
-                                    <div class="timeline-marker"></div>
-                                    <div class="timeline-content">
-                                        <h3 class="timeline-title">@Locale["r2"]</h3>
-
-                                    </div>
-                                </li>
-                                <li class="timeline-item">
-                                    <div class="timeline-info">
-                                        <span>2011</span>
-                                    </div>
-                                    <div class="timeline-marker"></div>
-                                    <div class="timeline-content">
-                                        <h3 class="timeline-title">@Locale["r3"]</h3>
-                                    </div>
-                                </li>
-
-                                <li class="timeline-item">
-                                    <div class="timeline-info">
-                                        <span>2012</span>
-                                    </div>
-                                    <div class="timeline-marker"></div>
-                                    <div class="timeline-content">
-                                        <h3 class="timeline-title">@Locale["r4"]</h3>
-                                    </div>
-                                </li>
-                                <li class="timeline-item">
-                                    <div class="timeline-info">
-                                        <span>2015</span>
-                                    </div>
-                                    <div class="timeline-marker"></div>
-                                    <div class="timeline-content">
-                                        <h3 class="timeline-title">@Locale["r5"]</h3>
-                                    </div>
-                                </li>
-                                <li class="timeline-item">
-                                    <div class="timeline-info">
-                                        <span>2016</span>
-                                    </div>
-                                    <div class="timeline-marker"></div>
-                                    <div class="timeline-content">
-                                        <h3 class="timeline-title">@Locale["r6"]</h3>
-                                    </div>
-                                </li>
-                                <li class="timeline-item">
-                                    <div class="timeline-info">
-                                        <span>2017</span>
-                                    </div>
-                                    <div class="timeline-marker"></div>
-                                    <div class="timeline-content">
-                                        <h3 class="timeline-title">@Locale["r7"]</h3>
-                                    </div>
-                                </li>
-                                <li class="timeline-item">
-                                    <div class="timeline-info">
-                                        <span>@Locale["feb"] - @Locale["April"]</span>
-                                    </div>
-                                    <div class="timeline-marker"></div>
-                                    <div class="timeline-content">
-                                        <h3 class="timeline-title">@Locale["r8"]</h3>
-                                    </div>
-                                </li>
-                                <li class="timeline-item">
-                                    <div class="timeline-info">
-                                        <span>@Locale["may"]</span>
-                                    </div>
-                                    <div class="timeline-marker"></div>
-                                    <div class="timeline-content">
-                                        <h3 class="timeline-title">@Locale["r9"]</h3>
-                                    </div>
-                                </li>
-                                <li class="timeline-item">
-                                    <div class="timeline-info">
-                                        <span>@Locale["r11"]</span>
-                                    </div>
-                                    <div class="timeline-marker"></div>
-                                    <div class="timeline-content">
-                                        <h3 class="timeline-title">@Locale["r10"]</h3>
-                                    </div>
-                                </li>
-                                <li class="timeline-item">
-                                    <div class="timeline-info">
-                                        <span>@Locale["r13"]</span>
-                                    </div>
-                                    <div class="timeline-marker"></div>
-                                    <div class="timeline-content">
-                                        <h3 class="timeline-title">@Locale["r12"]</h3>
-                                    </div>
-                                </li>
-                                <li class="timeline-item">
-                                    <div class="timeline-info">
-                                        <span>Q4</span>
-                                    </div>
-                                    <div class="timeline-marker"></div>
-                                    <div class="timeline-content">
-                                        <h3 class="timeline-title">@Locale["r14"]</h3>
-                                    </div>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </div>
-                    @*                <table class="table">*@
-                    @*                    <thead>*@
-                    @*                    <tr>*@
-                    @*                        <th class="g-style">@Locale["year"]</th>*@
-                    @*                        <th></th>*@
-                    @*                    </tr>*@
-                    @*                    </thead>*@
-                    @**@
-                    @*                    <tbody>*@
-                    @*                    <tr>*@
-                    @*                        <td>2008</td>*@
-                    @*                        <td>@Locale["idea"]</td>*@
-                    @*                    </tr>*@
-                    @*                    <tr>*@
-                    @*                        <td>2009</td>*@
-                    @*                        <td>@Locale["pat"]</td>*@
-                    @*                    </tr>*@
-                    @*                    <tr>*@
-                    @*                        <td>2009</td>*@
-                    @*                        <td>@Locale["r1"]</td>*@
-                    @*                    </tr>*@
-                    @*                    <tr>*@
-                    @*                        <td>2010</td>*@
-                    @*                        <td>@Locale["r2"]</td>*@
-                    @*                    </tr>*@
-                    @*                    <tr>*@
-                    @*                        <td>2011</td>*@
-                    @*                        <td>@Locale["r3"]</td>*@
-                    @*                    </tr>*@
-                    @*                    <tr>*@
-                    @*                        <td>2012</td>*@
-                    @*                        <td>@Locale["r4"]</td>*@
-                    @*                    </tr>*@
-                    @*                    <tr>*@
-                    @*                        <td>2015</td>*@
-                    @*                        <td>@Locale["r5"]</td>*@
-                    @*                    </tr>*@
-                    @*                    <tr>*@
-                    @*                        <td>2016</td>*@
-                    @*                        <td>@Locale["r6"]</td>*@
-                    @*                    </tr>*@
-                    @*                    <tr>*@
-                    @*                        <td>2017</td>*@
-                    @*                        <td>@Locale["r7"]</td>*@
-                    @*                    </tr>*@
-                    @*                    <tr>*@
-                    @*                        <td>@Locale["feb"] - @Locale["march"]</td>*@
-                    @*                        <td>@Locale["r8"]</td>*@
-                    @*                    </tr>*@
-                    @*                    <tr>*@
-                    @*                        <td class="s-fs_06">@Locale["april"]</td>*@
-                    @*                        <td>*@
-                    @*                            @Locale["r9"]*@
-                    @*                        </td>*@
-                    @*                    </tr>*@
-                    @*                    <tr>*@
-                    @*                        <td class="s-fs_06">@Locale["r11"]</td>*@
-                    @*                        <td>*@
-                    @*                            @Locale["r10"]*@
-                    @*                        </td>*@
-                    @*                    </tr>*@
-                    @*                    <tr>*@
-                    @*                        <td class="s-fs_06">@Locale["r13"]</td>*@
-                    @*                        <td>*@
-                    @*                            @Locale["r12"]*@
-                    @*                        </td>*@
-                    @*                    </tr>*@
-                    @*                    <tr>*@
-                    @*                        <td class="s-fs_06">Q4</td>*@
-                    @*                        <td>*@
-                    @*                            @Locale["r14"]*@
-                    @*                        </td>*@
-                    @*                    </tr>*@
-                    @*                    </tbody>*@
-                    @*                </table>*@
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1 col-xs-12">
+            <div style="margin-bottom:0" class="feature-head">
+                <div class="section-title">
+                    <h2>
+                        @Locale["roadmaph"]
+                    </h2>
                 </div>
             </div>
         </div>
     </div>
+</div>
+<img src="@RoadMapPath"/>
+
+
+
+<div style="margin-bottom: 27px;" class="container ">
+
+@*<div class="row">*@
+@*<div class="col-md-10 col-md-offset-1 col-xs-12">*@
+@*<div class="feature-head">*@
+@*    <div class="section-title">*@
+@*        <h2>*@
+@*            @Locale["roadmaph"]*@
+@*        </h2>*@
+@*    </div>*@
+@*</div>*@
+
+@*                    <div class="row example-centered">*@
+@**@
+@*                        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">*@
+@*                            <ul class="timeline timeline-centered">*@
+@*                                <li class="timeline-item">*@
+@*                                    <div class="timeline-info">*@
+@*                                        <span>2008</span>*@
+@*                                    </div>*@
+@*                                    <div class="timeline-marker"></div>*@
+@*                                    <div class="timeline-content">*@
+@*                                        <h3 class="timeline-title">@Locale["idea"]</h3>*@
+@**@
+@*                                    </div>*@
+@*                                </li>*@
+@*                                <li class="timeline-item">*@
+@*                                    <div class="timeline-info">*@
+@*                                        <span>2009</span>*@
+@*                                    </div>*@
+@*                                    <div class="timeline-marker"></div>*@
+@*                                    <div class="timeline-content">*@
+@*                                        <h3 class="timeline-title">@Locale["pat"]</h3>*@
+@**@
+@*                                    </div>*@
+@*                                </li>*@
+@**@
+@*                                <li class="timeline-item">*@
+@*                                    <div class="timeline-info">*@
+@*                                        <span>2010</span>*@
+@*                                    </div>*@
+@*                                    <div class="timeline-marker"></div>*@
+@*                                    <div class="timeline-content">*@
+@*                                        <h3 class="timeline-title">@Locale["r2"]</h3>*@
+@**@
+@*                                    </div>*@
+@*                                </li>*@
+@*                                <li class="timeline-item">*@
+@*                                    <div class="timeline-info">*@
+@*                                        <span>2011</span>*@
+@*                                    </div>*@
+@*                                    <div class="timeline-marker"></div>*@
+@*                                    <div class="timeline-content">*@
+@*                                        <h3 class="timeline-title">@Locale["r3"]</h3>*@
+@*                                    </div>*@
+@*                                </li>*@
+@**@
+@*                                <li class="timeline-item">*@
+@*                                    <div class="timeline-info">*@
+@*                                        <span>2012</span>*@
+@*                                    </div>*@
+@*                                    <div class="timeline-marker"></div>*@
+@*                                    <div class="timeline-content">*@
+@*                                        <h3 class="timeline-title">@Locale["r4"]</h3>*@
+@*                                    </div>*@
+@*                                </li>*@
+@*                                <li class="timeline-item">*@
+@*                                    <div class="timeline-info">*@
+@*                                        <span>2015</span>*@
+@*                                    </div>*@
+@*                                    <div class="timeline-marker"></div>*@
+@*                                    <div class="timeline-content">*@
+@*                                        <h3 class="timeline-title">@Locale["r5"]</h3>*@
+@*                                    </div>*@
+@*                                </li>*@
+@*                                <li class="timeline-item">*@
+@*                                    <div class="timeline-info">*@
+@*                                        <span>2016</span>*@
+@*                                    </div>*@
+@*                                    <div class="timeline-marker"></div>*@
+@*                                    <div class="timeline-content">*@
+@*                                        <h3 class="timeline-title">@Locale["r6"]</h3>*@
+@*                                    </div>*@
+@*                                </li>*@
+@*                                <li class="timeline-item">*@
+@*                                    <div class="timeline-info">*@
+@*                                        <span>2017</span>*@
+@*                                    </div>*@
+@*                                    <div class="timeline-marker"></div>*@
+@*                                    <div class="timeline-content">*@
+@*                                        <h3 class="timeline-title">@Locale["r7"]</h3>*@
+@*                                    </div>*@
+@*                                </li>*@
+@*                                <li class="timeline-item">*@
+@*                                    <div class="timeline-info">*@
+@*                                        <span>@Locale["feb"] - @Locale["April"]</span>*@
+@*                                    </div>*@
+@*                                    <div class="timeline-marker"></div>*@
+@*                                    <div class="timeline-content">*@
+@*                                        <h3 class="timeline-title">@Locale["r8"]</h3>*@
+@*                                    </div>*@
+@*                                </li>*@
+@*                                <li class="timeline-item">*@
+@*                                    <div class="timeline-info">*@
+@*                                        <span>@Locale["may"]</span>*@
+@*                                    </div>*@
+@*                                    <div class="timeline-marker"></div>*@
+@*                                    <div class="timeline-content">*@
+@*                                        <h3 class="timeline-title">@Locale["r9"]</h3>*@
+@*                                    </div>*@
+@*                                </li>*@
+@*                                <li class="timeline-item">*@
+@*                                    <div class="timeline-info">*@
+@*                                        <span>@Locale["r11"]</span>*@
+@*                                    </div>*@
+@*                                    <div class="timeline-marker"></div>*@
+@*                                    <div class="timeline-content">*@
+@*                                        <h3 class="timeline-title">@Locale["r10"]</h3>*@
+@*                                    </div>*@
+@*                                </li>*@
+@*                                <li class="timeline-item">*@
+@*                                    <div class="timeline-info">*@
+@*                                        <span>@Locale["r13"]</span>*@
+@*                                    </div>*@
+@*                                    <div class="timeline-marker"></div>*@
+@*                                    <div class="timeline-content">*@
+@*                                        <h3 class="timeline-title">@Locale["r12"]</h3>*@
+@*                                    </div>*@
+@*                                </li>*@
+@*                                <li class="timeline-item">*@
+@*                                    <div class="timeline-info">*@
+@*                                        <span>Q4</span>*@
+@*                                    </div>*@
+@*                                    <div class="timeline-marker"></div>*@
+@*                                    <div class="timeline-content">*@
+@*                                        <h3 class="timeline-title">@Locale["r14"]</h3>*@
+@*                                    </div>*@
+@*                                </li>*@
+@**@
+@*                            </ul>*@
+@*                        </div>*@
+@*                    </div>*@
+@*                <table class="table">*@
+@*                    <thead>*@
+@*                    <tr>*@
+@*                        <th class="g-style">@Locale["year"]</th>*@
+@*                        <th></th>*@
+@*                    </tr>*@
+@*                    </thead>*@
+@**@
+@*                    <tbody>*@
+@*                    <tr>*@
+@*                        <td>2008</td>*@
+@*                        <td>@Locale["idea"]</td>*@
+@*                    </tr>*@
+@*                    <tr>*@
+@*                        <td>2009</td>*@
+@*                        <td>@Locale["pat"]</td>*@
+@*                    </tr>*@
+@*                    <tr>*@
+@*                        <td>2009</td>*@
+@*                        <td>@Locale["r1"]</td>*@
+@*                    </tr>*@
+@*                    <tr>*@
+@*                        <td>2010</td>*@
+@*                        <td>@Locale["r2"]</td>*@
+@*                    </tr>*@
+@*                    <tr>*@
+@*                        <td>2011</td>*@
+@*                        <td>@Locale["r3"]</td>*@
+@*                    </tr>*@
+@*                    <tr>*@
+@*                        <td>2012</td>*@
+@*                        <td>@Locale["r4"]</td>*@
+@*                    </tr>*@
+@*                    <tr>*@
+@*                        <td>2015</td>*@
+@*                        <td>@Locale["r5"]</td>*@
+@*                    </tr>*@
+@*                    <tr>*@
+@*                        <td>2016</td>*@
+@*                        <td>@Locale["r6"]</td>*@
+@*                    </tr>*@
+@*                    <tr>*@
+@*                        <td>2017</td>*@
+@*                        <td>@Locale["r7"]</td>*@
+@*                    </tr>*@
+@*                    <tr>*@
+@*                        <td>@Locale["feb"] - @Locale["march"]</td>*@
+@*                        <td>@Locale["r8"]</td>*@
+@*                    </tr>*@
+@*                    <tr>*@
+@*                        <td class="s-fs_06">@Locale["april"]</td>*@
+@*                        <td>*@
+@*                            @Locale["r9"]*@
+@*                        </td>*@
+@*                    </tr>*@
+@*                    <tr>*@
+@*                        <td class="s-fs_06">@Locale["r11"]</td>*@
+@*                        <td>*@
+@*                            @Locale["r10"]*@
+@*                        </td>*@
+@*                    </tr>*@
+@*                    <tr>*@
+@*                        <td class="s-fs_06">@Locale["r13"]</td>*@
+@*                        <td>*@
+@*                            @Locale["r12"]*@
+@*                        </td>*@
+@*                    </tr>*@
+@*                    <tr>*@
+@*                        <td class="s-fs_06">Q4</td>*@
+@*                        <td>*@
+@*                            @Locale["r14"]*@
+@*                        </td>*@
+@*                    </tr>*@
+@*                    </tbody>*@
+@*                </table>*@
+</div>
     @*    <div class="sketchfab-embed-wrapper"><iframe width="640" height="480" src="https://sketchfab.com/models/66069c5000f04c718f7045bae5127c2f/embed?autospin=0.2&amp;autostart=1&amp;preload=1" frameborder="0" allowvr allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel=""></iframe>*@
     @**@
     @*        <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;">*@
@@ -1174,7 +1201,8 @@
     @*        $1$                </div>#1#*@
     @*        $1$            </div>#1#*@
     @*        $1$        </div>#1#*@
-    @*    </div>*@
+@*    </div>*@
+</div>
 </section>
 <!-- feature-area-end -->
 @*    <!-- video-area-start -->*@
@@ -1581,7 +1609,7 @@
             </div>
 
             <div style="margin-bottom: 60px;" class="row s-mb_60">
-                <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="col-md-4 col-sm-4 col-xs-12">
                     <div class="single-team">
                         <img src="/static/team/podelko.jpg" />
                         <div class="st-content">
@@ -1629,7 +1657,7 @@
 
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="col-md-4 col-sm-4 col-xs-12">
                     <div class="single-team">
                         <img src="/static/team/rus.png" alt="" />
                         <div class="st-content">
@@ -1669,39 +1697,9 @@
 
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-3 col-xs-12">
-                    <div class="single-team">
-                        <img src="/static/team/pley.png" alt="">
-                        <div class="st-content">
-                            <h5>@Locale["cto"] Playkey<br />@Locale["Alexey Lykov"]</h5>
-                            <p>
-                                @*                        Alexey is a technical specialist with 20 years of experience. He has extensive experience working with high-loaded systems. He develops platform solutions of any complexity.<br />*@
-                                @*                        Alexey is working on the development of the blockchain system in Playkey for 1.5 years. Manages the infrastructure of more than 1,000 video cards. Developed a unique solution for the mining of cryptocurrency on gaming platforms.<br />*@
-                                @*                        Alexey's competencies help the project in the technical issues of TGE.<br />*@
-                                @Locale["t9"]
+               
 
-                            </p>
-                            <div class="social-w">
-                                <a target="_blank" href="https://www.facebook.com/lykovaleksey">
-                                    <i class="fab fa-facebook"></i>
-                                </a>
-                                <a target="_blank" href="https://www.linkedin.com/in/lykovaleksey/">
-                                    <i class="fab fa-linkedin-in"></i>
-                                </a>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="st-content-under">
-                        @Locale["cto"] Playkey<br />
-                        <span class="t-m-name">
-                            @Locale["Alexey Lykov"]
-                        </span>
-
-                    </div>
-                </div>
-
-                <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="col-md-4 col-sm-4 col-xs-12">
                     <div class="single-team">
                         <img src="/static/team/vag.png" alt="">
                         <div class="st-content">
@@ -2047,20 +2045,20 @@
 
     <script>
         // Load the IFrame Player API code asynchronously.
-        var tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/player_api";
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-        // Replace the 'ytplayer' element with an <iframe> and
-        // YouTube player after the API code downloads.
-        var player;
-        function onYouTubePlayerAPIReady() {
-            player = new YT.Player('ytplayer', {
-                height: '360',
-                width: '640',
-                videoId: 't97dZ7UjSOc'
-            });
-        }
+//        var tag = document.createElement('script');
+//        tag.src = "https://www.youtube.com/player_api";
+//        var firstScriptTag = document.getElementsByTagName('script')[0];
+//        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+//
+//        // Replace the 'ytplayer' element with an <iframe> and
+//        // YouTube player after the API code downloads.
+//        var player;
+//        function onYouTubePlayerAPIReady() {
+//            player = new YT.Player('ytplayer', {
+//                height: '360',
+//                width: '640',
+//                videoId: 't97dZ7UjSOc'
+//            });
+//        }
     </script>
 }

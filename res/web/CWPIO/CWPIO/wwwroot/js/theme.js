@@ -17,9 +17,9 @@ Version      : 1.0
     preloader
     --------------------- */
 
-    $(window).on('load', function() {
-        $('#preloader').fadeOut('slow', function() { $(this).remove(); });
-    });
+    // $(window).on('load', function() {
+    //     $('#preloader').fadeOut('slow', function() { $(this).remove(); });
+    // });
 
 
     /*-----------------
@@ -120,153 +120,153 @@ Version      : 1.0
     /*---------------------
     countdown
     --------------------- */
-    $('[data-countdown]').each(function() {
-        var $this = $(this),
-            finalDate = $(this).data('countdown');
-        $this.countdown(finalDate, function(event) {
-            $this.html(event.strftime('<span class="cdown days"><span class="time-count">%-D</span> <p>Days</p></span> <span class="cdown hour"><span class="time-count">%-H</span> <p>Hour</p></span> <span class="cdown minutes"><span class="time-count">%M</span> <p>Min</p></span> <span class="cdown second"> <span><span class="time-count">%S</span> <p>Sec</p></span>'));
-        });
-    });
+    // $('[data-countdown]').each(function() {
+    //     var $this = $(this),
+    //         finalDate = $(this).data('countdown');
+    //     $this.countdown(finalDate, function(event) {
+    //         $this.html(event.strftime('<span class="cdown days"><span class="time-count">%-D</span> <p>Days</p></span> <span class="cdown hour"><span class="time-count">%-H</span> <p>Hour</p></span> <span class="cdown minutes"><span class="time-count">%M</span> <p>Min</p></span> <span class="cdown second"> <span><span class="time-count">%S</span> <p>Sec</p></span>'));
+    //     });
+    // });
 
     /*---------------------
     video-popup
     --------------------- */
-    $('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
-        disableOn: 700,
-        type: 'iframe',
-        mainClass: 'mfp-fade',
-        removalDelay: 300,
-        preloader: false,
-        fixedContentPos: false
-    });
+    // $('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
+    //     disableOn: 700,
+    //     type: 'iframe',
+    //     mainClass: 'mfp-fade',
+    //     removalDelay: 300,
+    //     preloader: false,
+    //     fixedContentPos: false
+    // });
 
 
     /*---------------------
     tooltip
     --------------------- */
-    $('[data-toggle="tooltip"]').tooltip();
+    //$('[data-toggle="tooltip"]').tooltip();
 
     /*---------------------
     testimonial-carousel
     --------------------- */
-    function testimonial_carousel() {
-        var owl = $(".testimonial-carousel");
-        owl.owlCarousel({
-            loop: true,
-            margin: 20,
-            responsiveClass: true,
-            navigation: true,
-            navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
-            nav: false,
-            items: 1,
-            smartSpeed: 2000,
-            dots: true,
-            autoplay: false,
-            autoplayTimeout: 4000,
-            center: true,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                480: {
-                    items: 1
-                },
-                760: {
-                    items: 1
-                }
-            }
-        });
-    }
+    // function testimonial_carousel() {
+    //     var owl = $(".testimonial-carousel");
+    //     owl.owlCarousel({
+    //         loop: true,
+    //         margin: 20,
+    //         responsiveClass: true,
+    //         navigation: true,
+    //         navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
+    //         nav: false,
+    //         items: 1,
+    //         smartSpeed: 2000,
+    //         dots: true,
+    //         autoplay: false,
+    //         autoplayTimeout: 4000,
+    //         center: true,
+    //         responsive: {
+    //             0: {
+    //                 items: 1
+    //             },
+    //             480: {
+    //                 items: 1
+    //             },
+    //             760: {
+    //                 items: 1
+    //             }
+    //         }
+    //     });
+    // }
     //testimonial_carousel();
 
     /*---------------------
     smb-carousel
     --------------------- */
-    function smb_carousel() {
-        var owl = $(".smb-carousel");
-        owl.owlCarousel({
-            loop: true,
-            margin: 20,
-            responsiveClass: true,
-            navigation: true,
-            navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
-            nav: true,
-            items: 1,
-            smartSpeed: 2000,
-            dots: false,
-            autoplay: false,
-            autoplayTimeout: 4000,
-            center: true,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                480: {
-                    items: 1
-                },
-                760: {
-                    items: 1
-                }
-            }
-        });
-    }
+    // function smb_carousel() {
+    //     var owl = $(".smb-carousel");
+    //     owl.owlCarousel({
+    //         loop: true,
+    //         margin: 20,
+    //         responsiveClass: true,
+    //         navigation: true,
+    //         navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
+    //         nav: true,
+    //         items: 1,
+    //         smartSpeed: 2000,
+    //         dots: false,
+    //         autoplay: false,
+    //         autoplayTimeout: 4000,
+    //         center: true,
+    //         responsive: {
+    //             0: {
+    //                 items: 1
+    //             },
+    //             480: {
+    //                 items: 1
+    //             },
+    //             760: {
+    //                 items: 1
+    //             }
+    //         }
+    //     });
+    // }
     //smb_carousel();
 
     /*---------------------
     screenshot-carousel
     --------------------- */
-    function screenshot_carousel() {
-        var owl = $(".screenshot-carousel");
-        owl.owlCarousel({
-            loop: true,
-            margin: 20,
-            responsiveClass: true,
-            navigation: true,
-            navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
-            nav: true,
-            items: 1,
-            smartSpeed: 2000,
-            dots: false,
-            autoplay: false,
-            autoplayTimeout: 4000,
-            center: true,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                480: {
-                    items: 1
-                },
-                760: {
-                    items: 1
-                }
-            }
-        });
-    }
+    // function screenshot_carousel() {
+    //     var owl = $(".screenshot-carousel");
+    //     owl.owlCarousel({
+    //         loop: true,
+    //         margin: 20,
+    //         responsiveClass: true,
+    //         navigation: true,
+    //         navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
+    //         nav: true,
+    //         items: 1,
+    //         smartSpeed: 2000,
+    //         dots: false,
+    //         autoplay: false,
+    //         autoplayTimeout: 4000,
+    //         center: true,
+    //         responsive: {
+    //             0: {
+    //                 items: 1
+    //             },
+    //             480: {
+    //                 items: 1
+    //             },
+    //             760: {
+    //                 items: 1
+    //             }
+    //         }
+    //     });
+    // }
     //screenshot_carousel();
 
 
     /*-----------------------------
     whats new masonary activation
     ------------------------------- */
-    $('#container').imagesLoaded(function() { //image loaded
-
-        // filter items on button click
-        $('.wtn-menu').on('click', 'ul li', function() {
-            var filterValue = $(this).attr('data-filter');
-            $grid.isotope({ filter: filterValue });
-        });
-
-        // masonary activation
-        var $grid = $('.grid_container').isotope({
-            itemSelector: '.grid',
-            percentPosition: true,
-            masonry: {
-                // use outer width of grid-sizer for columnWidth
-                columnWidth: '.grid'
-            }
-        })
-    });
+    // $('#container').imagesLoaded(function() { //image loaded
+    //
+    //     // filter items on button click
+    //     $('.wtn-menu').on('click', 'ul li', function() {
+    //         var filterValue = $(this).attr('data-filter');
+    //         $grid.isotope({ filter: filterValue });
+    //     });
+    //
+    //     // masonary activation
+    //     var $grid = $('.grid_container').isotope({
+    //         itemSelector: '.grid',
+    //         percentPosition: true,
+    //         masonry: {
+    //             // use outer width of grid-sizer for columnWidth
+    //             columnWidth: '.grid'
+    //         }
+    //     })
+    // });
 
 
     /*---------------------
