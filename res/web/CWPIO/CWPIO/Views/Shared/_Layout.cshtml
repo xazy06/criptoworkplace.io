@@ -22,13 +22,13 @@
     <meta name="HandheldFriendly" content="true">
 
     <link rel="stylesheet" asp-append-version="true" href="~/css/bootstrap.min.css" />
-    <link rel="stylesheet" asp-append-version="true" href="~/css/icofont.css">
-    <link rel="stylesheet" asp-append-version="true" href="~/css/jquery-ui.css">
+@*    <link rel="stylesheet" asp-append-version="true" href="~/css/icofont.css">*@
+@*    <link rel="stylesheet" asp-append-version="true" href="~/css/jquery-ui.css">*@
     <link rel="stylesheet" asp-append-version="true" href="~/css/fontawesome-all.min.css" />
 @*    <link rel="stylesheet" asp-append-version="true" href="~/css/owl.carousel.min.css">*@
     <link rel="stylesheet" asp-append-version="true" href="~/css/magnific-popup.css">
-    <link rel="stylesheet" asp-append-version="true" href="~/css/animate.css">
-    <link rel="stylesheet" asp-append-version="true" href="~/css/meanmenu.css">
+@*    <link rel="stylesheet" asp-append-version="true" href="~/css/animate.css">*@
+@*    <link rel="stylesheet" asp-append-version="true" href="~/css/meanmenu.css">*@
     <link rel="stylesheet" asp-append-version="true" href="~/css/style.css">
     <link rel="stylesheet" asp-append-version="true" href="~/css/responsive.css">
     <link rel="stylesheet" asp-append-version="true" href="~/css/components/cwp-font/styles.css"/>
@@ -55,16 +55,16 @@
     
     @*Макс это должно быть тут и именно так*@
     
-    <script>
-        setTimeout("document.body.className = window.sessionStorage.getItem('color')", 0);
-    </script>
+@*    <script>*@
+@*        //setTimeout("document.body.className = window.sessionStorage.getItem('color')", 0);*@
+@*    </script>*@
     @Html.Raw(snippet.FullScript)
 </head>
 
-<body class="darkside">
+<body class="">
 
     <div class="b-main">
-        <div id="preloader"></div>
+@*        <div id="preloader"></div>*@
         <!-- header-start -->
         @Html.Partial("_Header")
         <!-- header-end -->
@@ -80,20 +80,20 @@
     @Html.Raw(snippet.FullScript)
 
     <script src="~/js/jquery-3.2.0.min.js"></script>
-    <script src="~/js/jquery-ui.js"></script>
+@*    <script src="~/js/jquery-ui.js"></script>*@
 @*    <script src="~/js/owl.carousel.min.js"></script>*@
 @*    <script src="~/js/jquery.counterup.min.js"></script>*@
-    <script src="~/js/countdown.js"></script>
+@*    <script src="~/js/countdown.js"></script>*@
     <script src="~/js/imagesloaded.pkgd.min.js"></script>
-    <script src="~/js/isotope.pkgd.min.js"></script>
+@*    <script src="~/js/isotope.pkgd.min.js"></script>*@
     <script src="~/js/jquery.scrollActive.js"></script>
-    <script src="~/js/jquery.stickUp.js"></script>
+@*    <script src="~/js/jquery.stickUp.js"></script>*@
     <script src="~/js/jquery.magnific-popup.min.js"></script>
-    <script src="~/js/jquery.meanmenu.js"></script>
-    <script src="~/js/jquery.scrollUp.js"></script>
+@*    <script src="~/js/jquery.meanmenu.js"></script>*@
+@*    <script src="~/js/jquery.scrollUp.js"></script>*@
     <script src="~/js/jquery.mixitup.min.js"></script>
     <script src="~/js/jquery.waypoints.min.js"></script>
-    <script asp-append-version="true" src="~/js/bootstrap.min.js"></script>
+    <script asp-append-version="true" async defer src="~/js/bootstrap.min.js"></script>
     <script asp-append-version="true" src="~/js/theme.js"></script>
     <script asp-append-version="true" src="~/js/knockout.js"></script>
     
@@ -101,13 +101,13 @@
     @RenderSection("Scripts", required: false)
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112761687-1"></script>
+@*    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112761687-1"></script>*@
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
-
-      gtag('config', 'UA-112761687-1');
+//      window.dataLayer = window.dataLayer || [];
+//      function gtag() { dataLayer.push(arguments); }
+//      gtag('js', new Date());
+//
+//      gtag('config', 'UA-112761687-1');
 
 
 //        var a = setTimeout(function() {
@@ -126,30 +126,30 @@
 //            });
       
       
-      $('.content').each( function(i){
-  
-          var bottom_of_object= $(this).offset().top + $(this).outerHeight();
-          var bottom_of_window = $(window).height();
-  
-          if( bottom_of_object > bottom_of_window){
-              $(this).addClass('hidden');
-          }
-      });
-
-
-      $(window).scroll( function(){
-          /* Check the location of each element hidden */
-          $('.hidden').each( function(i){
-      
-              var bottom_of_object = $(this).offset().top + $(this).outerHeight();
-              var bottom_of_window = $(window).scrollTop() + $(window).height();
-      
-              /* If the object is completely visible in the window, fadeIn it */
-              if( bottom_of_window > bottom_of_object ){
-                  $(this).animate({'opacity':'1'},700);
-              }
-          });
-      });
+//      $('.content').each( function(i){
+//  
+//          var bottom_of_object= $(this).offset().top + $(this).outerHeight();
+//          var bottom_of_window = $(window).height();
+//  
+//          if( bottom_of_object > bottom_of_window){
+//              $(this).addClass('hidden');
+//          }
+//      });
+//
+//
+//      $(window).scroll( function(){
+//          /* Check the location of each element hidden */
+//          $('.hidden').each( function(i){
+//      
+//              var bottom_of_object = $(this).offset().top + $(this).outerHeight();
+//              var bottom_of_window = $(window).scrollTop() + $(window).height();
+//      
+//              /* If the object is completely visible in the window, fadeIn it */
+//              if( bottom_of_window > bottom_of_object ){
+//                  $(this).animate({'opacity':'1'},700);
+//              }
+//          });
+//      });
     </script>
 
 </body>

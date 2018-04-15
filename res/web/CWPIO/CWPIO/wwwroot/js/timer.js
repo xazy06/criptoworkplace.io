@@ -141,7 +141,7 @@ ident.Led = function(conf) {
 		new_date = new Date(2018, 4,15);
 		
 		time_rem = parseInt((new_date.getTime() - d.getTime()) / 1000) + 1;
-		console.log(time_rem);
+		
 		m_d = parseInt(time_rem / 86400);
 		m_h = parseInt((time_rem - m_d * 86400) / 3600);
 		m_m = parseInt((time_rem - m_d * 86400 - m_h * 3600) / 60);
