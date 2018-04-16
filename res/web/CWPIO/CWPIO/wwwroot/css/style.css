@@ -698,6 +698,7 @@ span.semibold {
 .section-title p {
     color: #4d595a;
     line-height: 26px;
+    font-size:18px;
 }
 
 header {
