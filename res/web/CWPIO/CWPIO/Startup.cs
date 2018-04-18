@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Authorization;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.HttpOverrides;
 
 namespace CWPIO
 {
@@ -175,6 +176,12 @@ namespace CWPIO
             if (env.IsProduction())
             {
                 app.UseRewriter(new RewriteOptions().AddRedirectToHttpsPermanent());
+
+                app.UseForwardedHeaders(new ForwardedHeadersOptions
+                {
+                    RequireHeaderSymmetry = false,
+                    ForwardedHeaders = ForwardedHeaders.XForwardedProto | ForwardedHeaders.XForwardedFor
+                });
             }
 
             app.UseStaticFiles();
