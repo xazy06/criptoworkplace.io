@@ -123,7 +123,7 @@ namespace CWPIO
                         options.SignIn.RequireConfirmedPhoneNumber = false;
                     });
 
-            services.AddMvc(options => { if (Environment.IsProduction()) { options.Filters.Add(new RequireHttpsAttribute()); } })
+            services.AddMvc(/*options => { if (Environment.IsProduction()) { options.Filters.Add(new RequireHttpsAttribute()); } }*/)
                 .AddJsonOptions(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore)
                 .AddViewLocalization()
                 .AddControllersAsServices();
