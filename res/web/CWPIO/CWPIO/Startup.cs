@@ -16,6 +16,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Authorization;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Rewrite;
 
 namespace CWPIO
 {
@@ -174,6 +175,11 @@ namespace CWPIO
             app.UseAuthentication();
 
             app.UseMvcWithDefaultRoute();
+
+            var options = new RewriteOptions()
+                .AddRedirectToHttpsPermanent();
+
+            app.UseRewriter(options);
         }
     }
 }
