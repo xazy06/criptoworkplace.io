@@ -17,18 +17,20 @@ using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Authorization;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Rewrite;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CWPIO
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
             Configuration = configuration;
-
+            Environment = env;
         }
 
         public IConfiguration Configuration { get; }
+        public IHostingEnvironment Environment { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -120,7 +122,7 @@ namespace CWPIO
                         options.SignIn.RequireConfirmedPhoneNumber = false;
                     });
 
-            services.AddMvc()
+            services.AddMvc(options => { if (Environment.IsProduction()) { options.Filters.Add(new RequireHttpsAttribute()); } })
                 .AddJsonOptions(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore)
                 .AddViewLocalization()
                 .AddControllersAsServices();
@@ -170,16 +172,17 @@ namespace CWPIO
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            if (env.IsProduction())
+            {
+                app.UseRewriter(new RewriteOptions().AddRedirectToHttpsPermanent());
+            }
+
             app.UseStaticFiles();
 
             app.UseAuthentication();
 
             app.UseMvcWithDefaultRoute();
 
-            var options = new RewriteOptions()
-                .AddRedirectToHttpsPermanent();
-
-            app.UseRewriter(options);
         }
     }
 }
