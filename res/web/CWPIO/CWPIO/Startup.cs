@@ -175,7 +175,7 @@ namespace CWPIO
 
             if (env.IsProduction())
             {
-                app.UseRewriter(new RewriteOptions().AddRedirectToHttpsPermanent());
+                app.UseRewriter(new RewriteOptions().AddRedirectToHttps());
 
                 app.UseForwardedHeaders(new ForwardedHeadersOptions
                 {
