@@ -181,14 +181,18 @@ namespace CWPIO
                 
             }
 
-            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            var forwardingOptions = new ForwardedHeadersOptions
             {
-                RequireHeaderSymmetry = false,
-                ForwardedHeaders = ForwardedHeaders.XForwardedProto | ForwardedHeaders.XForwardedFor
-            });
+                ForwardedHeaders = ForwardedHeaders.All
+            };
+            forwardingOptions.KnownNetworks.Clear(); //its loopback by default
+            forwardingOptions.KnownProxies.Clear();
+            app.UseForwardedHeaders(forwardingOptions);
 
             app.Use(async (context, next) =>
             {
+
+                logger.LogDebug($"X-Forwarded-Proto: {context.Request.Headers["X-Forwarded-Proto"]}");
                 if (context.Request.IsHttps)
                     logger.LogDebug("Https request");
                 else
