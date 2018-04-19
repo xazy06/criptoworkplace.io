@@ -178,12 +178,14 @@ namespace CWPIO
             {
                 //app.UseRewriter(new RewriteOptions().AddRedirectToHttps());
 
-                app.UseForwardedHeaders(new ForwardedHeadersOptions
-                {
-                    RequireHeaderSymmetry = false,
-                    ForwardedHeaders = ForwardedHeaders.XForwardedProto | ForwardedHeaders.XForwardedFor
-                });
+                
             }
+
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                RequireHeaderSymmetry = false,
+                ForwardedHeaders = ForwardedHeaders.XForwardedProto | ForwardedHeaders.XForwardedFor
+            });
 
             app.Use(async (context, next) =>
             {
