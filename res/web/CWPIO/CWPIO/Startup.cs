@@ -19,6 +19,7 @@ using Newtonsoft.Json;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.Extensions.Logging;
 
 namespace CWPIO
 {
@@ -157,7 +158,7 @@ namespace CWPIO
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILogger logger)
         {
 
             app.UseRequestLocalization();
@@ -175,7 +176,7 @@ namespace CWPIO
 
             if (env.IsProduction())
             {
-                app.UseRewriter(new RewriteOptions().AddRedirectToHttps());
+                //app.UseRewriter(new RewriteOptions().AddRedirectToHttps());
 
                 app.UseForwardedHeaders(new ForwardedHeadersOptions
                 {
@@ -183,6 +184,15 @@ namespace CWPIO
                     ForwardedHeaders = ForwardedHeaders.XForwardedProto | ForwardedHeaders.XForwardedFor
                 });
             }
+
+            app.Use(async (context, next) =>
+            {
+                if (context.Request.IsHttps)
+                    logger.LogDebug("Https request");
+                else
+                    logger.LogDebug("Http request");
+                await next.Invoke();
+            });
 
             app.UseStaticFiles();
 
