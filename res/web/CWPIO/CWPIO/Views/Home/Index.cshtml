@@ -22,14 +22,15 @@
                         <h1 class="h1hl-title">
                             <locale exclude="ja-JP">
 @*                                <span class="bold">*@
-                                    @Locale["decentralizedsystem"]
+                                    @Locale["ECO"]
 @*                                </span>*@
 
-                                @Locale["head"]
+                                <div class="s-h1__sub">@Locale["head"]</div>
                             </locale>
 
                             <locale include="ja-JP">
-                                @Locale["head"]
+                                @Locale["ECO"]
+                                <div class="s-h1__sub">@Locale["head"]</div>
                             </locale>
                         </h1>
                         @*                    <p class="h1hl-text">*@
@@ -38,9 +39,9 @@
                         <h2 class="h1-h2sub">@Locale["Private Pre-Sale"]</h2>
                         <div style="margin-bottom: 0;" class="how-can-help">
                             <div style="z-index: -1; position: absolute;" id="h"></div>
-                            <div style="margin-bottom: 27px; text-align: center;" id="digital_led"></div>
+                            <div style="margin-bottom: 27px;" id="digital_led"></div>
                             <div class="">
-                                <a style="width:100%" href="#presale" class="smoothscroll btn btn-round btn-b btn-lg s">
+                                <a style="" href="#presale" class="smoothscroll btn btn-round btn-b btn-lg s">
                                     @Locale["Get discount"]
                                 </a>
                             </div>
@@ -102,7 +103,7 @@
 
                     </p>
                 </div>
-                <a class="btn btn-b btn-round" target="_blank" href="@PresentationPath">@Locale["presentation"]</a>
+                <a class="btn btn-b btn-round s-tt_u" target="_blank" href="@PresentationPath">@Locale["presentation"]</a>
             </div>
         </div>
     </div>
@@ -140,42 +141,37 @@
                         @Locale["Specifications"]
                     </h2>
 
-                    <p>
-                        <strong class="s-fs_20">CWP LITE</strong> 
-
-                    </p>
-                    <p>
-                        @Locale["compatible"]
-                    </p>
+@*                    <p>*@
+@*                        <strong class="s-fs_20">CWP LITE</strong> *@
+@**@
+@*                    </p>*@
+@*                    <p>*@
+@*                        @Locale["compatible"]*@
+@*                    </p>*@
                 </div>
 
-                <div class="row">
+                <div class="row s-tt_u s-mb_40">
                     <div class="col-md-8 col-lg-6">
                         <div class="s-mb_40 s-specs">
                             <i class="cw cw-3x cw-display s-mr_10"></i>
-                            <span class="s-icon">OLED Display</span>
+                            <span class="s-icon s-spec_i">OLED Display</span>
                         </div>
                         <div class="s-mb_40 s-specs">
                             <i class="cw cw-3x cw-cpu s-mr_10"></i>
-                            <span class="s-icon">
-                                CPU Quad-Core ARM Cortex<br>
-                                GPU ARM Mali400 MP2
-                            </span>
+                            <span class="s-icon s-spec_i">Quad-Core CPU</span>
                         </div>
                         <div class="s-mb_40 s-specs">
                             <i class="cw cw-3x cw-ram s-mr_10"></i>
-                            <span class="s-icon">
+                            <span class="s-icon s-spec_i">
                                 4GB RAM<br>
-                                NAND Flash 16Gb
+                                & 16Gb Flash
                             </span>
                         </div>
 
                         <div class="s-mb_40 s-specs">
                             <i class="cw cw-3x cw-usb s-mr_10"></i>
-                            <span class="s-icon">
-                                USB HOST<br>
-                                USB OTG<br>
-                                HDMI
+                            <span class="s-icon s-spec_i">
+                                USB & HDMI
                             </span>
 
                         </div>
@@ -186,19 +182,22 @@
                     <div class="col-md-4 col-lg-4">
                         <div class="s-mb_40 s-specs">
                             <i class="cw cw-3x cw-fingerprint s-mr_10"></i>
-                            <span class="s-icon">
-                                Fingerprint
+                            <span class="s-icon s-spec_i">
+                                Biometric
                             </span>
                         </div>
                         <div class="s-mb_40 s-specs">
                             <i class="cw cw-3x cw-wifi s-mr_10"></i>
-                            <span class="s-icon">
-                                WI-FI<br>
-                                Bluetooth 4
+                            <span class="s-icon s-spec_i">
+                                WI-FI & LTE
                             </span>
 
                         </div>
                     </div>
+                </div>
+                
+                <div>
+                    <p style="font-size: 22px;color: #fff;font-weight: 100;">@Locale["specbottom"]</p>
                 </div>
             </div>
             <div class="col-md-5 col-sm-6 col-xs-12">
@@ -224,13 +223,13 @@
         </div>
         <div class="row s-delim">
             <div class="col-md-6 col-sm-6 col-xs-12 s-ta_c">
-                <a href="#presale" class="smoothscroll btn btn-round btn-b btn-lg">@Locale["Private Pre-Sale"]</a>
+                <a href="#presale" class="smoothscroll btn btn-round btn-b btn-lg  s-tt_u">@Locale["Private Pre-Sale btn"]</a>
             </div>
-            <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="col-md-6 col-sm-6 col-xs-12  s-tt_u">
                 <table width="100%">
                     <tr>
                         <td>@Locale["Token"]</td>
-                        <td class="s-ta_r">CWT-P</td>
+                        <td style="color:#589da5" class="s-ta_r">CWT-P</td>
                     </tr>
                     <tr>
                         <td>Soft cap</td>
@@ -254,13 +253,13 @@
         </div>
         <div class="row">
             <div class="col-md-6 col-sm-6 col-xs-12 s-ta_c">
-                <a style="min-width: 332px;" href="#presale" class="smoothscroll btn btn-round btn-b btn-lg">@Locale["Token Sale"]</a>
+                <a style="min-width: 332px;" href="#presale" class="smoothscroll btn btn-round btn-b btn-lg  s-tt_u">@Locale["tgesale"]</a>
             </div>
-            <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="col-md-6 col-sm-6 col-xs-12 s-tt_u">
                 <table width="100%">
                     <tr>
                         <td>@Locale["Token"]</td>
-                        <td class="s-ta_r">CWT</td>
+                        <td style="color:#589da5" class="s-ta_r">CWT</td>
                     </tr>
                     <tr>
                         <td>Soft cap</td>
@@ -363,218 +362,212 @@
     </div>
 </div>
 <!-- download-area-start -->
-@*<section class="download-area" id="token">*@
-@*    <div class="section-title">*@
-@*        <h2>*@
-@*            @Locale["sale"]*@
-@*        </h2>*@
-@*        <p style="margin-bottom: 36px;">@Locale["round"]</p>*@
-@**@
-@*        <div style="margin-bottom: 60px;" class="">*@
-@*            <a class="smoothscroll button" href="#contact">@Locale["particsale"]</a>*@
-@*        </div>*@
-@**@
-@**@
-@*        <div class="container">*@
-@*            <div class="row">*@
-@*                <a data-toggle="collapse" href="#token-code">@Locale["toggle"]</a>*@
-@**@
-@*                <pre class="s-ta_l collapse" id="token-code">*@
-@*pragma solidity ^ 0.4 .18;*@
-@**@
-@*library SafeMath {*@
-@*  function mul(uint256 a, uint256 b) internal pure returns(uint256) {*@
-@*    if (a == 0) {*@
-@*      return 0;*@
-@*    }*@
-@*    uint256 c = a * b;*@
-@*    assert(c / a == b);*@
-@*    return c;*@
-@*  }*@
-@**@
-@*  function div(uint256 a, uint256 b) internal pure returns(uint256) {*@
-@*    uint256 c = a / b;*@
-@*    return c;*@
-@*  }*@
-@**@
-@*  function sub(uint256 a, uint256 b) internal pure returns(uint256) {*@
-@*    assert(b <= a);*@
-@*    return a - b;*@
-@*  }*@
-@**@
-@*  function add(uint256 a, uint256 b) internal pure returns(uint256) {*@
-@*    uint256 c = a + b;*@
-@*    assert(c >= a);*@
-@*    return c;*@
-@*  }*@
-@*}*@
-@**@
-@*contract ERC20Basic {*@
-@*  uint256 public totalSupply;*@
-@**@
-@*  function balanceOf(address who) public view returns(uint256);*@
-@**@
-@*  function transfer(address to, uint256 value) public returns(bool);*@
-@*  event Transfer(address indexed from, address indexed to, uint256 value);*@
-@*}*@
-@**@
-@*contract BasicToken is ERC20Basic {*@
-@*  using SafeMath*@
-@*  for uint256;*@
-@**@
-@*  mapping(address => uint256) balances;*@
-@**@
-@*  function transfer(address _to, uint256 _value) public returns(bool) {*@
-@*    require(_to != address(0));*@
-@*    require(_value <= balances[msg.sender]);*@
-@**@
-@*    balances[msg.sender] = balances[msg.sender].sub(_value);*@
-@*    balances[_to] = balances[_to].add(_value);*@
-@*    Transfer(msg.sender, _to, _value);*@
-@*    return true;*@
-@*  }*@
-@*  *@
-@*  function balanceOf(address _owner) public view returns(uint256 balance) {*@
-@*    return balances[_owner];*@
-@*  }*@
-@**@
-@*}*@
-@**@
-@*contract ERC20 is ERC20Basic {*@
-@*  function allowance(address owner, address spender) public view returns(uint256);*@
-@**@
-@*  function transferFrom(address from, address to, uint256 value) public returns(bool);*@
-@**@
-@*  function approve(address spender, uint256 value) public returns(bool);*@
-@*  event Approval(address indexed owner, address indexed spender, uint256 value);*@
-@*}*@
-@**@
-@*contract StandardToken is ERC20, BasicToken {*@
-@**@
-@*  mapping(address => mapping(address => uint256)) internal allowed;*@
-@**@
-@*  function transferFrom(address _from, address _to, uint256 _value) public returns(bool) {*@
-@*    require(_to != address(0));*@
-@*    require(_value <= balances[_from]);*@
-@*    require(_value <= allowed[_from][msg.sender]);*@
-@**@
-@*    balances[_from] = balances[_from].sub(_value);*@
-@*    balances[_to] = balances[_to].add(_value);*@
-@*    allowed[_from][msg.sender] = allowed[_from][msg.sender].sub(_value);*@
-@*    Transfer(_from, _to, _value);*@
-@*    return true;*@
-@*  }*@
-@**@
-@*  function approve(address _spender, uint256 _value) public returns(bool) {*@
-@*    allowed[msg.sender][_spender] = _value;*@
-@*    Approval(msg.sender, _spender, _value);*@
-@*    return true;*@
-@*  }*@
-@**@
-@*  function allowance(address _owner, address _spender) public view returns(uint256) {*@
-@*    return allowed[_owner][_spender];*@
-@*  }*@
-@**@
-@*  function increaseApproval(address _spender, uint _addedValue) public returns(bool) {*@
-@*    allowed[msg.sender][_spender] = allowed[msg.sender][_spender].add(_addedValue);*@
-@*    Approval(msg.sender, _spender, allowed[msg.sender][_spender]);*@
-@*    return true;*@
-@*  }*@
-@**@
-@*  function decreaseApproval(address _spender, uint _subtractedValue) public returns(bool) {*@
-@*    uint oldValue = allowed[msg.sender][_spender];*@
-@*    if (_subtractedValue > oldValue) {*@
-@*      allowed[msg.sender][_spender] = 0;*@
-@*    } else {*@
-@*      allowed[msg.sender][_spender] = oldValue.sub(_subtractedValue);*@
-@*    }*@
-@*    Approval(msg.sender, _spender, allowed[msg.sender][_spender]);*@
-@*    return true;*@
-@*  }*@
-@**@
-@*}*@
-@**@
-@*contract Ownable {*@
-@*  address public owner;*@
-@*  event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);*@
-@**@
-@*  function Ownable() public {*@
-@*    owner = msg.sender;*@
-@*  }*@
-@**@
-@*  modifier onlyOwner() {*@
-@*    require(msg.sender == owner);*@
-@*    _;*@
-@*  }*@
-@**@
-@*  function transferOwnership(address newOwner) public onlyOwner {*@
-@*    require(newOwner != address(0));*@
-@*    OwnershipTransferred(owner, newOwner);*@
-@*    owner = newOwner;*@
-@*  }*@
-@**@
-@*}*@
-@**@
-@*contract MintableToken is StandardToken, Ownable {*@
-@*  event Mint(address indexed to, uint256 amount);*@
-@*  event MintFinished();*@
-@**@
-@*  bool public mintingFinished = false;*@
-@**@
-@**@
-@*  modifier canMint() {*@
-@*    require(!mintingFinished);*@
-@*    _;*@
-@*  }*@
-@**@
-@*  function mint(address _to, uint256 _amount) onlyOwner canMint public returns(bool) {*@
-@*    totalSupply = totalSupply.add(_amount);*@
-@*    balances[_to] = balances[_to].add(_amount);*@
-@*    Mint(_to, _amount);*@
-@*    Transfer(address(0), _to, _amount);*@
-@*    return true;*@
-@*  }*@
-@**@
-@*  function finishMinting() onlyOwner canMint public returns(bool) {*@
-@*    mintingFinished = true;*@
-@*    MintFinished();*@
-@*    return true;*@
-@*  }*@
-@*}*@
-@**@
-@*contract CappedToken is MintableToken {*@
-@**@
-@*  uint256 public cap;*@
-@**@
-@*  function CappedToken(uint256 _cap) public {*@
-@*    require(_cap > 0);*@
-@*    cap = _cap;*@
-@*  }*@
-@**@
-@*  function mint(address _to, uint256 _amount) onlyOwner canMint public returns(bool) {*@
-@*    require(totalSupply.add(_amount) <= cap);*@
-@**@
-@*    return super.mint(_to, _amount);*@
-@*  }*@
-@**@
-@*}*@
-@**@
-@*contract pCWTToken is CappedToken {*@
-@*  string public constant name = "Pre-sale CryptoWorkPlace Token";*@
-@*  string public constant symbol = "CWT-P";*@
-@*  uint8 public constant decimals = 18;*@
-@*  uint256 public constant MAX_SUPPLY = 15000000 * (uint256(10) ** decimals); //3% of 500 000 000*@
-@**@
-@*  function pCWTToken() public*@
-@*  CappedToken(MAX_SUPPLY) {}*@
-@*}*@
-@*                </pre>*@
-@*            </div>*@
-@**@
-@*        </div>*@
-@**@
-@*    </div>*@
-@*</section>*@
+<section class="download-area" id="smart">
+    <div class="section-title">
+        <h2>
+            @Locale["Smart contract"]
+        </h2>
+
+        <div class="container">
+            <div class="row">
+                <a data-toggle="collapse" href="#token-code">@Locale["toggle"]</a>
+
+                <pre class="s-ta_l collapse in" id="token-code">
+pragma solidity ^ 0.4 .18;
+
+library SafeMath {
+  function mul(uint256 a, uint256 b) internal pure returns(uint256) {
+    if (a == 0) {
+      return 0;
+    }
+    uint256 c = a * b;
+    assert(c / a == b);
+    return c;
+  }
+
+  function div(uint256 a, uint256 b) internal pure returns(uint256) {
+    uint256 c = a / b;
+    return c;
+  }
+
+  function sub(uint256 a, uint256 b) internal pure returns(uint256) {
+    assert(b <= a);
+    return a - b;
+  }
+
+  function add(uint256 a, uint256 b) internal pure returns(uint256) {
+    uint256 c = a + b;
+    assert(c >= a);
+    return c;
+  }
+}
+
+contract ERC20Basic {
+  uint256 public totalSupply;
+
+  function balanceOf(address who) public view returns(uint256);
+
+  function transfer(address to, uint256 value) public returns(bool);
+  event Transfer(address indexed from, address indexed to, uint256 value);
+}
+
+contract BasicToken is ERC20Basic {
+  using SafeMath
+  for uint256;
+
+  mapping(address => uint256) balances;
+
+  function transfer(address _to, uint256 _value) public returns(bool) {
+    require(_to != address(0));
+    require(_value <= balances[msg.sender]);
+
+    balances[msg.sender] = balances[msg.sender].sub(_value);
+    balances[_to] = balances[_to].add(_value);
+    Transfer(msg.sender, _to, _value);
+    return true;
+  }
+  
+  function balanceOf(address _owner) public view returns(uint256 balance) {
+    return balances[_owner];
+  }
+
+}
+
+contract ERC20 is ERC20Basic {
+  function allowance(address owner, address spender) public view returns(uint256);
+
+  function transferFrom(address from, address to, uint256 value) public returns(bool);
+
+  function approve(address spender, uint256 value) public returns(bool);
+  event Approval(address indexed owner, address indexed spender, uint256 value);
+}
+
+contract StandardToken is ERC20, BasicToken {
+
+  mapping(address => mapping(address => uint256)) internal allowed;
+
+  function transferFrom(address _from, address _to, uint256 _value) public returns(bool) {
+    require(_to != address(0));
+    require(_value <= balances[_from]);
+    require(_value <= allowed[_from][msg.sender]);
+
+    balances[_from] = balances[_from].sub(_value);
+    balances[_to] = balances[_to].add(_value);
+    allowed[_from][msg.sender] = allowed[_from][msg.sender].sub(_value);
+    Transfer(_from, _to, _value);
+    return true;
+  }
+
+  function approve(address _spender, uint256 _value) public returns(bool) {
+    allowed[msg.sender][_spender] = _value;
+    Approval(msg.sender, _spender, _value);
+    return true;
+  }
+
+  function allowance(address _owner, address _spender) public view returns(uint256) {
+    return allowed[_owner][_spender];
+  }
+
+  function increaseApproval(address _spender, uint _addedValue) public returns(bool) {
+    allowed[msg.sender][_spender] = allowed[msg.sender][_spender].add(_addedValue);
+    Approval(msg.sender, _spender, allowed[msg.sender][_spender]);
+    return true;
+  }
+
+  function decreaseApproval(address _spender, uint _subtractedValue) public returns(bool) {
+    uint oldValue = allowed[msg.sender][_spender];
+    if (_subtractedValue > oldValue) {
+      allowed[msg.sender][_spender] = 0;
+    } else {
+      allowed[msg.sender][_spender] = oldValue.sub(_subtractedValue);
+    }
+    Approval(msg.sender, _spender, allowed[msg.sender][_spender]);
+    return true;
+  }
+
+}
+
+contract Ownable {
+  address public owner;
+  event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
+
+  function Ownable() public {
+    owner = msg.sender;
+  }
+
+  modifier onlyOwner() {
+    require(msg.sender == owner);
+    _;
+  }
+
+  function transferOwnership(address newOwner) public onlyOwner {
+    require(newOwner != address(0));
+    OwnershipTransferred(owner, newOwner);
+    owner = newOwner;
+  }
+
+}
+
+contract MintableToken is StandardToken, Ownable {
+  event Mint(address indexed to, uint256 amount);
+  event MintFinished();
+
+  bool public mintingFinished = false;
+
+
+  modifier canMint() {
+    require(!mintingFinished);
+    _;
+  }
+
+  function mint(address _to, uint256 _amount) onlyOwner canMint public returns(bool) {
+    totalSupply = totalSupply.add(_amount);
+    balances[_to] = balances[_to].add(_amount);
+    Mint(_to, _amount);
+    Transfer(address(0), _to, _amount);
+    return true;
+  }
+
+  function finishMinting() onlyOwner canMint public returns(bool) {
+    mintingFinished = true;
+    MintFinished();
+    return true;
+  }
+}
+
+contract CappedToken is MintableToken {
+
+  uint256 public cap;
+
+  function CappedToken(uint256 _cap) public {
+    require(_cap > 0);
+    cap = _cap;
+  }
+
+  function mint(address _to, uint256 _amount) onlyOwner canMint public returns(bool) {
+    require(totalSupply.add(_amount) <= cap);
+
+    return super.mint(_to, _amount);
+  }
+
+}
+
+contract pCWTToken is CappedToken {
+  string public constant name = "Pre-sale CryptoWorkPlace Token";
+  string public constant symbol = "CWT-P";
+  uint8 public constant decimals = 18;
+  uint256 public constant MAX_SUPPLY = 15000000 * (uint256(10) ** decimals); //3% of 500 000 000
+
+  function pCWTToken() public
+  CappedToken(MAX_SUPPLY) {}
+}
+                </pre>
+            </div>
+
+        </div>
+
+    </div>
+</section>
 @*<div class="counter-area">*@
 @*    <div class="container-s">*@
 @*        <div class="row">*@
@@ -629,27 +622,27 @@
 @*</div>*@
 <!-- download-area-end -->
 <!-- download-area-start -->
-<section class="download-area" id="docs">
-    <div class="section-title">
-        <h2 class="">
-            @Locale["documents"]
-        </h2>
-        <div style="margin-bottom: 36px; font-size: 18px; text-transform: uppercase">
-            @Locale["wp"]
-            <div class="s-ta_c">
-                <a class="s-mr_10" target="_blank" href="~/static/docs_/CWP_White_Paper_ru.pdf">&mdash;@Locale["ru"]&mdash;</a>
-                <a target="_blank" href="~/static/docs_/CWP_White_Paper_en.pdf">&mdash;@Locale["en"]&mdash;</a>
-            </div>
-        </div>
-        <div style="margin-bottom: 36px; font-size: 18px; text-transform: uppercase">
-            @Locale["1page"]
-            <div class="s-ta_c">
-                <a class="s-mr_10" target="_blank" href="~/static/docs_/CWP_OnePage_RU.pdf">&mdash;@Locale["ru"]&mdash;</a>
-                <a target="_blank" href="~/static/docs_/CWP_OnePage_EN.pdf">&mdash;@Locale["en"]&mdash;</a>
-            </div>
-        </div>
-    </div>
-</section>
+@*<section class="download-area" id="docs">*@
+@*    <div class="section-title">*@
+@*        <h2 class="">*@
+@*            @Locale["documents"]*@
+@*        </h2>*@
+@*        <div style="margin-bottom: 36px; font-size: 18px; text-transform: uppercase">*@
+@*            @Locale["wp"]*@
+@*            <div class="s-ta_c">*@
+@*                <a class="s-mr_10" target="_blank" href="~/static/docs_/CWP_White_Paper_ru.pdf">&mdash;@Locale["ru"]&mdash;</a>*@
+@*                <a target="_blank" href="~/static/docs_/CWP_White_Paper_en.pdf">&mdash;@Locale["en"]&mdash;</a>*@
+@*            </div>*@
+@*        </div>*@
+@*        <div style="margin-bottom: 36px; font-size: 18px; text-transform: uppercase">*@
+@*            @Locale["1page"]*@
+@*            <div class="s-ta_c">*@
+@*                <a class="s-mr_10" target="_blank" href="~/static/docs_/CWP_OnePage_RU.pdf">&mdash;@Locale["ru"]&mdash;</a>*@
+@*                <a target="_blank" href="~/static/docs_/CWP_OnePage_EN.pdf">&mdash;@Locale["en"]&mdash;</a>*@
+@*            </div>*@
+@*        </div>*@
+@*    </div>*@
+@*</section>*@
 
 <!-- download-area-end -->
 <!-- counter-area-start -->
@@ -2028,7 +2021,7 @@
     <script asp-append-version="true" src="~/js/timer.js"></script>
 
     <script type="text/javascript">
-        var sizes = [6, 3];
+        var sizes = [4, 3];
 
         var config = {
             id: "digital_led",

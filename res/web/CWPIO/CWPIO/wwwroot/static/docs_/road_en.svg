@@ -157,7 +157,7 @@
         font-family="segoe ui" font-size="16" font-style="regular" text-align="left" text-anchor="start" fill="#fff" 
         stroke="none" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter" opacity="1" style="">
     <tspan x="0" y="20" newline=""><![CDATA[The idea of]]></tspan>
-    <tspan x="0" y="46.609375" newline=""><![CDATA[a microcomputer]]></tspan>
+    <tspan x="0" y="46.609375" newline=""><![CDATA[ microcomputer]]></tspan>
   </text>
   <text controller-class="Text_box" transform="matrix(1 0 0 1 659.501 553.882)" width="137.70718383789062" height="57.453125" 
         font-family="segoe ui" font-size="38" font-style="" text-align="left" text-anchor="start" fill="#fff" 
@@ -174,12 +174,11 @@
         stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" opacity="1" style="" font-weight="700">
     <tspan x="0" y="42" newline=""><![CDATA[2009]]></tspan>
   </text>
-  <text controller-class="Text_box" transform="matrix(1 0 0 1 817.609 318.786)" width="192.095703125" height="67.125" 
+  <text controller-class="Text_box" transform="matrix(1 0 0 1 817.609 318.786)" width="192.095703125" height="60.125" 
         font-family="segoe ui" font-size="16" font-style="regular" text-align="left" text-anchor="start" 
         fill="#fff" stroke="none" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter" opacity="1" style="">
-    <tspan x="0" y="17" newline=""><![CDATA[Product version 1.0]]></tspan>
-    <tspan x="0" y="39.375" newline=""><![CDATA[for system]]></tspan>
-    <tspan x="0" y="61.75" newline=""><![CDATA[administrators]]></tspan>
+    <tspan x="0" y="50" newline=""><![CDATA[Product]]></tspan>
+    <tspan x="0" y="72.375" newline=""><![CDATA[ version 1.0]]></tspan>
   </text>
   <text controller-class="Text_box" transform="matrix(1 0 0 1 1056.2 378.917)" width="137.70718383789062" height="58.328125" font-family="segoe ui" font-size="38" font-style="" text-align="left" text-anchor="start" fill="#fff" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" opacity="1" style="" font-weight="700">
     <tspan x="0" y="42" newline=""><![CDATA[2010]]></tspan>
