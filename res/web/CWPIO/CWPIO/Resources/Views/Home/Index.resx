@@ -451,6 +451,9 @@ Blockchain Capital channel.</value>
   <data name="Private Pre-Sale btn" xml:space="preserve">
     <value>PRIVATE PRE-SALE</value>
   </data>
+  <data name="smartcontract" xml:space="preserve">
+    <value>smart-contract</value>
+  </data>
   <data name="specbottom" xml:space="preserve">
     <value>OS Linux Debian&lt;br/&gt;
 Runs on PC/Laptop/TV&lt;br/&gt;
@@ -458,5 +461,8 @@ Compatible with Win, Mac &amp; Linux</value>
   </data>
   <data name="tgesale" xml:space="preserve">
     <value>TGE SALE</value>
+  </data>
+  <data name="tokengen" xml:space="preserve">
+    <value>token generation event</value>
   </data>
 </root>

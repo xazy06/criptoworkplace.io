@@ -4293,8 +4293,20 @@ a.btn.btn-lg.btn-round,
     border-radius: 108px;
 }
 
+.s-fs_16 {
+    font-size:16px;
+}
+
+.s-fs_18 {
+    font-size:18px;
+}
+
 .s-fs_25 {
     font-size:25px;
+}
+
+.s-mb_20 {
+    margin-bottom:20px;
 }
 
 .b-news {
