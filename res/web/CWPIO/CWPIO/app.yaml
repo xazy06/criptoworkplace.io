@@ -1,4 +1,4 @@
 ﻿env: flex
 runtime: aspnetcore
 env_variables:
-  ASPNETCORE_ENVIRONMENT: "Development"
+  ASPNETCORE_ENVIRONMENT: "Production"
