@@ -151,10 +151,13 @@
     <value>Decentralized system</value>
   </data>
   <data name="decentrsys" xml:space="preserve">
-    <value>CWP is a decentralized ecosystem based on a blockchain technology that includes a
-Micro-PC that enables applications to run in a secure, isolated environment, special
-software, a set of web portal services designed to organize protection against threats
-on the network, and a distributed registry of statuses</value>
+    <value>The World’s first decentralized&lt;br/&gt;
+ecosystem based on a pocket crypto&lt;br/&gt;
+computer with built-in cryptostorage,&lt;br/&gt;
+providing unprecedented protection&lt;br/&gt;
+against hacker attacks, malicious&lt;br/&gt;
+programs and unauthorized access to&lt;br/&gt;
+data</value>
   </data>
   <data name="Denis Kuznetsov" xml:space="preserve">
     <value>Denis Kuznetsov</value>
@@ -163,7 +166,7 @@ on the network, and a distributed registry of statuses</value>
     <value>En</value>
   </data>
   <data name="head" xml:space="preserve">
-    <value>based on a pocket computer with blockchain technology</value>
+    <value>based on a cryptocomputer&lt;br/&gt;created to protect&lt;br/&gt;personal data &amp; finances</value>
   </data>
   <data name="idea" xml:space="preserve">
     <value>The idea of a microcomputer</value>
@@ -247,7 +250,7 @@ on the network, and a distributed registry of statuses</value>
     <value>WHITE PAPER</value>
   </data>
   <data name="Yoji Kishi" xml:space="preserve">
-    <value>Yoji Kishi</value>
+    <value>Yoji Kioshi</value>
   </data>
   <data name="roadmaph" xml:space="preserve">
     <value>ROAD &lt;span&gt;MAP&lt;/span&gt;</value>
@@ -379,13 +382,18 @@ Alexey's competencies help the project in the technical issues of TGE.</value>
     <value>MISSION</value>
   </data>
   <data name="besttext" xml:space="preserve">
-    <value>Our mission is to design the safest, smartest and most innovative devices &amp; systems for protecting private DATA &amp; finances of people all over the World.</value>
+    <value>Our mission is to design&lt;br/&gt;
+the safest innovative&lt;br/&gt;
+devices and systems to&lt;br/&gt;
+protect personal data&lt;br/&gt;
+and client’s finances all&lt;br/&gt;
+around the World.</value>
   </data>
   <data name="JOINCWP" xml:space="preserve">
     <value>JOIN CWP</value>
   </data>
   <data name="reghelp" xml:space="preserve">
-    <value>* Please register to participate in our Token Sale! After registration please also check your Spam/Promotion email folder.</value>
+    <value>Please register to participate in our Token Sale!&lt;br/&gt;After registration please also check your&lt;br/&gt;Spam/Promotion email folder.</value>
   </data>
   <data name="compatible" xml:space="preserve">
     <value>compatible with any os</value>
@@ -403,7 +411,9 @@ Alexey's competencies help the project in the technical issues of TGE.</value>
     <value>INTERVIEW</value>
   </data>
   <data name="INTERVIEWSUB" xml:space="preserve">
-    <value>The CWP Mentor Wagan Sarukhanov told in detail about the project in the Aurora Blockchain Capital studio.</value>
+    <value>The CWP Mentor Wagan Sarukhanov&lt;br/&gt;
+speaks about the project on Aurora&lt;br/&gt;
+Blockchain Capital channel.</value>
   </data>
   <data name="mail" xml:space="preserve">
     <value>E-mail</value>
@@ -418,7 +428,7 @@ Alexey's competencies help the project in the technical issues of TGE.</value>
     <value>presentation</value>
   </data>
   <data name="Private Pre-Sale" xml:space="preserve">
-    <value>Private Pre-Sale</value>
+    <value>Private Pre-TGE ROUND</value>
   </data>
   <data name="Token Sale" xml:space="preserve">
     <value>Token Sale</value>
@@ -434,5 +444,19 @@ Alexey's competencies help the project in the technical issues of TGE.</value>
   </data>
   <data name="Token for sale" xml:space="preserve">
     <value>Token for sale</value>
+  </data>
+  <data name="ECO" xml:space="preserve">
+    <value>CWP ECO-SYSTEM</value>
+  </data>
+  <data name="Private Pre-Sale btn" xml:space="preserve">
+    <value>PRIVATE PRE-SALE</value>
+  </data>
+  <data name="specbottom" xml:space="preserve">
+    <value>OS Linux Debian&lt;br/&gt;
+Runs on PC/Laptop/TV&lt;br/&gt;
+Compatible with Win, Mac &amp; Linux</value>
+  </data>
+  <data name="tgesale" xml:space="preserve">
+    <value>TGE SALE</value>
   </data>
 </root>
