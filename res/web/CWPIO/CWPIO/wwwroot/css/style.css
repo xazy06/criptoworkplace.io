@@ -993,7 +993,7 @@ header > .container {
 .h1hl-title {
     color: #fff;
     font-size: 50px;
-    font-weight: 100;
+    font-weight: 300;
     letter-spacing: 0;
     line-height: 63px;
     margin: 0 0 40px;
@@ -1002,7 +1002,7 @@ header > .container {
 .s-h1__sub {
     font-size:24px;
     line-height:1.2;
-    font-weight: 100;
+    font-weight: 300;
     text-transform:uppercase;
 }
 
@@ -1010,7 +1010,7 @@ header > .container {
     /*text-align: center;*/
     color: #fff;
     font-size: 24px;
-    font-weight: 100;
+    font-weight: 300;
     text-transform: uppercase;
     line-height: 1.4em;
     margin-bottom: 18px;
