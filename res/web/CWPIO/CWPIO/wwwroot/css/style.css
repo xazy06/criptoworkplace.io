@@ -261,7 +261,7 @@ Table Of Contents
 */
 
 body {
-    font-family: segoe ui, sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 h1,
@@ -271,7 +271,7 @@ h4,
 h5,
 h6 {
     margin: 0;
-    /*font-family: segoe ui, sans-serif;*/
+    font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     color: #000;
     letter-spacing: 1.5px;
@@ -284,9 +284,13 @@ h6 {
     h5 a,
     h6 a {
         font-weight: inherit;
-        /*font-family: 'Raleway', sans-serif;*/
+        font-family: 'Montserrat', sans-serif;
     }
 
+svg {
+    font-family: 'Montserrat', sans-serif !important;
+}
+    
 h1 {
     font-size: 36px;
     line-height: 70px;
@@ -322,7 +326,7 @@ h6 {
 }
 
 p {
-    /*font-family: 'Open Sans', sans-serif;*/
+    font-family: 'Montserrat', sans-serif;
     font-size: 14px;
     font-weight: normal;
     letter-spacing: 0;
@@ -428,7 +432,7 @@ abbr:hover {
 a,
 a:visited{
     text-decoration: none;
-    /*font-family: 'Raleway', sans-serif;*/
+    font-family: 'Montserrat', sans-serif;
     font-weight: normal;
     font-size: 12px;
     color: #111;
@@ -656,7 +660,7 @@ span.semibold {
 }
 
 .section-title h2 span {
-    font-family: segoe ui, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     /*font-weight: 700;*/
 }
 
