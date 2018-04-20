@@ -1664,7 +1664,7 @@ header > .container {
 
 
 .single-team:hover > img {
-    filter: blur(5px);
+    /*filter: blur(5px);*/
 }
 
 .h-grey {
@@ -4277,7 +4277,7 @@ a.btn.btn-lg,
 
 .s-spec_i {
     font-size: 17px;
-    font-weight: 100;
+    font-weight: 300;
 }
 
 a.btn.btn-lg.s,
