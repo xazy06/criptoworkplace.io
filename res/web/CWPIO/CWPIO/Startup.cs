@@ -176,29 +176,29 @@ namespace CWPIO
 
             if (env.IsProduction())
             {
-                //app.UseRewriter(new RewriteOptions().AddRedirectToHttps());
+                var forwardingOptions = new ForwardedHeadersOptions
+                {
+                    ForwardedHeaders = ForwardedHeaders.All
+                };
+                forwardingOptions.KnownNetworks.Clear(); //its loopback by default
+                forwardingOptions.KnownProxies.Clear();
+                app.UseForwardedHeaders(forwardingOptions);
 
-                
+                app.UseRewriter(new RewriteOptions().AddRedirectToHttpsPermanent());
             }
 
-            var forwardingOptions = new ForwardedHeadersOptions
-            {
-                ForwardedHeaders = ForwardedHeaders.All
-            };
-            forwardingOptions.KnownNetworks.Clear(); //its loopback by default
-            forwardingOptions.KnownProxies.Clear();
-            app.UseForwardedHeaders(forwardingOptions);
+            
 
-            app.Use(async (context, next) =>
-            {
+            //app.Use(async (context, next) =>
+            //{
 
-                logger.LogDebug($"X-Forwarded-Proto: {context.Request.Headers["X-Forwarded-Proto"]}");
-                if (context.Request.IsHttps)
-                    logger.LogDebug("Https request");
-                else
-                    logger.LogDebug("Http request");
-                await next.Invoke();
-            });
+            //    logger.LogDebug($"X-Forwarded-Proto: {context.Request.Headers["X-Forwarded-Proto"]}");
+            //    if (context.Request.IsHttps)
+            //        logger.LogDebug("Https request");
+            //    else
+            //        logger.LogDebug("Http request");
+            //    await next.Invoke();
+            //});
 
             app.UseStaticFiles();
 
