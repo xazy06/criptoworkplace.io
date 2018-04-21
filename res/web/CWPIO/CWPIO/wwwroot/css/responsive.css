@@ -179,6 +179,18 @@ Version      : 1.0
     .s-center_767 {
         text-align:center;
     }
+    a.btn.btn-lg, .btn.btn-lg {
+        padding: 36px 46px;
+        
+        font-size: 22px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 100%;
+    }
+    
+    .home1-hero-area {
+        background-color:#2b4d94;
+    }
 }
 
 
