@@ -981,13 +981,20 @@ header > .container {
 .home1-hero-area {
     padding: 70px 0 40px;
   
-    background: url('/static/ban.png') 0 100% no-repeat;
+    /*background: url('/static/ban.png') 0 100% no-repeat;*/
+    background: linear-gradient(-191deg, #0473ab 54%,#0F1536 86%);
     background-size: cover;
 }
 .s-black-o {
     background: url('/static/ban3.png') 0 0 no-repeat;
     background-size: cover;
 }
+
+
+.mobile-menu button:first-letter {
+    color: #1c6ca4;
+}
+
 .home1-hero-left {}
 
 .h1hl-title {
@@ -4145,6 +4152,11 @@ a.btn:focus{
 	color:#fff;
 }
 
+a.btn:hover,
+a.btn:hover{
+    opacity:0.85;
+}
+
 .btn.btn-default {
     color: #333;
     background-color: #fff;
@@ -4280,13 +4292,12 @@ a.btn.btn-lg,
     font-weight: 300;
 }
 
-a.btn.btn-lg.s,
-.btn.btn-lg.s {
+a.btn.btn-lg.s, .btn.btn-lg.s {
     padding: 17px 40px;
     font-size: 28px;
-    border: 2px solid #fff;
+    border: 1px solid #fff;
     text-transform: uppercase;
-    text-shadow: 1px 2px 6px #0c1c3a;
+    text-shadow: 0 1px 2px #0c1c3a;
     font-weight: 700;
     text-overflow: ellipsis;
     overflow: hidden;

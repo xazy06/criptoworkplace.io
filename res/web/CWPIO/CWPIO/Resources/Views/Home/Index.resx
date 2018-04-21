@@ -393,7 +393,7 @@ around the World.</value>
     <value>JOIN CWP</value>
   </data>
   <data name="reghelp" xml:space="preserve">
-    <value>Please register to participate in our Token Sale!&lt;br/&gt;After registration please also check your&lt;br/&gt;Spam/Promotion email folder.</value>
+    <value>Please register to participate in our Token Sale!&lt;br/&gt;After registration please also check your Spam/Promotion email folder.</value>
   </data>
   <data name="compatible" xml:space="preserve">
     <value>compatible with any os</value>

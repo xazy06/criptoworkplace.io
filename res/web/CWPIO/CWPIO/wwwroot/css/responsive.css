@@ -177,7 +177,7 @@ Version      : 1.0
     }
     
     .s-center_767 {
-        text-align:center;
+        text-align:center !important;
     }
     a.btn.btn-lg, .btn.btn-lg {
         padding: 36px 46px;
@@ -198,6 +198,16 @@ Version      : 1.0
     
     footer {
         margin-top:-70px;
+    }
+    
+    .header-disc {
+        color:#fff !important;
+    }
+
+
+    .subscribe-input-box {
+        display: block;
+        margin-right:0 !important;
     }
 }
 

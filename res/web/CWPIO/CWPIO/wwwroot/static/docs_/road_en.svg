@@ -2,16 +2,16 @@
   
   <style type="text/css">
     .st0{fill:none;}
-    .st1{fill:none;stroke:#fff;stroke-width:3;stroke-miterlimit:10;}
-    .st2{fill:none;stroke:#fff;stroke-width:3;stroke-miterlimit:10;stroke-dasharray:10,5;}
+    .st1{fill:none;stroke:#fff;stroke-width:2;stroke-miterlimit:10;}
+    .st2{fill:none;stroke:#fff;stroke-width:2;stroke-miterlimit:10;stroke-dasharray:10,5;}
 
-    .st3{fill:none;stroke:#fff;stroke-width:3;stroke-miterlimit:10;stroke-dasharray:10,5;}
-    .st4{fill:none;stroke:#fff;stroke-width:3;stroke-miterlimit:10;stroke-dasharray:10,5;}
+    .st3{fill:none;stroke:#fff;stroke-width:2;stroke-miterlimit:10;stroke-dasharray:10,5;}
+    .st4{fill:none;stroke:#fff;stroke-width:2;stroke-miterlimit:10;stroke-dasharray:10,5;}
 
     .st5{fill:none;stroke:#fff;stroke-width:3;stroke-miterlimit:10;stroke-dasharray:10,5;}
     .st6{display:none;}
     .s {}
-    .s1 {fill: none; stroke:#fff;stroke-width:2}
+    .s1 {fill: none; stroke:#fff;stroke-width:2;stroke-dasharray:10,3} 
        
     .Text_box {    font-family: 'Montserrat', sans-serif; }
     /*stroke-dasharray:10,3*/
@@ -137,7 +137,7 @@
       </g>
     </g>
   </g>
-  <g id="Слой_1" transform="matrix(1 0 0 1 0 0)">
+  <g id="Слой_2" transform="matrix(1 0 0 1 0 0)">
     <g transform="matrix(1 0 0 1 0 0)">
       <g transform="matrix(1 0 0 1 0 0)">
         <path class="st0" d="M 3.2 195.7 C 3.2 195.7 154.1 597.5 565.2 558.7 C 976.3000000000001 519.9000000000001 1180.6 172.00000000000006 1444.2 295.70000000000005 C 1626.8 358.00000000000006 1712.6 696.4000000000001 1479.2 796.2 C 1245.8 896 383.9000000000001 545.4000000000001 300.20000000000005 934.7 C 216.50000000000006 1324.1 868.1 1323.3000000000002 1067.2 1235.7 C 1537.3000000000002 1031.7 1855.7 1112.3 2022.2 1393.7 C 2188.7 1675.1 312.20000000000005 1481.7 312.20000000000005 1481.7 L -54.799999999999955 1431.7 L 3.2 195.7 Z" transform="matrix(1 0 0 1 0 0)"/>
