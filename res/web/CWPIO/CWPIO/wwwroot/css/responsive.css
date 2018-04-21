@@ -189,7 +189,15 @@ Version      : 1.0
     }
     
     .home1-hero-area {
-        background-color:#2b4d94;
+        background:#2b4d94 !important;
+    }
+    
+    .b-sol {
+        border-radius:0;
+    }
+    
+    footer {
+        margin-top:-70px;
     }
 }
 
