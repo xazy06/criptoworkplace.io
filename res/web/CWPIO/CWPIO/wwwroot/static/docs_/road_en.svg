@@ -1,4 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1920" height="1295" viewBox="0 0 1920 1295">
+  
   <style type="text/css">
     .st0{fill:none;}
     .st1{fill:none;stroke:#fff;stroke-width:3;stroke-miterlimit:10;}
@@ -10,7 +11,10 @@
     .st5{fill:none;stroke:#fff;stroke-width:3;stroke-miterlimit:10;stroke-dasharray:10,5;}
     .st6{display:none;}
     .s {}
-    .s1 {fill: none; stroke:#fff;stroke-width:2;stroke-dasharray:10,3}
+    .s1 {fill: none; stroke:#fff;stroke-width:2}
+       
+    .Text_box {    font-family: 'Montserrat', sans-serif; }
+    /*stroke-dasharray:10,3*/
   </style>
   <circle cx="270" cy="502" r="11" class="s1" transform="matrix(1 0 0 1 0 0)"/>
   <circle cx="270" cy="502" r="6" class="s" fill="#fff" transform="matrix(1 0 0 1 0 0)"/>
@@ -149,7 +153,7 @@
     </g>
   </g>
   <text controller-class="Text_box" transform="matrix(1 0 0 1 284.578 444.534)" width="137.70718383789062" height="57.859375" 
-        font-family="segoe ui" font-size="38" font-style="" text-align="left" text-anchor="start" fill="#fff" 
+        font-family="segoe ui" font-size="32" font-style="" text-align="left" text-anchor="start" fill="#fff" 
         stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" opacity="1" style="" font-weight="700">
     <tspan x="0" y="42" newline=""><![CDATA[2008]]></tspan>
   </text>
@@ -160,7 +164,7 @@
     <tspan x="0" y="46.609375" newline=""><![CDATA[ microcomputer]]></tspan>
   </text>
   <text controller-class="Text_box" transform="matrix(1 0 0 1 659.501 553.882)" width="137.70718383789062" height="57.453125" 
-        font-family="segoe ui" font-size="38" font-style="" text-align="left" text-anchor="start" fill="#fff" 
+        font-family="segoe ui" font-size="32" font-style="" text-align="left" text-anchor="start" fill="#fff" 
         stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" opacity="1" style="" font-weight="700">
     <tspan x="0" y="42" newline=""><![CDATA[2009]]></tspan>
   </text>
@@ -170,7 +174,7 @@
     <tspan x="0" y="20" newline=""><![CDATA[Patenting]]></tspan>
   </text>
   <text controller-class="Text_box" transform="matrix(1 0 0 1 818.068 395.562)" width="137.70718383789062" height="58.171875" 
-        font-family="segoe ui" font-size="38" font-style="" text-align="left" text-anchor="start" fill="#fff" 
+        font-family="segoe ui" font-size="32" font-style="" text-align="left" text-anchor="start" fill="#fff" 
         stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" opacity="1" style="" font-weight="700">
     <tspan x="0" y="42" newline=""><![CDATA[2009]]></tspan>
   </text>
@@ -180,14 +184,14 @@
     <tspan x="0" y="50" newline=""><![CDATA[Product]]></tspan>
     <tspan x="0" y="72.375" newline=""><![CDATA[ version 1.0]]></tspan>
   </text>
-  <text controller-class="Text_box" transform="matrix(1 0 0 1 1056.2 378.917)" width="137.70718383789062" height="58.328125" font-family="segoe ui" font-size="38" font-style="" text-align="left" text-anchor="start" fill="#fff" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" opacity="1" style="" font-weight="700">
+  <text controller-class="Text_box" transform="matrix(1 0 0 1 1056.2 378.917)" width="137.70718383789062" height="58.328125" font-family="segoe ui" font-size="32" font-style="" text-align="left" text-anchor="start" fill="#fff" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" opacity="1" style="" font-weight="700">
     <tspan x="0" y="42" newline=""><![CDATA[2010]]></tspan>
   </text>
   <text controller-class="Text_box" transform="matrix(1 0 0 1 1059.09 433.74)" width="192.095703125" height="55.0625" font-family="segoe ui" font-size="17" font-style="regular" text-align="left" text-anchor="start" fill="#fff" stroke="none" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter" opacity="1" style="">
     <tspan x="0" y="20" newline=""><![CDATA[Product version 2.0]]></tspan>
     <tspan x="0" y="47.53125" newline=""><![CDATA[thin client]]></tspan>
   </text>
-  <text controller-class="Text_box" transform="matrix(1 0 0 1 1151.12 217.067)" width="137.70718383789062" height="58.328125" font-family="segoe ui" font-size="38" font-style="" text-align="left" text-anchor="start" fill="#fff" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" opacity="1" style="" font-weight="700">
+  <text controller-class="Text_box" transform="matrix(1 0 0 1 1151.12 217.067)" width="137.70718383789062" height="58.328125" font-family="segoe ui" font-size="32" font-style="" text-align="left" text-anchor="start" fill="#fff" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" opacity="1" style="" font-weight="700">
     <tspan x="0" y="42" newline=""><![CDATA[2011]]></tspan>
   </text>
   <text controller-class="Text_box" transform="matrix(1 0 0 1 1150.93 110.289)" width="292.10" height="107.1875" font-family="segoe ui" font-size="16" font-style="regular" text-align="left" text-anchor="start" fill="#fff" stroke="none" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter" opacity="1" style="">
@@ -196,7 +200,7 @@
     <tspan x="0" y="73.59375" newline=""><![CDATA[to the medical]]></tspan>
     <tspan x="0" y="100.390625" newline=""><![CDATA[database]]></tspan>
   </text>
-  <text controller-class="Text_box" transform="matrix(1 0 0 1 1504.68 264.857)" width="137.70718383789062" height="57.34375" font-family="segoe ui" font-size="38" font-style="" text-align="left" text-anchor="start" fill="#fff" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" opacity="1" style="" font-weight="700">
+  <text controller-class="Text_box" transform="matrix(1 0 0 1 1504.68 264.857)" width="137.70718383789062" height="57.34375" font-family="segoe ui" font-size="32" font-style="" text-align="left" text-anchor="start" fill="#fff" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" opacity="1" style="" font-weight="700">
     <tspan x="0" y="42" newline=""><![CDATA[2012]]></tspan>
   </text>
   <text controller-class="Text_box" transform="matrix(1 0 0 1 1505.33 130.465)" width="292.10" height="134.921875" font-family="segoe ui" font-size="16" font-style="regular" text-align="left" text-anchor="start" fill="#fff" stroke="none" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter" opacity="1" style="">
@@ -206,7 +210,7 @@
     <tspan x="0" y="100.953125" newline=""><![CDATA[to remote]]></tspan>
     <tspan x="0" y="127.9375" newline=""><![CDATA[knowledge bases]]></tspan>
   </text>
-  <text controller-class="Text_box" transform="matrix(1 0 0 1 1642.03 542.918)" width="137.70718383789062" height="57.5" font-family="segoe ui" font-size="38" font-style="" text-align="left" text-anchor="start" fill="#fff" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" opacity="1" style="" font-weight="700">
+  <text controller-class="Text_box" transform="matrix(1 0 0 1 1642.03 542.918)" width="137.70718383789062" height="57.5" font-family="segoe ui" font-size="32" font-style="" text-align="left" text-anchor="start" fill="#fff" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" opacity="1" style="" font-weight="700">
     <tspan x="0" y="42" newline=""><![CDATA[2015]]></tspan>
   </text>
   <text controller-class="Text_box" transform="matrix(1 0 0 1 1644.62 434.841)" width="292.10" height="108.375" font-family="segoe ui" font-size="16" font-style="regular" text-align="left" text-anchor="start" fill="#fff" stroke="none" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter" opacity="1" style="">
@@ -215,7 +219,7 @@
     <tspan x="0" y="74.1875" newline=""><![CDATA[with business and gaming]]></tspan>
     <tspan x="0" y="101.28125" newline=""><![CDATA[applications]]></tspan>
   </text>
-  <text controller-class="Text_box" transform="matrix(1 0 0 1 1517.77 786.507)" width="137.70718383789062" height="57.234375" font-family="segoe ui" font-size="38" font-style="" text-align="left" text-anchor="start" fill="#fff" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" opacity="1" style="" font-weight="700">
+  <text controller-class="Text_box" transform="matrix(1 0 0 1 1517.77 786.507)" width="137.70718383789062" height="57.234375" font-family="segoe ui" font-size="32" font-style="" text-align="left" text-anchor="start" fill="#fff" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" opacity="1" style="" font-weight="700">
     <tspan x="0" y="42" newline=""><![CDATA[2016]]></tspan>
   </text>
   <text controller-class="Text_box" transform="matrix(1 0 0 1 1519.39 833.665)" width="292.10" height="135.78125" font-family="segoe ui" font-size="16" font-style="regular" text-align="left" text-anchor="start" fill="#fff" stroke="none" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter" opacity="1" style="">
@@ -225,7 +229,7 @@
     <tspan x="0" y="101.46875" newline=""><![CDATA[client-server]]></tspan>
     <tspan x="0" y="128.625" newline=""><![CDATA[applications]]></tspan>
   </text>
-  <text controller-class="Text_box" transform="matrix(1 0 0 1 1261.63 745.758)" width="137.70718383789062" height="57.234375" font-family="segoe ui" font-size="38" font-style="" text-align="left" text-anchor="start" fill="#fff" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" opacity="1" style="" font-weight="700">
+  <text controller-class="Text_box" transform="matrix(1 0 0 1 1261.63 745.758)" width="137.70718383789062" height="57.234375" font-family="segoe ui" font-size="32" font-style="" text-align="left" text-anchor="start" fill="#fff" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" opacity="1" style="" font-weight="700">
     <tspan x="0" y="42" newline=""><![CDATA[2017]]></tspan>
   </text>
   <text controller-class="Text_box" transform="matrix(1 0 0 1 1263.25 660.966)" width="292.10" height="81.46875" font-family="segoe ui" font-size="16" font-style="regular" text-align="left" text-anchor="start" fill="#fff" stroke="none" stroke-width="1.00" stroke-linecap="butt" stroke-linejoin="miter" opacity="1" style="">
