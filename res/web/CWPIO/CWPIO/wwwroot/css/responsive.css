@@ -173,6 +173,11 @@ Version      : 1.0
 
     .b-2-devices {
         margin-top: 0; width: 100%;
+        max-width: 209px;
+    }
+    
+    .s-center_767 {
+        text-align:center;
     }
 }
 
