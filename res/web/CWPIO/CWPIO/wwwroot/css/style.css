@@ -678,18 +678,23 @@ header > .container {
     /*width: 38px;*/
 }
 
+.logo-label {
+    font-weight:400;
+    vertical-align: middle;
+}
+
 .s-main-logo {
     display: inline-block;
     text-align: center;
     height: 50px;
-    width: 50px;
+    width: 55px;
     margin-right: 10px;
-    border-radius: 12px;
-    vertical-align: middle;
-    padding: 7px;
-    background: #0aafc2;
-    background: -webkit-linear-gradient(45deg, #0aafc2 0%,#323a8c 100%);
-    background: linear-gradient(45deg, #0aafc2 0%,#323a8c 100%);
+    /*border-radius: 12px;*/
+    /*vertical-align: middle;*/
+    /*padding: 7px;*/
+    /*background: #0aafc2;*/
+    /*background: -webkit-linear-gradient(45deg, #0aafc2 0%,#323a8c 100%);*/
+    /*background: linear-gradient(45deg, #0aafc2 0%,#323a8c 100%);*/
 }
 
 .menu {}
