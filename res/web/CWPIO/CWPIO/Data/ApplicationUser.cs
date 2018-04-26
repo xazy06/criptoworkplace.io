@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,11 +13,14 @@ namespace CWPIO.Data
         public ApplicationUser()
         {
             Claims = new HashSet<IdentityUserClaim<string>>();
+            UserBounties = new HashSet<UserBountyCampaing>();
         }
 
-        public virtual ICollection<IdentityUserClaim<string>> Claims { get; set; }
+        public bool IsDeleted { get; set; }
 
-        public virtual ICollection<UserBountyCampaing> UserBounties { get; set; }
+        [JsonIgnore] public virtual ICollection<IdentityUserClaim<string>> Claims { get; set; }
+
+        [JsonIgnore] public virtual ICollection<UserBountyCampaing> UserBounties { get; set; }
         
     }
 }

@@ -80,6 +80,7 @@
     <WCFMetadata Include="Connected Services" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Areas\v1\Data\" />
     <Folder Include="Auth\" />
     <Folder Include="wwwroot\js\adapters" />
     <Folder Include="wwwroot\js\components" />

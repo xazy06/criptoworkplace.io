@@ -187,7 +187,7 @@ namespace CWPIO
                 app.UseRewriter(new RewriteOptions().AddRedirectToHttpsPermanent());
             }
 
-            
+
 
             //app.Use(async (context, next) =>
             //{

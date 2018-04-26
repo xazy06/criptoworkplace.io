@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
@@ -11,9 +12,10 @@ namespace CWPIO.Data
         public string Name { get; set; }
         public string FaClass { get; set; }
         public bool IsDeleted { get; set; }
+        [JsonIgnore]
         public virtual ICollection<UserBountyCampaing> UserBounties { get; set; }
         public virtual ICollection<BountyCampaingItemType> ItemTypes { get; set; }
 
-        public Dictionary<int, decimal> Prices => ItemTypes.Where(x => !x.IsDeleted).ToDictionary(x => x.TypeId, x => x.Price);
+        public Dictionary<int, decimal> Prices => ItemTypes?.Where(x => !x.IsDeleted)?.ToDictionary(x => x.TypeId, x => x.Price);
     }
 }

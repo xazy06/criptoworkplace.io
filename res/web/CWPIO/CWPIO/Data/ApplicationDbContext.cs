@@ -24,12 +24,17 @@ namespace CWPIO.Data
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
 
-            builder.Entity<ApplicationUser>()
-                .HasMany(e => e.Claims)
-                .WithOne()
-                .HasForeignKey(e => e.UserId)
-                .IsRequired()
-                .OnDelete(DeleteBehavior.Cascade);
+            builder.Entity<ApplicationUser>(b =>
+            {
+                b.Property(u => u.IsDeleted).IsRequired().HasDefaultValue(false);
+
+                b.HasMany(u => u.Claims)
+                    .WithOne()
+                    .HasForeignKey(u => u.UserId)
+                    .IsRequired()
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
+
 
             builder.Entity<Subscriber>(b =>
             {
@@ -98,7 +103,7 @@ namespace CWPIO.Data
                 b.HasOne<BountyCampaingItemType>()
                     .WithMany()
                     .HasForeignKey(c => c.ItemType)
-                    .HasPrincipalKey(p=> p.TypeId)
+                    .HasPrincipalKey(p => p.TypeId)
                     .IsRequired(true)
                     .OnDelete(DeleteBehavior.Restrict);
 
@@ -107,7 +112,7 @@ namespace CWPIO.Data
                     .HasForeignKey(x => new { x.UserId, x.BountyCampaingId })
                     .IsRequired(true)
                     .OnDelete(DeleteBehavior.Restrict);
-                
+
             });
 
             builder.Entity<BountyCampaingItemType>(b =>
@@ -132,6 +137,7 @@ namespace CWPIO.Data
 
         public DbSet<BountyCampaing> Bounties { get; set; }
         public DbSet<UserBountyCampaing> UserBounties { get; set; }
+        public DbSet<BountyCampaingItemType> BountiesItemTypes { get; set; }
         public DbSet<UserBountyCampaingItem> UserBountyItems { get; set; }
     }
 }
