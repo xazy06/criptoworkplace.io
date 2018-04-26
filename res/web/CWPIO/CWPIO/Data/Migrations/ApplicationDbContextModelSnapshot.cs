@@ -35,6 +35,10 @@ namespace CWPIO.Data.Migrations
 
                     b.Property<bool>("EmailConfirmed");
 
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(false);
+
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
@@ -207,7 +211,7 @@ namespace CWPIO.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ItemType");
+                    b.HasIndex("ItemType", "BountyCampaingId");
 
                     b.HasIndex("UserId", "BountyCampaingId");
 
@@ -346,8 +350,8 @@ namespace CWPIO.Data.Migrations
                 {
                     b.HasOne("CWPIO.Data.BountyCampaingItemType")
                         .WithMany()
-                        .HasForeignKey("ItemType")
-                        .HasPrincipalKey("TypeId")
+                        .HasForeignKey("ItemType", "BountyCampaingId")
+                        .HasPrincipalKey("TypeId", "BountyCampaingId")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("CWPIO.Data.UserBountyCampaing", "UserBounty")

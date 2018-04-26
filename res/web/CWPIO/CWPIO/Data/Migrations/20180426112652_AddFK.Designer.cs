@@ -11,8 +11,8 @@ using System;
 namespace CWPIO.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180304172726_ChangeFK")]
-    partial class ChangeFK
+    [Migration("20180426112652_AddFK")]
+    partial class AddFK
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -35,6 +35,10 @@ namespace CWPIO.Data.Migrations
                         .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(false);
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -208,7 +212,7 @@ namespace CWPIO.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ItemType");
+                    b.HasIndex("ItemType", "BountyCampaingId");
 
                     b.HasIndex("UserId", "BountyCampaingId");
 
@@ -347,8 +351,8 @@ namespace CWPIO.Data.Migrations
                 {
                     b.HasOne("CWPIO.Data.BountyCampaingItemType")
                         .WithMany()
-                        .HasForeignKey("ItemType")
-                        .HasPrincipalKey("TypeId")
+                        .HasForeignKey("ItemType", "BountyCampaingId")
+                        .HasPrincipalKey("TypeId", "BountyCampaingId")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("CWPIO.Data.UserBountyCampaing", "UserBounty")

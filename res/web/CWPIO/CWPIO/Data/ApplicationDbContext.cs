@@ -102,8 +102,8 @@ namespace CWPIO.Data
 
                 b.HasOne<BountyCampaingItemType>()
                     .WithMany()
-                    .HasForeignKey(c => c.ItemType)
-                    .HasPrincipalKey(p => p.TypeId)
+                    .HasForeignKey(c => new { c.ItemType , c.BountyCampaingId })
+                    .HasPrincipalKey(p => new { p.TypeId, p.BountyCampaingId })
                     .IsRequired(true)
                     .OnDelete(DeleteBehavior.Restrict);
 

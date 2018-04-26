@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace CWPIO.Data.Migrations
 {
-    public partial class ChangeFK : Migration
+    public partial class AddFK : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,38 +14,48 @@ namespace CWPIO.Data.Migrations
                 nullable: true,
                 oldClrType: typeof(bool));
 
+            migrationBuilder.AddColumn<bool>(
+                name: "IsDeleted",
+                table: "AspNetUsers",
+                nullable: false,
+                defaultValue: false);
+
             migrationBuilder.AddUniqueConstraint(
-                name: "AK_BountyCampaingItemType_TypeId",
+                name: "AK_BountyCampaingItemType_TypeId_BountyCampaingId",
                 table: "BountyCampaingItemType",
-                column: "TypeId");
+                columns: new[] { "TypeId", "BountyCampaingId" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserBountyCampaingItem_ItemType",
+                name: "IX_UserBountyCampaingItem_ItemType_BountyCampaingId",
                 table: "UserBountyCampaingItem",
-                column: "ItemType");
+                columns: new[] { "ItemType", "BountyCampaingId" });
 
             migrationBuilder.AddForeignKey(
-                name: "FK_UserBountyCampaingItem_BountyCampaingItemType_ItemType",
+                name: "FK_UserBountyCampaingItem_BountyCampaingItemType_ItemType_BountyCampaingId",
                 table: "UserBountyCampaingItem",
-                column: "ItemType",
+                columns: new[] { "ItemType", "BountyCampaingId" },
                 principalTable: "BountyCampaingItemType",
-                principalColumn: "TypeId",
+                principalColumns: new[] { "TypeId", "BountyCampaingId" },
                 onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_UserBountyCampaingItem_BountyCampaingItemType_ItemType",
+                name: "FK_UserBountyCampaingItem_BountyCampaingItemType_ItemType_BountyCampaingId",
                 table: "UserBountyCampaingItem");
 
             migrationBuilder.DropIndex(
-                name: "IX_UserBountyCampaingItem_ItemType",
+                name: "IX_UserBountyCampaingItem_ItemType_BountyCampaingId",
                 table: "UserBountyCampaingItem");
 
             migrationBuilder.DropUniqueConstraint(
-                name: "AK_BountyCampaingItemType_TypeId",
+                name: "AK_BountyCampaingItemType_TypeId_BountyCampaingId",
                 table: "BountyCampaingItemType");
+
+            migrationBuilder.DropColumn(
+                name: "IsDeleted",
+                table: "AspNetUsers");
 
             migrationBuilder.AlterColumn<bool>(
                 name: "IsAccepted",
