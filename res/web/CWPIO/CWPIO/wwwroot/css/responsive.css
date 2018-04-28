@@ -424,7 +424,11 @@ Version      : 1.0
 /* Small Mobile Layout: 480px. */
 
 @media only screen and (min-width: 240px) and (max-width: 480px) {
-
+    
+    .s-black-o {
+        background-size: auto;
+    }
+    
     header.navbar-fixed-top {
         position: unset !important;
     }
