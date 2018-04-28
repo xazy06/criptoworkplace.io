@@ -1314,24 +1314,27 @@ contract pCWTToken is CappedToken {
             </div>
             <div class="row s-mb_60">
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="single-team">
-                        <img src="/static/team/ykf.png?v=@DateTime.Now.Millisecond" />
-                        <div class="st-content">
-                            <h5>@Locale["Yoji Kishi"]</h5>
-                            <p>
-                                @Locale["t11"]
-                            </p>
+                    <div>
+                        <div class="single-team">
+                            <img src="/static/team/ykf.png?v=@DateTime.Now.Millisecond"/>
+                            <img class="s-prev" src="/static/team/ykf.png?v=@DateTime.Now.Millisecond"/>
+                            <div class="st-content">
+                                <h5>@Locale["Yoji Kishi"]</h5>
+                                <p>
+                                    @Locale["t11"]
+                                </p>
 
-                            <div class="social-w">
-                                <a target="_blank" href="https://www.linkedin.com/in/yoji-kishi-70108610b/">
-                                    <i class="fab fa-linkedin-in"></i>
-                                </a>
+                                <div class="social-w">
+                                    <a target="_blank" href="https://www.linkedin.com/in/yoji-kishi-70108610b/">
+                                        <i class="fab fa-linkedin-in"></i>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
                     <div class="st-content-under">
-                        @Locale["ceo"]<br />
+                        @Locale["ceo"]<br/>
                         <span class="t-m-name">@Locale["Yoji Kishi"]</span>
                     </div>
                 </div>
@@ -1339,6 +1342,7 @@ contract pCWTToken is CappedToken {
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="single-team">
                         <img src="/static/team/alexey.jpg" />
+                        <img class="s-prev" src="/static/team/alexey.jpg"/>
                         <div class="st-content">
                             <h5>@Locale["cvo"] @Locale["Alexey Gladkov"]</h5>
                             <p>
@@ -1372,6 +1376,8 @@ contract pCWTToken is CappedToken {
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="single-team">
                         <img src="/static/team/max.png" />
+                        
+                        <img class="s-prev" src="/static/team/max.png" />
                         <div class="st-content">
                             <h5>@Locale["Maxim Maslich"]</h5>
 
@@ -1407,6 +1413,7 @@ contract pCWTToken is CappedToken {
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="single-team">
                         <img src="/static/team/art.jpg" />
+                        <img class="s-prev" src="/static/team/art.jpg" />
                         <div class="st-content">
                             <h5>@Locale["Software Engineer"] @Locale["Artur Enokyan"]</h5>
 
@@ -1465,6 +1472,7 @@ contract pCWTToken is CappedToken {
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="single-team">
                         <img src="/static/team/ant.png" />
+                        <img class="s-prev" src="/static/team/ant.png" />
                         <div class="st-content">
                             <h5>@Locale["Anton Polyansky"]</h5>
 
@@ -1502,6 +1510,7 @@ contract pCWTToken is CappedToken {
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="single-team">
                         <img src="/static/team/den.jpg" />
+                        <img class="s-prev" src="/static/team/den.jpg" /> 
                         <div class="st-content">
                             <h5>@Locale["Denis Kuznetsov"]</h5>
                             <p>
@@ -1537,7 +1546,8 @@ contract pCWTToken is CappedToken {
 
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="single-team">
-                        <img src="/static/team/anton.png">
+                        <img src="/static/team/anton.png"/>
+                        <img class="s-prev" src="/static/team/anton.png"/>
                         <div class="st-content">
                             <h5>@Locale["Anton Maslov"]</h5>
 
@@ -1565,7 +1575,9 @@ contract pCWTToken is CappedToken {
 
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="single-team">
-                        <img style="filter:grayscale(100%)" src="/static/team/oleg.jpg">
+                        <img style="filter: grayscale(100%)" src="/static/team/oleg.jpg">
+                        
+                        <img class="s-prev" style="filter: grayscale(100%)" src="/static/team/oleg.jpg">
                         <div class="st-content">
                             <h5>@Locale["Oleg Sarukhanov"]</h5>
 
@@ -1616,6 +1628,7 @@ contract pCWTToken is CappedToken {
                 <div class="col-md-4 col-sm-4 col-xs-12">
                     <div class="single-team">
                         <img src="/static/team/podelko.jpg" />
+                        <img class="s-prev" src="/static/team/podelko.jpg" />
                         <div class="st-content">
                             <h5>Ph.D., MBA/@Locale["Alexander Podelko"]</h5>
                             <p>
@@ -1663,30 +1676,17 @@ contract pCWTToken is CappedToken {
                 </div>
                 <div class="col-md-4 col-sm-4 col-xs-12">
                     <div class="single-team">
-                        <img src="/static/team/rus.png" alt="" />
+                        <img style="filter:grayscale(100%)" src="/static/team/ssagalov.jpg" alt="" />
+                        <img class="s-prev" style="filter:grayscale(100%)" src="/static/team/ssagalov.jpg" alt="" />
                         <div class="st-content">
-                            <h5>CEO & Founder SandCoin <br />@Locale["Ruslan Pichugin"]</h5>
-                            <p>
-                                @*                        Основатель SandCoin, соучредитель «Ревитал» Основатель Yocto Games<br/> *@
-                                @*                        Сотрудничество с Chillingo, Electronic Arts, Microsoft Studios<br/>*@
-                                @*                        Руслан руководитель нескольких проектов, один из которых недавно успешно завершил ICO.<br/>*@
-                                @*                        Руслан является популярным блокчейн экспертом, юристом и экономистом, это позволяет ему курировать важные организационные, маркетинговые и экономические вопросы, с которыми сталкиваются основатели проекта.*@
-                                @*                        CEO & Founder SandCoin<br />*@
-                                @*                        Founder Yocto Games <br />*@
-                                @*                        Collaboration with Chillingo, Electronic Arts, Microsoft Studios<br /><br />*@
-                                @**@
-                                @*                        Ruslan is the head of several projects, one of which recently successfully completed the ICO.<br /><br />*@
-                                @*                        Ruslan is a popular blockchain expert, lawyer and economist, all this allows him to oversee the important organizational, marketing and economic issues faced by the founders of the project.*@
-                                @Locale["t8"]
-
-
-                            </p>
+                            <h5>@Locale["magistrofscience"] / @Locale["ssagalov"]</h5>
+                            <div class="single-team_st-content">
+                                @* TODO: change all locales names *@
+                                @Locale["ssagalovbio"]
+                            </div>
 
                             <div class="social-w">
-                                <a target="_blank" href="https://www.facebook.com/ruslanpichugin">
-                                    <i class="fab fa-facebook"></i>
-                                </a>
-                                <a target="_blank" href="https://www.linkedin.com/in/pichugin-ruslan-170a9641/">
+                                <a target="_blank" href="https://www.linkedin.com/in/serguei-sagalovitch-a162a34/">
                                     <i class="fab fa-linkedin-in"></i>
                                 </a>
                             </div>
@@ -1694,9 +1694,9 @@ contract pCWTToken is CappedToken {
 
                     </div>
                     <div class="st-content-under">
-                        CEO & Founder SandCoin <br />
+                        @Locale["pmotsamd"] <br />
                         <span class="t-m-name">
-                            @Locale["Ruslan Pichugin"]
+                            @Locale["ssagalov"]
                         </span>
 
                     </div>
@@ -1705,7 +1705,8 @@ contract pCWTToken is CappedToken {
 
                 <div class="col-md-4 col-sm-4 col-xs-12">
                     <div class="single-team">
-                        <img src="/static/team/vag.png" alt="">
+                        <img src="/static/team/vag.png" alt=""/>
+                        <img class="s-prev" src="/static/team/vag.png" alt=""/>
                         <div class="st-content">
                             <h5>CEO Flexlab<br>@Locale["Wagan Sarukhanov"]</h5>
                             <p>
