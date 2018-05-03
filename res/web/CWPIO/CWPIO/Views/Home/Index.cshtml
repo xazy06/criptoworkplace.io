@@ -8,8 +8,8 @@
         loc = "en";
     }
 
-    var RoadMapPath = "/static/docs_/road_" + loc + ".svg";
-    var PresentationPath = "/static/docs_/CWP 360Secured-" + loc + ".pdf";
+    var roadMapPath = "/static/docs_/road_" + loc + ".svg";
+    var presentationPath = "/static/docs_/CWP 360Secured-" + loc + ".pdf";
 }
 
 <!-- home1-hero-area-start -->
@@ -25,12 +25,12 @@
                                     @Locale["ECO"]
 @*                                </span>*@
 
-                                <div class="s-h1__sub">@Locale["head"]</div>
+                                <div class="s-h1__sub s-mt_10">@Locale["head"]</div>
                             </locale>
 
                             <locale include="ja-JP">
                                 @Locale["ECO"]
-                                <div class="s-h1__sub">@Locale["head"]</div>
+                                <div class="s-h1__sub s-mt_10">@Locale["head"]</div>
                             </locale>
                         </h1>
                         @*                    <p class="h1hl-text">*@
@@ -84,7 +84,7 @@
     </div>
 
     <div style="margin-bottom: 80px;" class="row b-sol white">
-        <div class="col-md-7 col-sm-7 col-xs-12">
+        <div class="col-md-7 col-sm-6 col-xs-12">
             <div class="donwload-left">
                 @*                    <img src="https://c.76.my/Malaysia/intel-compute-stick-1-83ghz-2gb-ddr3l-win8-1-32gb-stck1a32wfc-saveallstore-1705-16-F404732_1.jpg" alt="">*@
                 @*                    <img class="chart" src="~/static/RDR2.png" alt="cwp" />*@
@@ -92,7 +92,7 @@
 
             </div>
         </div>
-        <div class="col-md-5 col-sm-5 col-xs-12">
+        <div class="col-md-5 col-sm-6 col-xs-12">
             <div class="download-right s-mb_27">
                 <div class="section-title">
                     <h2>
@@ -103,7 +103,7 @@
 
                     </p>
                 </div>
-                <a class="btn btn-b btn-round s-tt_u" target="_blank" href="@PresentationPath">@Locale["presentation"]</a>
+                <a class="btn btn-b btn-round s-tt_u" target="_blank" href="@presentationPath">@Locale["presentation"]</a>
             </div>
         </div>
     </div>
@@ -123,11 +123,9 @@
 
         </div>
         <div class="col-md-6 col-sm-6 col-xs-12">
-@*            <div id="ytplayer"></div>*@
-
-            <div class="">
-                    <iframe width="100%" height="311px" src="https://www.youtube.com/embed/t97dZ7UjSOc?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                </div>
+            <div>
+              <iframe id="s-interview" width="100%" height="311px" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
         </div>
     </div>
 </div>
@@ -709,7 +707,7 @@ contract pCWTToken is CappedToken {
         </div>
     </div>
 </div>
-<img src="@RoadMapPath"/>
+<img src="@roadMapPath"/>
 
 
 
@@ -1316,8 +1314,8 @@ contract pCWTToken is CappedToken {
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div>
                         <div class="single-team">
-                            <img src="/static/team/ykf.png?v=@DateTime.Now.Millisecond"/>
-                            <img class="s-prev" src="/static/team/ykf.png?v=@DateTime.Now.Millisecond"/>
+                            <img src="/static/team/yoji.png"/>
+                            <img class="s-prev" src="/static/team/yoji.png"/>
                             <div class="st-content">
                                 <h5>@Locale["Yoji Kishi"]</h5>
                                 <p>
@@ -1627,8 +1625,8 @@ contract pCWTToken is CappedToken {
             <div style="margin-bottom: 60px;" class="row s-mb_60">
                 <div class="col-md-4 col-sm-4 col-xs-12">
                     <div class="single-team">
-                        <img src="/static/team/podelko.jpg" />
-                        <img class="s-prev" src="/static/team/podelko.jpg" />
+                        <img src="/static/adv/podelko.jpg" />
+                        <img class="s-prev" src="/static/adv/podelko.jpg" />
                         <div class="st-content">
                             <h5>Ph.D., MBA/@Locale["Alexander Podelko"]</h5>
                             <p>
@@ -1676,8 +1674,8 @@ contract pCWTToken is CappedToken {
                 </div>
                 <div class="col-md-4 col-sm-4 col-xs-12">
                     <div class="single-team">
-                        <img style="filter:grayscale(100%)" src="/static/team/ssagalov.jpg" alt="" />
-                        <img class="s-prev" style="filter:grayscale(100%)" src="/static/team/ssagalov.jpg" alt="" />
+                        <img style="filter:grayscale(100%)" src="/static/adv/ssagalov.jpg" alt="" />
+                        <img class="s-prev" style="filter:grayscale(100%)" src="/static/adv/ssagalov.jpg" alt="" />
                         <div class="st-content">
                             <h5>@Locale["magistrofscience"] / @Locale["ssagalov"]</h5>
                             <div class="single-team_st-content">
@@ -1705,8 +1703,8 @@ contract pCWTToken is CappedToken {
 
                 <div class="col-md-4 col-sm-4 col-xs-12">
                     <div class="single-team">
-                        <img src="/static/team/vag.png" alt=""/>
-                        <img class="s-prev" src="/static/team/vag.png" alt=""/>
+                        <img src="/static/adv/vag.png" alt=""/>
+                        <img class="s-prev" src="/static/adv/vag.png" alt=""/>
                         <div class="st-content">
                             <h5>CEO Flexlab<br>@Locale["Wagan Sarukhanov"]</h5>
                             <p>
@@ -1796,8 +1794,8 @@ contract pCWTToken is CappedToken {
                             <a target="_blank" href="http://www.qamentor.com/">QA MENTOR</a>
                         </div>
                         @*                        <div class="st-content">*@
-                        @*                            <h5>ALEX SWEET</h5>*@
-                        @*                            <p>Web Designer</p>*@
+                        @*                            <h5></h5>*@
+                        @*                            <p></p>*@
                         @*                            <a href="#">+</a>*@
                         @*                        </div>*@
                     </div>
@@ -2029,43 +2027,8 @@ contract pCWTToken is CappedToken {
 @*    <!-- twitter-area-end -->*@
 
 @section Scripts{
-    <script asp-append-version="true" src="~/js/App.js"></script>
-    <script asp-append-version="true" src="~/js/vm/main/index.js"></script>
-    <script asp-append-version="true" src="~/js/raphael.js"></script>
-    <script asp-append-version="true" src="~/js/timer.js"></script>
-
-    <script type="text/javascript">
-        var sizes = [4, 3];
-
-        var config = {
-            id: "digital_led",
-            type: "countdown",
-            format: "dd:hh:mm:ss",
-            color: "#fff",
-            bgcolor: "#000",
-            size: sizes[(480 / window.screen.width).toString()[0]],
-            rounded: 1,
-            led: "font1"
-        };
-        var myLed = new Led(config);
-    </script>
-
-    <script>
-        // Load the IFrame Player API code asynchronously.
-//        var tag = document.createElement('script');
-//        tag.src = "https://www.youtube.com/player_api";
-//        var firstScriptTag = document.getElementsByTagName('script')[0];
-//        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-//
-//        // Replace the 'ytplayer' element with an <iframe> and
-//        // YouTube player after the API code downloads.
-//        var player;
-//        function onYouTubePlayerAPIReady() {
-//            player = new YT.Player('ytplayer', {
-//                height: '360',
-//                width: '640',
-//                videoId: 't97dZ7UjSOc'
-//            });
-//        }
-    </script>
+    <script defer asp-append-version="true" src="~/js/App.js"></script>
+    <script defer asp-append-version="true" src="~/js/vm/main/index.js"></script>
+    <script defer src="~/js/raphael.js"></script>
+    <script defer asp-append-version="true" src="~/js/timer.js"></script>
 }

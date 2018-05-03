@@ -1,9 +1,9 @@
 @font-face {
 	font-family: 'cwp';
 	src:
-					url('/fonts/cwp/cwp.ttf?scvxqn') format('truetype'),
-					url('/fonts/cwp/cwp.woff?scvxqn') format('woff'),
-					url('/fonts/cwp/cwp.svg?scvxqn#cwp') format('svg');
+					/*url('/fonts/cwp/cwp.ttf?scvxqn') format('truetype'),*/
+					url('/fonts/cwp/cwp.woff?scvxqn') format('woff');
+					/*url('/fonts/cwp/cwp.svg?scvxqn#cwp') format('svg');*/
 	font-weight: normal;
 	font-style: normal;
 }

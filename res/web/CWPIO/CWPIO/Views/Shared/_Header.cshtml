@@ -1,3 +1,4 @@
+
 <header>
     <div class="container">
         <div class="row">
@@ -5,17 +6,15 @@
                 <div class="logo hidden-sm hidden-xs">
                     @if (ViewBag.Area == "my")
                     {
-                        <a href="/">Crypto<span class="semibold">WorkPlace</span></a>
+                        <a asp-controller="Home" asp-action="Index">Crypto<span class="semibold">WorkPlace</span></a>
                     }
                     else
                     {
                         <a class="smoothscroll" href="#home">
                             <span class="s-main-logo">
-                                                                <img src="~/static/CWP2.svg" />
-@*                                <img class="" src="/static/l_2.jpg" />*@
-                                
+                               <img src="~/static/CWP2.svg" />
                             </span>
-                            <span class="logo-label">360 &deg;  Secured</span>
+                            <span class="logo-label">360&deg; Secured</span>
                         </a>
                     }
                 </div>
@@ -23,19 +22,18 @@
             <div class="col-md-8 hidden-sm hidden-xs">
                 @if (ViewBag.Menu == null || ViewBag.Menu)
                 {
-
                     <div class="menu">
                         <nav class="menu-list">
                             <ul>
                                 <li>
                                     @{
                                         var loc = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+                                        var link = "";
                                         if (!loc.Equals("ru") && !loc.Equals("en"))
                                         {
                                             loc = "en";
                                         }
-
-                                        var link = "/static/docs_/CWP_White_Paper_" + loc + ".pdf";
+                                        link = "/static/docs_/CWP_White_Paper_" + loc + ".pdf";
                                     }
                                     <a style="" class="btn btn-sm btn-round btn-g" target="_blank"
                                        href="@link">@Locale["wp"]</a>
@@ -43,11 +41,8 @@
                                 </li>
                                 <li class="active"><a class="smoothscroll" href="#home">@Locale["product"]</a></li>
                                 <li><a class="smoothscroll" href="#token">@Locale["token"]</a></li>
-                                @*                            <li><a target="_blank" href="~/static/wp.pdf">DOCUMENTS</a></li>*@
-                                @*                                <li><a class="smoothscroll" href="#docs">@Locale["documents"]</a></li>*@
                                 <li><a class="smoothscroll" href="#ROADMAP">@Locale["roadmap"]</a></li>
                                 <li><a class="smoothscroll" href="#team">@Locale["team"]</a></li>
-                                @*                            <li><a class="smoothscroll" href="#price">PRICE</a></li>*@
                                 <li><a class="smoothscroll" href="#contact">@Locale["contacts"]</a></li>
                             </ul>
                         </nav>
@@ -56,44 +51,34 @@
             </div>
             <div class="col-md-1 col-xs-4">
                 <div id="change-color" class="b-change-color"></div>
-                <div class="search dropdown hidden-sm hidden-xs">
-                    <a style="text-transform:uppercase" class="dropdown-toggle" href="#" data-toggle="dropdown">
-
-
+                <div class="search s-lang_changer dropdown hidden-sm hidden-xs">
+                    <a class="dropdown-toggle s-lang_changer__toggle" href="#" data-toggle="dropdown">
                         @CultureInfo.CurrentCulture.ThreeLetterISOLanguageName
-
                         <i class="fa fa-angle-down"></i>
                     </a>
+                    
                     <ul class="dropdown-menu" aria-labelledby="language-switch">
-                        <li>
-                            <a asp-controller="Home" asp-action="Index" asp-route-culture="en-US">English</a>
-                        </li>
-                        @*                        <li>*@
-                        @*                            <a asp-controller="Home" asp-action="Index" asp-route-culture="ru-RU">Русский</a>*@
-                        @*                        </li>*@
-                        @*                        <li>*@
-                        @*                            <a href="/?culture=zh-CN">中國</a>*@
-                        @*                        </li>*@
-                        @*                                                <li>*@
-                        @*                                                    <a href="/?culture=ja-JP">日本</a>*@
-                        @*                                                </li>*@
+                        <li><a asp-controller="Home" asp-action="Index" asp-route-culture="en-US">English</a></li>
+@*                        <li><a asp-controller="Home" asp-action="Index" asp-route-culture="ru-RU">Русский</a></li>*@
+@*                        <li><a href="/?culture=zh-CN">中國</a></li>*@
+@*                        <li><a href="/?culture=ja-JP">日本</a></li>*@
                     </ul>
-                    <!-- search-modal-start -->
-                    <div id="myModal" class="search-modal modal fade" role="dialog">
-                        <div class="modal-dialog">
-                            <!-- Modal content-->
-                            <div class="modal-content">
-                                <h4 class="modal-title">Type and Press Enter</h4>
-                                <form action="#">
-                                    <input type="text" placeholder="Search Here">
-                                </form>
-                                <div class="modal-close">
-                                    <button type="button" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- search-modal-end -->
+@*                    <!-- search-modal-start -->*@
+@*                    <div id="myModal" class="search-modal modal fade" role="dialog">*@
+@*                        <div class="modal-dialog">*@
+@*                            <!-- Modal content-->*@
+@*                            <div class="modal-content">*@
+@*                                <h4 class="modal-title">Type and Press Enter</h4>*@
+@*                                <form action="#">*@
+@*                                    <input type="text" placeholder="Search Here">*@
+@*                                </form>*@
+@*                                <div class="modal-close">*@
+@*                                    <button type="button" data-dismiss="modal">Close</button>*@
+@*                                </div>*@
+@*                            </div>*@
+@*                        </div>*@
+@*                    </div>*@
+@*                    <!-- search-modal-end -->*@
                 </div>
             </div>
         </div>
@@ -104,50 +89,15 @@
         <button type="button" data-toggle="collapse" data-target="#mobile_menu_show">
             CWP
         </button>
-        <div class="l-switcher visible-sm visible-xs">
-            <div class="dropdown">
-                <a class="dropdown-toggle" href="#" data-toggle="dropdown">
-
-                    @if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName.Equals("en"))
-                    {
-                        <i class="fa fa-globe fa-2x"></i>
-                    }
-                    else
-                    {
-                        <span class="c-locale">
-                            @CultureInfo.CurrentCulture.TwoLetterISOLanguageName
-                        </span>
-                    }
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="language-switch">
-                    <li>
-                        <a href="/">English</a>
-                    </li>
-@*                    <li>*@
-@*                        <a href="/?culture=ru-RU">Русский</a>*@
-@*                    </li>*@
-                    @*                    <li>*@
-                    @*                        <a href="/?culture=zh-CN">中國</a>*@
-                    @*                    </li>*@
-                    @*                    <li>*@
-                    @*                        <a href="/?culture=ja-JP">日本</a>*@
-                    @*                    </li>*@
-                </ul>
-            </div>
-        </div>
         @if (ViewBag.Menu == null || ViewBag.Menu)
         {
-            <i class="fas fa-align-justify" data-toggle="collapse" data-target="#mobile_menu_show"></i>
-            <div id="mobile_menu_show" class="collapse">
+            <i class="fas fa-align-justify fa-align-right collapsed" data-toggle="collapse" data-target="#mobile_menu_show"></i>
+            <div id="mobile_menu_show" class="collapse mobile_menu_show">
                 <ul>
                     <li><a data-toggle="collapse" data-target="#mobile_menu_show" class="smoothscroll" href="#home">@Locale["product"]</a></li>
                     <li><a data-toggle="collapse" data-target="#mobile_menu_show" class="smoothscroll" href="#token">@Locale["token"]</a></li>
-                    @*                <li><a data-toggle="collapse" data-target="#mobile_menu_show" target="_blank" href="~/static/wp_.pdf" href="#feature">DOCUMENTS</a></li>*@
-                    @*                <li><a data-toggle="collapse" data-target="#mobile_menu_show" href="#docs">@Locale["documents"]</a></li>*@
-
                     <li><a data-toggle="collapse" data-target="#mobile_menu_show" class="smoothscroll" href="#ROADMAP">@Locale["roadmap"]</a></li>
                     <li><a data-toggle="collapse" data-target="#mobile_menu_show" class="smoothscroll" href="#team">@Locale["team"]</a></li>
-                    @*                <li><a data-toggle="collapse" data-target="#mobile_menu_show" class="smoothscroll" href="#price">PRICE</a></li>*@
                     <li><a data-toggle="collapse" data-target="#mobile_menu_show" class="smoothscroll" href="#contact">@Locale["contacts"]</a></li>
                     <li>
                         <a href="javascript:void(0)">
@@ -160,15 +110,15 @@
                                     <li>
                                         <a asp-controller="Home" asp-action="Index" asp-route-culture="en-US">English</a>
                                     </li>
-                                    <li>
-                                        <a asp-controller="Home" asp-action="Index" asp-route-culture="ru-RU">Русский</a>
-                                    </li>
-                                    @*                                                        <li>*@
-                                    @*                                                            <a href="/?culture=zh-CN">中國</a>*@
-                                    @*                                                        </li>*@
-                                    @*                                                        <li>*@
-                                    @*                                                            <a href="/?culture=ja-JP">日本</a>*@
-                                    @*                                                        </li>*@
+@*                                    <li>*@
+@*                                        <a asp-controller="Home" asp-action="Index" asp-route-culture="ru-RU">Русский</a>*@
+@*                                    </li>*@
+                                    @*<li>*@
+                                    @*  <a href="/?culture=zh-CN">中國</a>*@
+                                    @*</li>*@
+                                    @*<li>*@
+                                    @* <a href="/?culture=ja-JP">日本</a>*@
+                                    @*</li>*@
                                 </ul>
 
                             </div>
@@ -179,6 +129,31 @@
                 </ul>
             </div>
         }
+        
+        <div class="l-switcher visible-sm visible-xs">
+@*            <div class="dropdown">*@
+@*                <a class="dropdown-toggle" href="#" data-toggle="dropdown">*@
+@**@
+@*                    @if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName.Equals("en"))*@
+@*                    {*@
+@*                        <i class="fa fa-globe fa-2x"></i>*@
+@*                    }*@
+@*                    else*@
+@*                    {*@
+@*                        <span class="c-locale">*@
+@*                            @CultureInfo.CurrentCulture.TwoLetterISOLanguageName*@
+@*                        </span>*@
+@*                    }*@
+@*                </a>*@
+@*                <ul class="dropdown-menu" aria-labelledby="language-switch">*@
+@*                    <li><a href="/">English</a></li>*@
+@*$1$                    <li><a href="/?culture=ru-RU">Русский</a></li>#1#*@
+@*$1$                    <li><a href="/?culture=zh-CN">中國</a></li>#1#*@
+@*$1$                    <li><a href="/?culture=ja-JP">日本</a></li>#1#*@
+@*                </ul>*@
+@*            </div>*@
+        </div>
+        
     </div>
 </div>
 <!-- mobile-menu-end -->

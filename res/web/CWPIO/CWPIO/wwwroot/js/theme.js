@@ -35,6 +35,10 @@ Version      : 1.0
 	    if ($(window).scrollTop() > 100) {
 		    $('.custom-mobile-menu-area').addClass('navbar-fixed-top');
 		    $('body').addClass('nohue');
+		    if (window.framesSourceAdded !== true){
+          $('#s-interview').prop('src', 'https://www.youtube.com/embed/t97dZ7UjSOc?rel=0&amp;showinfo=0');
+			    window.framesSourceAdded = true;
+		    }
 	    } else {
 		    $('.custom-mobile-menu-area').removeClass('navbar-fixed-top');
 		    $('body').removeClass('nohue');
