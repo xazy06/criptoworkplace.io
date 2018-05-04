@@ -93,7 +93,19 @@
         {
             <i class="fas fa-align-justify fa-align-right collapsed" data-toggle="collapse" data-target="#mobile_menu_show"></i>
             <div id="mobile_menu_show" class="collapse mobile_menu_show">
+                @{
+                    var loc = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
+                    var link = "";
+                    if (!loc.Equals("ru") && !loc.Equals("en"))
+                    {
+                        loc = "en";
+                    }
+                    link = "/static/docs_/CWP_White_Paper_" + loc + ".pdf";
+                }
                 <ul>
+                    <li>
+                        <a data-toggle="collapse" data-target="#mobile_menu_show" target="_blank" href="@link">@Locale["wp"]</a>
+                    </li>
                     <li><a data-toggle="collapse" data-target="#mobile_menu_show" class="smoothscroll" href="#home">@Locale["product"]</a></li>
                     <li><a data-toggle="collapse" data-target="#mobile_menu_show" class="smoothscroll" href="#token">@Locale["token"]</a></li>
                     <li><a data-toggle="collapse" data-target="#mobile_menu_show" class="smoothscroll" href="#ROADMAP">@Locale["roadmap"]</a></li>
@@ -110,9 +122,9 @@
                                     <li>
                                         <a asp-controller="Home" asp-action="Index" asp-route-culture="en-US">English</a>
                                     </li>
-@*                                    <li>*@
-@*                                        <a asp-controller="Home" asp-action="Index" asp-route-culture="ru-RU">Русский</a>*@
-@*                                    </li>*@
+                                    @*                                    <li>*@
+                                    @*                                        <a asp-controller="Home" asp-action="Index" asp-route-culture="ru-RU">Русский</a>*@
+                                    @*                                    </li>*@
                                     @*<li>*@
                                     @*  <a href="/?culture=zh-CN">中國</a>*@
                                     @*</li>*@
