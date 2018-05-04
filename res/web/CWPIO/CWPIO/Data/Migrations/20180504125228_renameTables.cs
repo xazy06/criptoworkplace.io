@@ -29,10 +29,6 @@ namespace CWPIO.Data.Migrations
                 table: "AspNetUserRoles");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_AspNetUserTokens_AspNetUsers_UserId",
-                table: "AspNetUserTokens");
-
-            migrationBuilder.DropForeignKey(
                 name: "FK_UserBountyCampaing_AspNetUsers_UserId",
                 table: "UserBountyCampaing");
 
