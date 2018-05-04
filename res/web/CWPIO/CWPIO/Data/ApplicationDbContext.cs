@@ -26,7 +26,9 @@ namespace CWPIO.Data
 
             builder.Entity<ApplicationUser>(b =>
             {
-                b.Property(u => u.IsDeleted).IsRequired().HasDefaultValue(false);
+                b.ToTable("users", "identity");
+
+                b.Property(u => u.IsDeleted).IsRequired();
 
                 b.HasMany(u => u.Claims)
                     .WithOne()
@@ -35,6 +37,35 @@ namespace CWPIO.Data
                     .OnDelete(DeleteBehavior.Cascade);
             });
 
+            builder.Entity<Microsoft.AspNetCore.Identity.IdentityRole>(b =>
+            {
+                b.ToTable("roles", "identity");
+            });
+
+            builder.Entity<Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>>(b =>
+            {
+                b.ToTable("roleclaims", "identity");
+            });
+
+            builder.Entity<Microsoft.AspNetCore.Identity.IdentityUserClaim<string>>(b =>
+            {
+                b.ToTable("userclaims", "identity");
+            });
+
+            builder.Entity<Microsoft.AspNetCore.Identity.IdentityUserLogin<string>>(b =>
+            {
+                b.ToTable("userlogins", "identity");
+            });
+
+            builder.Entity<Microsoft.AspNetCore.Identity.IdentityUserRole<string>>(b =>
+            {
+                b.ToTable("userroles", "identity");
+            });
+
+            builder.Entity<Microsoft.AspNetCore.Identity.IdentityUserToken<string>>(b =>
+            {
+                b.ToTable("usertokens", "identity");
+            });
 
             builder.Entity<Subscriber>(b =>
             {
