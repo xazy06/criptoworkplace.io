@@ -44,32 +44,32 @@ namespace CWPIO.Data
 
             builder.Entity<Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>>(b =>
             {
-                b.ToTable("roleclaims", "identity");
+                b.ToTable("role_claims", "identity");
             });
 
             builder.Entity<Microsoft.AspNetCore.Identity.IdentityUserClaim<string>>(b =>
             {
-                b.ToTable("userclaims", "identity");
+                b.ToTable("user_claims", "identity");
             });
 
             builder.Entity<Microsoft.AspNetCore.Identity.IdentityUserLogin<string>>(b =>
             {
-                b.ToTable("userlogins", "identity");
+                b.ToTable("user_logins", "identity");
             });
 
             builder.Entity<Microsoft.AspNetCore.Identity.IdentityUserRole<string>>(b =>
             {
-                b.ToTable("userroles", "identity");
+                b.ToTable("user_roles", "identity");
             });
 
             builder.Entity<Microsoft.AspNetCore.Identity.IdentityUserToken<string>>(b =>
             {
-                b.ToTable("usertokens", "identity");
+                b.ToTable("user_tokens", "identity");
             });
 
             builder.Entity<Subscriber>(b =>
             {
-                b.ToTable("Subscribers");
+                b.ToTable("subscribers");
 
                 b.HasKey(s => s.Id);
 
@@ -81,7 +81,7 @@ namespace CWPIO.Data
 
             builder.Entity<DataProtectionKey>(b =>
             {
-                b.ToTable("DataProtectionKeys");
+                b.ToTable("data_protection_keys","core");
 
                 b.HasKey(x => x.FriendlyName);
                 b.Property(p => p.FriendlyName).HasColumnName("FriendlyName").HasColumnType("text");
@@ -90,7 +90,7 @@ namespace CWPIO.Data
 
             builder.Entity<BountyCampaing>(b =>
             {
-                b.ToTable("BountyCampaing");
+                b.ToTable("bounty_campaing");
 
                 b.HasKey(x => x.Id);
                 b.Property(x => x.Id).ValueGeneratedOnAdd();
@@ -101,7 +101,7 @@ namespace CWPIO.Data
 
             builder.Entity<UserBountyCampaing>(b =>
             {
-                b.ToTable("UserBountyCampaing");
+                b.ToTable("user_bounty_campaing");
 
                 b.HasKey(x => new { x.UserId, x.BountyCampaingId });
                 b.Property(x => x.TotalItemCount).IsRequired(true).HasDefaultValue(0);
@@ -122,7 +122,7 @@ namespace CWPIO.Data
 
             builder.Entity<UserBountyCampaingItem>(b =>
             {
-                b.ToTable("UserBountyCampaingItem");
+                b.ToTable("user_bounty_campaing_item");
 
                 b.HasKey(x => x.Id);
                 b.Property(x => x.Id).ValueGeneratedOnAdd();
@@ -148,7 +148,7 @@ namespace CWPIO.Data
 
             builder.Entity<BountyCampaingItemType>(b =>
             {
-                b.ToTable("BountyCampaingItemType");
+                b.ToTable("bounty_campaing_item_type");
 
                 b.HasKey(x => x.Id);
                 b.Property(x => x.Id).ValueGeneratedOnAdd();
@@ -164,6 +164,33 @@ namespace CWPIO.Data
                     .IsRequired(true)
                     .OnDelete(DeleteBehavior.Restrict);
             });
+
+            foreach (var entity in builder.Model.GetEntityTypes())
+            {
+                // Replace table names
+                //entity.Relational().TableName = entity.Relational().TableName.ToSnakeCase();
+
+                // Replace column names            
+                foreach (var property in entity.GetProperties())
+                {
+                    property.Relational().ColumnName = property.Name.ToSnakeCase();
+                }
+
+                foreach (var key in entity.GetKeys())
+                {
+                    key.Relational().Name = key.Relational().Name.ToSnakeCase();
+                }
+
+                foreach (var key in entity.GetForeignKeys())
+                {
+                    key.Relational().Name = key.Relational().Name.ToSnakeCase();
+                }
+
+                foreach (var index in entity.GetIndexes())
+                {
+                    index.Relational().Name = index.Relational().Name.ToSnakeCase();
+                }
+            }
         }
 
         public DbSet<BountyCampaing> Bounties { get; set; }
