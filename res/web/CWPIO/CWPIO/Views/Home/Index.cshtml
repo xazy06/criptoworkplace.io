@@ -42,7 +42,7 @@
                             <div style="margin-bottom: 27px;" id="digital_led"></div>
                             <div class="">
                                 <a style="color:#aed6f7" href="#presale" class="smoothscroll btn btn-round btn-b btn-lg s header-disc">
-                                    @Locale["Get discount"]
+                                    @Locale["subscribe"]
                                 </a>
                             </div>
 
@@ -224,9 +224,9 @@
                 <div class="s-mb_20">
                 <a href="#presale" class="smoothscroll btn btn-round btn-b btn-lg s-tt_u">@Locale["Private Pre-Sale btn"]</a>
                     </div>
-                <a style="color:#589da5" class="smoothscroll s-tt_u s-fs_16" href="#smart">
-                    @Locale["smartcontract"]
-                </a>
+@*                <a style="color:#589da5" class="smoothscroll s-tt_u s-fs_16" href="#smart">*@
+@*                    @Locale["smartcontract"]*@
+@*                </a>*@
             </div>
             <div class="col-md-6 col-sm-6 col-xs-12  s-tt_u">
                 <table width="100%">
@@ -248,7 +248,11 @@
                     </tr>
                     <tr>
                         <td>1 CWT-P </td>
-                        <td class="s-ta_r">$0.12</td>
+                        <td class="s-ta_r">40% DISCOUNT $0.12</td>
+                    </tr>
+                    <tr>
+                        <td>SALES START</td>
+                        <td class="s-ta_r">MONDAY, MAY 2018</td>
                     </tr>
 
                 </table>
@@ -280,14 +284,17 @@
                         <td>@Locale["Sales start"]</td>
                         <td class="s-ta_r">@(new DateTime(2018, 05, 15).ToLongDateString())</td>
                     </tr>
-
+                    <tr>
+                        <td>1 CWT&mdash;T</td>
+                        <td class="s-ta_r">$0.20</td>
+                    </tr>
                 </table>
             </div>
         </div>
         
         <div class="s-ta_c">
             <a style="color:#8cf9fd" href="#presale" class="smoothscroll btn btn-round btn-b btn-lg s">
-                @Locale["Get discount"]
+                @Locale["subscribe"]
             </a>
         </div>
         @*        <div class="row">*@
@@ -371,212 +378,212 @@
     </div>
 </section>
 <!-- download-area-start -->
-<section class="download-area" id="smart">
-    <div class="section-title">
-        <h2>
-            @Locale["smartcontract"]
-        </h2>
-
-        <div class="container">
-            <div class="row">
-                <a data-toggle="collapse" href="#token-code">@Locale["toggle"]</a>
-
-                <pre class="s-ta_l collapse" id="token-code">
-pragma solidity ^ 0.4 .18;
-
-library SafeMath {
-  function mul(uint256 a, uint256 b) internal pure returns(uint256) {
-    if (a == 0) {
-      return 0;
-    }
-    uint256 c = a * b;
-    assert(c / a == b);
-    return c;
-  }
-
-  function div(uint256 a, uint256 b) internal pure returns(uint256) {
-    uint256 c = a / b;
-    return c;
-  }
-
-  function sub(uint256 a, uint256 b) internal pure returns(uint256) {
-    assert(b <= a);
-    return a - b;
-  }
-
-  function add(uint256 a, uint256 b) internal pure returns(uint256) {
-    uint256 c = a + b;
-    assert(c >= a);
-    return c;
-  }
-}
-
-contract ERC20Basic {
-  uint256 public totalSupply;
-
-  function balanceOf(address who) public view returns(uint256);
-
-  function transfer(address to, uint256 value) public returns(bool);
-  event Transfer(address indexed from, address indexed to, uint256 value);
-}
-
-contract BasicToken is ERC20Basic {
-  using SafeMath
-  for uint256;
-
-  mapping(address => uint256) balances;
-
-  function transfer(address _to, uint256 _value) public returns(bool) {
-    require(_to != address(0));
-    require(_value <= balances[msg.sender]);
-
-    balances[msg.sender] = balances[msg.sender].sub(_value);
-    balances[_to] = balances[_to].add(_value);
-    Transfer(msg.sender, _to, _value);
-    return true;
-  }
-  
-  function balanceOf(address _owner) public view returns(uint256 balance) {
-    return balances[_owner];
-  }
-
-}
-
-contract ERC20 is ERC20Basic {
-  function allowance(address owner, address spender) public view returns(uint256);
-
-  function transferFrom(address from, address to, uint256 value) public returns(bool);
-
-  function approve(address spender, uint256 value) public returns(bool);
-  event Approval(address indexed owner, address indexed spender, uint256 value);
-}
-
-contract StandardToken is ERC20, BasicToken {
-
-  mapping(address => mapping(address => uint256)) internal allowed;
-
-  function transferFrom(address _from, address _to, uint256 _value) public returns(bool) {
-    require(_to != address(0));
-    require(_value <= balances[_from]);
-    require(_value <= allowed[_from][msg.sender]);
-
-    balances[_from] = balances[_from].sub(_value);
-    balances[_to] = balances[_to].add(_value);
-    allowed[_from][msg.sender] = allowed[_from][msg.sender].sub(_value);
-    Transfer(_from, _to, _value);
-    return true;
-  }
-
-  function approve(address _spender, uint256 _value) public returns(bool) {
-    allowed[msg.sender][_spender] = _value;
-    Approval(msg.sender, _spender, _value);
-    return true;
-  }
-
-  function allowance(address _owner, address _spender) public view returns(uint256) {
-    return allowed[_owner][_spender];
-  }
-
-  function increaseApproval(address _spender, uint _addedValue) public returns(bool) {
-    allowed[msg.sender][_spender] = allowed[msg.sender][_spender].add(_addedValue);
-    Approval(msg.sender, _spender, allowed[msg.sender][_spender]);
-    return true;
-  }
-
-  function decreaseApproval(address _spender, uint _subtractedValue) public returns(bool) {
-    uint oldValue = allowed[msg.sender][_spender];
-    if (_subtractedValue > oldValue) {
-      allowed[msg.sender][_spender] = 0;
-    } else {
-      allowed[msg.sender][_spender] = oldValue.sub(_subtractedValue);
-    }
-    Approval(msg.sender, _spender, allowed[msg.sender][_spender]);
-    return true;
-  }
-
-}
-
-contract Ownable {
-  address public owner;
-  event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
-
-  function Ownable() public {
-    owner = msg.sender;
-  }
-
-  modifier onlyOwner() {
-    require(msg.sender == owner);
-    _;
-  }
-
-  function transferOwnership(address newOwner) public onlyOwner {
-    require(newOwner != address(0));
-    OwnershipTransferred(owner, newOwner);
-    owner = newOwner;
-  }
-
-}
-
-contract MintableToken is StandardToken, Ownable {
-  event Mint(address indexed to, uint256 amount);
-  event MintFinished();
-
-  bool public mintingFinished = false;
-
-
-  modifier canMint() {
-    require(!mintingFinished);
-    _;
-  }
-
-  function mint(address _to, uint256 _amount) onlyOwner canMint public returns(bool) {
-    totalSupply = totalSupply.add(_amount);
-    balances[_to] = balances[_to].add(_amount);
-    Mint(_to, _amount);
-    Transfer(address(0), _to, _amount);
-    return true;
-  }
-
-  function finishMinting() onlyOwner canMint public returns(bool) {
-    mintingFinished = true;
-    MintFinished();
-    return true;
-  }
-}
-
-contract CappedToken is MintableToken {
-
-  uint256 public cap;
-
-  function CappedToken(uint256 _cap) public {
-    require(_cap > 0);
-    cap = _cap;
-  }
-
-  function mint(address _to, uint256 _amount) onlyOwner canMint public returns(bool) {
-    require(totalSupply.add(_amount) <= cap);
-
-    return super.mint(_to, _amount);
-  }
-
-}
-
-contract pCWTToken is CappedToken {
-  string public constant name = "Pre-sale CryptoWorkPlace Token";
-  string public constant symbol = "CWT-P";
-  uint8 public constant decimals = 18;
-  uint256 public constant MAX_SUPPLY = 15000000 * (uint256(10) ** decimals); //3% of 500 000 000
-
-  function pCWTToken() public
-  CappedToken(MAX_SUPPLY) {}
-}
-                </pre>
-            </div>
-
-        </div>
-
-    </div>
-</section>
+@*<section class="download-area" id="smart">*@
+@*    <div class="section-title">*@
+@*        <h2>*@
+@*            @Locale["smartcontract"]*@
+@*        </h2>*@
+@**@
+@*        <div class="container">*@
+@*            <div class="row">*@
+@*                <a data-toggle="collapse" href="#token-code">@Locale["toggle"]</a>*@
+@**@
+@*                <pre class="s-ta_l collapse" id="token-code">*@
+@*pragma solidity ^ 0.4 .18;*@
+@**@
+@*library SafeMath {*@
+@*  function mul(uint256 a, uint256 b) internal pure returns(uint256) {*@
+@*    if (a == 0) {*@
+@*      return 0;*@
+@*    }*@
+@*    uint256 c = a * b;*@
+@*    assert(c / a == b);*@
+@*    return c;*@
+@*  }*@
+@**@
+@*  function div(uint256 a, uint256 b) internal pure returns(uint256) {*@
+@*    uint256 c = a / b;*@
+@*    return c;*@
+@*  }*@
+@**@
+@*  function sub(uint256 a, uint256 b) internal pure returns(uint256) {*@
+@*    assert(b <= a);*@
+@*    return a - b;*@
+@*  }*@
+@**@
+@*  function add(uint256 a, uint256 b) internal pure returns(uint256) {*@
+@*    uint256 c = a + b;*@
+@*    assert(c >= a);*@
+@*    return c;*@
+@*  }*@
+@*}*@
+@**@
+@*contract ERC20Basic {*@
+@*  uint256 public totalSupply;*@
+@**@
+@*  function balanceOf(address who) public view returns(uint256);*@
+@**@
+@*  function transfer(address to, uint256 value) public returns(bool);*@
+@*  event Transfer(address indexed from, address indexed to, uint256 value);*@
+@*}*@
+@**@
+@*contract BasicToken is ERC20Basic {*@
+@*  using SafeMath*@
+@*  for uint256;*@
+@**@
+@*  mapping(address => uint256) balances;*@
+@**@
+@*  function transfer(address _to, uint256 _value) public returns(bool) {*@
+@*    require(_to != address(0));*@
+@*    require(_value <= balances[msg.sender]);*@
+@**@
+@*    balances[msg.sender] = balances[msg.sender].sub(_value);*@
+@*    balances[_to] = balances[_to].add(_value);*@
+@*    Transfer(msg.sender, _to, _value);*@
+@*    return true;*@
+@*  }*@
+@*  *@
+@*  function balanceOf(address _owner) public view returns(uint256 balance) {*@
+@*    return balances[_owner];*@
+@*  }*@
+@**@
+@*}*@
+@**@
+@*contract ERC20 is ERC20Basic {*@
+@*  function allowance(address owner, address spender) public view returns(uint256);*@
+@**@
+@*  function transferFrom(address from, address to, uint256 value) public returns(bool);*@
+@**@
+@*  function approve(address spender, uint256 value) public returns(bool);*@
+@*  event Approval(address indexed owner, address indexed spender, uint256 value);*@
+@*}*@
+@**@
+@*contract StandardToken is ERC20, BasicToken {*@
+@**@
+@*  mapping(address => mapping(address => uint256)) internal allowed;*@
+@**@
+@*  function transferFrom(address _from, address _to, uint256 _value) public returns(bool) {*@
+@*    require(_to != address(0));*@
+@*    require(_value <= balances[_from]);*@
+@*    require(_value <= allowed[_from][msg.sender]);*@
+@**@
+@*    balances[_from] = balances[_from].sub(_value);*@
+@*    balances[_to] = balances[_to].add(_value);*@
+@*    allowed[_from][msg.sender] = allowed[_from][msg.sender].sub(_value);*@
+@*    Transfer(_from, _to, _value);*@
+@*    return true;*@
+@*  }*@
+@**@
+@*  function approve(address _spender, uint256 _value) public returns(bool) {*@
+@*    allowed[msg.sender][_spender] = _value;*@
+@*    Approval(msg.sender, _spender, _value);*@
+@*    return true;*@
+@*  }*@
+@**@
+@*  function allowance(address _owner, address _spender) public view returns(uint256) {*@
+@*    return allowed[_owner][_spender];*@
+@*  }*@
+@**@
+@*  function increaseApproval(address _spender, uint _addedValue) public returns(bool) {*@
+@*    allowed[msg.sender][_spender] = allowed[msg.sender][_spender].add(_addedValue);*@
+@*    Approval(msg.sender, _spender, allowed[msg.sender][_spender]);*@
+@*    return true;*@
+@*  }*@
+@**@
+@*  function decreaseApproval(address _spender, uint _subtractedValue) public returns(bool) {*@
+@*    uint oldValue = allowed[msg.sender][_spender];*@
+@*    if (_subtractedValue > oldValue) {*@
+@*      allowed[msg.sender][_spender] = 0;*@
+@*    } else {*@
+@*      allowed[msg.sender][_spender] = oldValue.sub(_subtractedValue);*@
+@*    }*@
+@*    Approval(msg.sender, _spender, allowed[msg.sender][_spender]);*@
+@*    return true;*@
+@*  }*@
+@**@
+@*}*@
+@**@
+@*contract Ownable {*@
+@*  address public owner;*@
+@*  event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);*@
+@**@
+@*  function Ownable() public {*@
+@*    owner = msg.sender;*@
+@*  }*@
+@**@
+@*  modifier onlyOwner() {*@
+@*    require(msg.sender == owner);*@
+@*    _;*@
+@*  }*@
+@**@
+@*  function transferOwnership(address newOwner) public onlyOwner {*@
+@*    require(newOwner != address(0));*@
+@*    OwnershipTransferred(owner, newOwner);*@
+@*    owner = newOwner;*@
+@*  }*@
+@**@
+@*}*@
+@**@
+@*contract MintableToken is StandardToken, Ownable {*@
+@*  event Mint(address indexed to, uint256 amount);*@
+@*  event MintFinished();*@
+@**@
+@*  bool public mintingFinished = false;*@
+@**@
+@**@
+@*  modifier canMint() {*@
+@*    require(!mintingFinished);*@
+@*    _;*@
+@*  }*@
+@**@
+@*  function mint(address _to, uint256 _amount) onlyOwner canMint public returns(bool) {*@
+@*    totalSupply = totalSupply.add(_amount);*@
+@*    balances[_to] = balances[_to].add(_amount);*@
+@*    Mint(_to, _amount);*@
+@*    Transfer(address(0), _to, _amount);*@
+@*    return true;*@
+@*  }*@
+@**@
+@*  function finishMinting() onlyOwner canMint public returns(bool) {*@
+@*    mintingFinished = true;*@
+@*    MintFinished();*@
+@*    return true;*@
+@*  }*@
+@*}*@
+@**@
+@*contract CappedToken is MintableToken {*@
+@**@
+@*  uint256 public cap;*@
+@**@
+@*  function CappedToken(uint256 _cap) public {*@
+@*    require(_cap > 0);*@
+@*    cap = _cap;*@
+@*  }*@
+@**@
+@*  function mint(address _to, uint256 _amount) onlyOwner canMint public returns(bool) {*@
+@*    require(totalSupply.add(_amount) <= cap);*@
+@**@
+@*    return super.mint(_to, _amount);*@
+@*  }*@
+@**@
+@*}*@
+@**@
+@*contract pCWTToken is CappedToken {*@
+@*  string public constant name = "Pre-sale CryptoWorkPlace Token";*@
+@*  string public constant symbol = "CWT-P";*@
+@*  uint8 public constant decimals = 18;*@
+@*  uint256 public constant MAX_SUPPLY = 15000000 * (uint256(10) ** decimals); //3% of 500 000 000*@
+@**@
+@*  function pCWTToken() public*@
+@*  CappedToken(MAX_SUPPLY) {}*@
+@*}*@
+@*                </pre>*@
+@*            </div>*@
+@**@
+@*        </div>*@
+@**@
+@*    </div>*@
+@*</section>*@
 @*<div class="counter-area">*@
 @*    <div class="container-s">*@
 @*        <div class="row">*@
@@ -1623,7 +1630,7 @@ contract pCWTToken is CappedToken {
             </div>
 
             <div style="margin-bottom: 60px;" class="row s-mb_60">
-                <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="col-md-3 col-sm-3 col-xs-12">
                     <div class="single-team">
                         <img src="/static/adv/podelko.jpg" />
                         <img class="s-prev" src="/static/adv/podelko.jpg" />
@@ -1672,7 +1679,7 @@ contract pCWTToken is CappedToken {
 
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="col-md-3 col-sm-3 col-xs-12">
                     <div class="single-team">
                         <img style="filter:grayscale(100%)" src="/static/adv/ssagalov.jpg" alt="" />
                         <img class="s-prev" style="filter:grayscale(100%)" src="/static/adv/ssagalov.jpg" alt="" />
@@ -1701,7 +1708,7 @@ contract pCWTToken is CappedToken {
                 </div>
                
 
-                <div class="col-md-4 col-sm-4 col-xs-12">
+                <div class="col-md-3 col-sm-3 col-xs-12">
                     <div class="single-team">
                         <img src="/static/adv/vag.png" alt=""/>
                         <img class="s-prev" src="/static/adv/vag.png" alt=""/>
@@ -1737,6 +1744,60 @@ contract pCWTToken is CappedToken {
 
                     </div>
                 </div>
+                
+                
+                <div class="col-md-3 col-sm-3 col-xs-12">
+                    <div class="single-team">
+                        <img src="/static/adv/nikolay.jpg" alt=""/>
+                        <img class="s-prev" src="/static/adv/nikolay.jpg" alt=""/>
+                        <div class="st-content">
+                            <h5>Executive Business Development, Universa Corporation<br>@Locale["Nikolay Fedorovskikh"]</h5>
+                            <p>
+                                @Locale["Over 11 years experience in TVMedia, VAS & Data field. Strong focus on Telecom/Media with expertise in DVB/IPTV/Online Video (OTT), VAS, CDN. Creating for overall architecture and engineering of complex TV & Pilot Blockchain projects. Proven track in identifying customer needs and implementing technical strategies, to secure long-term revenue growth on TV/Media markets (IPTV, VOD, OTT, CDN)."]
+                            </p>
+                            <div class="social-w">
+                                <a target="_blank" href="http://ru.linkedin.com/in/nikfedorov">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="st-content-under">
+                        Executive Business Development, Universa Corporation<br>
+                        <span class="t-m-name">
+                            @Locale["Nikolay Fedorovskikh"]
+                        </span>
+
+                    </div>
+                </div>
+                
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="single-team">
+                        <img src="/static/adv/yuriy.jpg" alt=""/>
+                        <img class="s-prev" src="/static/adv/yuriy.jpg" alt=""/>
+                        <div class="st-content">
+                            <h5>Founder & CEO at CryptOcean.io<br>@Locale["Nikolay Fedorovskikh"]</h5>
+                            <p>
+                                @Locale["Enterpreneur with large business and successful BlockChain startup experience"]
+                            </p>
+                            <div class="social-w">
+                                <a target="_blank" href="http://ru.linkedin.com/in/nikfedorov">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="st-content-under">
+                        Founder & CEO at CryptOcean.io<br>
+                        <span class="t-m-name">
+                            @Locale["Nikolay Fedorovskikh"]
+                        </span>
+
+                    </div>
+                </div>
+                
             </div>
         </div>
 
@@ -1836,6 +1897,18 @@ contract pCWTToken is CappedToken {
                         </div>
                     </div>
                 </div>
+                <div class="col-md-12 col-sm-12 col-xs-12 s-ta_c">
+                    <div class="_single-team s-ta_c">
+
+                        <a target="_blank" href="">
+                            <img class="h-grey" width="100" src="/static/partners/cocean.png" alt="Cryptoocean" />
+                        </a>
+                        <div class="s-mb_9">
+                            <a target="_blank" href="">CRYPTOOCEAN</a>
+                        </div>
+                    </div>
+                </div>
+                
 
             </div>
             <div id="presale" class="row">

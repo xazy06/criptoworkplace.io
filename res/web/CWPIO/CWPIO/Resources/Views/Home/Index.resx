@@ -419,7 +419,7 @@ Blockchain Capital channel.</value>
     <value>presentation</value>
   </data>
   <data name="Private Pre-Sale" xml:space="preserve">
-    <value>Private Pre-TGE ROUND</value>
+    <value>TGE SALE</value>
   </data>
   <data name="Token Sale" xml:space="preserve">
     <value>Token Sale</value>
@@ -440,7 +440,7 @@ Blockchain Capital channel.</value>
     <value>CWP ECO-SYSTEM</value>
   </data>
   <data name="Private Pre-Sale btn" xml:space="preserve">
-    <value>PRIVATE PRE-SALE</value>
+    <value>PRE SALE</value>
   </data>
   <data name="smartcontract" xml:space="preserve">
     <value>smart-contract</value>
@@ -471,5 +471,8 @@ Compatible with Win, Mac &amp; Linux</value>
 &lt;p&gt;Serguei has experience working with scientific organizations including University of Vienna.&lt;/p&gt;
 &lt;p&gt;Serguei has been co-authors of several patent applications.&lt;/p&gt;
 &lt;p&gt;Serguei has more than 25 years of experience.&lt;/p&gt;</value>
+  </data>
+  <data name="subscribe" xml:space="preserve">
+    <value>SUBSCRIBE</value>
   </data>
 </root>
