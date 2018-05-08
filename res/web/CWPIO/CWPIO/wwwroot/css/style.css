@@ -1388,7 +1388,7 @@ footer span{
 
 .fba-social li {
     display: inline-block;
-    margin-right: 14px;
+    margin-right: 6px;
 }
 
 .fba-social li:last-child {
@@ -2260,3 +2260,26 @@ img.mfp-img {
 }
 
 
+.fba-social-i
+{
+    padding:0;
+}
+.fba-social-i li {
+    display: block;
+    text-align:center;
+    margin-bottom:10px;
+}
+
+.fba-social-i li i {
+    color:#fff;
+}
+
+.outsider {
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 170px;
+    margin: auto;
+    padding: 20px 10px 10px 20px;
+}
