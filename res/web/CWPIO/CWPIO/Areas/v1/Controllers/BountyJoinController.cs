@@ -39,19 +39,19 @@ namespace CWPIO.Areas.v1.Controllers
             {
                 return NotFound();
             }
-            await _dbContext.Entry(bountyCampaing).Collection(b => b.UserBounties).LoadAsync();
+            await _dbContext.Entry(user).Collection(u => u.BountyUserCampaings).LoadAsync();
 
-            if (bountyCampaing.UserBounties.Any(b => b.UserId == user.Id))
+            if (user.BountyUserCampaings.Any(b => b.BountyCampaingId == bountyId))
             {
                 return BadRequest("Already joined to this bounty program");
             }
 
-            var item = new UserBountyCampaing { User = user };
-            bountyCampaing.UserBounties.Add(item);
+            var item = new BountyUserCampaing { BountyCampaing = bountyCampaing, CreatedByUser = user };
+            user.BountyUserCampaings.Add(item);
 
             await _dbContext.SaveChangesAsync();
 
-            return CreatedAtAction("GetAsync" , "BountyUserCampaingsController",new { bountyId } , item);
+            return CreatedAtAction("GetAsync", "BountyUserCampaingsController", new { bountyId }, item);
         }
 
         [HttpDelete]
@@ -62,40 +62,34 @@ namespace CWPIO.Areas.v1.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = await _dbContext.GetCurrentUserAsync(User);
+            var user = await _dbContext.GetCurrentUserAsync(User, "BountyUserCampaings", "BountyCampaingAcceptedTasks.BountyCampaingTask");
             if (user == null)
             {
                 return NotFound();
             }
+            //await _dbContext.Entry(user).Collection(u => u.BountyUserCampaings).LoadAsync();
 
-            var bountyCampaing = await _dbContext.FindAsync<BountyCampaing>(bountyId);
-            if (bountyCampaing == null)
-            {
-                return NotFound();
-            }
-            await _dbContext.Entry(bountyCampaing).Collection(b => b.UserBounties).LoadAsync();
-
-            var item = bountyCampaing.UserBounties.SingleOrDefault(b => b.UserId == user.Id);
+            var item = user.BountyUserCampaings.SingleOrDefault(b => b.BountyCampaingId == bountyId);
             if (item == null)
             {
                 return NotFound();
             }
-            await _dbContext.Entry(item).Collection(b => b.Items).LoadAsync();
-            if (item.Items.Any(i => i.IsAccepted.GetValueOrDefault()))
+            //await _dbContext.Entry(user).Collection(u => u.BountyCampaingAcceptedTasks).LoadAsync();
+            if (user.BountyCampaingAcceptedTasks.Any(i =>
             {
-                return BadRequest("Can not unsubscribe, when approved actions present");
-            }
-            else
+              //  _dbContext.Entry(i).Reference(t => t.BountyCampaingTask).Load();
+                return i.Status == BountyCampaingTaskStatus.Moderation && i.BountyCampaingTask.BountyCampaingId == bountyId;
+            }))
             {
-                _dbContext.RemoveRange(item.Items);
+                return BadRequest("Can not unsubscribe, when task on moderations");
             }
-            _dbContext.Remove(item);
 
+            item.IsDeleted = true;
             await _dbContext.SaveChangesAsync();
-            
+
             return Ok(item);
         }
 
-        
+
     }
 }

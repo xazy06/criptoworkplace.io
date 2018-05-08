@@ -13,14 +13,19 @@ namespace CWPIO.Data
         public ApplicationUser()
         {
             Claims = new HashSet<IdentityUserClaim<string>>();
-            UserBounties = new HashSet<UserBountyCampaing>();
+            BountyUserCampaings = new HashSet<BountyUserCampaing>();
+            BountyCampaingAcceptedTasks = new HashSet<BountyCampaingAcceptedTask>();
+            BountyFavoriteUsers = new HashSet<BountyFavoriteUser>();
         }
 
         public bool IsDeleted { get; set; }
 
         [JsonIgnore] public virtual ICollection<IdentityUserClaim<string>> Claims { get; set; }
 
-        [JsonIgnore] public virtual ICollection<UserBountyCampaing> UserBounties { get; set; }
-        
+        [JsonIgnore] public virtual ICollection<BountyUserCampaing> BountyUserCampaings { get; set; }
+
+        [JsonIgnore] public virtual ICollection<BountyCampaingAcceptedTask> BountyCampaingAcceptedTasks { get; set; }
+        [JsonIgnore] public virtual ICollection<BountyFavoriteUser> BountyFavoriteUsers { get; set; }
+
     }
 }

@@ -9,6 +9,6 @@ namespace CWPIO.Models.BountyViewModels
     public class WorkplaceViewModel
     {
         public IEnumerable<BountyCampaing> Bounties { get; set; }
-        public IEnumerable<UserBountyCampaing> MyBounties { get; set; }
+        public IEnumerable<BountyUserCampaing> MyBounties { get; set; }
     }
 }

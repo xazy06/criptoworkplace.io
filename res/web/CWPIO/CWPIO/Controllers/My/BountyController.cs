@@ -49,10 +49,10 @@ namespace CWPIO.Controllers
 
             var model = new WorkplaceViewModel
             {
-                Bounties = DbContext.Bounties.Include(b => b.ItemTypes),
-                MyBounties = DbContext.UserBounties
-                    .Include(b=> b.Items)
-                    .Include(b => b.BountyCampaing.ItemTypes)
+                Bounties = DbContext.BountyCampaings.Include(b => b.Activities),
+                MyBounties = DbContext.BountyUserCampaings
+                    //.Include(b=> b.Items)
+                    .Include(b => b.BountyCampaing.Activities)
                     .Where(b => b.UserId == user.Id)
             };
             return View(model);

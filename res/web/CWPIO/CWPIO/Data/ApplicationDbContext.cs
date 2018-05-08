@@ -90,79 +90,190 @@ namespace CWPIO.Data
 
             builder.Entity<BountyCampaing>(b =>
             {
-                b.ToTable("bounty_campaing");
+                b.ToTable("campaing", "bounty");
 
                 b.HasKey(x => x.Id);
                 b.Property(x => x.Id).ValueGeneratedOnAdd();
-                b.Property(x => x.IsDeleted).IsRequired(true);
+                b.Property(x => x.IsDeleted);
                 b.Property(x => x.Name).IsRequired().HasMaxLength(100);
                 b.Property(x => x.FaClass).IsRequired(false).HasMaxLength(100);
+                b.Property(x => x.DateCreated).IsRequired(true).HasDefaultValueSql("now()");
+
+                b.HasOne(x => x.CreatedByUser)
+                    .WithMany()
+                    .HasForeignKey(x => x.CreatedByUserId)
+                    .IsRequired(true)
+                    .OnDelete(DeleteBehavior.Restrict);
             });
 
-            builder.Entity<UserBountyCampaing>(b =>
+            builder.Entity<BountyUserCampaing>(b =>
             {
-                b.ToTable("user_bounty_campaing");
+                b.ToTable("user_campaing","bounty");
 
                 b.HasKey(x => new { x.UserId, x.BountyCampaingId });
+                b.Property(x => x.IsDeleted);
+                b.Property(x=> x.DateCreated).IsRequired(true).HasDefaultValueSql("now()");
                 b.Property(x => x.TotalItemCount).IsRequired(true).HasDefaultValue(0);
                 b.Property(x => x.TotalCoinEarned).IsRequired(true).HasDefaultValue(0m);
 
                 b.HasOne(x => x.BountyCampaing)
-                    .WithMany(x => x.UserBounties)
+                    .WithMany()
                     .HasForeignKey(x => x.BountyCampaingId)
                     .IsRequired(true)
                     .OnDelete(DeleteBehavior.Restrict);
 
                 b.HasOne(x => x.User)
-                    .WithMany(x => x.UserBounties)
+                    .WithMany(x => x.BountyUserCampaings)
                     .HasForeignKey(x => x.UserId)
                     .IsRequired(true)
                     .OnDelete(DeleteBehavior.Restrict);
+
+                b.HasOne(x=> x.CreatedByUser)
+                    .WithMany()
+                    .HasForeignKey(x => x.CreatedByUserId)
+                    .IsRequired(true)
+                    .OnDelete(DeleteBehavior.Restrict);
             });
 
-            builder.Entity<UserBountyCampaingItem>(b =>
+            builder.Entity<BountyCampaingTask>(b =>
             {
-                b.ToTable("user_bounty_campaing_item");
+                b.ToTable("campaing_task", "bounty");
 
                 b.HasKey(x => x.Id);
                 b.Property(x => x.Id).ValueGeneratedOnAdd();
-                b.Property(x => x.IsAccepted).IsRequired(false);
-                b.Property(x => x.IsDeleted).IsRequired(true);
-                b.Property(x => x.Url).IsRequired(true).HasMaxLength(255);
-                b.Property(x => x.ItemType).IsRequired(true);
+                b.Property(x => x.IsDeleted);
+                b.Property(x => x.DateCreated).IsRequired(true).HasDefaultValueSql("now()");
+                b.Property(x => x.Description).IsRequired(true).HasColumnType("text");
+                b.Property(x => x.IsPrivate);
 
-                b.HasOne<BountyCampaingItemType>()
+
+                b.HasOne(x=> x.BountyCampaingActivity)
                     .WithMany()
-                    .HasForeignKey(c => new { c.ItemType , c.BountyCampaingId })
-                    .HasPrincipalKey(p => new { p.TypeId, p.BountyCampaingId })
+                    .HasForeignKey(c => c.BountyCampaingActivityId)
                     .IsRequired(true)
                     .OnDelete(DeleteBehavior.Restrict);
 
-                b.HasOne(x => x.UserBounty)
-                    .WithMany(x => x.Items)
-                    .HasForeignKey(x => new { x.UserId, x.BountyCampaingId })
+                b.HasOne(x => x.BountyCampaing)
+                    .WithMany()
+                    .HasForeignKey(x => x.BountyCampaingId)
+                    .IsRequired(true)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                b.HasOne(x => x.CreatedByUser)
+                    .WithMany()
+                    .HasForeignKey(x => x.CreatedByUserId)
                     .IsRequired(true)
                     .OnDelete(DeleteBehavior.Restrict);
 
             });
 
-            builder.Entity<BountyCampaingItemType>(b =>
+            builder.Entity<BountyCampaingActivity>(b =>
             {
-                b.ToTable("bounty_campaing_item_type");
+                b.ToTable("campaing_activity", "bounty");
 
                 b.HasKey(x => x.Id);
                 b.Property(x => x.Id).ValueGeneratedOnAdd();
                 b.Property(x => x.Name).IsRequired(true).HasMaxLength(200);
-                b.Property(x => x.TypeId).IsRequired(true);
-                b.Property(x => x.Price).IsRequired(true).HasDefaultValue(0m);
-                b.Property(x => x.NeedToApprove).IsRequired(true);
-                b.Property(x => x.IsDeleted).IsRequired(true);
+                b.Property(x => x.Price);
+                b.Property(x => x.NeedToApprove);
+                b.Property(x => x.IsDeleted);
+                b.Property(x => x.DateCreated).IsRequired(true).HasDefaultValueSql("now()");
 
                 b.HasOne(x => x.BountyCampaing)
-                    .WithMany(x => x.ItemTypes)
+                    .WithMany(x => x.Activities)
                     .HasForeignKey(x => x.BountyCampaingId)
                     .IsRequired(true)
                     .OnDelete(DeleteBehavior.Restrict);
+
+                b.HasOne(x => x.CreatedByUser)
+                    .WithMany()
+                    .HasForeignKey(x => x.CreatedByUserId)
+                    .IsRequired(true)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+            builder.Entity<BountyCampaingAcceptedTask>(b =>
+            {
+                b.ToTable("campaing_accepted_task", "bounty");
+
+                b.HasKey(x => new { x.AcceptedByUserId, x.BountyCampaingTaskId });
+                b.Property(x => x.Status);
+                b.Property(x => x.Url).IsRequired(true).HasMaxLength(256);
+                b.Property(x => x.Comment).IsRequired(false).HasMaxLength(256); ;
+                b.Property(x => x.BlobOid).IsRequired(false);
+                b.Property(x => x.DateCreated).IsRequired(true).HasDefaultValueSql("now()");
+
+                b.HasOne(x => x.BountyCampaingTask)
+                    .WithMany()
+                    .HasForeignKey(x => x.BountyCampaingTaskId)
+                    .IsRequired(true)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                b.HasOne(x => x.AcceptedByUser)
+                    .WithMany(x => x.BountyCampaingAcceptedTasks)
+                    .HasForeignKey(x => x.AcceptedByUserId)
+                    .IsRequired(true)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                b.HasOne(x => x.CreatedByUser)
+                    .WithMany()
+                    .HasForeignKey(x => x.CreatedByUserId)
+                    .IsRequired(true)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+            builder.Entity<BountyCampaingTaskAssignment>(b =>
+            {
+                b.ToTable("campaing_task_assignment", "bounty");
+
+                b.HasKey(x => new { x.AssignedToUserId, x.BountyCampaingTaskId });
+                b.Property(x => x.IsDeleted);
+                b.Property(x => x.DateCreated).IsRequired(true).HasDefaultValueSql("now()");
+
+                b.HasOne(x => x.BountyCampaingTask)
+                    .WithMany(x => x.BountyCampaingTaskAssignments)
+                    .HasForeignKey(x => x.BountyCampaingTaskId)
+                    .IsRequired(true)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                b.HasOne(x => x.AssignedToUser)
+                    .WithMany()
+                    .HasForeignKey(x => x.AssignedToUserId)
+                    .IsRequired(true)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                b.HasOne(x => x.CreatedByUser)
+                    .WithMany()
+                    .HasForeignKey(x => x.CreatedByUserId)
+                    .IsRequired(true)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+            builder.Entity<BountyFavoriteUser>(b =>
+            {
+                b.ToTable("favorite_user", "bounty");
+
+                b.HasKey(x => new { x.UserId, x.FavoriteUserId });
+                b.Property(x => x.DateCreated).IsRequired(true).HasDefaultValueSql("now()");
+
+                b.HasOne(x => x.CreatedByUser)
+                    .WithMany()
+                    .HasForeignKey(x => x.CreatedByUserId)
+                    .IsRequired(true)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                b.HasOne(x => x.User)
+                    .WithMany(x => x.BountyFavoriteUsers)
+                    .HasForeignKey(x => x.UserId)
+                    .IsRequired(true)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                b.HasOne(x => x.FavoriteUser)
+                    .WithMany()
+                    .HasForeignKey(x => x.FavoriteUserId)
+                    .IsRequired(true)
+                    .OnDelete(DeleteBehavior.Restrict);
+
             });
 
             foreach (var entity in builder.Model.GetEntityTypes())
@@ -193,9 +304,12 @@ namespace CWPIO.Data
             }
         }
 
-        public DbSet<BountyCampaing> Bounties { get; set; }
-        public DbSet<UserBountyCampaing> UserBounties { get; set; }
-        public DbSet<BountyCampaingItemType> BountiesItemTypes { get; set; }
-        public DbSet<UserBountyCampaingItem> UserBountyItems { get; set; }
+        public DbSet<BountyCampaing> BountyCampaings { get; set; }
+        public DbSet<BountyUserCampaing> BountyUserCampaings { get; set; }
+        public DbSet<BountyCampaingActivity> BountyCampaingsActivity { get; set; }
+        public DbSet<BountyCampaingTask> BountyCampaingTasks { get; set; }
+        public DbSet<BountyCampaingAcceptedTask> BountyCampaingAcceptedTasks { get; set; }
+        public DbSet<BountyCampaingTaskAssignment> BountyCampaingTaskAssignments { get; set; }
+        public DbSet<BountyFavoriteUser> BountyFavoriteUsers { get; set; }
     }
 }
