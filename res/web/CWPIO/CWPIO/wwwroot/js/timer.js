@@ -138,7 +138,7 @@ ident.Led = function(conf) {
 	}
 
 	function updateLed1(d) {
-		new_date = new Date(2018, 4,15);
+		new_date = new Date(2018, 4, 20);
 		
 		time_rem = parseInt((new_date.getTime() - d.getTime()) / 1000) + 1;
 		
