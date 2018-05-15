@@ -138,7 +138,7 @@ ident.Led = function(conf) {
 	}
 
 	function updateLed1(d) {
-		new_date = new Date(2018, 4,15);
+		new_date = new Date(2018, 4, 25);
 		
 		time_rem = parseInt((new_date.getTime() - d.getTime()) / 1000) + 1;
 		
@@ -204,3 +204,19 @@ ident.Led = function(conf) {
 };
 
 Led = ident.Led;
+
+(function() {
+	var sizes = [4, 3];
+
+	var config = {
+		id: "digital_led",
+		type: "countdown",
+		format: "dd:hh:mm:ss",
+		color: "#fff",
+		bgcolor: "#000",
+		size: sizes[(480 / window.screen.width).toString()[0]],
+		rounded: 1,
+		led: "font1"
+	};
+	var myLed = new Led(config);
+}());

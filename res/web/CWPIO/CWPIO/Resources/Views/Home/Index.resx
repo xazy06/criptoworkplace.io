@@ -250,7 +250,7 @@ data</value>
     <value>WHITE PAPER</value>
   </data>
   <data name="Yoji Kishi" xml:space="preserve">
-    <value>Yoji Kioshi</value>
+    <value>Yoji Kishi</value>
   </data>
   <data name="roadmaph" xml:space="preserve">
     <value>ROAD &lt;span&gt;MAP&lt;/span&gt;</value>
@@ -344,15 +344,6 @@ Alexander coordinates the sales and production of the product for the US market,
 
 Alexander has 30 years of experience in software testing, which allows him to organize the interaction of the project with the largest players in the software testing market, such as QAMentor.</value>
   </data>
-  <data name="t8" xml:space="preserve">
-    <value>CEO &amp; Founder SandCoin
-Founder Yocto Games 
-Collaboration with Chillingo, Electronic Arts, Microsoft Studios
-
-Ruslan is the head of several projects, one of which recently successfully completed the ICO.
-
-Ruslan is a popular blockchain expert, lawyer and economist, all this allows him to oversee the important organizational, marketing and economic issues faced by the founders of the project.</value>
-  </data>
   <data name="t9" xml:space="preserve">
     <value>Alexey is a technical specialist with 20 years of experience. He has extensive experience working with high-loaded systems. He develops platform solutions of any complexity.
 Alexey is working on the development of the blockchain system in Playkey for 1.5 years. Manages the infrastructure of more than 1,000 video cards. Developed a unique solution for the mining of cryptocurrency on gaming platforms.
@@ -428,7 +419,7 @@ Blockchain Capital channel.</value>
     <value>presentation</value>
   </data>
   <data name="Private Pre-Sale" xml:space="preserve">
-    <value>Private Pre-TGE ROUND</value>
+    <value>TGE PRE-SALE SOON</value>
   </data>
   <data name="Token Sale" xml:space="preserve">
     <value>Token Sale</value>
@@ -449,7 +440,7 @@ Blockchain Capital channel.</value>
     <value>CWP ECO-SYSTEM</value>
   </data>
   <data name="Private Pre-Sale btn" xml:space="preserve">
-    <value>PRIVATE PRE-SALE</value>
+    <value>PRE SALE</value>
   </data>
   <data name="smartcontract" xml:space="preserve">
     <value>smart-contract</value>
@@ -464,5 +455,24 @@ Compatible with Win, Mac &amp; Linux</value>
   </data>
   <data name="tokengen" xml:space="preserve">
     <value>token generation event</value>
+  </data>
+  <data name="magistrofscience" xml:space="preserve">
+    <value>MSc</value>
+  </data>
+  <data name="pmotsamd" xml:space="preserve">
+    <value>Principal Member of Technical Staff at AMD</value>
+  </data>
+  <data name="ssagalov" xml:space="preserve">
+    <value>Serguei Sagalovitch</value>
+  </data>
+  <data name="ssagalovbio" xml:space="preserve">
+    <value>&lt;p&gt;An expert in software development including design and implementation of device drivers and embedded systems, as well as graphics and compute solutions with the strict robust and security requirements.  Serguei has experience working with customers on product delivery.&lt;/p&gt;
+&lt;p&gt;Serguei has experience working with small and big companies including Nortel and AMD in positions of Team Lead as well as Principal Member of Technical Staff.&lt;/p&gt;
+&lt;p&gt;Serguei has experience working with scientific organizations including University of Vienna.&lt;/p&gt;
+&lt;p&gt;Serguei has been co-authors of several patent applications.&lt;/p&gt;
+&lt;p&gt;Serguei has more than 25 years of experience.&lt;/p&gt;</value>
+  </data>
+  <data name="subscribe" xml:space="preserve">
+    <value>SUBSCRIBE</value>
   </data>
 </root>

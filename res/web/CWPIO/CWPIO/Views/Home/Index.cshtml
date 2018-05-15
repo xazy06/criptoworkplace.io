@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Home";
+    ViewData["Title"] = "360° Secured";
 }
 @{
     var loc = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
@@ -8,8 +8,8 @@
         loc = "en";
     }
 
-    var RoadMapPath = "/static/docs_/road_" + loc + ".svg";
-    var PresentationPath = "/static/docs_/CWP 360Secured-" + loc + ".pdf";
+    var roadMapPath = "/static/docs_/road_" + loc + ".svg";
+    var presentationPath = "/static/docs_/CWP 360Secured-" + loc + ".pdf";
 }
 
 <!-- home1-hero-area-start -->
@@ -25,12 +25,12 @@
                                     @Locale["ECO"]
 @*                                </span>*@
 
-                                <div class="s-h1__sub">@Locale["head"]</div>
+                                <div class="s-h1__sub s-mt_10">@Locale["head"]</div>
                             </locale>
 
                             <locale include="ja-JP">
                                 @Locale["ECO"]
-                                <div class="s-h1__sub">@Locale["head"]</div>
+                                <div class="s-h1__sub s-mt_10">@Locale["head"]</div>
                             </locale>
                         </h1>
                         @*                    <p class="h1hl-text">*@
@@ -42,7 +42,7 @@
                             <div style="margin-bottom: 27px;" id="digital_led"></div>
                             <div class="">
                                 <a style="color:#aed6f7" href="#presale" class="smoothscroll btn btn-round btn-b btn-lg s header-disc">
-                                    @Locale["Get discount"]
+                                    @Locale["subscribe"]
                                 </a>
                             </div>
 
@@ -84,7 +84,7 @@
     </div>
 
     <div style="margin-bottom: 80px;" class="row b-sol white">
-        <div class="col-md-7 col-sm-7 col-xs-12">
+        <div class="col-md-7 col-sm-6 col-xs-12">
             <div class="donwload-left">
                 @*                    <img src="https://c.76.my/Malaysia/intel-compute-stick-1-83ghz-2gb-ddr3l-win8-1-32gb-stck1a32wfc-saveallstore-1705-16-F404732_1.jpg" alt="">*@
                 @*                    <img class="chart" src="~/static/RDR2.png" alt="cwp" />*@
@@ -92,7 +92,7 @@
 
             </div>
         </div>
-        <div class="col-md-5 col-sm-5 col-xs-12">
+        <div class="col-md-5 col-sm-6 col-xs-12">
             <div class="download-right s-mb_27">
                 <div class="section-title">
                     <h2>
@@ -103,7 +103,7 @@
 
                     </p>
                 </div>
-                <a class="btn btn-b btn-round s-tt_u" target="_blank" href="@PresentationPath">@Locale["presentation"]</a>
+                <a class="btn btn-b btn-round s-tt_u" target="_blank" href="@presentationPath">@Locale["presentation"]</a>
             </div>
         </div>
     </div>
@@ -111,7 +111,7 @@
     <div class="row">
         <div class="col-md-6 col-sm-6 col-xs-12">
 
-            <div class="section-title left">
+            <div class="section-title left s-mb_20">
                 <h2>
                     @Locale["INTERVIEW"]
                 </h2>
@@ -123,11 +123,9 @@
 
         </div>
         <div class="col-md-6 col-sm-6 col-xs-12">
-@*            <div id="ytplayer"></div>*@
-
-            <div class="">
-                    <iframe width="100%" height="311px" src="https://www.youtube.com/embed/t97dZ7UjSOc?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                </div>
+            <div>
+              <iframe id="s-interview" width="100%" height="311px" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
         </div>
     </div>
 </div>
@@ -209,9 +207,9 @@
     </div>
 </div>
 <!-- available-area-end -->
-<div class="c-000211 s-black-o">
+<section id="token" class="c-000211 s-black-o">
     <div style="padding: 100px 15px" class="container white">
-        <div id="token" class="row">
+        <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="section-title">
                     <h2>
@@ -226,9 +224,9 @@
                 <div class="s-mb_20">
                 <a href="#presale" class="smoothscroll btn btn-round btn-b btn-lg s-tt_u">@Locale["Private Pre-Sale btn"]</a>
                     </div>
-                <a style="color:#589da5" class="smoothscroll s-tt_u s-fs_16" href="#smart">
-                    @Locale["smartcontract"]
-                </a>
+@*                <a style="color:#589da5" class="smoothscroll s-tt_u s-fs_16" href="#smart">*@
+@*                    @Locale["smartcontract"]*@
+@*                </a>*@
             </div>
             <div class="col-md-6 col-sm-6 col-xs-12  s-tt_u">
                 <table width="100%">
@@ -250,21 +248,25 @@
                     </tr>
                     <tr>
                         <td>1 CWT-P </td>
-                        <td class="s-ta_r">$0.12</td>
+                        <td class="s-ta_r">40% DISCOUNT $0.12</td>
+                    </tr>
+                    <tr>
+                        <td>SALES START</td>
+                        <td class="s-ta_r">MONDAY, MAY 2018</td>
                     </tr>
 
                 </table>
             </div>
         </div>
         <div style="margin-bottom: 120px;" class="row">
-            <div class="col-md-6 col-sm-6 col-xs-12 s-ta_c">
+            <div class="col-md-6 col-sm-6 col-xs-12 s-ta_c s-mb_20">
                 <a style="min-width: 332px;" href="#presale" class="smoothscroll btn btn-round btn-b btn-lg  s-tt_u">@Locale["tgesale"]</a>
             </div>
             <div class="col-md-6 col-sm-6 col-xs-12 s-tt_u">
                 <table width="100%">
                     <tr>
                         <td>@Locale["Token"]</td>
-                        <td style="color:#589da5" class="s-ta_r">CWT</td>
+                        <td style="color:#589da5" class="s-ta_r">CWT-T</td>
                     </tr>
                     <tr>
                         <td>Soft cap</td>
@@ -282,14 +284,17 @@
                         <td>@Locale["Sales start"]</td>
                         <td class="s-ta_r">@(new DateTime(2018, 05, 15).ToLongDateString())</td>
                     </tr>
-
+                    <tr>
+                        <td>1 CWT-T</td>
+                        <td class="s-ta_r">$0.20</td>
+                    </tr>
                 </table>
             </div>
         </div>
         
         <div class="s-ta_c">
             <a style="color:#8cf9fd" href="#presale" class="smoothscroll btn btn-round btn-b btn-lg s">
-                @Locale["Get discount"]
+                @Locale["subscribe"]
             </a>
         </div>
         @*        <div class="row">*@
@@ -371,214 +376,214 @@
         @*            </table>*@
         @*        </div>*@
     </div>
-</div>
-<!-- download-area-start -->
-<section class="download-area" id="smart">
-    <div class="section-title">
-        <h2>
-            @Locale["smartcontract"]
-        </h2>
-
-        <div class="container">
-            <div class="row">
-                <a data-toggle="collapse" href="#token-code">@Locale["toggle"]</a>
-
-                <pre class="s-ta_l collapse" id="token-code">
-pragma solidity ^ 0.4 .18;
-
-library SafeMath {
-  function mul(uint256 a, uint256 b) internal pure returns(uint256) {
-    if (a == 0) {
-      return 0;
-    }
-    uint256 c = a * b;
-    assert(c / a == b);
-    return c;
-  }
-
-  function div(uint256 a, uint256 b) internal pure returns(uint256) {
-    uint256 c = a / b;
-    return c;
-  }
-
-  function sub(uint256 a, uint256 b) internal pure returns(uint256) {
-    assert(b <= a);
-    return a - b;
-  }
-
-  function add(uint256 a, uint256 b) internal pure returns(uint256) {
-    uint256 c = a + b;
-    assert(c >= a);
-    return c;
-  }
-}
-
-contract ERC20Basic {
-  uint256 public totalSupply;
-
-  function balanceOf(address who) public view returns(uint256);
-
-  function transfer(address to, uint256 value) public returns(bool);
-  event Transfer(address indexed from, address indexed to, uint256 value);
-}
-
-contract BasicToken is ERC20Basic {
-  using SafeMath
-  for uint256;
-
-  mapping(address => uint256) balances;
-
-  function transfer(address _to, uint256 _value) public returns(bool) {
-    require(_to != address(0));
-    require(_value <= balances[msg.sender]);
-
-    balances[msg.sender] = balances[msg.sender].sub(_value);
-    balances[_to] = balances[_to].add(_value);
-    Transfer(msg.sender, _to, _value);
-    return true;
-  }
-  
-  function balanceOf(address _owner) public view returns(uint256 balance) {
-    return balances[_owner];
-  }
-
-}
-
-contract ERC20 is ERC20Basic {
-  function allowance(address owner, address spender) public view returns(uint256);
-
-  function transferFrom(address from, address to, uint256 value) public returns(bool);
-
-  function approve(address spender, uint256 value) public returns(bool);
-  event Approval(address indexed owner, address indexed spender, uint256 value);
-}
-
-contract StandardToken is ERC20, BasicToken {
-
-  mapping(address => mapping(address => uint256)) internal allowed;
-
-  function transferFrom(address _from, address _to, uint256 _value) public returns(bool) {
-    require(_to != address(0));
-    require(_value <= balances[_from]);
-    require(_value <= allowed[_from][msg.sender]);
-
-    balances[_from] = balances[_from].sub(_value);
-    balances[_to] = balances[_to].add(_value);
-    allowed[_from][msg.sender] = allowed[_from][msg.sender].sub(_value);
-    Transfer(_from, _to, _value);
-    return true;
-  }
-
-  function approve(address _spender, uint256 _value) public returns(bool) {
-    allowed[msg.sender][_spender] = _value;
-    Approval(msg.sender, _spender, _value);
-    return true;
-  }
-
-  function allowance(address _owner, address _spender) public view returns(uint256) {
-    return allowed[_owner][_spender];
-  }
-
-  function increaseApproval(address _spender, uint _addedValue) public returns(bool) {
-    allowed[msg.sender][_spender] = allowed[msg.sender][_spender].add(_addedValue);
-    Approval(msg.sender, _spender, allowed[msg.sender][_spender]);
-    return true;
-  }
-
-  function decreaseApproval(address _spender, uint _subtractedValue) public returns(bool) {
-    uint oldValue = allowed[msg.sender][_spender];
-    if (_subtractedValue > oldValue) {
-      allowed[msg.sender][_spender] = 0;
-    } else {
-      allowed[msg.sender][_spender] = oldValue.sub(_subtractedValue);
-    }
-    Approval(msg.sender, _spender, allowed[msg.sender][_spender]);
-    return true;
-  }
-
-}
-
-contract Ownable {
-  address public owner;
-  event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
-
-  function Ownable() public {
-    owner = msg.sender;
-  }
-
-  modifier onlyOwner() {
-    require(msg.sender == owner);
-    _;
-  }
-
-  function transferOwnership(address newOwner) public onlyOwner {
-    require(newOwner != address(0));
-    OwnershipTransferred(owner, newOwner);
-    owner = newOwner;
-  }
-
-}
-
-contract MintableToken is StandardToken, Ownable {
-  event Mint(address indexed to, uint256 amount);
-  event MintFinished();
-
-  bool public mintingFinished = false;
-
-
-  modifier canMint() {
-    require(!mintingFinished);
-    _;
-  }
-
-  function mint(address _to, uint256 _amount) onlyOwner canMint public returns(bool) {
-    totalSupply = totalSupply.add(_amount);
-    balances[_to] = balances[_to].add(_amount);
-    Mint(_to, _amount);
-    Transfer(address(0), _to, _amount);
-    return true;
-  }
-
-  function finishMinting() onlyOwner canMint public returns(bool) {
-    mintingFinished = true;
-    MintFinished();
-    return true;
-  }
-}
-
-contract CappedToken is MintableToken {
-
-  uint256 public cap;
-
-  function CappedToken(uint256 _cap) public {
-    require(_cap > 0);
-    cap = _cap;
-  }
-
-  function mint(address _to, uint256 _amount) onlyOwner canMint public returns(bool) {
-    require(totalSupply.add(_amount) <= cap);
-
-    return super.mint(_to, _amount);
-  }
-
-}
-
-contract pCWTToken is CappedToken {
-  string public constant name = "Pre-sale CryptoWorkPlace Token";
-  string public constant symbol = "CWT-P";
-  uint8 public constant decimals = 18;
-  uint256 public constant MAX_SUPPLY = 15000000 * (uint256(10) ** decimals); //3% of 500 000 000
-
-  function pCWTToken() public
-  CappedToken(MAX_SUPPLY) {}
-}
-                </pre>
-            </div>
-
-        </div>
-
-    </div>
 </section>
+<!-- download-area-start -->
+@*<section class="download-area" id="smart">*@
+@*    <div class="section-title">*@
+@*        <h2>*@
+@*            @Locale["smartcontract"]*@
+@*        </h2>*@
+@**@
+@*        <div class="container">*@
+@*            <div class="row">*@
+@*                <a data-toggle="collapse" href="#token-code">@Locale["toggle"]</a>*@
+@**@
+@*                <pre class="s-ta_l collapse" id="token-code">*@
+@*pragma solidity ^ 0.4 .18;*@
+@**@
+@*library SafeMath {*@
+@*  function mul(uint256 a, uint256 b) internal pure returns(uint256) {*@
+@*    if (a == 0) {*@
+@*      return 0;*@
+@*    }*@
+@*    uint256 c = a * b;*@
+@*    assert(c / a == b);*@
+@*    return c;*@
+@*  }*@
+@**@
+@*  function div(uint256 a, uint256 b) internal pure returns(uint256) {*@
+@*    uint256 c = a / b;*@
+@*    return c;*@
+@*  }*@
+@**@
+@*  function sub(uint256 a, uint256 b) internal pure returns(uint256) {*@
+@*    assert(b <= a);*@
+@*    return a - b;*@
+@*  }*@
+@**@
+@*  function add(uint256 a, uint256 b) internal pure returns(uint256) {*@
+@*    uint256 c = a + b;*@
+@*    assert(c >= a);*@
+@*    return c;*@
+@*  }*@
+@*}*@
+@**@
+@*contract ERC20Basic {*@
+@*  uint256 public totalSupply;*@
+@**@
+@*  function balanceOf(address who) public view returns(uint256);*@
+@**@
+@*  function transfer(address to, uint256 value) public returns(bool);*@
+@*  event Transfer(address indexed from, address indexed to, uint256 value);*@
+@*}*@
+@**@
+@*contract BasicToken is ERC20Basic {*@
+@*  using SafeMath*@
+@*  for uint256;*@
+@**@
+@*  mapping(address => uint256) balances;*@
+@**@
+@*  function transfer(address _to, uint256 _value) public returns(bool) {*@
+@*    require(_to != address(0));*@
+@*    require(_value <= balances[msg.sender]);*@
+@**@
+@*    balances[msg.sender] = balances[msg.sender].sub(_value);*@
+@*    balances[_to] = balances[_to].add(_value);*@
+@*    Transfer(msg.sender, _to, _value);*@
+@*    return true;*@
+@*  }*@
+@*  *@
+@*  function balanceOf(address _owner) public view returns(uint256 balance) {*@
+@*    return balances[_owner];*@
+@*  }*@
+@**@
+@*}*@
+@**@
+@*contract ERC20 is ERC20Basic {*@
+@*  function allowance(address owner, address spender) public view returns(uint256);*@
+@**@
+@*  function transferFrom(address from, address to, uint256 value) public returns(bool);*@
+@**@
+@*  function approve(address spender, uint256 value) public returns(bool);*@
+@*  event Approval(address indexed owner, address indexed spender, uint256 value);*@
+@*}*@
+@**@
+@*contract StandardToken is ERC20, BasicToken {*@
+@**@
+@*  mapping(address => mapping(address => uint256)) internal allowed;*@
+@**@
+@*  function transferFrom(address _from, address _to, uint256 _value) public returns(bool) {*@
+@*    require(_to != address(0));*@
+@*    require(_value <= balances[_from]);*@
+@*    require(_value <= allowed[_from][msg.sender]);*@
+@**@
+@*    balances[_from] = balances[_from].sub(_value);*@
+@*    balances[_to] = balances[_to].add(_value);*@
+@*    allowed[_from][msg.sender] = allowed[_from][msg.sender].sub(_value);*@
+@*    Transfer(_from, _to, _value);*@
+@*    return true;*@
+@*  }*@
+@**@
+@*  function approve(address _spender, uint256 _value) public returns(bool) {*@
+@*    allowed[msg.sender][_spender] = _value;*@
+@*    Approval(msg.sender, _spender, _value);*@
+@*    return true;*@
+@*  }*@
+@**@
+@*  function allowance(address _owner, address _spender) public view returns(uint256) {*@
+@*    return allowed[_owner][_spender];*@
+@*  }*@
+@**@
+@*  function increaseApproval(address _spender, uint _addedValue) public returns(bool) {*@
+@*    allowed[msg.sender][_spender] = allowed[msg.sender][_spender].add(_addedValue);*@
+@*    Approval(msg.sender, _spender, allowed[msg.sender][_spender]);*@
+@*    return true;*@
+@*  }*@
+@**@
+@*  function decreaseApproval(address _spender, uint _subtractedValue) public returns(bool) {*@
+@*    uint oldValue = allowed[msg.sender][_spender];*@
+@*    if (_subtractedValue > oldValue) {*@
+@*      allowed[msg.sender][_spender] = 0;*@
+@*    } else {*@
+@*      allowed[msg.sender][_spender] = oldValue.sub(_subtractedValue);*@
+@*    }*@
+@*    Approval(msg.sender, _spender, allowed[msg.sender][_spender]);*@
+@*    return true;*@
+@*  }*@
+@**@
+@*}*@
+@**@
+@*contract Ownable {*@
+@*  address public owner;*@
+@*  event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);*@
+@**@
+@*  function Ownable() public {*@
+@*    owner = msg.sender;*@
+@*  }*@
+@**@
+@*  modifier onlyOwner() {*@
+@*    require(msg.sender == owner);*@
+@*    _;*@
+@*  }*@
+@**@
+@*  function transferOwnership(address newOwner) public onlyOwner {*@
+@*    require(newOwner != address(0));*@
+@*    OwnershipTransferred(owner, newOwner);*@
+@*    owner = newOwner;*@
+@*  }*@
+@**@
+@*}*@
+@**@
+@*contract MintableToken is StandardToken, Ownable {*@
+@*  event Mint(address indexed to, uint256 amount);*@
+@*  event MintFinished();*@
+@**@
+@*  bool public mintingFinished = false;*@
+@**@
+@**@
+@*  modifier canMint() {*@
+@*    require(!mintingFinished);*@
+@*    _;*@
+@*  }*@
+@**@
+@*  function mint(address _to, uint256 _amount) onlyOwner canMint public returns(bool) {*@
+@*    totalSupply = totalSupply.add(_amount);*@
+@*    balances[_to] = balances[_to].add(_amount);*@
+@*    Mint(_to, _amount);*@
+@*    Transfer(address(0), _to, _amount);*@
+@*    return true;*@
+@*  }*@
+@**@
+@*  function finishMinting() onlyOwner canMint public returns(bool) {*@
+@*    mintingFinished = true;*@
+@*    MintFinished();*@
+@*    return true;*@
+@*  }*@
+@*}*@
+@**@
+@*contract CappedToken is MintableToken {*@
+@**@
+@*  uint256 public cap;*@
+@**@
+@*  function CappedToken(uint256 _cap) public {*@
+@*    require(_cap > 0);*@
+@*    cap = _cap;*@
+@*  }*@
+@**@
+@*  function mint(address _to, uint256 _amount) onlyOwner canMint public returns(bool) {*@
+@*    require(totalSupply.add(_amount) <= cap);*@
+@**@
+@*    return super.mint(_to, _amount);*@
+@*  }*@
+@**@
+@*}*@
+@**@
+@*contract pCWTToken is CappedToken {*@
+@*  string public constant name = "Pre-sale CryptoWorkPlace Token";*@
+@*  string public constant symbol = "CWT-P";*@
+@*  uint8 public constant decimals = 18;*@
+@*  uint256 public constant MAX_SUPPLY = 15000000 * (uint256(10) ** decimals); //3% of 500 000 000*@
+@**@
+@*  function pCWTToken() public*@
+@*  CappedToken(MAX_SUPPLY) {}*@
+@*}*@
+@*                </pre>*@
+@*            </div>*@
+@**@
+@*        </div>*@
+@**@
+@*    </div>*@
+@*</section>*@
 @*<div class="counter-area">*@
 @*    <div class="container-s">*@
 @*        <div class="row">*@
@@ -709,7 +714,7 @@ contract pCWTToken is CappedToken {
         </div>
     </div>
 </div>
-<img src="@RoadMapPath"/>
+<img src="@roadMapPath"/>
 
 
 
@@ -1314,24 +1319,27 @@ contract pCWTToken is CappedToken {
             </div>
             <div class="row s-mb_60">
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="single-team">
-                        <img src="/static/team/ykf.png?v=@DateTime.Now.Millisecond" />
-                        <div class="st-content">
-                            <h5>@Locale["Yoji Kishi"]</h5>
-                            <p>
-                                @Locale["t11"]
-                            </p>
+                    <div>
+                        <div class="single-team">
+                            <img src="/static/team/yoji.png"/>
+                            <img class="s-prev" src="/static/team/yoji.png"/>
+                            <div class="st-content">
+                                <h5>@Locale["Yoji Kishi"]</h5>
+                                <p>
+                                    @Locale["t11"]
+                                </p>
 
-                            <div class="social-w">
-                                <a target="_blank" href="https://www.linkedin.com/in/yoji-kishi-70108610b/">
-                                    <i class="fab fa-linkedin-in"></i>
-                                </a>
+                                <div class="social-w">
+                                    <a target="_blank" href="https://www.linkedin.com/in/yoji-kishi-70108610b/">
+                                        <i class="fab fa-linkedin-in"></i>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
                     <div class="st-content-under">
-                        @Locale["ceo"]<br />
+                        @Locale["ceo"]<br/>
                         <span class="t-m-name">@Locale["Yoji Kishi"]</span>
                     </div>
                 </div>
@@ -1339,6 +1347,7 @@ contract pCWTToken is CappedToken {
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="single-team">
                         <img src="/static/team/alexey.jpg" />
+                        <img class="s-prev" src="/static/team/alexey.jpg"/>
                         <div class="st-content">
                             <h5>@Locale["cvo"] @Locale["Alexey Gladkov"]</h5>
                             <p>
@@ -1372,6 +1381,8 @@ contract pCWTToken is CappedToken {
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="single-team">
                         <img src="/static/team/max.png" />
+                        
+                        <img class="s-prev" src="/static/team/max.png" />
                         <div class="st-content">
                             <h5>@Locale["Maxim Maslich"]</h5>
 
@@ -1407,6 +1418,7 @@ contract pCWTToken is CappedToken {
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="single-team">
                         <img src="/static/team/art.jpg" />
+                        <img class="s-prev" src="/static/team/art.jpg" />
                         <div class="st-content">
                             <h5>@Locale["Software Engineer"] @Locale["Artur Enokyan"]</h5>
 
@@ -1465,6 +1477,7 @@ contract pCWTToken is CappedToken {
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="single-team">
                         <img src="/static/team/ant.png" />
+                        <img class="s-prev" src="/static/team/ant.png" />
                         <div class="st-content">
                             <h5>@Locale["Anton Polyansky"]</h5>
 
@@ -1502,6 +1515,7 @@ contract pCWTToken is CappedToken {
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="single-team">
                         <img src="/static/team/den.jpg" />
+                        <img class="s-prev" src="/static/team/den.jpg" /> 
                         <div class="st-content">
                             <h5>@Locale["Denis Kuznetsov"]</h5>
                             <p>
@@ -1537,7 +1551,8 @@ contract pCWTToken is CappedToken {
 
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="single-team">
-                        <img src="/static/team/anton.png">
+                        <img src="/static/team/anton.png"/>
+                        <img class="s-prev" src="/static/team/anton.png"/>
                         <div class="st-content">
                             <h5>@Locale["Anton Maslov"]</h5>
 
@@ -1565,7 +1580,9 @@ contract pCWTToken is CappedToken {
 
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="single-team">
-                        <img style="filter:grayscale(100%)" src="/static/team/oleg.jpg">
+                        <img style="filter: grayscale(100%)" src="/static/team/oleg.jpg">
+                        
+                        <img class="s-prev" style="filter: grayscale(100%)" src="/static/team/oleg.jpg">
                         <div class="st-content">
                             <h5>@Locale["Oleg Sarukhanov"]</h5>
 
@@ -1615,7 +1632,8 @@ contract pCWTToken is CappedToken {
             <div style="margin-bottom: 60px;" class="row s-mb_60">
                 <div class="col-md-4 col-sm-4 col-xs-12">
                     <div class="single-team">
-                        <img src="/static/team/podelko.jpg" />
+                        <img src="/static/adv/podelko.jpg" />
+                        <img class="s-prev" src="/static/adv/podelko.jpg" />
                         <div class="st-content">
                             <h5>Ph.D., MBA/@Locale["Alexander Podelko"]</h5>
                             <p>
@@ -1663,30 +1681,17 @@ contract pCWTToken is CappedToken {
                 </div>
                 <div class="col-md-4 col-sm-4 col-xs-12">
                     <div class="single-team">
-                        <img src="/static/team/rus.png" alt="" />
+                        <img style="filter:grayscale(100%)" src="/static/adv/ssagalov.jpg" alt="" />
+                        <img class="s-prev" style="filter:grayscale(100%)" src="/static/adv/ssagalov.jpg" alt="" />
                         <div class="st-content">
-                            <h5>CEO & Founder SandCoin <br />@Locale["Ruslan Pichugin"]</h5>
-                            <p>
-                                @*                        Основатель SandCoin, соучредитель «Ревитал» Основатель Yocto Games<br/> *@
-                                @*                        Сотрудничество с Chillingo, Electronic Arts, Microsoft Studios<br/>*@
-                                @*                        Руслан руководитель нескольких проектов, один из которых недавно успешно завершил ICO.<br/>*@
-                                @*                        Руслан является популярным блокчейн экспертом, юристом и экономистом, это позволяет ему курировать важные организационные, маркетинговые и экономические вопросы, с которыми сталкиваются основатели проекта.*@
-                                @*                        CEO & Founder SandCoin<br />*@
-                                @*                        Founder Yocto Games <br />*@
-                                @*                        Collaboration with Chillingo, Electronic Arts, Microsoft Studios<br /><br />*@
-                                @**@
-                                @*                        Ruslan is the head of several projects, one of which recently successfully completed the ICO.<br /><br />*@
-                                @*                        Ruslan is a popular blockchain expert, lawyer and economist, all this allows him to oversee the important organizational, marketing and economic issues faced by the founders of the project.*@
-                                @Locale["t8"]
-
-
-                            </p>
+                            <h5>@Locale["magistrofscience"] / @Locale["ssagalov"]</h5>
+                            <div class="single-team_st-content">
+                                @* TODO: change all locales names *@
+                                @Locale["ssagalovbio"]
+                            </div>
 
                             <div class="social-w">
-                                <a target="_blank" href="https://www.facebook.com/ruslanpichugin">
-                                    <i class="fab fa-facebook"></i>
-                                </a>
-                                <a target="_blank" href="https://www.linkedin.com/in/pichugin-ruslan-170a9641/">
+                                <a target="_blank" href="https://www.linkedin.com/in/serguei-sagalovitch-a162a34/">
                                     <i class="fab fa-linkedin-in"></i>
                                 </a>
                             </div>
@@ -1694,9 +1699,9 @@ contract pCWTToken is CappedToken {
 
                     </div>
                     <div class="st-content-under">
-                        CEO & Founder SandCoin <br />
+                        @Locale["pmotsamd"] <br />
                         <span class="t-m-name">
-                            @Locale["Ruslan Pichugin"]
+                            @Locale["ssagalov"]
                         </span>
 
                     </div>
@@ -1705,7 +1710,8 @@ contract pCWTToken is CappedToken {
 
                 <div class="col-md-4 col-sm-4 col-xs-12">
                     <div class="single-team">
-                        <img src="/static/team/vag.png" alt="">
+                        <img src="/static/adv/vag.png" alt=""/>
+                        <img class="s-prev" src="/static/adv/vag.png" alt=""/>
                         <div class="st-content">
                             <h5>CEO Flexlab<br>@Locale["Wagan Sarukhanov"]</h5>
                             <p>
@@ -1738,6 +1744,60 @@ contract pCWTToken is CappedToken {
 
                     </div>
                 </div>
+                
+                
+                <div class="col-md-4 col-md-offset-2 col-sm-4 col-xs-12">
+                    <div class="single-team">
+                        <img src="/static/adv/nikolay.jpg" style="filter: grayscale(100%)" alt=""/>
+                        <img class="s-prev" style="filter: grayscale(100%)" src="/static/adv/nikolay.jpg" alt=""/>
+                        <div class="st-content">
+                            <h5>Executive Business Development, Universa Corporation<br>@Locale["Nikolay Fedorovskikh"]</h5>
+                            <p>
+                                @Locale["Over 11 years experience in TVMedia, VAS & Data field. Strong focus on Telecom/Media with expertise in DVB/IPTV/Online Video (OTT), VAS, CDN. Creating for overall architecture and engineering of complex TV & Pilot Blockchain projects. Proven track in identifying customer needs and implementing technical strategies, to secure long-term revenue growth on TV/Media markets (IPTV, VOD, OTT, CDN)."]
+                            </p>
+                            <div class="social-w">
+                                <a target="_blank" href="http://ru.linkedin.com/in/nikfedorov">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="st-content-under">
+                        Executive Business Development, Universa Corporation<br>
+                        <span class="t-m-name">
+                            @Locale["Nikolay Fedorovskikh"]
+                        </span>
+
+                    </div>
+                </div>
+                
+                <div class="col-md-4  col-sm-4 col-xs-12">
+                    <div class="single-team">
+                        <img style="filter: grayscale(100%)" src="/static/adv/yuriy.jpg" alt=""/>
+                        <img style="filter: grayscale(100%)" class="s-prev" src="/static/adv/yuriy.jpg" alt=""/>
+                        <div class="st-content">
+                            <h5>Founder & CEO at CryptOcean.io<br>@Locale["Yuriy Myshinsky"]</h5>
+                            <p>
+                                @Locale["Enterpreneur with large business and successful BlockChain startup experience"]
+                            </p>
+                            <div class="social-w">
+                                <a target="_blank" href="http://ru.linkedin.com/in/nikfedorov">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="st-content-under">
+                        Founder & CEO at CryptOcean.io<br>
+                        <span class="t-m-name">
+                            @Locale["Yuriy Myshinsky"]
+                        </span>
+
+                    </div>
+                </div>
+                
             </div>
         </div>
 
@@ -1795,8 +1855,8 @@ contract pCWTToken is CappedToken {
                             <a target="_blank" href="http://www.qamentor.com/">QA MENTOR</a>
                         </div>
                         @*                        <div class="st-content">*@
-                        @*                            <h5>ALEX SWEET</h5>*@
-                        @*                            <p>Web Designer</p>*@
+                        @*                            <h5></h5>*@
+                        @*                            <p></p>*@
                         @*                            <a href="#">+</a>*@
                         @*                        </div>*@
                     </div>
@@ -1837,6 +1897,18 @@ contract pCWTToken is CappedToken {
                         </div>
                     </div>
                 </div>
+                <div class="col-md-12 col-sm-12 col-xs-12 s-ta_c">
+                    <div class="_single-team s-ta_c">
+
+                        <a target="_blank" href="http://cryptocean.io/">
+                            <img class="h-grey" width="100" src="/static/partners/cocean.png" alt="CRYPTOCEAN" />
+                        </a>
+                        <div class="s-mb_9">
+                            <a target="_blank" href="http://cryptocean.io/">CRYPTOCEAN</a>
+                        </div>
+                    </div>
+                </div>
+                
 
             </div>
             <div id="presale" class="row">
@@ -2028,43 +2100,8 @@ contract pCWTToken is CappedToken {
 @*    <!-- twitter-area-end -->*@
 
 @section Scripts{
-    <script asp-append-version="true" src="~/js/App.js"></script>
-    <script asp-append-version="true" src="~/js/vm/main/index.js"></script>
-    <script asp-append-version="true" src="~/js/raphael.js"></script>
-    <script asp-append-version="true" src="~/js/timer.js"></script>
-
-    <script type="text/javascript">
-        var sizes = [4, 3];
-
-        var config = {
-            id: "digital_led",
-            type: "countdown",
-            format: "dd:hh:mm:ss",
-            color: "#fff",
-            bgcolor: "#000",
-            size: sizes[(480 / window.screen.width).toString()[0]],
-            rounded: 1,
-            led: "font1"
-        };
-        var myLed = new Led(config);
-    </script>
-
-    <script>
-        // Load the IFrame Player API code asynchronously.
-//        var tag = document.createElement('script');
-//        tag.src = "https://www.youtube.com/player_api";
-//        var firstScriptTag = document.getElementsByTagName('script')[0];
-//        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-//
-//        // Replace the 'ytplayer' element with an <iframe> and
-//        // YouTube player after the API code downloads.
-//        var player;
-//        function onYouTubePlayerAPIReady() {
-//            player = new YT.Player('ytplayer', {
-//                height: '360',
-//                width: '640',
-//                videoId: 't97dZ7UjSOc'
-//            });
-//        }
-    </script>
+    <script defer asp-append-version="true" src="~/js/App.js"></script>
+    <script defer asp-append-version="true" src="~/js/vm/main/index.js"></script>
+    <script defer src="~/js/raphael.js"></script>
+    <script defer asp-append-version="true" src="~/js/timer.js"></script>
 }

@@ -31,8 +31,8 @@ namespace CWPIO.Areas.v1.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAsync([FromQuery]bool includeDeleted = false)
         {
-            var result = _dbContext.Bounties
-                .Include(b => b.ItemTypes)
+            var result = _dbContext.BountyCampaings
+                .Include(b => b.Activities)
                 .AsQueryable();
             if (!includeDeleted)
                 result = result.Where(b => !b.IsDeleted);
@@ -58,7 +58,7 @@ namespace CWPIO.Areas.v1.Controllers
                 return NotFound();
             }
 
-            await _dbContext.Entry(result).Collection(b => b.ItemTypes).LoadAsync();
+            await _dbContext.Entry(result).Collection(b => b.Activities).LoadAsync();
 
             return Ok(result);
         }
@@ -72,8 +72,12 @@ namespace CWPIO.Areas.v1.Controllers
                 return BadRequest(ModelState);
             }
 
-            var bountyCampaing = _dbContext.Bounties.Add(new BountyCampaing() { Name = bounty.Name, FaClass = bounty.FaClass });
-            await bountyCampaing.Collection(b => b.ItemTypes).LoadAsync();
+            var user = await _dbContext.GetCurrentUserAsync(User);
+            if (user == null)
+                return NotFound();
+
+            var bountyCampaing = _dbContext.BountyCampaings.Add(new BountyCampaing() { Name = bounty.Name, FaClass = bounty.FaClass, CreatedByUser = user });
+            await bountyCampaing.Collection(b => b.Activities).LoadAsync();
             await _dbContext.SaveChangesAsync();
 
             return CreatedAtAction("GetAsync", new { id = bountyCampaing.Entity.Id }, bountyCampaing.Entity);
@@ -154,7 +158,7 @@ namespace CWPIO.Areas.v1.Controllers
 
         private async Task<bool> BountyCampaingExistsAsync(string id)
         {
-            return await _dbContext.Bounties.AnyAsync(e => e.Id == id);
+            return await _dbContext.BountyCampaings.AnyAsync(e => e.Id == id);
         }
     }
 }

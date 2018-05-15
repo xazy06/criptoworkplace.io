@@ -12,7 +12,6 @@ namespace CWPIO.Data
         public string Email { get; set; }
         public bool EmailSend { get; set; }
         public DateTime DateCreated { get; set; }
-
         public bool Unsubscribe { get; set; }
         public string Culture { get; set; }
     }

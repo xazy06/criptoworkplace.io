@@ -7,16 +7,17 @@ using CWPIO.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Npgsql;
 
 namespace CWPIO.Areas.v1.Controllers
 {
     [Produces("application/json")]
     [Area("v1")]
-    [Route("api/v1/bounty/{bountyId}/items")]
-    public class BountyItemsController : Controller
+    [Route("api/v1/bounty/{bountyId}/activity")]
+    public class BountyActivitiesController : Controller
     {
         private readonly ApplicationDbContext _dbContext;
-        public BountyItemsController(ApplicationDbContext context)
+        public BountyActivitiesController(ApplicationDbContext context)
         {
             _dbContext = context;
         }
@@ -25,7 +26,7 @@ namespace CWPIO.Areas.v1.Controllers
         public async Task<IActionResult> GetAsync([FromRoute]string bountyId, [FromQuery]bool includeDeleted = false)
         {
             var result = _dbContext
-                .BountiesItemTypes
+                .BountyCampaingsActivity
                 .Where(t => t.BountyCampaingId == bountyId);
 
             if (!includeDeleted)
@@ -39,7 +40,7 @@ namespace CWPIO.Areas.v1.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAsync([FromRoute]string bountyId, [FromRoute] string id)
         {
-            var result = await _dbContext.FindAsync<BountyCampaingItemType>(id);
+            var result = await _dbContext.FindAsync<BountyCampaingActivity>(id);
 
             if (result == null || result.BountyCampaingId != bountyId)
                 return NotFound();
@@ -57,24 +58,24 @@ namespace CWPIO.Areas.v1.Controllers
 
             var bountyCampaing = await _dbContext.FindAsync<BountyCampaing>(bountyId);
             if (bountyCampaing == null)
-            {
                 return NotFound();
-            }
 
-            await _dbContext.Entry(bountyCampaing).Collection(b => b.ItemTypes).LoadAsync();
+            var user = await _dbContext.GetCurrentUserAsync(User);
+            if (user == null)
+                return NotFound();
 
-            var newTypeId = bountyCampaing.ItemTypes.Any() ? (bountyCampaing.ItemTypes.Max(i => i.TypeId) + 1) : 1;
-            var newBountyItem = new BountyCampaingItemType
+            await _dbContext.Entry(bountyCampaing).Collection(b => b.Activities).LoadAsync();
+
+            var newBountyItem = new BountyCampaingActivity
             {
-                TypeId = newTypeId,
                 Name = bountyItemType.Name,
                 NeedToApprove = bountyItemType.NeedToApprove,
-                Price = bountyItemType.Price.Value
+                Price = bountyItemType.Price.Value,
+                CreatedByUser = user
             };
-            bountyCampaing.ItemTypes.Add(newBountyItem);
+            bountyCampaing.Activities.Add(newBountyItem);
 
             await _dbContext.SaveChangesAsync();
-
             return CreatedAtAction("GetAsync", new { id = newBountyItem.Id }, newBountyItem);
         }
 
@@ -86,7 +87,7 @@ namespace CWPIO.Areas.v1.Controllers
                 return BadRequest(ModelState);
             }
 
-            var bountyItemType = _dbContext.Find<BountyCampaingItemType>(id);
+            var bountyItemType = _dbContext.Find<BountyCampaingActivity>(id);
 
             if (bountyItemType == null || bountyItemType.BountyCampaingId != bountyId)
             {
@@ -125,7 +126,7 @@ namespace CWPIO.Areas.v1.Controllers
                 return BadRequest(ModelState);
             }
 
-            var bountyCampaingItemType = await _dbContext.FindAsync<BountyCampaingItemType>(id);
+            var bountyCampaingItemType = await _dbContext.FindAsync<BountyCampaingActivity>(id);
             if (bountyCampaingItemType == null || bountyCampaingItemType.Id != bountyId)
             {
                 return NotFound();
@@ -140,7 +141,7 @@ namespace CWPIO.Areas.v1.Controllers
 
         private async Task<bool> BountyCampaingItemTypeExistsAsync(string bountyId, string id)
         {
-            return await _dbContext.BountiesItemTypes.AnyAsync(e => e.BountyCampaingId == bountyId && e.Id == id);
+            return await _dbContext.BountyCampaingsActivity.AnyAsync(e => e.BountyCampaingId == bountyId && e.Id == id);
         }
     }
 }

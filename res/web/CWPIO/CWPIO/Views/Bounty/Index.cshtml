@@ -18,11 +18,11 @@
                         <h5>@Model.UserName</h5><span></span>
                     </a>
                     <br />
-                    <div class="contributions">@(Model.UserBounties?.Sum(b => b.TotalItemCount) ?? 0)</div>
-                    @if (Model.UserBounties != null && Model.UserBounties.Any())
+                    <div class="contributions">@(Model.BountyUserCampaings?.Sum(b => b.TotalItemCount) ?? 0)</div>
+                    @if (Model.BountyUserCampaings != null && Model.BountyUserCampaings.Any())
                     {
                     <div class="details d-flex">
-                        @foreach (var bounty in Model.UserBounties)
+                        @foreach (var bounty in Model.BountyUserCampaings)
                         {
                             <div class="item"><i class="fa @bounty.BountyCampaing.FaClass"></i><strong>@bounty.TotalItemCount</strong></div>
                         }

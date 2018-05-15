@@ -25,7 +25,7 @@ namespace CWPIO.Areas.v1.Controllers
         public async Task<IActionResult> GetAsync([FromRoute]string bountyId, [FromQuery]bool includeDeleted = false)
         {
             var result = _dbContext
-                .UserBountyItems
+                .BountyCampaingTasks
                 .Where(t => t.BountyCampaingId == bountyId);
 
             if (!includeDeleted)
@@ -39,7 +39,7 @@ namespace CWPIO.Areas.v1.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAsync([FromRoute]string bountyId, [FromRoute] string id)
         {
-            var result = await _dbContext.FindAsync<UserBountyCampaingItem>(id);
+            var result = await _dbContext.FindAsync<BountyCampaingTask>(id);
 
             if (result == null || result.BountyCampaingId != bountyId)
                 return NotFound();
@@ -54,30 +54,31 @@ namespace CWPIO.Areas.v1.Controllers
             if (user == null)
                 return NotFound();
 
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(ModelState);
+            //}
 
-            var bountyCampaing = await _dbContext.FindAsync<UserBountyCampaing>(bountyId);
-            if (bountyCampaing == null)
-            {
-                return NotFound();
-            }
+            //var bountyCampaing = await _dbContext.FindAsync<BountyUserCampaing>(bountyId);
+            //if (bountyCampaing == null)
+            //{
+            //    return NotFound();
+            //}
 
-            await _dbContext.Entry(bountyCampaing).Collection(b => b.Items).LoadAsync();
+            //await _dbContext.Entry(bountyCampaing).Collection(b => b.Items).LoadAsync();
 
-            var newBountyItem = new UserBountyCampaingItem
-            {
-                ItemType = bountyItem.ItemType.Value,
-                Url = bountyItem.Url,
-                UserId = user.Id
-            };
-            bountyCampaing.Items.Add(newBountyItem);
+            //var newBountyItem = new BountyCampaingTask
+            //{
+            //    ItemType = bountyItem.ItemType.Value,
+            //    Url = bountyItem.Url,
+            //    UserId = user.Id
+            //};
+            //bountyCampaing.Items.Add(newBountyItem);
 
-            await _dbContext.SaveChangesAsync();
+            //await _dbContext.SaveChangesAsync();
 
-            return CreatedAtAction("GetAsync", new { id = newBountyItem.Id }, newBountyItem);
+            //return CreatedAtAction("GetAsync", new { id = newBountyItem.Id }, newBountyItem);
+            return Ok();
         }
         
         // DELETE api/<controller>/5
@@ -89,7 +90,7 @@ namespace CWPIO.Areas.v1.Controllers
                 return BadRequest(ModelState);
             }
 
-            var bountyCampaingItem = await _dbContext.FindAsync<UserBountyCampaingItem>(id);
+            var bountyCampaingItem = await _dbContext.FindAsync<BountyCampaingTask>(id);
             if (bountyCampaingItem == null || bountyCampaingItem.Id != bountyId)
             {
                 return NotFound();

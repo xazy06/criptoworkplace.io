@@ -28,8 +28,7 @@ namespace CWPIO.Areas.v1.Controllers
                 return NotFound();
             
             var result = _dbContext
-                .UserBounties
-                .Include(b => b.Items)
+                .BountyUserCampaings
                 .Where(t => t.UserId == user.Id);
 
             if (await result.AnyAsync())
@@ -45,8 +44,7 @@ namespace CWPIO.Areas.v1.Controllers
             if (user == null)
                 return NotFound();
 
-            var result = await _dbContext.FindAsync<UserBountyCampaing>(user.Id, bountyId);
-            await _dbContext.Entry(result).Collection(b => b.Items).LoadAsync();
+            var result = await _dbContext.BountyUserCampaings.FindAsync(user.Id, bountyId);
             if (result == null)
                 return NotFound();
 
