@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slack.Webhooks.Core", "Slac
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Extensions.Logging.Slack", "Microsoft.Extensions.Logging.Slack\Microsoft.Extensions.Logging.Slack.csproj", "{9984EF17-53D0-4461-972D-616114588ACB}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{BD0A2740-F41C-470D-BB8D-0C9B53C4F18B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,18 @@ Global
 		{9984EF17-53D0-4461-972D-616114588ACB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9984EF17-53D0-4461-972D-616114588ACB}.Release|x86.ActiveCfg = Release|Any CPU
 		{9984EF17-53D0-4461-972D-616114588ACB}.Release|x86.Build.0 = Release|Any CPU
+		{BD0A2740-F41C-470D-BB8D-0C9B53C4F18B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD0A2740-F41C-470D-BB8D-0C9B53C4F18B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD0A2740-F41C-470D-BB8D-0C9B53C4F18B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BD0A2740-F41C-470D-BB8D-0C9B53C4F18B}.Debug|x86.Build.0 = Debug|Any CPU
+		{BD0A2740-F41C-470D-BB8D-0C9B53C4F18B}.Release 3.5|Any CPU.ActiveCfg = Release|Any CPU
+		{BD0A2740-F41C-470D-BB8D-0C9B53C4F18B}.Release 3.5|Any CPU.Build.0 = Release|Any CPU
+		{BD0A2740-F41C-470D-BB8D-0C9B53C4F18B}.Release 3.5|x86.ActiveCfg = Release|Any CPU
+		{BD0A2740-F41C-470D-BB8D-0C9B53C4F18B}.Release 3.5|x86.Build.0 = Release|Any CPU
+		{BD0A2740-F41C-470D-BB8D-0C9B53C4F18B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD0A2740-F41C-470D-BB8D-0C9B53C4F18B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD0A2740-F41C-470D-BB8D-0C9B53C4F18B}.Release|x86.ActiveCfg = Release|Any CPU
+		{BD0A2740-F41C-470D-BB8D-0C9B53C4F18B}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
