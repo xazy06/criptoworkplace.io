@@ -2,15 +2,38 @@ var Bounty = (function () {
 
 	var ViewModel,
 		Controller = function () {
+		
+		var self = this;
+		
+		this.api = {
+			list: '/api/v1/bounty/'
+		}; 
 		this.actions = {
 			list: {
 				get: function () {
-					
+					$.get(self.api.list, function (response) {
+						console.log(response);
+						ViewModel.observables.list(response)
+					})
+				},
+				join: function (id) {
+					$.post(self.api.list + id, function (response) {
+						console.log(response);	
+					})
+				},
+				leave: function (id) {
+					$.ajax({
+						url: self.api.list + id,
+						type: 'DELETE'
+					}).done(function (response) {
+						console.log(response);
+					});
 				}
 			}
 		};	
 		
 		this.init = function () {
+			ko.applyBindings(ViewModel);
 			
 			this.actions.list.get();
 			
@@ -28,8 +51,11 @@ var Bounty = (function () {
 			list: ko.observableArray([])
 		},
 		actions:{
-			activateProgramm: function () {
-				
+			join: function () {
+				Controller.actions.list.join(this.id);
+			},
+			leave: function () {
+				Controller.actions.list.leave(this.id);
 			}
 		}
 	};
