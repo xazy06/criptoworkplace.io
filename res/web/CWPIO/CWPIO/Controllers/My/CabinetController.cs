@@ -40,7 +40,21 @@ namespace CWPIO.Controllers
 
             return View();
         }
-        
+
+        [HttpGet("Faq", Name = "Faq")]
+        public IActionResult Faq()
+        {
+
+            return View();
+        }
+
+        [HttpGet("Exchanger", Name = "Exchanger")]
+        public IActionResult Exchanger()
+        {
+
+            return View();
+        }
+
         [HttpGet("users", Name = "UserManagement")]
         public IActionResult UserManagement()
         {
