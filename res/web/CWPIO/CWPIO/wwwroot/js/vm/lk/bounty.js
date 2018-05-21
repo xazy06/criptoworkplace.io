@@ -17,7 +17,7 @@ var Bounty = (function () {
 					})
 				},
 				join: function (id) {
-					$.post(self.api.list + id, function (response) {
+					$.post(self.api.list + id + '/join', function (response) {
 						console.log(response);	
 					})
 				},
