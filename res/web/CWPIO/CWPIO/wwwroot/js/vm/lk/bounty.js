@@ -24,7 +24,8 @@ var Bounty = (function () {
 				leave: function (id) {
 					$.ajax({
 						url: self.api.list + id,
-						type: 'DELETE'
+						type: 'DELETE',
+						dataType: 'application/json'
 					}).done(function (response) {
 						console.log(response);
 					});
