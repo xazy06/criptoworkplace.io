@@ -1106,13 +1106,21 @@ img.s-prev {
 }
 
 .st-content-under{
-    text-align:center;
-    font-size: 14px;
-    padding:0 15px 49px;
-    color:#fff;
+    /*text-align:center;*/
+    /*font-size: 14px;*/
+    /*padding:0 15px 49px;*/
+    /*color:#fff;*/
     
+    /*text-transform: uppercase;*/
+    /*text-shadow: -1px 0 0 #5d5d5d;*/
+
+    text-align: center;
+    font-size: 10px;
+    padding: 0 15px 49px;
+    color: #fff;
     text-transform: uppercase;
     text-shadow: -1px 0 0 #5d5d5d;
+    line-height: 1.8;
 }
 
 .h-grey {
