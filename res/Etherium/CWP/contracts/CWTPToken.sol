@@ -1,4 +1,4 @@
-pragma solidity ^0.4.18;
+pragma solidity 0.4.20;
 
 import "openzeppelin-solidity/contracts/token/ERC20/CappedToken.sol";
 
@@ -8,6 +8,5 @@ contract CWTPToken is CappedToken {
   uint8 public constant decimals = 18;
   uint256 public constant MAX_SUPPLY = 15000000 * (uint256(10) ** decimals); //3% of 500 000 000
 
-  constructor() public
-  CappedToken(MAX_SUPPLY) {}
+  function CWTPToken() public CappedToken(MAX_SUPPLY) {}
 }

@@ -1,45 +1,35 @@
-pragma solidity ^0.4.18;
+pragma solidity 0.4.20;
 
 import "./CWTPToken.sol";
-import "./TokenAddr.sol";
-import "zeppelin-solidity/contracts/crowdsale/CappedCrowdsale.sol";
-import "zeppelin-solidity/contracts/ownership/Ownable.sol";
+import "./SteppedRateCrowdsale.sol";
+import "./SteppedCapCrowdsale.sol";
+import "openzeppelin-solidity/contracts/crowdsale/distribution/PostDeliveryCrowdsale.sol";
+import "openzeppelin-solidity/contracts/crowdsale/emission/MintedCrowdsale.sol";
+import "openzeppelin-solidity/contracts/ownership/rbac/RBAC.sol";
 
-contract CWTPTokenSale is TokenAddr, CappedCrowdsale, Ownable {
-    /**
-   * CWTPTokenSale - Contract for CryptoWorkPlace Token Pre-Sale
-   *
-   * @param _startTime UNIX Timestamp in seconds, when Token Sale start
-   * @param _endTime  Token Sale end time in seconds
-   * @param _wallet    Address of multisig wallet, using for refund if Token Sale failed
-   * @param  _tokenAddress  Address of Pre-sale CWPToken contract, deployed to blockchain
-   */
-  function CWTPTokenSale(uint256 _startTime, uint256 _endTime, address _wallet, address _tokenAddress) public
-    TokenAddr(_tokenAddress)
-    CappedCrowdsale(1351 * 1 ether)
-    Crowdsale(_startTime, _endTime, 1000, _wallet)
+contract CWTPTokenSale is PostDeliveryCrowdsale, MintedCrowdsale, RBAC, SteppedRateCrowdsale, SteppedCapCrowdsale {
+
+  string public constant ROLE_DAPP = "dapp";
+
+  function CWTPTokenSale(uint256 _startTime, uint256 _endTime, address _wallet, ERC20 _tokenAddress) public
+    TimedCrowdsale(_startTime, _endTime)
+    Crowdsale(1, _wallet, _tokenAddress)
   {
+    require(Ownable(_tokenAddress) != address(0));
+    addRole(msg.sender, ROLE_DAPP);
+    //addRole(address(0x000000000000000000000), ROLE_DAPP);
   }
 
-  /*Use CWTPToken for sale*/
-  function createTokenContract() internal returns (MintableToken) {
-    return CWTPToken(tokenAddress);
+  function addCrowdsaleStep(uint256 _timestamp, uint256 _cap, uint256 _rate) onlyRole(ROLE_DAPP) public{
+    _addStep(_timestamp);
+    _setStepCap(getStepsCout() - 1, _cap);
+    _setStepRate(getStepsCout() - 1, _rate);
   }
 
-  function setRate(uint256 _value) onlyOwner public
+  function transferTokenOwnership() onlyAdmin public
   {
-    require(_value > 0);
-    rate = _value;
-  }
-
-  function mint(address beneficiary, uint256 tokens) onlyOwner public
-  {
-    token.mint(beneficiary, tokens);
-  }
-
-  function getBackMyTokenPlz() onlyOwner public
-  {
-    require(endTime < now);
-    token.transferOwnership(owner);
+    // solium-disable-next-line security/no-block-members
+    require(closingTime < block.timestamp);
+    Ownable(token).transferOwnership(msg.sender);
   }
 }
