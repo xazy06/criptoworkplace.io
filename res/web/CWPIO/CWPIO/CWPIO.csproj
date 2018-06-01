@@ -92,6 +92,5 @@
     <Folder Include="wwwroot\lk\src" />
     <Folder Include="wwwroot\lk\tools" />
     <Folder Include="wwwroot\static\adv" />
-    <Folder Include="wwwroot\static\video" />
   </ItemGroup>
 </Project>
