@@ -4,7 +4,11 @@
     Layout = "~/Views/Cabinet/_AdminLayout.cshtml";
 }
 
-
+<style>
+  .s-mb_20 {
+	  margin-bottom: 20px;
+  }
+</style>
 
 <div class="m-portlet">
 	<div class="m-portlet__head">
@@ -14,7 +18,7 @@
 				<i class="la la-puzzle-piece"></i>
 				</span>
 				<h3 class="m-portlet__head-text">
-					Tokens ordering
+					APPLY FOR SALE FORM
 				</h3>
 			</div>
 		</div>
@@ -22,40 +26,92 @@
 	<div class="m-portlet__body">
 		<div class="m-pricing-table-1 m-pricing-table-1--fixed">
 			<div class="m-pricing-table-1__items row">
-@*				<div class="m-pricing-table-1__item col-lg-6">*@
-@*					<div class="m-pricing-table-1__visual">*@
-@*						<div class="m-pricing-table-1__hexagon1"></div>*@
-@*						<div class="m-pricing-table-1__hexagon2"></div>*@
-@*						<span class="m-pricing-table-1__icon m--font-brand"><i class="fa flaticon-rocket"></i></span>*@
-@*					</div>*@
-@*					<span class="m-pricing-table-1__price">Free</span> 				 *@
-@*					<h2 class="m-pricing-table-1__subtitle">Via bounty</h2>*@
-@*					<span class="m-pricing-table-1__description">*@
-@*						Join our bounty programms<br>*@
-@*						and get tokens<br> *@
-@*						<strong>FOR FREE</strong>*@
-@*					</span>				 *@
-@*					<div class="m-pricing-table-1__btn">*@
-@*						<a href="/my/bounty" class="btn m-btn--pill  btn-brand m-btn--wide m-btn--uppercase m-btn--bolder m-btn--sm">Get For Free</a>*@
-@*					</div>*@
-@*				</div>*@
-				<div class="m-pricing-table-1__item col-lg-4">
-					<div class="m-pricing-table-1__visual">
-						<div class="m-pricing-table-1__hexagon1"></div>
-						<div class="m-pricing-table-1__hexagon2"></div>
-						<span class="m-pricing-table-1__icon m--font-brand"><i class="fa flaticon-piggy-bank"></i></span>
+				<div style="text-align: left;" class="col-lg-6">
+					<h2>Minimum contribution is 10 ETH</h2>
+					<label>I would like to buy tokens for the sum of: *</label>
+					<input type="text" class="form-control" />
+					
+					<h2>I will receive</h2>
+					
+					<h3>0 CWT-T</h3>
+					
+					<div class="s-mb_20">
+						<label>Please enter your ETH address *</label>
+						<input type="text" class="form-control" />
 					</div>
-					<span class="m-pricing-table-1__price">0.12<span class="m-pricing-table-1__label">$</span></span> 						 
-					<h2 class="m-pricing-table-1__subtitle">ETH transaction</h2>
-					<span class="m-pricing-table-1__description">
-						Bay tokens for ETH<br>
-						send your's ETH to this address<br> 
-						<strong>0x87851e23294e0c374e849f0f159c07af31701de6</strong>
-					</span>	
-					<div class="m-pricing-table-1__btn">
-						<button type="button" class="btn m-btn--pill  btn-brand m-btn--wide m-btn--uppercase m-btn--bolder m-btn--sm">Purchase</button>
+					
+					<div class="s-mb_20">
+						<label>Please enter your first name *</label>
+						<input type="text" class="form-control" />
 					</div>
+					
+					<div class="s-mb_20">
+						<label>Please enter your last name *</label>
+						<input type="text" class="form-control" />
+					</div>
+					
+					<div class="s-mb_20">
+						<label>Please enter your country *</label>
+						<input type="text" class="form-control" />
+					</div>
+					
+					<div class="s-mb_20">
+						<label>Please enter your Telegram</label>
+						<input type="text" class="form-control" />
+					</div>
+					
+					<div class="s-mb_20">
+						<input id="conf-1" type="checkbox" class="" />
+						<label for="conf-1">I hereby expressly covenant, warrant and represent, that I am of at least 18 years of age, and have the full capacity and legal competence to use the Website and participate in the PlayHall token sale.</label>
+					</div>
+					
+					<div class="s-mb_20">
+						<input id="conf-2" type="checkbox" class="" />
+						<label for="conf-2">I confirm that I’ve entered my personal information fully and correctly (it’ll help to restore access to your account in the case of email hacking or theft).</label>
+					</div>
+					
+					<button type="button" class="btn m-btn--pill  btn-brand m-btn--wide m-btn--uppercase m-btn--bolder m-btn--sm">NEXT</button>
 				</div>
+				<div class="col-lg-6">
+					<h2>Balance</h2>
+					<div style="font-size: 50px;">0</div>
+					<strong>CryptoWorkPlace Token (CWT-T)</strong>
+				</div>
+				@*				<div class="m-pricing-table-1__item col-lg-6">*@
+				@*					<div class="m-pricing-table-1__visual">*@
+				@*						<div class="m-pricing-table-1__hexagon1"></div>*@
+				@*						<div class="m-pricing-table-1__hexagon2"></div>*@
+				@*						<span class="m-pricing-table-1__icon m--font-brand"><i class="fa flaticon-rocket"></i></span>*@
+				@*					</div>*@
+				@*					<span class="m-pricing-table-1__price">Free</span> 				 *@
+				@*					<h2 class="m-pricing-table-1__subtitle">Via bounty</h2>*@
+				@*					<span class="m-pricing-table-1__description">*@
+				@*						Join our bounty programms<br>*@
+				@*						and get tokens<br> *@
+				@*						<strong>FOR FREE</strong>*@
+				@*					</span>				 *@
+				@*					<div class="m-pricing-table-1__btn">*@
+				@*						<a href="/my/bounty" class="btn m-btn--pill  btn-brand m-btn--wide m-btn--uppercase m-btn--bolder m-btn--sm">Get For Free</a>*@
+				@*					</div>*@
+				@*				</div>*@
+				@*				<div class="m-pricing-table-1__item col-lg-4">*@
+				@*					<div class="m-pricing-table-1__visual">*@
+				@*						<div class="m-pricing-table-1__hexagon1"></div>*@
+				@*						<div class="m-pricing-table-1__hexagon2"></div>*@
+				@*						<span class="m-pricing-table-1__icon m--font-brand"><i class="fa flaticon-piggy-bank"></i></span>*@
+				@*					</div>*@
+				@*					<span class="m-pricing-table-1__price">0.12<span class="m-pricing-table-1__label">$</span></span> 						 *@
+				@*					<h2 class="m-pricing-table-1__subtitle">ETH transaction</h2>*@
+				@*					<span class="m-pricing-table-1__description">*@
+				@*						Bay tokens for ETH<br>*@
+				@*						send your's ETH to this address<br> *@
+				@*						<strong>0x87851e23294e0c374e849f0f159c07af31701de6</strong>*@
+				@*					</span>	*@
+				@*					<div class="m-pricing-table-1__btn">*@
+				@*						<button type="button" class="btn m-btn--pill  btn-brand m-btn--wide m-btn--uppercase m-btn--bolder m-btn--sm">Purchase</button>*@
+				@*					</div>*@
+				@*				</div>*@
+
 			</div>
 		</div>
 	</div>
