@@ -14,7 +14,8 @@
 
 <!-- home1-hero-area-start -->
 <div class="home-a">
-    <video style="width:100%;height:100%;" data-automation="VideoPlayer_video_video" src="~/static/video/loopg.webm" id="b-video" loop="true" autoplay="true">
+    <video style="width: 100%; height: 100%;" data-automation="VideoPlayer_video_video" src="~/static/video/loopg.mp4" id="b-video" loop="true" autoplay="true">
+        <source src="~/static/video/loopg.mp4" type="video/mp4">
         <source src="~/static/video/loopg.webm" type="video/webm">
     </video>
     
@@ -66,9 +67,9 @@
     </section>
 </div>
 <!-- home1-hero-area-end -->
-<section class="" id="mvp">
-    <iframe width="100%" height="900" src="https://www.youtube.com/embed/5RVYnurqq8M?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-</section>
+@*<section class="" id="mvp">*@
+@*    <iframe width="100%" height="900" src="https://www.youtube.com/embed/5RVYnurqq8M?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>*@
+@*</section>*@
 <div class="container s-padd">
     
     @*    <div style="margin-bottom: 172px; padding-top: 36px;" class="row">*@
@@ -117,26 +118,27 @@
         </div>
     </div>
 
-    @*    <div class="row">*@
-    @*        <div class="col-md-6 col-sm-6 col-xs-12">*@
-    @**@
-    @*            <div class="section-title left s-mb_20">*@
-    @*                <h2>*@
-    @*                    @Locale["INTERVIEW"]*@
-    @*                </h2>*@
-    @*                <p>*@
-    @*                    @Locale["INTERVIEWSUB"]*@
-    @**@
-    @*                </p>*@
-    @*            </div>*@
-    @**@
-    @*        </div>*@
-    @*        <div class="col-md-6 col-sm-6 col-xs-12">*@
-    @*            <div>*@
-    @*              <iframe id="s-interview" width="100%" height="311px" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>*@
-    @*            </div>*@
-    @*        </div>*@
-    @*    </div>*@
+        <div class="row">
+@*            <div class="col-md-6 col-sm-6 col-xs-12">*@
+@*    *@
+@*                <div class="section-title left s-mb_20">*@
+@*                    <h2>*@
+@*                        @Locale["INTERVIEW"]*@
+@*                    </h2>*@
+@*                    <p>*@
+@*                        @Locale["INTERVIEWSUB"]*@
+@*    *@
+@*                    </p>*@
+@*                </div>*@
+@*    *@
+@*            </div>*@
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div>
+@*                    <iframe id="s-interview" width="100%" height="311px" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>*@
+                    <iframe id="s-interview" width="100%" height="600" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
 </div>
 
 <div class="grad">
@@ -2018,7 +2020,7 @@
     <div class="panel-heading" role="tab" id="headingOne">
       <h4 class="panel-title">
         <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          Is CryptoWorkPlace acryptowallet?
+          Is CryptoWorkPlace a cryptowallet?
         </a>
       </h4>
     </div>
@@ -2032,7 +2034,7 @@
         <div class="panel-heading" role="tab" id="headingTwo">
             <h4 class="panel-title">
                 <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Is CryptoWorkPlace jast acomputer?
+                    Is CryptoWorkPlace just a computer?
                 </a>
             </h4>
         </div>

@@ -36,7 +36,7 @@ Version      : 1.0
 		    $('.custom-mobile-menu-area').addClass('navbar-fixed-top');
 		    $('body').addClass('nohue');
 		    if (window.framesSourceAdded !== true){
-          $('#s-interview').prop('src', 'https://www.youtube.com/embed/t97dZ7UjSOc?rel=0&amp;showinfo=0');
+          $('#s-interview').prop('src', 'https://www.youtube.com/embed/5RVYnurqq8M?rel=0&amp;controls=0&amp;showinfo=0');
 			    window.framesSourceAdded = true;
 		    }
 	    } else {
