@@ -26,7 +26,47 @@
 .clear {
     clear: both
 }
+.home-a{
+    position:relative;
+    overflow: hidden;
+}
 
+.s-v_under {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #0003;
+}
+
+#b-video {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+@media (min-aspect-ratio: 16/9) {
+    #b-video {
+        height: 300%;
+        top: -100%;
+    }
+}
+@media (max-aspect-ratio: 16/9) {
+    #b-video {
+        width: 300%;
+        left: -100%;
+    }
+}
+@supports (object-fit: cover) {
+    #b-video {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
 .s-icon {
     display: inline-block;
     vertical-align: middle;
@@ -658,7 +698,7 @@ header > .container {
 
 .menu ul li {
     display: inline-block;
-    margin: 0 15px;
+    margin: 0 5px;
     text-align: left;
 }
 
@@ -773,7 +813,7 @@ header > .container {
 /*  2.2 Home 1 Hero
 /*----------------------------------------*/
 .home1-hero-area {
-    padding: 70px 0 40px;
+    padding: 160px 0 250px;
   
     /*background: url('/static/ban.png') 0 100% no-repeat;*/
     background: linear-gradient(-191deg, #0473ab 54%,#0F1536 86%);
@@ -2290,4 +2330,60 @@ img.mfp-img {
     height: 170px;
     margin: auto;
     padding: 20px 7px 10px 10px;
+}
+
+
+.panel {
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    margin-bottom:10px;
+}
+
+.panel-group .panel {
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+.panel-default {
+    border-color: #1b84b0;
+}
+.panel-default>.panel-heading {
+    color: #fff;
+    background-color: #1b80ae;
+    border-color: #26629f;
+}
+.panel-group .panel-heading {
+    border-bottom: 0;
+}
+.panel-heading {
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    text-transform: uppercase;
+}
+
+.panel-title {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 16px;
+    color: inherit;
+}
+
+.panel-default>.panel-heading+.panel-collapse>.panel-body {
+    border-top-color: #ddd;
+}
+.panel-group .panel-heading+.panel-collapse>.list-group, .panel-group .panel-heading+.panel-collapse>.panel-body {
+    border-top: 1px solid #ddd;
+}
+.panel-body {
+    padding: 15px;
+}
+
+.panel-title>.small, .panel-title>.small>a, .panel-title>a, .panel-title>small, .panel-title>small>a {
+    color: inherit;
 }
