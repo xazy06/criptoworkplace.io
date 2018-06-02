@@ -52,7 +52,8 @@ contract SteppedRateCrowdsale is SteppedCrowdsale {
    */
   function _getTokenAmount(uint256 _weiAmount) internal view returns (uint256) {
     uint256 currentRate = getCurrentRate();
-    return _weiAmount.mul(_ETH_USD).div(currentRate);
+    uint256 tokens = _weiAmount.mul(_ETH_USD).div(currentRate);
+    return tokens;
   }
 
   function getEthUsdRate() public view returns(uint256) {

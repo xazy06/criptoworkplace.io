@@ -12,9 +12,13 @@ contract CWTPTokenSale is PostDeliveryCrowdsale, MintedCrowdsale, RBACWithAdmin,
   string public constant ROLE_DAPP = "dapp";
   string public constant ROLE_SRV = "service";
 
-  constructor(uint256 _startTime, uint256 _endTime, uint256 _cap, uint256 _rate, address _wallet, ERC20 _tokenAddress) public
+  mapping (address => uint256) public deposited;
+  event Refunded(address indexed beneficiary, uint256 weiAmount);
+  uint256 private _totalRefundDeposit;
+
+  constructor(uint256 _startTime, uint256 _endTime, uint256 _cap, uint256 _minAmount, uint256 _rate, address _wallet, ERC20 _tokenAddress) public
     TimedCrowdsale(_startTime, _endTime)
-    SteppedCapCrowdsale(_cap)
+    SteppedCapCrowdsale(_cap, _minAmount)
     Crowdsale(_rate, _wallet, _tokenAddress)
   {
     require(Ownable(_tokenAddress) != address(0));
@@ -40,9 +44,35 @@ contract CWTPTokenSale is PostDeliveryCrowdsale, MintedCrowdsale, RBACWithAdmin,
     Ownable(token).transferOwnership(msg.sender);
   }
 
-  function _getTokenAmount(uint256 _weiAmount) internal view returns (uint256) {
-    uint256 tokens = super._getTokenAmount(_weiAmount);
-    require((tokens % 1 ether) == 0);
-    return tokens;    
+  function _processPurchase(address _beneficiary, uint256 _tokenAmount) internal {
+    uint256 dep = (_tokenAmount % 1 ether);
+    uint256 currentRate = getCurrentRate();
+    uint256 refund = dep.mul(currentRate).div(getEthUsdRate());
+    deposited[msg.sender] = deposited[msg.sender].add(refund);
+    _totalRefundDeposit = _totalRefundDeposit.add(refund);
+    super._processPurchase(_beneficiary, _tokenAmount.sub(dep));
+  }
+
+  function _forwardFunds() internal {
+    uint256 funds = msg.value;
+    if (address(this).balance.sub(funds) < _totalRefundDeposit)
+    {
+      funds = funds.sub(_totalRefundDeposit.sub(address(this).balance.sub(funds)));
+    }
+    wallet.transfer(funds);
+  }
+
+  function refund(address investor) public {
+    require(deposited[investor] > 0);
+    uint256 depositedValue = deposited[investor];
+    deposited[investor] = 0;
+    investor.transfer(depositedValue);
+    emit Refunded(investor, depositedValue);
+  }
+
+  function CloseContract() onlyAdmin public {
+    if(Ownable(token).owner() == address(this))
+      transferTokenOwnership();
+    selfdestruct(msg.sender);
   }
 }
