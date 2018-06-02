@@ -41,14 +41,14 @@ namespace CWPIO.Controllers
             return View();
         }
 
-        [HttpGet("Faq", Name = "Faq")]
+        [HttpGet("faq", Name = "Faq")]
         public IActionResult Faq()
         {
 
             return View();
         }
 
-        [HttpGet("Exchanger", Name = "Exchanger")]
+        [HttpGet("exchanger", Name = "Exchanger")]
         public IActionResult Exchanger()
         {
 

@@ -37,6 +37,10 @@ contract CWTPTokenSale is PostDeliveryCrowdsale, MintedCrowdsale, RBACWithAdmin,
     _setEthUsdRate(usdRate);
   }
 
+  function getPriceForTokens(uint256 amount) public view returns(uint256) {
+    return amount.mul(getCurrentRate()).div(getEthUsdRate());
+  }
+
   function transferTokenOwnership() onlyAdmin public
   {
     // solium-disable-next-line security/no-block-members
