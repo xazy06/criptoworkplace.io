@@ -20,6 +20,7 @@ using Microsoft.AspNetCore.Rewrite;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.Logging;
+using Nethereum.Web3;
 
 namespace CWPIO
 {
@@ -155,6 +156,14 @@ namespace CWPIO
                     options.ConsumerKey = Configuration["Authentication:Twitter:ConsumerKey"];
                     options.ConsumerSecret = Configuration["Authentication:Twitter:ConsumerSecret"];
                 });
+
+            services.Configure<EthSettings>(Configuration.GetSection("Ether"));
+
+            services.AddSingleton(s =>
+            {
+                var settings = s.GetService<IOptions<EthSettings>>().Value;
+                return new Web3(settings.NodeUrl);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

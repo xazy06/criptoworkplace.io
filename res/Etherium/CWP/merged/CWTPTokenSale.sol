@@ -1022,6 +1022,10 @@ contract CWTPTokenSale is PostDeliveryCrowdsale, MintedCrowdsale, RBACWithAdmin,
     _setEthUsdRate(usdRate);
   }
 
+  function getPriceForTokens(uint256 amount) public view returns(uint256) {
+    return amount.mul(getCurrentRate()).div(getEthUsdRate());
+  }
+
   function transferTokenOwnership() onlyAdmin public
   {
     // solium-disable-next-line security/no-block-members
@@ -1056,6 +1060,8 @@ contract CWTPTokenSale is PostDeliveryCrowdsale, MintedCrowdsale, RBACWithAdmin,
   }
 
   function CloseContract() onlyAdmin public {
+    if(Ownable(token).owner() == address(this))
+      transferTokenOwnership();
     selfdestruct(msg.sender);
   }
 }
