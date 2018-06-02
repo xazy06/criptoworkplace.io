@@ -1,4 +1,4 @@
-pragma solidity 0.4.20;
+pragma solidity 0.4.24;
 
 import "openzeppelin-solidity/contracts/crowdsale/Crowdsale.sol";
 import "openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
@@ -21,7 +21,7 @@ contract ConvertTokens is Crowdsale {
   ERC20 internal _token;
   uint256 internal _convertRate;
 
-  function ConvertTokens(ERC20 token, uint256 convertRate) public
+  constructor(ERC20 token, uint256 convertRate) public
   {
     require(token != address(0));
     require(convertRate > 0);
@@ -35,7 +35,7 @@ contract ConvertTokens is Crowdsale {
     require(_value > 0);
     _token.safeTransferFrom(msg.sender, address(this), _value);
     _deliverTokens(msg.sender, _value);
-    TokenConvert(_token, msg.sender, msg.sender, _value);
+    emit TokenConvert(_token, msg.sender, msg.sender, _value);
     return true;
   }
 }

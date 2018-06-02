@@ -1,29 +1,39 @@
-pragma solidity ^0.4.18;
+pragma solidity 0.4.24;
 
 import "./SteppedCrowdsale.sol";
-import "./oraclizeAPI_0.4.sol";
 import "openzeppelin-solidity/contracts/math/SafeMath.sol";
 
 /**
  * @title SteppedRateCrowdsale
  * @dev Extension of Crowdsale contract that increases the price of tokens by steps. 
  */
-contract SteppedRateCrowdsale is SteppedCrowdsale, usingOraclize {
+contract SteppedRateCrowdsale is SteppedCrowdsale {
   using SafeMath for uint256;
 
   event UsdRateUpdated(uint256 indexed timestamp, uint256 oldRate, uint256 newRate);
+  event SetStepRate(uint256 indexed timestamp, uint256 step, uint256 oldRate, uint256 newRate);
 
   mapping (uint8 => uint256) private _rates;
-  uint256 public ETH_USD;
+  uint256 private _ETH_USD;
+  //uint256 private _initRate;
+
+  // constructor (uint256 initRate) SteppedCrowdsale() public {
+  //   _initRate = initRate;
+  // }
 
   function getStepRate(uint8 step) public view returns(uint256) {
-    require(step <= getStepsCout());
+    require(step > 0 && step <= getStepsCout());
+    if (_rates[step] == 0)
+      return rate;
     return _rates[step];
   }
 
   function _setStepRate(uint8 step, uint256 rate) internal {
-    require(step <= getStepsCout());
+    require(step > 0 && step <= getStepsCout());
+    uint256 oldRate = _rates[step];
     _rates[step] = rate;
+    // solium-disable-next-line security/no-block-members
+    emit SetStepRate(block.timestamp, step, oldRate, _rates[step]);
   }
 
   /**
@@ -36,25 +46,23 @@ contract SteppedRateCrowdsale is SteppedCrowdsale, usingOraclize {
   }
 
   /**
-   * @dev Overrides parent method taking into account variable rate.
+   * @dev Overrides arent method taking into account variable rate.
    * @param _weiAmount The value in wei to be converted into tokens
    * @return The number of tokens _weiAmount wei will buy at present time
    */
   function _getTokenAmount(uint256 _weiAmount) internal view returns (uint256) {
     uint256 currentRate = getCurrentRate();
-    return currentRate.mul(_weiAmount);
+    return _weiAmount.mul(_ETH_USD).div(currentRate);
   }
 
-  function __callback(bytes32 myid, string result) public {
-    if (msg.sender != oraclize_cbAddress()) revert();
-    //UsdRateUpdated(block.timestamp,ETH_USD, result);
-    //ETH_USD = result;
-    _updatePrice();
+  function getEthUsdRate() public view returns(uint256) {
+    return _ETH_USD;
   }
 
-  function _updatePrice() internal {
-    if (oraclize_getPrice("URL") <= this.balance) {
-      oraclize_query("1800","URL", "json(https://api.coinmarketcap.com/v2/ticker/1027/?convert=USD).data.quotes.USD.price");
-    }
+  function _setEthUsdRate(uint256 usdRate) internal {
+    uint256 oldRate = _ETH_USD;
+    _ETH_USD = usdRate;
+    // solium-disable-next-line security/no-block-members
+    emit UsdRateUpdated(block.timestamp, oldRate, _ETH_USD);
   }
 }

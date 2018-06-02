@@ -1,4 +1,4 @@
-pragma solidity ^0.4.18;
+pragma solidity 0.4.24;
 
 import "./SteppedCrowdsale.sol";
 import "openzeppelin-solidity/contracts/math/SafeMath.sol";
@@ -10,26 +10,39 @@ import "openzeppelin-solidity/contracts/math/SafeMath.sol";
 contract SteppedCapCrowdsale is SteppedCrowdsale {
   using SafeMath for uint256;
 
+  event SetStepCap(uint256 indexed timestamp, uint256 step, uint256 oldCap, uint256 newCap);
+
   mapping (uint8 => uint256) private _caps;
   mapping (uint8 => uint256) private _tokensSold;
 
+  uint256 private _initCap;
+
+  constructor (uint256 initCap) public {
+    _initCap = initCap;
+  }
+
   function getStepCap(uint8 _step) public view returns(uint256) {
-    require(_step <= getStepsCout());
+    require(_step > 0 && _step <= getStepsCout());
+    if (_caps[_step] == 0)
+      return _initCap;
     return _caps[_step];
   }
 
   function getStepTokenSold(uint8 _step) public view returns(uint256) {
-    require(_step <= getStepsCout());
+    require(_step > 0 && _step <= getStepsCout());
     return _tokensSold[_step];
   }
 
   function _setStepCap(uint8 _step, uint256 _cap) internal {
-    require(_step <= getStepsCout());
+    require(_step > 0 && _step <= getStepsCout());
+    uint256 oldCap = _caps[_step];
     _caps[_step] = _cap;
+    // solium-disable-next-line security/no-block-members
+    emit SetStepCap(block.timestamp, _step, oldCap, _caps[_step]);
   }
 
   function _setStepTokenSold(uint8 _step, uint256 _tokens) internal {
-    require(_step <= getStepsCout());
+    require(_step > 0 && _step <= getStepsCout());
     _tokensSold[_step] = _tokensSold[_step].add(_tokens);
   }
 
