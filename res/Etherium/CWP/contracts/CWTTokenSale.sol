@@ -1,4 +1,4 @@
-pragma solidity 0.4.20;
+pragma solidity 0.4.24;
 
 import "./CWTToken.sol";
 import "./CWTPToken.sol";
@@ -15,8 +15,8 @@ contract CWPTokenSale is PostDeliveryCrowdsale, MintedCrowdsale  {
    * @param _wallet    Address of multisig wallet, using for refund if Token Sale failed
    * @param  _tokenAddress  Address of Pre-sale CWPToken contract, deployed to blockchain
    */
-  function CWPTokenSale(uint256 _startTime, uint8 _duration, address _wallet, CWTToken _tokenAddress) public
-    CappedCrowdsale(123)
+  constructor(uint256 _startTime, uint8 _duration, address _wallet, CWTToken _tokenAddress) public
+    //CappedCrowdsale(123)
     TimedCrowdsale(_startTime, _startTime + _duration * 1 days)
     Crowdsale(1000, _wallet, _tokenAddress)
   {
