@@ -16,9 +16,11 @@ contract SteppedCapCrowdsale is SteppedCrowdsale {
   mapping (uint8 => uint256) private _tokensSold;
 
   uint256 private _initCap;
+  uint256 private _minAmount;
 
-  constructor (uint256 initCap) public {
+  constructor (uint256 initCap, uint256 minAmount) public {
     _initCap = initCap;
+    _minAmount = minAmount;
   }
 
   function getStepCap(uint8 _step) public view returns(uint256) {
@@ -61,6 +63,7 @@ contract SteppedCapCrowdsale is SteppedCrowdsale {
   function _preValidatePurchase(address _beneficiary, uint256 _weiAmount) internal {
     super._preValidatePurchase(_beneficiary, _weiAmount);
     uint256 tokens = _getTokenAmount(_weiAmount);    
+    require(getCurrentCap().sub(getCurrentTokenSold()) < _minAmount || tokens >= _minAmount);
     require(getCurrentTokenSold().add(tokens) <= getCurrentCap());
   }
 
