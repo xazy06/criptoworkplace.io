@@ -8,7 +8,7 @@ module.exports = function (deployer, network) {
     var cwpInstance = CWTPToken.at("0x1ae18c56f7e0c1f466b4471a3724bb6f465838b2"),
       min = 60,
       ether = Math.pow(10, 18),
-      startTime = ((((Date.now() / 1000 | 0) + 600) / 600) | 0) * 600,
+      startTime = ((((Date.now() / 1000 | 0) + 2*600) / 600) | 0) * 600,
       endTime = startTime + 45 * min,
       tsale;
 

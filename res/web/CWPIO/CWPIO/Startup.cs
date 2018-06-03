@@ -162,7 +162,7 @@ namespace CWPIO
             services.AddSingleton(s =>
             {
                 var settings = s.GetService<IOptions<EthSettings>>().Value;
-                return new Web3(settings.NodeUrl);
+                return new Web3(settings.NodeUrl ?? "http://localhost:8545");
             });
         }
 

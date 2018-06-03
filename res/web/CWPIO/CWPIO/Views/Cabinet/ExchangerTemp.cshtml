@@ -45,7 +45,7 @@
                         <button id="saveAddr" type="button" class="btn m-btn--pill  btn-brand m-btn--wide m-btn--uppercase m-btn--bolder m-btn--sm">Save addr</button>
                     </div>
                     
-                    <button type="button" class="btn m-btn--pill  btn-brand m-btn--wide m-btn--uppercase m-btn--bolder m-btn--sm">Purchase</button>
+                    <button id="purchase" type="button" class="btn m-btn--pill  btn-brand m-btn--wide m-btn--uppercase m-btn--bolder m-btn--sm">Purchase</button>
                 </div>
 
                 <div style="" class="col-lg-6">
@@ -108,6 +108,11 @@
                     alert('Saved!');
                 }
             });
+        });
+
+        $('#purchase').click(function () {
+            var ethAddr = $('#ethAddr').val();
+            web3js.send
         });
 
         function updateUI() {
