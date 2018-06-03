@@ -50,8 +50,13 @@
 
                 <div style="" class="col-lg-6">
                     <h2>Balance</h2>
-                    <div style="font-size: 50px;">0</div>
-                    <strong>CryptoWorkPlace Token (CWT-T)</strong>
+                    <div id="ballance" style="font-size: 50px;">0</div>
+                    <strong>CryptoWorkPlace Token (CWT-P)</strong><br />
+                    <strong>Current round: <span id="round"></span></strong><br />
+                    <strong>Current cap: <span id="cap"></span></strong><br />
+                    <strong>Sold: <span id="sold"></span></strong><br />
+                    <strong>Current rate: <span id="rate"></span></strong><br />
+                    <strong>Refund: <span id="refund"></span></strong>
                 </div>
             </div>
         </div>
@@ -74,24 +79,13 @@
                 // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
                 web3js = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
             }
-
-            //account = web3js.eth.accounts[0];
-            //var accountInterval = setInterval(function () {
-            //    if (web3js.eth.accounts[0] !== account) {
-            //        account = web3js.eth.accounts[0];
-            //        updateInterface();
-            //    }
-            //}, 100);
-
+            
             $.getJSON('/api/v1/usersettings').done(function (result) {
                 $('#ethAddr').val(result.ethAddress)
             });
 
-            var accountInterval = setInterval(function () {
-                $.getJSON('/api/v1/exchanger').done(function (result) {
-                    console.log(result);
-                });
-            }, 5000);
+            updateUI();
+            var accountInterval = setInterval(updateUI, 5000);
 
             
         })();
@@ -115,5 +109,17 @@
                 }
             });
         });
+
+        function updateUI() {
+            $.getJSON('/api/v1/exchanger').done(function (result) {
+                console.log(result);
+                $('#ballance').text(result.ballance);
+                $('#round').text(result.step);
+                $('#cap').text(result.cap);
+                $('#sold').text(result.sold);
+                $('#rate').text(result.rate);
+                $('#refund').text(result.refund);
+            });
+        }
     </script>
 }
