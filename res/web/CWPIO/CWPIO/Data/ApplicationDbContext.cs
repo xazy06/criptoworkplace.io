@@ -30,6 +30,8 @@ namespace CWPIO.Data
 
                 b.Property(u => u.IsDeleted).IsRequired();
 
+                b.Property(u => u.EthAddress).IsRequired(false).HasMaxLength(42);
+
                 b.HasMany(u => u.Claims)
                     .WithOne()
                     .HasForeignKey(u => u.UserId)

@@ -19,6 +19,7 @@ namespace CWPIO.Data
         }
 
         public bool IsDeleted { get; set; }
+        public string EthAddress { get; set; }
 
         [JsonIgnore] public virtual ICollection<IdentityUserClaim<string>> Claims { get; set; }
 

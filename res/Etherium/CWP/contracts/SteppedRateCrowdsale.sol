@@ -15,11 +15,6 @@ contract SteppedRateCrowdsale is SteppedCrowdsale {
 
   mapping (uint8 => uint256) private _rates;
   uint256 private _ETH_USD;
-  //uint256 private _initRate;
-
-  // constructor (uint256 initRate) SteppedCrowdsale() public {
-  //   _initRate = initRate;
-  // }
 
   function getStepRate(uint8 step) public view returns(uint256) {
     require(step > 0 && step <= getStepsCout());

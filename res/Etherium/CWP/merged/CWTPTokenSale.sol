@@ -607,11 +607,6 @@ contract SteppedRateCrowdsale is SteppedCrowdsale {
 
   mapping (uint8 => uint256) private _rates;
   uint256 private _ETH_USD;
-  //uint256 private _initRate;
-
-  // constructor (uint256 initRate) SteppedCrowdsale() public {
-  //   _initRate = initRate;
-  // }
 
   function getStepRate(uint8 step) public view returns(uint256) {
     require(step > 0 && step <= getStepsCout());
@@ -739,16 +734,20 @@ contract PostDeliveryCrowdsale is TimedCrowdsale {
   using SafeMath for uint256;
 
   mapping(address => uint256) public balances;
+  address[] private _balancesList;
 
   /**
    * @dev Withdraw tokens only after crowdsale ends.
    */
-  function withdrawTokens() public {
+  function _withdrawTokens() internal {
     require(hasClosed());
-    uint256 amount = balances[msg.sender];
-    require(amount > 0);
-    balances[msg.sender] = 0;
-    _deliverTokens(msg.sender, amount);
+    for(uint256 i = 0; i < _balancesList.length; i++)
+    {
+      uint256 amount = balances[_balancesList[i]];
+      require(amount > 0);
+      balances[_balancesList[i]] = 0;
+      _deliverTokens(_balancesList[i], amount);
+    }    
   }
 
   /**
@@ -757,6 +756,8 @@ contract PostDeliveryCrowdsale is TimedCrowdsale {
    * @param _tokenAmount Amount of tokens purchased
    */
   function _processPurchase(address _beneficiary, uint256 _tokenAmount) internal {
+    if (balances[_beneficiary] == 0)
+      _balancesList.push(_beneficiary);
     balances[_beneficiary] = balances[_beneficiary].add(_tokenAmount);
   }
 
@@ -1060,6 +1061,8 @@ contract CWTPTokenSale is PostDeliveryCrowdsale, MintedCrowdsale, RBACWithAdmin,
   }
 
   function CloseContract() onlyAdmin public {
+    require(hasClosed());
+    _withdrawTokens();
     if(Ownable(token).owner() == address(this))
       transferTokenOwnership();
     selfdestruct(msg.sender);

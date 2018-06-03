@@ -87,6 +87,45 @@ namespace CWPIO.Areas.v1.Controllers
         //    return Ok(claims.Select(c => new { c.Type, c.Value, c.Issuer }));
         //}
 
+        // POST: api/user
+        [Authorize(Policy = "CanEditUsers")]
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutAsync([FromRoute] string id, [FromBody] SimpleApplicationUserDto user)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var applicationUser = await _dbContext.FindAsync<ApplicationUser>(id);
+            if (applicationUser == null)
+            {
+                return NotFound();
+            }
+            if (!string.IsNullOrEmpty(user.Email))
+                applicationUser.Email = user.Email;
+
+            if (!string.IsNullOrEmpty(user.EthAddress))
+                applicationUser.EthAddress = user.EthAddress;
+
+            try
+            {
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!(await UserExistsAsync(id)))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return NoContent();
+        }
+
         //// POST: api/user
         //[Authorize(Policy = "CanEditUsers")]
         //[HttpPost]

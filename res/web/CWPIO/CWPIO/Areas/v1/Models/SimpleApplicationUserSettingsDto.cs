@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace CWPIO.Areas.v1.Models
 {
-    public class SimpleApplicationUserDto
+    public class SimpleApplicationUserSettingsDto
     {
-        public string Email { get; set; }
         public string EthAddress { get; set; }
     }
 }

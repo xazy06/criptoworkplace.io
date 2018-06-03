@@ -281,118 +281,38 @@ contract TimedCrowdsale is Crowdsale {
 }
 
 /**
- * @title SteppedRateCrowdsale
- * @dev Extension of Crowdsale contract that count steps. 
+ * @title PostDeliveryCrowdsale
+ * @dev Crowdsale that locks tokens from withdrawal until it ends.
  */
-contract SteppedCrowdsale is TimedCrowdsale {
-  using SafeMath
-  for uint256;
-
-  event AddStep(uint256 indexed timestamp, uint256 step, uint256 dueDate);
-
-  mapping(uint256 => uint8) private _stepsMap;
-  uint256[] private _stepsKeyList;
-
-  constructor() public {
-    _stepsMap[closingTime] = uint8(1);
-  }
-
-  function _addStep(uint256 dueDate) internal returns(uint8) {
-    require(openingTime < dueDate);
-    require(closingTime > dueDate);
-    require(_stepsKeyList.length < 255);
-    require(_stepsKeyList.length == 0 || _stepsMap[_stepsKeyList[_stepsKeyList.length - 1]] < dueDate);
-
-    _stepsMap[dueDate] = uint8(_stepsKeyList.push(dueDate));
-    _stepsMap[closingTime] = uint8(_stepsKeyList.length + 1);
-    // solium-disable-next-line security/no-block-members
-    emit AddStep(block.timestamp, _stepsMap[dueDate], dueDate);
-    return _stepsMap[dueDate];
-  }
-
-  /**
-   * @dev Returns current step number. 
-   * @return Current step number
-   */
-  function getCurrentStep() public view returns(uint8) {
-    uint256 key;
-    for (uint8 i = 0; i < _stepsKeyList.length; i++) {
-      key = _stepsKeyList[i];
-      // solium-disable-next-line security/no-block-members
-      if (block.timestamp < key)
-        break;
-    }
-
-    // solium-disable-next-line security/no-block-members
-    if (block.timestamp > key)
-    {
-      key = closingTime;
-    }
-
-    return _stepsMap[key];
-  }
-
-  function getStepsCout() public view returns(uint8) {
-    return uint8(_stepsKeyList.length + 1);
-  }
-}
-
-/**
- * @title SteppedRateCrowdsale
- * @dev Extension of Crowdsale contract that increases the price of tokens by steps. 
- */
-contract SteppedRateCrowdsale is SteppedCrowdsale {
+contract PostDeliveryCrowdsale is TimedCrowdsale {
   using SafeMath for uint256;
 
-  event UsdRateUpdated(uint256 indexed timestamp, uint256 oldRate, uint256 newRate);
-  event SetStepRate(uint256 indexed timestamp, uint256 step, uint256 oldRate, uint256 newRate);
+  mapping(address => uint256) public balances;
+  address[] private _balancesList;
 
-  mapping (uint8 => uint256) private _rates;
-  uint256 private _ETH_USD;
-
-  function getStepRate(uint8 step) public view returns(uint256) {
-    require(step > 0 && step <= getStepsCout());
-    if (_rates[step] == 0)
-      return rate;
-    return _rates[step];
-  }
-
-  function _setStepRate(uint8 step, uint256 rate) internal {
-    require(step > 0 && step <= getStepsCout());
-    uint256 oldRate = _rates[step];
-    _rates[step] = rate;
-    // solium-disable-next-line security/no-block-members
-    emit SetStepRate(block.timestamp, step, oldRate, _rates[step]);
+  /**
+   * @dev Withdraw tokens only after crowdsale ends.
+   */
+  function _withdrawTokens() internal {
+    require(hasClosed());
+    for(uint256 i = 0; i < _balancesList.length; i++)
+    {
+      uint256 amount = balances[_balancesList[i]];
+      require(amount > 0);
+      balances[_balancesList[i]] = 0;
+      _deliverTokens(_balancesList[i], amount);
+    }    
   }
 
   /**
-   * @dev Returns the rate of tokens per wei at the present time. 
-   * Note that, as price _increases_ with time, the rate _decreases_. 
-   * @return The number of tokens a buyer gets per wei at a given time
+   * @dev Overrides parent by storing balances instead of issuing tokens right away.
+   * @param _beneficiary Token purchaser
+   * @param _tokenAmount Amount of tokens purchased
    */
-  function getCurrentRate() public view returns (uint256) {
-    return getStepRate(getCurrentStep());
+  function _processPurchase(address _beneficiary, uint256 _tokenAmount) internal {
+    if (balances[_beneficiary] == 0)
+      _balancesList.push(_beneficiary);
+    balances[_beneficiary] = balances[_beneficiary].add(_tokenAmount);
   }
 
-  /**
-   * @dev Overrides arent method taking into account variable rate.
-   * @param _weiAmount The value in wei to be converted into tokens
-   * @return The number of tokens _weiAmount wei will buy at present time
-   */
-  function _getTokenAmount(uint256 _weiAmount) internal view returns (uint256) {
-    uint256 currentRate = getCurrentRate();
-    uint256 tokens = _weiAmount.mul(_ETH_USD).div(currentRate);
-    return tokens;
-  }
-
-  function getEthUsdRate() public view returns(uint256) {
-    return _ETH_USD;
-  }
-
-  function _setEthUsdRate(uint256 usdRate) internal {
-    uint256 oldRate = _ETH_USD;
-    _ETH_USD = usdRate;
-    // solium-disable-next-line security/no-block-members
-    emit UsdRateUpdated(block.timestamp, oldRate, _ETH_USD);
-  }
 }

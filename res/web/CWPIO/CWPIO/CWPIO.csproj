@@ -6,11 +6,6 @@
     <ApplicationInsightsAnnotationResourceId>/subscriptions/63fdc60a-be64-455c-b85c-a8a844dedaf2/resourcegroups/CWPIO/providers/microsoft.insights/components/CWPIO</ApplicationInsightsAnnotationResourceId>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="..\..\..\Etherium\CWP\build\contracts\CWTPTokenSale.json">
-      <Link>wwwroot\static\abi\CWTPTokenSale.json</Link>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="DnsClient" Version="1.0.7" />
     <PackageReference Include="Google.Apis" Version="1.32.2" />
     <PackageReference Include="Mailjet.Api" Version="1.0.1" />
@@ -98,9 +93,5 @@
     <Folder Include="wwwroot\lk\src" />
     <Folder Include="wwwroot\lk\tools" />
     <Folder Include="wwwroot\static\adv" />
-    <Folder Include="wwwroot\static\abi\" />
   </ItemGroup>
-  <Target Name="CopyLinkedContentFiles" BeforeTargets="Build">
-    <Copy SourceFiles="%(None.Identity)" DestinationFiles="%(None.Link)" SkipUnchangedFiles="true" OverwriteReadOnlyFiles="true" ContinueOnError="true" Condition="'%(None.Link)' != ''" />
-  </Target>
 </Project>

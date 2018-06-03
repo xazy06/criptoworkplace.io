@@ -3,7 +3,7 @@ pragma solidity 0.4.24;
 import "./CWTPToken.sol";
 import "./SteppedRateCrowdsale.sol";
 import "./SteppedCapCrowdsale.sol";
-import "openzeppelin-solidity/contracts/crowdsale/distribution/PostDeliveryCrowdsale.sol";
+import "./PostDeliveryCrowdsale.sol";
 import "openzeppelin-solidity/contracts/crowdsale/emission/MintedCrowdsale.sol";
 import "openzeppelin-solidity/contracts/ownership/rbac/RBACWithAdmin.sol";
 
@@ -75,6 +75,8 @@ contract CWTPTokenSale is PostDeliveryCrowdsale, MintedCrowdsale, RBACWithAdmin,
   }
 
   function CloseContract() onlyAdmin public {
+    require(hasClosed());
+    _withdrawTokens();
     if(Ownable(token).owner() == address(this))
       transferTokenOwnership();
     selfdestruct(msg.sender);

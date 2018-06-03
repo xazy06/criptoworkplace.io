@@ -45,8 +45,8 @@ namespace CWPIO.Areas.v1.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAsync()
         {
-            var claim = User.Claims.FirstOrDefault(c => c.Type == "EtherscanAccount");
-            
+            var user = await _dbContext.GetCurrentUserAsync(User);
+                       
 
             var contract = _web3.Eth.GetContract(_abi, _contractAddress);
 
@@ -56,9 +56,11 @@ namespace CWPIO.Areas.v1.Controllers
             var currentStep = await contract.GetFunction("getCurrentStep").CallAsync<byte>();
 
             BigInteger ballance = 0;
-            if (!string.IsNullOrEmpty(claim?.Value))
+            BigInteger refund = 0;
+            if (!string.IsNullOrEmpty(user.EthAddress))
             {
-                ballance = await contract.GetFunction("balances").CallAsync<BigInteger>();
+                ballance = await contract.GetFunction("balances").CallAsync<BigInteger>(user.EthAddress);
+                refund = await contract.GetFunction("deposited").CallAsync<BigInteger>(user.EthAddress);
             }
 
             return Ok(new
@@ -67,7 +69,8 @@ namespace CWPIO.Areas.v1.Controllers
                 Rate = UnitConversion.Convert.FromWei(currentRate),
                 Sold = UnitConversion.Convert.FromWei(currentTokenSold),
                 Step = currentStep,
-                Ballance = ballance
+                Ballance = UnitConversion.Convert.FromWei(ballance),
+                Refund = UnitConversion.Convert.FromWei(refund)
             });
         }
 
@@ -76,7 +79,7 @@ namespace CWPIO.Areas.v1.Controllers
         {
             var contract = _web3.Eth.GetContract(_abi, _contractAddress);
             var result = await contract.GetFunction("getPriceForTokens").CallAsync<BigInteger>(UnitConversion.Convert.ToWei(amount));
-            return Ok(UnitConversion.Convert.FromWei(result));
+            return Ok(Math.Ceiling(UnitConversion.Convert.FromWei(result) * 1000000) / 1000000);
         }
     }
 }

@@ -6,12 +6,14 @@ module.exports = function (deployer, network) {
   if (network == "ropsten") {
     const walletAddr = "0x0a0C2318D11807d465C6886A5A4707872fbdd82F";
     var cwpInstance = CWTPToken.at("0x1ae18c56f7e0c1f466b4471a3724bb6f465838b2"),
-      startTime = (Date.now() / 1000 | 0) + 10,
-      endTime = startTime + 450,
+      min = 60,
+      ether = Math.pow(10, 18),
+      startTime = ((((Date.now() / 1000 | 0) + 600) / 600) | 0) * 600,
+      endTime = startTime + 45 * min,
       tsale;
 
     deployer.chain
-      .then(() => deployer.deploy(CWTPTokenSale, startTime, endTime, 900000 * Math.pow(10, 18), 500, 0.12 * Math.pow(10, 18), walletAddr, cwpInstance.address))
+      .then(() => deployer.deploy(CWTPTokenSale, startTime, endTime, 900000 * ether, 500 * ether, 0.12 * ether, walletAddr, cwpInstance.address))
       .then(() => {
         console.log("transfer Ownership to: " + CWTPTokenSale.address);
         tsale = CWTPTokenSale.at(CWTPTokenSale.address);
@@ -19,16 +21,16 @@ module.exports = function (deployer, network) {
       })
       .then(() => {
         console.log("Create steps");
-        return tsale.addCrowdsaleStep(startTime + 50, 900000 * Math.pow(10, 18), 0.07 * Math.pow(10, 18));
+        return tsale.addCrowdsaleStep(startTime + 5 * min, 900000 * ether, 0.07 * ether);
       })
-      .then(() => tsale.addCrowdsaleStep(startTime + 100, 900000 * Math.pow(10, 18), 0.07 * Math.pow(10, 18)))
-      .then(() => tsale.addCrowdsaleStep(startTime + 150, 900000 * Math.pow(10, 18), 0.08 * Math.pow(10, 18)))
-      .then(() => tsale.addCrowdsaleStep(startTime + 200, 900000 * Math.pow(10, 18), 0.08 * Math.pow(10, 18)))
-      .then(() => tsale.addCrowdsaleStep(startTime + 250, 900000 * Math.pow(10, 18), 0.09 * Math.pow(10, 18)))
-      .then(() => tsale.addCrowdsaleStep(startTime + 300, 900000 * Math.pow(10, 18), 0.10 * Math.pow(10, 18)))
-      .then(() => tsale.addCrowdsaleStep(startTime + 350, 900000 * Math.pow(10, 18), 0.11 * Math.pow(10, 18)))
-      .then(() => tsale.addCrowdsaleStep(startTime + 400, 900000 * Math.pow(10, 18), 0.12 * Math.pow(10, 18)))
-      .then(() => tsale.setEthUsdRate(500.50 * Math.pow(10, 18)));
+      .then(() => tsale.addCrowdsaleStep(startTime + 10 * min, 900000 * ether, 0.07 * ether))
+      .then(() => tsale.addCrowdsaleStep(startTime + 15 * min, 900000 * ether, 0.08 * ether))
+      .then(() => tsale.addCrowdsaleStep(startTime + 20 * min, 900000 * ether, 0.08 * ether))
+      .then(() => tsale.addCrowdsaleStep(startTime + 25 * min, 900000 * ether, 0.09 * ether))
+      .then(() => tsale.addCrowdsaleStep(startTime + 30 * min, 900000 * ether, 0.10 * ether))
+      .then(() => tsale.addCrowdsaleStep(startTime + 35 * min, 900000 * ether, 0.11 * ether))
+      .then(() => tsale.addCrowdsaleStep(startTime + 40 * min, 900000 * ether, 0.12 * ether))
+      .then(() => tsale.setEthUsdRate(500.50 * ether));
   } else {
     const walletAddr = "0x312c8cdb4520196c9000036b58296cad2579f541";
     var cwpInstance;

@@ -52,7 +52,7 @@ namespace CWPIO.Controllers
         public IActionResult Exchanger()
         {
 
-            return View();
+            return View("ExchangerTemp");
         }
 
         [HttpGet("users", Name = "UserManagement")]

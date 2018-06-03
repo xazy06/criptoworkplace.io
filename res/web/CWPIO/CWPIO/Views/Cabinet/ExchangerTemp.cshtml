@@ -1,0 +1,119 @@
+﻿
+@{
+    ViewData["Title"] = "Exchanger";
+    Layout = "~/Views/Cabinet/_AdminLayout.cshtml";
+}
+
+<style>
+    .s-mb_20 {
+        margin-bottom: 20px;
+    }
+</style>
+
+<div class="m-portlet">
+    <div class="m-portlet__head">
+        <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+                <span class="m-portlet__head-icon">
+                    <i class="la la-puzzle-piece"></i>
+                </span>
+                <h3 class="m-portlet__head-text">
+                    APPLY FOR SALE FORM
+                </h3>
+            </div>
+        </div>
+    </div>
+    <div class="m-portlet__body">
+        <div class="m-pricing-table-1">
+            <div class="m-pricing-table-1__items row">
+
+                <div style="text-align: left;" class="col-lg-6">
+
+                    <h2>Minimum contribution is 500 tokens</h2>
+
+                    <label>I would like to buy tokens: </label>
+                    <input id="tokenAmount" style="margin-bottom: 20px;" type="number" class="form-control">
+
+                    <div style="margin-bottom: 20px;">
+                        <h3 style="margin-bottom: 10px;">I need to pay:</h3>
+                        <h4><span id="toPay">0</span> ETH</h4>
+                    </div>
+
+                    <div class="s-mb_20">
+                        <label>Please enter your ETH address *</label>
+                        <input id="ethAddr" type="text" class="form-control">
+                        <button id="saveAddr" type="button" class="btn m-btn--pill  btn-brand m-btn--wide m-btn--uppercase m-btn--bolder m-btn--sm">Save addr</button>
+                    </div>
+                    
+                    <button type="button" class="btn m-btn--pill  btn-brand m-btn--wide m-btn--uppercase m-btn--bolder m-btn--sm">Purchase</button>
+                </div>
+
+                <div style="" class="col-lg-6">
+                    <h2>Balance</h2>
+                    <div style="font-size: 50px;">0</div>
+                    <strong>CryptoWorkPlace Token (CWT-T)</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts  {
+    <script src="~/js/web3.min.js" asp-append-version="true"></script>
+    <script>
+        var web3js;
+
+        (function () {
+
+            // Checking if Web3 has been injected by the browser (Mist/MetaMask)
+            if (typeof web3 !== 'undefined') {
+                // Use Mist/MetaMask's provider
+                web3js = new Web3(web3.currentProvider);
+            } else {
+                console.log('No web3? You should consider trying MetaMask!')
+                // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
+                web3js = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+            }
+
+            //account = web3js.eth.accounts[0];
+            //var accountInterval = setInterval(function () {
+            //    if (web3js.eth.accounts[0] !== account) {
+            //        account = web3js.eth.accounts[0];
+            //        updateInterface();
+            //    }
+            //}, 100);
+
+            $.getJSON('/api/v1/usersettings').done(function (result) {
+                $('#ethAddr').val(result.ethAddress)
+            });
+
+            var accountInterval = setInterval(function () {
+                $.getJSON('/api/v1/exchanger').done(function (result) {
+                    console.log(result);
+                });
+            }, 5000);
+
+            
+        })();
+
+        $('#tokenAmount').on('input', function (e) {
+            var t = parseInt(e.currentTarget.value);
+            $.get('/api/v1/exchanger/calc/' + t).done(function (result) {
+                $('#toPay').text(result);
+            })
+        });
+
+        $('#saveAddr').click(function () {
+            var ethAddr = $('#ethAddr').val();
+            $.ajax({
+                url: '/api/v1/usersettings',
+                type: 'PUT',
+                contentType: "application/json",
+                data: JSON.stringify({ ethAddress: ethAddr }),
+                success: function (data) {
+                    alert('Saved!');
+                }
+            });
+        });
+    </script>
+}
