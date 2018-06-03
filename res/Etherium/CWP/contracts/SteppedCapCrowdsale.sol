@@ -70,6 +70,7 @@ contract SteppedCapCrowdsale is SteppedCrowdsale {
   function _updatePurchasingState(address _beneficiary, uint256 _weiAmount) internal {
     super._updatePurchasingState(_beneficiary, _weiAmount);
     uint256 tokens = _getTokenAmount(_weiAmount);   
-    _setStepTokenSold(getCurrentStep(), tokens);
+    uint256 dep = (tokens % 1 ether);
+    _setStepTokenSold(getCurrentStep(), tokens.sub(dep));
   }
 }

@@ -5,6 +5,7 @@ using System.Numerics;
 using System.Threading.Tasks;
 using CWPIO.Data;
 using CWPIO.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,6 +17,7 @@ using Newtonsoft.Json;
 
 namespace CWPIO.Areas.v1.Controllers
 {
+    [Authorize]
     [Produces("application/json")]
     [Area("v1")]
     [Route("api/v1/exchanger")]
@@ -46,7 +48,11 @@ namespace CWPIO.Areas.v1.Controllers
         public async Task<IActionResult> GetAsync()
         {
             var user = await _dbContext.GetCurrentUserAsync(User);
-                       
+            if (user == null)
+            {
+                return NotFound();
+            }
+                                  
 
             var contract = _web3.Eth.GetContract(_abi, _contractAddress);
 
@@ -54,7 +60,7 @@ namespace CWPIO.Areas.v1.Controllers
             var currentRate = await contract.GetFunction("getCurrentRate").CallAsync<BigInteger>();
             var currentTokenSold = await contract.GetFunction("getCurrentTokenSold").CallAsync<BigInteger>();
             var currentStep = await contract.GetFunction("getCurrentStep").CallAsync<byte>();
-
+            var dueTime = await contract.GetFunction("steps").CallAsync<long>(currentStep);
             BigInteger ballance = 0;
             BigInteger refund = 0;
             if (!string.IsNullOrEmpty(user.EthAddress))
@@ -70,7 +76,8 @@ namespace CWPIO.Areas.v1.Controllers
                 Sold = UnitConversion.Convert.FromWei(currentTokenSold),
                 Step = currentStep,
                 Ballance = UnitConversion.Convert.FromWei(ballance),
-                Refund = UnitConversion.Convert.FromWei(refund)
+                Refund = UnitConversion.Convert.FromWei(refund),
+                StepEndTime = dueTime
             });
         }
 
@@ -80,6 +87,26 @@ namespace CWPIO.Areas.v1.Controllers
             var contract = _web3.Eth.GetContract(_abi, _contractAddress);
             var result = await contract.GetFunction("getPriceForTokens").CallAsync<BigInteger>(UnitConversion.Convert.ToWei(amount));
             return Ok(Math.Ceiling(UnitConversion.Convert.FromWei(result) * 1000000) / 1000000);
+        }
+
+        [HttpGet("addr")]
+        public IActionResult GetAddr()
+        {
+            return Ok(_contractAddress);
+        }
+
+        [HttpGet("refund")]
+        public async Task<IActionResult> GetRefundAsync()
+        {
+            var user = await _dbContext.GetCurrentUserAsync(User);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var contract = _web3.Eth.GetContract(_abi, _contractAddress);
+            var result = await contract.GetFunction("refund").SendTransactionAsync(_options.AppAddress, user.EthAddress);
+            return Ok(result);
         }
     }
 }

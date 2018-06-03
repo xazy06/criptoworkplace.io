@@ -9,6 +9,8 @@ namespace CWPIO.Models
     {
         public string NodeUrl { get; set; }
         public int Network { get; set; }
+        public string AppAddress { get; set; }
+        public string AppPK { get; set; }
 
         public EthSettings()
         {

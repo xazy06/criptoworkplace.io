@@ -44,7 +44,7 @@
                         <input id="ethAddr" type="text" class="form-control">
                         <button id="saveAddr" type="button" class="btn m-btn--pill  btn-brand m-btn--wide m-btn--uppercase m-btn--bolder m-btn--sm">Save addr</button>
                     </div>
-                    
+
                     <button id="purchase" type="button" class="btn m-btn--pill  btn-brand m-btn--wide m-btn--uppercase m-btn--bolder m-btn--sm">Purchase</button>
                 </div>
 
@@ -56,7 +56,8 @@
                     <strong>Current cap: <span id="cap"></span></strong><br />
                     <strong>Sold: <span id="sold"></span></strong><br />
                     <strong>Current rate: <span id="rate"></span></strong><br />
-                    <strong>Refund: <span id="refund"></span></strong>
+                    <strong>Refund: <span id="refund"></span></strong><button id="refundBtn" type="button" class="btn m-btn--pill  btn-brand m-btn--wide m-btn--uppercase m-btn--bolder m-btn--sm">Refund</button><br />
+                    <strong>End time: <span id="endTime"></span></strong>
                 </div>
             </div>
         </div>
@@ -79,7 +80,7 @@
                 // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
                 web3js = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
             }
-            
+
             $.getJSON('/api/v1/usersettings').done(function (result) {
                 $('#ethAddr').val(result.ethAddress)
             });
@@ -87,7 +88,7 @@
             updateUI();
             var accountInterval = setInterval(updateUI, 5000);
 
-            
+
         })();
 
         $('#tokenAmount').on('input', function (e) {
@@ -112,7 +113,17 @@
 
         $('#purchase').click(function () {
             var ethAddr = $('#ethAddr').val();
-            web3js.send
+            $.getJSON('/api/v1/exchanger/addr').done(function (result) {
+                debugger;
+                web3js.eth.sendTransaction({ from: $('#ethAddr').val(), to: result, value: web3js.utils.toWei($('#toPay').text()) });
+            });
+        });
+
+        $('#refundBtn').click(function () {
+            $.getJSON('/api/v1/exchanger/refund').done(function (result) {
+                alert('Trx: ' + result);
+            })
+
         });
 
         function updateUI() {
@@ -124,6 +135,7 @@
                 $('#sold').text(result.sold);
                 $('#rate').text(result.rate);
                 $('#refund').text(result.refund);
+                $('#endTime').text(new Date(result.stepEndTime * 1000).toUTCString());
             });
         }
     </script>

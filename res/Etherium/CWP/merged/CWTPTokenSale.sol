@@ -550,9 +550,11 @@ contract SteppedCrowdsale is TimedCrowdsale {
 
   mapping(uint256 => uint8) private _stepsMap;
   uint256[] private _stepsKeyList;
+  mapping(uint8 => uint256) public steps;
 
   constructor() public {
     _stepsMap[closingTime] = uint8(1);
+    steps[uint8(1)] = closingTime;
   }
 
   function _addStep(uint256 dueDate) internal returns(uint8) {
@@ -563,6 +565,8 @@ contract SteppedCrowdsale is TimedCrowdsale {
 
     _stepsMap[dueDate] = uint8(_stepsKeyList.push(dueDate));
     _stepsMap[closingTime] = uint8(_stepsKeyList.length + 1);
+    steps[_stepsMap[dueDate]] = dueDate;
+    steps[_stepsMap[closingTime]] = closingTime;
     // solium-disable-next-line security/no-block-members
     emit AddStep(block.timestamp, _stepsMap[dueDate], dueDate);
     return _stepsMap[dueDate];
@@ -722,7 +726,8 @@ contract SteppedCapCrowdsale is SteppedCrowdsale {
   function _updatePurchasingState(address _beneficiary, uint256 _weiAmount) internal {
     super._updatePurchasingState(_beneficiary, _weiAmount);
     uint256 tokens = _getTokenAmount(_weiAmount);   
-    _setStepTokenSold(getCurrentStep(), tokens);
+    uint256 dep = (tokens % 1 ether);
+    _setStepTokenSold(getCurrentStep(), tokens.sub(dep));
   }
 }
 
