@@ -49,10 +49,9 @@ namespace CWPIO.Controllers
         }
 
         [HttpGet("exchanger", Name = "Exchanger")]
-        public IActionResult Exchanger()
+        public IActionResult Exchanger(string a)
         {
-
-            return View("ExchangerTemp");
+            return View(a == "temp" ? "ExchangerTemp" : "Exchanger");
         }
 
         [HttpGet("users", Name = "UserManagement")]
