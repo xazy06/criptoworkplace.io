@@ -65,7 +65,8 @@ var Controller = function () {
 		},
 
 		calc:function (count) {
-
+			count = count || 0;
+			
 			$.ajax({
 				url:self.api.calc + count,
 				method:'GET'
@@ -151,6 +152,9 @@ var Controller = function () {
 			}),
 			next2Enabled: ko.pureComputed(function () {
 				return ViewModel.flags.check3() && ViewModel.flags.check4() && ViewModel.flags.check5() && ViewModel.flags.check6(); 
+			}),
+			payEnabled: ko.pureComputed(function () {
+				return ViewModel.obs.needPay() > 0;
 			})
 		},
 		
