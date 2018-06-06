@@ -14,7 +14,7 @@ var Controller = function () {
 	this.api = {
 		usersettings:'/api/v1/usersettings',
 		exchanger:'/api/v1/exchanger',
-		calc:'/api/v1/exchanger',
+		calc:'/api/v1/exchanger/calc/',
 		purchase: '/api/v1/exchanger/addr'
 	};
 	
@@ -67,9 +67,7 @@ var Controller = function () {
 		calc:function (count) {
 
 			$.ajax({
-				contentType: 'application/json',
-				url:self.api.calc,
-				data:count, 
+				url:self.api.calc + count,
 				method:'GET'
 			}).done(function (response) {
 				ViewModel.obs.needPay(response);
@@ -81,7 +79,7 @@ var Controller = function () {
 				web3js.eth.sendTransaction({ 
 					from: ViewModel.obs.usersetting.ethAddress(), 
 					to: result, 
-					value: web3js.utils.toWei($('#toPay').text()) 
+					value: web3js.utils.toWei(ViewModel.obs.needPay()) 
 				});
 			});
 		}
@@ -121,8 +119,7 @@ var Controller = function () {
 	var ViewModel = {
 		obs:{
 			page:ko.observable(0),
-			iwr: ko.observable(0),
-			cwtCount: ko.observable(0),
+			cwtCount: ko.observable(),
 			usersettings: {
 				name:ko.observable(''),
 				lastName:ko.observable(''),
@@ -177,6 +174,10 @@ var Controller = function () {
 		}
 		
 	};
+	
+	ViewModel.obs.cwtCount.subscribe(function (val) {
+		self.actions.calc(val);
+	});
 	
 	return this.init();
 };
