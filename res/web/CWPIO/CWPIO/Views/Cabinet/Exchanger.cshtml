@@ -34,22 +34,25 @@
 
 				<div style="margin-bottom: 20px;">
 					<h3 style="margin-bottom: 10px;">I will receive</h3>
-					<h4>0 CWT-P</h4>
+					<h4>
+						<span>0</span>
+						<sup>CWT-P</sup>
+					</h4>
 				</div>
 
 				<div class="s-mb_20">
 					<label>Please enter your ETH address *</label>
-					<input data-bind="textInput: obs.usersettings.ethAddr" type="text" class="form-control"/>
+					<input data-bind="textInput: obs.usersettings.ethAddress" type="text" class="form-control"/>
 				</div>
 
 				<div class="s-mb_20">
-					<label>Please enter your first name *</label>
-					<input type="text" class="form-control"/>
+					<label>Please enter your first name</label>
+					<input data-bind="textInput: obs.usersettings.name" type="text" class="form-control"/>
 				</div>
 
 				<div class="s-mb_20">
-					<label>Please enter your last name *</label>
-					<input type="text" class="form-control"/>
+					<label>Please enter your last name</label>
+					<input data-bind="textInput: obs.usersettings.lastName" type="text" class="form-control"/>
 				</div>
 
 				@*					<div class="s-mb_20">*@
@@ -61,7 +64,7 @@
 
 				<div class="s-mb_20">
 					<label>Please enter your Telegram</label>
-					<input type="text" class="form-control"/>
+					<input placeholder="@@" data-bind="textInput: obs.usersettings.telegramNickname" type="text" class="form-control"/>
 				</div>
 
 				<div class="s-mb_20">
@@ -203,22 +206,34 @@
 
 				<div style="margin-bottom: 20px;">
 					<h3 style="margin-bottom: 10px;">I will receive</h3>
-					<h4>0 CWT-P</h4>
+					<h4>
+						<span>0</span>
+						<sup>CWT-P</sup>
+					</h4>
 				</div>
 
 				<h2>Please use this smart contract</h2>
 
 				<p>Do not use any exchange wallet to transfer ETH using Smart Contract. Tokens will be transfered to this wallet automatically.</p>
-
+				
 				<p>
-					Smart Contract address: <strong>0x666c09e6ea8062523e113004302b0ac5507f6d71</strong> <a href="/">Copy</a>
+					<img style="border: 1px solid #ddd;" src="http://qrcoder.ru/code/?0x666c09e6ea8062523e113004302b0ac5507f6d71&4&0"/>
+				</p>
+				
+				<p>
+					Smart Contract address: 
+					<a href="https://etherscan.io/token/0x844d61a974f3792914815d9eb8b9ebb6ecc8b0a7">
+						<strong>0x844d61a974f3792914815d9eb8b9ebb6ecc8b0a7</strong>
+					</a>
+					
+@*					<a href="/">Copy</a>*@
 				</p>
 			</div>
 
 			<div style="" class="col-lg-6">
 				<h2>Balance</h2>
 				<div style="font-size: 50px;">0</div>
-				<strong>CryptoWorkPlace Token (CWT-T)</strong>
+				<strong>CryptoWorkPlace Token (CWT-P)</strong>
 			</div>
 
 		</div>

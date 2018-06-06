@@ -37,10 +37,15 @@ var Controller = function () {
 				url:self.api.usersettings,
 				method:'GET'
 			}).done(function (response) {
-				ViewModel.obs.usersettings.Name(response.Name);
-				ViewModel.obs.usersettings.LastName(response.LastName);
-				ViewModel.obs.usersettings.Country(response.Country);
-				ViewModel.obs.usersettings.TelegramNickname(response.TelegramNickname);
+				ViewModel.obs.usersettings.name(response.name);
+				ViewModel.obs.usersettings.lastName(response.lastName);
+				ViewModel.obs.usersettings.ethAddress(response.ethAddress);
+				ViewModel.obs.usersettings.country(response.country);
+				ViewModel.obs.usersettings.telegramNickname(response.telegramNickname);
+
+				if (ViewModel.obs.usersettings.ethAddress()){
+					ViewModel.obs.page(2);
+				}
 			});
 		},
 		
@@ -74,7 +79,7 @@ var Controller = function () {
 			$.getJSON(self.api.purchase).done(function (result) {
 				//TODO
 				web3js.eth.sendTransaction({ 
-					from: $('#ethAddr').val(), 
+					from: ViewModel.obs.usersetting.ethAddress(), 
 					to: result, 
 					value: web3js.utils.toWei($('#toPay').text()) 
 				});
@@ -115,11 +120,11 @@ var Controller = function () {
 		obs:{
 			page:ko.observable(0),
 			usersettings: {
-				Name:ko.observable(0),
-				LastName:ko.observable(0),
-				Country:ko.observable(0),
-				TelegramNickname:ko.observable(0),
-				ethAddr: ko.observable('')
+				name:ko.observable(''),
+				lastName:ko.observable(''),
+				country:ko.observable(0),
+				telegramNickname:ko.observable(''),
+				ethAddress: ko.observable('')
 			},
 			sales:{
 				cap:ko.observable(0),
@@ -139,7 +144,7 @@ var Controller = function () {
 			check5:ko.observable(false),
 			check6:ko.observable(false),
 			nextEnabled: ko.pureComputed(function () {
-				return ViewModel.flags.check1() && ViewModel.flags.check2() && ViewModel.obs.usersettings.ethAddr();
+				return ViewModel.flags.check1() && ViewModel.flags.check2() && ViewModel.obs.usersettings.ethAddress();
 			}),
 			next2Enabled: ko.pureComputed(function () {
 				return ViewModel.flags.check3() && ViewModel.flags.check4() && ViewModel.flags.check5() && ViewModel.flags.check6(); 
