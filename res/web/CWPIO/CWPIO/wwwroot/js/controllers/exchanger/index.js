@@ -111,6 +111,8 @@ var Controller = function () {
 		self.initWeb3Js();
 		
 		self.actions.usersettings();
+
+		self.actions.exchanger();
 		
 		return this;
 	};
@@ -131,7 +133,9 @@ var Controller = function () {
 				rate:ko.observable(0),
 				sold:ko.observable(0),
 				step:ko.observable(0),
-				ballance:ko.observable(0)
+				ballance:ko.observable(0),
+				refund:ko.observable(0),
+				stepEndTime: ko.observable(0)
 			},
 			needPay: ko.observable(0)
 		},
