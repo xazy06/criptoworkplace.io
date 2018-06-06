@@ -12,7 +12,7 @@ var Controller = function () {
 	};
 	
 	this.api = {
-		usersettings:'api/v1/usersettings',
+		usersettings:'/api/v1/usersettings',
 		exchanger:'/api/v1/exchanger',
 		calc:'/api/v1/exchanger',
 		purchase: '/api/v1/exchanger/addr'
