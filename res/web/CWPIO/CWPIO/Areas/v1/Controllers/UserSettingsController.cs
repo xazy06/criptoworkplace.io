@@ -76,7 +76,7 @@ namespace CWPIO.Areas.v1.Controllers
                     throw;
                 }
             }
-            return NoContent();
+            return Ok(userSettings);
         }
 
         private async Task<bool> UserExistsAsync(string id)
