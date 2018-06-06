@@ -121,6 +121,8 @@ var Controller = function () {
 	var ViewModel = {
 		obs:{
 			page:ko.observable(0),
+			iwr: ko.observable(0),
+			cwtCount: ko.observable(0),
 			usersettings: {
 				name:ko.observable(''),
 				lastName:ko.observable(''),

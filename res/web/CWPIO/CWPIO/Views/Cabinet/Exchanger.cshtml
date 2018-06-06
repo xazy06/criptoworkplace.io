@@ -30,12 +30,12 @@
 				<h2>Minimum contribution is 500 CWT-P</h2>
 
 				<label>I would like to buy CWT-P in count of: </label>
-				<input style="margin-bottom: 20px;" type="number" class="form-control"/>
+				<input data-bind="textInput: obs.cwtCount" style="margin-bottom: 20px;" type="number" class="form-control"/>
 
 				<div style="margin-bottom: 20px;">
 					<h3 style="margin-bottom: 10px;">I will receive</h3>
 					<h4>
-						<span>0</span>
+						<span data-bind="text:obs.iwr">0</span>
 						<sup>CWT-P</sup>
 					</h4>
 				</div>
@@ -85,7 +85,7 @@
 
 			<div style="" class="col-lg-6">
 				<h2>Balance</h2>
-				<div style="font-size: 50px;">0</div>
+				<div data-bind="text:obs.sales.ballance" style="font-size: 50px;">0</div>
 				<strong>CryptoWorkPlace Token (CWT-P)</strong>
 			</div>
 
@@ -207,7 +207,7 @@
 				<div style="margin-bottom: 20px;">
 					<h3 style="margin-bottom: 10px;">I will receive</h3>
 					<h4>
-						<span>0</span>
+						<input data-bind="textInput: obs.cwtCount" style="margin-bottom: 20px;" type="number" class="form-control"/>
 						<sup>CWT-P</sup>
 					</h4>
 				</div>
@@ -232,7 +232,7 @@
 
 			<div style="" class="col-lg-6">
 				<h2>Balance</h2>
-				<div style="font-size: 50px;">0</div>
+				<div data-bind="text:obs.sales.ballance" style="font-size: 50px;">0</div>
 				<strong>CryptoWorkPlace Token (CWT-P)</strong>
 			</div>
 
