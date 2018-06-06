@@ -46,7 +46,7 @@ var Controller = function () {
 		
 		exchanger:function (params) {
 			
-				$.ajax({
+		  $.ajax({
 				contentType: 'application/json',
 				url:self.api.exchanger,
 				method:'GET'
