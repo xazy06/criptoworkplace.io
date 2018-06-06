@@ -103,7 +103,7 @@ var Controller = function () {
 	this.init = function () {
 		ko.applyBindings(ViewModel);
 
-		self.actions.initWeb3Js();
+		self.initWeb3Js();
 		
 		self.actions.usersettings();
 		
