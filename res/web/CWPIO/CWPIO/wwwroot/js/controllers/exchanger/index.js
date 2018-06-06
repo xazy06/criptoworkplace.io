@@ -82,6 +82,8 @@ var Controller = function () {
 					to: result, 
 					value: web3js.utils.toWei(ViewModel.obs.needPay()) 
 				});
+				
+				self.actions.exchanger();
 			});
 		}
 	};
