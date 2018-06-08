@@ -14,9 +14,9 @@
 
 <!-- home1-hero-area-start -->
 <div class="home-a">
-    <video style="width: 100%; height: 100%;" data-automation="VideoPlayer_video_video" src="~/static/video/loopg.mp4" id="b-video" loop="true" autoplay="true">
-        <source src="~/static/video/loopg.mp4" type="video/mp4">
-        <source src="~/static/video/loopg.webm" type="video/webm">
+    <video style="width: 100%; height: 100%;" src="/static/video/loopg.mp4" id="b-video" loop="true" autoplay="true">
+        <source src="/static/video/loopg.mp4" type="video/mp4">
+        <source src="/static/video/loopg.webm" type="video/webm">
     </video>
     
     <section class="home1-hero-area" id="home">
@@ -64,7 +64,7 @@
                 <div class=" col-md-6 col-sm-6 col-xs-12">
                     <div class="home1-hero-right">
                         @*                    <img src="http://www.compbegin.ru/data/image/intel2_(2).jpg" />*@
-                        <img class="chart home1-hero-right_img hidden-xs" src="~/static/block-1-1.png" alt="cwp"/>
+                        <img id="flash-drive" style="opacity: 0;" class="chart home1-hero-right_img hidden-xs" src="~/static/block-1-1.png" alt="cwp"/>
                         @*                        <img class="chart black" src="~/static/block-1-1.png" alt="cwp" />*@
                     </div>
                 </div>
@@ -124,8 +124,8 @@
             </div>
         </div>
     </div>
-
-        <div class="row">
+</div>
+        
 @*            <div class="col-md-6 col-sm-6 col-xs-12">*@
 @*    *@
 @*                <div class="section-title left s-mb_20">*@
@@ -139,14 +139,19 @@
 @*                </div>*@
 @*    *@
 @*            </div>*@
-            <div class="col-md-12 col-sm-12 col-xs-12">
+        
                 <div>
 @*                    <iframe id="s-interview" width="100%" height="311px" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>*@
-                    <iframe id="s-interview" width="100%" height="600" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+@*                    <iframe id="s-interview" width="100%" height="600" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>*@
+                    <iframe id="s-interview"  
+                            width="100%" 
+                            height="724.81" 
+                            frameborder="0" 
+                            allowfullscreen="" 
+                            class=""></iframe>
                 </div>
-            </div>
-        </div>
-</div>
+        
+
 
 <div class="grad">
     <div style="padding: 60px 15px 20px" class="container white">
@@ -266,11 +271,11 @@
                     </tr>
                     <tr>
                         <td>1 CWT-P </td>
-                        <td class="s-ta_r">40% DISCOUNT</td>
+                        <td class="s-ta_r">70% DISCOUNT</td>
                     </tr>
                     <tr>
                         <td>SALES START</td>
-                        <td class="s-ta_r">MONDAY, JUNE, 2018</td>
+                        <td class="s-ta_r">JUNE 2018</td>
                     </tr>
 
                 </table>
@@ -299,13 +304,14 @@
                         <td class="s-ta_r">250.000.000(50%)</td>
                     </tr>
                     <tr>
+                        <td>1 CWT-T</td>
+                        <td class="s-ta_r">30% DISCOUNT</td>
+                    </tr>
+                    <tr>
                         <td>@Locale["Sales start"]</td>
                         <td class="s-ta_r">AUGUST 2018</td>
                     </tr>
-                    <tr>
-                        <td>1 CWT-T</td>
-                        <td class="s-ta_r">$0.20</td>
-                    </tr>
+                   
                 </table>
             </div>
         </div>
@@ -756,7 +762,7 @@
                                     <div class="timeline-info">
                                         <span>2008</span>
                                     </div>
-                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-marker done"></div>
                                     <div class="timeline-content">
                                         <h3 class="timeline-title">@Locale["idea"]</h3>
 
@@ -766,7 +772,7 @@
                                     <div class="timeline-info">
                                         <span>2009</span>
                                     </div>
-                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-marker done"></div>
                                     <div class="timeline-content">
                                         <h3 class="timeline-title">@Locale["pat"]</h3>
 
@@ -777,7 +783,7 @@
                                     <div class="timeline-info">
                                         <span>2010</span>
                                     </div>
-                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-marker done"></div>
                                     <div class="timeline-content">
                                         <h3 class="timeline-title">@Locale["r2"]</h3>
 
@@ -787,7 +793,7 @@
                                     <div class="timeline-info">
                                         <span>2011</span>
                                     </div>
-                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-marker done"></div>
                                     <div class="timeline-content">
                                         <h3 class="timeline-title">@Locale["r3"]</h3>
                                     </div>
@@ -797,7 +803,7 @@
                                     <div class="timeline-info">
                                         <span>2012</span>
                                     </div>
-                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-marker done"></div>
                                     <div class="timeline-content">
                                         <h3 class="timeline-title">@Locale["r4"]</h3>
                                     </div>
@@ -806,7 +812,7 @@
                                     <div class="timeline-info">
                                         <span>2015</span>
                                     </div>
-                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-marker done"></div>
                                     <div class="timeline-content">
                                         <h3 class="timeline-title">@Locale["r5"]</h3>
                                     </div>
@@ -815,7 +821,7 @@
                                     <div class="timeline-info">
                                         <span>2016</span>
                                     </div>
-                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-marker done"></div>
                                     <div class="timeline-content">
                                         <h3 class="timeline-title">@Locale["r6"]</h3>
                                     </div>
@@ -824,32 +830,80 @@
                                     <div class="timeline-info">
                                         <span>2017</span>
                                     </div>
-                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-marker done"></div>
                                     <div class="timeline-content">
-                                        <h3 class="timeline-title">@Locale["r7"]</h3>
+                                        @*                                        <h3 class="timeline-title">@Locale["r7"]</h3>*@
+                                        <h3 class="timeline-title">@Locale["CryptoWorkPlace concept: schematic prototype solution"]</h3>
                                     </div>
                                 </li>
                                 <li class="timeline-item">
                                     <div class="timeline-info">
-                                        <span>@Locale["feb"] - @Locale["April"]</span>
+                                        <span>@Locale["feb"] - @Locale["2018"]</span>
                                     </div>
-                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-marker done"></div>
                                     <div class="timeline-content">
-                                        <h3 class="timeline-title">@Locale["r8"]</h3>
+                                        @*                                        <h3 class="timeline-title">@Locale["r8"]</h3>*@
+                                        <h3 class="timeline-title">@Locale["First files for production Optimization of the solution (Bom, pcb)"]</h3>
                                     </div>
                                 </li>
                                 <li class="timeline-item">
                                     <div class="timeline-info">
-                                        <span>@Locale["may"]</span>
+                                        <span>@Locale["march"] 2018</span>
                                     </div>
-                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-marker done"></div>
                                     <div class="timeline-content">
-                                        <h3 class="timeline-title">@Locale["r9"]</h3>
+                                        @*                                        <h3 class="timeline-title">@Locale["r9"]</h3>*@
+                                        <h3 class="timeline-title">@Locale["Changes to the circuit design and board taking MARCH 2018 into account optimization"]</h3>
                                     </div>
                                 </li>
                                 <li class="timeline-item">
                                     <div class="timeline-info">
-                                        <span>@Locale["r11"]</span>
+                                        <span>@Locale["march"] 2018</span>
+                                    </div>
+                                    <div class="timeline-marker done"></div>
+                                    <div class="timeline-content">
+                                        <h3 class="timeline-title">@Locale["First web-portal concept for Medicine to prove the concept The first VPN tunnels were configured using certificates"]</h3>
+                                    </div>
+                                </li>
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span>@Locale["april"] 2018</span>
+                                    </div>
+                                    <div class="timeline-marker done"></div>
+                                    <div class="timeline-content">
+                                        <h3 class="timeline-title">@Locale["Authorization on the portal using the device Storing a certificate for authorization and signing on the device in a secure storage"]</h3>
+                                    </div>
+                                </li>
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span>@Locale["may"] 2018</span>
+                                    </div>
+                                    <div class="timeline-marker done"></div>
+                                    <div class="timeline-content">
+                                        <h3 class="timeline-title">@Locale["Running the CryptoPro on the device for the ability to use it in UZD"]</h3>
+                                    </div>
+                                </li>
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span>@Locale["june"] 2018</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <h3 class="timeline-title">@Locale["THE START OF TOKEN PRE-SALE"]</h3>
+                                    </div>
+                                </li>
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span>@Locale["august"] 2018</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <h3 class="timeline-title">@Locale["Token Sale, Launching of the AUGUST 2018 CryptoWorkPlace Web Portal beta"]</h3>
+                                    </div>
+                                </li>
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span>@Locale["Q3"]</span>
                                     </div>
                                     <div class="timeline-marker"></div>
                                     <div class="timeline-content">
@@ -867,7 +921,7 @@
                                 </li>
                                 <li class="timeline-item">
                                     <div class="timeline-info">
-                                        <span>Q4</span>
+                                        <span>Q1 2019</span>
                                     </div>
                                     <div class="timeline-marker"></div>
                                     <div class="timeline-content">

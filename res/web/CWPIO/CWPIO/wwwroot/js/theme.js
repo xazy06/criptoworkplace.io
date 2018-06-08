@@ -25,6 +25,9 @@ Version      : 1.0
     /*-----------------
     sticky
     -----------------*/
+    setTimeout(function(){
+        $('#flash-drive').addClass('animated fadeInLeft');
+    },500);
     $(window).on('scroll', function() {
         if ($(window).scrollTop() > 50) {
             $('header').addClass('navbar-fixed-top');
@@ -36,7 +39,7 @@ Version      : 1.0
 		    $('.custom-mobile-menu-area').addClass('navbar-fixed-top');
 		    $('body').addClass('nohue');
 		    if (window.framesSourceAdded !== true){
-          $('#s-interview').prop('src', 'https://www.youtube.com/embed/5RVYnurqq8M?rel=0&amp;controls=0&amp;showinfo=0');
+          $('#s-interview').prop('src', 'https://www.youtube.com/embed/KZTEhEsgPp4?wmode=opaque&amp;enablejsapi=1&amp;playlist=&amp;autohide=1&amp;loop=0&amp;showinfo=0&amp;theme=dark&amp;controls=1&amp;html5=1&amp;rel=0&amp;vq=hd1080');
 			    window.framesSourceAdded = true;
 		    }
 	    } else {

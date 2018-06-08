@@ -1652,8 +1652,9 @@ a.btn:focus{
 
 a.btn:hover,
 a.btn:hover{
-    opacity:0.85;
+    opacity:0.5;
 }
+
 
 .btn.btn-default {
     color: #333;
@@ -2667,4 +2668,8 @@ img.mfp-img {
 }
 .marker-outline .timeline-item:hover .timeline-marker:before {
     background: #fff;
+}
+
+.timeline-marker.done:before {
+    background: #8BC34A;
 }
