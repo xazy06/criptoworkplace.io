@@ -8,6 +8,24 @@
   .s-mb_20 {
 	  margin-bottom: 20px;
   }
+  
+  @@media (max-width: 768px){
+	  .h2, h2 {
+		  font-size: 1.1rem;
+	  }  
+	  .h3, h3 {
+		  font-size: 1.05rem;
+	  }
+	  .s-ms-c {
+		  text-align: center;
+	  }
+	  .s-ms_n {
+		  display: none;
+	  }
+	  .s-ms_b {
+		  display: inline-block;
+	  }
+  }
 </style>
 
 <div class="m-portlet">
@@ -208,7 +226,8 @@
 					<h3 style="margin-bottom: 10px;">You need to 
 						<button data-bind="enable: flags.payEnabled ,click: actions.purchase" 
 						        type="button" 
-						        class="btn m-btn--pill  btn-brand m-btn--wide m-btn--uppercase m-btn--bolder m-btn--sm">Pay</button>
+						        class="s-ms_n btn m-btn--pill  btn-brand m-btn--wide m-btn--uppercase m-btn--bolder m-btn--sm">Pay</button>
+						<span class="s-ms_b">Pay</span>
 					</h3>
 					<h4>
 						<span data-bind="text: obs.needPay"></span> 
@@ -220,13 +239,13 @@
 
 				<p>Do not use any exchange wallet to transfer ETH using Smart Contract. Tokens will be transfered to this wallet automatically.</p>
 				
-				<p>
+				<p class="s-ms-c">
 					<img style="border: 1px solid #ddd;" src="http://qrcoder.ru/code/?0x666c09e6ea8062523e113004302b0ac5507f6d71&4&0"/>
 				</p>
 				
 				<p>
 					Smart Contract address: 
-					<a href="https://etherscan.io/token/0x844d61a974f3792914815d9eb8b9ebb6ecc8b0a7">
+					<a style="display: block;text-overflow: ellipsis;overflow: hidden;" href="https://etherscan.io/token/0x844d61a974f3792914815d9eb8b9ebb6ecc8b0a7">
 						<strong>0x844d61a974f3792914815d9eb8b9ebb6ecc8b0a7</strong>
 					</a>
 					
