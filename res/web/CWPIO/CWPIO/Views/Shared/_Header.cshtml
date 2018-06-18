@@ -61,38 +61,38 @@
                     </div>
                 }
             </div>
-            <div class="col-md-1 col-xs-4">
-                <div id="change-color" class="b-change-color"></div>
-                <div class="search s-lang_changer dropdown hidden-sm hidden-xs">
-                    <a class="dropdown-toggle s-lang_changer__toggle" href="#" data-toggle="dropdown">
-                        @CultureInfo.CurrentCulture.ThreeLetterISOLanguageName
-                        <i class="fa fa-angle-down"></i>
-                    </a>
-                    
-                    <ul class="dropdown-menu" aria-labelledby="language-switch">
-                        <li><a asp-controller="Home" asp-action="Index" asp-route-culture="en-US">English</a></li>
-@*                        <li><a asp-controller="Home" asp-action="Index" asp-route-culture="ru-RU">Русский</a></li>*@
-@*                        <li><a href="/?culture=zh-CN">中國</a></li>*@
-@*                        <li><a href="/?culture=ja-JP">日本</a></li>*@
-                    </ul>
-@*                    <!-- search-modal-start -->*@
-@*                    <div id="myModal" class="search-modal modal fade" role="dialog">*@
-@*                        <div class="modal-dialog">*@
-@*                            <!-- Modal content-->*@
-@*                            <div class="modal-content">*@
-@*                                <h4 class="modal-title">Type and Press Enter</h4>*@
-@*                                <form action="#">*@
-@*                                    <input type="text" placeholder="Search Here">*@
-@*                                </form>*@
-@*                                <div class="modal-close">*@
-@*                                    <button type="button" data-dismiss="modal">Close</button>*@
-@*                                </div>*@
-@*                            </div>*@
-@*                        </div>*@
-@*                    </div>*@
-@*                    <!-- search-modal-end -->*@
-                </div>
-            </div>
+@*            <div class="col-md-1 col-xs-4">*@
+@*                <div id="change-color" class="b-change-color"></div>*@
+@*                <div class="search s-lang_changer dropdown hidden-sm hidden-xs">*@
+@*                    <a class="dropdown-toggle s-lang_changer__toggle" href="#" data-toggle="dropdown">*@
+@*                        @CultureInfo.CurrentCulture.ThreeLetterISOLanguageName*@
+@*                        <i class="fa fa-angle-down"></i>*@
+@*                    </a>*@
+@*                    *@
+@*                    <ul class="dropdown-menu" aria-labelledby="language-switch">*@
+@*                        <li><a asp-controller="Home" asp-action="Index" asp-route-culture="en-US">English</a></li>*@
+@*$1$                        <li><a asp-controller="Home" asp-action="Index" asp-route-culture="ru-RU">Русский</a></li>#1#*@
+@*$1$                        <li><a href="/?culture=zh-CN">中國</a></li>#1#*@
+@*$1$                        <li><a href="/?culture=ja-JP">日本</a></li>#1#*@
+@*                    </ul>*@
+@*$1$                    <!-- search-modal-start -->#1#*@
+@*$1$                    <div id="myModal" class="search-modal modal fade" role="dialog">#1#*@
+@*$1$                        <div class="modal-dialog">#1#*@
+@*$1$                            <!-- Modal content-->#1#*@
+@*$1$                            <div class="modal-content">#1#*@
+@*$1$                                <h4 class="modal-title">Type and Press Enter</h4>#1#*@
+@*$1$                                <form action="#">#1#*@
+@*$1$                                    <input type="text" placeholder="Search Here">#1#*@
+@*$1$                                </form>#1#*@
+@*$1$                                <div class="modal-close">#1#*@
+@*$1$                                    <button type="button" data-dismiss="modal">Close</button>#1#*@
+@*$1$                                </div>#1#*@
+@*$1$                            </div>#1#*@
+@*$1$                        </div>#1#*@
+@*$1$                    </div>#1#*@
+@*$1$                    <!-- search-modal-end -->#1#*@
+@*                </div>*@
+@*            </div>*@
         </div>
     </div>
     <!-- mobile-menu-start -->
@@ -123,31 +123,31 @@
                     <li><a data-toggle="collapse" data-target="#mobile_menu_show" class="smoothscroll" href="#ROADMAP">@Locale["roadmap"]</a></li>
                     <li><a data-toggle="collapse" data-target="#mobile_menu_show" class="smoothscroll" href="#team">@Locale["team"]</a></li>
                     <li><a data-toggle="collapse" data-target="#mobile_menu_show" class="smoothscroll" href="#contact">@Locale["contacts"]</a></li>
-                    <li>
-                        <a href="javascript:void(0)">
-                            <div class="dropdown s-pos_r">
-                                <a style="text-transform: uppercase" class="dropdown-toggle" href="#" data-toggle="dropdown">
-                                    @CultureInfo.CurrentCulture.TwoLetterISOLanguageName
-
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="language-switch">
-                                    <li>
-                                        <a asp-controller="Home" asp-action="Index" asp-route-culture="en-US">English</a>
-                                    </li>
-                                    @*                                    <li>*@
-                                    @*                                        <a asp-controller="Home" asp-action="Index" asp-route-culture="ru-RU">Русский</a>*@
-                                    @*                                    </li>*@
-                                    @*<li>*@
-                                    @*  <a href="/?culture=zh-CN">中國</a>*@
-                                    @*</li>*@
-                                    @*<li>*@
-                                    @* <a href="/?culture=ja-JP">日本</a>*@
-                                    @*</li>*@
-                                </ul>
-
-                            </div>
-                        </a>
-                    </li>
+@*                    <li>*@
+@*                        <a href="javascript:void(0)">*@
+@*                            <div class="dropdown s-pos_r">*@
+@*                                <a style="text-transform: uppercase" class="dropdown-toggle" href="#" data-toggle="dropdown">*@
+@*                                    @CultureInfo.CurrentCulture.TwoLetterISOLanguageName*@
+@**@
+@*                                </a>*@
+@*                                <ul class="dropdown-menu" aria-labelledby="language-switch">*@
+@*                                    <li>*@
+@*                                        <a asp-controller="Home" asp-action="Index" asp-route-culture="en-US">English</a>*@
+@*                                    </li>*@
+@*                                    $1$                                    <li>#1#*@
+@*                                    $1$                                        <a asp-controller="Home" asp-action="Index" asp-route-culture="ru-RU">Русский</a>#1#*@
+@*                                    $1$                                    </li>#1#*@
+@*                                    $1$<li>#1#*@
+@*                                    $1$  <a href="/?culture=zh-CN">中國</a>#1#*@
+@*                                    $1$</li>#1#*@
+@*                                    $1$<li>#1#*@
+@*                                    $1$ <a href="/?culture=ja-JP">日本</a>#1#*@
+@*                                    $1$</li>#1#*@
+@*                                </ul>*@
+@**@
+@*                            </div>*@
+@*                        </a>*@
+@*                    </li>*@
 
 
                 </ul>
