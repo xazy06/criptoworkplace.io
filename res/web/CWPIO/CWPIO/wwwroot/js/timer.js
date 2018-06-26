@@ -219,5 +219,5 @@ Led = ident.Led;
 		rounded: 1,
 		led: "font1"
 	};
-	var myLed = new Led(config);
+	//var myLed = new Led(config);
 }());
