@@ -325,5 +325,11 @@ Version      : 1.0
         return false;
     });
 
+	$(".js-sdissapear").on('click', function(e) {
+		
+		e.preventDefault();
+		
+		$(this).fadeOut(1000);
+	});
 
 }(jQuery));
