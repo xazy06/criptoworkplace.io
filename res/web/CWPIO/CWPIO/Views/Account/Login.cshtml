@@ -146,7 +146,7 @@
 								<h3 class="m-login__title">Sign Up</h3>
 								<div class="m-login__desc">Enter your details to create your account:</div>
 							</div>
-							<form class="m-login__form m-form" action="/account/register">
+							<form class="m-login__form m-form" method="POST" action="/Account/Register">
 								@Html.AntiForgeryToken()
 								@*								<div class="form-group m-form__group">*@
 								@*									<input class="form-control m-input" type="text" placeholder="Fullname" name="fullname">*@
