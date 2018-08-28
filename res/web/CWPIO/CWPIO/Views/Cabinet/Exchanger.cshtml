@@ -1,271 +1,464 @@
 ﻿
 @{
-    ViewData["Title"] = "Exchanger";
-    Layout = "~/Views/Cabinet/_AdminLayout.cshtml";
+	ViewData["Title"] = "Sales Dashboard";
+	Layout = "~/Views/Cabinet/_AdminLayout.cshtml";
 }
 
 <style>
-  .s-mb_20 {
-	  margin-bottom: 20px;
-  }
-  
-  @@media (max-width: 768px){
-	  .h2, h2 {
-		  font-size: 1.1rem;
-	  }  
-	  .h3, h3 {
-		  font-size: 1.05rem;
-	  }
-	  .s-ms-c {
-		  text-align: center;
-	  }
-	  .s-ms_n {
-		  display: none;
-	  }
-	  .s-ms_b {
-		  display: inline-block;
-	  }
-  }
+	.s-mb_20 { margin-bottom: 20px; }
+
+	@@media (max-width: 768px) {
+		.h2, h2 { font-size: 1.1rem; }
+
+		.h3, h3 { font-size: 1.05rem; }
+
+		.s-ms-c { text-align: center; }
+
+		.s-ms_n { display: none; }
+
+		.s-ms_b { display: inline-block; }
+	}
 </style>
 
+
+<div class="m-alert m-alert--icon m-alert--icon-solid m-alert--outline alert alert-success alert-dismissible fade show" role="alert">
+	<div class="m-alert__icon">
+		<i class="flaticon-exclamation-1"></i>
+		<span></span>
+	</div>
+	<div class="m-alert__text">
+		<strong>Pre-sale</strong> in progress.		
+	</div>	
+	<div class="m-alert__close">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		</button>	
+	</div>			  	
+</div>
+
+<div class="row">
+<div class="col-md-6">
 <div class="m-portlet">
 <div class="m-portlet__head">
 	<div class="m-portlet__head-caption">
 		<div class="m-portlet__head-title">
 			<h3 class="m-portlet__head-text">
-				APPLY FOR SALE FORM, CURRENT ROUND IS <!-- ko text: obs.sales.step --><!--/ko-->
+				APPLY FOR SALE FORM
 			</h3>
 		</div>
 	</div>
 </div>
 <div class="m-portlet__body">
-	<div class="m-pricing-table-1">
-		<!-- ko if: obs.page() === 0 -->
-		<div class="m-pricing-table-1__items row">
 
-			<div style="text-align: left;" class="col-lg-6">
-
-				<h2>Minimum contribution is 500 CWT-P</h2>
-
-				<label>I would like to buy CWT-P in count of: </label>
-				<input data-bind="textInput: obs.cwtCount" style="margin-bottom: 20px;" type="number" class="form-control"/>
-
-				<div style="margin-bottom: 20px;">
-					<h3 style="margin-bottom: 10px;">You need to pay</h3>
-					<h4>
-						<span data-bind="text:obs.needPay">0</span>
-						<sup>ETH</sup>
-					</h4>
-				</div>
-
-				<div class="s-mb_20">
-					<label>Please enter your ETH address *</label>
-					<input data-bind="textInput: obs.usersettings.ethAddress" type="text" class="form-control"/>
-				</div>
-
-				<div class="s-mb_20">
-					<label>Please enter your first name</label>
-					<input data-bind="textInput: obs.usersettings.name" type="text" class="form-control"/>
-				</div>
-
-				<div class="s-mb_20">
-					<label>Please enter your last name</label>
-					<input data-bind="textInput: obs.usersettings.lastName" type="text" class="form-control"/>
-				</div>
-
-				@*					<div class="s-mb_20">*@
-				@*						<label>Please enter your country *</label>*@
-				@*						<select class="form-control">*@
-				@*							<option></option>*@
-				@*						</select>*@
-				@*					</div>*@
-
-				<div class="s-mb_20">
-					<label>Please enter your Telegram</label>
-					<input placeholder="@@" data-bind="textInput: obs.usersettings.telegramNickname" type="text" class="form-control"/>
-				</div>
-
-				<div class="s-mb_20">
-					<input data-bind="checked: flags.check1" style="width: 20px; float: left; margin-top: 4px;" id="conf-1" type="checkbox" class=""/>
-					<label style="display: block; margin: 0 0 0 25px;" for="conf-1">I hereby expressly covenant, warrant and represent,
-						that I am of at least 18 years of age, and have the full capacity and legal competence to use the Website and
-						participate in the CryptoWorkPlace token sale.</label>
-				</div>
-
-				<div class="s-mb_20">
-					<input data-bind="checked: flags.check2" style="width: 20px; float: left; margin-top: 4px;" id="conf-2" type="checkbox" class=""/>
-					<label style="display: block; margin: 0 0 0 25px;" for="conf-2">I confirm that I’ve entered my personal
-						information fully and correctly (it’ll help to restore access to your account in the case of email hacking or theft).</label>
-				</div>
-
-				<button data-bind="enable: flags.nextEnabled, click: actions.next" type="button" class="btn m-btn--pill  btn-brand m-btn--wide m-btn--uppercase m-btn--bolder m-btn--sm">NEXT</button>
-			</div>
-
-			<div style="" class="col-lg-6">
-				<h2>Balance</h2>
-				<div data-bind="text:obs.sales.ballance" style="font-size: 50px;">0</div>
-				<strong>CryptoWorkPlace Token (CWT-P)</strong>
-			</div>
-
-
-			@*				<div class="m-pricing-table-1__item col-lg-6">*@
-			@*					<div class="m-pricing-table-1__visual">*@
-			@*						<div class="m-pricing-table-1__hexagon1"></div>*@
-			@*						<div class="m-pricing-table-1__hexagon2"></div>*@
-			@*						<span class="m-pricing-table-1__icon m--font-brand"><i class="fa flaticon-rocket"></i></span>*@
-			@*					</div>*@
-			@*					<span class="m-pricing-table-1__price">Free</span> 				 *@
-			@*					<h2 class="m-pricing-table-1__subtitle">Via bounty</h2>*@
-			@*					<span class="m-pricing-table-1__description">*@
-			@*						Join our bounty programms<br>*@
-			@*						and get tokens<br> *@
-			@*						<strong>FOR FREE</strong>*@
-			@*					</span>				 *@
-			@*					<div class="m-pricing-table-1__btn">*@
-			@*						<a href="/my/bounty" class="btn m-btn--pill  btn-brand m-btn--wide m-btn--uppercase m-btn--bolder m-btn--sm">Get For Free</a>*@
-			@*					</div>*@
-			@*				</div>*@
-			@*				<div class="m-pricing-table-1__item col-lg-4">*@
-			@*					<div class="m-pricing-table-1__visual">*@
-			@*						<div class="m-pricing-table-1__hexagon1"></div>*@
-			@*						<div class="m-pricing-table-1__hexagon2"></div>*@
-			@*						<span class="m-pricing-table-1__icon m--font-brand"><i class="fa flaticon-piggy-bank"></i></span>*@
-			@*					</div>*@
-			@*					<span class="m-pricing-table-1__price">0.12<span class="m-pricing-table-1__label">$</span></span> 						 *@
-			@*					<h2 class="m-pricing-table-1__subtitle">ETH transaction</h2>*@
-			@*					<span class="m-pricing-table-1__description">*@
-			@*						Bay tokens for ETH<br>*@
-			@*						send your's ETH to this address<br> *@
-			@*						<strong>0x87851e23294e0c374e849f0f159c07af31701de6</strong>*@
-			@*					</span>	*@
-			@*					<div class="m-pricing-table-1__btn">*@
-			@*						<button type="button" class="btn m-btn--pill  btn-brand m-btn--wide m-btn--uppercase m-btn--bolder m-btn--sm">Purchase</button>*@
-			@*					</div>*@
-			@*				</div>*@
-
-		</div>
-		
-		<!-- /ko -->
-
-		<!-- ko if: obs.page() === 1 -->
-		<div class="m-pricing-table-1__items row">
-
-			<div style="text-align: left;" class="col-lg-12">
-
-				<h2>REPRESENTATIONS AND WARRANTIES FOR CryptoWorkPlace TOKENS PURCHASING.</h2>
-
-				<p>BY PURCHASING CryptoWorkPlace TOKENS YOU HEREBY EXPRESSLY COVENANT, REPRESENT AND WARRANT, THAT:</p>
-
-				<div class="s-mb_20">
-					<input data-bind="checked: flags.check3" style="width: 20px; float: left; margin-top: 4px;" id="term-1" type="checkbox" class=""/>
-
-					<label style="display: block; margin: 0 0 0 25px;" for="term-1">
-						You have read and accepted the Terms and Conditions, and all Accompanying documents, including Tokens Sale Purchase Agreement,
-						Token Sale Privacy Policy and White Paper in their entirety. Also, You fully agree and understand,
-						that You will not be free to use CryptoWorkPlace tokens immediately after Your purchase.
-					</label>
-				</div>
-
-				<div class="s-mb_20">
-					<input data-bind="checked: flags.check4" style="width: 20px; float: left; margin-top: 4px;" id="term-2" type="checkbox" class=""/>
-					<label style="display: block; margin: 0 0 0 25px;" for="term-2">
-						You are solely responsible for the safety and control of the address and/or cryptocurrency wallet used for
-						the token sale contribution. You are not acting on behalf of any third party, and you will not transfer the
-						control of the address and/or cryptocurrency wallet to any third party prior to having received the
-						CryptoWorkPlace tokens. You will not use the Website for any illegal or fraudulent activity, including,
-						but not limited money laundering and financing of terrorism, and you have never, by any means,
-						been engaged in any illegal activity.
-					</label>
-				</div>
-
-				<div class="s-mb_20">
-					<input data-bind="checked: flags.check5" style="width: 20px; float: left; margin-top: 4px;" id="term-3" type="checkbox" class=""/>
-					<label style="display: block; margin: 0 0 0 25px;" for="term-3">
-						You are of at least 18 years of age, meet all other eligibility criteria, and you are fully capable and
-						legally competent to use the Website and participate in CryptoWorkPlace token sale or conduct any operations
-						with cryptocurrency under applicable law and the Terms and Conditions, and all Accompanying documents.
-						All the information, You provide, is accurate and complete. You give your absolute consent to update the
-						information accordingly and follow the extensive KYC- and AML- procedures, stipulated by the CryptoWorkPlace Website owner.
-					</label>
-				</div>
-
-				<div class="s-mb_20">
-					<input data-bind="checked: flags.check6" style="width: 20px; float: left; margin-top: 4px;" id="term-4" type="checkbox" class=""/>
-					<label style="display: block; margin: 0 0 0 25px;" for="term-4">
-						You are not identified, and not acting on behalf of the person identified, in any lists of sanctioned persons,
-						including but not limited to U.S. Treasury Department's list of Specially Designated Nationals and Blocked Persons,
-						the U.S. Commerce Department's Denied Person List, the EU Consolidated List of Persons; UN-, US-, EU-, CH- or
-						any other sovereign country sanctions or embargoes. You meet the residency criteria and you are not a citizen of,
-						residing in or located at country or territory that is the target of United States economic or trade sanctions
-						(currently, Cuba, Iran, Syria, North Korea, and the Crimea region of Ukraine; You are not otherwise the target
-						of United States economic or trade sanctions; and You are not acting on behalf of the governments of the
-						mentioned countries or territories, and you have no other affiliation to such sanctions or territories.
-						You are not a citizen of or located and/or residing in any country, territory or geographical area, where
-						the distribution of tokens would be unlawful or restricted by any regulation, including if such
-						distribution would require licensing, and You have no other affiliation to the mentioned countries and territories.
-					</label>
-				</div>
-
-				<button data-bind="enable: flags.next2Enabled, click: actions.next" type="button" class="btn m-btn--pill  btn-brand m-btn--wide m-btn--uppercase m-btn--bolder m-btn--sm">SUBMIT</button>
-			</div>
-
-		</div>
-		<!-- /ko -->
-
-	<!-- ko if: obs.page() === 2 -->
-	<div class="m-pricing-table-1__items row">
-
-			<div style="text-align: left;" class="col-lg-6">
-
-				<h2>Minimum contribution is 500 CWT-P</h2>
-
-				<label>I would like to buy CWT-P in count of: </label>
-				<input data-bind="textInput: obs.cwtCount" style="margin-bottom: 20px;" type="number" class="form-control"/>
-
-				<div style="margin-bottom: 20px;">
-					<h3 style="margin-bottom: 10px;">You need to 
-						<button data-bind="enable: flags.payEnabled ,click: actions.purchase" 
-						        type="button" 
-						        class="s-ms_n btn m-btn--pill  btn-brand m-btn--wide m-btn--uppercase m-btn--bolder m-btn--sm">Pay</button>
-						<span class="s-ms_b">Pay</span>
-					</h3>
-					<h4>
-						<span data-bind="text: obs.needPay"></span> 
-						<sup>ETH</sup>
-					</h4>
-				</div>
-
-				<h2>Please use this smart contract</h2>
-
-				<p>Do not use any exchange wallet to transfer ETH using Smart Contract. Tokens will be transfered to this wallet automatically.</p>
-				
-				<p class="s-ms-c">
-					<img style="border: 1px solid #ddd;" src="http://qrcoder.ru/code/?0x666c09e6ea8062523e113004302b0ac5507f6d71&4&0"/>
-				</p>
-				
-				<p>
-					Smart Contract address: 
-					<a style="display: block;text-overflow: ellipsis;overflow: hidden;" href="https://etherscan.io/token/0x844d61a974f3792914815d9eb8b9ebb6ecc8b0a7">
-						<strong>0x844d61a974f3792914815d9eb8b9ebb6ecc8b0a7</strong>
-					</a>
-					
-@*					<a href="/">Copy</a>*@
-				</p>
-			</div>
-
-			<div style="" class="col-lg-6">
-				<h2>Balance</h2>
-				<div data-bind="text:obs.sales.ballance" style="font-size: 50px;">0</div>
-				<strong>CryptoWorkPlace Token (CWT-P)</strong>
-			</div>
-
-		</div>
-	<!-- /ko -->
+<div style="margin-bottom: 30px;" class="row">
+	<div class="col-md-6">
+		<h5 class="m--font-primary">
+			CWT-P Token amount you want to receive
+		</h5>
+		<input autofocus data-bind="textInput: obs.cwtCount" style="margin-bottom: 20px;" type="number" class="form-control"/>
 	</div>
+	<div class="col-md-6">
+		<h5 class="m--font-primary">
+			ETH amount need to send
+		</h5>
+			
+		<span data-bind="text: obs.needPay"></span>
+		<sup>ETH</sup>
+	</div>
+</div>
+
+<!-- ko if:flags.minCont -->
+<div class="m-alert m-alert--outline alert alert-success alert-dismissible fade show" role="alert">
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	</button>
+	Minimum contribution is 500 CWT-P  	
+</div>
+<!--/ko-->
+
+<h2 style="margin-bottom: 20px;">Cryptoworkplace smart contract address</h2>
+@*		Minimum contribution is 500 CWT-P*@
+
+<div class="m-pricing-table-1">
+	
+	<div class="m-alert m-alert--icon m-alert--icon-solid m-alert--outline alert alert-brand alert-dismissible fade show" role="alert">
+		<div class="m-alert__icon">
+			<i class="flaticon-exclamation-1"></i>
+			<span></span>
+		</div>
+		<div class="m-alert__text">
+			@*				This is the ETH wallet address to send ETH and receive CWT-P. The wallet address must be ERC-20 base. Please note that the wallet address cannot be changed once ETH is sent.*@
+			To purchase CWT-P token, send ETH from a whitelisted ether wallet to the below smart contract address. The amount must be between 0.1 and 20 ETH.
+		</div>
+		<div class="m-alert__close">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			</button>
+		</div>
+	</div>
+	
+	<p>
+		<a style="display: block; text-overflow: ellipsis; margin-bottom: 20px; overflow: hidden;" href="https://etherscan.io/token/0x844d61a974f3792914815d9eb8b9ebb6ecc8b0a7">
+			<strong>0x844d61a974f3792914815d9eb8b9ebb6ecc8b0a7</strong>
+		</a>
+		<!-- ko ifnot:flags.toggleQr -->
+		<i data-bind="click:actions.toggleQr" style="cursor: pointer; font-size: 2em;" class="fa fa-qrcode"></i>
+		<!--/ko-->
+
+		<p data-bind="click:actions.toggleQr, if:flags.toggleQr" class="s-ms-c">
+			<img style="border: 1px solid #ddd;" src="http://qrcoder.ru/code/?0x666c09e6ea8062523e113004302b0ac5507f6d71&4&0"/>
+		</p>
+
+
+
+	</p>
+	<div style="margin-bottom: 30px;" class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-dismissible fade show" role="alert">
+		<div class="m-alert__icon">
+			<i class="la la-warning"></i>
+		</div>
+		<div class="m-alert__text">
+			Do not use any exchange wallet to transfer ETH using Smart Contract. Tokens will be transfered to this wallet automatically.
+		</div>
+		<div class="m-alert__close">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			</button>
+		</div>
+	</div>
+
+	
+
+
+
+
+</div>
+@**@
+@*<div class="m-pricing-table-1">*@
+@*<!-- ko if: obs.page() === 0 -->*@
+@*<div class="m-pricing-table-1__items row">*@
+@**@
+@*	<div style="text-align: left;" class="col-lg-6">*@
+@**@
+@*		<h2>Cryptoworkplace smart contract address Minimum contribution is 500 CWT-P</h2>*@
+@**@
+@*		<label>I would like to buy CWT-P in count of: </label>*@
+@*		<input data-bind="textInput: obs.cwtCount" style="margin-bottom: 20px;" type="number" class="form-control"/>*@
+@**@
+@*		<div style="margin-bottom: 20px;">*@
+@*			<h3 style="margin-bottom: 10px;">You need to pay</h3>*@
+@*			<h4>*@
+@*				<span data-bind="text:obs.needPay">0</span>*@
+@*				<sup>ETH</sup>*@
+@*			</h4>*@
+@*		</div>*@
+@**@
+@*		<div class="s-mb_20">*@
+@*			<label>Please enter your ETH address *</label>*@
+@*			<input data-bind="textInput: obs.usersettings.ethAddress" type="text" class="form-control"/>*@
+@*		</div>*@
+@**@
+@*		<div class="s-mb_20">*@
+@*			<label>Please enter your first name</label>*@
+@*			<input data-bind="textInput: obs.usersettings.name" type="text" class="form-control"/>*@
+@*		</div>*@
+@**@
+@*		<div class="s-mb_20">*@
+@*			<label>Please enter your last name</label>*@
+@*			<input data-bind="textInput: obs.usersettings.lastName" type="text" class="form-control"/>*@
+@*		</div>*@
+@**@
+@*		$1$					<div class="s-mb_20">#1#*@
+@*		$1$						<label>Please enter your country *</label>#1#*@
+@*		$1$						<select class="form-control">#1#*@
+@*		$1$							<option></option>#1#*@
+@*		$1$						</select>#1#*@
+@*		$1$					</div>#1#*@
+@**@
+@*		<div class="s-mb_20">*@
+@*			<label>Please enter your Telegram</label>*@
+@*			<input placeholder="@@" data-bind="textInput: obs.usersettings.telegramNickname" type="text" class="form-control"/>*@
+@*		</div>*@
+@**@
+@*		<div class="s-mb_20">*@
+@*			<input data-bind="checked: flags.check1" style="width: 20px; float: left; margin-top: 4px;" id="conf-1" type="checkbox" class=""/>*@
+@*			<label style="display: block; margin: 0 0 0 25px;" for="conf-1">*@
+@*				I hereby expressly covenant, warrant and represent,*@
+@*				that I am of at least 18 years of age, and have the full capacity and legal competence to use the Website and*@
+@*				participate in the CryptoWorkPlace token sale.*@
+@*			</label>*@
+@*		</div>*@
+@**@
+@*		<div class="s-mb_20">*@
+@*			<input data-bind="checked: flags.check2" style="width: 20px; float: left; margin-top: 4px;" id="conf-2" type="checkbox" class=""/>*@
+@*			<label style="display: block; margin: 0 0 0 25px;" for="conf-2">*@
+@*				I confirm that I’ve entered my personal*@
+@*				information fully and correctly (it’ll help to restore access to your account in the case of email hacking or theft).*@
+@*			</label>*@
+@*		</div>*@
+@**@
+@*		<button data-bind="enable: flags.nextEnabled, click: actions.next" type="button" class="btn m-btn--pill  btn-brand m-btn--wide m-btn--uppercase m-btn--bolder m-btn--sm">NEXT</button>*@
+@*	</div>*@
+@**@
+@*	<div style="" class="col-lg-6">*@
+@*		<h2>Balance</h2>*@
+@*		<div data-bind="text:obs.sales.ballance" style="font-size: 50px;">0</div>*@
+@*		<strong>CryptoWorkPlace Token (CWT-P)</strong>*@
+@*	</div>*@
+@**@
+@*	$1$				<div class="m-pricing-table-1__item col-lg-6">#1#*@
+@*	$1$					<div class="m-pricing-table-1__visual">#1#*@
+@*	$1$						<div class="m-pricing-table-1__hexagon1"></div>#1#*@
+@*	$1$						<div class="m-pricing-table-1__hexagon2"></div>#1#*@
+@*	$1$						<span class="m-pricing-table-1__icon m--font-brand"><i class="fa flaticon-rocket"></i></span>#1#*@
+@*	$1$					</div>#1#*@
+@*	$1$					<span class="m-pricing-table-1__price">Free</span> 				 #1#*@
+@*	$1$					<h2 class="m-pricing-table-1__subtitle">Via bounty</h2>#1#*@
+@*	$1$					<span class="m-pricing-table-1__description">#1#*@
+@*	$1$						Join our bounty programms<br>#1#*@
+@*	$1$						and get tokens<br> #1#*@
+@*	$1$						<strong>FOR FREE</strong>#1#*@
+@*	$1$					</span>				 #1#*@
+@*	$1$					<div class="m-pricing-table-1__btn">#1#*@
+@*	$1$						<a href="/my/bounty" class="btn m-btn--pill  btn-brand m-btn--wide m-btn--uppercase m-btn--bolder m-btn--sm">Get For Free</a>#1#*@
+@*	$1$					</div>#1#*@
+@*	$1$				</div>#1#*@
+@*	$1$				<div class="m-pricing-table-1__item col-lg-4">#1#*@
+@*	$1$					<div class="m-pricing-table-1__visual">#1#*@
+@*	$1$						<div class="m-pricing-table-1__hexagon1"></div>#1#*@
+@*	$1$						<div class="m-pricing-table-1__hexagon2"></div>#1#*@
+@*	$1$						<span class="m-pricing-table-1__icon m--font-brand"><i class="fa flaticon-piggy-bank"></i></span>#1#*@
+@*	$1$					</div>#1#*@
+@*	$1$					<span class="m-pricing-table-1__price">0.12<span class="m-pricing-table-1__label">$</span></span> 						 #1#*@
+@*	$1$					<h2 class="m-pricing-table-1__subtitle">ETH transaction</h2>#1#*@
+@*	$1$					<span class="m-pricing-table-1__description">#1#*@
+@*	$1$						Bay tokens for ETH<br>#1#*@
+@*	$1$						send your's ETH to this address<br> #1#*@
+@*	$1$						<strong>0x87851e23294e0c374e849f0f159c07af31701de6</strong>#1#*@
+@*	$1$					</span>	#1#*@
+@*	$1$					<div class="m-pricing-table-1__btn">#1#*@
+@*	$1$						<button type="button" class="btn m-btn--pill  btn-brand m-btn--wide m-btn--uppercase m-btn--bolder m-btn--sm">Purchase</button>#1#*@
+@*	$1$					</div>#1#*@
+@*	$1$				</div>#1#*@
+@**@
+@*</div>*@
+@**@
+@*<!-- /ko -->*@
+@**@
+@*<!-- ko if: obs.page() === 1 -->*@
+@*<div class="m-pricing-table-1__items row">*@
+@**@
+@*$1$	<div style="text-align: left;" class="col-lg-12">#1#*@
+@*$1$#1#*@
+@*$1$		<h2>REPRESENTATIONS AND WARRANTIES FOR CryptoWorkPlace TOKENS PURCHASING.</h2>#1#*@
+@*$1$#1#*@
+@*$1$		<p>BY PURCHASING CryptoWorkPlace TOKENS YOU HEREBY EXPRESSLY COVENANT, REPRESENT AND WARRANT, THAT:</p>#1#*@
+@*$1$#1#*@
+@*$1$		<div class="s-mb_20">#1#*@
+@*$1$			<input data-bind="checked: flags.check3" style="width: 20px; float: left; margin-top: 4px;" id="term-1" type="checkbox" class=""/>#1#*@
+@*$1$#1#*@
+@*$1$			<label style="display: block; margin: 0 0 0 25px;" for="term-1">#1#*@
+@*$1$				You have read and accepted the Terms and Conditions, and all Accompanying documents, including Tokens Sale Purchase Agreement,#1#*@
+@*$1$				Token Sale Privacy Policy and White Paper in their entirety. Also, You fully agree and understand,#1#*@
+@*$1$				that You will not be free to use CryptoWorkPlace tokens immediately after Your purchase.#1#*@
+@*$1$			</label>#1#*@
+@*$1$		</div>#1#*@
+@*$1$#1#*@
+@*$1$		<div class="s-mb_20">#1#*@
+@*$1$			<input data-bind="checked: flags.check4" style="width: 20px; float: left; margin-top: 4px;" id="term-2" type="checkbox" class=""/>#1#*@
+@*$1$			<label style="display: block; margin: 0 0 0 25px;" for="term-2">#1#*@
+@*$1$				You are solely responsible for the safety and control of the address and/or cryptocurrency wallet used for#1#*@
+@*$1$				the token sale contribution. You are not acting on behalf of any third party, and you will not transfer the#1#*@
+@*$1$				control of the address and/or cryptocurrency wallet to any third party prior to having received the#1#*@
+@*$1$				CryptoWorkPlace tokens. You will not use the Website for any illegal or fraudulent activity, including,#1#*@
+@*$1$				but not limited money laundering and financing of terrorism, and you have never, by any means,#1#*@
+@*$1$				been engaged in any illegal activity.#1#*@
+@*$1$			</label>#1#*@
+@*$1$		</div>#1#*@
+@*$1$#1#*@
+@*$1$		<div class="s-mb_20">#1#*@
+@*$1$			<input data-bind="checked: flags.check5" style="width: 20px; float: left; margin-top: 4px;" id="term-3" type="checkbox" class=""/>#1#*@
+@*$1$			<label style="display: block; margin: 0 0 0 25px;" for="term-3">#1#*@
+@*$1$				You are of at least 18 years of age, meet all other eligibility criteria, and you are fully capable and#1#*@
+@*$1$				legally competent to use the Website and participate in CryptoWorkPlace token sale or conduct any operations#1#*@
+@*$1$				with cryptocurrency under applicable law and the Terms and Conditions, and all Accompanying documents.#1#*@
+@*$1$				All the information, You provide, is accurate and complete. You give your absolute consent to update the#1#*@
+@*$1$				information accordingly and follow the extensive KYC- and AML- procedures, stipulated by the CryptoWorkPlace Website owner.#1#*@
+@*$1$			</label>#1#*@
+@*$1$		</div>#1#*@
+@*$1$#1#*@
+@*$1$		<div class="s-mb_20">#1#*@
+@*$1$			<input data-bind="checked: flags.check6" style="width: 20px; float: left; margin-top: 4px;" id="term-4" type="checkbox" class=""/>#1#*@
+@*$1$			<label style="display: block; margin: 0 0 0 25px;" for="term-4">#1#*@
+@*$1$				You are not identified, and not acting on behalf of the person identified, in any lists of sanctioned persons,#1#*@
+@*$1$				including but not limited to U.S. Treasury Department's list of Specially Designated Nationals and Blocked Persons,#1#*@
+@*$1$				the U.S. Commerce Department's Denied Person List, the EU Consolidated List of Persons; UN-, US-, EU-, CH- or#1#*@
+@*$1$				any other sovereign country sanctions or embargoes. You meet the residency criteria and you are not a citizen of,#1#*@
+@*$1$				residing in or located at country or territory that is the target of United States economic or trade sanctions#1#*@
+@*$1$				(currently, Cuba, Iran, Syria, North Korea, and the Crimea region of Ukraine; You are not otherwise the target#1#*@
+@*$1$				of United States economic or trade sanctions; and You are not acting on behalf of the governments of the#1#*@
+@*$1$				mentioned countries or territories, and you have no other affiliation to such sanctions or territories.#1#*@
+@*$1$				You are not a citizen of or located and/or residing in any country, territory or geographical area, where#1#*@
+@*$1$				the distribution of tokens would be unlawful or restricted by any regulation, including if such#1#*@
+@*$1$				distribution would require licensing, and You have no other affiliation to the mentioned countries and territories.#1#*@
+@*$1$			</label>#1#*@
+@*$1$		</div>#1#*@
+@*$1$#1#*@
+@*$1$		<button data-bind="enable: flags.next2Enabled, click: actions.next" type="button" class="btn m-btn--pill  btn-brand m-btn--wide m-btn--uppercase m-btn--bolder m-btn--sm">SUBMIT</button>#1#*@
+@*$1$	</div>#1#*@
+@**@
+@*</div>*@
+@*<!-- /ko -->*@
+@**@
+@*<!-- ko if: obs.page() === 2 -->*@
+@*<div class="m-pricing-table-1__items row">*@
+@**@
+@*	<div style="text-align: left;" class="col-lg-12">*@
+@**@
+@*		<h2>Minimum contribution is 500 CWT-P</h2>*@
+@**@
+@*		<label>I would like to buy CWT-P in count of: </label>*@
+@*		<input data-bind="textInput: obs.cwtCount" style="margin-bottom: 20px;" type="number" class="form-control"/>*@
+@**@
+@*		<div style="margin-bottom: 20px;">*@
+@*			<h3 style="margin-bottom: 10px;">*@
+@*				You need to*@
+@*				<button data-bind="enable: flags.payEnabled ,click: actions.purchase"*@
+@*				        type="button"*@
+@*				        class="s-ms_n btn m-btn--pill  btn-brand m-btn--wide m-btn--uppercase m-btn--bolder m-btn--sm">*@
+@*					Pay*@
+@*				</button>*@
+@*				<span class="s-ms_b">Pay</span>*@
+@*			</h3>*@
+@*			<h4>*@
+@*				<span data-bind="text: obs.needPay"></span>*@
+@*				<sup>ETH</sup>*@
+@*			</h4>*@
+@*		</div>*@
+@**@
+@*		<h2>Please use this smart contract</h2>*@
+@**@
+@*		<p>Do not use any exchange wallet to transfer ETH using Smart Contract. Tokens will be transfered to this wallet automatically.</p>*@
+@**@
+@*		<p class="s-ms-c">*@
+@*			<img style="border: 1px solid #ddd;" src="http://qrcoder.ru/code/?0x666c09e6ea8062523e113004302b0ac5507f6d71&4&0"/>*@
+@*		</p>*@
+@**@
+@*		<p>*@
+@*			Smart Contract address:*@
+@*			<a style="display: block; text-overflow: ellipsis; overflow: hidden;" href="https://etherscan.io/token/0x844d61a974f3792914815d9eb8b9ebb6ecc8b0a7">*@
+@*				<strong>0x844d61a974f3792914815d9eb8b9ebb6ecc8b0a7</strong>*@
+@*			</a>*@
+@**@
+@*			$1$					<a href="/">Copy</a>#1#*@
+@*		</p>*@
+@*	</div>*@
+@**@
+@*</div>*@
+@*<!-- /ko -->*@
+@*</div>*@
+</div>
+</div>
+</div>
+<div class="col-md-6">
+<div class="m-portlet m-portlet--head-overlay m-portlet--full-height  m-portlet--rounded-force">
+<div class="m-portlet__head m-portlet__head--fit-">
+	<div class="m-portlet__head-caption">
+		<div class="m-portlet__head-title">
+			<h3 class="m-portlet__head-text m--font-light">
+				Total balance
+			</h3>
+		</div>
+	</div>
+	<div class="m-portlet__head-tools">
+		
+	</div>
+</div>
+<div class="m-portlet__body">
+	<div class="m-widget27 m-portlet-fit--sides">
+		<div class="m-widget27__pic">
+			<img src="/static/bg-4.jpg" alt="">
+			<h3 class="m-widget27__title m--font-light">
+				<span>
+					<span>cwt-p</span>
+					<!-- ko text:obs.sales.ballance -->0<!--/ko-->
+				</span>
+			</h3>
+			<div class="m-widget27__btn">
+				<button type="button" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--bolder">CryptoWorkPlace Token (CWT-P)</button>
+			</div>
+		</div>
+		<div class="m-widget27__container">
+			<div class="m-widget14">
+			
+				<div class="m-widget14">
+					<div class="m-widget14__header">
+						<h3 class="m-widget14__title">
+							Current round <!-- ko text:obs.sales.step --><!--/ko-->        
+						</h3>
+						<span class="m-widget14__desc">
+							Token's sold each round
+						</span>
+					</div>
+					<div class="row  align-items-center">
+						<div class="col">
+							<div id="m_chart_revenue_change" class="m-widget14__chart1" style="height: 180px">
+							</div>
+						</div>	
+						<div class="col">
+							<div class="m-widget14__legends">
+								<div class="m-widget14__legend">
+									<span class="m-widget14__legend-bullet m--bg-accent"></span>
+									<span class="m-widget14__legend-text">0 CWT-P 1 round</span>
+								</div>
+								<div class="m-widget14__legend">
+									<span class="m-widget14__legend-bullet m--bg-warning"></span>
+									<span class="m-widget14__legend-text">0 CWT-P 2 round</span>
+								</div>
+								<div class="m-widget14__legend">
+									<span class="m-widget14__legend-bullet m--bg-brand"></span>
+									<span class="m-widget14__legend-text">0 CWT-P 3 round</span>
+								</div>
+								<div class="m-widget14__legend">
+									<span class="m-widget14__legend-bullet m--bg-brand"></span>
+									<span class="m-widget14__legend-text">0 CWT-P 4 round</span>
+								</div>
+								<div class="m-widget14__legend">
+									<span class="m-widget14__legend-bullet m--bg-brand"></span>
+									<span class="m-widget14__legend-text">0 CWT-P 5 round</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			
+		</div>
+	</div>
+</div>
+</div>
 </div>
 </div>
 
 @section Scripts{
 	<script src="~/js/web3.min.js" asp-append-version="true"></script>
 	<script asp-append-version="true" src="~/js/controllers/exchanger/index.js"></script>
+	<script>
+		Morris.Donut({
+			element: "m_chart_revenue_change",
+			data: [{
+				label: "Round 1",
+				value: 10
+			}, {
+				label: "Round 2",
+				value: 50
+			}, {
+				label: "Round 3",
+				value: 100
+			}, {
+				label: "Round 4",
+				value: 1
+			}, {
+				label: "Round 5",
+				value: 0
+			}],
+			colors: [mApp.getColor("accent"), mApp.getColor("danger"), mApp.getColor("brand"), mApp.getColor("brand"), mApp.getColor("brand")]
+		})
+	</script>
 }

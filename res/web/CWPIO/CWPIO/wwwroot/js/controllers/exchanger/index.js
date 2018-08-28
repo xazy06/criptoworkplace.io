@@ -122,7 +122,7 @@ var Controller = function () {
 	var ViewModel = {
 		obs:{
 			page:ko.observable(0),
-			cwtCount: ko.observable(),
+			cwtCount: ko.observable(0),
 			usersettings: {
 				name:ko.observable(''),
 				lastName:ko.observable(''),
@@ -143,6 +143,7 @@ var Controller = function () {
 		},
 		
 		flags:{
+			toggleQr: ko.observable(false),
 			check1:ko.observable(false),
 			check2:ko.observable(false),
 			check3:ko.observable(false),
@@ -157,10 +158,16 @@ var Controller = function () {
 			}),
 			payEnabled: ko.pureComputed(function () {
 				return ViewModel.obs.needPay() > 0;
+			}),
+			minCont: ko.pureComputed(function () {
+				return ViewModel.obs.cwtCount() < 500;
 			})
 		},
 		
 		actions:{
+			toggleQr: function(){
+				ViewModel.flags.toggleQr(!ViewModel.flags.toggleQr());
+			},
 			next: function () {
 				if (this.obs.page() < 3){
 					if (this.obs.page() === 0) {
@@ -180,10 +187,12 @@ var Controller = function () {
 		}
 		
 	};
+
 	
 	ViewModel.obs.cwtCount.subscribe(function (val) {
 		self.actions.calc(val);
 	});
+	ViewModel.obs.cwtCount(500);
 	
 	return this.init();
 };

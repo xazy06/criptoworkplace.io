@@ -243,7 +243,16 @@ namespace CWPIO.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+
+            /**
+             * @TODO сдесm надо сделать проверку на то что кошелек уже добавлен в WhiteList 
+             */
+            if (true)
+            {
+                return RedirectToAction("WhiteList","Cabinet", model);
+            }
+            
+            return RedirectToAction("Exchanger","Cabinet");
         }
 
         [HttpGet]

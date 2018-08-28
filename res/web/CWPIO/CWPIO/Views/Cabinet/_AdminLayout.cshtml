@@ -38,13 +38,24 @@ License: You must have a valid license purchased only from themeforest(the above
 		<!--begin::Web font -->
 		<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
 		<script>
-          WebFont.load({
-            google: {"families":["Poppins:300,400,500,600,700","Roboto:300,400,500,600,700"]},
-            active: function() {
-                sessionStorage.fonts = true;
-            }
-          });
+			WebFont.load({
+				google: {"families":["Poppins:300,400,500,600,700","Roboto:300,400,500,600,700"]},
+				active: function() {
+					sessionStorage.fonts = true;
+				}
+			});
 		</script>
+		<style>
+			::-webkit-scrollbar {
+				width: 4px;
+			}
+			::-webkit-scrollbar-thumb {
+				background: #ddd;
+			}
+			::-webkit-scrollbar-track {
+				background: rgba(255, 255, 255, 0.001);
+			}
+		</style>
 		<!--end::Web font -->
         <!--begin::Base Styles -->  
         <!--begin::Page Vendors -->
@@ -98,7 +109,7 @@ License: You must have a valid license purchased only from themeforest(the above
 @*									<a href="javascript:;" id="m_aside_left_toggle" class="m-aside-left-toggler m-aside-left-toggler--left m_aside_left_toggler">*@
 @*										<span></span>*@
 									@*									</a>*@
-									<a href="/my" class="m-brand m-brand--desktop">
+									<a href="/my/exchanger" class="m-brand m-brand--desktop">
 										<img height="41" src="/static/CWP2.svg">
 									</a>
 									<!-- END: Aside Left Toggle -->
@@ -447,15 +458,15 @@ License: You must have a valid license purchased only from themeforest(the above
 @*												</div>*@
 											</li>
 										<li class="m-menu__item  m-menu__item--submenu"  m-menu-submenu-toggle="click" m-menu-link-redirect="1" aria-haspopup="true">
-											<a  href="/my/exchanger" class="m-menu__link">
-												<span class="m-menu__item-here"></span>
-												<i class="m-menu__link-icon flaticon-stopwatch"></i>
-												<span class="m-menu__link-text">
-													Get Tokens
-												</span>
-												@*													<i class="m-menu__hor-arrow la la-angle-down"></i>*@
-												@*													<i class="m-menu__ver-arrow la la-angle-right"></i>*@
-											</a>
+@*											<a  href="/my/exchanger" class="m-menu__link">*@
+@*												<span class="m-menu__item-here"></span>*@
+@*												<i class="m-menu__link-icon flaticon-stopwatch"></i>*@
+@*												<span class="m-menu__link-text">*@
+@*													Get Tokens*@
+@*												</span>*@
+@*												$1$													<i class="m-menu__hor-arrow la la-angle-down"></i>#1#*@
+@*												$1$													<i class="m-menu__ver-arrow la la-angle-right"></i>#1#*@
+@*											</a>*@
 
 										</li>
 										<li class="m-menu__item  m-menu__item--submenu m-menu__item--rel"  m-menu-submenu-toggle="click" m-menu-link-redirect="1" aria-haspopup="true">
@@ -467,6 +478,15 @@ License: You must have a valid license purchased only from themeforest(the above
 												</span>
 												@*													<i class="m-menu__hor-arrow la la-angle-down"></i>*@
 												@*													<i class="m-menu__ver-arrow la la-angle-right"></i>*@
+											</a>
+										</li>
+										<li class="m-menu__item  m-menu__item--submenu m-menu__item--rel" m-menu-submenu-toggle="click" m-menu-link-redirect="1" aria-haspopup="true">
+											<a href="/account/Logout" class="m-menu__link">
+												<span class="m-menu__item-here"></span>
+												<i class="m-menu__link-icon flaticon-logout"></i>
+												<span class="m-menu__link-text">
+													Logout
+												</span>
 											</a>
 										</li>
 										</ul>
@@ -520,217 +540,217 @@ License: You must have a valid license purchased only from themeforest(the above
 												</div>
 											</div>
 										</li>
-										<li class="m-nav__item m-nav__item--accent m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center 	m-dropdown--mobile-full-width" m-dropdown-toggle="click" m-dropdown-persistent="1">
-											<a href="#" class="m-nav__link m-dropdown__toggle" id="m_topbar_notification_icon">
-												<span class="m-nav__link-badge m-badge m-badge--dot m-badge--dot-small m-badge--danger"></span>
-												<span class="m-nav__link-icon">
-													<span class="m-nav__link-icon-wrapper">
-														<i class="flaticon-music-2"></i>
-													</span>
-												</span>
-											</a>
-											<div class="m-dropdown__wrapper">
-												<span class="m-dropdown__arrow m-dropdown__arrow--center"></span>
-												<div class="m-dropdown__inner">
-													<div class="m-dropdown__header m--align-center">
-														<span class="m-dropdown__header-title">
-															9 New
-														</span>
-														<span class="m-dropdown__header-subtitle">
-															User Notifications
-														</span>
-													</div>
-													<div class="m-dropdown__body">
-														<div class="m-dropdown__content">
-															<ul class="nav nav-tabs m-tabs m-tabs-line m-tabs-line--brand" role="tablist">
-																<li class="nav-item m-tabs__item">
-																	<a class="nav-link m-tabs__link active" data-toggle="tab" href="#topbar_notifications_notifications" role="tab">
-																		Alerts
-																	</a>
-																</li>
-																<li class="nav-item m-tabs__item">
-																	<a class="nav-link m-tabs__link" data-toggle="tab" href="#topbar_notifications_events" role="tab">
-																		Events
-																	</a>
-																</li>
-																<li class="nav-item m-tabs__item">
-																	<a class="nav-link m-tabs__link" data-toggle="tab" href="#topbar_notifications_logs" role="tab">
-																		Logs
-																	</a>
-																</li>
-															</ul>
-															<div class="tab-content">
-																<div class="tab-pane active" id="topbar_notifications_notifications" role="tabpanel">
-																	<div class="m-scrollable" data-scrollable="true" data-max-height="250" data-mobile-max-height="200">
-																		<div class="m-list-timeline m-list-timeline--skin-light">
-																			<div class="m-list-timeline__items">
-																				<div class="m-list-timeline__item">
-																					<span class="m-list-timeline__badge -m-list-timeline__badge--state-success"></span>
-																					<span class="m-list-timeline__text">
-																						12 new users registered
-																					</span>
-																					<span class="m-list-timeline__time">
-																						Just now
-																					</span>
-																				</div>
-																				<div class="m-list-timeline__item">
-																					<span class="m-list-timeline__badge"></span>
-																					<span class="m-list-timeline__text">
-																						System shutdown
-																						<span class="m-badge m-badge--success m-badge--wide">
-																							pending
-																						</span>
-																					</span>
-																					<span class="m-list-timeline__time">
-																						14 mins
-																					</span>
-																				</div>
-																				<div class="m-list-timeline__item">
-																					<span class="m-list-timeline__badge"></span>
-																					<span class="m-list-timeline__text">
-																						New invoice received
-																					</span>
-																					<span class="m-list-timeline__time">
-																						20 mins
-																					</span>
-																				</div>
-																				<div class="m-list-timeline__item">
-																					<span class="m-list-timeline__badge"></span>
-																					<span class="m-list-timeline__text">
-																						DB overloaded 80%
-																						<span class="m-badge m-badge--info m-badge--wide">
-																							settled
-																						</span>
-																					</span>
-																					<span class="m-list-timeline__time">
-																						1 hr
-																					</span>
-																				</div>
-																				<div class="m-list-timeline__item">
-																					<span class="m-list-timeline__badge"></span>
-																					<span class="m-list-timeline__text">
-																						System error -
-																						<a href="#" class="m-link">
-																							Check
-																						</a>
-																					</span>
-																					<span class="m-list-timeline__time">
-																						2 hrs
-																					</span>
-																				</div>
-																				<div class="m-list-timeline__item m-list-timeline__item--read">
-																					<span class="m-list-timeline__badge"></span>
-																					<span href="" class="m-list-timeline__text">
-																						New order received
-																						<span class="m-badge m-badge--danger m-badge--wide">
-																							urgent
-																						</span>
-																					</span>
-																					<span class="m-list-timeline__time">
-																						7 hrs
-																					</span>
-																				</div>
-																				<div class="m-list-timeline__item m-list-timeline__item--read">
-																					<span class="m-list-timeline__badge"></span>
-																					<span class="m-list-timeline__text">
-																						Production server down
-																					</span>
-																					<span class="m-list-timeline__time">
-																						3 hrs
-																					</span>
-																				</div>
-																				<div class="m-list-timeline__item">
-																					<span class="m-list-timeline__badge"></span>
-																					<span class="m-list-timeline__text">
-																						Production server up
-																					</span>
-																					<span class="m-list-timeline__time">
-																						5 hrs
-																					</span>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-																</div>
-																<div class="tab-pane" id="topbar_notifications_events" role="tabpanel">
-																	<div class="m-scrollable" data-scrollable="true" data-max-height="250" data-mobile-max-height="200">
-																		<div class="m-list-timeline m-list-timeline--skin-light">
-																			<div class="m-list-timeline__items">
-																				<div class="m-list-timeline__item">
-																					<span class="m-list-timeline__badge m-list-timeline__badge--state1-success"></span>
-																					<a href="" class="m-list-timeline__text">
-																						New order received
-																					</a>
-																					<span class="m-list-timeline__time">
-																						Just now
-																					</span>
-																				</div>
-																				<div class="m-list-timeline__item">
-																					<span class="m-list-timeline__badge m-list-timeline__badge--state1-danger"></span>
-																					<a href="" class="m-list-timeline__text">
-																						New invoice received
-																					</a>
-																					<span class="m-list-timeline__time">
-																						20 mins
-																					</span>
-																				</div>
-																				<div class="m-list-timeline__item">
-																					<span class="m-list-timeline__badge m-list-timeline__badge--state1-success"></span>
-																					<a href="" class="m-list-timeline__text">
-																						Production server up
-																					</a>
-																					<span class="m-list-timeline__time">
-																						5 hrs
-																					</span>
-																				</div>
-																				<div class="m-list-timeline__item">
-																					<span class="m-list-timeline__badge m-list-timeline__badge--state1-info"></span>
-																					<a href="" class="m-list-timeline__text">
-																						New order received
-																					</a>
-																					<span class="m-list-timeline__time">
-																						7 hrs
-																					</span>
-																				</div>
-																				<div class="m-list-timeline__item">
-																					<span class="m-list-timeline__badge m-list-timeline__badge--state1-info"></span>
-																					<a href="" class="m-list-timeline__text">
-																						System shutdown
-																					</a>
-																					<span class="m-list-timeline__time">
-																						11 mins
-																					</span>
-																				</div>
-																				<div class="m-list-timeline__item">
-																					<span class="m-list-timeline__badge m-list-timeline__badge--state1-info"></span>
-																					<a href="" class="m-list-timeline__text">
-																						Production server down
-																					</a>
-																					<span class="m-list-timeline__time">
-																						3 hrs
-																					</span>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-																</div>
-																<div class="tab-pane" id="topbar_notifications_logs" role="tabpanel">
-																	<div class="m-stack m-stack--ver m-stack--general" style="min-height: 180px;">
-																		<div class="m-stack__item m-stack__item--center m-stack__item--middle">
-																			<span class="">
-																				All caught up!
-																				<br>
-																				No new logs.
-																			</span>
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</li>
+@*										<li class="m-nav__item m-nav__item--accent m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center 	m-dropdown--mobile-full-width" m-dropdown-toggle="click" m-dropdown-persistent="1">*@
+@*											<a href="#" class="m-nav__link m-dropdown__toggle" id="m_topbar_notification_icon">*@
+@*												<span class="m-nav__link-badge m-badge m-badge--dot m-badge--dot-small m-badge--danger"></span>*@
+@*												<span class="m-nav__link-icon">*@
+@*													<span class="m-nav__link-icon-wrapper">*@
+@*														<i class="flaticon-music-2"></i>*@
+@*													</span>*@
+@*												</span>*@
+@*											</a>*@
+@*											<div class="m-dropdown__wrapper">*@
+@*												<span class="m-dropdown__arrow m-dropdown__arrow--center"></span>*@
+@*												<div class="m-dropdown__inner">*@
+@*													<div class="m-dropdown__header m--align-center">*@
+@*														<span class="m-dropdown__header-title">*@
+@*															9 New*@
+@*														</span>*@
+@*														<span class="m-dropdown__header-subtitle">*@
+@*															User Notifications*@
+@*														</span>*@
+@*													</div>*@
+@*													<div class="m-dropdown__body">*@
+@*														<div class="m-dropdown__content">*@
+@*															<ul class="nav nav-tabs m-tabs m-tabs-line m-tabs-line--brand" role="tablist">*@
+@*																<li class="nav-item m-tabs__item">*@
+@*																	<a class="nav-link m-tabs__link active" data-toggle="tab" href="#topbar_notifications_notifications" role="tab">*@
+@*																		Alerts*@
+@*																	</a>*@
+@*																</li>*@
+@*																<li class="nav-item m-tabs__item">*@
+@*																	<a class="nav-link m-tabs__link" data-toggle="tab" href="#topbar_notifications_events" role="tab">*@
+@*																		Events*@
+@*																	</a>*@
+@*																</li>*@
+@*																<li class="nav-item m-tabs__item">*@
+@*																	<a class="nav-link m-tabs__link" data-toggle="tab" href="#topbar_notifications_logs" role="tab">*@
+@*																		Logs*@
+@*																	</a>*@
+@*																</li>*@
+@*															</ul>*@
+@*															<div class="tab-content">*@
+@*																<div class="tab-pane active" id="topbar_notifications_notifications" role="tabpanel">*@
+@*																	<div class="m-scrollable" data-scrollable="true" data-max-height="250" data-mobile-max-height="200">*@
+@*																		<div class="m-list-timeline m-list-timeline--skin-light">*@
+@*																			<div class="m-list-timeline__items">*@
+@*																				<div class="m-list-timeline__item">*@
+@*																					<span class="m-list-timeline__badge -m-list-timeline__badge--state-success"></span>*@
+@*																					<span class="m-list-timeline__text">*@
+@*																						12 new users registered*@
+@*																					</span>*@
+@*																					<span class="m-list-timeline__time">*@
+@*																						Just now*@
+@*																					</span>*@
+@*																				</div>*@
+@*																				<div class="m-list-timeline__item">*@
+@*																					<span class="m-list-timeline__badge"></span>*@
+@*																					<span class="m-list-timeline__text">*@
+@*																						System shutdown*@
+@*																						<span class="m-badge m-badge--success m-badge--wide">*@
+@*																							pending*@
+@*																						</span>*@
+@*																					</span>*@
+@*																					<span class="m-list-timeline__time">*@
+@*																						14 mins*@
+@*																					</span>*@
+@*																				</div>*@
+@*																				<div class="m-list-timeline__item">*@
+@*																					<span class="m-list-timeline__badge"></span>*@
+@*																					<span class="m-list-timeline__text">*@
+@*																						New invoice received*@
+@*																					</span>*@
+@*																					<span class="m-list-timeline__time">*@
+@*																						20 mins*@
+@*																					</span>*@
+@*																				</div>*@
+@*																				<div class="m-list-timeline__item">*@
+@*																					<span class="m-list-timeline__badge"></span>*@
+@*																					<span class="m-list-timeline__text">*@
+@*																						DB overloaded 80%*@
+@*																						<span class="m-badge m-badge--info m-badge--wide">*@
+@*																							settled*@
+@*																						</span>*@
+@*																					</span>*@
+@*																					<span class="m-list-timeline__time">*@
+@*																						1 hr*@
+@*																					</span>*@
+@*																				</div>*@
+@*																				<div class="m-list-timeline__item">*@
+@*																					<span class="m-list-timeline__badge"></span>*@
+@*																					<span class="m-list-timeline__text">*@
+@*																						System error -*@
+@*																						<a href="#" class="m-link">*@
+@*																							Check*@
+@*																						</a>*@
+@*																					</span>*@
+@*																					<span class="m-list-timeline__time">*@
+@*																						2 hrs*@
+@*																					</span>*@
+@*																				</div>*@
+@*																				<div class="m-list-timeline__item m-list-timeline__item--read">*@
+@*																					<span class="m-list-timeline__badge"></span>*@
+@*																					<span href="" class="m-list-timeline__text">*@
+@*																						New order received*@
+@*																						<span class="m-badge m-badge--danger m-badge--wide">*@
+@*																							urgent*@
+@*																						</span>*@
+@*																					</span>*@
+@*																					<span class="m-list-timeline__time">*@
+@*																						7 hrs*@
+@*																					</span>*@
+@*																				</div>*@
+@*																				<div class="m-list-timeline__item m-list-timeline__item--read">*@
+@*																					<span class="m-list-timeline__badge"></span>*@
+@*																					<span class="m-list-timeline__text">*@
+@*																						Production server down*@
+@*																					</span>*@
+@*																					<span class="m-list-timeline__time">*@
+@*																						3 hrs*@
+@*																					</span>*@
+@*																				</div>*@
+@*																				<div class="m-list-timeline__item">*@
+@*																					<span class="m-list-timeline__badge"></span>*@
+@*																					<span class="m-list-timeline__text">*@
+@*																						Production server up*@
+@*																					</span>*@
+@*																					<span class="m-list-timeline__time">*@
+@*																						5 hrs*@
+@*																					</span>*@
+@*																				</div>*@
+@*																			</div>*@
+@*																		</div>*@
+@*																	</div>*@
+@*																</div>*@
+@*																<div class="tab-pane" id="topbar_notifications_events" role="tabpanel">*@
+@*																	<div class="m-scrollable" data-scrollable="true" data-max-height="250" data-mobile-max-height="200">*@
+@*																		<div class="m-list-timeline m-list-timeline--skin-light">*@
+@*																			<div class="m-list-timeline__items">*@
+@*																				<div class="m-list-timeline__item">*@
+@*																					<span class="m-list-timeline__badge m-list-timeline__badge--state1-success"></span>*@
+@*																					<a href="" class="m-list-timeline__text">*@
+@*																						New order received*@
+@*																					</a>*@
+@*																					<span class="m-list-timeline__time">*@
+@*																						Just now*@
+@*																					</span>*@
+@*																				</div>*@
+@*																				<div class="m-list-timeline__item">*@
+@*																					<span class="m-list-timeline__badge m-list-timeline__badge--state1-danger"></span>*@
+@*																					<a href="" class="m-list-timeline__text">*@
+@*																						New invoice received*@
+@*																					</a>*@
+@*																					<span class="m-list-timeline__time">*@
+@*																						20 mins*@
+@*																					</span>*@
+@*																				</div>*@
+@*																				<div class="m-list-timeline__item">*@
+@*																					<span class="m-list-timeline__badge m-list-timeline__badge--state1-success"></span>*@
+@*																					<a href="" class="m-list-timeline__text">*@
+@*																						Production server up*@
+@*																					</a>*@
+@*																					<span class="m-list-timeline__time">*@
+@*																						5 hrs*@
+@*																					</span>*@
+@*																				</div>*@
+@*																				<div class="m-list-timeline__item">*@
+@*																					<span class="m-list-timeline__badge m-list-timeline__badge--state1-info"></span>*@
+@*																					<a href="" class="m-list-timeline__text">*@
+@*																						New order received*@
+@*																					</a>*@
+@*																					<span class="m-list-timeline__time">*@
+@*																						7 hrs*@
+@*																					</span>*@
+@*																				</div>*@
+@*																				<div class="m-list-timeline__item">*@
+@*																					<span class="m-list-timeline__badge m-list-timeline__badge--state1-info"></span>*@
+@*																					<a href="" class="m-list-timeline__text">*@
+@*																						System shutdown*@
+@*																					</a>*@
+@*																					<span class="m-list-timeline__time">*@
+@*																						11 mins*@
+@*																					</span>*@
+@*																				</div>*@
+@*																				<div class="m-list-timeline__item">*@
+@*																					<span class="m-list-timeline__badge m-list-timeline__badge--state1-info"></span>*@
+@*																					<a href="" class="m-list-timeline__text">*@
+@*																						Production server down*@
+@*																					</a>*@
+@*																					<span class="m-list-timeline__time">*@
+@*																						3 hrs*@
+@*																					</span>*@
+@*																				</div>*@
+@*																			</div>*@
+@*																		</div>*@
+@*																	</div>*@
+@*																</div>*@
+@*																<div class="tab-pane" id="topbar_notifications_logs" role="tabpanel">*@
+@*																	<div class="m-stack m-stack--ver m-stack--general" style="min-height: 180px;">*@
+@*																		<div class="m-stack__item m-stack__item--center m-stack__item--middle">*@
+@*																			<span class="">*@
+@*																				All caught up!*@
+@*																				<br>*@
+@*																				No new logs.*@
+@*																			</span>*@
+@*																		</div>*@
+@*																	</div>*@
+@*																</div>*@
+@*															</div>*@
+@*														</div>*@
+@*													</div>*@
+@*												</div>*@
+@*											</div>*@
+@*										</li>*@
 										<li style="display: none;" class="m-nav__item m-nav__item--danger m-dropdown m-dropdown--skin-light m-dropdown--large m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push m-dropdown--mobile-full-width m-dropdown--skin-light"  m-dropdown-toggle="click">
 											<a href="#" class="m-nav__link m-dropdown__toggle">
 												<span class="m-nav__link-badge m-badge m-badge--dot m-badge--info m--hide"></span>
@@ -892,15 +912,15 @@ License: You must have a valid license purchased only from themeforest(the above
 												</div>
 											</div>
 										</li>
-										<li id="m_quick_sidebar_toggle" class="m-nav__item m-nav__item--info m-nav__item--qs">
-											<a href="#" class="m-nav__link m-dropdown__toggle">
-												<span class="m-nav__link-icon m-nav__link-icon-alt">
-													<span class="m-nav__link-icon-wrapper">
-														<i class="flaticon-grid-menu"></i>
-													</span>
-												</span>
-											</a>
-										</li>
+@*										<li id="m_quick_sidebar_toggle" class="m-nav__item m-nav__item--info m-nav__item--qs">*@
+@*											<a href="#" class="m-nav__link m-dropdown__toggle">*@
+@*												<span class="m-nav__link-icon m-nav__link-icon-alt">*@
+@*													<span class="m-nav__link-icon-wrapper">*@
+@*														<i class="flaticon-grid-menu"></i>*@
+@*													</span>*@
+@*												</span>*@
+@*											</a>*@
+@*										</li>*@
 									</ul>
 								</div>
 							</div>
@@ -1305,15 +1325,15 @@ License: You must have a valid license purchased only from themeforest(the above
 						<div class="m-subheader ">
 							<div class="d-flex align-items-center">
 								<div class="mr-auto">
-									<h3 class="m-subheader__title m-subheader__title--separator">
+									<h3 class="m-subheader__title *m-subheader__title--separator">
 										@ViewData["Title"]
 									</h3>
 									<ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
-										<li class="m-nav__item m-nav__item--home">
-											<a href="#" class="m-nav__link m-nav__link--icon">
-												<i class="m-nav__link-icon la la-home"></i>
-											</a>
-										</li>
+@*										<li class="m-nav__item m-nav__item--home">*@
+@*											<a href="#" class="m-nav__link m-nav__link--icon">*@
+@*												<i class="m-nav__link-icon la la-home"></i>*@
+@*											</a>*@
+@*										</li>*@
 @*										<li class="m-nav__separator">*@
 @*											-*@
 @*										</li>*@
@@ -1324,66 +1344,66 @@ License: You must have a valid license purchased only from themeforest(the above
 @*												</span>*@
 @*											</a>*@
 @*										</li>*@
-										<li class="m-nav__separator">
-											-
-										</li>
-										<li class="m-nav__item">
-											<a href="" class="m-nav__link">
-												<span class="m-nav__link-text">@ViewData["Title"]</span>
-											</a>
-										</li>
+@*										<li class="m-nav__separator">*@
+@*											-*@
+@*										</li>*@
+@*										<li class="m-nav__item">*@
+@*											<a href="" class="m-nav__link">*@
+@*												<span class="m-nav__link-text">@ViewData["Title"]</span>*@
+@*											</a>*@
+@*										</li>*@
 									</ul>
 								</div>
-								<div>
-									<div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover" aria-expanded="true">
-										<a href="#" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle">
-											<i class="la la-plus m--hide"></i>
-											<i class="la la-ellipsis-h"></i>
-										</a>
-										<div class="m-dropdown__wrapper">
-											<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
-											<div class="m-dropdown__inner">
-												<div class="m-dropdown__body">
-													<div class="m-dropdown__content">
-														<ul class="m-nav">
-														@if (ViewBag.pageContext != null)
-														{
-															@Html.Raw(ViewBag.pageContext)
-														}
-														else
-														{
-															<li class="m-nav__section m-nav__section--first m--hide">
-																<span class="m-nav__section-text">
-																	Quick Actions
-																</span>
-															</li>
-															<li class="m-nav__item">
-																<a href="/my/bounty" class="m-nav__link">
-																	<i class="m-nav__link-icon flaticon-share"></i>
-																	<span class="m-nav__link-text">
-																		Activity
-																	</span>
-																</a>
-															</li>
-															<li class="m-nav__item">
-																<a href="my/faq" class="m-nav__link">
-																	<i class="m-nav__link-icon flaticon-info"></i>
-																	<span class="m-nav__link-text">
-																		FAQ
-																	</span>
-																</a>
-															</li>
-														}
-															
-														
-													
-														</ul>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
+@*								<div>*@
+@*									<div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover" aria-expanded="true">*@
+@*										<a href="#" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle">*@
+@*											<i class="la la-plus m--hide"></i>*@
+@*											<i class="la la-ellipsis-h"></i>*@
+@*										</a>*@
+@*										<div class="m-dropdown__wrapper">*@
+@*											<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>*@
+@*											<div class="m-dropdown__inner">*@
+@*												<div class="m-dropdown__body">*@
+@*													<div class="m-dropdown__content">*@
+@*														<ul class="m-nav">*@
+@*														@if (ViewBag.pageContext != null)*@
+@*														{*@
+@*															@Html.Raw(ViewBag.pageContext)*@
+@*														}*@
+@*														else*@
+@*														{*@
+@*															<li class="m-nav__section m-nav__section--first m--hide">*@
+@*																<span class="m-nav__section-text">*@
+@*																	Quick Actions*@
+@*																</span>*@
+@*															</li>*@
+@*															<li class="m-nav__item">*@
+@*																<a href="/my/bounty" class="m-nav__link">*@
+@*																	<i class="m-nav__link-icon flaticon-share"></i>*@
+@*																	<span class="m-nav__link-text">*@
+@*																		Activity*@
+@*																	</span>*@
+@*																</a>*@
+@*															</li>*@
+@*															<li class="m-nav__item">*@
+@*																<a href="my/faq" class="m-nav__link">*@
+@*																	<i class="m-nav__link-icon flaticon-info"></i>*@
+@*																	<span class="m-nav__link-text">*@
+@*																		FAQ*@
+@*																	</span>*@
+@*																</a>*@
+@*															</li>*@
+@*														}*@
+@*															*@
+@*														*@
+@*													*@
+@*														</ul>*@
+@*													</div>*@
+@*												</div>*@
+@*											</div>*@
+@*										</div>*@
+@*									</div>*@
+@*								</div>*@
 							</div>
 						</div>
 						<!-- END: Subheader -->

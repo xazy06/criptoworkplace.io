@@ -53,6 +53,18 @@ namespace CWPIO.Controllers
         {
             return View(a == "temp" ? "ExchangerTemp" : "Exchanger");
         }
+        
+        [HttpGet("whiteList", Name = "WhiteList")]
+        public IActionResult WhiteList()
+        {
+            return View("WhiteList");
+        }
+        
+        [HttpPost]
+        public IActionResult WhiteList(string ercAddress, string returnUrl = null)
+        {
+            return View("Exchanger");
+        }
 
         [HttpGet("users", Name = "UserManagement")]
         public IActionResult UserManagement()
