@@ -404,7 +404,7 @@
 							<div class="m-widget14__legends">
 								<div class="m-widget14__legend">
 									<span class="m-widget14__legend-bullet m--bg-accent"></span>
-									<span class="m-widget14__legend-text">0 CWT-P 1 round</span>
+									<span class="m-widget14__legend-text">100 CWT-P 1 round</span>
 								</div>
 								<div class="m-widget14__legend">
 									<span class="m-widget14__legend-bullet m--bg-warning"></span>
@@ -415,11 +415,11 @@
 									<span class="m-widget14__legend-text">0 CWT-P 3 round</span>
 								</div>
 								<div class="m-widget14__legend">
-									<span class="m-widget14__legend-bullet m--bg-brand"></span>
+									<span class="m-widget14__legend-bullet m--bg-success"></span>
 									<span class="m-widget14__legend-text">0 CWT-P 4 round</span>
 								</div>
 								<div class="m-widget14__legend">
-									<span class="m-widget14__legend-bullet m--bg-brand"></span>
+									<span class="m-widget14__legend-bullet m--bg-danger"></span>
 									<span class="m-widget14__legend-text">0 CWT-P 5 round</span>
 								</div>
 							</div>
@@ -444,21 +444,21 @@
 			element: "m_chart_revenue_change",
 			data: [{
 				label: "Round 1",
-				value: 10
-			}, {
-				label: "Round 2",
-				value: 50
-			}, {
-				label: "Round 3",
 				value: 100
 			}, {
+				label: "Round 2",
+				value: 0
+			}, {
+				label: "Round 3",
+				value: 0
+			}, {
 				label: "Round 4",
-				value: 1
+				value: 0
 			}, {
 				label: "Round 5",
 				value: 0
 			}],
-			colors: [mApp.getColor("accent"), mApp.getColor("danger"), mApp.getColor("brand"), mApp.getColor("brand"), mApp.getColor("brand")]
+			colors: [mApp.getColor("accent"), mApp.getColor("warning"), mApp.getColor("brand"), mApp.getColor("success"), mApp.getColor("danger")]
 		})
 	</script>
 }
