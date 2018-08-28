@@ -116,7 +116,7 @@
 							<div class="m-login__head">
 								<h3 class="m-login__title">Sign In To Account</h3>
 							</div>
-							<form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="m-login__form m-form">
+							<form asp-antiforgery="true" method="post" class="m-login__form m-form">
 								<div class="form-group m-form__group">
 									<input asp-for="Email" class="form-control m-input" type="text" placeholder="Email" autocomplete="off"/>
 								</div>
@@ -145,8 +145,8 @@
 								<h3 class="m-login__title">Sign Up</h3>
 								<div class="m-login__desc">Enter your details to create your account:</div>
 							</div>
-							<form class="m-login__form m-form" method="POST" action="/Account/Register">
-								@Html.AntiForgeryToken()
+							<form asp-antiforgery="true" class="m-login__form m-form" method="POST" action="/Account/Register">
+								
 								@*								<div class="form-group m-form__group">*@
 								@*									<input class="form-control m-input" type="text" placeholder="Fullname" name="fullname">*@
 								@*								</div>*@
@@ -180,7 +180,7 @@
 								<h3 class="m-login__title">Forgotten Password ?</h3>
 								<div class="m-login__desc">Enter your email to reset your password:</div>
 							</div>
-							<form class="m-login__form m-form" action="/account/forgotpassword">
+							<form asp-antiforgery="true" class="m-login__form m-form" method="post" action="/account/forgotpassword">
 								<div class="form-group m-form__group">
 									<input class="form-control m-input" type="text" placeholder="Email" name="email" id="m_email" autocomplete="off">
 								</div>
@@ -188,7 +188,6 @@
 									<button id="m_login_forget_password_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">Request</button>
 									<button id="m_login_forget_password_cancel" class="btn btn-outline-focus m-btn m-btn--pill m-btn--custom">Cancel</button>
 								</div>
-								@Html.AntiForgeryToken()
 							</form>
 						</div>
 					</div>

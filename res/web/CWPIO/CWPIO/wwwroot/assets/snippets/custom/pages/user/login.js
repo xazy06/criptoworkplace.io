@@ -65,7 +65,7 @@ var SnippetLogin = function () {
 						}
 					}
 				}), r.valid() && (t.addClass('m-loader m-loader--right m-loader--light').attr('disabled', !0), r.ajaxSubmit({
-					url: '',
+                    url: '/Account/ForgotPassword',
 					success: function (l, s, n, o) {
 						setTimeout(function () {
 							t.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', !1), r.clearForm(), r.validate().resetForm(), a();

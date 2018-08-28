@@ -139,7 +139,7 @@ var SnippetLogin = function() {
             btn.addClass('m-loader m-loader--right m-loader--light').attr('disabled', true);
 
             form.ajaxSubmit({
-                url: '',
+                url: '/Account/Register',
                 success: function(response, status, xhr, $form) {
                 	// similate 2s delay
                 	setTimeout(function() {
@@ -183,7 +183,7 @@ var SnippetLogin = function() {
             btn.addClass('m-loader m-loader--right m-loader--light').attr('disabled', true);
 
             form.ajaxSubmit({
-                url: '',
+                url: '/Account/ForgotPassword',
                 success: function(response, status, xhr, $form) { 
                 	// similate 2s delay
                 	setTimeout(function() {
