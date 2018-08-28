@@ -107,7 +107,7 @@ namespace CWPIO
                         // Password settings
                         options.Password.RequireDigit = true;
                         options.Password.RequiredLength = 8;
-                        options.Password.RequireNonAlphanumeric = false;
+                        options.Password.RequireNonAlphanumeric = true;
                         options.Password.RequireUppercase = true;
                         options.Password.RequireLowercase = true;
                         options.Password.RequiredUniqueChars = 6;

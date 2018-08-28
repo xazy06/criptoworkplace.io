@@ -17,18 +17,17 @@ namespace CWPIO.Controllers
 {
     [Authorize]
     [Route("my")]
-    public class CabinetController : Controller
+    public class CabinetController : BaseController
     {
         private const string API_KEY = "LIgskaeb32789dsalfnq3eo8dc=[km";
 
-        private readonly ApplicationDbContext _context;
         private readonly ILogger _logger;
         private readonly ISlackClient _slackClient;
         private readonly UserManager<ApplicationUser> _userManager;
 
         public CabinetController(ApplicationDbContext context, ILogger<CabinetController> logger, ISlackClient slackClient, UserManager<ApplicationUser> userManager)
+            : base(context)
         {
-            _context = context;
             _logger = logger;
             _slackClient = slackClient;
             _userManager = userManager;
@@ -38,7 +37,7 @@ namespace CWPIO.Controllers
         public IActionResult Index()
         {
 
-            return View();
+            return RedirectToAction(nameof(ExchangerAsync));
         }
 
         [HttpGet("faq", Name = "Faq")]
@@ -49,21 +48,52 @@ namespace CWPIO.Controllers
         }
 
         [HttpGet("exchanger", Name = "Exchanger")]
-        public IActionResult Exchanger(string a)
+        public async Task<IActionResult> ExchangerAsync(string a)
         {
+            var user = await GetCurrentUserAsync();
+            if (user == null)
+                return NotFound();
+
+            if (user.EthAddress == null)
+            {
+                return RedirectToAction(nameof(WhiteListAsync));
+            }
+
             return View(a == "temp" ? "ExchangerTemp" : "Exchanger");
         }
         
         [HttpGet("whiteList", Name = "WhiteList")]
-        public IActionResult WhiteList()
+        public async Task<IActionResult> WhiteListAsync()
         {
+            var user = await GetCurrentUserAsync();
+            if (user == null)
+                return NotFound();
+
+            if (user.EthAddress != null)
+            {
+                return RedirectToAction(nameof(ExchangerAsync));
+            }
+
             return View("WhiteList");
         }
         
-        [HttpPost]
-        public IActionResult WhiteList(string ercAddress, string returnUrl = null)
+        [HttpPost("whiteList", Name = "WhiteList")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> WhiteListAsync(string ercAddress)
         {
-            return View("Exchanger");
+            if (string.IsNullOrEmpty(ercAddress))
+                return BadRequest();
+
+            var user = await GetCurrentUserAsync();
+            if (user == null)
+                return NotFound();
+
+            if (user.EthAddress != null)
+                return BadRequest();
+
+            user.EthAddress = StringToByteArray(ercAddress);
+            await DbContext.SaveChangesAsync();
+            return RedirectToAction(nameof(ExchangerAsync));
         }
 
         [HttpGet("users", Name = "UserManagement")]
@@ -74,6 +104,16 @@ namespace CWPIO.Controllers
             return View(model);
         }
 
-        
+
+        private static byte[] StringToByteArray(string hex)
+        {
+            hex = hex.Replace("0x", "");
+            int NumberChars = hex.Length;
+            byte[] bytes = new byte[NumberChars / 2];
+            for (int i = 0; i < NumberChars; i += 2)
+                bytes[i / 2] = Convert.ToByte(hex.Substring(i, 2), 16);
+            return bytes;
+        }
+
     }
 }

@@ -105,8 +105,8 @@ namespace CWPIO.Areas.v1.Controllers
             if (!string.IsNullOrEmpty(user.Email))
                 applicationUser.Email = user.Email;
 
-            if (!string.IsNullOrEmpty(user.EthAddress))
-                applicationUser.EthAddress = user.EthAddress;
+            //if (!string.IsNullOrEmpty(user.EthAddress))
+            //    applicationUser.EthAddress = user.EthAddress;
 
             try
             {

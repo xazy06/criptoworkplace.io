@@ -63,10 +63,10 @@ namespace CWPIO.Areas.v1.Controllers
             var dueTime = await contract.GetFunction("steps").CallAsync<long>(currentStep);
             BigInteger ballance = 0;
             BigInteger refund = 0;
-            if (!string.IsNullOrEmpty(user.EthAddress))
+            if (user.EthAddress != null)
             {
-                ballance = await contract.GetFunction("balances").CallAsync<BigInteger>(user.EthAddress);
-                refund = await contract.GetFunction("deposited").CallAsync<BigInteger>(user.EthAddress);
+                ballance = await contract.GetFunction("balances").CallAsync<BigInteger>($"0x{ByteArrayToString(user.EthAddress)}");
+                refund = await contract.GetFunction("deposited").CallAsync<BigInteger>($"0x{ByteArrayToString(user.EthAddress)}");
             }
 
             return Ok(new
@@ -105,8 +105,13 @@ namespace CWPIO.Areas.v1.Controllers
             }
 
             var contract = _web3.Eth.GetContract(_abi, _contractAddress);
-            var result = await contract.GetFunction("refund").SendTransactionAsync(_options.AppAddress, user.EthAddress);
+            var result = await contract.GetFunction("refund").SendTransactionAsync(_options.AppAddress, $"0x{ByteArrayToString(user.EthAddress)}");
             return Ok(result);
+        }
+
+        private static string ByteArrayToString(byte[] ba)
+        {
+            return BitConverter.ToString(ba).Replace("-", "");
         }
     }
 }

@@ -41,8 +41,8 @@
 		</div>
 	</div>
 	<div class="m-portlet__body">
-		<form asp-action="whiteList" method="post" class="m-login__form m-form">
-			<input placeholder="0xab00000000000000000000000000000000000000"
+		<form asp-action="WhiteListAsync" method="post" class="m-login__form m-form">
+			<input id="ercAddress" name="ercAddress" placeholder="0xab00000000000000000000000000000000000000"
 				maxlength="42" data-bind="textInput:obs.ercAddress" autofocus style="margin-bottom: 20px;" type="text" class="form-control"/>
 	
 			<p>Please enter correct ERC-20 wallet address. If you use an exchange-based account, you will NOT receive your CWT-P tokens.<br/>

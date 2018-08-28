@@ -29,8 +29,9 @@ namespace CWPIO.Data
                 b.ToTable("users", "identity");
 
                 b.Property(u => u.IsDeleted).IsRequired();
+                b.Property(u => u.IsDemo).IsRequired().HasDefaultValue(false);
 
-                b.Property(u => u.EthAddress).IsRequired(false).HasMaxLength(42);
+                b.Property(x => x.EthAddress).IsRequired(false).HasMaxLength(40);
 
                 b.HasMany(u => u.Claims)
                     .WithOne()

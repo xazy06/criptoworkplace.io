@@ -45,7 +45,7 @@ var SnippetLogin = function () {
 						agree: {required: !0}
 					}
 				}), r.valid() && (t.addClass('m-loader m-loader--right m-loader--light').attr('disabled', !0), r.ajaxSubmit({
-					url: '',
+                    url: '/Account/Register',
 					success: function (l, s, n, o) {
 						setTimeout(function () {
 							t.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', !1), r.clearForm(), r.validate().resetForm(), a();

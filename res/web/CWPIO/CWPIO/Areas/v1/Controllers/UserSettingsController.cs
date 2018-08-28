@@ -39,7 +39,7 @@ namespace CWPIO.Areas.v1.Controllers
                 return NotFound();
             }
 
-            return Ok(new SimpleApplicationUserSettingsDto { EthAddress = user.EthAddress });
+            return Ok(new SimpleApplicationUserSettingsDto { });
 
         }
 
@@ -58,8 +58,8 @@ namespace CWPIO.Areas.v1.Controllers
                 return NotFound();
             }
 
-            if (!string.IsNullOrEmpty(userSettings.EthAddress))
-                user.EthAddress = userSettings.EthAddress;
+            //if (!string.IsNullOrEmpty(userSettings.EthAddress))
+            //    user.EthAddress = userSettings.EthAddress;
 
             try
             {

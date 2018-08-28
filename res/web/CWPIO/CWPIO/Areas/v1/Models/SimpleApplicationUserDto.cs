@@ -8,6 +8,5 @@ namespace CWPIO.Areas.v1.Models
     public class SimpleApplicationUserDto
     {
         public string Email { get; set; }
-        public string EthAddress { get; set; }
     }
 }

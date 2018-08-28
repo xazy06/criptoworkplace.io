@@ -27,6 +27,8 @@ namespace CWPIO.Controllers
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
 
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
+
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
@@ -56,9 +58,8 @@ namespace CWPIO.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
+        public async Task<IActionResult> Login(LoginViewModel model)
         {
-            ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
                 // This doesn't count login failures towards account lockout
@@ -67,11 +68,12 @@ namespace CWPIO.Controllers
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return RedirectToLocal(returnUrl);
+
+                    return RedirectToRoute("Exchanger");
                 }
                 if (result.RequiresTwoFactor)
                 {
-                    return RedirectToAction(nameof(LoginWith2fa), new { returnUrl, model.RememberMe });
+                    return RedirectToAction(nameof(LoginWith2fa), new { model.RememberMe });
                 }
                 if (result.IsLockedOut)
                 {
@@ -81,17 +83,16 @@ namespace CWPIO.Controllers
                 else
                 {
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    return View(model);
                 }
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return Ok(new { error = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToArray(), value = false });
         }
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> LoginWith2fa(bool rememberMe, string returnUrl = null)
+        public async Task<IActionResult> LoginWith2fa(bool rememberMe)
         {
             // Ensure the user has gone through the username & password screen first
             var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
@@ -102,7 +103,6 @@ namespace CWPIO.Controllers
             }
 
             var model = new LoginWith2faViewModel { RememberMe = rememberMe };
-            ViewData["ReturnUrl"] = returnUrl;
 
             return View(model);
         }
@@ -217,9 +217,8 @@ namespace CWPIO.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
+        public async Task<IActionResult> Register(RegisterViewModel model)
         {
-            ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
@@ -233,31 +232,26 @@ namespace CWPIO.Controllers
                     await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                    _logger.LogInformation("User created a new account with password.");
-
-                    var addclaimresult = await _userManager.AddClaimAsync(user, new Claim("IsAdmin", "True", ClaimValueTypes.Boolean));
-
-                    return RedirectToLocal(returnUrl);
+                    //var addclaimresult = await _userManager.AddClaimAsync(user, new Claim("IsAdmin", "True", ClaimValueTypes.Boolean));
                 }
                 AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
-
-            /**
-             * @TODO сдесm надо сделать проверку на то что кошелек уже добавлен в WhiteList 
-             */
-            if (true)
-            {
-                return RedirectToAction("WhiteList","Cabinet", model);
-            }
+            return Ok(new { error = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToArray(), value = false });
             
-            return RedirectToAction("Exchanger","Cabinet");
         }
 
         [HttpGet]
         public async Task<IActionResult> Logout()
         {
+            var user = await GetCurrentUserAsync();
+            if (user.IsDemo)
+            {
+                user.EthAddress = null;
+                await _userManager.UpdateAsync(user);
+            }
+
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User logged out.");
             return RedirectToAction(nameof(HomeController.Index), "Home");
