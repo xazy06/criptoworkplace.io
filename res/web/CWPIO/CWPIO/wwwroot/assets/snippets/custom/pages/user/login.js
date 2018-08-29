@@ -47,6 +47,14 @@ var SnippetLogin = function () {
 				}), r.valid() && (t.addClass('m-loader m-loader--right m-loader--light').attr('disabled', !0), r.ajaxSubmit({
                     url: '/Account/Register',
 					success: function (l, s, n, o) {
+                    	if (l.error.length > 0){
+		                    var el = e.find('.m-login__signup form');
+		                    //debugger;
+		                    i(el, 'danger', l.error.join('<br/>'));
+		                    t.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', !1);
+                    		return false;
+	                    }
+                    	
 						setTimeout(function () {
 							t.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', !1), r.clearForm(), r.validate().resetForm(), a();
 							var l = e.find('.m-login__signin form');
