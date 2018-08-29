@@ -77,6 +77,13 @@ namespace CWPIO.Controllers
             return View("WhiteList");
         }
         
+        [HttpGet("kyc", Name = "KYC")]
+        public IActionResult Kyc()
+        {
+
+            return View();
+        }
+        
         [HttpPost("whiteList", Name = "WhiteList")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> WhiteListAsync(string ercAddress)
