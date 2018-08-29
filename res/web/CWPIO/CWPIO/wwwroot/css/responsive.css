@@ -40,7 +40,7 @@
     .s-center_767{text-align:center !important;}
     a.btn.btn-lg, .btn.btn-lg{padding:36px 46px;font-size:22px;text-overflow:ellipsis;overflow:hidden;max-width:100%;}
     .home1-hero-area{background:#2b4d94 !important;}
-    .b-sol{border-radius:0;}
+    .b-sol{border-radius:0;margin-bottom:0 !important;}
     footer{margin-top:-70px;}
     .header-disc{color:#fff !important;}
     .subscribe-input-box{display:block;margin-right:0 !important;}
@@ -65,7 +65,7 @@
     .testimonial-box .tb-text{font-size:16px;line-height:30px;}
     .testimonial-box .tb-title{font-size:18px;line-height:24px;}
     .testimonial-box .testimonial-img{top:-90px;width:70%;}
-    .feature-area{padding:80px 0 0;}
+    /*.feature-area{padding:80px 0 0;}*/
     .video-area{padding:90px 0;}
     .team-area{}
     .single-pricing{margin:0 0 30px;}
@@ -115,7 +115,7 @@
     .testimonial-box .tb-text{font-size:16px;line-height:30px;}
     .testimonial-box .tb-title{font-size:18px;line-height:24px;}
     .testimonial-box .testimonial-img{top:-90px;width:70%;}
-    .feature-area{padding:80px 0 0;}
+    /*.feature-area{padding:80px 0 0;}*/
     .video-area{padding:90px 0;}
     .team-area{padding:70px 0;}
     .single-pricing{margin:0 0 30px;}
