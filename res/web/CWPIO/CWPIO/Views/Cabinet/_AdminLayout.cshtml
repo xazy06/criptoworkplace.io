@@ -812,9 +812,9 @@ License: You must have a valid license purchased only from themeforest(the above
 										</li>
 										<li class="m-nav__item m-dropdown m-dropdown--medium m-dropdown--arrow  m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light" m-dropdown-toggle="click">
 											<a href="#" class="m-nav__link m-dropdown__toggle">
-												<span class="m-topbar__username m--hidden-mobile">
-													User
-												</span>
+                                                <span class="m-topbar__username m--hidden-mobile">
+                                                    @User.Identity.Name
+                                                </span>
 												<span class="m-topbar__userpic">
 @*													<img src="~/assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless m--img-centered" alt=""/>*@
 												</span>
@@ -833,12 +833,12 @@ License: You must have a valid license purchased only from themeforest(the above
 @*																<img src="~/assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless" alt=""/>*@
 @*															</div>*@
 															<div class="m-card-user__details">
-																<span class="m-card-user__name m--font-weight-500">
-																	Mark Andre
-																</span>
-																<a href="" class="m-card-user__email m--font-weight-300 m-link">
-																	mark.andre@gmail.com
-																</a>
+                                                                <span class="m-card-user__name m--font-weight-500">
+                                                                    @(User.Claims.Where(c => c.Type == "UserTitle").FirstOrDefault()?.Value ?? "User")
+                                                                </span>
+                                                                <a href="" class="m-card-user__email m--font-weight-300 m-link">
+                                                                    @User.Identity.Name
+                                                                </a>
 															</div>
 														</div>
 													</div>
