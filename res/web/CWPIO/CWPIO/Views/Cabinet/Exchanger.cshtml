@@ -17,25 +17,46 @@
 		.s-ms_n { display: none; }
 
 		.s-ms_b { display: inline-block; }
+		.m-widget14 {
+			padding: 0 2.2rem 2.2rem;
+		}
 	}
 </style>
 
-
-<div class="m-alert m-alert--icon m-alert--icon-solid m-alert--outline alert alert-success alert-dismissible fade show" role="alert">
-	<div class="m-alert__icon">
-		<i class="flaticon-exclamation-1"></i>
-		<span></span>
-	</div>
-	<div class="m-alert__text">
-		<strong>Pre-sale</strong> in progress.		
-	</div>	
-	<div class="m-alert__close">
+<div class="row">
+	<div class="col-md-12">
+		<div class="m-alert m-alert--icon m-alert--icon-solid m-alert--outline alert alert-success alert-dismissible fade show" role="alert">
+			<div class="m-alert__icon">
+				<i class="flaticon-exclamation-1"></i>
+				<span></span>
+			</div>
+			<div class="m-alert__text">
+				<strong>Pre-sale</strong> in progress.  <strong>1</strong> CWT-P = <strong>0.20</strong> USD
+			</div>	
+			<div class="m-alert__close">
 		
-	</div>			  	
+			</div>			  	
+		</div>
+	</div>
+@*	<div class="col-md-6">*@
+@*		<div class="m-alert m-alert--icon m-alert--icon-solid m-alert--outline alert alert-success alert-dismissible fade show" role="alert">*@
+@*			<div class="m-alert__icon">*@
+@*				<i class="flaticon-exclamation-1"></i>*@
+@*				<span></span>*@
+@*			</div>*@
+@*			<div class="m-alert__text">*@
+@*				<strong>Pre-ICO</strong> soon.		*@
+@*			</div>	*@
+@*			<div class="m-alert__close">*@
+@*		*@
+@*			</div>			  	*@
+@*		</div>*@
+
+@*	</div>*@
 </div>
 
 <div class="row">
-<div class="col-md-6">
+<div class="col-md-7">
 <div class="m-portlet">
 <div class="m-portlet__head">
 	<div class="m-portlet__head-caption">
@@ -48,20 +69,27 @@
 </div>
 <div class="m-portlet__body">
 
-<div style="margin-bottom: 30px;" class="row">
+<div style="margin-bottom: 20px;" class="row">
 	<div class="col-md-6">
 		<h5 class="m--font-primary">
 			CWT-P Token amount you want to receive
 		</h5>
 		<input autofocus data-bind="textInput: obs.cwtCount" style="margin-bottom: 20px;" type="number" class="form-control"/>
 	</div>
-	<div class="col-md-6">
+	<div class="col-md-4">
 		<h5 class="m--font-primary">
 			ETH amount need to send
 		</h5>
 			
-		<span style="font-size:16px" data-bind="text: obs.needPay"></span>
+		<span style="font-size:20px" data-bind="text: obs.needPay"></span>
 		<sup>ETH</sup>
+	</div>
+	<div class="col-md-2">
+		<h5 class="m--font-primary">
+			&nbsp;&nbsp;
+		</h5>
+			
+		<button data-bind="disable:flags.minCont" type="button" class="btn btn-success" data-toggle="modal" data-target="#m_modal_4">Purchase</button>
 	</div>
 </div>
 
@@ -96,16 +124,18 @@
 		</a>
 		<!-- ko ifnot:flags.toggleQr -->
 		<i data-bind="click:actions.toggleQr" style="cursor: pointer; font-size: 2em;" class="fa fa-qrcode"></i>
+@*		<i style="display: inline-block; vertical-align:middle;">&mdash;QR</i>*@
 		<!--/ko-->
 
 		<p data-bind="click:actions.toggleQr, if:flags.toggleQr" class="s-ms-c">
 			<img style="border: 1px solid #ddd;" src="http://qrcoder.ru/code/?0x666c09e6ea8062523e113004302b0ac5507f6d71&4&0"/>
+			
 		</p>
 
 
 
 	</p>
-	<div style="margin-bottom: 30px;" class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-dismissible fade show" role="alert">
+	<div style="margin-bottom: 30px;" class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-brand alert-dismissible fade show" role="alert">
 		<div class="m-alert__icon">
 			<i class="la la-warning"></i>
 		</div>
@@ -350,7 +380,7 @@
 </div>
 </div>
 </div>
-<div class="col-md-6">
+<div class="col-md-5">
 <div class="m-portlet m-portlet--head-overlay m-portlet--full-height  m-portlet--rounded-force">
 <div class="m-portlet__head m-portlet__head--fit-">
 	<div class="m-portlet__head-caption">
@@ -384,7 +414,7 @@
 				<div class="m-widget14">
 					<div class="m-widget14__header">
 						<h3 class="m-widget14__title">
-							Current round <!-- ko text:obs.sales.step --><!--/ko-->        
+							Current round is <!-- ko text:obs.sales.step --><!--/ko-->        
 						</h3>
 						<span class="m-widget14__desc">
 							Token's sold each round
@@ -399,7 +429,7 @@
 							<div class="m-widget14__legends">
 								<div class="m-widget14__legend">
 									<span class="m-widget14__legend-bullet m--bg-accent"></span>
-									<span class="m-widget14__legend-text">100 CWT-P 1 round</span>
+									<span class="m-widget14__legend-text">7,431,402 CWT-P 1 round</span>
 								</div>
 								<div class="m-widget14__legend">
 									<span class="m-widget14__legend-bullet m--bg-warning"></span>
@@ -430,16 +460,45 @@
 </div>
 </div>
 </div>
-
+<div class="modal fade" id="m_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 style="text-align:center" class="modal-title" id="exampleModalLabel">Purchase</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+			</div>
+			<div style="text-align:center" class="modal-body">
+				<h2 style="margin-bottom: 20px;">Buy <!--ko text:obs.cwtCount-->0<!--/ko--> CWT-P to <!--ko text:obs.needPay-->0<!--/ko--> ETH</h2>
+				
+				<h4 style="margin-bottom: 20px;">Send <!--ko text:obs.needPay-->0<!--/ko--> ETH to the specified address</h4>
+			
+				<a style="display: block; text-overflow: ellipsis; margin-bottom: 20px; overflow: hidden;" href="https://etherscan.io/token/0x844d61a974f3792914815d9eb8b9ebb6ecc8b0a7">
+					0x844d61a974f3792914815d9eb8b9ebb6ecc8b0a7
+				</a>
+			
+				<img src="http://qrcoder.ru/code/?0x666c09e6ea8062523e113004302b0ac5507f6d71&4&0"/>
+			
+			
+			</div>
+			<div style="justify-content: center;" class="modal-footer">
+				<input type="text" style="z-index: -2; position: absolute;" id="addr" value="0x844d61a974f3792914815d9eb8b9ebb6ecc8b0a7"/>
+				<button data-bind="click:actions.notify.bind(null, 'copied!')" id="copy" data-clipboard-target="#addr" type="button" class="btn btn-lg btn-info">Copy address</button>
+			</div>
+		</div>
+	</div>
+</div>
 @section Scripts{
 	<script src="~/js/web3.min.js" asp-append-version="true"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
 	<script asp-append-version="true" src="~/js/controllers/exchanger/index.js"></script>
 	<script>
 		Morris.Donut({
 			element: "m_chart_revenue_change",
 			data: [{
 				label: "Round 1",
-				value: 100
+				value: 7431402
 			}, {
 				label: "Round 2",
 				value: 0

@@ -114,6 +114,8 @@ var Controller = function () {
 		self.actions.usersettings();
 
 		self.actions.exchanger();
+
+		var copy = new ClipboardJS('#copy');
 		
 		return this;
 	};
@@ -165,6 +167,12 @@ var Controller = function () {
 		},
 		
 		actions:{
+			notify: function(a, val){
+				$.notify(a, {
+					type: 'success',
+					timer: 1000
+				});
+			}, 
 			toggleQr: function(){
 				ViewModel.flags.toggleQr(!ViewModel.flags.toggleQr());
 			},
