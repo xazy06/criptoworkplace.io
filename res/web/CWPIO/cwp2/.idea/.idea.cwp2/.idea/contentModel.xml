@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\arthur332\.Rider2017.2\system\resharper-host\local\Transient\ReSharperHost\v10\SolutionCaches\_cwp2.576708377.00" t="ExcludeRecursive" />
+    <e p="I:\projects\cwp2" t="IncludeRecursive">
+      <e p="appsettings.Development.json" t="Include" />
+      <e p="appsettings.json" t="Include" />
+      <e p="bin" t="ExcludeRecursive" />
+      <e p="bundleconfig.json" t="Include" />
+      <e p="Controllers" t="Include">
+        <e p="HomeController.cs" t="Include" />
+      </e>
+      <e p="cwp.patch" t="Include" />
+      <e p="cwp2.csproj" t="IncludeRecursive" />
+      <e p="cwp2.sln" t="IncludeFlat" />
+      <e p="Models" t="Include">
+        <e p="ErrorViewModel.cs" t="Include" />
+      </e>
+      <e p="obj" t="ExcludeRecursive">
+        <e p="Debug" t="Include">
+          <e p="netcoreapp2.0" t="Include">
+            <e p="cwp2.AssemblyInfo.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Program.cs" t="Include" />
+      <e p="Startup.cs" t="Include" />
+      <e p="Views" t="Include">
+        <e p="_ViewImports.cshtml" t="Include" />
+        <e p="_ViewStart.cshtml" t="Include" />
+        <e p="Home" t="Include">
+          <e p="About.cshtml" t="Include" />
+          <e p="Contact.cshtml" t="Include" />
+          <e p="Index.cshtml" t="Include" />
+        </e>
+        <e p="Shared" t="Include">
+          <e p="_Layout.cshtml" t="Include" />
+          <e p="_PartialFooter.cshtml" t="Include" />
+          <e p="_PartialNav.cshtml" t="Include" />
+          <e p="_ValidationScriptsPartial.cshtml" t="Include" />
+          <e p="Error.cshtml" t="Include" />
+        </e>
+      </e>
+      <e p="wwwroot" t="Include">
+        <e p="assets" t="Include">
+          <e p="color" t="Include">
+            <e p="theme.css" t="Include" />
+          </e>
+          <e p="css" t="Include">
+            <e p="animate.css" t="Include" />
+            <e p="bootstrap.min.css" t="Include" />
+            <e p="font-awesome.min.css" t="Include" />
+            <e p="ionicons.min.css" t="Include" />
+            <e p="magnific-popup.css" t="Include" />
+            <e p="owl.carousel.min.css" t="Include" />
+            <e p="owl.theme.default.min.css" t="Include" />
+            <e p="responsive.css" t="Include" />
+            <e p="spop.min.css" t="Include" />
+            <e p="style.css" t="Include" />
+          </e>
+          <e p="fonts" t="Include">
+            <e p="fontawesome-webfont.eot" t="Include" />
+            <e p="fontawesome-webfont.svg" t="Include" />
+            <e p="fontawesome-webfont.ttf" t="Include" />
+            <e p="fontawesome-webfont.woff" t="Include" />
+            <e p="fontawesome-webfont.woff2" t="Include" />
+            <e p="FontAwesome.otf" t="Include" />
+            <e p="ionicons.ttf" t="Include" />
+            <e p="ionicons.woff.txt" t="Include" />
+          </e>
+          <e p="images" t="Include">
+            <e p="about_img2.png" t="Include" />
+            <e p="app_bg.png" t="Include" />
+            <e p="banner_bg2.png" t="Include" />
+            <e p="banner_img2.png" t="Include" />
+            <e p="blog_small_img1.jpg" t="Include" />
+            <e p="blog_small_img2.jpg" t="Include" />
+            <e p="blog_small_img3.jpg" t="Include" />
+            <e p="client_logo_gray1.png" t="Include" />
+            <e p="client_logo_gray2.png" t="Include" />
+            <e p="client_logo_gray3.png" t="Include" />
+            <e p="client_logo_gray4.png" t="Include" />
+            <e p="client_logo_gray5.png" t="Include" />
+            <e p="client_logo_gray6.png" t="Include" />
+            <e p="distribution3.png" t="Include" />
+            <e p="eng.png" t="Include" />
+            <e p="fn.png" t="Include" />
+            <e p="footer_bg.png" t="Include" />
+            <e p="footer_logo.png" t="Include" />
+            <e p="logo.png" t="Include" />
+            <e p="logo_dark.png" t="Include" />
+            <e p="mobile_app3.png" t="Include" />
+            <e p="sale-proceeds3.png" t="Include" />
+            <e p="service_icon1.png" t="Include" />
+            <e p="service_icon2.png" t="Include" />
+            <e p="service_icon3.png" t="Include" />
+            <e p="service_icon4.png" t="Include" />
+            <e p="service_icon5.png" t="Include" />
+            <e p="service_icon6.png" t="Include" />
+            <e p="team-lg-1.jpg" t="Include" />
+            <e p="team-lg-2.jpg" t="Include" />
+            <e p="team-lg-3.jpg" t="Include" />
+            <e p="team-lg-4.jpg" t="Include" />
+            <e p="team-lg-5.jpg" t="Include" />
+            <e p="team-lg-6.jpg" t="Include" />
+            <e p="team-lg-7.jpg" t="Include" />
+            <e p="team1.jpg" t="Include" />
+            <e p="team2.jpg" t="Include" />
+            <e p="team3.jpg" t="Include" />
+            <e p="team4.jpg" t="Include" />
+            <e p="team5.jpg" t="Include" />
+            <e p="team6.jpg" t="Include" />
+            <e p="team7.jpg" t="Include" />
+            <e p="token_bg.png" t="Include" />
+            <e p="us.png" t="Include" />
+            <e p="whitepaper.png" t="Include" />
+          </e>
+          <e p="js" t="Include">
+            <e p="base.js" t="Include" />
+            <e p="bootstrap.min.js" t="Include" />
+            <e p="jquery-1.12.4.min.js" t="Include" />
+            <e p="jquery.countdown.min.js" t="Include" />
+            <e p="jquery.counterup.min.js" t="Include" />
+            <e p="jquery.dd.min.js" t="Include" />
+            <e p="magnific-popup.min.js" t="Include" />
+            <e p="modern_canvas.js" t="Include" />
+            <e p="notification.js" t="Include" />
+            <e p="owl.carousel.min.js" t="Include" />
+            <e p="parallax.js" t="Include" />
+            <e p="particles.min.js" t="Include" />
+            <e p="scripts.js" t="Include" />
+            <e p="spop.min.js" t="Include" />
+            <e p="waypoints.min.js" t="Include" />
+          </e>
+        </e>
+        <e p="css" t="Include">
+          <e p="site.css" t="Include" />
+          <e p="site.min.css" t="Include" />
+        </e>
+        <e p="favicon.ico" t="Include" />
+        <e p="images" t="Include">
+          <e p="banner1.svg" t="Include" />
+          <e p="banner2.svg" t="Include" />
+          <e p="banner3.svg" t="Include" />
+          <e p="banner4.svg" t="Include" />
+        </e>
+        <e p="js" t="Include">
+          <e p="site.js" t="Include" />
+          <e p="site.min.js" t="Include" />
+        </e>
+        <e p="lib" t="Include">
+          <e p="bootstrap" t="Include">
+            <e p=".bower.json" t="Include" />
+            <e p="dist" t="Include">
+              <e p="css" t="Include">
+                <e p="bootstrap-theme.css" t="Include" />
+                <e p="bootstrap-theme.css.map" t="Include" />
+                <e p="bootstrap-theme.min.css" t="Include" />
+                <e p="bootstrap-theme.min.css.map" t="Include" />
+                <e p="bootstrap.css" t="Include" />
+                <e p="bootstrap.css.map" t="Include" />
+                <e p="bootstrap.min.css" t="Include" />
+                <e p="bootstrap.min.css.map" t="Include" />
+              </e>
+              <e p="fonts" t="Include">
+                <e p="glyphicons-halflings-regular.eot" t="Include" />
+                <e p="glyphicons-halflings-regular.svg" t="Include" />
+                <e p="glyphicons-halflings-regular.ttf" t="Include" />
+                <e p="glyphicons-halflings-regular.woff" t="Include" />
+                <e p="glyphicons-halflings-regular.woff2" t="Include" />
+              </e>
+              <e p="js" t="Include">
+                <e p="bootstrap.js" t="Include" />
+                <e p="bootstrap.min.js" t="Include" />
+                <e p="npm.js" t="Include" />
+              </e>
+            </e>
+            <e p="LICENSE" t="Include" />
+          </e>
+          <e p="jquery" t="Include">
+            <e p=".bower.json" t="Include" />
+            <e p="dist" t="Include">
+              <e p="jquery.js" t="Include" />
+              <e p="jquery.min.js" t="Include" />
+              <e p="jquery.min.map" t="Include" />
+            </e>
+            <e p="LICENSE.txt" t="Include" />
+          </e>
+          <e p="jquery-validation" t="Include">
+            <e p=".bower.json" t="Include" />
+            <e p="dist" t="Include">
+              <e p="additional-methods.js" t="Include" />
+              <e p="additional-methods.min.js" t="Include" />
+              <e p="jquery.validate.js" t="Include" />
+              <e p="jquery.validate.min.js" t="Include" />
+            </e>
+            <e p="LICENSE.md" t="Include" />
+          </e>
+          <e p="jquery-validation-unobtrusive" t="Include">
+            <e p=".bower.json" t="Include" />
+            <e p="jquery.validate.unobtrusive.js" t="Include" />
+            <e p="jquery.validate.unobtrusive.min.js" t="Include" />
+          </e>
+        </e>
+      </e>
+    </e>
+  </component>
+</project>
