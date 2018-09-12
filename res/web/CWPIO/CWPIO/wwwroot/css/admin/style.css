@@ -22,3 +22,19 @@
 }
 .b-pass-rules_item{}
 .b-pass-rules_item.active{}
+
+.s-ta_c{
+	text-align: center;
+}
+
+.btn.btn--link {
+	border: none;
+}
+
+.s-mb_9 {
+	margin-bottom:9px;
+}
+
+a {
+	color: #0011FF;
+}
