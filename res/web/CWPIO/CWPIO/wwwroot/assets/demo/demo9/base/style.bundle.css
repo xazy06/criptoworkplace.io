@@ -11,3 +11,13 @@
 	background: linear-gradient(45deg, #0bb2c6 0%,#333b8c 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0bb2c6', endColorstr='#333b8c',GradientType=1 );
 }
+.b-pass-rules{
+	display:none;
+	font-size:.8em;
+	color:#666;
+}
+.b-pass-rules_item::before{
+	
+}
+.b-pass-rules_item{}
+.b-pass-rules_item.active{}
