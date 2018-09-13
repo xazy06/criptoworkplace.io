@@ -40,7 +40,7 @@ namespace CWPIO.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View("NewIndex");
         }
 
         public IActionResult Error()
