@@ -33,3 +33,9 @@
         display: none;
     }
 }
+
+.b-main {
+    background: url("/images/upload-d01bb0f1-b44c-11e8-9a0a-ed19b45a0cd0.jpg") 0 0 no-repeat;
+    background-size: cover;
+    min-height:649px;
+}
