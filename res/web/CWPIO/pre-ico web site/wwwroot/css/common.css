@@ -47,6 +47,10 @@
 	text-align: center;
 }
 
+.s-ta_r {
+	text-align: right;
+}
+
 h2.s-ta_l, 
 .s-ta_l {
 	text-align: left;

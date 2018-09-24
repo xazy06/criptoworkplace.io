@@ -52,10 +52,11 @@ body {
 
 .b-block-h {
     color:#eaeaea;
-    font-family: qgnx;
+    font-family: qgnx;/*TODO*/
     font-size:40px;
     line-height:51px;
     text-align:center;
+    margin-bottom: 80px;
 }
 
 .b-team {
@@ -91,4 +92,33 @@ body {
     left: 100%;
     top: 0;
     bottom: 0;
+}
+
+
+.b-feach {
+    padding-top:40px;
+    padding-bottom:40px;
+}
+
+.b-feach-h {
+    font-size:32px;
+    line-height:41px;
+    margin-bottom:15px;
+    font-weight: 700;
+    color:#7c7c7c;
+    position: relative;
+}
+
+.b-feach-h:before {
+    position: absolute;
+    right: 100%;
+    color:#0015FF;
+    content:'—';
+    padding-right: 10px;
+}
+
+.b-feach-c {
+    font-size:18px;
+    line-height: 26px;
+    color:#fff;
 }
