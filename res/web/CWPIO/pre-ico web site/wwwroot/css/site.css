@@ -93,6 +93,12 @@ body {
 
 .b-team {
     text-align:center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.b-team_img_w{
+    margin-bottom:20px;
 }
 
 .b-team-img {
