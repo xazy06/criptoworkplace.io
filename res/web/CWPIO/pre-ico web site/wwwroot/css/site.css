@@ -3,6 +3,37 @@
 @import url('cwp-font/styles.css');
 @import url('cwp-font/extentions.css');
 
+/*@font-face {*/
+    /*font-family: 'RobotoIn';*/
+    /*font-style: normal;*/
+    /*font-weight: 100;*/
+    /*src: url('/fonts/roboto-regular-webfont.eot');*/
+    /*src: url('/fonts/roboto-regular-webfont.eot?#iefix') format('embedded-opentype'),*/
+    /*url('/fonts/roboto-regular-webfont.woff') format('woff'),*/
+    /*url('/fonts/roboto-regular-webfont.ttf') format('truetype'),*/
+    /*url('/fonts/roboto-regular-webfont.svg#robotomedium') format('svg');*/
+/*}*/
+/*@font-face {*/
+    /*font-family: 'RobotoIn';*/
+    /*font-style: normal;*/
+    /*font-weight: 700;*/
+    /*src: url('/fonts/roboto-bold-webfont.eot');*/
+    /*src: url('/fonts/roboto-bold-webfont.eot?#iefix') format('embedded-opentype'),*/
+    /*url('/fonts/roboto-bold-webfont.woff') format('woff'),*/
+    /*url('/fonts/roboto-bold-webfont.ttf') format('truetype'),*/
+    /*url('/fonts/roboto-bold-webfont.svg#robotobold') format('svg');*/
+/*}*/
+/*@font-face {*/
+    /*font-family: 'RobotoIn';*/
+    /*font-style: normal;*/
+    /*font-weight: 700;*/
+    /*src: url('/fonts/roboto-bold-webfont.eot');*/
+    /*src: url('/fonts/roboto-bold-webfont.eot?#iefix') format('embedded-opentype'),*/
+    /*url('/fonts/roboto-bold-webfont.woff') format('woff'),*/
+    /*url('/fonts/roboto-bold-webfont.ttf') format('truetype'),*/
+    /*url('/fonts/roboto-bold-webfont.svg#robotobold') format('svg');*/
+/*}*/
+
 body {
     
     padding-bottom: 0;
@@ -48,7 +79,7 @@ body {
 }
 
 .navbar-inverse{
-    background: none;
+    background-color: #101010b0;
     border-color: transparent;
 }
 
