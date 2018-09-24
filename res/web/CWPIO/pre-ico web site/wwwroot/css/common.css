@@ -44,13 +44,25 @@
 .b-stn-2 {
 	background-color:#fff;
 }
-.b-stn-3 {
+.b-stn-3,
+.b-block.b-stn-3{
 	background-color:#0011ff;
 }
 .b-stn-4 {
 	background-color:#0e0f0f;
 }
 
+.b-stn-5{
+	background-color:#d0deea;
+}
+
+.b-stn-6{
+	background-color:#b3c7d6;
+}
+
+.b-stn-7{
+	background-color:#9aa8ba;
+}
 
 .s-ta_c {
 	text-align: center;
@@ -74,4 +86,39 @@ h2.s-ta_l,
 }
 .s-float_r {
 	float:right;
+}
+
+.s-fs_18 {
+	font-size: 18px;
+}
+
+.s-fs_20 {
+	font-size: 20px;
+}
+
+.through {
+	text-decoration: line-through;
+}
+
+
+.s-mb_50{margin-bottom:50px;}
+
+.clear {
+	clear: both
+}
+
+
+.z-100 {
+	z-index: 100;
+}
+
+.z-200 {
+	z-index: 200;
+}
+
+.z-300 {
+	z-index: 300;
+}
+.z-400 {
+	z-index: 400;
 }

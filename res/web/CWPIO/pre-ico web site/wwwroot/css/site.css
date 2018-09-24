@@ -150,3 +150,49 @@ body {
     line-height:33px;
     margin:100px 0 0 200px;
 }
+
+
+.b-round {
+    border-radius: 20px;
+    padding:30px 40px;
+    position: relative;
+}
+
+.b-round_s {
+    border-radius: 0 0 20px 20px;
+    margin-top: -20px;
+    padding-top: 50px;
+}
+
+.b-round_head {
+    font-size:40px;
+    line-height: 50px;
+    color:#0015FF;
+}
+
+
+.b-footer-policy {
+    color:#8e8e8e;
+    font-size: 12px;
+    line-height: 15px;
+}
+
+a.s-cwp{
+    color:#fff;
+    font-size:24px;
+    line-height: 30px;
+}
+
+footer {
+    font-size:16px;
+    color:#fff;
+}
+
+a.footer {
+    color:#fff;
+}
+
+a.footer_b {
+    display: inline-block;
+    border-bottom:2px solid #0011ff;
+}
