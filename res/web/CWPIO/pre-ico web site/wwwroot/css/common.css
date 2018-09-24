@@ -9,3 +9,40 @@
 ::-webkit-scrollbar-thumb {
 	background: #000;
 }
+
+.c-stn-1 {
+	color:#000;
+}
+.c-stn-2 {
+	color:#fff;
+}
+.c-stn-3 {
+	color:#0015FF;
+}
+.c-stn-4 {
+	color:#eaeaea;
+}
+.c-stn-5 {
+	color:#7c7c7c;
+}
+.c-stn-5 {
+	color:#b7b7b7;
+}
+
+.b-stn-1 {
+	color:#000;
+}
+.b-stn-2 {
+	color:#fff;
+}
+.b-stn-3 {
+	color:#0011ff;
+}
+.b-stn-4 {
+	color:#0e0f0f;
+}
+
+
+.s-ta_c {
+	text-align: center;
+}
