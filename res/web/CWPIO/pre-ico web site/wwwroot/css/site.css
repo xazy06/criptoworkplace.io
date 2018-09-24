@@ -122,3 +122,18 @@ body {
     line-height: 26px;
     color:#fff;
 }
+
+.h-tab {
+    font-size:40px;
+    text-transform: uppercase;
+    line-height: 50px;
+    padding-bottom:50px;
+    border-bottom:2px solid #0011ff;
+    color:#fff;
+}
+
+.h-tab sup {
+    font-size:15px;
+    letter-spacing: 3px;
+    top: -1em;
+}

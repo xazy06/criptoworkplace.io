@@ -10,6 +10,10 @@
 	background: #000;
 }
 
+.s-o_h{
+	overflow: hidden;
+}
+
 .c-stn-1 {
 	color:#000 !important;
 }
