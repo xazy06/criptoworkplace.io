@@ -1,17 +1,22 @@
 ::-webkit-scrollbar {
 	width: 4px;
+	height: 4px;
 }
 
 ::-webkit-scrollbar-track {
-	background: rgba(255, 255, 255, 0.001);
+	background: #000;
 }
 
 ::-webkit-scrollbar-thumb {
-	background: #000;
+	background: #fff;
 }
 
 .s-o_h{
 	overflow: hidden;
+}
+
+.s-o_a{
+	overflow: auto;
 }
 
 .c-stn-1 {
@@ -62,4 +67,11 @@ h2.s-ta_l,
 
 .s-p_0 {
 	padding:0 !important;
+}
+
+.s-float_l {
+	float:left;
+}
+.s-float_r {
+	float:right;
 }

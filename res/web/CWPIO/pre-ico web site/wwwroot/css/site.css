@@ -1,5 +1,7 @@
 ﻿/*TODO REMOVE imports*/
 @import url('common.css');
+@import url('cwp-font/styles.css');
+@import url('cwp-font/extentions.css');
 
 body {
     padding-top: 50px;
@@ -45,7 +47,7 @@ body {
 
 .b-block {
     padding: 80px 0;
-    background-color:#0e0f0f;
+    background-color:#000;
 }
 
 .b-block-h {
@@ -134,4 +136,17 @@ body {
     font-size:15px;
     letter-spacing: 3px;
     top: -1em;
+}
+
+.b-spec_img-wrapper{
+    float:left;
+    overflow: hidden;
+}
+
+.b-spec {
+    list-style: none;
+    color:#b7b7b7;
+    font-size: 18px;
+    line-height:33px;
+    margin:100px 0 0 200px;
 }
