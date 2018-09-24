@@ -54,3 +54,11 @@ body {
     line-height:51px;
     text-align:center;
 }
+
+.b-team {
+    text-align:center;
+}
+
+.b-team-img {
+    border-radius: 50%;
+}
