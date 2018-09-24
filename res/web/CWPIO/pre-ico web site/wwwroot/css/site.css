@@ -1,5 +1,7 @@
 ﻿/*TODO REMOVE imports*/
 @import url('common.css');
+@import url('/cwp-font/styles.css');
+@import url('/cwp-font/extentions.css');
 
 body {
     padding-top: 50px;
@@ -61,4 +63,14 @@ body {
 
 .b-team-img {
     border-radius: 50%;
+}
+
+.b-team-name {
+    color:#fff;
+    font-size:20px;
+}
+
+.b-team-position {
+    color:#b7b7b7;
+    font-size:16px;
 }
