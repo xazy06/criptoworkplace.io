@@ -78,6 +78,10 @@ body {
     overflow: hidden;
 }
 
+.b-block.b-main{
+    padding: 131px 0;
+}
+
 .navbar-inverse{
     background-color: #101010b0;
     border-color: transparent;
@@ -109,7 +113,7 @@ body {
 }
 
 .b-block {
-    padding: 131px 0;
+    padding: 80px 0;
     background-color:#000;
     position: relative;
 }
@@ -220,6 +224,9 @@ body {
     margin:100px 0 0 200px;
 }
 
+.b-spec li {
+    margin-bottom:20px;
+}
 
 .b-round {
     border-radius: 20px;
