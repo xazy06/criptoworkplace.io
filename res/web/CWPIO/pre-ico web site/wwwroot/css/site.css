@@ -4,7 +4,7 @@
 @import url('cwp-font/extentions.css');
 
 body {
-    padding-top: 50px;
+    
     padding-bottom: 0;
 }
 
@@ -39,20 +39,52 @@ body {
     }
 }
 
+
 .b-main {
-    background: url("/images/upload-d01bb0f1-b44c-11e8-9a0a-ed19b45a0cd0.jpg") 0 0 no-repeat;
-    background-size: cover;
+    /*background: url("/images/upload-d01bb0f1-b44c-11e8-9a0a-ed19b45a0cd0.jpg") 0 0 no-repeat;*/
+    /*background-size: cover;*/
     min-height:649px;
+    overflow: hidden;
+}
+
+.navbar-inverse{
+    background: none;
+    border-color: transparent;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #fff;
+    font-size:18px;
+    /*line-height:23px;*/
+}
+
+.navbar-brand > img{
+    display: inline-block;
+    vertical-align: middle;
+    padding: 10px 0;
+}
+
+
+.navbar-brand {
+    padding:0;
+}
+
+.b-logo-text {
+    font-size: 40px;
+    line-height: 51px;
+    color: #fff;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .b-block {
-    padding: 80px 0;
+    padding: 131px 0;
     background-color:#000;
+    position: relative;
 }
 
 .b-block-h {
     color:#eaeaea;
-    font-family: qgnx;/*TODO*/
     font-size:40px;
     line-height:51px;
     text-align:center;
@@ -195,4 +227,30 @@ a.footer {
 a.footer_b {
     display: inline-block;
     border-bottom:2px solid #0011ff;
+}
+
+h1.h1{
+    font-size: 40px;
+    line-height: 50px;
+    color:#eaeaea;
+    margin-bottom:90px;
+}
+
+.b-main_hsub {
+    color:#fff;
+    font-size:18px;
+    line-height:23px;
+    margin-bottom: 60px;
+}
+
+.b-main_link {
+    color:#fff;
+    font-size:20px;
+    line-height:25px;
+    display: inline-block;
+    border-bottom:2px solid #fff;
+}
+
+.b-main-top {
+    margin-bottom:40px;
 }
