@@ -6,33 +6,20 @@
 @font-face {
     font-family: 'RobotoIn';
     font-style: normal;
-    font-weight: 100;
-    src: url('/fonts/roboto-regular-webfont.eot');
-    src: url('/fonts/roboto-regular-webfont.eot?#iefix') format('embedded-opentype'),
-    url('/fonts/roboto-regular-webfont.woff') format('woff'),
-    url('/fonts/roboto-regular-webfont.ttf') format('truetype'),
-    url('/fonts/roboto-regular-webfont.svg#robotomedium') format('svg');
+    font-weight: 400;
+    src: url('/fonts/Roboto-Regular-webfont.eot');
+    src: url('/fonts/Roboto-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/Roboto-Regular-webfont.woff') format('woff');
 }
 @font-face {
     font-family: 'RobotoIn';
     font-style: normal;
     font-weight: 700;
-    src: url('/fonts/roboto-bold-webfont.eot');
-    src: url('/fonts/roboto-bold-webfont.eot?#iefix') format('embedded-opentype'),
-    url('/fonts/roboto-bold-webfont.woff') format('woff'),
-    url('/fonts/roboto-bold-webfont.ttf') format('truetype'),
-    url('/fonts/roboto-bold-webfont.svg#robotobold') format('svg');
+    src: url('/fonts/Roboto-Bold-webfont.eot');
+    src: url('/fonts/Roboto-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/Roboto-Bold-webfont.woff') format('woff');
 }
-@font-face {
-    font-family: 'RobotoIn';
-    font-style: normal;
-    font-weight: 700;
-    src: url('/fonts/roboto-bold-webfont.eot');
-    src: url('/fonts/roboto-bold-webfont.eot?#iefix') format('embedded-opentype'),
-    url('/fonts/roboto-bold-webfont.woff') format('woff'),
-    url('/fonts/roboto-bold-webfont.ttf') format('truetype'),
-    url('/fonts/roboto-bold-webfont.svg#robotobold') format('svg');
-}
+
 
 body {
     
@@ -80,7 +67,7 @@ body {
 }
 
 .b-block.b-main{
-    padding: 131px 0;
+    padding: 131px 0 60px;
 }
 
 .navbar-inverse{
@@ -149,6 +136,20 @@ body {
 .b-team-position {
     color:#b7b7b7;
     font-size:16px;
+    margin-bottom:20px;
+}
+
+.b-team-s-link {
+    color: #000;
+    display: inline-block;
+    background-color: #fff;
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    line-height: 34px;
+    vertical-align: middle;
+    padding: 2px;
+    margin: 0 5px;
 }
 
 .b-problem {
@@ -293,7 +294,12 @@ h1.h1{
     font-size:20px;
     line-height:25px;
     display: inline-block;
-    border-bottom:2px solid #fff;
+    text-decoration:underline;
+}
+
+a.b-main_link:hover {
+    color:#fff;
+    text-decoration:none;
 }
 
 .b-main-top {
@@ -328,6 +334,10 @@ a.btn.btn-white,
     border: 3px solid rgb(0,17,255);
     background-color: transparent;
     color:#fff;
+}
+
+.fa-1-5x {
+    font-size:1.5em;
 }
 
 @keyframes animation_9 {
@@ -383,5 +393,14 @@ a.btn.btn-white,
 }
 
 
-
+.link-label {
+    font-size: 28px;
+    line-height: 36px;
+    color: #fff;
+    display: inline-block;
+    vertical-align: middle;
+}
+a.link-label:hover{
+    text-decoration: none;
+}
 
