@@ -299,3 +299,30 @@ h1.h1{
 .b-main-top {
     margin-bottom:40px;
 }
+
+.btn.btn-square {
+    border-radius:0;
+}
+
+.btn.btn-white {
+    background-color:#fff;
+} 
+
+
+.btn.btn-xl {
+    font-size: 26px;
+    line-height:36px;
+    text-transform: uppercase;
+    color: rgb(0,0,0);
+    padding: 15px 38px;
+}
+
+.btn.btn-border-outline {
+    border-width: 3px;
+}
+
+.btn.btn-border-outline:hover {
+    border: 3px solid rgb(0,17,255);
+    background-color: transparent;
+    color:#fff;
+}
