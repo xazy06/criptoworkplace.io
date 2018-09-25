@@ -304,8 +304,11 @@ h1.h1{
     border-radius:0;
 }
 
-.btn.btn-white {
+a.btn.btn-white, 
+.btn.btn-white,
+.navbar-nav .btn.btn-white{
     background-color:#fff;
+    color:#000;
 } 
 
 
@@ -326,3 +329,59 @@ h1.h1{
     background-color: transparent;
     color:#fff;
 }
+
+@keyframes animation_9 {
+    0% {transform: matrix3d(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1); opacity: 0.33; animation-timing-function: ease-in}
+    100% {transform: matrix3d(1,0,0,0,0,1,0,0,0,0,1,0,144,0,0,1); opacity: 1; }
+}
+@keyframes animation_11 {
+    0% {transform: matrix3d(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1); opacity: 0.33; animation-timing-function: ease-in}
+    100% {transform: matrix3d(1,0,0,0,0,1,0,0,0,0,1,0,24,0,0,1); opacity: 1; }
+}
+@keyframes animation_10 {
+    0% {transform: matrix3d(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1); opacity: 0.33; animation-timing-function: ease-in}
+    100% {transform: matrix3d(1,0,0,0,0,1,0,0,0,0,1,0,227,0,0,1); opacity: 1; }
+}
+@keyframes animation_1 {
+    0% {transform: matrix3d(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1); opacity: 0.33; animation-timing-function: ease-in}
+    100% {transform: matrix3d(1,0,0,0,0,1,0,0,0,0,1,0,182,1,0,1); opacity: 1; }
+}
+
+@keyframes animation_3 {
+    0% {transform: matrix3d(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1); opacity: 0.33; animation-timing-function: ease-in}
+    100% {transform: matrix3d(1,0,0,0,0,1,0,0,0,0,1,0,82,0,0,1); opacity: 1; }
+}
+
+@keyframes animation_4 {
+    0% {transform: matrix3d(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1); opacity: 0.33; animation-timing-function: ease-in}
+    100% {transform: matrix3d(1,0,0,0,0,1,0,0,0,0,1,0,129,0,0,1); opacity: 1; }
+}
+
+@keyframes animation_5 {
+    0% {transform: matrix3d(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1); opacity: 0.33; animation-timing-function: ease-out}
+    100% {transform: matrix3d(1,0,0,0,0,1,0,0,0,0,1,0,171,0,0,1); opacity: 1; }
+}
+
+@keyframes animation_2 {
+    0% {transform: matrix3d(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1); opacity: 0.33; animation-timing-function: ease-in}
+    100% {transform: matrix3d(1,0,0,0,0,1,0,0,0,0,1,0,83,0,0,1); opacity: 1; }
+}
+
+@keyframes animation_6 {
+    0% {transform: matrix3d(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1); opacity: 0.33; animation-timing-function: ease-in}
+    100% {transform: matrix3d(1,0,0,0,0,1,0,0,0,0,1,0,132,0,0,1); opacity: 1; }
+}
+
+@keyframes animation_7 {
+    0% {transform: matrix3d(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1); opacity: 0.33; animation-timing-function: ease-in}
+    100% {transform: matrix3d(1,0,0,0,0,1,0,0,0,0,1,0,159,0,0,1); opacity: 1; }
+}
+
+@keyframes animation_8 {
+    0% {transform: matrix3d(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1); opacity: 0.33; animation-timing-function: ease-in}
+    100% {transform: matrix3d(1,0,0,0,0,1,0,0,0,0,1,0,52,0,0,1); opacity: 1; }
+}
+
+
+
+
