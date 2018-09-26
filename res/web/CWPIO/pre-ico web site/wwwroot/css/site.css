@@ -574,6 +574,13 @@ a.link-label:hover{
     color:#0015ff;
 }
 
+.smoothscroll:hover,
+.smoothscroll:active,
+/*.smoothscroll:focus,*/
+.smoothscroll.active{
+    color:#0015ff !important;
+}
+
 .b-timer_wrapper {
     float: right;
     line-height: 73px;

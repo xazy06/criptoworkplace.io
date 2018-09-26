@@ -37,6 +37,16 @@
 			});
 		};
 		
+		this.initRoadmap = function () {
+			$('.roadmap').owlCarousel({
+				loop: false,
+				margin: 0,
+				autoHeight: true,
+				nav: false,
+				navText: ['<i class="ion-arrow-left-c"></i>', '<i class="ion-arrow-right-c"></i>']
+			});
+		};
+		
 		this.public = {
 			initTimer: self.initTimer
 		};
@@ -52,6 +62,8 @@
 		App.initTimer();
 
 		App.scroll();
+		
+		App.initRoadmap();
 	};
 	
 	App.init();
