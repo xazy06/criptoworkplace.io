@@ -54,6 +54,15 @@
     url('/fonts/FuturaPT-Bold.woff') format('woff');
 }
 
+@font-face {
+    font-family: 'futurabook';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/fonts/FuturaPT-Book.eot');
+    src: url('/fonts/FuturaPT-Book.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/FuturaPT-Book.woff') format('woff');
+}
+
 body {
     
     padding-bottom: 0;
@@ -70,6 +79,13 @@ p {
 .futura {
     font-family: 'futura';
 }
+
+.futurabook {
+    font-family: 'futurabook';
+}
+
+
+
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
@@ -249,12 +265,14 @@ h1.h1, h1, h2{
 .b-team-name {
     color:#fff;
     font-size:20px;
+    font-family: 'futurabook';
 }
 
 .b-team-position {
     color:#b7b7b7;
     font-size:16px;
     margin-bottom:20px;
+    font-family: 'futurabook';
 }
 
 .b-team-s-link {
@@ -348,6 +366,10 @@ h1.h1, h1, h2{
 
 .b-spec li {
     margin-bottom:20px;
+}
+
+.s-spec_i {
+    font-family: 'futurabook', serif;
 }
 
 .b-round {
@@ -572,6 +594,10 @@ a.link-label:hover{
     line-height:28px;
     font-size:26px;
     color:#0015ff;
+}
+
+.smoothscroll {
+    font-family: 'futurabook', serif;
 }
 
 .smoothscroll:hover,
