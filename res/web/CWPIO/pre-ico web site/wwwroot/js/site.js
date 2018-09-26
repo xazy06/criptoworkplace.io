@@ -13,7 +13,9 @@
 					$('.js-day').text(timer.getTimeValues().days);
 					$('.js-hour').text(timer.getTimeValues().hours);
 					$('.js-min').text(timer.getTimeValues().minutes);
-				}catch(e){console.log(e)}	
+				}catch(e){
+					console.log(e);
+				}	
 			};
 
 			updater();
@@ -21,6 +23,17 @@
 			$(timer).on('minutesUpdated', function (e) {
 				//console.log('update');
 				updater();
+			});
+		};
+		
+		this.scroll = function () {
+			$('.smoothscroll').on('click', function(e) {
+				e.preventDefault();
+				var target = this.hash;
+
+				$('html, body').stop().animate({
+					'scrollTop': $(target).offset().top - 56
+				}, 1200);
 			});
 		};
 		
@@ -37,6 +50,8 @@
 		});
 		
 		App.initTimer();
+
+		App.scroll();
 	};
 	
 	App.init();
