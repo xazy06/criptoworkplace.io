@@ -1,0 +1,9 @@
+﻿{
+  "app": {
+    "name": "cwp"
+  },
+  "nav": {
+    "about": "About CWP",
+    "vision": "Vision Outline"
+  }
+}

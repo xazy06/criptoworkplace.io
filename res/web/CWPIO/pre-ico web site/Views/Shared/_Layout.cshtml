@@ -80,8 +80,8 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">About CWP</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">Vision Outline</a></li>
+                    <li><a data-i18n="nav.about" asp-area="" asp-controller="Home" asp-action="Index">About CWP</a></li>
+                    <li><a data-i18n="nav.vision" asp-area="" asp-controller="Home" asp-action="About">Vision Outline</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Token Distribution</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Team</a></li>
                     <li>
@@ -105,10 +105,10 @@
             </div>
         
             <div class="clear b-footer-middle">
-                <a class="footer" href="#">Czech Republic, Prague Stepanska 704/61,<b/>11000 Praha 1-Nove Mesto</a>
+                <a class="footer" href="#">Czech Republic, Prague Stepanska 704/61,<br/>11000 Praha 1-Nove Mesto</a>
             
                 <div class="s-float_r">
-                    <a class="footer_b footer" href="#">+420 728 931 549</a>
+                    <a class="footer_b footer s-mr_30" href="#">+420 728 931 549</a>
                     <a class="footer_b footer" href="#">+44 7937 255544</a>
                 </div>
             </div>
@@ -120,6 +120,7 @@
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script type="text/javascript" src="~/js/i18next-1.11.2/i18next-1.11.2.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
     </environment>
     <environment exclude="Development">
