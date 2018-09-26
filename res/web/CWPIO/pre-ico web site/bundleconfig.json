@@ -12,6 +12,7 @@
   {
     "outputFileName": "wwwroot/js/site.min.js",
     "inputFiles": [
+      "wwwroot/js/timer/index.js",
       "wwwroot/js/site.js"
     ],
     // Optionally specify minification options
