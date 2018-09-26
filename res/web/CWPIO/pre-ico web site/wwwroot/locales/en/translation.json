@@ -12,5 +12,13 @@
   },
   "cyber": "CYBER SECURITY",
   "eco":"ECOSYSTEM POWERED",
-  "crypto":"BY CRYPTOCOMPUTER"
+  "crypto":"BY CRYPTOCOMPUTER",
+  "enterwl": "enter whitelist",
+  "problem": "Problem",
+  "solution": "Solution",
+  "timer": {
+    "day": "day",
+    "hour": "hour",
+    "min": "min"
+  }
 }
