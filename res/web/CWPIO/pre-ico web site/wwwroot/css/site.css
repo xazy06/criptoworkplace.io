@@ -587,8 +587,16 @@ a.link-label:hover{
 }
 
 .b-timer_wrapper_presale .b-timer-part{
-    color:#1c1c1c
+    color:#1c1c1c;
+	  font-size:35px;
+    line-height:35px;
 }
+
+.b-timer_wrapper_presale .b-timer-count{
+    font-size:35px;
+    line-height:35px;
+}
+
 .b-timer_wrapper_presale .b-timer-clock {
     display: none;
 }
