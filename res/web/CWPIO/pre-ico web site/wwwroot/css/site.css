@@ -167,7 +167,12 @@ h1.h1, h1, h2{
 .b-team {
     text-align:center;
     padding-top: 30px;
+    background-color: #000;
     padding-bottom: 30px;
+}
+
+.b-team {
+    
 }
 
 .b-team_img_w{
@@ -307,7 +312,7 @@ h1.h1, h1, h2{
     color:#8e8e8e;
     font-size: 12px;
     line-height: 15px;
-    font-family: 'pt';
+    font-family: 'pt', serif;
 }
 
 a.s-cwp{
@@ -483,5 +488,45 @@ a.btn.btn-white,
 }
 a.link-label:hover{
     text-decoration: none;
+}
+
+.b-timer-count {
+    font-family: Arial;
+    line-height:28px;
+    font-size: 20pt;
+    color:#fff;
+    padding: 10px;
+}
+
+.b-timer-clock {
+    line-height:28px;
+    font-size:28px;
+    color:#0015ff;
+}
+
+.b-timer-part {
+    font-family: Arial;
+    line-height:28px;
+    font-size:26px;
+    color:#0015ff;
+}
+
+.b-timer_wrapper {
+    float: right;
+    line-height: 73px;
+    vertical-align: text-bottom;
+}
+
+
+.b-timer_wrapper_presale {
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.b-timer_wrapper_presale .b-timer-part{
+    color:#1c1c1c
+}
+.b-timer_wrapper_presale .b-timer-clock {
+    display: none;
 }
 
