@@ -83,11 +83,13 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a data-i18n="nav.about" asp-area="" asp-controller="Home" asp-action="Index">About CWP</a></li>
                     <li><a data-i18n="nav.vision" asp-area="" asp-controller="Home" asp-action="Index">Vision Outline</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Token Distribution</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Team</a></li>
+                    <li><a data-i18n="nav.token" asp-area="" asp-controller="Home" asp-action="Index">Token Distribution</a></li>
+                    <li><a  data-i18n="nav.team" asp-area="" asp-controller="Home" asp-action="Index">Team</a></li>
                     <li>
-                        <a target="_blank" class="btn btn-square btn-border-outline btn-white btn-lg" 
-                           href="/static/docs_/CWP_White_Paper_en.pdf"><i class="far fa-file-alt"></i> Whitepaper</a>
+                        <a target="_blank" class="btn btn-square btn-border-outline btn-white btn-lg"
+                           href="/static/docs_/CWP_White_Paper_en.pdf">
+                            <i class="far fa-file-alt"></i>&nbsp;<span data-i18n="nav.whitepaper">Whitepaper</span>
+                        </a>
                     </li>
                 </ul>
             </div>
