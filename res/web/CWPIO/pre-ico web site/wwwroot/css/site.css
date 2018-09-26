@@ -67,6 +67,9 @@ p {
 .pt{
     font-family: 'pt';
 }
+.futura {
+    font-family: 'futura';
+}
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
@@ -304,12 +307,21 @@ h1.h1, h1, h2{
     color:#8e8e8e;
     font-size: 12px;
     line-height: 15px;
+    font-family: 'pt';
 }
 
 a.s-cwp{
     color:#fff;
     font-size:24px;
     line-height: 30px;
+}
+
+.b-footer-top {
+    margin-bottom: 30px;
+}
+
+.b-footer-middle {
+    margin-bottom: 30px;
 }
 
 footer {
@@ -324,6 +336,12 @@ a.footer {
 a.footer_b {
     display: inline-block;
     border-bottom:2px solid #0011ff;
+}
+
+a.footer_b:hover {
+    display: inline-block;
+    border-bottom:2px solid #fff;
+    text-decoration: none;
 }
 
 h1.h1{
