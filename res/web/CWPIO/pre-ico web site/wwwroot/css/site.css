@@ -554,7 +554,7 @@ a.link-label:hover{
 }
 
 .b-timer-count {
-    font-family: Arial;
+    font-family: Arial, serif;
     line-height:28px;
     font-size: 20pt;
     color:#fff;
@@ -568,7 +568,7 @@ a.link-label:hover{
 }
 
 .b-timer-part {
-    font-family: Arial;
+    font-family: Arial, serif;
     line-height:28px;
     font-size:26px;
     color:#0015ff;
@@ -577,7 +577,7 @@ a.link-label:hover{
 .b-timer_wrapper {
     float: right;
     line-height: 73px;
-    vertical-align: text-bottom;
+		text-align:center;
 }
 
 
@@ -591,5 +591,9 @@ a.link-label:hover{
 }
 .b-timer_wrapper_presale .b-timer-clock {
     display: none;
+}
+
+.b-problems {
+	
 }
 
