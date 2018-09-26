@@ -136,3 +136,7 @@ h2.s-ta_l,
 .z-400 {
 	z-index: 400;
 }
+
+.s-pos_r {
+	position: relative;
+}

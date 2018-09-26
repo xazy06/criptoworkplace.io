@@ -166,13 +166,76 @@ h1.h1, h1, h2{
 
 .b-team {
     text-align:center;
-    padding-top: 30px;
     background-color: #000;
-    padding-bottom: 30px;
+		margin: 30px 0;
+		position: relative;
+		perspective: 1200px;
+		height:345px;
 }
 
-.b-team {
-    
+.b-book {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	transform-style: preserve-3d;
+	transition: transform 1s;
+	transform-origin: left center;
+}
+
+.b-team.flip .b-book,
+.b-team:hover .b-book{
+	transition: transform 1s;
+	transform:rotateY(-120deg);
+}
+
+.b-team.flip .b-book-front,
+.b-team:hover .b-book-front {
+	background-color:#111;
+}
+
+.b-book-inside{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top: 0;
+	color: #fff;
+	font-size: 18px;
+	line-height: 23px;
+	backface-visibility: hidden;
+	padding:20px 30px;
+	overflow: auto;
+	text-align:left;
+}
+
+.b-book-front{
+	background-color:#000;
+	width: 100%;
+	height:100%;
+	position:absolute;
+	left:0;
+	top:0;
+	color:#fff;
+	text-align:center;
+	backface-visibility: hidden;
+}
+.b-book-back{
+	background-color:#0b0b0b;
+	transform:rotateY(180deg);
+	width: 100%;
+	height:100%;
+	position:absolute;
+	left:0;
+	top:0;
+	color:#fff;
+	text-align:center;
+	backface-visibility: hidden;
+}
+
+.b-book-inside{
+	backface-visibility: visible;
+	color: #dcdcdc;
+	background: #101010;
 }
 
 .b-team_img_w{
