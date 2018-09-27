@@ -121,6 +121,8 @@ PublishScripts/
 # Node.js Tools for Visual Studio
 .ntvs_analysis.dat
 node_modules/
-res/web/CWPIO/CWPIO/appsettings.Development.json
+res/web/CWPIO/CWPIO/appsettings.*.json
 res/web/CWPIO/CWPIO/appsettings.json
 tx.exe
+res/web/CWPIO/pre-ico web site/appsettings.*.json
+res/web/CWPIO/pre-ico web site/appsettings.json
