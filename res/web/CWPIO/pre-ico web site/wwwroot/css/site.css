@@ -180,10 +180,13 @@ h1.h1, h1, h2{
     font-weight: 700;
 }
 
+.b-team-w{
+    margin: 30px 0;
+}
+
 .b-team {
     text-align:center;
     background-color: #000;
-		margin: 30px 0;
 		position: relative;
 		perspective: 1200px;
 		height:345px;
@@ -206,7 +209,7 @@ h1.h1, h1, h2{
 
 .b-team.flip .b-book-front,
 .b-team:hover .b-book-front {
-	background-color:#111;
+	background-color:#222;
 }
 
 .b-book-inside{
@@ -236,7 +239,7 @@ h1.h1, h1, h2{
 	backface-visibility: hidden;
 }
 .b-book-back{
-	background-color:#0b0b0b;
+	background-color:#292929;
 	transform:rotateY(180deg);
 	width: 100%;
 	height:100%;
@@ -251,7 +254,7 @@ h1.h1, h1, h2{
 .b-book-inside{
 	backface-visibility: visible;
 	color: #dcdcdc;
-	background: #101010;
+	background: #1d1d1d;
 }
 
 .b-team_img_w{
