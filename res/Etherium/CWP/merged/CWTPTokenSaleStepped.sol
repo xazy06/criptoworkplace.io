@@ -640,72 +640,6 @@ contract Crowdsale {
 }
 
 /**
- * @title MintedCrowdsale
- * @dev Extension of Crowdsale contract whose tokens are minted in each purchase.
- * Token ownership should be transferred to MintedCrowdsale for minting.
- */
-contract MintedCrowdsale is Crowdsale {
-
-  /**
-   * @dev Overrides delivery by minting tokens upon purchase.
-   * @param _beneficiary Token purchaser
-   * @param _tokenAmount Number of tokens to be minted
-   */
-  function _deliverTokens(
-    address _beneficiary,
-    uint256 _tokenAmount
-  )
-    internal
-  {
-    // Potentially dangerous assumption about the type of the token.
-    require(MintableToken(address(token)).mint(_beneficiary, _tokenAmount));
-  }
-}
-
-/**
- * @title CappedCrowdsale
- * @dev Crowdsale with a limit for total contributions.
- */
-contract CappedCrowdsale is Crowdsale {
-  using SafeMath for uint256;
-
-  uint256 public cap;
-
-  /**
-   * @dev Constructor, takes maximum amount of wei accepted in the crowdsale.
-   * @param _cap Max amount of wei to be contributed
-   */
-  constructor(uint256 _cap) public {
-    require(_cap > 0);
-    cap = _cap;
-  }
-
-  /**
-   * @dev Checks whether the cap has been reached.
-   * @return Whether the cap was reached
-   */
-  function capReached() public view returns (bool) {
-    return weiRaised >= cap;
-  }
-
-  /**
-   * @dev Extend parent behavior requiring purchase to respect the funding cap.
-   * @param _beneficiary Token purchaser
-   * @param _weiAmount Amount of wei contributed
-   */
-  function _preValidatePurchase(
-    address _beneficiary,
-    uint256 _weiAmount
-  )
-    internal
-  {
-    super._preValidatePurchase(_beneficiary, _weiAmount);
-    require(weiRaised.add(_weiAmount) <= cap);
-  }
-
-}
-
-/**
  * @title TimedCrowdsale
  * @dev Crowdsale accepting contributions only within a time frame.
  */
@@ -762,6 +696,259 @@ contract TimedCrowdsale is Crowdsale {
     super._preValidatePurchase(_beneficiary, _weiAmount);
   }
 
+}
+
+/**
+ * @title SteppedRateCrowdsale
+ * @dev Extension of Crowdsale contract that count steps. 
+ */
+contract SteppedCrowdsale is TimedCrowdsale {
+  using SafeMath
+  for uint256;
+
+  event AddStep(uint256 indexed timestamp, uint256 step, uint256 dueDate);
+
+  mapping(uint256 => uint8) private _stepsMap;
+  uint256[] private _stepsKeyList;
+  mapping(uint8 => uint256) public steps;
+
+  constructor() public {
+    _stepsMap[closingTime] = uint8(1);
+    steps[uint8(1)] = closingTime;
+  }
+
+  function _addStep(uint256 dueDate) internal returns(uint8) {
+    require(openingTime < dueDate);
+    require(closingTime > dueDate);
+    require(_stepsKeyList.length < 255);
+    require(_stepsKeyList.length == 0 || _stepsMap[_stepsKeyList[_stepsKeyList.length - 1]] < dueDate);
+
+    _stepsMap[dueDate] = uint8(_stepsKeyList.push(dueDate));
+    _stepsMap[closingTime] = uint8(_stepsKeyList.length + 1);
+    steps[_stepsMap[dueDate]] = dueDate;
+    steps[_stepsMap[closingTime]] = closingTime;
+    // solium-disable-next-line security/no-block-members
+    emit AddStep(block.timestamp, _stepsMap[dueDate], dueDate);
+    return _stepsMap[dueDate];
+  }
+
+  /**
+   * @dev Returns current step number. 
+   * @return Current step number
+   */
+  function getCurrentStep() public view returns(uint8) {
+    uint256 key;
+    for (uint8 i = 0; i < _stepsKeyList.length; i++) {
+      key = _stepsKeyList[i];
+      // solium-disable-next-line security/no-block-members
+      if (block.timestamp < key)
+        break;
+    }
+
+    // solium-disable-next-line security/no-block-members
+    if (block.timestamp > key)
+    {
+      key = closingTime;
+    }
+
+    return _stepsMap[key];
+  }
+
+  function getStepsCout() public view returns(uint8) {
+    return uint8(_stepsKeyList.length + 1);
+  }
+}
+
+/**
+ * @title SteppedRateCrowdsale
+ * @dev Extension of Crowdsale contract that increases the price of tokens by steps. 
+ */
+contract SteppedRateCrowdsale is SteppedCrowdsale {
+  using SafeMath for uint256;
+
+  event UsdRateUpdated(uint256 indexed timestamp, uint256 oldRate, uint256 newRate);
+  event SetStepRate(uint256 indexed timestamp, uint256 step, uint256 oldRate, uint256 newRate);
+
+  mapping (uint8 => uint256) private _rates;
+  uint256 private _ETH_USD;
+
+  function getStepRate(uint8 step) public view returns(uint256) {
+    require(step > 0 && step <= getStepsCout());
+    if (_rates[step] == 0)
+      return rate;
+    return _rates[step];
+  }
+
+  function _setStepRate(uint8 step, uint256 rate) internal {
+    require(step > 0 && step <= getStepsCout());
+    uint256 oldRate = _rates[step];
+    _rates[step] = rate;
+    // solium-disable-next-line security/no-block-members
+    emit SetStepRate(block.timestamp, step, oldRate, _rates[step]);
+  }
+
+  /**
+   * @dev Returns the rate of tokens per wei at the present time. 
+   * Note that, as price _increases_ with time, the rate _decreases_. 
+   * @return The number of tokens a buyer gets per wei at a given time
+   */
+  function getCurrentRate() public view returns (uint256) {
+    return getStepRate(getCurrentStep());
+  }
+
+  /**
+   * @dev Overrides arent method taking into account variable rate.
+   * @param _weiAmount The value in wei to be converted into tokens
+   * @return The number of tokens _weiAmount wei will buy at present time
+   */
+  function _getTokenAmount(uint256 _weiAmount) internal view returns (uint256) {
+    uint256 currentRate = getCurrentRate();
+    uint256 tokens = _weiAmount.mul(_ETH_USD).div(currentRate);
+    return tokens;
+  }
+
+  function getEthUsdRate() public view returns(uint256) {
+    return _ETH_USD;
+  }
+
+  function _setEthUsdRate(uint256 usdRate) internal {
+    uint256 oldRate = _ETH_USD;
+    _ETH_USD = usdRate;
+    // solium-disable-next-line security/no-block-members
+    emit UsdRateUpdated(block.timestamp, oldRate, _ETH_USD);
+  }
+}
+
+/**
+ * @title SteppedCapCrowdsale
+ * @dev Extension of Crowdsale contract that increases the price of tokens by steps. 
+ */
+contract SteppedCapCrowdsale is SteppedCrowdsale {
+  using SafeMath for uint256;
+
+  event SetStepCap(uint256 indexed timestamp, uint256 step, uint256 oldCap, uint256 newCap);
+
+  mapping (uint8 => uint256) private _caps;
+  mapping (uint8 => uint256) private _tokensSold;
+
+  uint256 private _initCap;
+  uint256 private _minAmount;
+
+  constructor (uint256 initCap, uint256 minAmount) public {
+    _initCap = initCap;
+    _minAmount = minAmount;
+  }
+
+  function getStepCap(uint8 _step) public view returns(uint256) {
+    require(_step > 0 && _step <= getStepsCout());
+    if (_caps[_step] == 0)
+      return _initCap;
+    return _caps[_step];
+  }
+
+  function getStepTokenSold(uint8 _step) public view returns(uint256) {
+    require(_step > 0 && _step <= getStepsCout());
+    return _tokensSold[_step];
+  }
+
+  function _setStepCap(uint8 _step, uint256 _cap) internal {
+    require(_step > 0 && _step <= getStepsCout());
+    uint256 oldCap = _caps[_step];
+    _caps[_step] = _cap;
+    // solium-disable-next-line security/no-block-members
+    emit SetStepCap(block.timestamp, _step, oldCap, _caps[_step]);
+  }
+
+  function _setStepTokenSold(uint8 _step, uint256 _tokens) internal {
+    require(_step > 0 && _step <= getStepsCout());
+    _tokensSold[_step] = _tokensSold[_step].add(_tokens);
+  }
+
+  function getCurrentCap() public view returns (uint256) {
+    return getStepCap(getCurrentStep());
+  }
+  function getCurrentTokenSold() public view returns (uint256) {
+    return getStepTokenSold(getCurrentStep());
+  }
+
+  /**
+   * @dev Extend parent behavior requiring purchase to respect the funding cap.
+   * @param _beneficiary Token purchaser
+   * @param _weiAmount Amount of wei contributed
+   */
+  function _preValidatePurchase(address _beneficiary, uint256 _weiAmount) internal {
+    super._preValidatePurchase(_beneficiary, _weiAmount);
+    uint256 tokens = _getTokenAmount(_weiAmount);    
+    require(getCurrentCap().sub(getCurrentTokenSold()) < _minAmount || tokens >= _minAmount);
+    require(getCurrentTokenSold().add(tokens) <= getCurrentCap());
+  }
+
+  function _updatePurchasingState(address _beneficiary, uint256 _weiAmount) internal {
+    super._updatePurchasingState(_beneficiary, _weiAmount);
+    uint256 tokens = _getTokenAmount(_weiAmount);   
+    uint256 dep = (tokens % 1 ether);
+    _setStepTokenSold(getCurrentStep(), tokens.sub(dep));
+  }
+}
+
+/**
+ * @title PostDeliveryCrowdsale
+ * @dev Crowdsale that locks tokens from withdrawal until it ends.
+ */
+contract PostDeliveryCrowdsale is TimedCrowdsale {
+  using SafeMath for uint256;
+
+  mapping(address => uint256) public balances;
+  address[] private _balancesList;
+
+  /**
+   * @dev Withdraw tokens only after crowdsale ends.
+   */
+  function _withdrawTokens() internal {
+    require(hasClosed());
+    for(uint256 i = 0; i < _balancesList.length; i++)
+    {
+      uint256 amount = balances[_balancesList[i]];
+      require(amount > 0);
+      balances[_balancesList[i]] = 0;
+      _deliverTokens(_balancesList[i], amount);
+    }    
+  }
+
+  /**
+   * @dev Overrides parent by storing balances instead of issuing tokens right away.
+   * @param _beneficiary Token purchaser
+   * @param _tokenAmount Amount of tokens purchased
+   */
+  function _processPurchase(address _beneficiary, uint256 _tokenAmount) internal {
+    if (balances[_beneficiary] == 0)
+      _balancesList.push(_beneficiary);
+    balances[_beneficiary] = balances[_beneficiary].add(_tokenAmount);
+  }
+
+}
+
+/**
+ * @title MintedCrowdsale
+ * @dev Extension of Crowdsale contract whose tokens are minted in each purchase.
+ * Token ownership should be transferred to MintedCrowdsale for minting.
+ */
+contract MintedCrowdsale is Crowdsale {
+
+  /**
+   * @dev Overrides delivery by minting tokens upon purchase.
+   * @param _beneficiary Token purchaser
+   * @param _tokenAmount Number of tokens to be minted
+   */
+  function _deliverTokens(
+    address _beneficiary,
+    uint256 _tokenAmount
+  )
+    internal
+  {
+    // Potentially dangerous assumption about the type of the token.
+    require(MintableToken(address(token)).mint(_beneficiary, _tokenAmount));
+  }
 }
 
 /**
@@ -920,113 +1107,6 @@ contract RBAC {
 }
 
 /**
- * @title Whitelist
- * @dev The Whitelist contract has a whitelist of addresses, and provides basic authorization control functions.
- * This simplifies the implementation of "user permissions".
- */
-contract Whitelist is Ownable, RBAC {
-  string public constant ROLE_WHITELISTED = "whitelist";
-
-  /**
-   * @dev Throws if operator is not whitelisted.
-   * @param _operator address
-   */
-  modifier onlyIfWhitelisted(address _operator) {
-    checkRole(_operator, ROLE_WHITELISTED);
-    _;
-  }
-
-  /**
-   * @dev add an address to the whitelist
-   * @param _operator address
-   * @return true if the address was added to the whitelist, false if the address was already in the whitelist
-   */
-  function addAddressToWhitelist(address _operator)
-    public
-    onlyOwner
-  {
-    addRole(_operator, ROLE_WHITELISTED);
-  }
-
-  /**
-   * @dev getter to determine if address is in whitelist
-   */
-  function whitelist(address _operator)
-    public
-    view
-    returns (bool)
-  {
-    return hasRole(_operator, ROLE_WHITELISTED);
-  }
-
-  /**
-   * @dev add addresses to the whitelist
-   * @param _operators addresses
-   * @return true if at least one address was added to the whitelist,
-   * false if all addresses were already in the whitelist
-   */
-  function addAddressesToWhitelist(address[] _operators)
-    public
-    onlyOwner
-  {
-    for (uint256 i = 0; i < _operators.length; i++) {
-      addAddressToWhitelist(_operators[i]);
-    }
-  }
-
-  /**
-   * @dev remove an address from the whitelist
-   * @param _operator address
-   * @return true if the address was removed from the whitelist,
-   * false if the address wasn't in the whitelist in the first place
-   */
-  function removeAddressFromWhitelist(address _operator)
-    public
-    onlyOwner
-  {
-    removeRole(_operator, ROLE_WHITELISTED);
-  }
-
-  /**
-   * @dev remove addresses from the whitelist
-   * @param _operators addresses
-   * @return true if at least one address was removed from the whitelist,
-   * false if all addresses weren't in the whitelist in the first place
-   */
-  function removeAddressesFromWhitelist(address[] _operators)
-    public
-    onlyOwner
-  {
-    for (uint256 i = 0; i < _operators.length; i++) {
-      removeAddressFromWhitelist(_operators[i]);
-    }
-  }
-
-}
-
-/**
- * @title WhitelistedCrowdsale
- * @dev Crowdsale in which only whitelisted users can contribute.
- */
-contract WhitelistedCrowdsale is Whitelist, Crowdsale {
-  /**
-   * @dev Extend parent behavior requiring beneficiary to be in whitelist.
-   * @param _beneficiary Token beneficiary
-   * @param _weiAmount Amount of wei contributed
-   */
-  function _preValidatePurchase(
-    address _beneficiary,
-    uint256 _weiAmount
-  )
-    internal
-    onlyIfWhitelisted(_beneficiary)
-  {
-    super._preValidatePurchase(_beneficiary, _weiAmount);
-  }
-
-}
-
-/**
  * @title RBACWithAdmin
  * @author Matt Condon (@Shrugs)
  * @dev It's recommended that you define constants in the contract,
@@ -1077,57 +1157,38 @@ contract RBACWithAdmin is RBAC {
   }
 }
 
-contract CWTPTokenSale is WhitelistedCrowdsale, MintedCrowdsale, RBACWithAdmin, CappedCrowdsale, TimedCrowdsale {
-
-  struct FixedRate {
-    uint256 rate;
-    uint256 time;
-  }
+contract CWTPTokenSale is PostDeliveryCrowdsale, MintedCrowdsale, RBACWithAdmin, SteppedRateCrowdsale, SteppedCapCrowdsale {
 
   string public constant ROLE_DAPP = "dapp";
   string public constant ROLE_SRV = "service";
 
-  mapping(address => FixedRate) private _fixRate;
+  mapping (address => uint256) public deposited;
+  event Refunded(address indexed beneficiary, uint256 weiAmount);
+  uint256 private _totalRefundDeposit;
 
-  constructor(uint256 _startTime, uint256 _endTime, uint256 _cap, address _wallet, ERC20 _tokenAddress) public
+  constructor(uint256 _startTime, uint256 _endTime, uint256 _cap, uint256 _minAmount, uint256 _rate, address _wallet, ERC20 _tokenAddress) public
     TimedCrowdsale(_startTime, _endTime)
-    CappedCrowdsale(_cap)
-    Crowdsale(1, _wallet, _tokenAddress)
+    SteppedCapCrowdsale(_cap, _minAmount)
+    Crowdsale(_rate, _wallet, _tokenAddress)
   {
     require(Ownable(_tokenAddress) != address(0));
     addRole(msg.sender, ROLE_DAPP);
     addRole(msg.sender, ROLE_SRV);
+    //addRole(address(0x000000000000000000000), ROLE_DAPP);
   }
 
-  /**
-   * @dev add an address to the whitelist
-   * @param _operator address
-   * @return true if the address was added to the whitelist, false if the address was already in the whitelist
-   */
-  function addAddressToWhitelist(address _operator) public onlyRole(ROLE_DAPP)
-  {
-    addRole(_operator, ROLE_WHITELISTED);
+  function addCrowdsaleStep(uint256 _timestamp, uint256 _cap, uint256 _rate) onlyRole(ROLE_DAPP) public{
+    uint8 step = _addStep(_timestamp);
+    _setStepCap(step, _cap);
+    _setStepRate(step, _rate);
   }
 
-  function setRateForTransaction(uint256 newRate, address buyer) public onlyIfWhitelisted(buyer) onlyRole(ROLE_DAPP) returns(uint256)
-  {
-    _fixRate[buyer] = FixedRate(newRate, block.timestamp.add(15 minutes));
+  function setEthUsdRate(uint256 usdRate) onlyRole(ROLE_SRV) public{
+    _setEthUsdRate(usdRate);
   }
 
-  /**
-   * @dev Extend parent behavior requiring beneficiary to be in fix rate list.
-   * @param _beneficiary Token beneficiary
-   * @param _weiAmount Amount of wei contributed
-   */
-  function _preValidatePurchase(
-    address _beneficiary,
-    uint256 _weiAmount
-  )
-    internal
-  {
-    require(_fixRate[_beneficiary].time > block.timestamp);
-    rate = _fixRate[_beneficiary].rate;
-    super._preValidatePurchase(_beneficiary, _weiAmount);
+  function getPriceForTokens(uint256 amount) public view returns(uint256) {
+    return amount.mul(getCurrentRate()).div(getEthUsdRate());
   }
 
   function transferTokenOwnership() onlyAdmin public
@@ -1137,8 +1198,35 @@ contract CWTPTokenSale is WhitelistedCrowdsale, MintedCrowdsale, RBACWithAdmin, 
     Ownable(token).transferOwnership(msg.sender);
   }
 
+  function _processPurchase(address _beneficiary, uint256 _tokenAmount) internal {
+    uint256 dep = (_tokenAmount % 1 ether);
+    uint256 currentRate = getCurrentRate();
+    uint256 refund = dep.mul(currentRate).div(getEthUsdRate());
+    deposited[msg.sender] = deposited[msg.sender].add(refund);
+    _totalRefundDeposit = _totalRefundDeposit.add(refund);
+    super._processPurchase(_beneficiary, _tokenAmount.sub(dep));
+  }
+
+  function _forwardFunds() internal {
+    uint256 funds = msg.value;
+    if (address(this).balance.sub(funds) < _totalRefundDeposit)
+    {
+      funds = funds.sub(_totalRefundDeposit.sub(address(this).balance.sub(funds)));
+    }
+    wallet.transfer(funds);
+  }
+
+  function refund(address investor) public {
+    require(deposited[investor] > 0);
+    uint256 depositedValue = deposited[investor];
+    deposited[investor] = 0;
+    investor.transfer(depositedValue);
+    emit Refunded(investor, depositedValue);
+  }
+
   function CloseContract() onlyAdmin public {
     require(hasClosed());
+    _withdrawTokens();
     if(Ownable(token).owner() == address(this))
       transferTokenOwnership();
     selfdestruct(msg.sender);

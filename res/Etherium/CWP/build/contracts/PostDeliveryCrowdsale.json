@@ -170,9 +170,9 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity 0.4.24;\r\n\r\nimport \"openzeppelin-solidity/contracts/crowdsale/validation/TimedCrowdsale.sol\";\r\nimport \"openzeppelin-solidity/contracts/token/ERC20/ERC20.sol\";\r\nimport \"openzeppelin-solidity/contracts/math/SafeMath.sol\";\r\n\r\n\r\n/**\r\n * @title PostDeliveryCrowdsale\r\n * @dev Crowdsale that locks tokens from withdrawal until it ends.\r\n */\r\ncontract PostDeliveryCrowdsale is TimedCrowdsale {\r\n  using SafeMath for uint256;\r\n\r\n  mapping(address => uint256) public balances;\r\n  address[] private _balancesList;\r\n\r\n  /**\r\n   * @dev Withdraw tokens only after crowdsale ends.\r\n   */\r\n  function _withdrawTokens() internal {\r\n    require(hasClosed());\r\n    for(uint256 i = 0; i < _balancesList.length; i++)\r\n    {\r\n      uint256 amount = balances[_balancesList[i]];\r\n      require(amount > 0);\r\n      balances[_balancesList[i]] = 0;\r\n      _deliverTokens(_balancesList[i], amount);\r\n    }    \r\n  }\r\n\r\n  /**\r\n   * @dev Overrides parent by storing balances instead of issuing tokens right away.\r\n   * @param _beneficiary Token purchaser\r\n   * @param _tokenAmount Amount of tokens purchased\r\n   */\r\n  function _processPurchase(address _beneficiary, uint256 _tokenAmount) internal {\r\n    if (balances[_beneficiary] == 0)\r\n      _balancesList.push(_beneficiary);\r\n    balances[_beneficiary] = balances[_beneficiary].add(_tokenAmount);\r\n  }\r\n\r\n}\r\n",
-  "sourcePath": "c:\\Users\\maxwell\\Documents\\GitHub\\cryptoworkplace.io\\res\\Etherium\\CWP\\contracts\\PostDeliveryCrowdsale.sol",
+  "sourcePath": "C:\\Users\\mmaslich\\Documents\\GitHub\\cryptoworkplace.io\\res\\Etherium\\CWP\\contracts\\PostDeliveryCrowdsale.sol",
   "ast": {
-    "absolutePath": "/c/Users/maxwell/Documents/GitHub/cryptoworkplace.io/res/Etherium/CWP/contracts/PostDeliveryCrowdsale.sol",
+    "absolutePath": "/C/Users/mmaslich/Documents/GitHub/cryptoworkplace.io/res/Etherium/CWP/contracts/PostDeliveryCrowdsale.sol",
     "exportedSymbols": {
       "PostDeliveryCrowdsale": [
         474
@@ -197,7 +197,7 @@
         "id": 377,
         "nodeType": "ImportDirective",
         "scope": 475,
-        "sourceUnit": 1467,
+        "sourceUnit": 1709,
         "src": "27:81:2",
         "symbolAliases": [],
         "unitAlias": ""
@@ -208,7 +208,7 @@
         "id": 378,
         "nodeType": "ImportDirective",
         "scope": 475,
-        "sourceUnit": 2045,
+        "sourceUnit": 2077,
         "src": "110:63:2",
         "symbolAliases": [],
         "unitAlias": ""
@@ -219,7 +219,7 @@
         "id": 379,
         "nodeType": "ImportDirective",
         "scope": 475,
-        "sourceUnit": 1561,
+        "sourceUnit": 1803,
         "src": "175:59:2",
         "symbolAliases": [],
         "unitAlias": ""
@@ -233,10 +233,10 @@
               "id": 380,
               "name": "TimedCrowdsale",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1466,
+              "referencedDeclaration": 1708,
               "src": "385:14:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_TimedCrowdsale_$1466",
+                "typeIdentifier": "t_contract$_TimedCrowdsale_$1708",
                 "typeString": "contract TimedCrowdsale"
               }
             },
@@ -246,8 +246,8 @@
           }
         ],
         "contractDependencies": [
-          1354,
-          1466
+          1594,
+          1708
         ],
         "contractKind": "contract",
         "documentation": "@title PostDeliveryCrowdsale\r\n@dev Crowdsale that locks tokens from withdrawal until it ends.\r",
@@ -255,8 +255,8 @@
         "id": 474,
         "linearizedBaseContracts": [
           474,
-          1466,
-          1354
+          1708,
+          1594
         ],
         "name": "PostDeliveryCrowdsale",
         "nodeType": "ContractDefinition",
@@ -268,10 +268,10 @@
               "id": 382,
               "name": "SafeMath",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1560,
+              "referencedDeclaration": 1802,
               "src": "411:8:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_SafeMath_$1560",
+                "typeIdentifier": "t_contract$_SafeMath_$1802",
                 "typeString": "library SafeMath"
               }
             },
@@ -388,7 +388,7 @@
                           "name": "hasClosed",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1448,
+                          "referencedDeclaration": 1690,
                           "src": "643:9:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_internal_view$__$returns$_t_bool_$",
@@ -421,10 +421,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2435,
-                        2436
+                        2541,
+                        2542
                       ],
-                      "referencedDeclaration": 2435,
+                      "referencedDeclaration": 2541,
                       "src": "635:7:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -624,10 +624,10 @@
                             "name": "require",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [
-                              2435,
-                              2436
+                              2541,
+                              2542
                             ],
-                            "referencedDeclaration": 2435,
+                            "referencedDeclaration": 2541,
                             "src": "778:7:2",
                             "typeDescriptions": {
                               "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -830,7 +830,7 @@
                             "name": "_deliverTokens",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1308,
+                            "referencedDeclaration": 1548,
                             "src": "845:14:2",
                             "typeDescriptions": {
                               "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_uint256_$returns$__$",
@@ -1319,7 +1319,7 @@
                         "lValueRequested": false,
                         "memberName": "add",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 1559,
+                        "referencedDeclaration": 1801,
                         "src": "1293:26:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_function_internal_pure$_t_uint256_$_t_uint256_$returns$_t_uint256_$bound_to$_t_uint256_$",
@@ -1429,7 +1429,7 @@
             "scope": 474,
             "src": "1103:236:2",
             "stateMutability": "nonpayable",
-            "superFunction": 1321,
+            "superFunction": 1561,
             "visibility": "internal"
           }
         ],
@@ -1440,7 +1440,7 @@
     "src": "0:1346:2"
   },
   "legacyAST": {
-    "absolutePath": "/c/Users/maxwell/Documents/GitHub/cryptoworkplace.io/res/Etherium/CWP/contracts/PostDeliveryCrowdsale.sol",
+    "absolutePath": "/C/Users/mmaslich/Documents/GitHub/cryptoworkplace.io/res/Etherium/CWP/contracts/PostDeliveryCrowdsale.sol",
     "exportedSymbols": {
       "PostDeliveryCrowdsale": [
         474
@@ -1465,7 +1465,7 @@
         "id": 377,
         "nodeType": "ImportDirective",
         "scope": 475,
-        "sourceUnit": 1467,
+        "sourceUnit": 1709,
         "src": "27:81:2",
         "symbolAliases": [],
         "unitAlias": ""
@@ -1476,7 +1476,7 @@
         "id": 378,
         "nodeType": "ImportDirective",
         "scope": 475,
-        "sourceUnit": 2045,
+        "sourceUnit": 2077,
         "src": "110:63:2",
         "symbolAliases": [],
         "unitAlias": ""
@@ -1487,7 +1487,7 @@
         "id": 379,
         "nodeType": "ImportDirective",
         "scope": 475,
-        "sourceUnit": 1561,
+        "sourceUnit": 1803,
         "src": "175:59:2",
         "symbolAliases": [],
         "unitAlias": ""
@@ -1501,10 +1501,10 @@
               "id": 380,
               "name": "TimedCrowdsale",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1466,
+              "referencedDeclaration": 1708,
               "src": "385:14:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_TimedCrowdsale_$1466",
+                "typeIdentifier": "t_contract$_TimedCrowdsale_$1708",
                 "typeString": "contract TimedCrowdsale"
               }
             },
@@ -1514,8 +1514,8 @@
           }
         ],
         "contractDependencies": [
-          1354,
-          1466
+          1594,
+          1708
         ],
         "contractKind": "contract",
         "documentation": "@title PostDeliveryCrowdsale\r\n@dev Crowdsale that locks tokens from withdrawal until it ends.\r",
@@ -1523,8 +1523,8 @@
         "id": 474,
         "linearizedBaseContracts": [
           474,
-          1466,
-          1354
+          1708,
+          1594
         ],
         "name": "PostDeliveryCrowdsale",
         "nodeType": "ContractDefinition",
@@ -1536,10 +1536,10 @@
               "id": 382,
               "name": "SafeMath",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1560,
+              "referencedDeclaration": 1802,
               "src": "411:8:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_SafeMath_$1560",
+                "typeIdentifier": "t_contract$_SafeMath_$1802",
                 "typeString": "library SafeMath"
               }
             },
@@ -1656,7 +1656,7 @@
                           "name": "hasClosed",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1448,
+                          "referencedDeclaration": 1690,
                           "src": "643:9:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_function_internal_view$__$returns$_t_bool_$",
@@ -1689,10 +1689,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2435,
-                        2436
+                        2541,
+                        2542
                       ],
-                      "referencedDeclaration": 2435,
+                      "referencedDeclaration": 2541,
                       "src": "635:7:2",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -1892,10 +1892,10 @@
                             "name": "require",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [
-                              2435,
-                              2436
+                              2541,
+                              2542
                             ],
-                            "referencedDeclaration": 2435,
+                            "referencedDeclaration": 2541,
                             "src": "778:7:2",
                             "typeDescriptions": {
                               "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
@@ -2098,7 +2098,7 @@
                             "name": "_deliverTokens",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 1308,
+                            "referencedDeclaration": 1548,
                             "src": "845:14:2",
                             "typeDescriptions": {
                               "typeIdentifier": "t_function_internal_nonpayable$_t_address_$_t_uint256_$returns$__$",
@@ -2587,7 +2587,7 @@
                         "lValueRequested": false,
                         "memberName": "add",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 1559,
+                        "referencedDeclaration": 1801,
                         "src": "1293:26:2",
                         "typeDescriptions": {
                           "typeIdentifier": "t_function_internal_pure$_t_uint256_$_t_uint256_$returns$_t_uint256_$bound_to$_t_uint256_$",
@@ -2697,7 +2697,7 @@
             "scope": 474,
             "src": "1103:236:2",
             "stateMutability": "nonpayable",
-            "superFunction": 1321,
+            "superFunction": 1561,
             "visibility": "internal"
           }
         ],
@@ -2712,6 +2712,6 @@
     "version": "0.4.24+commit.e67f0147.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "2.0.0",
-  "updatedAt": "2018-06-03T20:18:07.758Z"
+  "schemaVersion": "2.0.1",
+  "updatedAt": "2018-09-27T12:21:31.620Z"
 }

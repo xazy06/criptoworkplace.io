@@ -9,39 +9,43 @@ library SafeMath {
   /**
   * @dev Multiplies two numbers, throws on overflow.
   */
-  function mul(uint256 a, uint256 b) internal pure returns (uint256 c) {
-    if (a == 0) {
+  function mul(uint256 _a, uint256 _b) internal pure returns (uint256 c) {
+    // Gas optimization: this is cheaper than asserting 'a' not being zero, but the
+    // benefit is lost if 'b' is also tested.
+    // See: https://github.com/OpenZeppelin/openzeppelin-solidity/pull/522
+    if (_a == 0) {
       return 0;
     }
-    c = a * b;
-    assert(c / a == b);
+
+    c = _a * _b;
+    assert(c / _a == _b);
     return c;
   }
 
   /**
   * @dev Integer division of two numbers, truncating the quotient.
   */
-  function div(uint256 a, uint256 b) internal pure returns (uint256) {
-    // assert(b > 0); // Solidity automatically throws when dividing by 0
-    // uint256 c = a / b;
-    // assert(a == b * c + a % b); // There is no case in which this doesn't hold
-    return a / b;
+  function div(uint256 _a, uint256 _b) internal pure returns (uint256) {
+    // assert(_b > 0); // Solidity automatically throws when dividing by 0
+    // uint256 c = _a / _b;
+    // assert(_a == _b * c + _a % _b); // There is no case in which this doesn't hold
+    return _a / _b;
   }
 
   /**
   * @dev Subtracts two numbers, throws on overflow (i.e. if subtrahend is greater than minuend).
   */
-  function sub(uint256 a, uint256 b) internal pure returns (uint256) {
-    assert(b <= a);
-    return a - b;
+  function sub(uint256 _a, uint256 _b) internal pure returns (uint256) {
+    assert(_b <= _a);
+    return _a - _b;
   }
 
   /**
   * @dev Adds two numbers, throws on overflow.
   */
-  function add(uint256 a, uint256 b) internal pure returns (uint256 c) {
-    c = a + b;
-    assert(c >= a);
+  function add(uint256 _a, uint256 _b) internal pure returns (uint256 c) {
+    c = _a + _b;
+    assert(c >= _a);
     return c;
   }
 }
@@ -49,12 +53,12 @@ library SafeMath {
 /**
  * @title ERC20Basic
  * @dev Simpler version of ERC20 interface
- * @dev see https://github.com/ethereum/EIPs/issues/179
+ * See https://github.com/ethereum/EIPs/issues/179
  */
 contract ERC20Basic {
   function totalSupply() public view returns (uint256);
-  function balanceOf(address who) public view returns (uint256);
-  function transfer(address to, uint256 value) public returns (bool);
+  function balanceOf(address _who) public view returns (uint256);
+  function transfer(address _to, uint256 _value) public returns (bool);
   event Transfer(address indexed from, address indexed to, uint256 value);
 }
 
@@ -63,10 +67,57 @@ contract ERC20Basic {
  * @dev see https://github.com/ethereum/EIPs/issues/20
  */
 contract ERC20 is ERC20Basic {
-  function allowance(address owner, address spender) public view returns (uint256);
-  function transferFrom(address from, address to, uint256 value) public returns (bool);
-  function approve(address spender, uint256 value) public returns (bool);
-  event Approval(address indexed owner, address indexed spender, uint256 value);
+  function allowance(address _owner, address _spender)
+    public view returns (uint256);
+
+  function transferFrom(address _from, address _to, uint256 _value)
+    public returns (bool);
+
+  function approve(address _spender, uint256 _value) public returns (bool);
+  event Approval(
+    address indexed owner,
+    address indexed spender,
+    uint256 value
+  );
+}
+
+/**
+ * @title SafeERC20
+ * @dev Wrappers around ERC20 operations that throw on failure.
+ * To use this library you can add a `using SafeERC20 for ERC20;` statement to your contract,
+ * which allows you to call the safe operations as `token.safeTransfer(...)`, etc.
+ */
+library SafeERC20 {
+  function safeTransfer(
+    ERC20Basic _token,
+    address _to,
+    uint256 _value
+  )
+    internal
+  {
+    require(_token.transfer(_to, _value));
+  }
+
+  function safeTransferFrom(
+    ERC20 _token,
+    address _from,
+    address _to,
+    uint256 _value
+  )
+    internal
+  {
+    require(_token.transferFrom(_from, _to, _value));
+  }
+
+  function safeApprove(
+    ERC20 _token,
+    address _spender,
+    uint256 _value
+  )
+    internal
+  {
+    require(_token.approve(_spender, _value));
+  }
 }
 
 /**
@@ -76,13 +127,14 @@ contract ERC20 is ERC20Basic {
  * such functionality in its most fundamental form and can be extended to provide additional
  * functionality and/or custom behavior.
  * The external interface represents the basic interface for purchasing tokens, and conform
- * the base architecture for crowdsales. They are *not* intended to be modified / overriden.
+ * the base architecture for crowdsales. They are *not* intended to be modified / overridden.
  * The internal interface conforms the extensible and modifiable surface of crowdsales. Override
- * the methods to add functionality. Consider using 'super' where appropiate to concatenate
+ * the methods to add functionality. Consider using 'super' where appropriate to concatenate
  * behavior.
  */
 contract Crowdsale {
   using SafeMath for uint256;
+  using SafeERC20 for ERC20;
 
   // The token being sold
   ERC20 public token;
@@ -90,7 +142,10 @@ contract Crowdsale {
   // Address where funds are collected
   address public wallet;
 
-  // How many token units a buyer gets per wei
+  // How many token units a buyer gets per wei.
+  // The rate is the conversion between wei and the smallest and indivisible token unit.
+  // So, if you are using a rate of 1 with a DetailedERC20 token with 3 decimals called TOK
+  // 1 wei will give you 1 unit, or 0.001 TOK.
   uint256 public rate;
 
   // Amount of wei raised
@@ -103,14 +158,19 @@ contract Crowdsale {
    * @param value weis paid for purchase
    * @param amount amount of tokens purchased
    */
-  event TokenPurchase(address indexed purchaser, address indexed beneficiary, uint256 value, uint256 amount);
+  event TokenPurchase(
+    address indexed purchaser,
+    address indexed beneficiary,
+    uint256 value,
+    uint256 amount
+  );
 
   /**
    * @param _rate Number of token units a buyer gets per wei
    * @param _wallet Address where collected funds will be forwarded to
    * @param _token Address of the token being sold
    */
-  function Crowdsale(uint256 _rate, address _wallet, ERC20 _token) public {
+  constructor(uint256 _rate, address _wallet, ERC20 _token) public {
     require(_rate > 0);
     require(_wallet != address(0));
     require(_token != address(0));
@@ -165,11 +225,19 @@ contract Crowdsale {
   // -----------------------------------------
 
   /**
-   * @dev Validation of an incoming purchase. Use require statements to revert state when conditions are not met. Use super to concatenate validations.
+   * @dev Validation of an incoming purchase. Use require statements to revert state when conditions are not met. Use `super` in contracts that inherit from Crowdsale to extend their validations.
+   * Example from CappedCrowdsale.sol's _preValidatePurchase method: 
+   *   super._preValidatePurchase(_beneficiary, _weiAmount);
+   *   require(weiRaised.add(_weiAmount) <= cap);
    * @param _beneficiary Address performing the token purchase
    * @param _weiAmount Value in wei involved in the purchase
    */
-  function _preValidatePurchase(address _beneficiary, uint256 _weiAmount) internal {
+  function _preValidatePurchase(
+    address _beneficiary,
+    uint256 _weiAmount
+  )
+    internal
+  {
     require(_beneficiary != address(0));
     require(_weiAmount != 0);
   }
@@ -179,7 +247,12 @@ contract Crowdsale {
    * @param _beneficiary Address performing the token purchase
    * @param _weiAmount Value in wei involved in the purchase
    */
-  function _postValidatePurchase(address _beneficiary, uint256 _weiAmount) internal {
+  function _postValidatePurchase(
+    address _beneficiary,
+    uint256 _weiAmount
+  )
+    internal
+  {
     // optional override
   }
 
@@ -188,8 +261,13 @@ contract Crowdsale {
    * @param _beneficiary Address performing the token purchase
    * @param _tokenAmount Number of tokens to be emitted
    */
-  function _deliverTokens(address _beneficiary, uint256 _tokenAmount) internal {
-    token.transfer(_beneficiary, _tokenAmount);
+  function _deliverTokens(
+    address _beneficiary,
+    uint256 _tokenAmount
+  )
+    internal
+  {
+    token.safeTransfer(_beneficiary, _tokenAmount);
   }
 
   /**
@@ -197,7 +275,12 @@ contract Crowdsale {
    * @param _beneficiary Address receiving the tokens
    * @param _tokenAmount Number of tokens to be purchased
    */
-  function _processPurchase(address _beneficiary, uint256 _tokenAmount) internal {
+  function _processPurchase(
+    address _beneficiary,
+    uint256 _tokenAmount
+  )
+    internal
+  {
     _deliverTokens(_beneficiary, _tokenAmount);
   }
 
@@ -206,7 +289,12 @@ contract Crowdsale {
    * @param _beneficiary Address receiving the tokens
    * @param _weiAmount Value in wei involved in the purchase
    */
-  function _updatePurchasingState(address _beneficiary, uint256 _weiAmount) internal {
+  function _updatePurchasingState(
+    address _beneficiary,
+    uint256 _weiAmount
+  )
+    internal
+  {
     // optional override
   }
 
@@ -215,7 +303,9 @@ contract Crowdsale {
    * @param _weiAmount Value in wei to be converted into tokens
    * @return Number of tokens that can be purchased with the specified _weiAmount
    */
-  function _getTokenAmount(uint256 _weiAmount) internal view returns (uint256) {
+  function _getTokenAmount(uint256 _weiAmount)
+    internal view returns (uint256)
+  {
     return _weiAmount.mul(rate);
   }
 
@@ -251,7 +341,7 @@ contract TimedCrowdsale is Crowdsale {
    * @param _openingTime Crowdsale opening time
    * @param _closingTime Crowdsale closing time
    */
-  function TimedCrowdsale(uint256 _openingTime, uint256 _closingTime) public {
+  constructor(uint256 _openingTime, uint256 _closingTime) public {
     // solium-disable-next-line security/no-block-members
     require(_openingTime >= block.timestamp);
     require(_closingTime >= _openingTime);
@@ -274,7 +364,13 @@ contract TimedCrowdsale is Crowdsale {
    * @param _beneficiary Token purchaser
    * @param _weiAmount Amount of wei contributed
    */
-  function _preValidatePurchase(address _beneficiary, uint256 _weiAmount) internal onlyWhileOpen {
+  function _preValidatePurchase(
+    address _beneficiary,
+    uint256 _weiAmount
+  )
+    internal
+    onlyWhileOpen
+  {
     super._preValidatePurchase(_beneficiary, _weiAmount);
   }
 
