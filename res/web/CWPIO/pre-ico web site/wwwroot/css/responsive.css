@@ -74,6 +74,10 @@
 		text-align: center;
 		padding-left: 0;
 	}
+
+	.b-team_img_w img{
+		width:100%;
+	}
 }
 
 @media only screen and (min-width:481px) and (max-width:767px){
@@ -140,5 +144,9 @@
 	.b-problem {
 		text-align: center;
 		padding-left: 0;
+	}
+	
+	.b-team_img_w img{
+		width:100%;
 	}
 }
