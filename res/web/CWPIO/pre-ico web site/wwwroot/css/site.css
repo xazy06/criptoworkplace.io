@@ -2,6 +2,7 @@
 @import url('common.css');
 @import url('cwp-font/styles.css');
 @import url('cwp-font/extentions.css');
+@import url('responsive.css');
 
 @font-face {
     font-family: 'RobotoIn';
@@ -153,6 +154,7 @@ h1.h1, h1, h2{
 
 .navbar-brand {
     padding:0;
+    margin-left: 15px;
 }
 
 .b-logo-text {
@@ -640,4 +642,3 @@ a.link-label:hover{
 .b-problems {
 	
 }
-
