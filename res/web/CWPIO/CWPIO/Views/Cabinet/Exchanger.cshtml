@@ -89,7 +89,8 @@
 			&nbsp;&nbsp;
 		</h5>
 			
-		<button data-bind="disable:flags.minCont" type="button" class="btn btn-success" data-toggle="modal" data-target="#m_modal_4">Purchase</button>
+		<button data-bind="disable:flags.minCont, click: actions.initPurchasing" type="button" 
+		        class="btn btn-success" data-toggle="modal" data-target="#m_modal_4">Purchase</button>
 	</div>
 </div>
 
@@ -464,23 +465,27 @@
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 style="text-align:center" class="modal-title" id="exampleModalLabel">Purchase</h5>
+				<h5 style="text-align: center" class="modal-title" id="exampleModalLabel">
+					Purchase in process, <strong>freezed</strong> exchange rate is <!-- ko text: obs.freezed --><!--/ko--> ETH for 1 CWT-P
+				</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">×</span>
 				</button>
 			</div>
-			<div style="text-align:center" class="modal-body">
-				<h2 style="margin-bottom: 20px;">Buy <!--ko text:obs.cwtCount-->0<!--/ko--> CWT-P to <!--ko text:obs.needPay-->0<!--/ko--> ETH</h2>
+			<div style="text-align: center" class="modal-body">
+				<p>You have 5 minutes to complete the transaction after which it will be canceled</p>
 				
+				<h2 style="margin-bottom: 20px;">Buy <!--ko text:obs.cwtCount-->0<!--/ko--> CWT-P to <!--ko text:obs.needPay-->0<!--/ko--> ETH</h2>
+
 				<h4 style="margin-bottom: 20px;">Send <!--ko text:obs.needPay-->0<!--/ko--> ETH to the specified address</h4>
-			
+
 				<a target="_blank" style="display: block; text-overflow: ellipsis; margin-bottom: 20px; overflow: hidden;" href="https://etherscan.io/token/0x844d61a974f3792914815d9eb8b9ebb6ecc8b0a7">
 					0x844d61a974f3792914815d9eb8b9ebb6ecc8b0a7
 				</a>
-			
+
 				<img src="http://qrcoder.ru/code/?0x666c09e6ea8062523e113004302b0ac5507f6d71&4&0"/>
-			
-			
+
+
 			</div>
 			<div style="justify-content: center;" class="modal-footer">
 				<input type="text" style="z-index: -2; position: absolute;" id="addr" value="0x844d61a974f3792914815d9eb8b9ebb6ecc8b0a7"/>

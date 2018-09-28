@@ -15,10 +15,25 @@ var Controller = function () {
 		usersettings:'/api/v1/usersettings',
 		exchanger:'/api/v1/exchanger',
 		calc:'/api/v1/exchanger/calc/',
-		purchase: '/api/v1/exchanger/addr'
+		purchase: '/api/v1/exchanger/addr',
+		initPurchasing: '/api/v1/exchanger/initPurchasing'
 	};
 	
 	this.actions = {
+		initPurchasing: function (count, amount) {
+			
+			return $.ajax({
+				contentType: 'application/json',
+				url:self.api.usersettings,
+				data: JSON.stringify({count:count, amount:amount}),
+				method:'POST'
+			}).done(function (response) {
+				//TODO
+				//ожидаю курс фиксациии
+				
+				
+			});
+		},
 		usersettings: function (put, data) {
 			if (put){
 				return $.ajax({
@@ -123,6 +138,7 @@ var Controller = function () {
 	
 	var ViewModel = {
 		obs:{
+			freezed: ko.observable(0),
 			page:ko.observable(0),
 			cwtCount: ko.observable(0),
 			usersettings: {
@@ -191,6 +207,9 @@ var Controller = function () {
 			},
 			purchase: function () {
 				self.actions.purchase();
+			},
+			initPurchasing: function () {
+				self.actions.initPurchasing(this.obs.cwtCount(), this.obs.needPay());
 			}
 		}
 		
