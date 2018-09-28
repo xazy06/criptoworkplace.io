@@ -1,18 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using Nethereum.Web3;
 using pre_ico_web_site.Data;
+using pre_ico_web_site.Eth;
 using pre_ico_web_site.Models;
 using pre_ico_web_site.Services;
 using Slack.Webhooks;
+using System;
 
 namespace pre_ico_web_site
 {
@@ -31,6 +33,7 @@ namespace pre_ico_web_site
         public void ConfigureServices(IServiceCollection services)
         {
             services
+                .AddLocalization(options => options.ResourcesPath = "Resources")
                 .AddEntityFrameworkNpgsql()
                 .AddDbContext<ApplicationDbContext>(options =>
                     options.UseNpgsql(Configuration.GetConnectionString("CWPConnection")), ServiceLifetime.Singleton, ServiceLifetime.Singleton)
@@ -67,28 +70,77 @@ namespace pre_ico_web_site
                 });
 
             services.AddMvc();
+
+            services.AddDataProtection()
+                .PersistKeysToSql()
+                .SetDefaultKeyLifetime(TimeSpan.FromDays(7))
+                .SetApplicationName("CWPIO");
+
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
+
+            services.AddAuthentication()
+                .AddFacebook(options =>
+                {
+                    options.AppId = Configuration["Authentication:Facebook:AppId"];
+                    options.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+                })
+                .AddGoogle(options =>
+                {
+                    options.ClientId = Configuration["Authentication:Google:ClientId"];
+                    options.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+                })
+                .AddTwitter(options =>
+                {
+                    options.ConsumerKey = Configuration["Authentication:Twitter:ConsumerKey"];
+                    options.ConsumerSecret = Configuration["Authentication:Twitter:ConsumerSecret"];
+                });
+
+            services.Configure<EthSettings>(Configuration.GetSection("Ether"));
+
+            services.AddSingleton(s =>
+            {
+                var settings = s.GetService<IOptions<EthSettings>>().Value;
+                return new Web3(settings.NodeUrl ?? "http://localhost:8545");
+            });
+
+            services.AddSingleton<TokenSaleContract>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseRequestLocalization();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
             }
             else
             {
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            if (env.IsProduction())
+            {
+                var forwardingOptions = new ForwardedHeadersOptions
+                {
+                    ForwardedHeaders = ForwardedHeaders.All
+                };
+                forwardingOptions.KnownNetworks.Clear(); //its loopback by default
+                forwardingOptions.KnownProxies.Clear();
+                app.UseForwardedHeaders(forwardingOptions);
+
+                app.UseRewriter(new RewriteOptions().AddRedirectToHttpsPermanent());
+            }
+
             app.UseStaticFiles();
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
+            app.UseAuthentication();
+
+            app.UseMvcWithDefaultRoute();
         }
     }
 }

@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewData["Title"] = "White List";
+    Layout = "~/Views/Cabinet/_AdminLayout.cshtml";
+}
+
+<style>
+  .s-mb_20 {
+	  margin-bottom: 20px;
+  }
+  
+  @@media (max-width: 768px){
+	  .h2, h2 {
+		  font-size: 1.1rem;
+	  }  
+	  .h3, h3 {
+		  font-size: 1.05rem;
+	  }
+	  .s-ms-c {
+		  text-align: center;
+	  }
+	  .s-ms_n {
+		  display: none;
+	  }
+	  .s-ms_b {
+		  display: inline-block;
+	  }
+  }
+</style>
+
+
+<div id="vmodel" class="m-portlet">
+	<div class="m-portlet__head">
+		<div class="m-portlet__head-caption">
+			<div class="m-portlet__head-title">
+				<h3 class="m-portlet__head-text">
+					<label>Whitelist your ERC-20 wallet</label>
+					
+				</h3>
+			</div>
+		</div>
+	</div>
+	<div class="m-portlet__body">
+		<form asp-action="WhiteListAsync" method="post" class="m-login__form m-form">
+			<input id="ercAddress" name="ercAddress" placeholder="0xab00000000000000000000000000000000000000"
+				maxlength="42" data-bind="textInput:obs.ercAddress" autofocus style="margin-bottom: 20px;" type="text" class="form-control"/>
+	
+			<p>We recommend using <a target="_blank" href="https://metamask.io/">Metamask</a> but you may also use other native Ethereum wallets as <br/>
+				long as they are ERC-20 compatible, such as MyEtherWallet, Mist or imToken.
+			</p>
+	
+			<button data-bind="enable:flags.contonueEnabled" type="submit" 
+			        class="s-ms_n btn m-btn--pill btn-brand m-btn--wide m-btn--uppercase m-btn--bolder m-btn--sm">Continue</button>
+		</form>
+	</div>
+	
+</div>
+
+@section Scripts{
+	<script asp-append-version="true" src="~/js/controllers/whitelist/index.js"></script>
+}

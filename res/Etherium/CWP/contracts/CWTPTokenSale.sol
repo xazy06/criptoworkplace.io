@@ -42,6 +42,7 @@ contract CWTPTokenSale is WhitelistedCrowdsale, MintedCrowdsale, RBACWithAdmin, 
   function setRateForTransaction(uint256 newRate, address buyer) public onlyIfWhitelisted(buyer) onlyRole(ROLE_DAPP) returns(uint256)
   {
     _fixRate[buyer] = FixedRate(newRate, block.timestamp.add(15 minutes));
+    return _fixRate[buyer].time;
   }
 
   /**

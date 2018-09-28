@@ -7,7 +7,7 @@ import "./PostDeliveryCrowdsale.sol";
 import "openzeppelin-solidity/contracts/crowdsale/emission/MintedCrowdsale.sol";
 import "./RBACWithAdmin.sol";
 
-contract CWTPTokenSale is PostDeliveryCrowdsale, MintedCrowdsale, RBACWithAdmin, SteppedRateCrowdsale, SteppedCapCrowdsale {
+contract CWTPTokenSaleStepped is PostDeliveryCrowdsale, MintedCrowdsale, RBACWithAdmin, SteppedRateCrowdsale, SteppedCapCrowdsale {
 
   string public constant ROLE_DAPP = "dapp";
   string public constant ROLE_SRV = "service";
