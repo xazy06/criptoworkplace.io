@@ -9,6 +9,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using pre_ico_web_site.Data;
+using pre_ico_web_site.Models;
+using pre_ico_web_site.Services;
 using Slack.Webhooks;
 
 namespace pre_ico_web_site
