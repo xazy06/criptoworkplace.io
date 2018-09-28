@@ -149,6 +149,7 @@ var Controller = function () {
 				ethAddress: ko.observable('')
 			},
 			sales:{
+				all:ko.observable(0),
 				cap:ko.observable(0),
 				rate:ko.observable(0),
 				sold:ko.observable(0),
