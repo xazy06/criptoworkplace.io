@@ -366,7 +366,7 @@ h1.h1, h1, h2{
     color:#b7b7b7;
     font-size: 18px;
     line-height:33px;
-    margin:100px 0 0 200px;
+    margin:100px 0 0 0;
 }
 
 .b-spec li {
@@ -642,3 +642,8 @@ a.link-label:hover{
 .b-problems {
 	
 }
+
+.navbar-inverse .navbar-toggle {
+    border-color:transparent;
+}
+
