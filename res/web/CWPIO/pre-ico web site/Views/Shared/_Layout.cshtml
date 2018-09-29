@@ -104,7 +104,8 @@
                     <li><a data-i18n="nav.token" class="smoothscroll" href="#token">Token Distribution</a></li>
                     <li><a data-i18n="nav.team" class="smoothscroll" href="#team">Team</a></li>
                     <li>
-                        <a target="_blank" class="btn btn-square btn-border-outline btn-white btn-lg"
+                        <a onclick="yaCounter50462326.reachGoal('Whitepaper'); return true;" 
+                            target="_blank" class="btn btn-square btn-border-outline btn-white btn-lg"
                            href="/static/docs_/CWP_White_Paper_en.pdf">
                             <i class="far fa-file-alt"></i>&nbsp;<span class="futurabook" data-i18n="nav.whitepaper">Whitepaper</span>
                         </a>
@@ -193,6 +194,36 @@
 @*    </script>*@
     <script src="~/js/site.min.js" asp-append-version="true"></script>
 </environment>
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter50462326 = new Ya.Metrika2({
+                    id:50462326,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/tag.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks2");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/50462326" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
 
 @RenderSection("Scripts", required: false)
 </body>
