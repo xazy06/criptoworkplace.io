@@ -33,7 +33,14 @@ var Controller = function () {
 		},
 
 		flags:{
-			
+			validation: {
+				lowercaseletter: ko.observable(true),
+				uppercaseletter: ko.observable(true),
+				hasNumber: ko.observable(true),
+				hasSymbol: ko.observable(true),
+				length8: ko.observable(true),
+				passesMutch: ko.observable(true)
+			}
 		},
 
 		actions:{
@@ -43,8 +50,16 @@ var Controller = function () {
 					timer: 1000
 				});
 			},
-			validate: function () {
-				
+			validate: function (str) {
+				var options = {
+					passLength: 8
+				};
+				ViewModel.flags.validation.length8(str.length === options.passLength);
+				ViewModel.flags.validation.passesMutch(ViewModel.obs.password() === ViewModel.obs.passwordConfirmation());
+				ViewModel.flags.validation.hasNumber(/\d/g.test(str));
+				ViewModel.flags.validation.uppercaseletter(/\W/g.test(str));
+				ViewModel.flags.validation.lowercaseletter(/\w/g.test(str));
+				ViewModel.flags.validation.hasSymbol(!(/^[a-zA-Z0-9!@#\$%\^\&*\)\(+=._-]+$/g.test(str)));
 			}
 		}
 
