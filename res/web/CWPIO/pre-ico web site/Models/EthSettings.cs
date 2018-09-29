@@ -11,7 +11,9 @@ namespace pre_ico_web_site.Models
         public int Network { get; set; }
         public string AppAddress { get; set; }
         public string AppPK { get; set; }
-
+        public decimal TokenPrice { get; set; }
+        public long GasLimit { get; set; }
+        public int GasPrice { get; set; }
         public EthSettings()
         {
         }

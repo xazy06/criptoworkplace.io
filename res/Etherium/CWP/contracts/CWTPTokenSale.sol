@@ -12,12 +12,13 @@ contract CWTPTokenSale is WhitelistedCrowdsale, MintedCrowdsale, RBACWithAdmin, 
   struct FixedRate {
     uint256 rate;
     uint256 time;
+    uint256 amount;
   }
 
   string public constant ROLE_DAPP = "dapp";
   string public constant ROLE_SRV = "service";
 
-  mapping(address => FixedRate) private _fixRate;
+  mapping(address => FixedRate) public fixRate;
 
   constructor(uint256 _startTime, uint256 _endTime, uint256 _cap, address _wallet, ERC20 _tokenAddress) public
     TimedCrowdsale(_startTime, _endTime)
@@ -29,6 +30,19 @@ contract CWTPTokenSale is WhitelistedCrowdsale, MintedCrowdsale, RBACWithAdmin, 
     addRole(msg.sender, ROLE_SRV);
   }
 
+  function registerDappAddress(address _dappAddr) public onlyRole(ROLE_ADMIN) {
+    addRole(_dappAddr, ROLE_DAPP);
+  }
+
+/**
+   * @dev Checks whether the period in which the crowdsale is open has already elapsed.
+   * @return Whether crowdsale period has elapsed
+   */
+  function hasOpened() public view returns (bool) {
+    // solium-disable-next-line security/no-block-members
+    return block.timestamp > openingTime;
+  }
+
   /**
    * @dev add an address to the whitelist
    * @param _operator address
@@ -36,13 +50,13 @@ contract CWTPTokenSale is WhitelistedCrowdsale, MintedCrowdsale, RBACWithAdmin, 
    */
   function addAddressToWhitelist(address _operator) public onlyRole(ROLE_DAPP)
   {
+    require(block.timestamp <= closingTime);
     addRole(_operator, ROLE_WHITELISTED);
   }
 
-  function setRateForTransaction(uint256 newRate, address buyer) public onlyIfWhitelisted(buyer) onlyRole(ROLE_DAPP) returns(uint256)
+  function setRateForTransaction(uint256 newRate, address buyer, uint256 amount) public onlyIfWhitelisted(buyer) onlyRole(ROLE_DAPP) onlyWhileOpen
   {
-    _fixRate[buyer] = FixedRate(newRate, block.timestamp.add(15 minutes));
-    return _fixRate[buyer].time;
+    fixRate[buyer] = FixedRate(newRate, block.timestamp.add(15 minutes), amount);
   }
 
   /**
@@ -56,8 +70,10 @@ contract CWTPTokenSale is WhitelistedCrowdsale, MintedCrowdsale, RBACWithAdmin, 
   )
     internal
   {
-    require(_fixRate[_beneficiary].time > block.timestamp);
-    rate = _fixRate[_beneficiary].rate;
+    require(fixRate[_beneficiary].time > block.timestamp);
+    require(fixRate[_beneficiary].amount == _weiAmount);
+    rate = fixRate[_beneficiary].rate;
+
     super._preValidatePurchase(_beneficiary, _weiAmount);
   }
 
@@ -71,7 +87,7 @@ contract CWTPTokenSale is WhitelistedCrowdsale, MintedCrowdsale, RBACWithAdmin, 
   function transferTokenOwnership() onlyAdmin public
   {
     // solium-disable-next-line security/no-block-members
-    require(closingTime < block.timestamp);
+    require(hasClosed());
     Ownable(token).transferOwnership(msg.sender);
   }
 

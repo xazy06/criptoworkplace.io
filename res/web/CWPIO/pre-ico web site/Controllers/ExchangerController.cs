@@ -1,21 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Threading.Tasks;
-using pre_ico_web_site.Data;
-using pre_ico_web_site.Models;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Nethereum.Util;
-using Nethereum.Web3;
-using Newtonsoft.Json;
-using Nethereum.Contracts;
+using pre_ico_web_site.Data;
 using pre_ico_web_site.Eth;
+using pre_ico_web_site.Models;
+using pre_ico_web_site.Services;
+using System;
+using System.Threading.Tasks;
 
 namespace pre_ico_web_site.Controllers
 {
@@ -28,15 +20,18 @@ namespace pre_ico_web_site.Controllers
         private readonly TokenSaleContract _contract;
         private readonly ApplicationDbContext _dbContext;
         private readonly EthSettings _options;
+        private readonly IRateStore _rateStore;
 
         public ExchangerController(
-            ApplicationDbContext dbContext, 
-            TokenSaleContract contract, 
+            ApplicationDbContext dbContext,
+            TokenSaleContract contract,
+            IRateStore rateStore,
             IOptions<EthSettings> options)
         {
             _dbContext = dbContext;
             _contract = contract;
             _options = options.Value;
+            _rateStore = rateStore;
         }
 
         [HttpGet]
@@ -47,29 +42,27 @@ namespace pre_ico_web_site.Controllers
             {
                 return NotFound();
             }
-                                  
-
-            //if (user.EthAddress != null)
-            //{
-            //    ballance = await contract.GetFunction("balances").CallAsync<BigInteger>($"0x{ByteArrayToString(user.EthAddress)}");
-            //    refund = await contract.GetFunction("deposited").CallAsync<BigInteger>($"0x{ByteArrayToString(user.EthAddress)}");
-            //}
 
             return Ok(new
             {
-                //Sold = UnitConversion.Convert.FromWei(currentTokenSold),
-                //Step = currentStep,
-                //Ballance = UnitConversion.Convert.FromWei(ballance),
-                //Refund = UnitConversion.Convert.FromWei(refund),
-                //StepEndTime = dueTime
+                Sold = UnitConversion.Convert.FromWei(await _contract.WeiRaisedAsync())
             });
         }
 
         [HttpGet("calc/{amount}")]
         public async Task<IActionResult> GetCalcAsync([FromRoute]int amount)
         {
-            //var result = await _contract.GetFunction("getPriceForTokens").CallAsync<BigInteger>(UnitConversion.Convert.ToWei(amount));
-            return Ok(Math.Ceiling(UnitConversion.Convert.FromWei(1000000000000000000) * 1000000) / 1000000);
+            var user = await _dbContext.GetCurrentUserAsync(User);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var rate = await _rateStore.GetRateAsync(); //220
+
+            var erate = (int)Math.Round(rate / _options.TokenPrice); // 1 ether = erate tokens
+            var x = UnitConversion.Convert.ToWei(amount / (decimal)erate);
+            return Ok(UnitConversion.Convert.FromWei(x).ToString());
         }
 
         [HttpGet("addr")]
@@ -78,9 +71,30 @@ namespace pre_ico_web_site.Controllers
             return Ok(_contract.Address);
         }
 
+        [HttpPost("initPurchasing")]
+        public async Task <IActionResult> InitPurchase([FromBody]PurchaseRequestModel model)
+        {
+            var user = await _dbContext.GetCurrentUserAsync(User);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var rate = await _rateStore.GetRateAsync(); //220
+
+            var erate = (int)Math.Round(rate / _options.TokenPrice); // 1 ether = erate tokens
+            var x = UnitConversion.Convert.ToWei(model.Count / (decimal)erate);
+            var fixRate = await _contract.SetRateForTransactionAsync(erate, $"0x{ByteArrayToString(user.EthAddress)}", x);
+
+            return Ok(new { amount = UnitConversion.Convert.FromWei(x), fixRate });
+        }
+       
+
         //[HttpGet("refund")]
         //public async Task<IActionResult> GetRefundAsync()
         //{
+
+
         //    var user = await _dbContext.GetCurrentUserAsync(User);
         //    if (user == null)
         //    {

@@ -24,8 +24,8 @@ var Controller = function () {
 			
 			return $.ajax({
 				contentType: 'application/json',
-				url:self.api.usersettings,
-				data: JSON.stringify({count:count, amount:amount}),
+                url: self.api.initPurchasing,
+				data: JSON.stringify({count:count}),
 				method:'POST'
 			}).done(function (response) {
 				//TODO

@@ -1157,7 +1157,7 @@ contract RBACWithAdmin is RBAC {
   }
 }
 
-contract CWTPTokenSale is PostDeliveryCrowdsale, MintedCrowdsale, RBACWithAdmin, SteppedRateCrowdsale, SteppedCapCrowdsale {
+contract CWTPTokenSaleStepped is PostDeliveryCrowdsale, MintedCrowdsale, RBACWithAdmin, SteppedRateCrowdsale, SteppedCapCrowdsale {
 
   string public constant ROLE_DAPP = "dapp";
   string public constant ROLE_SRV = "service";

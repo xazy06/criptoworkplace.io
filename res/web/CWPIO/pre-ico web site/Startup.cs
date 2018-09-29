@@ -106,6 +106,11 @@ namespace pre_ico_web_site
             });
 
             services.AddSingleton<TokenSaleContract>();
+
+            services.Configure<RateStoreSettings>(Configuration.GetSection("RateStore"));
+            services.AddSingleton<IRateStore, RateStore>();
+
+            services.AddMemoryCache();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

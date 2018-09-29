@@ -9,7 +9,7 @@ module.exports = function (deployer, network) {
       min = 60,
       ether = Math.pow(10, 18),
       startTime = ((((Date.now() / 1000 | 0) + 2*600) / 600) | 0) * 600,
-      endTime = startTime + 25 * min,
+      endTime = startTime + 120 * min,
       tsale;
 
     deployer.chain
@@ -20,11 +20,11 @@ module.exports = function (deployer, network) {
         console.log("transfer Ownership to: " + CWTPTokenSale.address);
         tsale = CWTPTokenSale.at(CWTPTokenSale.address);
         return cwpInstance.transferOwnership(CWTPTokenSale.address);
-      });
-      // .then(() => {
-      //   console.log("Create steps");
-      //   return tsale.addCrowdsaleStep(startTime + 5 * min, 900000 * ether, 0.07 * ether);
-      // })
+      })
+      .then(() => {
+         console.log("Add dapp address");
+         return tsale.registerDappAddress("0x0D302d9fFeb60c49F6f5C0Bc56B6b3Be04af6B05");
+       });
       // .then(() => tsale.addCrowdsaleStep(startTime + 10 * min, 900000 * ether, 0.07 * ether))
       // .then(() => tsale.addCrowdsaleStep(startTime + 15 * min, 900000 * ether, 0.08 * ether))
       // .then(() => tsale.addCrowdsaleStep(startTime + 20 * min, 900000 * ether, 0.08 * ether))
