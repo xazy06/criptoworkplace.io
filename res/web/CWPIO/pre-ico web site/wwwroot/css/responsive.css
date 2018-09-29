@@ -134,6 +134,10 @@
 	.b-book-inside{
 		padding: 10px 5px 15px 8px;
 	}
+
+	.navbar-brand > img{
+		margin-left:auto !important;
+	}
 }
 
 @media only screen and (min-width:481px) and (max-width:767px){
@@ -260,5 +264,9 @@
 
 	.b-book-inside{
 		padding: 10px 5px;
+	}
+
+	.navbar-brand > img{
+		margin-left:auto !important;
 	}
 }
