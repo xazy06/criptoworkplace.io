@@ -32,6 +32,12 @@ var Controller = function () {
 				//ожидаю курс фиксациии
 				// {"amount":0.260688216892596454,"fixRate":{"rate":1918,"time":1538229408,"amount":260688216892596454}}
 				
+				try{
+				ViewModel.obs.freezed(response.fixRate.rate);
+				}catch (e){
+					console.log(e);
+				}
+				
 			});
 		},
 		usersettings: function (put, data) {
@@ -52,6 +58,10 @@ var Controller = function () {
 				url:self.api.usersettings,
 				method:'GET'
 			}).done(function (response) {
+				if (response.ethAddress === undefined) {
+					console.log()	
+				}
+				
 				ViewModel.obs.usersettings.name(response.name);
 				ViewModel.obs.usersettings.lastName(response.lastName);
 				ViewModel.obs.usersettings.ethAddress(response.ethAddress);
