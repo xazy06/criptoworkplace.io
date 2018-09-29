@@ -161,14 +161,16 @@
                                     <div class="form-group m-form__group">
                                         <input class="form-control m-input m-login__form-input--last" type="password" placeholder="Confirm Password" name="ConfirmPassword">
                                     </div>
+                                    <!-- ko if:flags.showValidation -->
                                     <div class="b-pass-rules">
-                                        <span data-bind="css:{'active': lower}" class="b-pass-rules_item">Lowercase letter</span><br />
-                                        <span data-bind="css:{'active': upper}" class="b-pass-rules_item">Uppercase letter</span><br />
-                                        <span data-bind="css:{'active': num}" class="b-pass-rules_item">Number</span><br />
-                                        <span data-bind="css:{'active': sym}" class="b-pass-rules_item">Symbol</span><br />
-                                        <span data-bind="css:{'active': charLen}" class="b-pass-rules_item">8 characters minimal</span><br />
-                                        <span data-bind="css:{'active': matching}" class="b-pass-rules_item">Password match</span><br />
+                                        <span data-bind="css:{'active': flags.validation.lowercaseletter}" class="b-pass-rules_item">Lowercase letter</span><br />
+                                        <span data-bind="css:{'active': flags.validation.uppercaseletter}" class="b-pass-rules_item">Uppercase letter</span><br />
+                                        <span data-bind="css:{'active': flags.validation.hasNumber}" class="b-pass-rules_item">Number</span><br />
+                                        <span data-bind="css:{'active': flags.validation.hasSymbol}" class="b-pass-rules_item">Symbol</span><br />
+                                        <span data-bind="css:{'active': flags.validation.charLen}" class="b-pass-rules_item">8 characters minimal</span><br />
+                                        <span data-bind="css:{'active': flags.validation.passesMutch}" class="b-pass-rules_item">Password match</span><br />
                                     </div>
+                                    <!-- /ko-->
                                     <div class="row form-group m-form__group m-login__form-sub">
                                         <div class="col m--align-left">
                                             <label class="m-checkbox m-checkbox--focus">
@@ -239,11 +241,13 @@ m-login__content s-p_0 ">
     <!--begin::Page Snippets -->
     <script src="~/assets/snippets/custom/pages/user/login.js" type="text/javascript"></script>
     <!--end::Page Snippets -->
-    <script>
-        if (window.location.hash !== '') {
-            document.getElementById("m_login").className = 'm-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-grid--tablet-and-mobile m-grid--hor-tablet-and-mobile m-login m-login--1 ' + window.location.hash.substr(1);
-        }
-    </script>
+<script>
+    if (window.location.hash !== '') {
+        document.getElementById("m_login").className = 'm-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-grid--tablet-and-mobile m-grid--hor-tablet-and-mobile m-login m-login--1 ' + window.location.hash.substr(1);
+    }
+</script>
+<script src="~/js/knockout.js" type="text/javascript"></script>
+<script src="~/js/controllers/account/login/index.js"></script>
 </body>
 <!-- end::Body -->
 </html>
@@ -336,9 +340,7 @@ m-login__content s-p_0 ">
 @*    </div>*@
 @*</div>*@
 
-@section Scripts {
-
+@section Scripts{
     @await Html.PartialAsync("_ValidationScriptsPartial")
     
-    <script src="~/js/controllers/account/login/index.js"></script>
 }

@@ -28,17 +28,18 @@ var Controller = function () {
 
 	var ViewModel = {
 		obs:{
-			password: ko.observables(''),
-			passwordConfirmation: ko.observables('')
+			password: ko.observable(''),
+			passwordConfirmation: ko.observable('')
 		},
 
 		flags:{
+			showValidation: ko.observable(false),
 			validation: {
 				lowercaseletter: ko.observable(true),
 				uppercaseletter: ko.observable(true),
 				hasNumber: ko.observable(true),
 				hasSymbol: ko.observable(true),
-				length8: ko.observable(true),
+				charLen: ko.observable(true),
 				passesMutch: ko.observable(true)
 			}
 		},
@@ -54,7 +55,11 @@ var Controller = function () {
 				var options = {
 					passLength: 8
 				};
-				ViewModel.flags.validation.length8(str.length === options.passLength);
+				
+				ViewModel.flags.showValidation(true);
+				
+				
+				ViewModel.flags.validation.charLen(str.length === options.passLength);
 				ViewModel.flags.validation.passesMutch(ViewModel.obs.password() === ViewModel.obs.passwordConfirmation());
 				ViewModel.flags.validation.hasNumber(/\d/g.test(str));
 				ViewModel.flags.validation.uppercaseletter(/\W/g.test(str));
