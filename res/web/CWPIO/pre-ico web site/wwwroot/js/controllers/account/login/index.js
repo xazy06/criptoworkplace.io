@@ -55,12 +55,17 @@ var Controller = function () {
 				var options = {
 					passLength: 8
 				}, str = ViewModel.obs.password;
+
+				if (ViewModel.obs.password() === '' && ViewModel.obs.passwordConfirmation() === '') {
+
+					ViewModel.flags.showValidation(false);
+					return;
+				}
 				
 				ViewModel.flags.showValidation(true);
-				
-				
+								
 				ViewModel.flags.validation.charLen(str().length >= options.passLength);
-				ViewModel.flags.validation.passesMutch(ViewModel.obs.password() === ViewModel.obs.passwordConfirmation());
+				ViewModel.flags.validation.passesMutch(ViewModel.obs.password() !== '' && ViewModel.obs.passwordConfirmation() !== '' && (ViewModel.obs.password() === ViewModel.obs.passwordConfirmation()));
 				ViewModel.flags.validation.hasNumber(/\d/g.test(str()));
 				ViewModel.flags.validation.uppercaseletter(/[A-Z]/g.test(str()));
 				ViewModel.flags.validation.lowercaseletter(/[a-z]/g.test(str()));
