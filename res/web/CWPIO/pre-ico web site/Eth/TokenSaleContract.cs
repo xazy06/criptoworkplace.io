@@ -40,8 +40,10 @@ namespace pre_ico_web_site.Eth
 
         public Task AddAddressToWhitelistAsync(string addr)
         {
+            var currentGasPrice = _settings.GasPrice * UnitConversion.Convert.GetEthUnitValue(UnitConversion.EthUnit.Gwei);
+
             return _contract.GetFunction("addAddressToWhitelist")
-                .SendTransactionAndWaitForReceiptAsync(_settings.AppAddress, null, addr);
+                .SendTransactionAndWaitForReceiptAsync(_settings.AppAddress, new HexBigInteger(_settings.GasLimit), new HexBigInteger(currentGasPrice), new HexBigInteger(0), null, addr);
         }
 
         public async Task<FixRateModel> SetRateForTransactionAsync(int rate, string buyer, BigInteger amount)
