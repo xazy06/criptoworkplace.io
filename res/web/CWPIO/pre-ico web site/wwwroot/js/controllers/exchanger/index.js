@@ -30,7 +30,7 @@ var Controller = function () {
 			}).done(function (response) {
 				//TODO
 				//ожидаю курс фиксациии
-				
+				// {"amount":0.260688216892596454,"fixRate":{"rate":1918,"time":1538229408,"amount":260688216892596454}}
 				
 			});
 		},
@@ -91,12 +91,16 @@ var Controller = function () {
 		},
 		purchase: function () {
 			$.getJSON(self.api.purchase).done(function (result) {
-				//TODO
-				web3js.eth.sendTransaction({ 
-					from: ViewModel.obs.usersetting.ethAddress(), 
+				
+				try{
+				self.web3js.eth.sendTransaction({ 
+					from: ViewModel.obs.usersettings.ethAddress(), 
 					to: result, 
-					value: web3js.utils.toWei(ViewModel.obs.needPay()) 
+					value: self.web3js.utils.toWei(ViewModel.obs.needPay().replace(',', '.')) 
 				});
+				}catch (e){
+					$.notify(e.stack);
+				}
 				
 				self.actions.exchanger();
 			});
@@ -113,6 +117,7 @@ var Controller = function () {
 			if (typeof web3 !== 'undefined') {
 				// Use Mist/MetaMask's provider
 				self.web3js = new Web3(web3.currentProvider);
+				console.log('web3 js success inited')
 			} else {
 				console.log('No web3? You should consider trying MetaMask!');
 				// fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
