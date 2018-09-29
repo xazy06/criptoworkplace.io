@@ -271,14 +271,22 @@ h1.h1, h1, h2{
 .b-team-name {
     color:#fff;
     font-size:20px;
-    font-family: 'futurabook';
+    font-family: 'futurabook', serif;
 }
 
 .b-team-position {
     color:#b7b7b7;
     font-size:16px;
     margin-bottom:20px;
-    font-family: 'futurabook';
+    font-family: 'futurabook', serif;
+}
+
+.b-team-background {
+    font-size:14px;
+}
+
+.b-book-inside .b-team-name{
+    margin-bottom:18px;
 }
 
 .b-team-s-link {

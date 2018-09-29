@@ -125,6 +125,15 @@
 	.b-main-top {
 		margin-bottom:10px;
 	}
+
+	.b-team-background {
+		font-size:13px;
+		line-height: 18px;
+	}
+
+	.b-book-inside{
+		padding: 10px 5px 15px 8px;
+	}
 }
 
 @media only screen and (min-width:481px) and (max-width:767px){
@@ -242,5 +251,14 @@
 		left:0;
 		right:0;
 		bottom:0;
+	}
+
+	.b-team-background {
+		font-size:13px;
+		line-height: 18px;
+	}
+
+	.b-book-inside{
+		padding: 10px 5px;
 	}
 }
