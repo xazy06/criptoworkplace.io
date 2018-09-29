@@ -21,38 +21,38 @@
     <link rel="manifest" href="~/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="~/ms-icon-144x144.png">
-  @*    <meta name="theme-color" content="#1d7dac">*@
-  <meta name="theme-color" content="#000">
+    @*    <meta name="theme-color" content="#1d7dac">*@
+    <meta name="theme-color" content="#000">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="HandheldFriendly" content="true">
     <meta name="yandex-verification" content="91a7b09b04e22c2a" />
-  <meta name="google-site-verification" content="AL-yKDxObhWAd9APEc6iOJ4I_uvP7QAZG-nznxHtaks" />
-  
-  <!-- START - Open Graph for Facebook, Google+ and Twitter Card Tags 2.2.4.1 -->
-  <!-- Facebook Open Graph -->
-  <meta property="og:locale" content="en"/>
-  <meta property="og:title" content="CYBER SECURITY ECOSYSTEM POWERED BY CRYPTOCOMPUTER"/>
-  <meta property="og:url" content="http://www.cryptorally2018.com"/>
-  <meta property="og:type" content="website"/>
-  <meta property="og:description" content="CYBER SECURITY ECOSYSTEM POWERED BY CRYPTOCOMPUTER"/>
-  <meta property="og:image" content="/static/CWP2.svg"/>
-  <!-- Google+ / Schema.org -->
-  <meta itemprop="name" content="CYBER SECURITY ECOSYSTEM POWERED BY CRYPTOCOMPUTER"/>
-  <meta itemprop="headline" content="CYBER SECURITY ECOSYSTEM POWERED BY CRYPTOCOMPUTER"/>
-  <meta itemprop="description" content="CYBER SECURITY ECOSYSTEM POWERED BY CRYPTOCOMPUTER"/>
-  <meta itemprop="image" content="/static/CWP2.svg"/>
-  <!--<meta itemprop="publisher" content="Crypto Rally 2018"/>--> <!-- To solve: The attribute publisher.itemtype has an invalid value -->
-  <!-- Twitter Cards -->
-  <meta name="twitter:title" content="CYBER SECURITY ECOSYSTEM POWERED BY CRYPTOCOMPUTER"/>
-  <meta name="twitter:url" content="http://www.cryptorally2018.com"/>
-  <meta name="twitter:description" content="CYBER SECURITY ECOSYSTEM POWERED BY CRYPTOCOMPUTER"/>
-  <meta name="twitter:image" content="/static/CWP2.svg"/>
-  <meta name="twitter:card" content="summary_large_image"/>
-  <!-- SEO -->
-  <!-- Misc. tags -->
-  <!-- is_singular -->
-  <!-- END - Open Graph for Facebook, Google+ and Twitter Card Tags 2.2.4.1 -->
-    
+    <meta name="google-site-verification" content="AL-yKDxObhWAd9APEc6iOJ4I_uvP7QAZG-nznxHtaks" />
+
+    <!-- START - Open Graph for Facebook, Google+ and Twitter Card Tags 2.2.4.1 -->
+    <!-- Facebook Open Graph -->
+    <meta property="og:locale" content="en" />
+    <meta property="og:title" content="CYBER SECURITY ECOSYSTEM POWERED BY CRYPTOCOMPUTER" />
+    <meta property="og:url" content="http://www.cryptorally2018.com" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="CYBER SECURITY ECOSYSTEM POWERED BY CRYPTOCOMPUTER" />
+    <meta property="og:image" content="/static/CWP2.svg" />
+    <!-- Google+ / Schema.org -->
+    <meta itemprop="name" content="CYBER SECURITY ECOSYSTEM POWERED BY CRYPTOCOMPUTER" />
+    <meta itemprop="headline" content="CYBER SECURITY ECOSYSTEM POWERED BY CRYPTOCOMPUTER" />
+    <meta itemprop="description" content="CYBER SECURITY ECOSYSTEM POWERED BY CRYPTOCOMPUTER" />
+    <meta itemprop="image" content="/static/CWP2.svg" />
+    <!--<meta itemprop="publisher" content="Crypto Rally 2018"/>--> <!-- To solve: The attribute publisher.itemtype has an invalid value -->
+    <!-- Twitter Cards -->
+    <meta name="twitter:title" content="CYBER SECURITY ECOSYSTEM POWERED BY CRYPTOCOMPUTER" />
+    <meta name="twitter:url" content="http://www.cryptorally2018.com" />
+    <meta name="twitter:description" content="CYBER SECURITY ECOSYSTEM POWERED BY CRYPTOCOMPUTER" />
+    <meta name="twitter:image" content="/static/CWP2.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <!-- SEO -->
+    <!-- Misc. tags -->
+    <!-- is_singular -->
+    <!-- END - Open Graph for Facebook, Google+ and Twitter Card Tags 2.2.4.1 -->
+
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
@@ -61,6 +61,20 @@
         <link rel="stylesheet" href="~/css/responsive.css" />
     </environment>
     <environment exclude="Development">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+
+    <environment include="Production">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/css/fontawesome-all.css" />
+        <link rel="stylesheet" href="~/css/owl.carousel.css" />
+        <link rel="stylesheet" href="~/css/responsive.css" />
+    </environment>
+    <environment exclude="Production">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
