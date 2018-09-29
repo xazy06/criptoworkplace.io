@@ -51,20 +51,20 @@ var Controller = function () {
 					timer: 1000
 				});
 			},
-			validate: function (str) {
+			validate: function () {
 				var options = {
 					passLength: 8
-				};
+				}, str = ViewModel.obs.password;
 				
 				ViewModel.flags.showValidation(true);
 				
 				
-				ViewModel.flags.validation.charLen(str.length === options.passLength);
+				ViewModel.flags.validation.charLen(str().length >= options.passLength);
 				ViewModel.flags.validation.passesMutch(ViewModel.obs.password() === ViewModel.obs.passwordConfirmation());
-				ViewModel.flags.validation.hasNumber(/\d/g.test(str));
-				ViewModel.flags.validation.uppercaseletter(/\W/g.test(str));
-				ViewModel.flags.validation.lowercaseletter(/\w/g.test(str));
-				ViewModel.flags.validation.hasSymbol(!(/^[a-zA-Z0-9!@#\$%\^\&*\)\(+=._-]+$/g.test(str)));
+				ViewModel.flags.validation.hasNumber(/\d/g.test(str()));
+				ViewModel.flags.validation.uppercaseletter(/[A-Z]/g.test(str()));
+				ViewModel.flags.validation.lowercaseletter(/[a-z]/g.test(str()));
+				ViewModel.flags.validation.hasSymbol(/\W/g.test(str()));
 			}
 		}
 
@@ -78,8 +78,11 @@ var Controller = function () {
 	ViewModel.obs.passwordConfirmation.subscribe(function (val) {
 		ViewModel.actions.validate(val);
 	});
+
+	this.vm = ViewModel;
 	
 	return this.init();
+	
 };
 
 Controller = new Controller();

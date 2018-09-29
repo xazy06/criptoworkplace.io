@@ -17,11 +17,13 @@
 	font-size:.8em;
 	color:#666;
 }
-.b-pass-rules_item::before{
-
+.b-pass-rules_item i.fa{
+	color:#6666;
 }
 .b-pass-rules_item{}
-.b-pass-rules_item.active{}
+.b-pass-rules_item.active  i.fa{
+	color: #111;
+}
 
 .s-ta_c{
 	text-align: center;
