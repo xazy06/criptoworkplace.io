@@ -63,7 +63,7 @@
 
 		App.scroll();
 		
-		App.initRoadmap();
+		//App.initRoadmap();
 	};
 	
 	App.init();
