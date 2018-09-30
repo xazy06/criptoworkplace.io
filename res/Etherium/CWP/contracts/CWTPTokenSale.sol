@@ -6,10 +6,11 @@ import "openzeppelin-solidity/contracts/crowdsale/emission/MintedCrowdsale.sol";
 import "openzeppelin-solidity/contracts/crowdsale/validation/CappedCrowdsale.sol";
 import "openzeppelin-solidity/contracts/crowdsale/validation/TimedCrowdsale.sol";
 import "openzeppelin-solidity/contracts/crowdsale/validation/WhitelistedCrowdsale.sol";
+import "openzeppelin-solidity/contracts/payment/PullPayment.sol";
 import "openzeppelin-solidity/contracts/token/ERC20/CappedToken.sol";
 import "./RBACWithAdmin.sol";
 
-contract CWTPTokenSale is WhitelistedCrowdsale, MintedCrowdsale, RBACWithAdmin, TimedCrowdsale {
+contract CWTPTokenSale is WhitelistedCrowdsale, MintedCrowdsale, RBACWithAdmin, TimedCrowdsale, PullPayment {
 
   using SafeMath for uint256;
 
@@ -25,6 +26,7 @@ contract CWTPTokenSale is WhitelistedCrowdsale, MintedCrowdsale, RBACWithAdmin, 
   mapping(address => FixedRate) public fixRate;
   uint256 private _tokenCap;
   uint256 private _tokenSold;
+  FixedRate private _currentFRate;
 
   constructor(uint256 _startTime, uint256 _endTime, address _wallet, CappedToken _tokenAddress) public
     TimedCrowdsale(_startTime, _endTime)
@@ -90,8 +92,8 @@ contract CWTPTokenSale is WhitelistedCrowdsale, MintedCrowdsale, RBACWithAdmin, 
       delete fixRate[_beneficiary];
       revert();
     }
-    require(_weiAmount > fixRate[_beneficiary].amount - 10**9 && _weiAmount < fixRate[_beneficiary].amount + 10**9);
-    rate = fixRate[_beneficiary].rate;
+    require(_weiAmount > fixRate[_beneficiary].amount - 10**9);
+    _currentFRate = fixRate[_beneficiary];
 
     super._preValidatePurchase(_beneficiary, _weiAmount);
   }
@@ -104,9 +106,21 @@ contract CWTPTokenSale is WhitelistedCrowdsale, MintedCrowdsale, RBACWithAdmin, 
   function _getTokenAmount(uint256 _weiAmount)
     internal view returns (uint256)
   {
-    uint256 tokenAmount = _weiAmount.mul(rate).div(1 ether).mul(1 ether);
+    //_weiAmount
+
+    uint256 tokenAmount = _currentFRate.amount.mul(_currentFRate.rate).div(1 ether).mul(1 ether);
     require(_tokenSold.add(tokenAmount) <= _tokenCap);
     return tokenAmount;
+  }
+
+  /**
+   * @dev Determines how ETH is stored/forwarded on purchases.
+   */
+  function _forwardFunds() internal {
+    uint256 refund = msg.value - _currentFRate.amount;
+    weiRaised.sub(refund); 
+    wallet.transfer(_currentFRate.amount);
+    asyncTransfer(msg.sender, refund);
   }
 
   /**

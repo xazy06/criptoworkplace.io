@@ -1027,6 +1027,90 @@ contract WhitelistedCrowdsale is Whitelist, Crowdsale {
 }
 
 /**
+ * @title Escrow
+ * @dev Base escrow contract, holds funds destinated to a payee until they
+ * withdraw them. The contract that uses the escrow as its payment method
+ * should be its owner, and provide public methods redirecting to the escrow's
+ * deposit and withdraw.
+ */
+contract Escrow is Ownable {
+  using SafeMath for uint256;
+
+  event Deposited(address indexed payee, uint256 weiAmount);
+  event Withdrawn(address indexed payee, uint256 weiAmount);
+
+  mapping(address => uint256) private deposits;
+
+  function depositsOf(address _payee) public view returns (uint256) {
+    return deposits[_payee];
+  }
+
+  /**
+  * @dev Stores the sent amount as credit to be withdrawn.
+  * @param _payee The destination address of the funds.
+  */
+  function deposit(address _payee) public onlyOwner payable {
+    uint256 amount = msg.value;
+    deposits[_payee] = deposits[_payee].add(amount);
+
+    emit Deposited(_payee, amount);
+  }
+
+  /**
+  * @dev Withdraw accumulated balance for a payee.
+  * @param _payee The address whose funds will be withdrawn and transferred to.
+  */
+  function withdraw(address _payee) public onlyOwner {
+    uint256 payment = deposits[_payee];
+    assert(address(this).balance >= payment);
+
+    deposits[_payee] = 0;
+
+    _payee.transfer(payment);
+
+    emit Withdrawn(_payee, payment);
+  }
+}
+
+/**
+ * @title PullPayment
+ * @dev Base contract supporting async send for pull payments. Inherit from this
+ * contract and use asyncTransfer instead of send or transfer.
+ */
+contract PullPayment {
+  Escrow private escrow;
+
+  constructor() public {
+    escrow = new Escrow();
+  }
+
+  /**
+  * @dev Withdraw accumulated balance, called by payee.
+  */
+  function withdrawPayments() public {
+    address payee = msg.sender;
+    escrow.withdraw(payee);
+  }
+
+  /**
+  * @dev Returns the credit owed to an address.
+  * @param _dest The creditor's address.
+  */
+  function payments(address _dest) public view returns (uint256) {
+    return escrow.depositsOf(_dest);
+  }
+
+  /**
+  * @dev Called by the payer to store the sent amount as credit to be pulled.
+  * @param _dest The destination address of the funds.
+  * @param _amount The amount to transfer.
+  */
+  function asyncTransfer(address _dest, uint256 _amount) internal {
+    escrow.deposit.value(_amount)(_dest);
+  }
+}
+
+/**
  * @title RBACWithAdmin
  * @author Matt Condon (@Shrugs)
  * @dev It's recommended that you define constants in the contract,
@@ -1077,7 +1161,7 @@ contract RBACWithAdmin is RBAC {
   }
 }
 
-contract CWTPTokenSale is WhitelistedCrowdsale, MintedCrowdsale, RBACWithAdmin, TimedCrowdsale {
+contract CWTPTokenSale is WhitelistedCrowdsale, MintedCrowdsale, RBACWithAdmin, TimedCrowdsale, PullPayment {
 
   using SafeMath for uint256;
 
@@ -1093,6 +1177,7 @@ contract CWTPTokenSale is WhitelistedCrowdsale, MintedCrowdsale, RBACWithAdmin, 
   mapping(address => FixedRate) public fixRate;
   uint256 private _tokenCap;
   uint256 private _tokenSold;
+  FixedRate private _currentFRate;
 
   constructor(uint256 _startTime, uint256 _endTime, address _wallet, CappedToken _tokenAddress) public
     TimedCrowdsale(_startTime, _endTime)
@@ -1158,8 +1243,8 @@ contract CWTPTokenSale is WhitelistedCrowdsale, MintedCrowdsale, RBACWithAdmin, 
       delete fixRate[_beneficiary];
       revert();
     }
-    require(_weiAmount > fixRate[_beneficiary].amount - 10**9 && _weiAmount < fixRate[_beneficiary].amount + 10**9);
-    rate = fixRate[_beneficiary].rate;
+    require(_weiAmount > fixRate[_beneficiary].amount - 10**9);
+    _currentFRate = fixRate[_beneficiary];
 
     super._preValidatePurchase(_beneficiary, _weiAmount);
   }
@@ -1172,9 +1257,21 @@ contract CWTPTokenSale is WhitelistedCrowdsale, MintedCrowdsale, RBACWithAdmin, 
   function _getTokenAmount(uint256 _weiAmount)
     internal view returns (uint256)
   {
-    uint256 tokenAmount = _weiAmount.mul(rate).div(1 ether).mul(1 ether);
+    //_weiAmount
+
+    uint256 tokenAmount = _currentFRate.amount.mul(_currentFRate.rate).div(1 ether).mul(1 ether);
     require(_tokenSold.add(tokenAmount) <= _tokenCap);
     return tokenAmount;
+  }
+
+  /**
+   * @dev Determines how ETH is stored/forwarded on purchases.
+   */
+  function _forwardFunds() internal {
+    uint256 refund = msg.value - _currentFRate.amount;
+    weiRaised.sub(refund); 
+    wallet.transfer(_currentFRate.amount);
+    asyncTransfer(msg.sender, refund);
   }
 
   /**
