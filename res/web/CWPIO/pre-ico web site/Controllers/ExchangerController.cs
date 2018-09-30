@@ -89,7 +89,8 @@ namespace pre_ico_web_site.Controllers
         {
             var rate = await _rateStore.GetRateAsync(); //220
             var erate = (int)Math.Round(rate / _options.TokenPrice); // 1 ether = erate tokens
-            var amount = UnitConversion.Convert.ToWei(Math.Round(count / (decimal)erate, 9) + 1);
+            var amount = UnitConversion.Convert.ToWei(Math.Round(count / (decimal)erate, 9))
+                + UnitConversion.Convert.GetEthUnitValue(UnitConversion.EthUnit.Gwei);
             return (rate: erate, amount: amount);
         }
 
