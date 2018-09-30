@@ -87,11 +87,7 @@ contract CWTPTokenSale is WhitelistedCrowdsale, MintedCrowdsale, RBACWithAdmin, 
   )
     internal
   {
-    if (fixRate[_beneficiary].time < block.timestamp)
-    {
-      delete fixRate[_beneficiary];
-      revert();
-    }
+    require(fixRate[_beneficiary].time < block.timestamp);
     require(_weiAmount > fixRate[_beneficiary].amount - 10**9);
     _currentFRate = fixRate[_beneficiary];
 
@@ -134,7 +130,7 @@ contract CWTPTokenSale is WhitelistedCrowdsale, MintedCrowdsale, RBACWithAdmin, 
   )
     internal
   {
-    delete fixRate[_beneficiary];
+    fixRate[_beneficiary].time = block.timestamp;
   }
 
 
@@ -145,10 +141,16 @@ contract CWTPTokenSale is WhitelistedCrowdsale, MintedCrowdsale, RBACWithAdmin, 
   function renounceOwnership() public onlyOwner {
   }
 
-  function transferTokenOwnership() onlyAdmin public
+  function transferTokenOwnership() onlyAdmin private
   {
     // solium-disable-next-line security/no-block-members
     require(hasClosed());
+    Ownable(token).transferOwnership(msg.sender);
+  }
+
+  function forceTransferTokenOwnership() onlyOwner private
+  {
+    // solium-disable-next-line security/no-block-members
     Ownable(token).transferOwnership(msg.sender);
   }
 
@@ -161,7 +163,7 @@ contract CWTPTokenSale is WhitelistedCrowdsale, MintedCrowdsale, RBACWithAdmin, 
 
   function ForceCloseContract() onlyOwner public {
     if(Ownable(token).owner() == address(this))
-      transferTokenOwnership();
+      forceTransferTokenOwnership();
     selfdestruct(msg.sender);
   }
 }
