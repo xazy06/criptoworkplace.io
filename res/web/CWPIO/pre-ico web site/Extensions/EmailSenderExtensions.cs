@@ -8,11 +8,14 @@ namespace pre_ico_web_site.Services
 {
     public static class EmailSenderExtensions
     {
-        public static Task<bool> SendEmailConfirmationAsync(this IEmailSender emailSender, string email, string link)
+        public static Task<bool> SendEmailConfirmationAsync(this IEmailSender emailSender, string email, string link, string header, string footer)
         {
-            return emailSender.SendEmailAsync(email, "Confirm your email", 
+            var html = header + $"Please confirm your account by clicking this link: <a href='{HtmlEncoder.Default.Encode(link)}'>link</a>" + footer;
+
+            return emailSender.SendEmailAsync(email, "Confirm your email",
                 $"Please confirm your account by following this link: '{HtmlEncoder.Default.Encode(link)}'",
-                $"Please confirm your account by clicking this link: <a href='{HtmlEncoder.Default.Encode(link)}'>link</a>");
+                html);
+                //$"Please confirm your account by clicking this link: <a href='{HtmlEncoder.Default.Encode(link)}'>link</a>");
         }        
     }
 }

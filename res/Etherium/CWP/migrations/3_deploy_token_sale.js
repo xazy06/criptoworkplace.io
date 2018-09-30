@@ -61,20 +61,9 @@ module.exports = function (deployer, network) {
       })
       .then(() => getAddressesAsync())
       .then(rows => {
-        console.log("Add whitelist: 0x"+rows[0].address);
+        console.log("Add whitelist");
+        return tsale.addAddressesToWhitelist(rows.map(r=>'0x'+r.address));
         /* var p = tsale.addAddressToWhitelist('0x' + rows[0].address);
-        for (var i = 1; i < rows.length; i++)
-        {
-          var currentRow = rows[i];
-          p = p.then(() => {
-            console.log("Add whitelist: 0x"+currentRow.address);
-            return tsale.addAddressToWhitelist('0x' + currentRow.address);
-          });
-        }
-        return p;
-
- */
-        var p = tsale.addAddressToWhitelist('0x' + rows[0].address);
         for (var i = 1; i < rows.length; i++){
           
           (function (i) {
@@ -87,7 +76,7 @@ module.exports = function (deployer, network) {
           })(i)
           
         }
-        return p;
+        return p; */
       });
     // .then(() => tsale.addCrowdsaleStep(startTime + 15 * min, 900000 * ether, 0.08 * ether))
     // .then(() => tsale.addCrowdsaleStep(startTime + 20 * min, 900000 * ether, 0.08 * ether))
