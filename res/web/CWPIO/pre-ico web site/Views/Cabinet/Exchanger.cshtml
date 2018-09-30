@@ -139,8 +139,8 @@
 		<!--/ko-->
 
 		<p data-bind="click:actions.toggleQr, if:flags.toggleQr" class="s-ms-c">
-			<img style="border: 1px solid #ddd;" src="http://qrcoder.ru/code/?0x666c09e6ea8062523e113004302b0ac5507f6d71&4&0"/>
-
+			<img data-bind="attr:{'src':('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' + obs.contractAddress())}" 
+			     style="border: 1px solid #ddd;" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Example"/>
 		</p>
 
 
@@ -492,7 +492,8 @@
 
 				<a data-bind="text:obs.contractAddress, attr:{'href': ('https://etherscan.io/token/' + obs.contractAddress())}" target="_blank" style="display: block; text-overflow: ellipsis; margin-bottom: 20px; overflow: hidden;" href=""></a>
 
-				<img src="http://qrcoder.ru/code/?0x666c09e6ea8062523e113004302b0ac5507f6d71&4&0"/>
+				<img data-bind="attr:{'src':('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' + obs.contractAddress())}" 
+				     style="padding: 15px;width: 145px;" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Example"/>
 				
 				or use
 				
