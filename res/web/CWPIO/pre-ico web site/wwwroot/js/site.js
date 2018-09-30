@@ -2,28 +2,50 @@
 	var App = new function () {
 
 		var self = this;
+
+		this.getGMT = function() {
+			return (new Date().getTimezoneOffset() / 60) * (-1);
+		};
 		
 		this.initTimer = function () {
-			var timer = new Timer(), updater,
-				a = new Date();
-			timer.start({countdown: true, startValues: {days: (30 - a.getDate()), hours:(23 - a.getHours() + 8), minutes:(60 - a.getMinutes())}});
+			// var timer = new Timer(), updater,
+			// a = new Date();
+			// timer.start({
+			// 	countdown: true, 
+			// 	startValues: {
+			// 		days: (30 - a.getDate()), 
+			// 		hours:(21 - (a.getHours() + self.getGMT())), 
+			// 		minutes:(57 - a.getMinutes())
+			// 	}
+			// });
+			//
+			// $(timer).on('targetAchieved', function (e) {
+			// 	//TODO
+			// });
+			//
+			// updater = function () {
+			// 	try{
+			// 		$('.js-day').text(timer.getTimeValues().days);
+			// 		$('.js-hour').text(timer.getTimeValues().hours);
+			// 		$('.js-min').text(timer.getTimeValues().minutes);
+			// 	}catch(e){
+			// 		console.log(e);
+			// 	}	
+			// };
+			//
+			// updater();
+			//
+			// $(timer).on('minutesUpdated', function (e) {
+			// 	//console.log('update');
+			// 	updater();
+			// });
 
-			updater = function () {
-				try{
-					$('.js-day').text(timer.getTimeValues().days);
-					$('.js-hour').text(timer.getTimeValues().hours);
-					$('.js-min').text(timer.getTimeValues().minutes);
-				}catch(e){
-					console.log(e);
-				}	
-			};
 
-			updater();
+			
+			initializeTimer();
+			
 
-			$(timer).on('minutesUpdated', function (e) {
-				//console.log('update');
-				updater();
-			});
+
 		};
 		
 		this.scroll = function () {
