@@ -83,7 +83,7 @@ namespace pre_ico_web_site.Controllers
             var rate = await _rateStore.GetRateAsync(); //220
 
             var erate = (int)Math.Round(rate / _options.TokenPrice); // 1 ether = erate tokens
-            var x = UnitConversion.Convert.ToWei(model.Count / (decimal)erate) + 1;
+            var x = UnitConversion.Convert.ToWei(Math.Round(model.Count / (decimal)erate, 9) + 1);
             var fixRate = await _contract.SetRateForTransactionAsync(erate, $"0x{ByteArrayToString(user.EthAddress)}", x);
 
             return Ok(new { amount = UnitConversion.Convert.FromWei(x), fixRate });
