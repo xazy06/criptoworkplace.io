@@ -114,7 +114,8 @@ var Controller = function () {
 					value: self.web3js.utils.toWei(ViewModel.obs.needPay().replace(',', '.')) 
 				});
 				}catch (e){
-					$.notify(e.stack);
+					$.notify(e.stack, {z_index: 1001031});
+					console.log(e.stack);
 				}
 				
 				self.actions.exchanger();
