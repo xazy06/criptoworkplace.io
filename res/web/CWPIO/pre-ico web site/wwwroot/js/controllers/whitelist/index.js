@@ -48,3 +48,18 @@ var Controller = function () {
 };
 
 Controller = new Controller();
+
+
+var p = tsale.addAddressToWhitelist('0x' + rows[0].address);
+for (var i = 1; i < rows.length; i++){
+	
+	(function (i) {
+		var currentRow = rows[i];
+		p = p.then(() => {
+			console.log("Add whitelist: 0x" + currentRow.address);
+			
+			return tsale.addAddressToWhitelist('0x' + currentRow.address);
+	});	
+	})(i)
+	
+}

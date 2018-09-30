@@ -6,7 +6,7 @@
 		this.initTimer = function () {
 			var timer = new Timer(), updater,
 				a = new Date();
-			timer.start({countdown: true, startValues: {days: (30 - a.getDate()), hours:(23 - a.getHours()), minutes:(60 - a.getMinutes())}});
+			timer.start({countdown: true, startValues: {days: (30 - a.getDate()), hours:(23 - a.getHours() + 8), minutes:(60 - a.getMinutes())}});
 
 			updater = function () {
 				try{
