@@ -48,6 +48,8 @@ namespace pre_ico_web_site.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Login(string returnUrl = null)
         {
+            if (User.Identity.IsAuthenticated)
+                return RedirectToAction(nameof(CabinetController.Index), nameof(CabinetController));
             // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 

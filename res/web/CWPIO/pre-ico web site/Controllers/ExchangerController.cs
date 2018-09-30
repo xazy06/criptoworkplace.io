@@ -7,6 +7,7 @@ using pre_ico_web_site.Eth;
 using pre_ico_web_site.Models;
 using pre_ico_web_site.Services;
 using System;
+using System.Numerics;
 using System.Threading.Tasks;
 
 namespace pre_ico_web_site.Controllers
@@ -58,11 +59,8 @@ namespace pre_ico_web_site.Controllers
                 return NotFound();
             }
 
-            var rate = await _rateStore.GetRateAsync(); //220
-
-            var erate = (int)Math.Round(rate / _options.TokenPrice); // 1 ether = erate tokens
-            var x = UnitConversion.Convert.ToWei(amount / (decimal)erate);
-            return Ok(UnitConversion.Convert.FromWei(x).ToString());
+            var rate = await GetRateAsync(amount);
+            return Ok(UnitConversion.Convert.FromWei(rate.amount).ToString());
         }
 
         [HttpGet("addr")]
@@ -72,7 +70,7 @@ namespace pre_ico_web_site.Controllers
         }
 
         [HttpPost("initPurchasing")]
-        public async Task <IActionResult> InitPurchase([FromBody]PurchaseRequestModel model)
+        public async Task<IActionResult> InitPurchase([FromBody]PurchaseRequestModel model)
         {
             var user = await _dbContext.GetCurrentUserAsync(User);
             if (user == null)
@@ -80,15 +78,20 @@ namespace pre_ico_web_site.Controllers
                 return NotFound();
             }
 
-            var rate = await _rateStore.GetRateAsync(); //220
+            var rate = await GetRateAsync(model.Count);
 
-            var erate = (int)Math.Round(rate / _options.TokenPrice); // 1 ether = erate tokens
-            var x = UnitConversion.Convert.ToWei(Math.Round(model.Count / (decimal)erate, 9) + 1);
-            var fixRate = await _contract.SetRateForTransactionAsync(erate, $"0x{ByteArrayToString(user.EthAddress)}", x);
+            var fixRate = await _contract.SetRateForTransactionAsync(rate.rate, $"0x{ByteArrayToString(user.EthAddress)}", rate.amount);
 
-            return Ok(new { amount = UnitConversion.Convert.FromWei(x), fixRate });
+            return Ok(new { amount = UnitConversion.Convert.FromWei(rate.amount), fixRate });
         }
-       
+
+        private async Task<(int rate, BigInteger amount)> GetRateAsync(int count)
+        {
+            var rate = await _rateStore.GetRateAsync(); //220
+            var erate = (int)Math.Round(rate / _options.TokenPrice); // 1 ether = erate tokens
+            var amount = UnitConversion.Convert.ToWei(Math.Round(count / (decimal)erate, 9) + 1);
+            return (rate: erate, amount: amount);
+        }
 
         //[HttpGet("refund")]
         //public async Task<IActionResult> GetRefundAsync()
