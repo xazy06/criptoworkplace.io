@@ -28,9 +28,10 @@ var Controller = function () {
 				data: JSON.stringify({count:count}),
 				method:'POST'
 			}).done(function (response) {
-				//TODO
-				//ожидаю курс фиксациии
-				// {"amount":0.260688216892596454,"fixRate":{"rate":1918,"time":1538229408,"amount":260688216892596454}}
+								
+				ViewModel.flags.purchasingIsInitializing(false);
+				
+				$('#m_modal_4').modal('show');
 				
 				try{
 					ViewModel.obs.freezed(response.fixRate.rate);
@@ -38,6 +39,10 @@ var Controller = function () {
 					console.log(e);
 				}
 				
+			}).fail(function (resp, e) {
+				ViewModel.flags.purchasingIsInitializing(false);
+				debugger;
+				ViewModel.actions.notify(resp.statusText, 'danger');
 			});
 		},
 		usersettings: function (put, data) {
@@ -177,6 +182,7 @@ var Controller = function () {
 		},
 		
 		flags:{
+			purchasingIsInitializing: ko.observable(false),
 			toggleQr: ko.observable(false),
 			check1:ko.observable(false),
 			check2:ko.observable(false),
@@ -201,7 +207,7 @@ var Controller = function () {
 		actions:{
 			notify: function(a, val){
 				$.notify(a, {
-					type: 'success',
+					type: (val || 'success'),
 					timer: 1000
 				});
 			}, 
@@ -225,6 +231,7 @@ var Controller = function () {
 				self.actions.purchase();
 			},
 			initPurchasing: function () {
+				ViewModel.flags.purchasingIsInitializing(true);
 				self.actions.initPurchasing(this.obs.cwtCount(), this.obs.needPay());
 			}
 		}

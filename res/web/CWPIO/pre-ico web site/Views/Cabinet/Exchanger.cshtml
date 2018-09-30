@@ -89,8 +89,8 @@
 			&nbsp;&nbsp;
 		</h5>
 			
-		<button data-bind="disable:flags.minCont, click: actions.initPurchasing" type="button" 
-		        class="btn btn-success" data-toggle="modal" data-target="#m_modal_4">Purchase</button>
+		<button data-bind="css:{'m-loader': flags.purchasingIsInitializing}, disable:(flags.minCont()|| flags.purchasingIsInitializing()), click: actions.initPurchasing" type="button" 
+		        class="btn m-btn btn-success m-loader--light m-loader--right">Purchase</button>
 	</div>
 </div>
 
