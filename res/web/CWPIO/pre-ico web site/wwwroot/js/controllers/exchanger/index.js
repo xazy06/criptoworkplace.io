@@ -20,6 +20,11 @@ var Controller = function () {
 	};
 	
 	this.actions = {
+		getContractAddr: function () {
+			$.getJSON(self.api.purchase).done(function (result) {
+				ViewModel.obs.contractAddress(result);
+			});
+		},
 		initPurchasing: function (count, amount) {
 			
 			return $.ajax({
@@ -151,14 +156,16 @@ var Controller = function () {
 
 		self.actions.exchanger();
 
+		self.actions.getContractAddr();
+
 		var copy = new ClipboardJS('#copy');
 		
 		return this;
 	};
 	
-	
 	var ViewModel = {
 		obs:{
+			contractAddress: ko.observable(''),
 			freezed: ko.observable(0),
 			page:ko.observable(0),
 			cwtCount: ko.observable(0),
