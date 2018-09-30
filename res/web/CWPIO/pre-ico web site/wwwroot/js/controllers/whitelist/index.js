@@ -33,13 +33,17 @@ var Controller = function () {
 		},
 		
 		flags:{
-			contonueEnabled:ko.pureComputed(function () {
+			continueEnabled:ko.pureComputed(function () {
 				return ViewModel.obs.ercAddress().length === 40;
-			})
+			}),
+			checking: ko.observable(false)
 		},
 		
 		actions:{
-		
+		 send: function () {
+			 ViewModel.flags.checking(true);
+			 this.form.submit();
+		 }
 		}
 		
 	};
