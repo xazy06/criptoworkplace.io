@@ -33,7 +33,7 @@ var Controller = function () {
 				// {"amount":0.260688216892596454,"fixRate":{"rate":1918,"time":1538229408,"amount":260688216892596454}}
 				
 				try{
-				ViewModel.obs.freezed(response.fixRate.rate);
+					ViewModel.obs.freezed(response.fixRate.rate);
 				}catch (e){
 					console.log(e);
 				}
