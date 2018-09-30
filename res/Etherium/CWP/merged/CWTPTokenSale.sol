@@ -1077,7 +1077,9 @@ contract RBACWithAdmin is RBAC {
   }
 }
 
-contract CWTPTokenSale is WhitelistedCrowdsale, MintedCrowdsale, RBACWithAdmin, CappedCrowdsale, TimedCrowdsale {
+contract CWTPTokenSale is WhitelistedCrowdsale, MintedCrowdsale, RBACWithAdmin, TimedCrowdsale {
+
+  using SafeMath for uint256;
 
   struct FixedRate {
     uint256 rate;
@@ -1089,13 +1091,16 @@ contract CWTPTokenSale is WhitelistedCrowdsale, MintedCrowdsale, RBACWithAdmin, 
   string public constant ROLE_SRV = "service";
 
   mapping(address => FixedRate) public fixRate;
+  uint256 private _tokenCap;
+  uint256 private _tokenSold;
 
-  constructor(uint256 _startTime, uint256 _endTime, uint256 _cap, address _wallet, ERC20 _tokenAddress) public
+  constructor(uint256 _startTime, uint256 _endTime, address _wallet, CappedToken _tokenAddress) public
     TimedCrowdsale(_startTime, _endTime)
-    CappedCrowdsale(_cap)
     Crowdsale(1, _wallet, _tokenAddress)
   {
     require(Ownable(_tokenAddress) != address(0));
+    _tokenCap = _tokenAddress.cap() - _tokenAddress.totalSupply();
+
     addRole(msg.sender, ROLE_DAPP);
     addRole(msg.sender, ROLE_SRV);
   }
@@ -1110,7 +1115,7 @@ contract CWTPTokenSale is WhitelistedCrowdsale, MintedCrowdsale, RBACWithAdmin, 
    */
   function hasOpened() public view returns (bool) {
     // solium-disable-next-line security/no-block-members
-    return block.timestamp <= openingTime;
+    return block.timestamp >= openingTime && block.timestamp <= closingTime;
   }
 
   /**
@@ -1127,6 +1132,14 @@ contract CWTPTokenSale is WhitelistedCrowdsale, MintedCrowdsale, RBACWithAdmin, 
   function setRateForTransaction(uint256 newRate, address buyer, uint256 amount) public onlyIfWhitelisted(buyer) onlyRole(ROLE_DAPP) onlyWhileOpen
   {
     fixRate[buyer] = FixedRate(newRate, block.timestamp.add(15 minutes), amount);
+  }
+
+  /**
+   * @dev Checks whether the cap has been reached.
+   * @return Whether the cap was reached
+   */
+  function capReached() public view returns (bool) {
+    return _tokenSold >= _tokenCap;
   }
 
   /**
@@ -1148,6 +1161,20 @@ contract CWTPTokenSale is WhitelistedCrowdsale, MintedCrowdsale, RBACWithAdmin, 
   }
 
   /**
+   * @dev Override to extend the way in which ether is converted to tokens.
+   * @param _weiAmount Value in wei to be converted into tokens
+   * @return Number of tokens that can be purchased with the specified _weiAmount
+   */
+  function _getTokenAmount(uint256 _weiAmount)
+    internal view returns (uint256)
+  {
+    uint256 tokenAmount = _weiAmount.mul(rate).div(1 ether).mul(1 ether);
+    require(_tokenSold.add(tokenAmount) <= _tokenCap);
+    return tokenAmount;
+  }
+
+
+  /**
    * @dev Allows the current owner to relinquish control of the contract.
    * @notice Disable renounce ownership
    */
@@ -1163,6 +1190,12 @@ contract CWTPTokenSale is WhitelistedCrowdsale, MintedCrowdsale, RBACWithAdmin, 
 
   function CloseContract() onlyAdmin public {
     require(hasClosed());
+    if(Ownable(token).owner() == address(this))
+      transferTokenOwnership();
+    selfdestruct(msg.sender);
+  }
+
+  function ForceCloseContract() onlyOwner public {
     if(Ownable(token).owner() == address(this))
       transferTokenOwnership();
     selfdestruct(msg.sender);

@@ -469,7 +469,7 @@
         "id": 2,
         "nodeType": "ImportDirective",
         "scope": 32,
-        "sourceUnit": 1399,
+        "sourceUnit": 1482,
         "src": "27:69:0",
         "symbolAliases": [],
         "unitAlias": ""
@@ -483,10 +483,10 @@
               "id": 3,
               "name": "CappedToken",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1398,
+              "referencedDeclaration": 1481,
               "src": "122:11:0",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_CappedToken_$1398",
+                "typeIdentifier": "t_contract$_CappedToken_$1481",
                 "typeString": "contract CappedToken"
               }
             },
@@ -496,13 +496,13 @@
           }
         ],
         "contractDependencies": [
-          1253,
-          1349,
-          1398,
-          1441,
-          1473,
-          1579,
-          1888
+          1336,
+          1432,
+          1481,
+          1524,
+          1556,
+          1662,
+          1971
         ],
         "contractKind": "contract",
         "documentation": null,
@@ -510,13 +510,13 @@
         "id": 31,
         "linearizedBaseContracts": [
           31,
-          1398,
-          1579,
-          1253,
-          1888,
-          1349,
-          1441,
-          1473
+          1481,
+          1662,
+          1336,
+          1971,
+          1432,
+          1524,
+          1556
         ],
         "name": "CWTPToken",
         "nodeType": "ContractDefinition",
@@ -853,10 +853,10 @@
                   "name": "CappedToken",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1398,
+                  "referencedDeclaration": 1481,
                   "src": "411:11:0",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_type$_t_contract$_CappedToken_$1398_$",
+                    "typeIdentifier": "t_type$_t_contract$_CappedToken_$1481_$",
                     "typeString": "type(contract CappedToken)"
                   }
                 },
@@ -918,7 +918,7 @@
         "id": 2,
         "nodeType": "ImportDirective",
         "scope": 32,
-        "sourceUnit": 1399,
+        "sourceUnit": 1482,
         "src": "27:69:0",
         "symbolAliases": [],
         "unitAlias": ""
@@ -932,10 +932,10 @@
               "id": 3,
               "name": "CappedToken",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1398,
+              "referencedDeclaration": 1481,
               "src": "122:11:0",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_CappedToken_$1398",
+                "typeIdentifier": "t_contract$_CappedToken_$1481",
                 "typeString": "contract CappedToken"
               }
             },
@@ -945,13 +945,13 @@
           }
         ],
         "contractDependencies": [
-          1253,
-          1349,
-          1398,
-          1441,
-          1473,
-          1579,
-          1888
+          1336,
+          1432,
+          1481,
+          1524,
+          1556,
+          1662,
+          1971
         ],
         "contractKind": "contract",
         "documentation": null,
@@ -959,13 +959,13 @@
         "id": 31,
         "linearizedBaseContracts": [
           31,
-          1398,
-          1579,
-          1253,
-          1888,
-          1349,
-          1441,
-          1473
+          1481,
+          1662,
+          1336,
+          1971,
+          1432,
+          1524,
+          1556
         ],
         "name": "CWTPToken",
         "nodeType": "ContractDefinition",
@@ -1302,10 +1302,10 @@
                   "name": "CappedToken",
                   "nodeType": "Identifier",
                   "overloadedDeclarations": [],
-                  "referencedDeclaration": 1398,
+                  "referencedDeclaration": 1481,
                   "src": "411:11:0",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_type$_t_contract$_CappedToken_$1398_$",
+                    "typeIdentifier": "t_type$_t_contract$_CappedToken_$1481_$",
                     "typeString": "type(contract CappedToken)"
                   }
                 },
@@ -1446,10 +1446,10 @@
         }
       },
       "links": {},
-      "address": "0x61a3eae8f018a3a31e21ec7a8930a508c9bc32fd",
-      "transactionHash": "0x67b6559e3d819264d6ef506f0be3987b48357f7379225c78e870452018e03a00"
+      "address": "0x4b4015f27eccc21d44930c826f2372fa55d3a730",
+      "transactionHash": "0xdf46c5db667ce8c820b407f374f6ec714760528b932357de00eb5ece70c5cad8"
     }
   },
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-09-30T00:41:52.637Z"
+  "updatedAt": "2018-09-30T12:31:38.167Z"
 }

@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Nethereum.Web3;
+using Nethereum.Web3.Accounts.Managed;
 using pre_ico_web_site.Data;
 using pre_ico_web_site.Eth;
 using pre_ico_web_site.Models;
@@ -102,7 +103,11 @@ namespace pre_ico_web_site
             services.AddSingleton(s =>
             {
                 var settings = s.GetService<IOptions<EthSettings>>().Value;
-                return new Web3(settings.NodeUrl ?? "http://localhost:8545");
+                var senderAddress = settings.AppAddress;
+                var password = settings.AppPassword;
+
+                var account = new ManagedAccount(senderAddress, password);
+                return new Web3(account,settings.NodeUrl ?? "http://localhost:8545");
             });
 
             services.AddSingleton<TokenSaleContract>();
