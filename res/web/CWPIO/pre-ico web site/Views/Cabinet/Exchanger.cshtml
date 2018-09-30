@@ -5,27 +5,27 @@
 }
 
 <style>
-	.s-mb_20 { margin-bottom: 20px; }
+   .s-mb_20 { margin-bottom: 20px; }
 
-	@@media (max-width: 768px) {
-		.h2, h2 { font-size: 1.1rem; }
+  @@media (max-width: 768px) {
+    .h2, h2 { font-size: 1.1rem; }
 
-		.h3, h3 { font-size: 1.05rem; }
+    .h3, h3 { font-size: 1.05rem; }
 
-		.s-ms-c { text-align: center; }
+    .s-ms-c { text-align: center; }
 
-		.s-ms_n { display: none; }
+    .s-ms_n { display: none; }
 
-		.s-ms_b { display: inline-block; }
-		.m-widget14 {
-			padding: 0 2.2rem 2.2rem;
-		}
-	}
+    .s-ms_b { display: inline-block; }
+    .m-widget14 {
+      padding: 0 2.2rem 2.2rem;
+    }
+  }
 </style>
 
 <div class="row">
 	<div class="col-md-12">
-		<div class="m-alert m-alert--icon m-alert--icon-solid m-alert--outline alert alert-success alert-dismissible fade show" role="alert">
+		<div class="m-alert m-alert--icon m-alert--icon-solid m-alert--outline alert alert-brand alert-dismissible fade show" role="alert">
 			<div class="m-alert__icon">
 				<i class="flaticon-exclamation-1"></i>
 				<span></span>
@@ -70,13 +70,13 @@
 <div class="m-portlet__body">
 
 <div style="margin-bottom: 20px;" class="row">
-	<div class="col-md-6">
+	<div class="col-md-6 col-sm-6">
 		<h5 class="m--font-primary">
 			CWT-P Token amount you want to receive
 		</h5>
 		<input autofocus data-bind="textInput: obs.cwtCount" style="margin-bottom: 20px;" type="number" class="form-control"/>
 	</div>
-	<div class="col-md-4">
+	<div class="col-md-4 col-sm-6">
 		<h5 class="m--font-primary">
 			ETH amount need to send
 		</h5>
@@ -84,13 +84,18 @@
 		<span style="font-size: 20px;line-height: 37px;" data-bind="text: obs.needPay"></span>
 		<sup>ETH</sup>
 	</div>
-	<div class="col-md-2">
+	<div class="col-md-2 col-sm-12 col-xs-12">
 		<h5 class="m--font-primary">
 			&nbsp;&nbsp;
 		</h5>
-			
-		<button data-bind="css:{'m-loader': flags.purchasingIsInitializing}, disable:(flags.minCont()|| flags.purchasingIsInitializing()), click: actions.initPurchasing" type="button" 
-		        class="btn m-btn btn-success m-loader--light m-loader--right">Purchase</button>
+			<div class="m--visible-desktop">
+				<button data-bind="css:{'m-loader': flags.purchasingIsInitializing}, disable:(flags.minCont()|| flags.purchasingIsInitializing()), click: actions.initPurchasing" type="button" 
+				        class="btn btn-outline-focus m-btn--square m-btn--outline-2x m-btn m-loader--primary m-loader--right">Purchase</button>
+			</div>
+		<div class="m--visible-mobile">
+			<button data-bind="css:{'m-loader': flags.purchasingIsInitializing}, disable:(flags.minCont()|| flags.purchasingIsInitializing()), click: actions.initPurchasing" type="button" 
+			        class="btn btn-outline-focus m-btn--square m-btn--outline-2x m-btn btn-block m-btn--custom m-btn--air m-loader--primary m-loader--right">Purchase</button>
+		</div>
 	</div>
 </div>
 
