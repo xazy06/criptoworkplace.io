@@ -656,3 +656,8 @@ a.link-label:hover{
     border-color:transparent;
 }
 
+.b-confirm-msg {
+    text-align:center;
+    color:#fff;
+    font-size:34px;
+}

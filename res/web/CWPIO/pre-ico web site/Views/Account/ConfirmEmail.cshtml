@@ -2,9 +2,29 @@
     ViewData["Title"] = "Confirm email";
 }
 
-<h2>@ViewData["Title"]</h2>
-<div>
-    <p>
-        Thank you for confirming your email.
-    </p>
+
+<div id="home" class="b-block b-main">
+    <div class="container" style="z-index: 10;position: relative;">
+        <div class="row b-main-top">
+            <div class="col-md-12">
+
+                <p class="b-confirm-msg">
+                    Thank you for confirming your email.
+                </p>
+                
+                <p class="c-stn-2 s-ta_c">
+                    You will automaticaly redirected to login page in 3 seconds...
+                </p>
+            </div>
+        </div>
+    </div>
 </div>
+
+@section Scripts{
+    <script>
+        setTimeout(function() {
+            document.location.href = '/my';
+        }, 3000)
+    </script>
+
+}
