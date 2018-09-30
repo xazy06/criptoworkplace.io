@@ -684,6 +684,7 @@ a.link-label:hover{
 }
 
 .outsider {
+    z-index: 10;
     position: fixed;
     right: 0;
     top: 0;
@@ -691,4 +692,5 @@ a.link-label:hover{
     height: 170px;
     margin: auto;
     padding: 20px 7px 10px 10px;
+    background: #000;
 }
