@@ -232,7 +232,7 @@ namespace pre_ico_web_site.Controllers
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
-                    await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
+                    await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl,"","");
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     //var addclaimresult = await _userManager.AddClaimAsync(user, new Claim("IsAdmin", "True", ClaimValueTypes.Boolean));
