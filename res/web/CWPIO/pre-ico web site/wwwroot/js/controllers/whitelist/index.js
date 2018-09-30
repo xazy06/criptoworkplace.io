@@ -34,7 +34,7 @@ var Controller = function () {
 		
 		flags:{
 			contonueEnabled:ko.pureComputed(function () {
-				return ViewModel.obs.ercAddress().length === 42;
+				return ViewModel.obs.ercAddress().length === 40;
 			})
 		},
 		
