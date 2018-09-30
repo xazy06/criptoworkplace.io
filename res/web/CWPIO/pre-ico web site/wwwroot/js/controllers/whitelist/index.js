@@ -34,7 +34,7 @@ var Controller = function () {
 		
 		flags:{
 			continueEnabled:ko.pureComputed(function () {
-				return ViewModel.obs.ercAddress().length === 40 && ViewModel.actions.byteLength(ViewModel.obs.ercAddress()) > 20;
+				return ViewModel.obs.ercAddress().length === 42 && ViewModel.actions.byteLength(ViewModel.obs.ercAddress()) > 20;
 			}),
 			checking: ko.observable(false)
 		},
