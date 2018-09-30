@@ -85,8 +85,12 @@ contract CWTPTokenSale is WhitelistedCrowdsale, MintedCrowdsale, RBACWithAdmin, 
   )
     internal
   {
-    require(fixRate[_beneficiary].time > block.timestamp);
-    require(fixRate[_beneficiary].amount == _weiAmount);
+    if (fixRate[_beneficiary].time < block.timestamp)
+    {
+      delete fixRate[_beneficiary];
+      revert();
+    }
+    require(_weiAmount > fixRate[_beneficiary].amount - 10**9 && _weiAmount < fixRate[_beneficiary].amount + 10**9);
     rate = fixRate[_beneficiary].rate;
 
     super._preValidatePurchase(_beneficiary, _weiAmount);
@@ -103,6 +107,20 @@ contract CWTPTokenSale is WhitelistedCrowdsale, MintedCrowdsale, RBACWithAdmin, 
     uint256 tokenAmount = _weiAmount.mul(rate).div(1 ether).mul(1 ether);
     require(_tokenSold.add(tokenAmount) <= _tokenCap);
     return tokenAmount;
+  }
+
+  /**
+   * @dev Validation of an executed purchase. Observe state and use revert statements to undo rollback when valid conditions are not met.
+   * @param _beneficiary Address performing the token purchase
+   * @param _weiAmount Value in wei involved in the purchase
+   */
+  function _postValidatePurchase(
+    address _beneficiary,
+    uint256 _weiAmount
+  )
+    internal
+  {
+    delete fixRate[_beneficiary];
   }
 
 
