@@ -661,3 +661,34 @@ a.link-label:hover{
     color:#fff;
     font-size:34px;
 }
+
+.grad {
+    background: #0aafc2;
+    background: -moz-linear-gradient(45deg, #0bb2c6 0%, #333b8c 100%);
+    background: -webkit-linear-gradient(45deg, #0bb2c6 0%,#333b8c 100%);
+    background: linear-gradient(45deg, #0bb2c6 0%,#333b8c 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0bb2c6', endColorstr='#333b8c',GradientType=1 );
+}
+
+.fba-social-i{
+    padding:0;
+}
+.fba-social-i li {
+    display: block;
+    text-align:center;
+    margin-bottom:10px;
+}
+
+.fba-social-i li i {
+    color:#fff;
+}
+
+.outsider {
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 170px;
+    margin: auto;
+    padding: 20px 7px 10px 10px;
+}
