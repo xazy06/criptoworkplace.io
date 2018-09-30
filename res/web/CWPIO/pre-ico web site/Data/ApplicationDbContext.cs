@@ -31,7 +31,7 @@ namespace pre_ico_web_site.Data
                 b.Property(u => u.IsDeleted).IsRequired();
                 b.Property(u => u.IsDemo).IsRequired().HasDefaultValue(false);
 
-                b.Property(x => x.EthAddress).IsRequired(false).HasMaxLength(40);
+                b.Property(x => x.EthAddress).IsRequired(false).HasMaxLength(20);
 
                 b.HasMany(u => u.Claims)
                     .WithOne()
