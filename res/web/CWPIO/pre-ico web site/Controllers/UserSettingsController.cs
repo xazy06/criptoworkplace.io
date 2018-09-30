@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using pre_ico_web_site.Data;
 using pre_ico_web_site.Models;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Logging;
+using System;
+using System.Threading.Tasks;
 
 namespace pre_ico_web_site.Controllers
 {
@@ -38,7 +33,7 @@ namespace pre_ico_web_site.Controllers
                 return NotFound();
             }
 
-            return Ok(new SimpleApplicationUserSettingsDto { });
+            return Ok(new SimpleApplicationUserSettingsDto { EthAddress = $"0x{ByteArrayToString(user.EthAddress)}" });
 
         }
 
@@ -81,6 +76,11 @@ namespace pre_ico_web_site.Controllers
         private async Task<bool> UserExistsAsync(string id)
         {
             return await _dbContext.Users.AnyAsync(e => e.Id == id);
+        }
+
+        private static string ByteArrayToString(byte[] ba)
+        {
+            return BitConverter.ToString(ba).Replace("-", "");
         }
     }
 }

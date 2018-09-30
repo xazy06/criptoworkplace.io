@@ -11,5 +11,6 @@ namespace pre_ico_web_site.Models
         public string LastName { get; set; }
         public string Country { get; set; }
         public string TelegramNickname { get; set; }
+        public string EthAddress { get; set; }
     }
 }
