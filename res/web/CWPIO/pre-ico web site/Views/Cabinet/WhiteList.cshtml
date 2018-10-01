@@ -42,17 +42,27 @@
 	</div>
 	<div class="m-portlet__body">
 		<form asp-action="WhiteListAsync" method="post" class="m-login__form m-form">
-			<input id="ercAddress" name="ercAddress" placeholder="0xab00000000000000000000000000000000000000"
-				maxlength="42" data-bind="textInput:obs.ercAddress" autofocus style="margin-bottom: 20px;" type="text" class="form-control"/>
-	
+			<div style="margin-bottom: 20px;" class="form-group m-form__group">
+				<div class="input-group">
+					<input id="ercAddress" name="ercAddress" placeholder="0xab00000000000000000000000000000000000000"
+					       maxlength="42" data-bind="textInput:obs.ercAddress" autofocus type="text" class="form-control"/>
+					
+					<!-- ko if:obs.hasMetamask -->
+					<div class="input-group-append">
+						<button data-bind="disable:flags.lockFill, click:actions.getndFillAddressFromMetamask" class="btn  btn-primary" type="button">Fill from MetaMask <img height="16" style="margin-left: 5px;vertical-align: top;" src="/images/metamask.png"></button>
+					</div>
+					<!-- /ko -->
+				</div>
+			</div>
+			
 			<p>We recommend using <a target="_blank" href="https://metamask.io/">Metamask</a> but you may also use other native Ethereum wallets as <br/>
 				long as they are ERC-20 compatible, such as MyEtherWallet, Mist or imToken.
 			</p>
-	
-@*			<button data-bind="enable:flags.continueEnabled" type="submit" *@
-@*			        class="s-ms_n btn m-btn--pill btn-brand m-btn--wide m-btn--uppercase m-btn--bolder m-btn--sm">Continue</button>*@
-			
-			<button type="submit" data-bind="css:{'m-loader': flags.checking}, enable:(flags.continueEnabled()|| flags.checking()), click: actions.send.bind($element)" 
+
+			@*			<button data-bind="enable:flags.continueEnabled" type="submit" *@
+			@*			        class="s-ms_n btn m-btn--pill btn-brand m-btn--wide m-btn--uppercase m-btn--bolder m-btn--sm">Continue</button>*@
+
+			<button type="submit" data-bind="css:{'m-loader': flags.checking}, enable:(flags.continueEnabled()|| flags.checking()), click: actions.send.bind($element)"
 			        class="btn btn-outline-focus m-btn--square m-btn--outline-2x m-btn m-loader--primary m-loader--right">Continue</button>
 		</form>
 	</div>
@@ -60,5 +70,6 @@
 </div>
 
 @section Scripts{
+	<script src="~/js/web3.min.js" asp-append-version="true"></script>
 	<script asp-append-version="true" src="~/js/controllers/whitelist/index.js"></script>
 }
