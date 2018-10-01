@@ -110,7 +110,7 @@ namespace pre_ico_web_site.Eth
 
         public Task<BigInteger> GetRefundAmountAsync(string ethAddress)
         {
-            return _tokenContract.GetFunction("payments").CallAsync<BigInteger>(ethAddress);
+            return _saleContract.GetFunction("payments").CallAsync<BigInteger>(ethAddress);
         }
 
         private async Task WaitReciept(string hash)
