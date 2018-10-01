@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Google.Apis.Auth.OAuth2;
+using Google.Apis.Drive.v3;
+using Google.Apis.Services;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -16,6 +19,7 @@ using pre_ico_web_site.Models;
 using pre_ico_web_site.Services;
 using Slack.Webhooks;
 using System;
+using System.Security.Cryptography.X509Certificates;
 
 namespace pre_ico_web_site
 {
@@ -107,7 +111,7 @@ namespace pre_ico_web_site
                 var password = settings.AppPassword;
 
                 var account = new ManagedAccount(senderAddress, password);
-                return new Web3(account,settings.NodeUrl ?? "http://localhost:8545");
+                return new Web3(account, settings.NodeUrl ?? "http://localhost:8545");
             });
 
             services.AddSingleton<TokenSaleContract>();
@@ -116,6 +120,28 @@ namespace pre_ico_web_site
             services.AddSingleton<IRateStore, RateStore>();
 
             services.AddMemoryCache();
+
+            services.Configure<GoogleDriveSettings>(Configuration.GetSection("GDrive"));
+
+            services.AddSingleton(s =>
+            {
+                var settings = s.GetRequiredService<IOptions<GoogleDriveSettings>>().Value;
+
+                var serviceAccountEmail = settings.ServiceAccount;
+                var certificate = new X509Certificate2(settings.P12CertPath, "notasecret", X509KeyStorageFlags.Exportable);
+
+                ServiceAccountCredential credential = new ServiceAccountCredential(
+                   new ServiceAccountCredential.Initializer(serviceAccountEmail)
+                   {
+                       Scopes = new[] { DriveService.Scope.Drive }
+                   }.FromCertificate(certificate));
+
+                return new DriveService(new BaseClientService.Initializer
+                {
+                    ApplicationName = "Discovery Sample",
+                    HttpClientInitializer = credential
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
