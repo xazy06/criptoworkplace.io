@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 
 namespace pre_ico_web_site.Controllers
 {
-    [Produces("application/octet-stream")]
     [Route("File")]
     public class FileController : Controller
     {
@@ -21,14 +20,14 @@ namespace pre_ico_web_site.Controllers
             using (var stream = new MemoryStream())
             {
 
-                await _files.GetFileByNameAsync(fileName, stream);
+                var mime = await _files.GetFileByNameAsync(fileName, stream);
 
                 if (stream == null)
                 {
                     return NotFound();
                 }
 
-                return File(stream.ToArray(), "application/octet-stream", fileName); // returns a FileStreamResult
+                return File(stream.ToArray(), mime, fileName); // returns a FileStreamResult
             }
         }
     }

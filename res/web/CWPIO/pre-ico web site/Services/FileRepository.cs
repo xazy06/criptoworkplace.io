@@ -20,7 +20,7 @@ namespace pre_ico_web_site.Services
             _drive = drive;
         }
 
-        public void GetFileByName(string fileName, Stream data)
+        public string GetFileByName(string fileName, Stream data)
         {
             var list = _drive.Files.List();
             list.Q = $"name = '{fileName}'";
@@ -29,11 +29,15 @@ namespace pre_ico_web_site.Services
             {
                 throw new ArgumentNullException($"File {fileName} not found in google drive");
             }
-            var getRequest = _drive.Files.Get(searched.Files.First().Id);
-            getRequest.Download(data);
+            var file = searched.Files.First();
+            var getRequest = _drive.Files.Get(file.Id);
+            var status = getRequest.DownloadWithStatus(data);
+            if (status.Status != DownloadStatus.Completed)
+                return null;
+            return file.MimeType;
         }
 
-        public async Task<DownloadStatus> GetFileByNameAsync(string fileName, Stream data)
+        public async Task<string> GetFileByNameAsync(string fileName, Stream data)
         {
             var list = _drive.Files.List();
             list.Q = $"name = '{fileName}'";
@@ -42,9 +46,12 @@ namespace pre_ico_web_site.Services
             {
                 throw new ArgumentNullException($"File {fileName} not found in google drive");
             }
-            var getRequest = _drive.Files.Get(searched.Files.First().Id);
+            var file = searched.Files.First();
+            var getRequest = _drive.Files.Get(file.Id);
             var status = await getRequest.DownloadAsync(data);
-            return status.Status;
+            if (status.Status != DownloadStatus.Completed)
+                return null;
+            return file.MimeType;
 
         }
     }

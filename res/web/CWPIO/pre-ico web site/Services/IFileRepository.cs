@@ -9,7 +9,7 @@ namespace pre_ico_web_site.Services
 {
     public interface IFileRepository
     {
-        void GetFileByName(string fileName, Stream data);
-        Task<DownloadStatus> GetFileByNameAsync(string fileName, Stream data);
+        string GetFileByName(string fileName, Stream data);
+        Task<string> GetFileByNameAsync(string fileName, Stream data);
     }
 }

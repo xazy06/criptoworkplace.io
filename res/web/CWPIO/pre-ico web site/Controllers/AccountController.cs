@@ -15,6 +15,8 @@ using pre_ico_web_site.Models.AccountViewModels;
 using pre_ico_web_site.Services;
 using System.Diagnostics;
 using pre_ico_web_site.Data;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
 
 namespace pre_ico_web_site.Controllers
 {
@@ -220,7 +222,7 @@ namespace pre_ico_web_site.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterViewModel model)
+        public async Task<IActionResult> Register(RegisterViewModel model,[FromServices]IHostingEnvironment hostingEnvironment)
         {
             if (ModelState.IsValid)
             {
@@ -232,7 +234,12 @@ namespace pre_ico_web_site.Controllers
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
-                    await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl,"","");
+
+                    var footer = Path.Combine(hostingEnvironment.WebRootPath, @"static\email\footer.html");
+                    var header = Path.Combine(hostingEnvironment.WebRootPath, @"static\email\header.html");
+
+                    await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl, 
+                        System.IO.File.ReadAllText(header), System.IO.File.ReadAllText(footer));
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     //var addclaimresult = await _userManager.AddClaimAsync(user, new Claim("IsAdmin", "True", ClaimValueTypes.Boolean));
