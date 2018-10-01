@@ -39,12 +39,8 @@
 			// 	//console.log('update');
 			// 	updater();
 			// });
-
-
 			
 			initializeTimer();
-			
-
 
 		};
 		
@@ -57,6 +53,10 @@
 					'scrollTop': $(target).offset().top - 56
 				}, 1200);
 			});
+		};
+		
+		this.initYoutube =function () {
+			$('#youtube-popup').YouTubePopUp();
 		};
 		
 		this.initRoadmap = function () {
@@ -92,6 +92,8 @@
 		App.scroll();
 
 		App.initJIvo();
+
+		App.initYoutube();
 		
 		//App.initRoadmap();
 	};
