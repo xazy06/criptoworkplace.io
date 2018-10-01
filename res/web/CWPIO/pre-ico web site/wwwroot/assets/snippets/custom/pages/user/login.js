@@ -42,7 +42,8 @@ var SnippetLogin = function () {
 						email: {required: !0, email: !0},
 						password: {required: !0},
 						rpassword: {required: !0},
-						agree: {required: !0}
+						agree: {required: !0},
+						whitepaper: {required: !0}
 					}
 				}), r.valid() && (t.addClass('m-loader m-loader--right m-loader--light').attr('disabled', !0), r.ajaxSubmit({
                     url: '/Account/Register',
