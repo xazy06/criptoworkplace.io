@@ -21,6 +21,14 @@
       padding: 0 2.2rem 2.2rem;
     }
   }
+   
+   .s-display_n {
+	   display: none;
+   }
+	  
+   .s-display_bi {
+	   display: block !important;
+   }
 </style>
 
 <div class="row">
@@ -426,7 +434,7 @@
 					<div class="m-widget14__header">
 						<h3 class="m-widget14__title">
 							@*							Current round is <!-- ko text:obs.sales.step --><!--/ko-->        *@
-							Token's sold <!-- ko text:obs.sales.sold --><!--/ko--> CWT-P
+							Token's sold <!-- ko text:obs.sales.sold --><i style="padding: 0 12px" class="m-loader m-loader--brand"></i><!--/ko--> CWT-P
 						</h3>
 						<span class="m-widget14__desc">
 							@*							Token's sold <!-- ko text:obs.sales.sold --><!--/ko--> CWT-P*@
@@ -437,6 +445,12 @@
 						<a data-bind="text:obs.usersettings.ethAddress, attr:{'href':('https://etherscan.io/address/'+ obs.usersettings.ethAddress())}"
 						   target="_blank" href="#">
 							<i style="margin-left: 30px" class="m-loader m-loader--brand"></i>
+						</a>
+					</div>
+					<div class="s-display_n" data-bind="css:{'s-display_bi': (obs.sales.refund() > 0)}">
+						<span>Refund ammount: <strong data-bind="text:obs.sales.refund"></strong> ETH</span>
+						<a class="btn btn-outline-focus m-btn--square m-btn--outline-2x m-btn m-loader--primary m-loader--right" data-bind="click:actions.refund">
+							Refund
 						</a>
 					</div>
 @*					<div class="row  align-items-center">*@

@@ -96,6 +96,7 @@ var Controller = function () {
 				ViewModel.obs.sales.sold(response.sold);
 				ViewModel.obs.sales.step(response.step);
 				ViewModel.obs.sales.ballance(response.ballance);
+			  ViewModel.obs.sales.refund(response.refund);
 			});
 		},
 
