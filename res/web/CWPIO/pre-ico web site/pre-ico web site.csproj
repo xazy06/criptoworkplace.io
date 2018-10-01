@@ -14,7 +14,9 @@
     <None Remove="cert.p12" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="cert.p12" />
+    <Content Include="cert.p12">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Google.Apis" Version="1.35.2" />
