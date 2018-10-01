@@ -3,11 +3,11 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Nethereum.Contracts;
 using Nethereum.Hex.HexTypes;
-using Nethereum.RPC.Eth.DTOs;
 using Nethereum.Util;
 using Nethereum.Web3;
 using Newtonsoft.Json;
 using pre_ico_web_site.Models;
+using System;
 using System.Numerics;
 using System.Threading.Tasks;
 
@@ -15,11 +15,12 @@ namespace pre_ico_web_site.Eth
 {
     public class TokenSaleContract
     {
-        private readonly Contract _contract;
+        private readonly Contract _saleContract;
+        private readonly Contract _tokenContract;
         private readonly EthSettings _settings;
         private readonly ILogger _logger;
         private readonly Web3 _web3;
-        public string Address { get { return _contract.Address; } }
+        public string Address { get { return _saleContract.Address; } }
 
         public TokenSaleContract(
             Web3 web3,
@@ -31,18 +32,39 @@ namespace pre_ico_web_site.Eth
             _settings = options.Value;
             _web3 = web3;
             string contentRootPath = hostingEnvironment.WebRootPath;
-            var JSON = System.IO.File.ReadAllText(contentRootPath + "/static/abi/CWTPTokenSale.json");
+            _saleContract = LoadContractFromMetadata(web3, _settings.Network.ToString(), contentRootPath + "/static/abi/CWTPTokenSale.json");
+            _tokenContract = LoadContractFromMetadata(web3, _settings.Network.ToString(), contentRootPath + "/static/abi/CWTPToken.json");
+        }
+
+        private static Contract LoadContractFromMetadata(Web3 web3, string netId, string contractFile)
+        {
+            var JSON = System.IO.File.ReadAllText(contractFile);
             dynamic jObject = JsonConvert.DeserializeObject<dynamic>(JSON);
             var abi = jObject.abi.ToString();
-            var contractAddress = jObject.networks[_settings.Network.ToString()].address.ToString();
-            _contract = web3.Eth.GetContract(abi, contractAddress);
+            var contractAddress = jObject.networks[netId].address.ToString();
+            return web3.Eth.GetContract(abi, contractAddress);
+        }
+
+        internal Task<BigInteger> GetCapAsync()
+        {
+            return _saleContract.GetFunction("tokenCap").CallAsync<BigInteger>();
+        }
+
+        internal Task<BigInteger> TokenSoldAsync()
+        {
+            return _saleContract.GetFunction("tokenSold").CallAsync<BigInteger>();
+        }
+
+        internal Task<BigInteger> GetBallanceAsync(string ethAddress)
+        {
+            return _tokenContract.GetFunction("balanceOf").CallAsync<BigInteger>(ethAddress);
         }
 
         public Task AddAddressToWhitelistAsync(string addr)
         {
             var currentGasPrice = _settings.GasPrice * UnitConversion.Convert.GetEthUnitValue(UnitConversion.EthUnit.Gwei);
 
-            return _contract.GetFunction("addAddressToWhitelist")
+            return _saleContract.GetFunction("addAddressToWhitelist")
                 .SendTransactionAndWaitForReceiptAsync(_settings.AppAddress, new HexBigInteger(_settings.GasLimit), new HexBigInteger(currentGasPrice), new HexBigInteger(0), null, addr);
         }
 
@@ -50,19 +72,19 @@ namespace pre_ico_web_site.Eth
         {
             var currentGasPrice = _settings.GasPrice * UnitConversion.Convert.GetEthUnitValue(UnitConversion.EthUnit.Gwei);
 
-            var hash = await _contract.GetFunction("setRateForTransaction")
+            var hash = await _saleContract.GetFunction("setRateForTransaction")
                 .SendTransactionAsync(_settings.AppAddress, new HexBigInteger(_settings.GasLimit), new HexBigInteger(currentGasPrice), new HexBigInteger(0), rate, buyer, amount);
 
             _logger.LogCritical("Transaction hash: {0}", hash);
 
             await WaitReciept(hash);
             _logger.LogCritical("done");
-            return await _contract.GetFunction("fixRate").CallDeserializingToObjectAsync<FixRateModel>(buyer);
+            return await _saleContract.GetFunction("fixRate").CallDeserializingToObjectAsync<FixRateModel>(buyer);
         }
 
         public Task<long> WeiRaisedAsync()
         {
-            return _contract.GetFunction("weiRaised").CallAsync<long>();
+            return _saleContract.GetFunction("weiRaised").CallAsync<long>();
         }
 
         private async Task WaitReciept(string hash)

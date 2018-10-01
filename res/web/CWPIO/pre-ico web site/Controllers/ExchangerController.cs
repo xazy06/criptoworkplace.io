@@ -46,7 +46,9 @@ namespace pre_ico_web_site.Controllers
 
             return Ok(new
             {
-                Sold = UnitConversion.Convert.FromWei(await _contract.WeiRaisedAsync())
+                Sold = UnitConversion.Convert.FromWei(await _contract.TokenSoldAsync()),
+                Cap = UnitConversion.Convert.FromWei(await _contract.GetCapAsync()),
+                Ballance = UnitConversion.Convert.FromWei(await _contract.GetBallanceAsync($"0x{ByteArrayToString(user.EthAddress)}"))
             });
         }
 

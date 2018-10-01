@@ -46,7 +46,17 @@ module.exports = function (deployer, network) {
       tsale;
 
     deployer.chain
-      .then(() => {
+      .then(() => CWTPTokenSale.deployed())
+      .then((instance) => {        
+        console.log("check deployed old contract");
+        if (instance !== undefined)
+        {
+          console.log("Force close old contract");
+          return instance.ForceCloseContract();
+        }
+        return true;
+      })
+      .then(() => {        
         console.log("deploy with parameters: \"" + startTime + "\", \"" + endTime + "\", \"" + walletAddr + "\", \"" + cwpInstance.address + "\"");
         return deployer.deploy(CWTPTokenSale, startTime, endTime, walletAddr, cwpInstance.address);
       })

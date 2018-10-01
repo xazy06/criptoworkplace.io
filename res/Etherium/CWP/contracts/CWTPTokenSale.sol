@@ -24,8 +24,8 @@ contract CWTPTokenSale is WhitelistedCrowdsale, MintedCrowdsale, RBACWithAdmin, 
   string public constant ROLE_SRV = "service";
 
   mapping(address => FixedRate) public fixRate;
-  uint256 public _tokenCap;
-  uint256 public _tokenSold;
+  uint256 public tokenCap;
+  uint256 public tokenSold;
   FixedRate private _currentFRate;
 
   constructor(uint256 _startTime, uint256 _endTime, address _wallet, CappedToken _tokenAddress) public
@@ -33,7 +33,8 @@ contract CWTPTokenSale is WhitelistedCrowdsale, MintedCrowdsale, RBACWithAdmin, 
     Crowdsale(1, _wallet, _tokenAddress)
   {
     require(Ownable(_tokenAddress) != address(0));
-    _tokenCap = _tokenAddress.cap() - _tokenAddress.totalSupply();
+    tokenCap = _tokenAddress.cap();
+    tokenSold = _tokenAddress.totalSupply();
 
     addRole(msg.sender, ROLE_DAPP);
     addRole(msg.sender, ROLE_SRV);
@@ -73,7 +74,7 @@ contract CWTPTokenSale is WhitelistedCrowdsale, MintedCrowdsale, RBACWithAdmin, 
    * @return Whether the cap was reached
    */
   function capReached() public view returns (bool) {
-    return _tokenSold >= _tokenCap;
+    return tokenSold >= tokenCap;
   }
 
   /**
@@ -105,9 +106,25 @@ contract CWTPTokenSale is WhitelistedCrowdsale, MintedCrowdsale, RBACWithAdmin, 
     //_weiAmount
 
     uint256 tokenAmount = _currentFRate.amount.mul(_currentFRate.rate).div(1 ether).mul(1 ether);
-    require(_tokenSold.add(tokenAmount) <= _tokenCap);
+    require(tokenSold.add(tokenAmount) <= tokenCap);
     return tokenAmount;
   }
+
+  /**
+   * @dev Executed when a purchase has been validated and is ready to be executed. Not necessarily emits/sends tokens.
+   * @param _beneficiary Address receiving the tokens
+   * @param _tokenAmount Number of tokens to be purchased
+   */
+  function _processPurchase(
+    address _beneficiary,
+    uint256 _tokenAmount
+  )
+    internal
+  {
+    tokenSold = tokenSold.add(_tokenAmount);
+    super._processPurchase(_beneficiary, _tokenAmount);
+  }
+
 
   /**
    * @dev Determines how ETH is stored/forwarded on purchases.
