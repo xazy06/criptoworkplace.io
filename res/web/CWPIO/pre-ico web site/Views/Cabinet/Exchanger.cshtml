@@ -422,15 +422,22 @@
 		<div class="m-widget27__container">
 			<div class="m-widget14">
 			
-				<div class="m-widget14">
+				<div class="">
 					<div class="m-widget14__header">
 						<h3 class="m-widget14__title">
 							@*							Current round is <!-- ko text:obs.sales.step --><!--/ko-->        *@
 							Token's sold <!-- ko text:obs.sales.sold --><!--/ko--> CWT-P
 						</h3>
 						<span class="m-widget14__desc">
-@*							Token's sold <!-- ko text:obs.sales.sold --><!--/ko--> CWT-P*@
+							@*							Token's sold <!-- ko text:obs.sales.sold --><!--/ko--> CWT-P*@
 						</span>
+					</div>
+					<div>
+						<span>Your whitelisted ERC-20 address:</span>
+						<a data-bind="text:obs.usersettings.ethAddress, attr:{'href':('https://etherscan.io/address/'+ obs.usersettings.ethAddress())}"
+						   target="_blank" href="#">
+							<i style="margin-left: 30px" class="m-loader m-loader--brand"></i>
+						</a>
 					</div>
 @*					<div class="row  align-items-center">*@
 @*						<div class="col">*@
