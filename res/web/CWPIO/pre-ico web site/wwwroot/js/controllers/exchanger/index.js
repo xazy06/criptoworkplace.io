@@ -244,6 +244,12 @@ var Controller = function () {
 			initPurchasing: function () {
 				ViewModel.flags.purchasingIsInitializing(true);
 				self.actions.initPurchasing(this.obs.cwtCount(), this.obs.needPay());
+
+				try{
+					yaCounter50462326.reachGoal('Purchase');
+					ga('send', 'event', 'forms', 'purchase');
+				}catch (e){					
+				}
 			}
 		}
 		
