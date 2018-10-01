@@ -75,6 +75,16 @@
 		
 		};
 		
+		this.initMobileToggler = function () {
+			var $toggler = $('#collapse');
+
+			function toggler() {
+				$($toggler.data('target')).toggleClass('in');	
+			}
+			
+			$toggler.on('click', toggler);
+		};
+		
 		this.public = {
 			initTimer: self.initTimer
 		};
@@ -94,6 +104,8 @@
 		App.initJIvo();
 
 		App.initYoutube();
+		
+		App.initMobileToggler();
 		
 		//App.initRoadmap();
 	};
