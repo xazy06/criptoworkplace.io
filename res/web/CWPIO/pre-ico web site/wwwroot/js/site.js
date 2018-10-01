@@ -56,7 +56,7 @@
 		};
 		
 		this.initYoutube =function () {
-			$('#youtube-popup').YouTubePopUp();
+			$('.js-youtube-popup').YouTubePopUp();
 		};
 		
 		this.initRoadmap = function () {
