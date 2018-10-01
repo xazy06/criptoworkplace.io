@@ -63,7 +63,7 @@ function initializeTimer() {
 		timerId = setInterval(secOut, 1000)
 	}
 	else {
-		alert("Установленая дата уже прошла");
+		//alert("Установленая дата уже прошла");
 	}
 }
 
