@@ -1,5 +1,4 @@
-﻿using Google.Apis.Drive.v3;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Nethereum.Contracts;
 using Nethereum.Hex.HexTypes;
@@ -7,9 +6,8 @@ using Nethereum.Util;
 using Nethereum.Web3;
 using Newtonsoft.Json;
 using pre_ico_web_site.Models;
-using System;
+using pre_ico_web_site.Services;
 using System.IO;
-using System.Linq;
 using System.Numerics;
 using System.Threading.Tasks;
 
@@ -27,7 +25,7 @@ namespace pre_ico_web_site.Eth
         public TokenSaleContract(
             Web3 web3,
             IOptions<EthSettings> options,
-            DriveService drive,
+            IFileRepository files,
             IOptions<GoogleDriveSettings> gdriveOptions,
             ILogger<TokenSaleContract> logger)
         {
@@ -35,40 +33,30 @@ namespace pre_ico_web_site.Eth
             _settings = options.Value;
             _web3 = web3;
             //string contentRootPath = hostingEnvironment.WebRootPath;
-            var contractFile = DownloadFileData(drive, gdriveOptions.Value.SaleContractFileName);
-            _saleContract = LoadContractFromMetadata(web3, _settings.Network.ToString(), contractFile);
-            contractFile = DownloadFileData(drive, gdriveOptions.Value.TokenContractFileName);
-            _tokenContract = LoadContractFromMetadata(web3, _settings.Network.ToString(), contractFile);
-        }
-
-        private string DownloadFileData(DriveService drive, string fileName)
-        {
-            var list = drive.Files.List();
-            list.Q = $"name = '{fileName}'";
-            var searched = list.Execute();
-            if (searched.Files.Count == 0)
+            using (var stream = new MemoryStream())
             {
-                throw new ArgumentNullException($"File {fileName} not found in google drive");
+                files.GetFileByName(gdriveOptions.Value.SaleContractFileName, stream);
+                stream.Seek(0, SeekOrigin.Begin);
+                _saleContract = LoadContractFromMetadata(web3, _settings.Network.ToString(), stream);
             }
-            var getRequest = drive.Files.Get(searched.Files.First().Id);
-            using (Stream data = new MemoryStream())
+            using (var stream = new MemoryStream())
             {
-                getRequest.Download(data);
-                data.Seek(0, SeekOrigin.Begin);
-                using (StreamReader r = new StreamReader(data))
-                {
-                    return r.ReadToEnd();
-                }
+                files.GetFileByName(gdriveOptions.Value.TokenContractFileName, stream);
+                stream.Seek(0, SeekOrigin.Begin);
+                _tokenContract = LoadContractFromMetadata(web3, _settings.Network.ToString(), stream);
             }
         }
 
-        private static Contract LoadContractFromMetadata(Web3 web3, string netId, string json)
+        private static Contract LoadContractFromMetadata(Web3 web3, string netId, Stream json)
         {
             //var JSON = System.IO.File.ReadAllText(contractFile);
-            dynamic jObject = JsonConvert.DeserializeObject<dynamic>(json);
-            var abi = jObject.abi.ToString();
-            var contractAddress = jObject.networks[netId].address.ToString();
-            return web3.Eth.GetContract(abi, contractAddress);
+            using (var reader = new StreamReader(json))
+            {
+                dynamic jObject = JsonConvert.DeserializeObject<dynamic>(reader.ReadToEnd());
+                var abi = jObject.abi.ToString();
+                var contractAddress = jObject.networks[netId].address.ToString();
+                return web3.Eth.GetContract(abi, contractAddress);
+            }
         }
 
         internal Task<BigInteger> GetCapAsync()

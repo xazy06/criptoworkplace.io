@@ -138,10 +138,12 @@ namespace pre_ico_web_site
 
                 return new DriveService(new BaseClientService.Initializer
                 {
-                    ApplicationName = "Discovery Sample",
+                    ApplicationName = "CWPIO",
                     HttpClientInitializer = credential
                 });
             });
+
+            services.AddSingleton<IFileRepository, FileRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
