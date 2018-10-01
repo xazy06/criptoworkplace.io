@@ -192,7 +192,8 @@ h1.h1, h1, h2{
     background-color: #000;
 		position: relative;
 		perspective: 1200px;
-		height:345px;
+		/*height:345px;*/
+		height:312px;
 }
 
 .b-book {
