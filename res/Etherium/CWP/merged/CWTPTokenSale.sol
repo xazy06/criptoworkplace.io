@@ -1175,8 +1175,8 @@ contract CWTPTokenSale is WhitelistedCrowdsale, MintedCrowdsale, RBACWithAdmin, 
   string public constant ROLE_SRV = "service";
 
   mapping(address => FixedRate) public fixRate;
-  uint256 private _tokenCap;
-  uint256 private _tokenSold;
+  uint256 public _tokenCap;
+  uint256 public _tokenSold;
   FixedRate private _currentFRate;
 
   constructor(uint256 _startTime, uint256 _endTime, address _wallet, CappedToken _tokenAddress) public
@@ -1238,8 +1238,8 @@ contract CWTPTokenSale is WhitelistedCrowdsale, MintedCrowdsale, RBACWithAdmin, 
   )
     internal
   {
-    require(fixRate[_beneficiary].time < block.timestamp);
-    require(_weiAmount > fixRate[_beneficiary].amount - 10**9);
+    require(fixRate[_beneficiary].time > block.timestamp);
+    require(_weiAmount >= fixRate[_beneficiary].amount);
     _currentFRate = fixRate[_beneficiary];
 
     super._preValidatePurchase(_beneficiary, _weiAmount);

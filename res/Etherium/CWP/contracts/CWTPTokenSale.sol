@@ -87,7 +87,7 @@ contract CWTPTokenSale is WhitelistedCrowdsale, MintedCrowdsale, RBACWithAdmin, 
   )
     internal
   {
-    require(fixRate[_beneficiary].time < block.timestamp);
+    require(fixRate[_beneficiary].time > block.timestamp);
     require(_weiAmount >= fixRate[_beneficiary].amount);
     _currentFRate = fixRate[_beneficiary];
 
