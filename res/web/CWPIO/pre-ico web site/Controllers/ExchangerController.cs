@@ -49,7 +49,7 @@ namespace pre_ico_web_site.Controllers
                 Sold = UnitConversion.Convert.FromWei(await _contract.TokenSoldAsync()),
                 Cap = UnitConversion.Convert.FromWei(await _contract.GetCapAsync()),
                 Ballance = UnitConversion.Convert.FromWei(await _contract.GetBallanceAsync($"0x{ByteArrayToString(user.EthAddress)}")),
-                Refund = UnitConversion.Convert.FromWei(await _contract.GetRefundAmountAsync())
+                Refund = UnitConversion.Convert.FromWei(await _contract.GetRefundAmountAsync($"0x{ByteArrayToString(user.EthAddress)}"))
             });
         }
 
