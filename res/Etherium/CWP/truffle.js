@@ -1,7 +1,5 @@
  var HDWalletProvider = require("truffle-hdwallet-provider-privkey");
 // var infura_apikey = "roht23j583p4SPym7gx6";
- //const privateKeys = "18cebf64a44af8621c7664974be1d7d30bc943f2b69533c422d8868f59d294c2"; 
- const privateKeys = "07eb1aab3c62d6e1fce1343e6dc946e7a90c521846364e0934651a67d832a8d8"; 
 
 
 module.exports = {
