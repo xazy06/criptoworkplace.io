@@ -213,6 +213,9 @@ var Controller = function () {
 		},
 		
 		actions:{
+			refund: function () {
+				
+			},
 			notify: function(a, val){
 				$.notify(a, {
 					type: (val || 'success'),
