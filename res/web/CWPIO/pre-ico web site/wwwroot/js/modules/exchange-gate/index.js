@@ -37,6 +37,30 @@ var Gate = function () {
 						 status: 'available' } }
 				*/
 			})
+		},
+		shiftCoin: function () {
+			var withdrawalAddress = 'YOUR_LTC_ADDRESS';
+			var pair = 'btc_eth';
+
+			// if something fails
+			var options = {
+				returnAddress: 'YOUR_BTC_RETURN_ADDRESS'
+			};
+
+			shapeshift.shift(withdrawalAddress, pair, options, function (err, returnData) {
+
+				// ShapeShift owned BTC address that you send your BTC to
+				var depositAddress = returnData.deposit
+
+				// you need to actually then send your BTC to ShapeShift
+				// you could use module `spend`: https://www.npmjs.com/package/spend
+				// spend(SS_BTC_WIF, depositAddress, shiftAmount, function (err, txId) { /.. ../ })
+
+				// later, you can then check the deposit status
+				shapeshift.status(depositAddress, function (err, status, data) {
+					console.log(status) // => should be 'received' or 'complete'
+				})
+			})
 		}
 	};
 
