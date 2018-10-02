@@ -113,6 +113,27 @@
 </div>
 <!--/ko-->
 
+
+@*<h5 class="m--font-primary">*@
+@*	Choose availiable currencies*@
+@*</h5>*@
+@*<div style="margin-bottom: 20px;" class="form-group m-form__group">*@
+@*	<div class="input-group">*@
+@*		<select data-bind="" class="form-control">*@
+@*			<!-- ko foreach:currencies -->*@
+@*			<option data-bind="text: $data"></option>*@
+@*			<!--/ko-->*@
+@*		</select>*@
+@*					*@
+@*$1$		<!-- ko if:obs.hasMetamask -->#1#*@
+@*$1$		<div class="input-group-append">#1#*@
+@*$1$			<button data-bind="disable:flags.lockFill, click:actions.getndFillAddressFromMetamask" class="btn  btn-primary" type="button">Fill from MetaMask <img height="16" style="margin-left: 5px;vertical-align: top;" src="/images/metamask.png"></button>#1#*@
+@*$1$		</div>#1#*@
+@*$1$		<!-- /ko -->#1#*@
+@*	</div>*@
+@*</div>*@
+
+
 <h2 style="margin-bottom: 20px;">Cryptoworkplace smart contract address</h2>
 @*		Minimum contribution is 500 CWT-P*@
 
@@ -531,9 +552,11 @@
 		</div>
 	</div>
 </div>
-@section Scripts{
+@section Scripts {
 	<script src="~/js/web3.min.js" asp-append-version="true"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+	<script asp-append-version="true" src="~/js/shapeshift.js"></script>
+	<script asp-append-version="true" src="~/js/modules/exchange-gate/index.js"></script>
 	<script asp-append-version="true" src="~/js/controllers/exchanger/index.js"></script>
 	<script>
 //		Morris.Donut({

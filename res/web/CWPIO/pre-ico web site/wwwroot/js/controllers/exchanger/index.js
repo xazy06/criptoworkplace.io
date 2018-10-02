@@ -165,6 +165,8 @@ var Controller = function () {
 	};
 	
 	var ViewModel = {
+		currencies: [],
+		
 		obs:{
 			contractAddress: ko.observable(''),
 			freezed: ko.observable(0),
@@ -261,6 +263,8 @@ var Controller = function () {
 		self.actions.calc(val);
 	});
 	ViewModel.obs.cwtCount(500);
+	
+	self.ViewModel = ViewModel;
 	
 	return this.init();
 };

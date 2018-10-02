@@ -35,6 +35,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="wwwroot\images\problem" />
+    <Folder Include="wwwroot\js\controllers\exchangeGate" />
+    <Folder Include="wwwroot\js\modules" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Slack.Webhooks.Core\Slack.Webhooks.Core.csproj" />
