@@ -26,18 +26,21 @@
         </div>
         
         <div class="row hidden-sm">
-            <div class="col-md-12 s-ta_c-xs">
-                <a data-i18n="enterwl" onclick="yaCounter50462326.reachGoal('Whitelist'); ga('send', 'event', 'forms', 'whitelist'); return true;"  
+            <div class="col-md-8 s-ta_c-xs">
+                <a data-i18n="enterwl" onclick="yaCounter50462326.reachGoal('Whitelist');ga('send', 'event', 'forms', 'whitelist');return true;"
                    target="_blank" class="enter-wl-btn btn btn-square btn-border-outline btn-white btn-xl s-mr_30" href="/Account/Login#m-login--signup">enter whitelist</a>
                 <a target="_blank" class="read-wp-btn btn btn-square btn-border-outline btn-white btn-xl s-mr_20" href="/static/docs/CWP_White_Paper_en.pdf">
                     <i class="far fa-file-alt"></i>
                 </a>
-                <a target="_blank" onclick="yaCounter50462326.reachGoal('Document'); ga('send', 'event', 'forms', 'document'); return true;" class="read-wp-btn-link link-label futurabook" href="/static/docs/CWP_White_Paper_en.pdf">
+                <a target="_blank" onclick="yaCounter50462326.reachGoal('Document');ga('send', 'event', 'forms', 'document');return true;" class="read-wp-btn-link link-label futurabook" href="/static/docs/CWP_White_Paper_en.pdf">
                     Read<br/>Whitepaper
                 </a>
-                <div class="b-timer_wrapper">
-                    @Html.Partial("_TimerPartial")
-                </div>
+                @*                <div class="b-timer_wrapper">*@
+                @*                    @Html.Partial("_TimerPartial")*@
+                @*                </div>*@
+            </div>
+            <div class="col-md-4 s-ta_c-xs">
+                @Html.Partial("_ProgressPartial")
             </div>
         </div>
     </div>
