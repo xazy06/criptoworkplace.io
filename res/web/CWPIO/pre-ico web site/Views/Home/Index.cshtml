@@ -2,6 +2,8 @@
 @{
     ViewData["Title"] = "CWP — Cyber Security Ecosystem";
 }
+@model BarModel
+
 <div id="home" class="b-block b-main">
     <div class="container" style="z-index: 10;position: relative;">
         <div class="row b-main-top">
@@ -40,7 +42,7 @@
                 @*                </div>*@
             </div>
             <div class="col-md-4 s-ta_c-xs s-ta_c-ipad">
-                @Html.Partial("_ProgressPartial")
+                @Html.Partial("_ProgressPartial", Model)
             </div>
         </div>
     </div>
