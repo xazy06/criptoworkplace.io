@@ -59,7 +59,8 @@ var SnippetLogin = function () {
 						setTimeout(function () {
 							t.removeClass('m-loader m-loader--right m-loader--light').attr('disabled', !1), r.clearForm(), r.validate().resetForm(), a();
 							var l = e.find('.m-login__signin form');
-							l.clearForm(), l.validate().resetForm(), i(l, 'success', 'Thank you. To complete your registration please check your email.')
+							l.clearForm(), l.validate().resetForm(), i(l, 'success', 'Thank you. To complete your registration please check your email.');
+							document.location.href = "/account/login";
 						}, 2e3)
 					}
 				}))
