@@ -37,6 +37,7 @@
     <Folder Include="wwwroot\images\problem" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Microsoft.Extensions.Logging.Slack\Microsoft.Extensions.Logging.Slack.csproj" />
     <ProjectReference Include="..\Slack.Webhooks.Core\Slack.Webhooks.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
