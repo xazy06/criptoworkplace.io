@@ -144,6 +144,8 @@ namespace pre_ico_web_site
             });
 
             services.AddSingleton<IFileRepository, FileRepository>();
+
+            services.AddResponseCompression();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -179,6 +181,8 @@ namespace pre_ico_web_site
             app.UseAuthentication();
 
             app.UseMvcWithDefaultRoute();
+
+            app.UseResponseCompression();
         }
     }
 }
