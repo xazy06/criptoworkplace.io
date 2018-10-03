@@ -1,22 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
+﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using pre_ico_web_site.Data;
 using pre_ico_web_site.Models;
 using pre_ico_web_site.Models.AccountViewModels;
 using pre_ico_web_site.Services;
+using System;
 using System.Diagnostics;
-using pre_ico_web_site.Data;
-using Microsoft.AspNetCore.Hosting;
 using System.IO;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace pre_ico_web_site.Controllers
 {
@@ -51,7 +48,9 @@ namespace pre_ico_web_site.Controllers
         public async Task<IActionResult> Login(string returnUrl = null)
         {
             if (User.Identity.IsAuthenticated)
+            {
                 return RedirectToAction(nameof(CabinetController.Index), "Cabinet");
+            }
             // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
@@ -222,7 +221,7 @@ namespace pre_ico_web_site.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterViewModel model,[FromServices]IHostingEnvironment hostingEnvironment)
+        public async Task<IActionResult> Register(RegisterViewModel model, [FromServices]IHostingEnvironment hostingEnvironment)
         {
             if (ModelState.IsValid)
             {
@@ -235,10 +234,10 @@ namespace pre_ico_web_site.Controllers
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
 
-                    var footer = Path.Combine(hostingEnvironment.WebRootPath, @"static\email\footer.html");
-                    var header = Path.Combine(hostingEnvironment.WebRootPath, @"static\email\header.html");
+                    var footer = Path.Combine(hostingEnvironment.WebRootPath, "static", "email", "footer.html");
+                    var header = Path.Combine(hostingEnvironment.WebRootPath, "static", "email", "header.html");
 
-                    await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl, 
+                    await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl,
                         System.IO.File.ReadAllText(header), System.IO.File.ReadAllText(footer));
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
@@ -249,7 +248,7 @@ namespace pre_ico_web_site.Controllers
 
             // If we got this far, something failed, redisplay form
             return Ok(new { error = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToArray(), value = false });
-            
+
         }
 
         [HttpGet]
@@ -361,7 +360,10 @@ namespace pre_ico_web_site.Controllers
             }
             var result = await _userManager.ConfirmEmailAsync(user, code);
             if (result.Succeeded)
+            {
                 return View("ConfirmEmail");
+            }
+
             return View("Error", new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
