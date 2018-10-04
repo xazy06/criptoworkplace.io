@@ -49,6 +49,8 @@
 				e.preventDefault();
 				var target = this.hash;
 
+				$($('#collapse').data('target')).removeClass('in');
+				
 				$('html, body').stop().animate({
 					'scrollTop': $(target).offset().top - 56
 				}, 1200);
