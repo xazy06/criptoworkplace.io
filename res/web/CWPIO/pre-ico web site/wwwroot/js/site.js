@@ -55,6 +55,12 @@
 					'scrollTop': $(target).offset().top - 56
 				}, 1200);
 			});
+
+			$(document).on('click', function (e) {
+				if ($(e.target).closest('#collapse').length === 0){
+					$($('#collapse').data('target')).removeClass('in');
+				}
+			});
 		};
 		
 		this.initYoutube =function () {
