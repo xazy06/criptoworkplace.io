@@ -4,6 +4,7 @@
 	Layout = "~/Views/Cabinet/_AdminLayout.cshtml";
 }
 
+@model BarModel
 <style>
    .s-mb_20 { margin-bottom: 20px; }
 
@@ -18,10 +19,15 @@
 
     .s-ms_b { display: inline-block; }
     .m-widget14 {
-      padding: 0 2.2rem 2.2rem;
+        padding: 0 2.2rem 2.2rem;
+        background: #8867ed;
     }
   }
-   
+
+    .m-widget14__header {
+        background: #8867ed;
+    }
+
    .s-display_n {
 	   display: none;
    }
@@ -29,6 +35,14 @@
    .s-display_bi {
 	   display: block !important;
    }
+
+
+    body.lk .tk_counter_inner .progress-bar.gradient {
+        background: linear-gradient(to right, #7e0e9d 0%,#5f1e9d 99%);
+    }
+    body.lk .tk_counter_inner .progress, body.lk .tk_counter_inner .progress-bar {
+        color: #f0f0f0;
+    }
 </style>
 
 <div class="row">
@@ -431,15 +445,18 @@
 			<div class="m-widget14">
 			
 				<div class="">
-					<div class="m-widget14__header">
-						<h3 class="m-widget14__title">
-							@*							Current round is <!-- ko text:obs.sales.step --><!--/ko-->        *@
-							Token's sold <!-- ko text:obs.sales.sold --><i style="padding: 0 12px" class="m-loader m-loader--brand"></i><!--/ko--> CWT-P
-						</h3>
-						<span class="m-widget14__desc">
-							@*							Token's sold <!-- ko text:obs.sales.sold --><!--/ko--> CWT-P*@
-						</span>
-					</div>
+                    <div class="m-widget14__header">
+                        @*<h3 class="m-widget14__title">
+        							Current round is <!-- ko text:obs.sales.step --><!--/ko-->        
+                        Token's sold <!-- ko text:obs.sales.sold --><i style="padding: 0 12px" class="m-loader m-loader--brand"></i><!--/ko--> CWT-P
+                        </h3>*@
+                        <div class="col-md-12 s-ta_c-xs s-ta_c-ipad">
+                            @Html.Partial("_ProgressPartial", Model)
+                        </div>
+                        <span class="m-widget14__desc">
+                            @*							Token's sold <!-- ko text:obs.sales.sold --><!--/ko--> CWT-P*@
+                        </span>
+                    </div>
 					<div>
 						<span>Your whitelisted ERC-20 address:</span>
 						<a data-bind="text:obs.usersettings.ethAddress, attr:{'href':('https://etherscan.io/address/'+ obs.usersettings.ethAddress())}"
