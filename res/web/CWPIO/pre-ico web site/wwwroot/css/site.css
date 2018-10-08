@@ -695,3 +695,47 @@ a.link-label:hover{
     padding: 20px 7px 10px 10px;
     background: #000;
 }
+
+/**@override*/
+.navbar-fixed-top {
+    top:58px;
+}
+
+.b-presale {
+    background-color:#1210ff;
+    position: fixed;
+    top:0;
+    left:0;
+    right:0;
+    height:58px;
+    z-index:100;
+}
+
+.b-token-pre-label {
+    display: inline-block;
+    vertical-align: middle;
+    color: #fff;
+    font-family: 'futurabook';
+    font-size: 18px;
+}
+
+.b-label-live {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.b-label-live--item_span {
+    color:#fff;
+}
+
+.b-label-live--item_span:before {
+    
+}
+
+
+.b-label-live--item {
+    color:#00ff00;
+    background-color: #000;
+    text-transform: uppercase;
+    padding: 7px 11px;
+}
