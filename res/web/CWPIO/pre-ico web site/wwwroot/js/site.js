@@ -98,6 +98,34 @@
 				navText: ['<i class="ion-arrow-left-c"></i>', '<i class="ion-arrow-right-c"></i>']
 			});
 		};
+
+		this.initOwl = function () {
+			$('.js-owl').owlCarousel({
+				loop: false,
+				margin: 30,
+				autoHeight: true,
+				nav: true,
+				navText: ['<i class="fas fa-3x fa-angle-left"></i>', '<i class="fas fa-3x fa-angle-right"></i>'],
+				responsive: {
+					0: {
+						items: 1
+					},
+					380: {
+						items: 2
+					},
+					600: {
+						items: 2,
+						margin: 15
+					},
+					1000: {
+						items: 3
+					},
+					1199: {
+						items: 4
+					}
+				}
+			});
+		};
 		
 		this.initJIvo =function () {
 		
@@ -142,6 +170,9 @@
 		},3000);
 				
 		//App.initRoadmap();
+
+		App.initOwl();
+		
 	};
 	
 	App.init();

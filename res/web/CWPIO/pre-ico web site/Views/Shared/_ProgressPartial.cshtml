@@ -6,9 +6,9 @@
 }
 
 .tk_counter_inner .progress {
-    background-color: transparent;
-    border: 1px solid #fff;
-    height: 23px;
+    background-color: #fff;
+/*    border: 1px solid #fff;*/
+    height: 18px;
     /*margin-bottom: 40px;*/
     margin-top: 25px;
     overflow: visible;
@@ -27,8 +27,9 @@
 }
 
 .tk_counter_inner .progress-bar.gradient {
-    background: -webkit-linear-gradient(left, #0400ff 0%,#00055a 99%);
-    background: linear-gradient(to right, #0400ff 0%,#00055a 99%);
+/*    background: -webkit-linear-gradient(left, #0400ff 0%,#00055a 99%);*/
+/*    background: linear-gradient(to right, #0400ff 0%,#00055a 99%);*/
+    background: #1210ff;
 }
 
 .tk_counter_inner .progress-bar {
@@ -40,7 +41,7 @@
     padding-right: 12px;
 }
 .tk_counter_inner .progress, .tk_counter_inner .progress-bar {
-    border-radius: 0;
+    border-radius: 10px;
     color: #5957cd;
     font-size: 14px;
     text-align: right;
@@ -106,13 +107,14 @@
     background-color: #fff!important;
 }
 .progress_min_val {
-    color: #ffffff;
+    color: #00c9ff;
     font-size: 14px;
     font-weight: 600;
     padding: 0 5px;
     position: absolute;
     left: 0;
     top: -30px;
+    font-family: 'futura';
 }
 .progress_max_val {
     color: #ffffff;
@@ -122,6 +124,7 @@
     position: absolute;
     right: 0;
     top: -30px;
+    font-family: 'futura';
 }
 </style>
 <div class="tk_counter_inner">
@@ -129,7 +132,7 @@
     <div class="progress-bar progress-bar-striped gradient" role="progressbar" aria-valuenow="@(Model.Percent.ToString("F0"))" aria-valuemin="0" aria-valuemax="100" style="width: @(Model.Percent.ToString("F0"))%"> @(Model.Percent.ToString("F2"))% </div>
     <span class="progress_label bg-white" style="left: 30%"> <strong> @Model.Sold.ToString("N0") CWT-P </strong></span>
     <span class="progress_label bg-white" style="left: 75%"> <strong> @Model.Cap.ToString("N0") CWT-P </strong></span>
-    <span class="progress_min_val">Sale Raised</span>
+    <span class="progress_min_val">Soft cap</span>
     <span class="progress_max_val">Hard-cap</span>
   </div>
 </div>

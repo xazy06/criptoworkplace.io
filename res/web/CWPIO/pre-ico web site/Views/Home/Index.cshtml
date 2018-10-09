@@ -9,41 +9,65 @@
         <div class="row b-main-top">
             <div class="col-md-6">
                 <h1 class="h1">
-                    <span data-i18n="cyber">CYBER SECURITY</span><br/>
-                    <span data-i18n="eco">ECOSYSTEM POWERED</span><br/>
-                    <span data-i18n="crypto">BY CRYPTOCOMPUTER</span>
+                    <span data-i18n="cyber">Micro-PC Powered</span><br/>
+                    <span data-i18n="eco">by Linux with Built-in</span><br/>
+                    <span data-i18n="crypto">CryptoStorage</span>
                 </h1>
                 
-                <div class="b-main_hsub pt hidden-sm hidden-xs">
-                    Our mission is to design the safest<br/>innovative devices and systems to<br/>protect personal data and the client’s<br/>finances all around the World.
-                </div>
+@*                <div class="b-main_hsub pt hidden-sm hidden-xs">*@
+@*                    Our mission is to design the safest<br/>innovative devices and systems to<br/>protect personal data and the client’s<br/>finances all around the World.*@
+@*                </div>*@
                 
-                <div>
-                    <a class="b-main_link show-lg futurabook js-youtube-popup" href="https://youtu.be/4b9ZSRxHFYo">
-                        What is CWP-computer
-                    </a>
+                <div class="b-h1-under">
+                    
+                    <div class="s-mb_20">
+                        <a target="_blank" class="b-main_link-n show-lg futurabook" href="/file/CWP_White_Paper_en.pdf">
+                            <i class="c-stn-3 far fa-file-alt"></i> Read Whitepaper
+                        </a>
+                    </div>
+
+                    <div>
+                        <a class="b-main_link-n show-lg futurabook js-youtube-popup" href="https://youtu.be/4b9ZSRxHFYo">
+                            <i class="c-stn-3 fas fa-play"></i> CEO Explains
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="col-md-6"></div>
         </div>
         
         <div class="row hidden-sm">
-            <div class="col-md-8 s-ta_c-xs s-ta_c-ipad">
-                <a data-i18n="enterwl" onclick="yaCounter50462326.reachGoal('Whitelist');ga('send', 'event', 'forms', 'whitelist');return true;"
-                   target="_blank" class="enter-wl-btn btn btn-square btn-border-outline btn-white btn-xl s-mr_30" href="/Account/Login#m-login--signup">ENTER PRESALE</a>
-                <a target="_blank" class="read-wp-btn btn btn-square btn-border-outline btn-white btn-xl s-mr_20" href="/file/CWP_White_Paper_en.pdf">
-                    <i class="far fa-file-alt"></i>
-                </a>
-                <a target="_blank" onclick="yaCounter50462326.reachGoal('Document');ga('send', 'event', 'forms', 'document');return true;" class="read-wp-btn-link link-label futurabook" href="/file/CWP_White_Paper_en.pdf">
-                    Read<br/>Whitepaper
-                </a>
-                @*                <div class="b-timer_wrapper">*@
-                @*                    @Html.Partial("_TimerPartial")*@
-                @*                </div>*@
-            </div>
-            <div class="col-md-4 s-ta_c-xs s-ta_c-ipad">
+            <div class="col-md-6 s-ta_c-xs s-ta_c-ipad">
                 @Html.Partial("_ProgressPartial", Model)
             </div>
+            
+            <div style="padding-left: 40px;" class="col-md-6 s-ta_c-xs s-ta_c-ipad">
+                <div class="s-mb_20">
+                    <a data-i18n="buy_cwt" onclick="yaCounter50462326.reachGoal('Whitelist');ga('send', 'event', 'forms', 'whitelist');return true;"
+                       target="_blank" class="enter-wl-btn btn btn-square btn-border-outline btn-blue btn-xl s-mr_30" href="/Account/Login#m-login--signup">BUY CWT-P TOKEN</a>
+
+                    <a target="_blank" onclick="yaCounter50462326.reachGoal('Document');ga('send', 'event', 'forms', 'document');return true;" class="read-wp-btn-link link-label futurabook"
+                       href="/file/CWP_White_Paper_en.pdf">
+                        <i class="c-stn-3 b-video-instr-icon far fa-play-circle fa-2x"></i>
+                        <span class="b-video-instr-text">Video<br/>Instruction</span>
+                    </a>
+                </div>
+                
+                <div class="b-timer-discount">
+                    <div data-i18n="" class="b-disc-text">
+                        <strong>40% Public Presale Discount,</strong>
+                    </div>
+                    <div data-i18n="" class="b-disc-text-under">
+                        Time left til price rise:
+                    </div>
+
+                                    <div class="b-timer_wrapper">
+                                        @Html.Partial("_TimerPartial")
+                                    </div>
+                </div>
+
+            </div>
+            
         </div>
     </div>
     <img class="hidden-xs hidden-sm" src="~/images/upload-d01bb0f1-b44c-11e8-9a0a-ed19b45a0cd0.jpg" 
@@ -413,26 +437,6 @@
     </div>
 </div>
 
-<div id="vision" class="b-block">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <h2 class="b-block-h">
-                    Roadmap
-                </h2>
-            </div>
-        </div>
-        
-        <div class="row">           
-            <div class="col-md-12 s-o_a roadmap owl-drag">
-                <img class="hidden-xs hidden-sm" src="~/images/roadmap-md.svg"/>
-                <img class="visible-xs visible-sm" src="~/images/roadmap-sm.svg"/>
-            </div> 
-            
-        </div>
-    </div>
-</div>
-
 <div id="token" class="b-block b-stn-3">
     <div class="container">
         <div class="row">
@@ -535,6 +539,27 @@
         </div>
     </div>
 </div>
+
+<div id="vision" class="b-block">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="b-block-h">
+                    Roadmap
+                </h2>
+            </div>
+        </div>
+        
+        <div class="row">           
+            <div class="col-md-12 s-o_a roadmap owl-drag">
+                <img class="hidden-xs hidden-sm" src="~/images/roadmap-md.svg"/>
+                <img class="visible-xs visible-sm" src="~/images/roadmap-sm.svg"/>
+            </div> 
+            
+        </div>
+    </div>
+</div>
+
 
 <div id="team"  class="b-block">
     <div class="container">
@@ -1157,30 +1182,30 @@
 </div>
 
 <!-- outsider -->
-<div class="outsider">
-    <ul class="fba-social-i">
-        <li><a href="https://www.facebook.com/cryptoworkplace/" target="_blank" data-toggle="tooltip" title="Facebook">
-                <i class="fab fa-2x fa-facebook-f"></i>
-            </a>
-        </li>
-                        
-        <li>
-            <a href="https://twitter.com/cryptoworkplace" data-toggle="tooltip" target="_blank" title="Twitter">
-                <i class="fab fa-2x fa-twitter"></i>
-            </a>
-        </li>
-        <li>
-            <a href="https://github.com/cryptoworkplace" target="_blank" data-toggle="tooltip" title="GitHub">
-                <i class="fab fa-2x fa-github"></i>
-            </a>
-        </li>
-        <li>
-            <a target="_blank" href="https://t.me/joinchat/Fh5zlk097Vw3P78vKLWfBg" data-toggle="tooltip" title="Telegram">
-                <i class="fab fa-2x fa-telegram-plane"></i>
-            </a>
-        </li>
-    </ul>
-</div>
+@*<div class="outsider">*@
+@*    <ul class="fba-social-i">*@
+@*        <li><a href="https://www.facebook.com/cryptoworkplace/" target="_blank" data-toggle="tooltip" title="Facebook">*@
+@*                <i class="fab fa-2x fa-facebook-f"></i>*@
+@*            </a>*@
+@*        </li>*@
+@*                        *@
+@*        <li>*@
+@*            <a href="https://twitter.com/cryptoworkplace" data-toggle="tooltip" target="_blank" title="Twitter">*@
+@*                <i class="fab fa-2x fa-twitter"></i>*@
+@*            </a>*@
+@*        </li>*@
+@*        <li>*@
+@*            <a href="https://github.com/cryptoworkplace" target="_blank" data-toggle="tooltip" title="GitHub">*@
+@*                <i class="fab fa-2x fa-github"></i>*@
+@*            </a>*@
+@*        </li>*@
+@*        <li>*@
+@*            <a target="_blank" href="https://t.me/joinchat/Fh5zlk097Vw3P78vKLWfBg" data-toggle="tooltip" title="Telegram">*@
+@*                <i class="fab fa-2x fa-telegram-plane"></i>*@
+@*            </a>*@
+@*        </li>*@
+@*    </ul>*@
+@*</div>*@
 <!-- end ousider -->
 
 <div id="partners" class="b-block b-stn-2">
@@ -1193,24 +1218,146 @@
             </div>
         </div>
         
-        <div class="row">           
+        <div class="js-owl owl-drag owl-carousel">
+            <div class="s-ta_c">
+                <div class="b-part-item s-ta_c">
+
+                    <a target="_blank" href="http://www.icape-group.com/">
+                        <img class="h-grey" width="50" src="~/images/partners/icape.png" alt="ICAPE GROUP" />
+                    </a>
+                    <div class="s-mb_9">
+                        The factories of the company will organize the production of Micro-PC CWP, output control and download of the firmware.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="s-ta_c">
+                <div class="b-part-item s-ta_c">
+
+                    <a target="_blank" href="https://kintarocells.com">
+                        <img class="h-grey" width="50" src="~/images/partners/cells.png" alt="CELLS POWER JAPAN" />
+                    </a>
+                    <div class="s-mb_9">
+                        The Japanese company KintaroCells Power is 
+                        an innovator in the field of cellular medicine.Potential corporate customer.
+                    </div>
+                </div>
+            </div>
+
+            <div class="s-ta_c">
+                <div class="b-part-item s-ta_c">
+
+                    <a target="_blank" href="https://www7.universa.io/">
+                        <img class="" width="100" src="~/images/partners/universa.png" alt="universa" />
+                    </a>
+                    <div class="s-mb_9">
+                        Succesfully ended Crowdsale. Launched. One of the fastest blockchain protocols on the Planet.
+                    </div>
+                </div>
+            </div>  
+
+            <div class="s-ta_c">
+                <div class="b-part-item s-ta_c">
+
+                    <a target="_blank" href="http://www.qamentor.com/">
+                        <img class="h-grey" width="200" src="~/images/partners/qa.png" alt="QA MENTOR" />
+                    </a>
+                    <div class="s-mb_9">
+                        An American company; a leader in software 
+                        and hardware testing.
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="s-ta_c">
+                <div class="b-part-item s-ta_c">
+
+                    <a target="_blank" href="https://adcase.ru">
+                        <img class="h-grey" width="100" src="~/images/partners/adcase.png" alt="adcase" />
+                    </a>
+                    <div class="s-mb_9">
+                        An American company; a leader in software 
+                        and hardware testing.
+                    </div>
+                </div>
+            </div>
+
+        
+        
+            <div class="s-ta_c">
+                <div class="b-part-item s-ta_c">
+
+                    <a target="_blank" href="https://armpack.io">
+                        <img class="h-grey" width="100" src="~/images/partners/arm.png" alt="armpack" />
+                    </a>
+                    <div class="s-mb_9">
+                        Succesfully ended Crowdsale, Decentralized protection against counterfeiting
+                    </div>
+                </div>
+            </div>
+            
+            <div class="s-ta_c">
+                <div class="b-part-item s-ta_c">
+
+                    <a target="_blank" href="https://glory-event.com">
+                        <img class="h-grey" width="100" src="~/images/partners/glory.png" alt="glory" />
+                    </a>
+                    <div class="s-mb_9">
+                        Succesfully ended Crowdsale, Decentralized protection against counterfeiting
+                    </div>
+                </div>
+            </div>
+            
+            <div class="s-ta_c">
+                <div class="b-part-item s-ta_c">
+
+                    <a target="_blank" href="http://cryptocean.io/">
+                        <img class="h-grey" width="100" src="~/images/partners/cocean.png" alt="CRYPTOCEAN" />
+                    </a>
+                    <div class="s-mb_9">
+                        An American company; a leader in software 
+                        and hardware testing.
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+</div>
+
+
+<div id="sign-up" class="b-block b-stn-3">
+    <div class="container">
+        <div class="row">
             <div class="col-md-12">
+                <h2 data-i18n="" class="b-block-h">
+                    Sign Up for Updates
+                </h2>
+            </div>
+        </div>
+        
+        <div class="row">           
+            <div class="col-md-12 s-ta_c">
+                <div class="b-subscribe">
+                    <input placeholder="Enter Your E-mail" class="form-control s-lg-control"/>
+                </div>
+                <a class="enter-wl-btn btn btn-square btn-border-outline btn-white btn-xl s-mr_30" href="">
+                    <span class="futurabook" data-i18n="">subscribe</span>
+                </a>
             </div>
         </div>
     </div>
 </div>
 
-The factories of the company will organize the production of Micro-PC CWP, output control and download of the firmware.
-
-The Japanese company KintaroCells Power is 
-an innovator in the field of cellular medicine.Potential corporate customer.
-
-Succesfully ended Crowdsale. Launched. One of the fastest blockchain protocols on the Planet.
-
-Succesfully ended Crowdsale, Decentralized protection against counterfeiting
 
 
-An American company; a leader in software 
-and hardware testing.
+
+
+
+
+
+
+
 
 

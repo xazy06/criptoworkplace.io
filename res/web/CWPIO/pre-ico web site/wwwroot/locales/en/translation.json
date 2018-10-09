@@ -10,15 +10,17 @@
     "team": "Team",
     "whitepaper": "Whitepaper"
   },
-  "cyber": "CYBER SECURITY",
-  "eco":"ECOSYSTEM POWERED",
-  "crypto":"BY CRYPTOCOMPUTER",
+  "cyber": "Micro-PC Powered",
+  "eco":"by Linux with Built-in",
+  "crypto":"CryptoStorage",
   "enterwl": "ENTER PRESALE",
+  "buy_cwt": "BUY CWT-P TOKEN",
   "problem": "Problem",
   "solution": "Solution",
   "key_features": "Key Features",
   "timer": {
     "day": "day",
+    "days": "days",
     "hour": "hour",
     "min": "min"
   },
