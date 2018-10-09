@@ -518,7 +518,14 @@ a.btn.btn-white,
 .navbar-nav .btn.btn-white{
     background-color:#fff;
     color:#000;
-} 
+}
+
+a.btn.btn-transparent,
+.btn.btn-transparent,
+.navbar-nav .btn.btn-transparent {
+    background-color:transparent;
+    border-color: #fff;
+}
 
 
 .btn.btn-xl {
