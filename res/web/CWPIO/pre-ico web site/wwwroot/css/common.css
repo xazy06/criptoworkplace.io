@@ -15,7 +15,10 @@
 .s-o_h{
 	overflow: hidden;
 }
-
+.s-icon {
+	display:inline-block;
+	vertical-align: middle;
+}
 .s-o_a{
 	overflow: auto;
 }
@@ -111,6 +114,7 @@ h2.s-ta_l,
 
 
 .s-mb_50{margin-bottom:50px;}
+.s-mb_10{margin-bottom:10px;}
 .s-mb_20{margin-bottom:20px;}
 .s-mb_30{margin-bottom:30px;}
 

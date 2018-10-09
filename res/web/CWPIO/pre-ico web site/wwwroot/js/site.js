@@ -63,8 +63,30 @@
 			});
 		};
 		
-		this.initYoutube =function () {
+		this.initYoutube = function () {
 			$('.js-youtube-popup').YouTubePopUp();
+		};
+		
+		this.initBackgroundVideo = function () {
+			$('#background-video').YTPlayer({
+				ratio: 16 / 9, // usually either 4/3 or 16/9 -- tweak as needed
+				videoId: '4b9ZSRxHFYo', // toy robot in space is a good default, no?
+				mute: true,
+				repeat: true,
+				width: $(window).width(),
+				autoplay: false,
+				wrapperZIndex: 99,
+				playButtonClass: 'YTPlayer-play',
+				pauseButtonClass: 'YTPlayer-pause',
+				muteButtonClass: 'YTPlayer-mute',
+				volumeUpClass: 'YTPlayer-volume-up',
+				volumeDownClass: 'YTPlayer-volume-down',
+				increaseVolumeBy: 10,
+				start: 0,
+				fitToBackground: true
+			});
+
+			$('#background-video').height($('#background-video-img').height());
 		};
 		
 		this.initRoadmap = function () {
@@ -114,7 +136,11 @@
 		App.initYoutube();
 		
 		App.initMobileToggler();
-		
+
+		setTimeout(function () {
+			App.initBackgroundVideo();	
+		},3000);
+				
 		//App.initRoadmap();
 	};
 	
