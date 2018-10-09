@@ -45,13 +45,16 @@
 .b-stn-1 {
 	background-color:#000;
 }
-.b-stn-2 {
+.b-stn-2,
+.b-block.b-stn-2{
 	background-color:#fff;
 }
+
 .b-stn-3,
 .b-block.b-stn-3{
 	background-color:#0011ff;
 }
+
 .b-stn-4 {
 	background-color:#0e0f0f;
 }
@@ -112,6 +115,9 @@ h2.s-ta_l,
 	text-decoration: line-through;
 }
 
+.s-pos_r {
+	position: relative;
+}
 
 .s-mb_50{margin-bottom:50px;}
 .s-mb_10{margin-bottom:10px;}
