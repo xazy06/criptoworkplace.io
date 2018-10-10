@@ -748,7 +748,7 @@ a.link-label:hover{
     left:0;
     right:0;
     height:58px;
-    z-index:100;
+    z-index:1000;
     padding:12px 0;
 }
 
@@ -949,4 +949,12 @@ a.s-link:hover {
 .b-main_link-join:hover {
     color:#fff;
     text-decoration: none;
+}
+
+.b-sale-line {
+    
+}
+
+.b-row-item  {
+    
 }
