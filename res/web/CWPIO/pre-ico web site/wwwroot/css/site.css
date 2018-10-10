@@ -376,12 +376,6 @@ h1.h1, h1, h2{
 }
 
 .s-br_1px_dotted {
-    border-bottom: 2px dotted #0015ff;
-    margin-bottom: 40px;
-    padding-bottom: 40px;
-}
-
-.s-br_1px_dotted {
     border-right:2px dotted #0015ff;    
 }
 

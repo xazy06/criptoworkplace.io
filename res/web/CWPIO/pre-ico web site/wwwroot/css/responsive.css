@@ -22,6 +22,12 @@
 	.b-why-not {
 		margin-top: 30px;
 	}
+	.s-br_1px_dotted {
+		border-bottom: 2px dotted #0015ff;
+		margin-bottom: 40px;
+		padding-bottom: 40px;
+	}
+	
 	
 	.owl-nav {
 		display: none;
