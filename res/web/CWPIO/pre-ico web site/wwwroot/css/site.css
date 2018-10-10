@@ -1001,3 +1001,9 @@ a.s-link:hover {
     display: inline-block;
     vertical-align: middle;
 }
+
+.playbtn {
+    width:87px;
+    height:87px;
+    background: url("/images/playbtn.png") 0 0 no-repeat;
+}
