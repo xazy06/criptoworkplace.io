@@ -69,7 +69,7 @@
 		
 		this.initBackgroundVideo = function () {
 			$('#background-video').YTPlayer({
-				//ratio: 16 / 9, // usually either 4/3 or 16/9 -- tweak as needed
+				ratio: 16 / 9, // usually either 4/3 or 16/9 -- tweak as needed
 				videoId: '4b9ZSRxHFYo', // toy robot in space is a good default, no?
 				mute: false,
 				repeat: true,
