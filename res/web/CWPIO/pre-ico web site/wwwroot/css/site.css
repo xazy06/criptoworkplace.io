@@ -1048,3 +1048,17 @@ a.s-link:hover {
     height:87px;
     background: url("/images/playbtn.png") 0 0 no-repeat;
 }
+
+.progress-soft {
+    background-color:#00c9ff !important;
+    position: relative;
+}
+.progress-soft:after{
+    content: "";
+    position: absolute;
+    right: -13px;
+    width: 20px;
+    height: 18px;
+    background: #00c9ff;
+    border-radius: 0 10px 10px 0;
+}
