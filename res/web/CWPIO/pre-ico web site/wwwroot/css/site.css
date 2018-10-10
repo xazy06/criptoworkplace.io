@@ -952,9 +952,52 @@ a.s-link:hover {
 }
 
 .b-sale-line {
-    
+    text-align:center;
+    margin-bottom:40px;
+    padding-top: 24px;
+}
+
+.b-sale-info {
+    margin-bottom:40px;
+    font-family: 'futurabook', serif;
 }
 
 .b-row-item  {
+    color:#fff;
+    padding:10px 0;
+    font-size:20px;
+    border-top: 2px dotted #00c9ff;
+}
+
+.b-sale-info .b-row-item:first-child  {
+    border-top:none;
+    font-size:26px;
+    font-weight:700;
+}
+
+.b-why-not {
+    color:#fff;
+    font-family: 'futurabook', serif;
+    font-size:20px;
+    background-color:#100ee5;
+    padding: 20px 30px 40px;
+}
+
+.b-why-list {
+    color:#fff;
+    font-size:20px;
+    margin-bottom:195px;
     
+}
+
+.b-why-not-h3 {
+    margin-bottom:20px;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.i-eth {
+    margin: 0 5px 0 20px;
+    display: inline-block;
+    vertical-align: middle;
 }
