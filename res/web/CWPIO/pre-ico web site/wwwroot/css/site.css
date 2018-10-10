@@ -403,6 +403,7 @@ h1.h1, h1, h2{
     font-size: 18px;
     line-height:33px;
     margin:100px 0 0 0;
+    padding-left:20px;
 }
 
 .b-spec li {
@@ -507,6 +508,11 @@ h1.h1{
     font-size:20px;
     line-height:25px;
     display: inline-block;
+    text-decoration:none;
+}
+
+a.b-main_link-n:hover {
+    color:#fff;
     text-decoration:none;
 }
 
@@ -772,8 +778,19 @@ a.link-label:hover{
     display: inline-block;
     vertical-align: middle;
     color: #fff;
-    font-family: 'futurabook';
+    font-family: 'futurabook', serif;
     font-size: 18px;
+    line-height: 34px;
+}
+
+a.live-link:hover {
+    text-decoration: none;
+}
+
+a.btn.nav-btn{
+    display: inline-block;
+    padding: 10px 15px;
+    text-transform: uppercase;
 }
 
 .b-label-live {
@@ -958,9 +975,17 @@ a.s-link:hover {
     color:#fff;
     font-family: 'futura', serif;
     font-size: 16px;
-    text-decoration: underline;
+    text-decoration: none;
     margin-right: 40px;
 }
+
+.b-main_link-join--fake {
+    border-bottom:1px solid #03a9ff;
+}
+.b-main_link-join--fake:hover {
+    border-bottom:1px solid #1210ff;
+}
+
 
 .b-main_link-join:hover {
     color:#fff;
