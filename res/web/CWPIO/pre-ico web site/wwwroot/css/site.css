@@ -272,18 +272,33 @@ h1.h1, h1, h2{
 .b-team-name {
     color:#fff;
     font-size:20px;
-    font-family: 'futurabook', serif;
+    font-family: 'futura', serif;
+    font-weight: 700;
 }
 
 .b-team-position {
-    color:#b7b7b7;
-    font-size:16px;
-    margin-bottom:20px;
-    font-family: 'futurabook', serif;
+    color:#1210ff;
+    font-size:20px;
+    /*margin-bottom:20px;*/
+    font-family: 'futura', serif;
+    font-weight: 700;
+}
+
+.b-team-item {
+    margin-bottom:80px;
 }
 
 .b-team-background {
-    font-size:14px;
+    /*font-size:14px;*/
+    color:#fff;
+    font-size:18px;
+    font-family: 'futurabook', serif;
+}
+
+.b-team-info--head {
+    padding-bottom:20px;
+    margin-bottom:20px;
+    border-bottom:2px dotted #0e0dc6;
 }
 
 .b-book-inside .b-team-name{
@@ -301,6 +316,7 @@ h1.h1, h1, h2{
     vertical-align: middle;
     padding: 2px;
     margin: 0 5px;
+    text-align: center;
 }
 
 .b-problem {
