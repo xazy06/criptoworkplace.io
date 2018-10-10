@@ -5,6 +5,27 @@
 	display:none;
 }
 @media only screen and (min-width:240px) and (max-width:480px){
+	
+	.xs-mar-how {
+		margin-bottom: 40px;
+	}
+	
+	.owl-nav {
+		display: none;
+	}
+	
+	.b-main_link-join {
+		margin-right:0;	
+	}
+
+	.b-main_link-join i.fab{
+		font-size:1em;
+	}
+	
+	.b-presale-social i.fa-1-5x{
+		font-size:1em;
+	}
+	
 	.b-feach img{
 		width:100%;
 	}
@@ -110,10 +131,18 @@
 	}
 	
 	h1.h1 {
-		padding: 330px 0 0;
+		padding: 32px 0 0;
 		margin: 0 0 0 0;
 		font-size: 24px;
 		line-height: 28px;
+	}
+	
+	.b-h1-under {
+		margin-bottom: 207px;
+	}
+	
+	.progress {
+		margin-bottom: 34px;
 	}
 
 	.btn.btn-xl {

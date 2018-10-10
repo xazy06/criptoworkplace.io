@@ -368,6 +368,17 @@ h1.h1, h1, h2{
     font-size:16px;
     line-height: 26px;
     color:#fff;
+    font-family: 'futura', serif;
+}
+
+.b-feach-h {
+    text-align: center;
+}
+
+.s-br_1px_dotted {
+    border-bottom: 2px dotted #0015ff;
+    margin-bottom: 40px;
+    padding-bottom: 40px;
 }
 
 .s-br_1px_dotted {
@@ -781,6 +792,10 @@ a.link-label:hover{
     font-family: 'futurabook', serif;
     font-size: 18px;
     line-height: 34px;
+}
+.b-token-pre-label.visible-xs {
+    line-height: 19px;
+    float: left;
 }
 
 a.live-link:hover {
