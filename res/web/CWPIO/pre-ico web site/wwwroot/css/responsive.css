@@ -14,9 +14,25 @@
 		font-size:15px;
 		line-height:16px;
 	}
+
+	.b-team-info--head {
+		/*height:190px;*/
+	}
+	
+	.b-why-not {
+		margin-top: 30px;
+	}
 	
 	.owl-nav {
 		display: none;
+	}
+	
+	.b-team-img {
+		/*width: 100%;*/
+	}
+
+	.b-why-list {
+		margin-bottom: 50px;
 	}
 	
 	.b-main_link-join {
