@@ -165,9 +165,22 @@ var Controller = function () {
 	};
 	
 	var ViewModel = {
-		currencies: [],
+		currencies: ko.observableArray([]),
+		
+		currenciesMap: null,
 		
 		obs:{
+			market:{
+				limit:ko.observable(''),
+				maxLimit:ko.observable(''),
+				minerFee:ko.observable(''),
+				minimum:ko.observable(''),
+				rate:ko.observable(''),
+				pair:ko.observable('')
+			},
+			depositAddress: ko.observable(''),
+			selectedCurrency:ko.observable(''),
+			returnAddress:ko.observable(''),
 			contractAddress: ko.observable(''),
 			freezed: ko.observable(0),
 			page:ko.observable(0),
@@ -193,6 +206,8 @@ var Controller = function () {
 		},
 		
 		flags:{
+			depositAddrGetting: ko.observable(false),
+			depositAddrGot: ko.observable(false),
 			purchasingIsInitializing: ko.observable(false),
 			toggleQr: ko.observable(false),
 			check1:ko.observable(false),
@@ -216,6 +231,13 @@ var Controller = function () {
 		},
 		
 		actions:{
+			setOptionDisable:  function(option, item) {
+				ko.applyBindingsToNode(option, {disable: (item.status === 'unavailable')}, item);
+			}, 
+			gate: {
+				shiftCoin: Gate.actions.shiftCoin
+			},
+			
 			refund: function () {
 				
 			},
@@ -262,6 +284,12 @@ var Controller = function () {
 	ViewModel.obs.cwtCount.subscribe(function (val) {
 		self.actions.calc(val);
 	});
+
+	ViewModel.obs.selectedCurrency.subscribe(function (val) {
+		Gate.actions.marketInfo();
+	});
+	
+	
 	ViewModel.obs.cwtCount(500);
 	
 	self.ViewModel = ViewModel;

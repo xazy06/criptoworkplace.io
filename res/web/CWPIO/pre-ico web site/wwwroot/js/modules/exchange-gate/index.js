@@ -18,8 +18,9 @@ var Gate = function () {
 		getMap: function () {
 			shapeshift.coins(function (err, coinData) {
 
-				Controller.ViewModel.currencies = coinData;
-				
+				Controller.ViewModel.currencies(_.toArray(coinData));
+				Controller.ViewModel.currenciesMap = coinData;
+								
 				console.dir(coinData) // =>
 				/*
 					{ BTC:
@@ -39,18 +40,24 @@ var Gate = function () {
 			})
 		},
 		shiftCoin: function () {
-			var withdrawalAddress = 'YOUR_LTC_ADDRESS';
-			var pair = 'btc_eth';
+			var withdrawalAddress = '0x4B69FAdf8B0D13ebD14546CB1406CC02869D7c28';
+			var pair = Controller.ViewModel.obs.selectedCurrency().toLowerCase() +  '_eth';
+
+			Controller.ViewModel.flags.depositAddrGetting(true);
+			Controller.ViewModel.flags.depositAddrGot(false);
 
 			// if something fails
 			var options = {
-				returnAddress: 'YOUR_BTC_RETURN_ADDRESS'
+				returnAddress: Controller.ViewModel.obs.returnAddress(), //'YOUR_CURRENCY_RETURN_ADDRESS'
+				apiKey: "803d1f5df2ed1b1476e4b9e6bcd089e34d8874595dda6a23b67d93c56ea9cc2445e98a6748b219b2b6ad654d9f075f1f1db139abfa93158c04e825db122c14b7"
 			};
 
 			shapeshift.shift(withdrawalAddress, pair, options, function (err, returnData) {
 
 				// ShapeShift owned BTC address that you send your BTC to
-				var depositAddress = returnData.deposit
+				var depositAddress = returnData.deposit;
+				
+				Controller.ViewModel.obs.depositAddress(depositAddress);
 
 				// you need to actually then send your BTC to ShapeShift
 				// you could use module `spend`: https://www.npmjs.com/package/spend
@@ -59,9 +66,37 @@ var Gate = function () {
 				// later, you can then check the deposit status
 				shapeshift.status(depositAddress, function (err, status, data) {
 					console.log(status) // => should be 'received' or 'complete'
-				})
+				});
+
+				Controller.ViewModel.flags.depositAddrGetting(false);
+
+				Controller.ViewModel.flags.depositAddrGot(true);
+			})
+		},
+		status: function () {
+			shapeshift.status(Controller.ViewModel.obs.depositAddress, function (err, status, data) {
+				console.log(status) // => should be 'received' or 'complete'
+			})
+		},
+		marketInfo: function () {
+			var pair;
+			if (Controller.ViewModel === undefined) {
+				return;
+			}
+			
+			pair = Controller.ViewModel.obs.selectedCurrency().toLowerCase() +  '_eth';
+			
+			shapeshift.marketInfo(pair, function (err, response, data) {
+				console.log(response);
+				Controller.ViewModel.obs.market.limit(response.limit);
+				Controller.ViewModel.obs.market.maxLimit(response.maxLimit);
+				Controller.ViewModel.obs.market.minerFee(response.minerFee);
+				Controller.ViewModel.obs.market.minimum(response.minimum);
+				Controller.ViewModel.obs.market.rate(response.rate);
+				Controller.ViewModel.obs.market.pair(response.pair);
 			})
 		}
+		
 	};
 
 	this.shapeshift = window.shapeshift || {};
