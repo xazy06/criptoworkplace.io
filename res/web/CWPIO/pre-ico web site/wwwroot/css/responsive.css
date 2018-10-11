@@ -225,6 +225,13 @@
 		padding:0 !important;;
 	}
 	
+	.b-socials a {
+		padding:0 3px;
+	}
+
+	.s-mr_0-xs {
+		margin-right:0;
+	}
 	
 	h1.h1 {
 		padding: 32px 0 0;
