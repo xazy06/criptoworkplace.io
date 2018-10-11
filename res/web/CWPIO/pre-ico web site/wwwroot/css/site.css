@@ -908,7 +908,8 @@ a.s-link:hover {
 
 .b-part-item {
     color:#000;
-    font-family: 'futurabook', serif !important;
+    font-family: 'futura', serif !important;
+    font-size: 16px;
 }
 
 .b-part-item a{

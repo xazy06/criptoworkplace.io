@@ -206,6 +206,10 @@
 		font-size: 16px !important;
 	}
 
+	.b-team-img {
+		width:180px;
+	}
+	
 	.progress_min_val {
 		left: -1px !important;;
 		font-size: 15px !important;
