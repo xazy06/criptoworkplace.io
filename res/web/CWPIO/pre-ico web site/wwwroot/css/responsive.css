@@ -5,7 +5,9 @@
 	display:none;
 }
 @media only screen and (min-width:240px) and (max-width:480px){
-	
+	.img-how {
+		width:100%;
+	}
 	.xs-mar-how {
 		margin-bottom: 40px;
 	}
@@ -72,7 +74,7 @@
 
 	.read-wp-btn,
 	.link-label.read-wp-btn-link{
-		display:none;
+		/*display:none;*/
 	}
 
 	.show-lg {
@@ -142,7 +144,37 @@
 	}
 
 	.b-spec {
-		margin:0 !important;
+		/*margin:0 !important;*/
+		margin-left: 20px;
+	}
+	
+	.s-pos_a_m {
+		position:absolute;
+	}
+
+	.s-ml_40_m {
+		margin-left:40px;
+	}
+	
+	.b-device-m {
+		margin-bottom:80px;
+	}
+
+	.b-spec.b-spec-pro {
+		margin-left: 0;
+	}
+
+	.s-spec_i {
+		font-size: 15px;
+		line-height: 1em;
+	}
+
+	.b-spec .cw-2x {
+		font-size: 1.5em;
+	}
+
+	.device-pro {
+		width:100%;
 	}
 
 .b-block.b-main {
