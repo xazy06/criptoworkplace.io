@@ -241,6 +241,10 @@
 	.b-h1-under {
 		margin-bottom: 217px;
 	}
+
+	.b-row-item {
+		font-size: 17px;
+	}
 	
 	.b-disc-text {
 		font-size: 18px;
