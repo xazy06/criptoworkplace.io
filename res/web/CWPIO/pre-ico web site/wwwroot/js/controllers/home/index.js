@@ -12,7 +12,7 @@ var Controller = function () {
 	};
 
 	this.api = {
-		subscribe:'/api/v1/usersettings'
+		subscribe:'/home/subscribe'
 	};
 
 	this.actions = {
