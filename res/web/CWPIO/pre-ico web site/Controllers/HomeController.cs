@@ -67,8 +67,6 @@ namespace pre_ico_web_site.Controllers
         [HttpPost]
         public async Task<IActionResult> Subscribe(SubscribeViewModel model)
         {
-            if (string.IsNullOrEmpty(model.Name))
-                return Json(new { result = false, Error = "Name field is empty" });
             if (string.IsNullOrEmpty(model.Email) || !(await IsValidAsync(model.Email)))
                 return Json(new { result = false, Error = "Email field is empty" });
 
@@ -79,7 +77,7 @@ namespace pre_ico_web_site.Controllers
             {
                 entry = (await dbSet.AddAsync(new Subscriber
                 {
-                    Name = model.Name,
+                    Name = model.Email,
                     Email = model.Email,
                     EmailSend = true,
                     DateCreated = DateTime.Now,
@@ -90,8 +88,6 @@ namespace pre_ico_web_site.Controllers
             }
             else
             {
-                if (entry.Name != model.Name)
-                    entry.Name = model.Name;
                 if (entry.Unsubscribe)
                 {
                     entry.Unsubscribe = false;
@@ -124,7 +120,7 @@ namespace pre_ico_web_site.Controllers
                 }
                 });
             }
-            var sendResult = await _emailSender.SendEmailSubscription(model.Email, model.Name);
+            var sendResult = await _emailSender.SendEmailSubscription(model.Email, model.Email);
 
             return Json(new { result = sendResult, Error = "" });
         }
