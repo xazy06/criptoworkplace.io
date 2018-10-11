@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Nethereum.Contracts;
 using Nethereum.Hex.HexTypes;
@@ -7,6 +8,7 @@ using Nethereum.Web3;
 using Newtonsoft.Json;
 using pre_ico_web_site.Models;
 using pre_ico_web_site.Services;
+using System;
 using System.IO;
 using System.Numerics;
 using System.Threading.Tasks;
@@ -20,6 +22,7 @@ namespace pre_ico_web_site.Eth
         private readonly EthSettings _settings;
         private readonly ILogger _logger;
         private readonly Web3 _web3;
+        private readonly IMemoryCache _memoryCache;
         public string Address { get { return _saleContract.Address; } }
 
         public TokenSaleContract(
@@ -27,11 +30,13 @@ namespace pre_ico_web_site.Eth
             IOptions<EthSettings> options,
             IFileRepository files,
             IOptions<GoogleDriveSettings> gdriveOptions,
-            ILogger<TokenSaleContract> logger)
+            ILogger<TokenSaleContract> logger,
+            IMemoryCache memoryCache)
         {
             _logger = logger;
             _settings = options.Value;
             _web3 = web3;
+            _memoryCache = memoryCache;
             //string contentRootPath = hostingEnvironment.WebRootPath;
             using (var stream = new MemoryStream())
             {
@@ -74,26 +79,36 @@ namespace pre_ico_web_site.Eth
             return _tokenContract.GetFunction("balanceOf").CallAsync<BigInteger>(ethAddress);
         }
 
-        public Task AddAddressToWhitelistAsync(string addr)
+        public async Task AddAddressToWhitelistAsync(string addr)
         {
-            var currentGasPrice = _settings.GasPrice * UnitConversion.Convert.GetEthUnitValue(UnitConversion.EthUnit.Gwei);
+            if (!(await _saleContract.GetFunction("whitelist").CallAsync<bool>(addr)))
+            {
 
-            return _saleContract.GetFunction("addAddressToWhitelist")
-                .SendTransactionAndWaitForReceiptAsync(_settings.AppAddress, new HexBigInteger(_settings.GasLimit), new HexBigInteger(currentGasPrice), new HexBigInteger(0), null, addr);
+                var currentGasPrice = _settings.GasPrice * UnitConversion.Convert.GetEthUnitValue(UnitConversion.EthUnit.Gwei);
+
+                await _saleContract.GetFunction("addAddressToWhitelist")
+                    .SendTransactionAndWaitForReceiptAsync(_settings.AppAddress, new HexBigInteger(_settings.GasLimit), new HexBigInteger(currentGasPrice), new HexBigInteger(0), null, addr);
+            }
         }
 
         public async Task<FixRateModel> SetRateForTransactionAsync(int rate, string buyer, BigInteger amount)
         {
-            var currentGasPrice = _settings.GasPrice * UnitConversion.Convert.GetEthUnitValue(UnitConversion.EthUnit.Gwei);
+            var key = $"fixrate:{buyer}_{rate}_{amount}";
+            if (!_memoryCache.TryGetValue(key, out FixRateModel fixRateModel))
+            {
+                var currentGasPrice = _settings.GasPrice * UnitConversion.Convert.GetEthUnitValue(UnitConversion.EthUnit.Gwei);
 
-            var hash = await _saleContract.GetFunction("setRateForTransaction")
-                .SendTransactionAsync(_settings.AppAddress, new HexBigInteger(_settings.GasLimit), new HexBigInteger(currentGasPrice), new HexBigInteger(0), rate, buyer, amount);
+                var hash = await _saleContract.GetFunction("setRateForTransaction")
+                    .SendTransactionAsync(_settings.AppAddress, new HexBigInteger(_settings.GasLimit), new HexBigInteger(currentGasPrice), new HexBigInteger(0), rate, buyer, amount);
 
-            _logger.LogCritical("Transaction hash: {0}", hash);
+                _logger.LogCritical("Transaction hash: {0}", hash);
 
-            await WaitReciept(hash);
-            _logger.LogCritical("done");
-            return await _saleContract.GetFunction("fixRate").CallDeserializingToObjectAsync<FixRateModel>(buyer);
+                await WaitReciept(hash);
+                _logger.LogCritical("done");
+                fixRateModel = await _saleContract.GetFunction("fixRate").CallDeserializingToObjectAsync<FixRateModel>(buyer);
+                _memoryCache.Set(key, fixRateModel, TimeSpan.FromMinutes(12));
+            }
+            return fixRateModel;
         }
 
         public Task<BigInteger> GetRefundAmountAsync(string ethAddress)

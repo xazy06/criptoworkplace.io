@@ -8,57 +8,87 @@
     <div class="container" style="z-index: 10;position: relative;">
         <div class="row b-main-top">
             <div class="col-md-6">
-                <h1 class="h1">
-                    <span data-i18n="cyber">CYBER SECURITY</span><br/>
-                    <span data-i18n="eco">ECOSYSTEM POWERED</span><br/>
-                    <span data-i18n="crypto">BY CRYPTOCOMPUTER</span>
+                <h1 class="h1 hidden-xs">
+                    <span data-i18n="cyber">Micro-PC Powered</span><br/>
+                    <span data-i18n="eco">by Linux with Built-in</span><br/>
+                    <span data-i18n="crypto">CryptoStorage</span>
                 </h1>
                 
-                <div class="b-main_hsub pt hidden-sm hidden-xs">
-                    Our mission is to design the safest<br/>innovative devices and systems to<br/>protect personal data and the client’s<br/>finances all around the World.
-                </div>
+                <h1 class="h1 visible-xs">
+                    Micro-PC Powered by Linux with Built-in CryptoStorage
+                </h1>
                 
-                <div>
-                    <a class="b-main_link show-lg futurabook js-youtube-popup" href="https://youtu.be/4b9ZSRxHFYo">
-                        What is CWP-computer
-                    </a>
+                @*                <div class="b-main_hsub pt hidden-sm hidden-xs">*@
+@*                    Our mission is to design the safest<br/>innovative devices and systems to<br/>protect personal data and the client’s<br/>finances all around the World.*@
+@*                </div>*@
+                
+                <div class="b-h1-under">
+                    
+                    <div class="b-banner-read-wp">
+                        <a target="_blank" class="b-main_link-n show-lg futurabook" href="/file/CWP_White_Paper_en.pdf">
+                            <i class="c-stn-3 far fa-file-alt s-banner-icon s-icon"></i>
+                            <span class="s-icon">Read Whitepaper</span>
+                        </a>
+                    </div>
+
+                    <div>
+                        <a class="b-main_link-n show-lg futurabook js-youtube-popup" href="https://youtu.be/4b9ZSRxHFYo">
+                            <i class="c-stn-3 fas fa-play s-banner-icon s-icon"></i>
+                            <span class="s-icon">CEO Explains</span>
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="col-md-6"></div>
         </div>
         
-        <div class="row hidden-sm">
-            <div class="col-md-8 s-ta_c-xs s-ta_c-ipad">
-                <a data-i18n="enterwl" onclick="yaCounter50462326.reachGoal('Whitelist');ga('send', 'event', 'forms', 'whitelist');return true;"
-                   target="_blank" class="enter-wl-btn btn btn-square btn-border-outline btn-white btn-xl s-mr_30" href="/Account/Login#m-login--signup">enter whitelist</a>
-                <a target="_blank" class="read-wp-btn btn btn-square btn-border-outline btn-white btn-xl s-mr_20" href="/static/docs/CWP_White_Paper_en.pdf">
-                    <i class="far fa-file-alt"></i>
-                </a>
-                <a target="_blank" onclick="yaCounter50462326.reachGoal('Document');ga('send', 'event', 'forms', 'document');return true;" class="read-wp-btn-link link-label futurabook" href="/static/docs/CWP_White_Paper_en.pdf">
-                    Read<br/>Whitepaper
-                </a>
-                @*                <div class="b-timer_wrapper">*@
-                @*                    @Html.Partial("_TimerPartial")*@
-                @*                </div>*@
-            </div>
-            <div class="col-md-4 s-ta_c-xs s-ta_c-ipad">
+        <div style="margin-top: 113px;" class="row hidden-sm">
+            <div class="col-md-6 s-ta_c-xs s-ta_c-ipad">
                 @Html.Partial("_ProgressPartial", Model)
             </div>
+            
+            <div style="" class="col-md-6 s-ta_c-xs s-ta_c-ipad">
+                <div class="s-mb_10 s-mb_20-md">
+                    <a data-i18n="buy_cwt" onclick="yaCounter50462326.reachGoal('Whitelist');ga('send', 'event', 'forms', 'whitelist');return true;"
+                       target="_blank" class="enter-wl-btn btn btn-square btn-border-outline btn-blue btn-xl" href="/Account/Login#m-login--signup">BUY CWT-P TOKEN</a>
+
+                    <a target="_blank" onclick="yaCounter50462326.reachGoal('Document');ga('send', 'event', 'forms', 'document');return true;" class="read-wp-btn-link link-label futurabook"
+                       href="/file/CWP_White_Paper_en.pdf">
+                        <i class="c-stn-3 b-video-instr-icon far fa-play-circle fa-2x"></i>
+                        <span class="b-video-instr-text">Video<br/>Instruction</span>
+                    </a>
+                </div>
+                
+                <div class="b-timer-discount">
+                    <div data-i18n="" class="b-disc-text">
+                        <strong>40% Public Presale Discount,</strong>
+                    </div>
+                    <div data-i18n="" class="b-disc-text-under">
+                        Time left til price rise:
+                    </div>
+
+                                    <div class="b-timer_wrapper">
+                                        @Html.Partial("_TimerPartial")
+                                    </div>
+                </div>
+
+            </div>
+            
         </div>
     </div>
     <img class="hidden-xs hidden-sm" src="~/images/upload-d01bb0f1-b44c-11e8-9a0a-ed19b45a0cd0.jpg" 
-         style="position: absolute;left: 0;right: 0;top: -308px;width: 2224px;height: 1271px;"/>
+         style="position: absolute;left: -69px;right: 0;top: -362px;width: 2224px;height: 1271px;"/>
     
 @*    <img class="visible-xs visible-sm" src="~/images/upload-608d2a60-b48e-11e8-b5f2-0b6fb9a7fc3a.jpg" *@
     @*         style="position: absolute;left: 0;right: 0;top: -130px;width: 100%;"/>*@
     
     <div class="row visible-sm hidden-xs b-ban-btns-sm">
         <div class="col-md-12 s-ta_c-xs s-ta_c-ipad">
-            <a data-i18n="enterwl" target="_blank" class="enter-wl-btn btn btn-square btn-border-outline btn-white btn-xl s-mr_30" href="/Account/Login#m-login--signup">enter whitelist</a>
-            <a target="_blank" class="read-wp-btn btn btn-square btn-border-outline btn-white btn-xl s-mr_20" href="/static/docs/CWP_White_Paper_en.pdf">
+            <a data-i18n="enterwl" target="_blank" class="enter-wl-btn btn btn-square btn-border-outline btn-white btn-xl s-mr_30" href="/Account/Login#m-login--signup">ENTER PRESALE</a>
+            <a target="_blank" class="read-wp-btn btn btn-square btn-border-outline btn-white btn-xl s-mr_20" href="/file/CWP_White_Paper_en.pdf">
                 <i class="far fa-file-alt"></i>
             </a>
-            <a target="_blank" class="read-wp-btn-link link-label futurabook" href="/static/docs/CWP_White_Paper_en.pdf">
+            <a target="_blank" class="read-wp-btn-link link-label futurabook" href="/file/CWP_White_Paper_en.pdf">
                 Read<br/>Whitepaper
             </a>
             <div class="b-timer_wrapper">
@@ -68,90 +98,128 @@
     </div>
     
 </div>
-<div class="b-block visible-xs visible-sm">
+@*<div class="b-block visible-xs visible-sm">*@
+@*    <div class="container">*@
+@*        <div class="row">*@
+@*            <div class="col-md-12">*@
+@*                <div class="b-main_hsub pt">*@
+@*                    Our mission is to design the safest<br/>innovative devices and systems to<br/>protect personal data and the client’s<br/>finances all around the World.*@
+@*                </div>*@
+@*                *@
+@*                <div class="s-ta_c-xs s-ta_c-ipad s-ta_c-sm s-mb_20">*@
+@*                    <a class="b-main_link futurabook js-youtube-popup" href="https://youtu.be/4b9ZSRxHFYo">*@
+@*                        What is CWP-computer*@
+@*                    </a>*@
+@*                </div>*@
+@*                *@
+@*                <div class="s-ta_c-xs s-ta_c-ipad s-ta_c-sm">*@
+@*                    <a target="_blank" class="btn btn-square btn-border-outline btn-white btn-lg" href="/file/CWP_White_Paper_en.pdf">*@
+@*                        <i class="far fa-file-alt"></i>&nbsp;<span class="futurabook" data-i18n="nav.whitepaper">Whitepaper</span>*@
+@*                    </a>*@
+@*                </div>*@
+@*            </div>*@
+@*        </div>*@
+@*    </div>*@
+@*</div>*@
+
+
+
+@*<div class="b-block s-p_0 s-o_h">*@
+@*    <div class="container">*@
+@*        <div class="row">*@
+@*            <div class="col-md-6 b-problem">*@
+@*                <h2 data-i18n="problem" class="b-block-h s-ta_l c-stn-2 s-ta_c-xs s-ta_c-ipad">*@
+@*                    Problem*@
+@*                </h2>*@
+@*                <p class="c-stn-2 s-fs_18">*@
+@*                    Personal data, money, and<br/>documents go digital. It<br/>became a simple target for<br/>thieves.*@
+@*                </p>*@
+@*                <div style="display: none;" class="b-problems">*@
+@*                    <div class="">*@
+@*                        <img src="~/images/problem/upload-45c857c0-b77e-11e8-8335-eb2864eea82d.png"/>*@
+@*                    </div>*@
+@*                    <div class="">*@
+@*                        <img src="~/images/problem/upload-46b046c0-b77e-11e8-a1f6-278dd96a7818.png"/>*@
+@*                    </div>*@
+@*                    <div class="">*@
+@*                        <img src="~/images/problem/upload-909c3800-b2b2-11e8-97ce-0bca7ac33d8e.png"/>*@
+@*                    </div>*@
+@*                    <div class="">*@
+@*                        <img src="~/images/problem/upload-13fc9ea0-b20a-11e8-aaeb-17d4ea4e5107.png"/>*@
+@*                    </div>*@
+@*                    <div class="">*@
+@*                        <img src="~/images/problem/upload-16d33e40-b20a-11e8-a11a-c3a09e4177f3.png"/>*@
+@*                    </div>*@
+@*                    <div class="">*@
+@*                        <img src="~/images/problem/upload-3f5ce5f0-b20a-11e8-86fd-e7f4dddbdf95.png"/>*@
+@*                    </div>*@
+@*                    <div class="">*@
+@*                        <img src="~/images/problem/upload-459d5020-b77e-11e8-a1f6-278dd96a7818.png"/>*@
+@*                    </div>*@
+@*                    <div class="">*@
+@*                        <img src="~/images/problem/upload-4587a540-b77e-11e8-8335-eb2864eea82d.png"/>*@
+@*                    </div>*@
+@*                    <div class="">*@
+@*                        <img src="~/images/problem/upload-3a8964e0-b20a-11e8-9723-358aaf7fb0c7.png"/>*@
+@*                    </div>*@
+@*                    <div class="">*@
+@*                        <img src="~/images/problem/upload-45c71f40-b77e-11e8-a4b7-7b3049bd85d9.png"/>*@
+@*                    </div>*@
+@*                    <div class="">*@
+@*                        <img src="~/images/problem/upload-f44554a0-b2b1-11e8-a82e-8db24d3c1ac8.png"/>*@
+@*                    </div>*@
+@*                </div>*@
+@*            </div>*@
+@*            <div class="col-md-6 b-stn-2 b-problem">*@
+@*                <h2 data-i18n="solution" class="b-block-h s-ta_l c-stn-1 s-ta_c-xs s-ta_c-ipad">Solution</h2>*@
+@*                *@
+@*                <p class="c-stn-1 s-fs_18">*@
+@*                    We create a microcomputer,<br/>*@
+@*                    that solves all your needs with<br/>protecting your money and data.*@
+@*                </p>*@
+@*                <div class="fff-back"></div>*@
+@*            </div>*@
+@*        </div>*@
+@*    </div>*@
+@*</div>*@
+
+<div class="b-block">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="b-main_hsub pt">
-                    Our mission is to design the safest<br/>innovative devices and systems to<br/>protect personal data and the client’s<br/>finances all around the World.
-                </div>
-                
-                <div class="s-ta_c-xs s-ta_c-ipad s-ta_c-sm s-mb_20">
-                    <a class="b-main_link futurabook js-youtube-popup" href="https://youtu.be/4b9ZSRxHFYo">
-                        What is CWP-computer
-                    </a>
-                </div>
-                
-                <div class="s-ta_c-xs s-ta_c-ipad s-ta_c-sm">
-                    <a target="_blank" class="btn btn-square btn-border-outline btn-white btn-lg" href="/static/docs/CWP_White_Paper_en.pdf">
-                        <i class="far fa-file-alt"></i>&nbsp;<span class="futurabook" data-i18n="nav.whitepaper">Whitepaper</span>
-                    </a>
-                </div>
+                <h2 data-i18n="how_works" class="b-block-h">How It Works</h2>
             </div>
         </div>
-    </div>
-</div>
-
-
-
-<div class="b-block s-p_0 s-o_h">
-    <div class="container">
+        
         <div class="row">
-            <div class="col-md-6 b-problem">
-                <h2 data-i18n="problem" class="b-block-h s-ta_l c-stn-2 s-ta_c-xs s-ta_c-ipad">
-                    Problem
-                </h2>
-                <p class="c-stn-2 s-fs_18">
-                    Personal data, money, and<br/>documents go digital. It<br/>became a simple target for<br/>thieves.
-                </p>
-                <div style="display: none;" class="b-problems">
-                    <div class="">
-                        <img src="~/images/problem/upload-45c857c0-b77e-11e8-8335-eb2864eea82d.png"/>
-                    </div>
-                    <div class="">
-                        <img src="~/images/problem/upload-46b046c0-b77e-11e8-a1f6-278dd96a7818.png"/>
-                    </div>
-                    <div class="">
-                        <img src="~/images/problem/upload-909c3800-b2b2-11e8-97ce-0bca7ac33d8e.png"/>
-                    </div>
-                    <div class="">
-                        <img src="~/images/problem/upload-13fc9ea0-b20a-11e8-aaeb-17d4ea4e5107.png"/>
-                    </div>
-                    <div class="">
-                        <img src="~/images/problem/upload-16d33e40-b20a-11e8-a11a-c3a09e4177f3.png"/>
-                    </div>
-                    <div class="">
-                        <img src="~/images/problem/upload-3f5ce5f0-b20a-11e8-86fd-e7f4dddbdf95.png"/>
-                    </div>
-                    <div class="">
-                        <img src="~/images/problem/upload-459d5020-b77e-11e8-a1f6-278dd96a7818.png"/>
-                    </div>
-                    <div class="">
-                        <img src="~/images/problem/upload-4587a540-b77e-11e8-8335-eb2864eea82d.png"/>
-                    </div>
-                    <div class="">
-                        <img src="~/images/problem/upload-3a8964e0-b20a-11e8-9723-358aaf7fb0c7.png"/>
-                    </div>
-                    <div class="">
-                        <img src="~/images/problem/upload-45c71f40-b77e-11e8-a4b7-7b3049bd85d9.png"/>
-                    </div>
-                    <div class="">
-                        <img src="~/images/problem/upload-f44554a0-b2b1-11e8-a82e-8db24d3c1ac8.png"/>
-                    </div>
-                </div>
+            <div class="col-md-7 s-ta_c xs-mar-how">
+                <img class="img-how" src="~/images/animation.svg"/>
             </div>
-            <div class="col-md-6 b-stn-2 b-problem">
-                <h2 data-i18n="solution" class="b-block-h s-ta_l c-stn-1 s-ta_c-xs s-ta_c-ipad">Solution</h2>
-                
-                <p class="c-stn-1 s-fs_18">
-                    We create a microcomputer,<br/>
-                    that solves all your needs with<br/>protecting your money and data.
-                </p>
-                <div class="fff-back"></div>
+            
+            <div class="col-md-5">
+                <div class="b-how-text-wrapper">
+                    
+                    <p class="b-feach-c">
+                        The programs are executed in the<br/>
+                        environment isolated from the<br/>
+                        computerdonor. User data are encrypted<br/>
+                        on the device (by user’s choice) that creates<br/>
+                        a solid defense to guard against hackers.
+                    </p>
+
+                    <p class="b-feach-c">
+                        System prevents all existing security problems:<br/>
+                        Phishing by using the pre-configured browser<br/>
+                        and applications, signed by a unique key;<br/>
+                        Exploits by working in an isolated environment<br/>
+                        and by signing programs; Hacker attacks by<br/>
+                        using built-in unbreakable crypto-storage.
+                    </p>
+                </div>    
             </div>
         </div>
     </div>
-</div>
+</div>        
 
 <div class="b-block">
     <div class="container">
@@ -162,65 +230,116 @@
         </div>
         
         <div class="row b-feach">
-            <div class="col-md-6 s-ta_r">
-                <img width="480" src="/images/upload-f2f8a4d0-b2bb-11e8-961a-957742adf671.png"/>
+            <div class="col-md-4 s-br_1px_dotted">
+                <div class="s-ta_r">
+                    <img src="~/images/icons_features_1.svg"/>
+                </div>
+                <div class="b-fetch-descr">
+                    <h2 data-i18n="" class="b-feach-h">External Linux OS</h2>
+
+                    <p data-i18n="" class="b-feach-c">
+                        CWP Micro-PC uses an updated kernel of operating system and applications, recompiled with new compilers, to prevent Meltdown and Spectre attacks.
+                    </p>
+                </div>
             </div>
+            <div class="col-md-4 s-br_1px_dotted">
+
+                <div class="visible-sm visible-xs">
+                    <img src="~/images/icons_features_2.svg"/>
+                </div> 
+
+
+                <div class="hidden-sm hidden-xs">
+                    <img src="~/images/icons_features_2.svg"/>
+                </div>
+                
+                <div class="b-fetch-descr">
+                    <h2 data-i18n="" class="b-feach-h">Secure Wallet</h2>
+
+                    <p data-i18n="" class="b-feach-c">
+                        Hardware non-breakable storagewas added for transaction signing to secure crypto-wallets private keys. 
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4 s-br_1px_dotted--last">
+                <div class="s-ta_c-xs">
+                    <img class="secure-m" width="360" src="~/images/icons_features_3.svg"/>
+                </div> 
             
-            <div class="col-md-6">
-                <h2 class="b-feach-h">External Linux OS</h2>
+                <div class="b-fetch-descr">
+                    <h2 data-i18n="" class="b-feach-h">Secure D-APPs</h2>
 
-                <p class="b-feach-c">
-                    A common recommendation for maximum security is to use a separate PC
-
-                    running Linux with all applications that have access to the internet removed
-
-                    for your cryptocurrency wallet uses. The CWP Micro-PC serves exactly that
-
-                    purpose but with the advanced security infrastructure
-                </p>
+                    <p data-i18n="" class="b-feach-c">
+                        Applications can be installed on the device only through the DAPP Store on decentralized Web-portal. It allows eliminating a possibility to install a harmful program and to secure data on the device. 
+                    </p>
+                </div>
             </div>
         </div>
         
-        <div class="row b-feach">
-            <div class="col-md-6 visible-sm visible-xs">
-                <img width="480" src="/images/upload-f2163410-b2bb-11e8-961a-957742adf670.png"/>
-            </div> 
-            <div class="col-md-6">
-                <h2 class="b-feach-h">Crypto Wallet</h2>
-
-                <p class="b-feach-c">
-                    CWP is a full-fledged personal computer with built-in crypto-storage
-
-                    for transaction signing to secure crypto-wallets private keys.
-                </p>
-            </div>
-
-            <div class="col-md-6 hidden-sm hidden-xs">
-                <img width="480" src="/images/upload-f2163410-b2bb-11e8-961a-957742adf670.png"/>
-            </div>
-        </div>
-        
-        <div class="row b-feach">           
-            <div class="col-md-6 s-ta_c-xs">
-                <img class="secure-m" width="360" src="/images/upload-f5812470-b2bb-11e8-961a-957742adf670.png"/>
-            </div> 
-            
-            <div class="col-md-6">
-                <h2 class="b-feach-h">D-app store</h2>
-
-                <p class="b-feach-c">
-                    Applications can be installed on the device only
-
-                    through the application store. It allows eliminating a possibility to
-
-                    install a harmful program and to secure data on the device. You can choose any messenger in our application store or use our CWP secured messenger.
-                </p>
-            </div>
-        </div>
-        <div class="s-ta_c">
-            <img width="70%" class="secure-2" src="/images/upload-810eb7e0-b457-11e8-8717-7ff3a37c844c.png"/>
-        </div>
+@*        <div class="row b-feach">*@
+@*            <div class="col-md-6 s-ta_r">*@
+@*                <img width="480" src="/images/upload-f2f8a4d0-b2bb-11e8-961a-957742adf671.png"/>*@
+@*            </div>*@
+@*            *@
+@*            <div class="col-md-6">*@
+@*                <h2 class="b-feach-h">External Linux OS</h2>*@
+@**@
+@*                <p class="b-feach-c">*@
+@*                    A common recommendation for maximum security is to use a separate PC*@
+@**@
+@*                    running Linux with all applications that have access to the internet removed*@
+@**@
+@*                    for your cryptocurrency wallet uses. The CWP Micro-PC serves exactly that*@
+@**@
+@*                    purpose but with the advanced security infrastructure*@
+@*                </p>*@
+@*            </div>*@
+@*        </div>*@
+@*        *@
+@*        <div class="row b-feach">*@
+@*            <div class="col-md-6 visible-sm visible-xs">*@
+@*                <img width="480" src="/images/upload-f2163410-b2bb-11e8-961a-957742adf670.png"/>*@
+@*            </div> *@
+@*            <div class="col-md-6">*@
+@*                <h2 class="b-feach-h">Crypto Wallet</h2>*@
+@**@
+@*                <p class="b-feach-c">*@
+@*                    CWP is a full-fledged personal computer with built-in crypto-storage*@
+@**@
+@*                    for transaction signing to secure crypto-wallets private keys.*@
+@*                </p>*@
+@*            </div>*@
+@**@
+@*            <div class="col-md-6 hidden-sm hidden-xs">*@
+@*                <img width="480" src="/images/upload-f2163410-b2bb-11e8-961a-957742adf670.png"/>*@
+@*            </div>*@
+@*        </div>*@
+@*        *@
+@*        <div class="row b-feach">           *@
+@*            <div class="col-md-6 s-ta_c-xs">*@
+@*                <img class="secure-m" width="360" src="/images/upload-f5812470-b2bb-11e8-961a-957742adf670.png"/>*@
+@*            </div> *@
+@*            *@
+@*            <div class="col-md-6">*@
+@*                <h2 class="b-feach-h">D-app store</h2>*@
+@**@
+@*                <p class="b-feach-c">*@
+@*                    Applications can be installed on the device only*@
+@**@
+@*                    through the application store. It allows eliminating a possibility to*@
+@**@
+@*                    install a harmful program and to secure data on the device. You can choose any messenger in our application store or use our CWP secured messenger.*@
+@*                </p>*@
+@*            </div>*@
+@*        </div>*@
+@*        <div class="s-ta_c">*@
+@*            <img width="70%" class="secure-2" src="/images/upload-810eb7e0-b457-11e8-8717-7ff3a37c844c.png"/>*@
+@*        </div>*@
     </div>
+</div>
+
+<div id="background-video" class="background-video-c s-pos_r">
+  <img id="background-video-img" width="100%" src="~/images/videoplayback.png"/>
 </div>
 
 <div class="b-block">
@@ -235,18 +354,18 @@
         
         
         <div class="row">           
-            <div class="col-md-6">
+            <div class="col-md-6 b-device-m">
                 <h2 class="h-tab">
                     CWP
                 </h2>
                 
                 <div class="row">
-                    <div class="col-md-6 col-xs-12">
-                        <div class="b-spec_img-wrapper">
-                            <img src="/images/upload-97c75d30-b43d-11e8-b9ea-432078d2319d.png" style="left: 0px; top: 0px; width: 313px; height: 570px; z-index: 120;">
-                        </div>
+                    <div class="col-md-4 col-xs-4">
+@*                        <div class="b-spec_img-wrapper">*@
+                            <img class="device-lite" src="/images/cwplite.png"/>
+@*                        </div>*@
                     </div>
-                    <div class="col-md-6 col-xs-12">
+                    <div class="col-md-8 col-xs-8">
                         <ul class="b-spec">
                             <li>
                                 <i class="cw cw-2x cw-display s-mr_10"></i>
@@ -291,13 +410,13 @@
                 </h2>
                 
                 <div class="row">
-                    <div class="col-md-6 col-xs-12">
-                        <div class="b-spec_img-wrapper">
-                            <img style="left: 501px; margin-top: 30px; width: 300px; z-index: 119;" src="/images/upload-db95ec70-b44c-11e8-9a0a-ed19b45a0cd0.png"/>
-                        </div>
+                    <div class="col-md-6 col-xs-6">
+@*                        <div class="b-spec_img-wrapper">*@
+                            <img class="device-pro" src="/images/cwppro.png"/>
+@*                        </div>*@
                     </div>
-                    <div class="col-md-6 col-xs-12">
-                        <ul class="b-spec">
+                    <div class="col-md-6 col-xs-6">
+                        <ul class="b-spec b-spec-pro">
                             <li>
                                 <i class="cw cw-2x cw-display s-mr_10"></i>
                                 <span class="s-icon s-spec_i">E-Ink Display</span>
@@ -307,8 +426,8 @@
                                 <span class="s-icon s-spec_i">Quad-Core CPU</span>
                             </li>
                             <li>
-                                <i class="cw cw-2x cw-ram s-mr_10"></i>
-                                <span class="s-icon s-spec_i">4GB RAM & 64 GB FLASH</span>
+                                <i class="s-pos_a_m cw cw-2x cw-ram s-mr_10"></i>
+                                <span class="s-ml_40_m s-icon s-spec_i">4GB RAM & 64 GB FLASH</span>
                             </li>
                             <li>
                                 <i class="cw cw-2x cw-usb s-mr_10"></i>
@@ -333,6 +452,100 @@
     </div>
 </div>
 
+<div id="token" class="b-block b-stn-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 data-i18n="" class="b-block-h">
+                    Token Distribution
+                </h2>
+            </div>
+        </div>
+        
+        <div class="row">           
+            <div class="col-md-12">
+                
+                <div class="b-timer_wrapper_presale">
+@*                    <p class="s-ta_c c-stn-2 s-fs_18 s-mb_30">*@
+@*                        <i class="fas fa-exclamation-circle"></i>*@
+@*                        Citizens and residents of the USA, Iran and North Korea are not allowed to participate.*@
+@*                    </p>*@
+                    @*                    @Html.Partial("_TimerPartial")*@
+                </div>
+                
+                <div class="b-sale-line">
+                    <img width="100%" src="~/images/timeline-temporrary.png"/>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="b-sale-info">
+                            <div class="b-row-item clear">
+                                <strong>1 CWT-P</strong>
+                                <div class="s-float_r">
+                                    <span class="c-stn-1">
+                                        <span class="through c-stn-6">$0,20</span>
+                                    </span> $0,12
+                                </div>
+                            </div>
+
+                            <div class="b-row-item clear">
+                                <span>Presale discount</span>
+                                <div class="s-float_r">40%</div>
+                            </div>
+
+                            <div class="b-row-item clear">
+                                <span>Tokens available now</span>
+                                <div class="s-float_r">6,968,598 / 15,000,000</div>
+                            </div>
+
+                            <div class="b-row-item clear">
+                                <span>Soft cap</span>
+                                <div class="s-float_r">$240K</div>
+                            </div>
+
+                            <div class="b-row-item clear">
+                                <span>Hard cap</span>
+                                <div class="s-float_r">$1,8M</div>
+                            </div>
+                        </div>
+                        
+                        <div class="b-sale-buy-block">
+                            <a target="_blank" 
+                               onclick="yaCounter50462326.reachGoal('Token'); ga('send', 'event', 'forms', 'token'); return true;" 
+                               class="btn btn-square btn-border-outline-i btn-white btn-xl futurabook s-mr_20" href="/Account/Login#m-login--signup">buy CWT-Token</a>
+                            
+                            <a target="_blank" onclick="yaCounter50462326.reachGoal('Document');ga('send', 'event', 'forms', 'document');return true;" 
+                               class="read-wp-btn-link link-label futurabook" href="/file/CWP_White_Paper_en.pdf">
+                                <i class="c-stn-2 b-video-instr-icon far fa-play-circle fa-2x"></i>
+                                <span class="b-video-instr-text">Video<br>Instruction</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-5">
+                        <div class="b-why-not">
+                            <h3 data-i18n="" class="b-why-not-h3">Why Buy Tokens Now?</h3>
+                            
+                            <ul class="b-why-list">
+                                <li>Limited issue of tokens</li>
+                                <li>Presale discount</li>
+                            </ul>
+                            
+                            <div class="b-why-not-footer">
+                                <span class="s-icon">We accept:</span> 
+                                <img class="i-eth" width="20" src="~/images/eth.svg"/>
+                                <span class="s-icon">ETH</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
 <div id="vision" class="b-block">
     <div class="container-fluid">
         <div class="row">
@@ -353,751 +566,18 @@
     </div>
 </div>
 
-<div id="token" class="b-block b-stn-3">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h2 class="b-block-h">
-                    Token Presale
-                </h2>
-            </div>
-        </div>
-        
-        <div class="row">           
-            <div class="col-md-12">
-                
-                <div class="b-timer_wrapper_presale">
-                    <p class="s-ta_c c-stn-2 s-fs_18 s-mb_30">
-                        <i class="fas fa-exclamation-circle"></i>
-                        Citizens and residents of the USA, Iran and North Korea are not allowed to participate.
-                    </p>
-                    @*                    @Html.Partial("_TimerPartial")*@
-                </div>
-                
-@*                <p class="s-ta_c c-stn-2 s-fs_18 s-mb_30">Our mission is to design the safest innovative devices and systems<br/>to protect personal data and the client’s finances all around the<br/>World.</p>*@
-                
-                <div>
-                    <div class="b-round b-stn-2 z-400">
-                        <div class="b-round_head clear">
-                            Pre-sale
-                            <div class="s-float_r">
-                                <span class="c-stn-1">
-                                    <span class="through">$0,2</span>
-                                    <i class="fas fa-arrow-right"></i>
-                                </span> $0,12
-                            </div>
-                        </div>
-                        <div class="row s-mb_50">
-                            <div class="s-ta_r s-fs_20 col-md-12 futurabook">discount 40%</div>
-                            
-                            <div class="col-md-4 s-fs_18 pt">
-                                Owners of CWT tokens can purchase a product with a
 
-                                50% discount on the price in a fiat currency.
-                            </div>
-                        </div>
-                        <div class="clear">
-                            <a target="_blank" onclick="yaCounter50462326.reachGoal('Token'); ga('send', 'event', 'forms', 'token'); return true;"  
-                               class="btn btn-square btn-border-outline-i btn-white btn-xl futurabook" href="/Account/Login#m-login--signup">enter whitelist</a>
-                            
-                            <img width="43" class="hidden-xs s-float_r" src="~/static/CWP2.svg"/>
-                        </div>
-                    </div>
-                    
-                    <div class="b-round b-stn-5 b-round_s z-300">
-                        <div class="b-round_head clear">
-                            Sale
-                            <div class="s-float_r">
-                                <span class="c-stn-1">
-                                    <span class="through">$0,2</span>
-                                    <i class="fas fa-arrow-right"></i>
-                                </span> $0,16
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="s-fs_20 col-md-6 pt">December 2018. Crowdsale soon!</div>
-                            <div class="s-ta_r s-fs_20 col-md-6 futurabook">discount 20%</div>
-                        </div>
-                    </div>
-                    
-@*                    <div class="b-round b-stn-6 b-round_s z-200">*@
-@*                        <div class="b-round_head clear">*@
-@*                            Sale*@
-@*                            <div class="s-float_r">*@
-@*                                <span class="c-stn-1">*@
-@*                                    <span class="through">$0,2</span>*@
-@*                                    <i class="fas fa-arrow-right"></i>*@
-@*                                </span> $0,18*@
-@*                            </div>*@
-@*                        </div>*@
-@*                        <div class="row">*@
-@*                            <div class="s-fs_20 col-md-6 pt">from 1 January</div>*@
-@*                            <div class="s-ta_r s-fs_20 col-md-6 futurabook">discount 10%</div>*@
-@*                        </div>*@
-@*                    </div>*@
-@*                         *@
-@*                    <div class="b-round b-stn-7 b-round_s z-100">*@
-@*                        <div class="b-round_head clear">*@
-@*                            Sale*@
-@*                            <div class="s-float_r">*@
-@*                                $0,2*@
-@*                            </div>*@
-@*                        </div>*@
-@*                        <div class="row">*@
-@*                            <div class="s-fs_20 col-md-6 pt">from 1 February</div>*@
-@*                            <div class="s-ta_r s-fs_20 col-md-6 futurabook">no discount</div>*@
-@*                        </div>*@
-@*                    </div>*@
-                    
-                </div>
-                
-            </div>
-        </div>
-    </div>
-</div>
+@Html.Partial("_TeamPartial")
 
-<div id="team"  class="b-block">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h2 class="b-block-h">
-                    Team
-                </h2>
-            </div>
-        </div>
-        
-        <div class="row">           
-            <div class="col-md-4 col-sm-6 col-xs-6 b-team-w">
-                <div class="b-team">
-                    <div class="b-book-inside">
-                        <div class="b-team-name">Yoji Kishi</div>
-                        <div class="b-team-background">
-                            Rare type of High-edge Japanese technology specialist with wide international marketing experience. 
-                            Shin-Nippon Research (Hong Kong) Co., Ltd. Vice-President
-                            International Society of Stem Cells Development, Director 
-                            5hz Medical Supplies (Xiamen, China) Co., Ltd. Vice-president 
-                            Kintaro Cells Power Co., Member of Board of Director 
-                            Ryukyukan International Kobudo Karate Federation, Honor Member
-                        </div>
-                    </div>
+@Html.Partial("_PartnersPartial")
 
-                    <div class="b-book">
-                        <div class="b-book-front">
-                            <div class="b-team_img_w">
-                                <img class="b-team-img" src="/images/team/upload-741103b0-b4e6-11e8-a0c9-8dd9face81ec.png"/>
-                            </div>
-                            <div class="b-team-name">Yoji Kishi</div>
-                            <div class="b-team-position">CEO</div>
-                           
-                        </div>
-
-                        <div class="b-book-back"></div>
-                    </div>
-                </div>
-                <div class="s-ta_c">
-                    <a class="b-team-s-link" target="_blank" href="https://www.linkedin.com/in/yoji-kishi-70108610b/">
-                        <i class="fab fa-1-5x fa-linkedin-in"></i>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="col-md-4 col-sm-6 col-xs-6 b-team-w">
-                <div class="b-team">
-                    <div class="b-book-inside">
-                        <div class="b-team-name">Alexey Gladkov</div>
-                        <div class="b-team-background">
-                            Kintaro Power Cells Japan President
-                            MapMess Inc. Regional Director
-                            Founding director of the research company AV-Cells Singapore
-                            30 years of experience in running own business
-                            20 years of doing business in Singapore and Japan
-                        </div>
-                    </div>
-
-                    <div class="b-book">
-                        <div class="b-book-front">
-                            <div class="b-team_img_w">
-                                <img class="b-team-img" src="/images/team/upload-792ab580-b4e6-11e8-a0c9-8dd9face81ec.png"/>
-                            </div>
-                            <div class="b-team-name">Alexey Gladkov</div>
-                            <div class="b-team-position">CVO</div>
-                            
-                        </div>
-
-                        <div class="b-book-back"></div>
-                    </div>
-                </div>
-                <div class="s-ta_c">
-                    <a class="b-team-s-link" target="_blank" href="https://www.linkedin.com/in/alexei-gladkov-04b03b14b/">
-                        <i class="fab fa-1-5x fa-linkedin-in"></i>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="col-md-4 col-sm-6 col-xs-6 b-team-w">               
-                <div class="b-team">
-                    <div class="b-book-inside">
-                        <div class="b-team-name">Maxim Maslich</div>
-                        <div class="b-team-background">
-                            Microsoft Certified Professional
-                            Microsoft Certified Technology Specialist Exam 511
-                            Blockchain and smart contracts developer
-                            An expert in the management of the software development process, the construction of distributed, highly loaded and secure systems
-                            Development of transport monitoring systems (cargo, passenger cars, special equipment, passenger transportation, weight control, production line control, taxi park automation) for Alrosa, GAZPROM, Lukoil, Rusal, RZD, Satori, Autoline, city taxi.
-                        </div>
-                    </div>
-
-                    <div class="b-book">
-                        <div class="b-book-front">
-                            <div class="b-team_img_w">
-                                <img class="b-team-img" src="/images/team/upload-7b860aa0-b4e6-11e8-a0c9-8dd9face81ec.png"/>
-                            </div>
-                            <div class="b-team-name">Maxim Maslich</div>
-                            <div class="b-team-position">CTO</div>
-                           
-                        </div>
-
-                        <div class="b-book-back"></div>
-                    </div>
-                </div>
-                <div class="s-ta_c">
-                    <a class="b-team-s-link" target="_blank" href="https://www.linkedin.com/in/mmaslich/">
-                        <i class="fab fa-1-5x fa-linkedin-in"></i>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="col-md-4 col-sm-6 col-xs-6 b-team-w">               
-                <div class="b-team">
-                    <div class="b-book-inside">
-                        <div class="b-team-name">Artur Enokian</div>
-                        <div class="b-team-background">
-                            Software Engineer
-
-                            Senior JavaScript Developer Full-Stack
-                            Certified Middle End Android Developer
-                            Certified Middle End iOS Developer
-                            Java EE, С#, PHP, Lua, Python, GO developer,
-                            Unity 3D developer,
-                            Expert in developing Highload applications
-                            Custom Trading Platforms Development
-                            Development of special software for major retailers
-                            Cryptography, electronic document management
-                            Development of special software for the Ministry of Defense of Russia
-                            Development of special software and participation in the development of software and hardware for federal agencies of the Russian Federation
-                            Development of special software - for monitoring and managing network security
-                            Development of implemented collector agents for analyzing and collecting data on network and peripheral PC activity
-                        </div>
-                    </div>
-
-                    <div class="b-book">
-                        <div class="b-book-front">
-                            <div class="b-team_img_w">
-                                <img class="b-team-img" src="/images/team/upload-7bb69080-b4e6-11e8-a0c9-8dd9face81ec.jpg"/>
-                            </div>
-                            <div class="b-team-name">Artur Enokian</div>
-                            <div class="b-team-position">Software Engineer</div>
-                           
-                        </div>
-
-                        <div class="b-book-back"></div>
-                    </div>
-                </div>
-                <div class="s-ta_c">
-                    <a class="b-team-s-link" target="_blank" href="https://www.facebook.com/profile.php?id=100010889670400">
-                        <i class="fab fa-1-5x fa-facebook-f"></i>
-                    </a>
-                    <a class="b-team-s-link" target="_blank" 
-                       href="https://www.linkedin.com/in/%D0%B0%D1%80%D1%82%D1%83%D1%80-%D0%B5%D0%BD%D0%BE%D0%BA%D1%8F%D0%BD-726a5387/">
-                        <i class="fab fa-1-5x fa-linkedin-in"></i>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="col-md-4 col-sm-6 col-xs-6 b-team-w">
-                <div class="b-team">
-                    <div class="b-book-inside">
-                        <div class="b-team-name">Anton Polansky</div>
-                        <div class="b-team-background">
-                            Head of Hardware Production
-
-                            Hardware Engineer
-                            Embedded Software Engineer
-                            Microcomputer Systems Expert
-                            Development of circuit solutions, trace of printed circuit boards and development of embedded software for thermal imaging devices
-                            Development of circuit design solutions, trace of printed circuit boards for low-level devices of the Quinta music recognition system
-                            Development of circuit solutions and trace of printed circuit boards for Smart House devices
-                            Development of microminiature biometric sensors and processor control system for bioelectrical upper limb prosthesis
-                            Development of embedded data transmission systems based on Wi-Fi, GSM and Bluetooth technologies
-                        </div>
-                    </div>
-
-                    <div class="b-book">
-                        <div class="b-book-front">
-                            <div class="b-team_img_w">
-                                <img class="b-team-img" src="/images/team/upload-805ac430-b4e6-11e8-a0c9-8dd9face81ec.png"/>
-                            </div>
-                            <div class="b-team-name">Anton Polansky</div>
-                            <div class="b-team-position">Head of Hardware Production</div>
-                           
-                        </div>
-
-                        <div class="b-book-back"></div>
-                    </div>
-                </div>
-                <div class="s-ta_c">
-                    <a class="b-team-s-link" target="_blank" href="https://www.linkedin.com/in/anton-polyansky-400a5a156/">
-                        <i class="fab fa-1-5x fa-linkedin-in"></i>
-                    </a>  
-                </div>
-            </div>
-            
-            <div class="col-md-4 col-sm-6 col-xs-6 b-team-w">                
-                <div class="b-team">
-                    <div class="b-book-inside">
-                        <div class="b-team-name">Denis Kuznetsov</div>
-                        <div class="b-team-background">
-                            Lead Mathematician, Senior Architect Developer
-                            Embedded Systems Programmer
-                            Expert in Machine Learning and AI
-                            Development of an agent for the conduct of non-targeted dialogue in the banking system
-                            Development Telegram-bots with AI support
-                            Embedded Software Development for Quinta Music Recognition System Devices
-                            Co-author of a patent for music recognition algorithms
-                        </div>
-                    </div>
-
-                    <div class="b-book">
-                        <div class="b-book-front">
-                            <div class="b-team_img_w">
-                                <img class="b-team-img" src="/images/team/upload-80aefeb1-b4e6-11e8-a0c9-8dd9face81ec.jpg"/>
-                            </div>
-                            <div class="b-team-name">Denis Kuznetsov</div>
-                            <div class="b-team-position">Head Mathematican</div>
-                           
-                        </div>
-
-                        <div class="b-book-back"></div>
-                    </div>
-                </div>
-                <div class="s-ta_c">
-                    <a class="b-team-s-link" target="_blank" 
-                       href="https://www.linkedin.com/in/%D0%B4%D0%B5%D0%BD%D0%B8%D1%81-%D0%BA%D1%83%D0%B7%D0%BD%D0%B5%D1%86%D0%BE%D0%B2-814352118/">
-                        <i class="fab fa-1-5x fa-linkedin-in"></i>
-                    </a>        
-                </div>
-            </div>
-            
-            <div class="col-md-4 col-sm-6 col-xs-6 b-team-w">                
-                <div class="b-team">
-                    <div class="b-book-inside">
-                        <div class="b-team-name">Anton Maslov</div>
-                        <div class="b-team-background">
-                            Senior System Analyst, PHP-Developer
-                            Optimization and automation of DAICHI logistics business processes
-                            System analytics of multimodule high-loaded systems with various integrations for METRO C & C, Lenta
-                            The development of a supply planning system for TOC (Theory of Constraints) for the production of IKEA, integrated with 1C
-                            Product development and positioning management
-                        </div>
-                    </div>
-
-                    <div class="b-book">
-                        <div class="b-book-front">
-                            <div class="b-team_img_w">
-                                <img class="b-team-img" src="/images/team/upload-84c6f7f0-b4e6-11e8-a0c9-8dd9face81ec.png"/>
-                            </div>
-                            <div class="b-team-name">Anton Maslov</div>
-                            <div class="b-team-position">Senior System Analyst</div>
-                           
-                        </div>
-
-                        <div class="b-book-back"></div>
-                    </div>
-                </div>
-                <div class="s-ta_c">
-                    <a class="b-team-s-link" target="_blank" 
-                       href="https://www.linkedin.com/in/%D0%B0%D0%BD%D1%82%D0%BE%D0%BD-%D0%BC%D0%B0%D1%81%D0%BB%D0%BE%D0%B2-232701156/">
-                        <i class="fab fa-1-5x fa-linkedin-in"></i>
-                    </a>            
-                </div>
-            </div>
-            
-            <div class="col-md-4 col-sm-6 col-xs-6 b-team-w">                
-                <div class="b-team">
-                    <div class="b-book-inside">
-                        <div class="b-team-name">Alexander Fedko</div>
-                        <div class="b-team-background">
-                            CEO at Advise Finance LLC.
-
-                            An expert in financial market and risk management, founder & CEO at Advise Finance LLC.
-                        </div>
-                    </div>
-
-                    <div class="b-book">
-                        <div class="b-book-front">
-                            <div class="b-team_img_w">
-                                <img class="b-team-img" src="/images/team/upload-85256ba1-b4e6-11e8-a0c9-8dd9face81ec.jpg"/>
-                            </div>
-                            <div class="b-team-name">Alexander Fedko</div>
-                            <div class="b-team-position">CFO</div>
-                           
-                        </div>
-
-                        <div class="b-book-back"></div>
-                    </div>
-                </div>
-                <div class="s-ta_c">
-                    <a class="b-team-s-link" target="_blank" href="https://www.facebook.com/profile.php?id=100008518817564">
-                        <i class="fab fa-1-5x fa-facebook-f"></i>
-                    </a>            
-                </div>
-            </div>
-            
-            <div class="col-md-4 col-sm-6 col-xs-6 b-team-w">                
-                <div class="b-team">
-                    <div class="b-book-inside">
-                        <div class="b-team-name">Oleg Sarukhanov</div>
-                        <div class="b-team-background">
-                            Co-founder and COO of Glory Event Agency LLC., In event &amp; marketing since 2006, experience with international brands on major projects (BIC, General Electric)
-                        </div>
-                    </div>
-
-                    <div class="b-book">
-                        <div class="b-book-front">
-                            <div class="b-team_img_w">
-                                <img class="b-team-img" src="/images/team/upload-88652d50-b4e6-11e8-a0c9-8dd9face81ec.png"/>
-                            </div>
-                            <div class="b-team-name">Oleg Sarukhanov</div>
-                            <div class="b-team-position">CMO</div>
-                           
-                        </div>
-
-                        <div class="b-book-back"></div>
-                    </div>
-                </div>
-                <div class="s-ta_c">
-                    <a class="b-team-s-link" target="_blank" href="https://www.facebook.com/profile.php?id=100011271487659">
-                        <i class="fab fa-1-5x fa-facebook-f"></i>
-                    </a>
-                    <a class="b-team-s-link" target="_blank" href="https://www.linkedin.com/in/oleg-sarukhanov-74332416/">
-                        <i class="fab fa-1-5x fa-linkedin-in"></i>
-                    </a>         
-                </div>
-            </div>
-        
-            <div class="col-md-4 col-sm-6 col-xs-6 b-team-w">                
-                <div class="b-team">
-                    <div class="b-book-inside">
-                        <div class="b-team-name">ing. Danil Tcytkin</div>
-                        <div class="b-team-background">
-                            Red Dot Award owner.
-                            Creative producer, worked with biggest adverticement agencies, like ADV holding, and bests creative butiques like MOST Creative Club. Made campains for Coca-Cola, Tele2, Apple, Gazprom, Unilever, Hyundai.
-                        </div>
-                    </div>
-
-                    <div class="b-book">
-                        <div class="b-book-front">
-                            <div class="b-team_img_w">
-                                <img class="b-team-img" src="/images/team/upload-88aa2591-b4e6-11e8-a0c9-8dd9face81ec.jpg"/>
-                            </div>
-                            <div class="b-team-name">ing. Danil Tcytkin</div>
-                            <div class="b-team-position">Digital Creative</div>
-                            
-                        </div>
-
-                        <div class="b-book-back"></div>
-                    </div>
-                </div>
-                <div class="s-ta_c">
-                    <a class="b-team-s-link" target="_blank" href="https://www.facebook.com/Danil.Tcytkin">
-                        <i class="fab fa-1-5x fa-facebook-f"></i>
-                    </a>
-                    <a class="b-team-s-link" target="_blank" href="https://www.linkedin.com/in/danil-tcytkin-3b488247/">
-                        <i class="fab fa-1-5x fa-linkedin-in"></i>
-                    </a>       
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+@Html.Partial("_Subscriber")
 
 
-<div class="b-block">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h2 class="b-block-h">
-                    Advisers
-                </h2>
-            </div>
-        </div>
-        
-        <div class="row">           
-            <div class="col-md-4 col-sm-6 col-xs-6 b-team-w">                
-                <div class="b-team">
-                    <div class="b-book-inside">
-                        <div class="b-team-name">Alexander Podelko</div>
-                        <div class="b-team-background">
-                            Ph.D., MBA
-
-                            An expert in software development and testing
-                            Member of the Board of Directors of the Computer Measurement Group
-                            Oracle, Consulting Member of Technical Staff
-                            Hyperion, Distinguished Performance Engineer 
-                            Aetna, Sr. Architect II
-                        </div>
-                    </div>
-
-                    <div class="b-book">
-                        <div class="b-book-front">
-                            <div class="b-team_img_w">
-                                <img class="b-team-img" src="/images/team/upload-935aa210-b4de-11e8-b9ea-432078d2319d.jpg"/>
-                            </div>
-                            <div class="b-team-name">Alexander Podelko</div>
-                            <div class="b-team-position">Ph.D., MBA</div>
-                            
-                        </div>
-
-                        <div class="b-book-back"></div>
-                    </div>
-                </div>
-                <div class="s-ta_c">
-                    <a class="b-team-s-link" target="_blank" href="https://www.facebook.com/alexander.podelko">
-                        <i class="fab fa-1-5x fa-facebook-f"></i>
-                    </a>
-                    <a class="b-team-s-link" target="_blank" href="https://www.linkedin.com/in/alexanderpodelko/">
-                        <i class="fab fa-1-5x fa-linkedin-in"></i>
-                    </a>      
-                </div>
-            </div>
-            
-            <div class="col-md-4 col-sm-6 col-xs-6 b-team-w">                
-                <div class="b-team">
-                    <div class="b-book-inside">
-                        <div class="b-team-name">Sergey Sagalovitch</div>
-                        <div class="b-team-background">
-                            An expert in software development including design and implementation of device drivers and embedded systems, as well as graphics and compute solutions with the strict robust and security requirements.  Serguei has experience working with customers on product delivery.
-                            Serguei has experience working with small and big companies including Nortel and AMD in positions of Team Lead as well as Principal Member of Technical Staff.
-                            Serguei has experience working with scientific organizations including University of Vienna.
-                            Serguei has been co-authors of several patent applications.
-                            Serguei has more than 25 years of experience.
-                        </div>
-                    </div>
-
-                    <div class="b-book">
-                        <div class="b-book-front">
-                            <div class="b-team_img_w">
-                                <img class="b-team-img" src="/images/team/upload-a5864660-b4de-11e8-a621-1dda4f429ede.jpg"/>
-                            </div>
-                            <div class="b-team-name">Sergey Sagalovitch</div>
-                            <div class="b-team-position">Principal Member of Technical Staff at AMD</div>
-                           
-                        </div>
-
-                        <div class="b-book-back"></div>
-                    </div>
-                </div>
-                <div class="s-ta_c">
-                    <a class="b-team-s-link" target="_blank" href="https://www.linkedin.com/in/serguei-sagalovitch-a162a34/">
-                        <i class="fab fa-1-5x fa-linkedin-in"></i>
-                    </a>    
-                </div>
-            </div>
-            
-        <div class="col-md-4 col-sm-6 col-xs-6 b-team-w">
-            <div class="b-team">
-                <div class="b-book-inside">
-                    <div class="b-team-name">Wagan Sarukhanov</div>
-                    <div class="b-team-background">
-                        CEO Flexlab
-                        Blockchain researcher and expert
-                        30 years of experience in contract manufacturing of electronics and software
-                        More than 20 projects in various industries
-                        Mentor
-
-                        Wagan's competencies help the project in the business development and technical issues of product development and manufacturing
-                    </div>
-                </div>
-
-                <div class="b-book">
-                    <div class="b-book-front">
-                        <div class="b-team_img_w">
-                            <img class="b-team-img" src="/images/team/upload-8e58eb70-b4e6-11e8-a0c9-8dd9face81ec.png"/>
-                        </div>
-                        <div class="b-team-name">Wagan Sarukhanov</div>
-                        <div class="b-team-position">FlexLab CEO</div>
-                            
-                    </div>
-
-                    <div class="b-book-back"></div>
-                </div>
-            </div>
-            <div class="s-ta_c">
-                <a class="b-team-s-link" target="_blank" href="https://www.facebook.com/wagan.sarukhanov">
-                    <i class="fab fa-1-5x fa-facebook-f"></i>
-                </a>
-                <a class="b-team-s-link" target="_blank" href="https://www.linkedin.com/in/sarukhanov/">
-                    <i class="fab fa-1-5x fa-linkedin-in"></i>
-                </a>  
-            </div>
-        </div>
-        
-        <div class="col-md-4 col-sm-6 col-xs-6 b-team-w">                
-            <div class="b-team">
-                <div class="b-book-inside">
-                    <div class="b-team-name">Vasiliy Fedko</div>
-                    <div class="b-team-background">
-                        Vasiliy Fedko has a wealth of experience as a founder & CFO in several development companies. Licensed auditor.
-                    </div>
-                </div>
-
-                <div class="b-book">
-                    <div class="b-book-front">
-                        <div class="b-team_img_w">
-                            <img class="b-team-img" src="/images/team/photo_2018-09-30_18-51-11.jpg"/>
-                        </div>
-                        <div class="b-team-name">Vasiliy Fedko</div>
-                        <div class="b-team-position">CFO</div>
-                       
-                    </div>
-
-                    <div class="b-book-back"></div>
-                </div>
-            </div>
-            <div class="s-ta_c">
-                <a class="b-team-s-link" target="_blank" href="https://www.facebook.com/">
-                    <i class="fab fa-1-5x fa-facebook-f"></i>
-                </a>
-            </div>
-        </div>
-        
-            <div class="col-md-4 col-sm-6 col-xs-6 b-team-w">                
-                <div class="b-team">
-                    <div class="b-book-inside">
-                        <div class="b-team-name">Nikolay Fedorovskikh</div>
-                        <div class="b-team-background">
-                            Over 11 years’ experience in TVMedia, VAS & Data field.
-                            Strong focus on Telecom/Media with expertise in DVB/IPTV/
-                            Online Video (OTT), VAS, CDN.
-                            Creating overall architecture and engineering of complex TV &
-                            Pilot Blockchain projects.
-                            Proven track record in identifying customer needs and
-                            implementing technical strategies to secure long-term revenue
-                            growth on TV/Media markets (IPTV, VOD, OTT, CDN).
-                        </div>
-                    </div>
-
-                    <div class="b-book">
-                        <div class="b-book-front">
-                            <div class="b-team_img_w">
-                                <img class="b-team-img" src="/images/team/upload-88e336f1-b4e6-11e8-a0c9-8dd9face81ec.jpg"/>
-                            </div>
-                            <div class="b-team-name">Nikolay Fedorovskikh</div>
-                            <div class="b-team-position">Executive Business Developmern, Universa Corporation</div>
-                            
-                        </div>
-
-                        <div class="b-book-back"></div>
-                    </div>
-                </div>
-                <div class="s-ta_c">
-                    <a class="b-team-s-link" target="_blank" href="https://www.linkedin.com/in/nikfedorov/">
-                        <i class="fab fa-1-5x fa-linkedin-in"></i>
-                    </a>  
-                </div>
-            </div>
-            
-            <div class="col-md-4 col-sm-6 col-xs-6 b-team-w">                
-                <div class="b-team">
-                    <div class="b-book-inside">
-                        <div class="b-team-name">Yuriy Myshinsky</div>
-                        <div class="b-team-background">
-                            Experience of successful founding of companies and management
-                            in the field of information technologies.
-                            The implementation of infrastructure projects for large state and
-                            international companies.
-                            Crypto enthusiast.
-                            Investor in fintech, startups, and ICO.
-                        </div>
-                    </div>
-
-                    <div class="b-book">
-                        <div class="b-book-front">
-                            <div class="b-team_img_w">
-                                <img class="b-team-img" src="/images/team/upload-89156a81-b4e6-11e8-a0c9-8dd9face81ec.jpg"/>
-                            </div>
-                            <div class="b-team-name">Yuriy Myshinsky</div>
-                            <div class="b-team-position">CryptOcean.io Founder & CEO</div>
-                            
-                        </div>
-
-                        <div class="b-book-back"></div>
-                    </div>
-                </div>
-                <div class="s-ta_c">
-                    <a class="b-team-s-link" target="_blank" href="https://www.linkedin.com/in/yury-myshinskiy/">
-                        <i class="fab fa-1-5x fa-linkedin-in"></i>
-                    </a> 
-                </div>
-            </div>
-            
-            <div class="col-md-4 col-sm-6 col-xs-6 b-team-w">                
-                <div class="b-team">
-                    <div class="b-book-inside">
-                        <div class="b-team-name">Dmitry Ryzhkov</div>
-                        <div class="b-team-background">
-                            The businessman, the crypto-currency investor.
-                            Co-founder of a successful international brand LuneCase.
-                            ICO adviser, a pool of more than $15,000,000.
-                        </div>
-                    </div>
-
-                    <div class="b-book">
-                        <div class="b-book-front">
-                            <div class="b-team_img_w">
-                                <img class="b-team-img" src="/images/team/upload-893d3dd0-b4e6-11e8-a0c9-8dd9face81ec.jpg"/>
-                            </div>
-                            <div class="b-team-name">Dmitry Ryzhkov</div>
-                            <div class="b-team-position">LuneCase Co-Founder</div>
-                           
-                        </div>
-
-                        <div class="b-book-back"></div>
-                    </div>
-                </div>
-                <div class="s-ta_c">
-                    <a class="b-team-s-link" target="_blank" href="https://www.facebook.com/people/Dmitry-Ryzhkov/100009556131162">
-                        <i class="fab fa-1-5x fa-facebook-f"></i>
-                    </a>
-                </div>
-            </div>
-            
-        </div>
-    </div>
-</div>
 
 
-<div class="outsider">
-    <ul class="fba-social-i">
-        <li><a href="https://www.facebook.com/cryptoworkplace/" target="_blank" data-toggle="tooltip" title="Facebook">
-                <i class="fab fa-2x fa-facebook-f"></i>
-            </a>
-        </li>
-                        
-        <li>
-            <a href="https://twitter.com/cryptoworkplace" data-toggle="tooltip" target="_blank" title="Twitter">
-                <i class="fab fa-2x fa-twitter"></i>
-            </a>
-        </li>
-        <li>
-            <a href="https://github.com/cryptoworkplace" target="_blank" data-toggle="tooltip" title="GitHub">
-                <i class="fab fa-2x fa-github"></i>
-            </a>
-        </li>
-        <li>
-            <a target="_blank" href="https://t.me/joinchat/Fh5zlk097Vw3P78vKLWfBg" data-toggle="tooltip" title="Telegram">
-                <i class="fab fa-2x fa-telegram-plane"></i>
-            </a>
-        </li>
-    </ul>
-</div>
+
+
+
+
+
