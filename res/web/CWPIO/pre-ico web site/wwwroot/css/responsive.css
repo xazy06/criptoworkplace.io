@@ -8,6 +8,11 @@
 	.img-how {
 		width:100%;
 	}
+
+	.b-socials .fa-1-5x {
+		font-size:1.1em;
+	}
+	
 	.xs-mar-how {
 		margin-bottom: 40px;
 	}
@@ -230,11 +235,15 @@
 	}
 	
 	.b-logo-text {
-		font-size:32px;
+		font-size:24px;
 	}
 	
 	.b-h1-under {
 		margin-bottom: 217px;
+	}
+
+	.b-row-item {
+		font-size: 17px;
 	}
 	
 	.b-disc-text {
