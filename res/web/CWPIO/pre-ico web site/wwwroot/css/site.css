@@ -941,7 +941,7 @@ a.s-link:hover {
     text-transform: uppercase;
     color: #03a6f2;
     padding: 16px 38px 14px;
-    height: 73px;
+    height: 60px;
     border-radius: 0;
     border-bottom: 2px solid #fff;
     background-color: #0e0dcc;
@@ -1156,4 +1156,11 @@ a.s-link:hover {
 .device-pro {
     position: relative;
     top: 35px;
+}
+
+.b-success-subscribe {
+    font-size: 24px;
+    color: #fff;
+    font-family: 'futura';
+    padding: 24px 0;
 }

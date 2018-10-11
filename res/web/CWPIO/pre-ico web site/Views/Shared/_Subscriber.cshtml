@@ -11,12 +11,18 @@
         <div class="row">           
             <div class="col-md-12 s-ta_c">
                 <div class="b-subscribe">
-                    <input placeholder="Enter Your E-mail" class="form-control s-lg-control"/>
+                    <input data-bind="textInput:obs.email" placeholder="Enter Your E-mail" class="form-control s-lg-control"/>
                 </div>
-                <a class="enter-wl-btn btn btn-square btn-border-outline btn-white btn-xl s-mr_30" href="">
+                <button data-bind="disable: flags.sendDisabled(), click:actions.subscribe" class="enter-wl-btn btn btn-square btn-border-outline btn-white btn-xl s-mr_30">
                     <span class="futurabook" data-i18n="">subscribe</span>
-                </a>
+                </button>
             </div>
+            
+            <!-- ko if: flags.successSubscribed -->
+            <div class="col-md-12 s-ta_c">
+                <div class="b-success-subscribe">Thanks for subscribe</div>
+            </div>
+            <!-- /ko -->
         </div>
     </div>
 </div>
