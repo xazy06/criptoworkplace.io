@@ -91,7 +91,7 @@ namespace pre_ico_web_site.Controllers
 
             // If we got this far, something failed, redisplay form
             return View(model);
-            return Ok(new { error = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToArray(), value = false });
+            //return Ok(new { error = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToArray(), value = false });
         }
 
         [HttpGet]
