@@ -122,6 +122,7 @@ var Gate = function () {
 			try{
 				ViewModel.obs.hasMetamask(web3.currentProvider.isMetaMask === true);
 			}catch (e){
+				console.log(e);
 			}
 		})();
 	};
