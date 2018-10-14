@@ -1,0 +1,45 @@
+﻿
+@{
+	ViewData["Title"] = "My transactions";
+	Layout = "~/Views/Cabinet/_AdminLayout.cshtml";
+}
+<link href="~/css/admin/transactions/styles.css" rel="stylesheet" type="text/css" />
+
+<style>
+
+</style>
+
+<div class="row">
+	<div class="col-md-12">
+	
+	</div>
+</div>
+@section Scripts {
+	<script src="~/js/web3.min.js" asp-append-version="true"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+	<script asp-append-version="true" src="~/js/shapeshift.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+	<script asp-append-version="true" src="~/js/controllers/transactions/index.js"></script>
+	<script>
+//		Morris.Donut({
+//			element: "m_chart_revenue_change",
+//			data: [{
+//				label: "Round 1",
+//				value: 7431402
+//			}, {
+//				label: "Round 2",
+//				value: 0
+//			}, {
+//				label: "Round 3",
+//				value: 0
+//			}, {
+//				label: "Round 4",
+//				value: 0
+//			}, {
+//				label: "Round 5",
+//				value: 0
+//			}],
+//			colors: [mApp.getColor("accent"), mApp.getColor("warning"), mApp.getColor("brand"), mApp.getColor("success"), mApp.getColor("danger")]
+//		})
+	</script>
+}

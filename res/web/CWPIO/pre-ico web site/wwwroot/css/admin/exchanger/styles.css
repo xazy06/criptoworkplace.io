@@ -1,0 +1,42 @@
+.s-mb_20 { 
+	margin-bottom: 20px; 
+}
+
+@media (max-width: 768px) {
+	.h2, h2 { font-size: 1.1rem; }
+
+	.h3, h3 { font-size: 1.05rem; }
+
+	.s-ms-c { text-align: center; }
+
+	.s-ms_n { display: none; }
+
+	.s-ms_b { display: inline-block; }
+	.m-widget14 {
+		padding: 0 2.2rem 2.2rem;
+	}
+}
+
+.s-display_n {
+	display: none;
+}
+
+.s-display_bi {
+	display: block !important;
+}
+
+
+.b-currencies-wrapper {
+	overflow: auto;
+	max-height:270px;
+	margin-bottom:40px;
+}
+
+.s-ta_r {
+	text-align:right;
+}
+
+.m-topbar .m-topbar__nav.m-nav>.m-nav__item.m-topbar__languages .m-topbar__language-selected-img {
+	width: 26px;
+	border-radius: 50% !important;
+}

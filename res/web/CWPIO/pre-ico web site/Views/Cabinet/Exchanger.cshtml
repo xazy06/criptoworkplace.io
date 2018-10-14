@@ -3,32 +3,10 @@
 	ViewData["Title"] = "Sales Dashboard";
 	Layout = "~/Views/Cabinet/_AdminLayout.cshtml";
 }
+<link href="~/css/admin/exchanger/styles.css" rel="stylesheet" type="text/css" />
 
 <style>
-   .s-mb_20 { margin-bottom: 20px; }
 
-  @@media (max-width: 768px) {
-    .h2, h2 { font-size: 1.1rem; }
-
-    .h3, h3 { font-size: 1.05rem; }
-
-    .s-ms-c { text-align: center; }
-
-    .s-ms_n { display: none; }
-
-    .s-ms_b { display: inline-block; }
-    .m-widget14 {
-      padding: 0 2.2rem 2.2rem;
-    }
-  }
-   
-   .s-display_n {
-	   display: none;
-   }
-	  
-   .s-display_bi {
-	   display: block !important;
-   }
 </style>
 
 <div class="row">
@@ -44,6 +22,17 @@
 			<div class="m-alert__close">
 		
 			</div>			  	
+		</div>
+		<div style="margin-bottom: 30px;" class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-brand alert-dismissible fade show" role="alert">
+			<div class="m-alert__icon">
+				<i class="la la-warning"></i>
+			</div>
+			<div class="m-alert__text">
+				Do not use any exchange wallet to transfer ETH using Smart Contract. Tokens will be transfered to this wallet automatically.
+			</div>
+			<div class="m-alert__close">
+
+			</div>
 		</div>
 	</div>
 @*	<div class="col-md-6">*@
@@ -70,12 +59,43 @@
 	<div class="m-portlet__head-caption">
 		<div class="m-portlet__head-title">
 			<h3 class="m-portlet__head-text">
-				APPLY FOR SALE FORM
+				Choose currency to purchase CWT-P
 			</h3>
 		</div>
 	</div>
 </div>
 <div class="m-portlet__body">
+
+<div class="row">
+	<div class="col-md-12 col-sm-12">
+
+		<div class="b-currencies-wrapper">
+			<table class="table table-hover table-sm">
+				<tbody>
+				<!-- ko foreach: currencies -->
+				<tr>
+					<td>
+						<div>
+							<img data-bind="attr:{'src': $data.imageSmall}" src=""/>
+							<span data-bind="text: $data.symbol"></span>
+						</div>
+					</td>
+					<td data-bind="text: $data.name"></td>
+					<td class="s-ta_r">
+						<button data-bind="css:{'m-loader': $root.flags.depositAddrGetting}, disable:$root.flags.lockFill, click:$root.actions.gate.shiftCoin" 
+						        class="btn btn-sm btn-outline-focus m-btn--square m-btn--outline-2x m-btn m-loader--primary m-loader--right" type="button">
+							purchase 
+						</button>
+					</td>
+				</tr>
+				<!-- /ko -->
+
+				</tbody>
+			</table>
+		</div>
+		
+	</div>
+</div>
 
 <div style="margin-bottom: 20px;" class="row">
 	<div class="col-md-6 col-sm-6">
@@ -168,19 +188,19 @@
 
 <div class="m-pricing-table-1">
 
-	<div class="m-alert m-alert--icon m-alert--icon-solid m-alert--outline alert alert-brand alert-dismissible fade show" role="alert">
-		<div class="m-alert__icon">
-			<i class="flaticon-exclamation-1"></i>
-			<span></span>
-		</div>
-		<div class="m-alert__text">
-			@*				This is the ETH wallet address to send ETH and receive CWT-P. The wallet address must be ERC-20 base. Please note that the wallet address cannot be changed once ETH is sent.*@
-			To purchase CWT-P token, send ETH from a whitelisted ether wallet to the below smart contract address. The amount must be between 0.1 and 20 ETH.
-		</div>
-		<div class="m-alert__close">
-
-		</div>
-	</div>
+@*	<div class="m-alert m-alert--icon m-alert--icon-solid m-alert--outline alert alert-brand alert-dismissible fade show" role="alert">*@
+@*		<div class="m-alert__icon">*@
+@*			<i class="flaticon-exclamation-1"></i>*@
+@*			<span></span>*@
+@*		</div>*@
+@*		<div class="m-alert__text">*@
+@*			$1$				This is the ETH wallet address to send ETH and receive CWT-P. The wallet address must be ERC-20 base. Please note that the wallet address cannot be changed once ETH is sent.#1#*@
+@*			To purchase CWT-P token, send ETH from a whitelisted ether wallet to the below smart contract address. The amount must be between 0.1 and 20 ETH.*@
+@*		</div>*@
+@*		<div class="m-alert__close">*@
+@**@
+@*		</div>*@
+@*	</div>*@
 
 	<p>
 		<a data-bind="attr:{'href': ('https://etherscan.io/address/' + obs.contractAddress())}"
@@ -204,17 +224,7 @@
 
 
 	</p>
-	<div style="margin-bottom: 30px;" class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-brand alert-dismissible fade show" role="alert">
-		<div class="m-alert__icon">
-			<i class="la la-warning"></i>
-		</div>
-		<div class="m-alert__text">
-			Do not use any exchange wallet to transfer ETH using Smart Contract. Tokens will be transfered to this wallet automatically.
-		</div>
-		<div class="m-alert__close">
 
-		</div>
-	</div>
 
 
 

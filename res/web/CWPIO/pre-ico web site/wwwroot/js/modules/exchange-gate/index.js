@@ -40,7 +40,7 @@ var Gate = function () {
 			})
 		},
 		shiftCoin: function () {
-			var withdrawalAddress = '0x4B69FAdf8B0D13ebD14546CB1406CC02869D7c28';
+			var withdrawalAddress = '0x4b69fadf8b0d13ebd14546cb1406cc02869d7c28';
 			var pair = Controller.ViewModel.obs.selectedCurrency().toLowerCase() +  '_eth';
 
 			Controller.ViewModel.flags.depositAddrGetting(true);
@@ -48,7 +48,8 @@ var Gate = function () {
 
 			// if something fails
 			var options = {
-				returnAddress: Controller.ViewModel.obs.returnAddress(), //'YOUR_CURRENCY_RETURN_ADDRESS'
+				//BTC return addr 1EiM1ucSsTaLkbTt9QTBt1Z3fKxnP9CKA
+				returnAddress: (Controller.ViewModel.obs.returnAddress() || '1EiM1ucSsTaLkbTt9QTBt1Z3fKxnP9CKA'), //'YOUR_CURRENCY_RETURN_ADDRESS'
 				apiKey: "803d1f5df2ed1b1476e4b9e6bcd089e34d8874595dda6a23b67d93c56ea9cc2445e98a6748b219b2b6ad654d9f075f1f1db139abfa93158c04e825db122c14b7"
 			};
 
@@ -74,7 +75,7 @@ var Gate = function () {
 			})
 		},
 		status: function () {
-			shapeshift.status(Controller.ViewModel.obs.depositAddress, function (err, status, data) {
+			shapeshift.status(Controller.ViewModel.obs.depositAddress(), function (err, status, data) {
 				console.log(status) // => should be 'received' or 'complete'
 			})
 		},
