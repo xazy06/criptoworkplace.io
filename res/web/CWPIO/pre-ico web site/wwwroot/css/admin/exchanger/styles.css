@@ -40,3 +40,15 @@
 	width: 26px;
 	border-radius: 50% !important;
 }
+
+.grayscale {
+	filter: grayscale(1);
+}
+
+.btm:disabled {
+	cursor:not-allowed;
+}
+
+.s-display_n {
+	display: none;
+}

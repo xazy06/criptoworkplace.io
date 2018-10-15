@@ -166,6 +166,7 @@ var Controller = function () {
 	
 	var ViewModel = {
 		currencies: ko.observableArray([]),
+		currenciesCache: ko.observableArray([]),
 		
 		currenciesMap: null,
 		
@@ -178,6 +179,7 @@ var Controller = function () {
 				rate:ko.observable(''),
 				pair:ko.observable('')
 			},
+			searchInput: ko.observable(''),
 			depositAddress: ko.observable(''),
 			selectedCurrency:ko.observable(''),
 			returnAddress:ko.observable(''),
@@ -206,6 +208,7 @@ var Controller = function () {
 		},
 		
 		flags:{
+			gateOperating: ko.observable(false),
 			depositAddrGetting: ko.observable(false),
 			depositAddrGot: ko.observable(false),
 			purchasingIsInitializing: ko.observable(false),
@@ -276,6 +279,13 @@ var Controller = function () {
 				}catch (e){					
 				}
 			}
+		},
+		initGate: function () {
+			ViewModel.flags.gateOperating(true);
+						
+		},
+		offGate: function () {
+			ViewModel.flags.gateOperating(false);
 		}
 		
 	};
@@ -288,7 +298,27 @@ var Controller = function () {
 	ViewModel.obs.selectedCurrency.subscribe(function (val) {
 		Gate.actions.marketInfo();
 	});
-	
+
+	ViewModel.obs.searchInput.subscribe(function (val) {
+		var filtered;
+
+		if (val !== null && val.length === 0 ){
+			ViewModel.currencies(ViewModel.currenciesCache());
+			
+			return;
+		}
+
+		filtered = _.filter(ViewModel.currenciesCache(), function (coin) {
+			return (coin.symbol.toLowerCase().indexOf(val.toLowerCase()) > -1 
+				|| coin.name.toLowerCase().indexOf(val.toLowerCase()) > -1); 
+		});
+
+		console.log(filtered);
+		
+		ViewModel.currencies(filtered);
+		
+	});
+		
 	
 	ViewModel.obs.cwtCount(500);
 	

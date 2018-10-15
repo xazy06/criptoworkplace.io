@@ -1,4 +1,5 @@
-﻿
+﻿@using Microsoft.AspNetCore.Mvc.Rendering
+
 @{
 	ViewData["Title"] = "Sales Dashboard";
 	Layout = "~/Views/Cabinet/_AdminLayout.cshtml";
@@ -63,36 +64,50 @@
 			</h3>
 		</div>
 	</div>
+	<div class="m-portlet__head-tools">
+		<input data-bind="textInput: obs.searchInput" placeholder="Search..." class="form-control" type="text"/>
+	</div>
 </div>
 <div class="m-portlet__body">
 
 <div class="row">
 	<div class="col-md-12 col-sm-12">
 
-		<div class="b-currencies-wrapper">
-			<table class="table table-hover table-sm">
-				<tbody>
-				<!-- ko foreach: currencies -->
-				<tr>
-					<td>
-						<div>
-							<img data-bind="attr:{'src': $data.imageSmall}" src=""/>
-							<span data-bind="text: $data.symbol"></span>
-						</div>
-					</td>
-					<td data-bind="text: $data.name"></td>
-					<td class="s-ta_r">
-						<button data-bind="css:{'m-loader': $root.flags.depositAddrGetting}, disable:$root.flags.lockFill, click:$root.actions.gate.shiftCoin" 
-						        class="btn btn-sm btn-outline-focus m-btn--square m-btn--outline-2x m-btn m-loader--primary m-loader--right" type="button">
-							purchase 
-						</button>
-					</td>
-				</tr>
-				<!-- /ko -->
+		<div class="row">
+			<div @*data-bind="css:{'col-md-6': flags.gateOperating, 'col-md-12': (flags.gateOperating() === false)}"*@ class="b-currencies-wrapper col-md-12">
+				<table class="table table-hover table-sm">
+					<tbody>
+					<!-- ko foreach: currencies -->
+					<tr>
+						<td>
+							<div>
+								<img data-bind="css:{'grayscale': ($data.status === 'unavailable')},attr:{'src': $data.imageSmall}" src=""/>
+								<span data-bind="text: $data.symbol"></span>
+							</div>
+						</td>
+						<td>
+							<!--ko text: $data.name--><!--/ko-->
+						
+							<!-- ko if: ($data.status === 'unavailable')-->
+							<i>(unavailable)</i>
+							<!--/ko-->
+						</td>
+						<td class="s-ta_r">
+							<button data-bind="disable: ($data.status === 'unavailable'), click:$root.actions.initGate" 
+							        class="btn btn-sm btn-outline-focus m-btn--square m-btn--outline-2x m-btn" type="button">
+								purchase 
+							</button>
+						</td>
+					</tr>
+					<!-- /ko -->
 
-				</tbody>
-			</table>
+					</tbody>
+				</table>
+			</div>
+		
+@*			<div data-bind="css:{'col-md-6': (flags.gateOperating() === true), 's-display_n': (flags.gateOperating() === false)}"></div>*@
 		</div>
+		
 		
 	</div>
 </div>
@@ -460,97 +475,99 @@
 </div>
 </div>
 <div class="col-md-5">
-<div class="m-portlet m-portlet--head-overlay m-portlet--full-height  m-portlet--rounded-force">
-<div class="m-portlet__head m-portlet__head--fit-">
-	<div class="m-portlet__head-caption">
-		<div class="m-portlet__head-title">
-			<h3 class="m-portlet__head-text m--font-light">
-				Total balance
-			</h3>
-		</div>
-	</div>
-	<div class="m-portlet__head-tools">
-		
-	</div>
-</div>
-<div class="m-portlet__body">
-	<div class="m-widget27 m-portlet-fit--sides">
-		<div class="m-widget27__pic">
-			<img src="/static/bg-4.jpg" alt="">
-			<h3 class="m-widget27__title m--font-light">
-				<span>
-					<span>CWT-P</span>
-					<!-- ko text:obs.sales.ballance -->0<!--/ko-->
-				</span>
-			</h3>
-			<div class="m-widget27__btn">
-				<button type="button" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--bolder">CryptoWorkPlace Token (CWT-P)</button>
-			</div>
-		</div>
-		<div class="m-widget27__container">
-			<div class="m-widget14">
-			
-				<div class="">
-					<div class="m-widget14__header">
-						<h3 class="m-widget14__title">
-							@*							Current round is <!-- ko text:obs.sales.step --><!--/ko-->        *@
-							Token's sold <!-- ko text:obs.sales.sold --><i style="padding: 0 12px" class="m-loader m-loader--brand"></i><!--/ko--> CWT-P
-						</h3>
-						<span class="m-widget14__desc">
-							@*							Token's sold <!-- ko text:obs.sales.sold --><!--/ko--> CWT-P*@
-						</span>
-					</div>
-					<div>
-						<span>Your whitelisted ERC-20 address:</span>
-						<a data-bind="text:obs.usersettings.ethAddress, attr:{'href':('https://etherscan.io/address/'+ obs.usersettings.ethAddress())}"
-						   target="_blank" href="#">
-							<i style="margin-left: 30px" class="m-loader m-loader--brand"></i>
-						</a>
-					</div>
-					<div class="s-display_n" data-bind="css:{'s-display_bi': (obs.sales.refund() > 0)}">
-						<span>Refund ammount: <strong data-bind="text:obs.sales.refund"></strong> ETH</span>
-						<a class="btn btn-outline-focus m-btn--square m-btn--outline-2x m-btn m-loader--primary m-loader--right" data-bind="click:actions.refund">
-							Refund
-						</a>
-					</div>
-@*					<div class="row  align-items-center">*@
-@*						<div class="col">*@
-@*							<div id="m_chart_revenue_change" class="m-widget14__chart1" style="height: 180px">*@
-@*							</div>*@
-@*						</div>	*@
-@*						<div class="col">*@
-@*							<div class="m-widget14__legends">*@
-@*								<div class="m-widget14__legend">*@
-@*									<span class="m-widget14__legend-bullet m--bg-accent"></span>*@
-@*									<span class="m-widget14__legend-text">7,431,402 CWT-P 1 round</span>*@
-@*								</div>*@
-@*								<div class="m-widget14__legend">*@
-@*									<span class="m-widget14__legend-bullet m--bg-warning"></span>*@
-@*									<span class="m-widget14__legend-text">0 CWT-P 2 round</span>*@
-@*								</div>*@
-@*								<div class="m-widget14__legend">*@
-@*									<span class="m-widget14__legend-bullet m--bg-brand"></span>*@
-@*									<span class="m-widget14__legend-text">0 CWT-P 3 round</span>*@
-@*								</div>*@
-@*								<div class="m-widget14__legend">*@
-@*									<span class="m-widget14__legend-bullet m--bg-success"></span>*@
-@*									<span class="m-widget14__legend-text">0 CWT-P 4 round</span>*@
-@*								</div>*@
-@*								<div class="m-widget14__legend">*@
-@*									<span class="m-widget14__legend-bullet m--bg-danger"></span>*@
-@*									<span class="m-widget14__legend-text">0 CWT-P 5 round</span>*@
-@*								</div>*@
-@*							</div>*@
-@*						</div>*@
-@*					</div>*@
+	@Html.Partial("Sales/_Index")
+	<div class="m-portlet m-portlet--head-overlay m-portlet--full-height  m-portlet--rounded-force">
+		<div class="m-portlet__head m-portlet__head--fit-">
+			<div class="m-portlet__head-caption">
+				<div class="m-portlet__head-title">
+					<h3 class="m-portlet__head-text m--font-light">
+						Total balance
+					</h3>
 				</div>
-				
 			</div>
-			
+			<div class="m-portlet__head-tools">
+
+			</div>
+		</div>
+		<div class="m-portlet__body">
+			<div class="m-widget27 m-portlet-fit--sides">
+				<div class="m-widget27__pic">
+					<img src="/static/bg-4.jpg" alt="">
+					<h3 class="m-widget27__title m--font-light">
+						<span>
+							<span>CWT-P</span>
+							<!-- ko text:obs.sales.ballance -->0<!--/ko-->
+						</span>
+					</h3>
+					<div class="m-widget27__btn">
+						<button type="button" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--bolder">CryptoWorkPlace Token (CWT-P)</button>
+					</div>
+				</div>
+				<div class="m-widget27__container">
+					<div class="m-widget14">
+
+						<div class="">
+							<div class="m-widget14__header">
+								<h3 class="m-widget14__title">
+									@*							Current round is <!-- ko text:obs.sales.step --><!--/ko-->        *@
+									Token's sold <!-- ko text:obs.sales.sold --><i style="padding: 0 12px" class="m-loader m-loader--brand"></i><!--/ko--> CWT-P
+								</h3>
+								<span class="m-widget14__desc">
+									@*							Token's sold <!-- ko text:obs.sales.sold --><!--/ko--> CWT-P*@
+								</span>
+							</div>
+							<div>
+								<span>Your whitelisted ERC-20 address:</span>
+								<a data-bind="text:obs.usersettings.ethAddress, attr:{'href':('https://etherscan.io/address/'+ obs.usersettings.ethAddress())}"
+								   target="_blank" href="#">
+									<i style="margin-left: 30px" class="m-loader m-loader--brand"></i>
+								</a>
+							</div>
+							<div class="s-display_n" data-bind="css:{'s-display_bi': (obs.sales.refund() > 0)}">
+								<span>Refund ammount: <strong data-bind="text:obs.sales.refund"></strong> ETH</span>
+								<a class="btn btn-outline-focus m-btn--square m-btn--outline-2x m-btn m-loader--primary m-loader--right" data-bind="click:actions.refund">
+									Refund
+								</a>
+							</div>
+							@*					<div class="row  align-items-center">*@
+							@*						<div class="col">*@
+							@*							<div id="m_chart_revenue_change" class="m-widget14__chart1" style="height: 180px">*@
+							@*							</div>*@
+							@*						</div>	*@
+							@*						<div class="col">*@
+							@*							<div class="m-widget14__legends">*@
+							@*								<div class="m-widget14__legend">*@
+							@*									<span class="m-widget14__legend-bullet m--bg-accent"></span>*@
+							@*									<span class="m-widget14__legend-text">7,431,402 CWT-P 1 round</span>*@
+							@*								</div>*@
+							@*								<div class="m-widget14__legend">*@
+							@*									<span class="m-widget14__legend-bullet m--bg-warning"></span>*@
+							@*									<span class="m-widget14__legend-text">0 CWT-P 2 round</span>*@
+							@*								</div>*@
+							@*								<div class="m-widget14__legend">*@
+							@*									<span class="m-widget14__legend-bullet m--bg-brand"></span>*@
+							@*									<span class="m-widget14__legend-text">0 CWT-P 3 round</span>*@
+							@*								</div>*@
+							@*								<div class="m-widget14__legend">*@
+							@*									<span class="m-widget14__legend-bullet m--bg-success"></span>*@
+							@*									<span class="m-widget14__legend-text">0 CWT-P 4 round</span>*@
+							@*								</div>*@
+							@*								<div class="m-widget14__legend">*@
+							@*									<span class="m-widget14__legend-bullet m--bg-danger"></span>*@
+							@*									<span class="m-widget14__legend-text">0 CWT-P 5 round</span>*@
+							@*								</div>*@
+							@*							</div>*@
+							@*						</div>*@
+							@*					</div>*@
+						</div>
+
+					</div>
+
+				</div>
+			</div>
 		</div>
 	</div>
-</div>
-</div>
+	
 </div>
 </div>
 <div class="modal fade" id="m_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">

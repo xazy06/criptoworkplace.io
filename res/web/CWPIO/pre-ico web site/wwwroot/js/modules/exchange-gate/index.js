@@ -17,8 +17,12 @@ var Gate = function () {
 	this.actions = {
 		getMap: function () {
 			shapeshift.coins(function (err, coinData) {
+				var coinDataAsArray = null;
 
-				Controller.ViewModel.currencies(_.toArray(coinData));
+				coinDataAsArray = _.toArray(coinData);
+				
+				Controller.ViewModel.currencies(coinDataAsArray);
+				Controller.ViewModel.currenciesCache(coinDataAsArray);
 				Controller.ViewModel.currenciesMap = coinData;
 								
 				console.dir(coinData) // =>
