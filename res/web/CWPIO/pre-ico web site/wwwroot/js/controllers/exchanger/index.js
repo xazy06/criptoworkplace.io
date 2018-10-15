@@ -278,14 +278,14 @@ var Controller = function () {
 					ga('send', 'event', 'forms', 'purchase');
 				}catch (e){					
 				}
+			},
+			initGate: function () {
+				ViewModel.flags.gateOperating(true);
+
+			},
+			offGate: function () {
+				ViewModel.flags.gateOperating(false);
 			}
-		},
-		initGate: function () {
-			ViewModel.flags.gateOperating(true);
-						
-		},
-		offGate: function () {
-			ViewModel.flags.gateOperating(false);
 		}
 		
 	};
