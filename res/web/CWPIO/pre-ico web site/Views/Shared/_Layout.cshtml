@@ -85,38 +85,12 @@
     </environment>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" id="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">
-                    @*                    <img style="-ms-opacity:.5; opacity:.5" src="/images/upload-1ffb4430-ad5b-11e8-b16c-bfc0a5bea17c.png" />*@
-                    <img alt="CWP" height="41" src="~/static/CWP2-light.svg">
-                    <span class="b-logo-text">CWP</span>
-                </a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a data-i18n="nav.about" class="smoothscroll" href="#home">About CWP</a></li>
-                    <li><a data-i18n="nav.vision" class="smoothscroll" href="#vision">Vision Outline</a></li>
-                    <li><a data-i18n="nav.token" class="smoothscroll" href="#token">Token Distribution</a></li>
-                    <li><a data-i18n="nav.team" class="smoothscroll" href="#team">Team</a></li>
-                    <li>
-                        <a onclick="yaCounter50462326.reachGoal('Whitepaper'); ga('send', 'event', 'forms', 'whitepaper');return true;"
-                           target="_blank" class="btn btn-square btn-border-outline btn-white btn-lg"
-                           href="/file/CWP_White_Paper_en.pdf">
-                            <i class="far fa-file-alt"></i>&nbsp;<span class="futurabook" data-i18n="nav.whitepaper">Whitepaper</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+	@Html.Partial("_Header")
+	<div class="wrapper">
+		<div class="base">
+			@RenderBody()
+		</div>
+
     <div class="">
         @RenderBody()
     </div>
