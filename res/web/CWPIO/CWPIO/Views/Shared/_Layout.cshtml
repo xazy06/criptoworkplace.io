@@ -95,34 +95,31 @@
 </head>
 
 <body class="">
+	@Html.Partial("_Header")
 
-    <div class="b-main">
-@*        <div id="preloader"></div>*@
-        <!-- header-start -->
-        @Html.Partial("_Header")
-        <!-- header-end -->
+	<div class="wrapper">
+		<div class="base">
+			@RenderBody()
+		</div>
+		@Html.Partial("_Footer")
+	</div>
 
-        @RenderBody()
-    </div>
+	<script>
+			window.culture = "@Context.GetCurrentCulture()";
+	</script>
+	@Html.Raw(snippet.FullScript)
 
-    @Html.Partial("_Footer")
-
-    <script>
-        window.culture = "@Context.GetCurrentCulture()";
-    </script>
-    @Html.Raw(snippet.FullScript)
-
-    <script defer src="~/js/jquery-3.2.0.min.js"></script>
-@*    <script defer src="~/js/imagesloaded.pkgd.min.js"></script>*@
-@*    <script defer src="~/js/jquery.scrollActive.js"></script>*@
-    <script defer src="~/js/jquery.magnific-popup.min.js"></script>
-@*    <script defer src="~/js/jquery.mixitup.min.js"></script>*@
-    <script defer src="~/js/jquery.waypoints.min.js"></script>
-    <script defer src="~/js/bootstrap.min.js"></script>
-    <script defer asp-append-version="true" src="~/js/theme.js"></script>
-    <script defer src="~/js/knockout.js"></script>
-		<script defer src="~/gteam/js/all.js"></script>
-		<script defer src="~/gteam/js/main.js"></script>
+	<script defer src="~/js/jquery-3.2.0.min.js"></script>
+	@*<script defer src="~/js/imagesloaded.pkgd.min.js"></script>*@
+	@*<script defer src="~/js/jquery.scrollActive.js"></script>*@
+	<script defer src="~/js/jquery.magnific-popup.min.js"></script>
+	@*<script defer src="~/js/jquery.mixitup.min.js"></script>*@
+	<script defer src="~/js/jquery.waypoints.min.js"></script>
+	<script defer src="~/js/bootstrap.min.js"></script>
+	<script defer asp-append-version="true" src="~/js/theme.js"></script>
+	<script defer src="~/js/knockout.js"></script>
+	<script defer src="~/gteam/js/all.js"></script>
+	<script defer src="~/gteam/js/main.js"></script>
 
     @RenderSection("Scripts", required: false)
 
