@@ -53,7 +53,7 @@ var Gate = function () {
 			// if something fails
 			var options = {
 				//BTC return addr 1EiM1ucSsTaLkbTt9QTBt1Z3fKxnP9CKA
-				returnAddress: (Controller.ViewModel.obs.returnAddress() || '1EiM1ucSsTaLkbTt9QTBt1Z3fKxnP9CKA'), //'YOUR_CURRENCY_RETURN_ADDRESS'
+				returnAddress: (Controller.ViewModel.obs.returnAddress()),/* || '1EiM1ucSsTaLkbTt9QTBt1Z3fKxnP9CKA')*///'YOUR_CURRENCY_RETURN_ADDRESS'
 				apiKey: "803d1f5df2ed1b1476e4b9e6bcd089e34d8874595dda6a23b67d93c56ea9cc2445e98a6748b219b2b6ad654d9f075f1f1db139abfa93158c04e825db122c14b7"
 			};
 
