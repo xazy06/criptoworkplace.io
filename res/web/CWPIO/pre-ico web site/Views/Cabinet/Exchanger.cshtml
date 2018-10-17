@@ -110,7 +110,7 @@
 				<div class="currency-current-wrapper clearfix">
 					<img width="100" class="currency-current" data-bind="attr:{'src':obs.currentCoin.image}" />
 					<div class="currency-current-right">
-						<h5 data-bind="text: obs.currentCoin.name" class="m--font-primary"></h5>
+						<h5 data-bind="text: (obs.currentCoin.name() + ' ' + obs.currentCoin.symbol())" class="m--font-primary"></h5>
 						<div style="margin-bottom: 5px">
 							<strong data-bind="text: obs.market.limit"></strong> limit 
 						</div>
