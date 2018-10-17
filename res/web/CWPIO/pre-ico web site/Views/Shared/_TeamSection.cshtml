@@ -1,57 +1,142 @@
-@{
-	var data = new[] {
-		new {
-			Name = "Yoji Kishi",
-			Title = "CEO",
-			Src = "/images/team/upload-741103b0-b4e6-11e8-a0c9-8dd9face81ec.png",
-			Description = "Rare type of High-edge Japanese technology specialist with wide international marketing experience.",
-			SocialLinks = new[] {
-				new {
-					url = "https://www.linkedin.com/in/yoji-kishi-70108610b/",
-					name = "linkedin"
-				}
-			}
-		}
-	};
-}
-
 <section class="section black_mod">
 	<div class="section_in">
 		<h2 class="section_title">Our Team</h2>
 		<ul class="team_list">
-			@foreach (var item in data) {
-				<li class="team_item">
-					<div class="team_col img_mod">
-						<div class="team_img_w">
-							<img class="team_img" src="@(item.Src)">
+			<li class="team_item">
+				<div class="team_col img_mod">
+					<div class="team_img_w"><img class="team_img" src="/images/team/upload-741103b0-b4e6-11e8-a0c9-8dd9face81ec.png" alt=""/></div>
+				</div>
+				<div class="team_col">
+					<div class="team_head">
+						<div class="team_head_col">
+							<h3 class="team_name">Yoji Kishi</h3><span class="team_title">CEO</span>
+						</div>
+						<div class="team_head_col social_mod">
+							<ul class="social_list team_mod">
+								<li class="social_item team_mod"><a class="social_link team_mod" href="https://www.linkedin.com/in/yoji-kishi-70108610b/">
+									<svg class="icon icon-linkedin_c size_mod">
+										<use xlink:href="/gteam//gteam/i/sprite/sprite.svg#linkedin_c"></use>
+									</svg></a></li>
+							</ul>
 						</div>
 					</div>
-					<div class="team_col">
-						<div class="team_head">
-							<div class="team_head_col">
-								<h3 class="team_name">@item.Name</h3>
-								<span class="team_title">@item.Title</span>
-							</div>
-							</div>
-							<div class="team_head_col social_mod">
-								<ul class="social_list team_mod">
-									@foreach (var link in item.SocialLinks) {
-										<li class="social_item team_mod"> 
-											<a class="social_link team_mod" href="@(link.url)">
-												<svg class="icon icon-link-c size_mod">
-													<use xlink:href="/gteam/i/sprite/sprite.svg#link-c"></use>
-												</svg>
-											</a>
-										</li>
-									}
-								</ul>
-							</div>
-							<div class="team_body">
-								<div class="team_descr"><p>@item.Description</p></div>
-							</div>
+					<div class="team_body">
+						<div class="team_descr"><p>Rare type of High-edge Japanese technology specialist with wide international marketing experience.</p></div>
+						<ul class="team_features_list">
+							<li class="team_features_item">Shin-Nippon Research (Hong Kong) Co., Ltd. Vice-President</li>
+							<li class="team_features_item">International Society of Stem Cells Development, Director</li>
+							<li class="team_features_item">5hz Medical Supplies(Xiamen, China) Co., Ltd.Vice - president</li>
+							<li class="team_features_item">Kintaro Cells Power Co., Member of Board of Director</li>
+							<li class="team_features_item">Ryukyukan International Kobudo Karate Federation, Honor Member</li>
+						</ul>
 					</div>
-				</li>
-			}
-		</ul>
+				</div>
+			</li>
+			<li class="team_item">
+				<div class="team_col img_mod">
+					<div class="team_img_w"><img class="team_img" src="/images/team/upload-792ab580-b4e6-11e8-a0c9-8dd9face81ec.png" alt=""/></div>
+				</div>
+				<div class="team_col">
+					<div class="team_head">
+						<div class="team_head_col">
+							<h3 class="team_name">Alexey Gladkov</h3><span class="team_title">CVO</span>
+						</div>
+						<div class="team_head_col social_mod">
+							<ul class="social_list team_mod">
+								<li class="social_item team_mod"><a class="social_link team_mod" href="https://www.linkedin.com/in/alexei-gladkov-04b03b14b/">
+									<svg class="icon icon-linkedin_c size_mod">
+										<use xlink:href="/gteam/i/sprite/sprite.svg#linkedin_c"></use>
+									</svg></a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="team_body">
+						<ul class="team_features_list">
+							<li class="team_features_item">Kintaro Power Cells Japan President</li>
+							<li class="team_features_item">MapMess Inc.Regional Director</li>
+							<li class="team_features_item">Founding director of the research company AV - Cells Singapore</li>
+							<li class="team_features_item">30 years of experience in running own business</li>
+							<li class="team_features_item">20 years of doing business in Singapore and Japan</li>
+						</ul>
+					</div>
+				</div>
+			</li>
+			<li class="team_item">
+				<div class="team_col img_mod">
+					<div class="team_img_w"><img class="team_img" src="/images/team/upload-7b860aa0-b4e6-11e8-a0c9-8dd9face81ec.png" alt=""/></div>
+				</div>
+				<div class="team_col">
+					<div class="team_head">
+						<div class="team_head_col">
+							<h3 class="team_name">Maxim Maslich</h3><span class="team_title">CTO</span>
+						</div>
+						<div class="team_head_col social_mod">
+							<ul class="social_list team_mod">
+								<li class="social_item team_mod"><a class="social_link team_mod">
+									<svg class="icon icon-linkedin_c size_mod">
+										<use xlink:href="/gteam/i/sprite/sprite.svg#linkedin_c"></use>
+									</svg></a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="team_body">
+						<div class="team_descr"><p>An expert in the management of the software development process, the construction of distributed, highly loaded and secure systems.</p><p>Development of transport monitoring systems (cargo, passenger cars, special equipment, passenger transportation, weight control, production line control, taxi park automation) for Alrosa, GAZPROM, Lukoil, Rusal, RZD, Satori, Autoline, city taxi.</p></div>
+						<ul class="team_features_list">
+							<li class="team_features_item">Microsoft Certified Professional</li>
+							<li class="team_features_item">Microsoft Certified Technology Specialist Exam 511</li>
+							<li class="team_features_item">Blockchain and smart contracts developer</li>
+						</ul>
+					</div>
+				</div>
+			<li class="team_item">
+				<div class="team_col img_mod">
+					<div class="team_img_w"><img class="team_img" src="/images/team/upload-7bb69080-b4e6-11e8-a0c9-8dd9face81ec.jpg" alt=""/></div>
+				</div>
+				<div class="team_col">
+					<div class="team_head">
+						<div class="team_head_col">
+							<h3 class="team_name">Artur Enokian</h3><span class="team_title">Software Engineer</span>
+						</div>
+						<div class="team_head_col social_mod">
+							<ul class="social_list team_mod">
+								<li class="social_item team_mod"><a class="social_link team_mod">
+									<svg class="icon icon-linkedin_c size_mod">
+										<use xlink:href="/gteam/i/sprite/sprite.svg#linkedin_c"></use>
+									</svg></a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="team_body">
+						<ul class="team_features_list">
+							<li class="team_features_item">Software Engineer</li>
+							<li class="team_features_item">Senior JavaScript Developer Full - Stack</li>
+							<li class="team_features_item">Certified Middle End Android Developer</li>
+							<li class="team_features_item">Certified Middle End iOS Developer</li>
+							<li class="team_features_item">Java EE, С#, PHP, Lua, Python, GO developer</li>
+							<li class="team_features_item">Unity 3D developer</li>
+							<li class="team_features_item">Expert in developing Highload applications</li>
+							<li class="team_features_item">Custom Trading Platforms Development</li>
+							<li class="team_features_item">Development of special software for major retailers</li>
+							<li class="team_features_item">Cryptography, electronic document management</li>
+							<li class="team_features_item">Development of special software for the Ministry of Defense of Russia</li>
+							<li class="team_features_item">Development of special software and participation in the development of software and hardware for federal agencies of the Russian Federation</li>
+							<li class="team_features_item">Development of special software - for monitoring and managing network security</li>
+							<li class="team_features_item">Development of implemented collector agents for analyzing and collecting data on network and peripheral PC activity</li>
+						</ul>
+					</div>
+				</div>
+			</li>
+			</li>
+		</ul><a class="team_more moreTeamLink" href="#">
+		<div class="team_more_in normal_mod">All Team</div>
+		<div class="team_more_in active_mod">FOLD LIST</div>
+		<div class="team_more_line">
+			<svg class="team_more_svg_wrap" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="956" height="16" viewBox="0 0 956 16">
+				<path id="lb59a" d="M161 7199h456.48c.45 0 20.52 15 20.52 15s16.71-15 18.66-15H1118"></path>
+				<g transform="translate(-160 -7198)">
+					<use class="team_more_svg" fill="#fff" fill-opacity="0" stroke="#1211ff" stroke-dasharray="0 4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="50" stroke-width="2" xlink:href="#lb59a"></use>
+				</g>
+			</svg>
+		</div></a>
 	</div>
 </section>
