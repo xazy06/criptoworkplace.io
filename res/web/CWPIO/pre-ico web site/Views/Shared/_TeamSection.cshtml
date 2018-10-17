@@ -36,9 +36,10 @@
 
 					<div class="team_col">
 						<div class="team_head">
-							<h3 class="team_name">@item.Name</h3>
-							<span class="team_title">@item.Title</span>
-
+							<div class="team_head_col"></div>
+								<h3 class="team_name">@item.Name</h3>
+								<span class="team_title">@item.Title</span>
+							</div>
 							<div class="team_head_col social_mod">
 								<ul class="social_list team_mod">
 									@* @foreach (var link in item.SocialLinks) {
@@ -51,6 +52,9 @@
 										</li>
 									}*@
 								</ul>
+							</div>
+							<div class="team_body">
+								<div class="team_descr"><p>@item.Description</p></div>
 							</div>
 						</div>
 					</div>
