@@ -5,63 +5,20 @@
 			Title = "CEO",
 			Src = "/images/team/upload-741103b0-b4e6-11e8-a0c9-8dd9face81ec.png",
 			Description = "Rare type of High-edge Japanese technology specialist with wide international marketing experience.",
-			Features = new [
+			Features = new [] {
 				"Shin-Nippon Research (Hong Kong) Co., Ltd. Vice-President",
 				"International Society of Stem Cells Development, Director",
 				"5hz Medical Supplies (Xiamen, China) Co., Ltd. Vice-president",
 				"Kintaro Cells Power Co., Member of Board of Director",
 				"Ryukyukan International Kobudo Karate Federation, Honor Member"
-			],
-			SocialLinks = new[
+			},
+			SocialLinks = new[] {
 				new {
 					url = "https://www.linkedin.com/in/yoji-kishi-70108610b/",
 					name = "linkedin"
 				}
-			]
-		},
-		new {
-			Name = "Alexey Gladkov",
-			Title = "CVO",
-			Src = "/images/team/upload-792ab580-b4e6-11e8-a0c9-8dd9face81ec.png",
-			Description = "Kintaro Power Cells Japan President MapMess Inc. Regional Director Founding director of the research company AV-Cells Singapore 30 years of experience in running own business 20 years of doing business in Singapore and Japan",
-			Features = new [],
-			SocialLinks = new[
-				new {
-					url = "https://www.linkedin.com/in/alexei-gladkov-04b03b14b/",
-					name = "linkedin"
-				}
-			]
-		},
-		new {
-			Name = "Maxim Maslich",
-			Title = "CTO",
-			Src = "/images/team/upload-7b860aa0-b4e6-11e8-a0c9-8dd9face81ec.png",
-			Description = "Microsoft Certified Professional Microsoft Certified Technology Specialist Exam 511 Blockchain and smart contracts developer An expert in the management of the software development process, the construction of distributed, highly loaded and secure systems Development of transport monitoring systems (cargo, passenger cars, special equipment, passenger transportation, weight control, production line control, taxi park automation) for Alrosa, GAZPROM, Lukoil, Rusal, RZD, Satori, Autoline, city taxi.",
-			Features = new [],
-			SocialLinks = new[
-				new {
-					url = "https://www.linkedin.com/in/mmaslich/",
-					name = "linkedin"
-				}
-			]
-		},
-		new {
-			Name = "Artur Enokian",
-			Title = "Software Engineer",
-			Src = "/images/team/upload-7bb69080-b4e6-11e8-a0c9-8dd9face81ec.jpg",
-			Description = "Software Engineer Senior JavaScript Developer Full-Stack Certified Middle End Android Developer Certified Middle End iOS Developer Java EE, С#, PHP, Lua, Python, GO developer, Unity 3D developer, Expert in developing Highload applications Custom Trading Platforms Development Development of special software for major retailers Cryptography, electronic document management Development of special software for the Ministry of Defense of Russia Development of special software and participation in the development of software and hardware for federal agencies of the Russian Federation Development of special software - for monitoring and managing network security Development of implemented collector agents for analyzing and collecting data on network and peripheral PC activity",
-			Features = new [],
-			SocialLinks = new[
-				new {
-					url = "https://www.facebook.com/profile.php?id=100010889670400",
-					name = "facebook"
-				},
-				new {
-					url = "https://www.linkedin.com/in/%D0%B0%D1%80%D1%82%D1%83%D1%80-%D0%B5%D0%BD%D0%BE%D0%BA%D1%8F%D0%BD-726a5387/",
-					name = "linkedin"
-				}
-			]
-		},
+			}
+		}
 	};
 }
 
@@ -84,7 +41,7 @@
 
 							<div class="team_head_col social_mod">
 								<ul class="social_list team_mod">
-									@foreach (var link in item.SocialLinks) {
+									@* @foreach (var link in item.SocialLinks) {
 										<li class="social_item team_mod">
 											<a class="social_link team_mod" href="@link.url">
 												<svg class="icon icon-link-c size_mod">
@@ -92,7 +49,7 @@
 												</svg>
 											</a>
 										</li>
-									}
+									}*@
 								</ul>
 							</div>
 						</div>
