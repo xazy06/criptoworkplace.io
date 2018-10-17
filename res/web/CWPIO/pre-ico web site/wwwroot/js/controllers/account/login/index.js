@@ -70,7 +70,7 @@ var Controller = function () {
 				ViewModel.flags.validation.hasNumber(/\d/g.test(str()));
 				ViewModel.flags.validation.uppercaseletter(/[A-Z]/g.test(str()));
 				ViewModel.flags.validation.lowercaseletter(/[a-z]/g.test(str()));
-				ViewModel.flags.validation.hasSymbol(/\W/g.test(str()));
+				//ViewModel.flags.validation.hasSymbol(/\W/g.test(str()));
 				ViewModel.flags.validation.uniqueChars6(true);// TODO
 			}
 		}
