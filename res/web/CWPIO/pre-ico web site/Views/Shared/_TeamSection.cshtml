@@ -3,108 +3,102 @@
 		new {
 			Name = "Yoji Kishi",
 			Title = "CEO",
-			Src = "/images/team/upload-741103b0-b4e6-11e8-a0c9-8dd9face81ec.png"
+			Src = "/images/team/upload-741103b0-b4e6-11e8-a0c9-8dd9face81ec.png",
+			Description = "Rare type of High-edge Japanese technology specialist with wide international marketing experience.",
+			Features = new [
+				"Shin-Nippon Research (Hong Kong) Co., Ltd. Vice-President",
+				"International Society of Stem Cells Development, Director",
+				"5hz Medical Supplies (Xiamen, China) Co., Ltd. Vice-president",
+				"Kintaro Cells Power Co., Member of Board of Director",
+				"Ryukyukan International Kobudo Karate Federation, Honor Member"
+			],
+			SocialLinks = new[
+				new {
+					url = "https://www.linkedin.com/in/yoji-kishi-70108610b/",
+					name = "linkedin"
+				}
+			]
 		},
 		new {
 			Name = "Alexey Gladkov",
 			Title = "CVO",
-			Src = "/images/team/upload-792ab580-b4e6-11e8-a0c9-8dd9face81ec.png"
+			Src = "/images/team/upload-792ab580-b4e6-11e8-a0c9-8dd9face81ec.png",
+			Description = "Kintaro Power Cells Japan President MapMess Inc. Regional Director Founding director of the research company AV-Cells Singapore 30 years of experience in running own business 20 years of doing business in Singapore and Japan",
+			Features = new [],
+			SocialLinks = new[
+				new {
+					url = "https://www.linkedin.com/in/alexei-gladkov-04b03b14b/",
+					name = "linkedin"
+				}
+			]
 		},
 		new {
 			Name = "Maxim Maslich",
 			Title = "CTO",
-			Src = "/images/team/upload-7b860aa0-b4e6-11e8-a0c9-8dd9face81ec.png"
+			Src = "/images/team/upload-7b860aa0-b4e6-11e8-a0c9-8dd9face81ec.png",
+			Description = "Microsoft Certified Professional Microsoft Certified Technology Specialist Exam 511 Blockchain and smart contracts developer An expert in the management of the software development process, the construction of distributed, highly loaded and secure systems Development of transport monitoring systems (cargo, passenger cars, special equipment, passenger transportation, weight control, production line control, taxi park automation) for Alrosa, GAZPROM, Lukoil, Rusal, RZD, Satori, Autoline, city taxi.",
+			Features = new [],
+			SocialLinks = new[
+				new {
+					url = "https://www.linkedin.com/in/mmaslich/",
+					name = "linkedin"
+				}
+			]
 		},
 		new {
 			Name = "Artur Enokian",
 			Title = "Software Engineer",
-			Src = "/images/team/upload-7bb69080-b4e6-11e8-a0c9-8dd9face81ec.jpg"
+			Src = "/images/team/upload-7bb69080-b4e6-11e8-a0c9-8dd9face81ec.jpg",
+			Description = "Software Engineer Senior JavaScript Developer Full-Stack Certified Middle End Android Developer Certified Middle End iOS Developer Java EE, С#, PHP, Lua, Python, GO developer, Unity 3D developer, Expert in developing Highload applications Custom Trading Platforms Development Development of special software for major retailers Cryptography, electronic document management Development of special software for the Ministry of Defense of Russia Development of special software and participation in the development of software and hardware for federal agencies of the Russian Federation Development of special software - for monitoring and managing network security Development of implemented collector agents for analyzing and collecting data on network and peripheral PC activity",
+			Features = new [],
+			SocialLinks = new[
+				new {
+					url = "https://www.facebook.com/profile.php?id=100010889670400",
+					name = "facebook"
+				},
+				new {
+					url = "https://www.linkedin.com/in/%D0%B0%D1%80%D1%82%D1%83%D1%80-%D0%B5%D0%BD%D0%BE%D0%BA%D1%8F%D0%BD-726a5387/",
+					name = "linkedin"
+				}
+			]
 		},
 	};
 }
 
-<ul class="team_list">
-	@foreach (var item in data) {
-		<li class="team_item">
-			<div class="team_col img_mod">
-				<div class="team_img_w">
-					<img class="team_img" src="@(item.Src)">
-				</div>
-			</div>
+<section class="section black_mod">
+	<div class="section_in">
+		<h2 class="section_title">Our Team</h2>
+		<ul class="team_list">
+			@foreach (var item in data) {
+				<li class="team_item">
+					<div class="team_col img_mod">
+						<div class="team_img_w">
+							<img class="team_img" src="@(item.Src)">
+						</div>
+					</div>
 
-			<div class="team_col">
-				<div class="team_head">
-					<h3 class="team_name">@item.Name</h3>
-					<span class="team_title"></span>
-				</div>
-			</div>
-		</li>
-	}
-</ul>
+					<div class="team_col">
+						<div class="team_head">
+							<h3 class="team_name">@item.Name</h3>
+							<span class="team_title">@item.Title</span>
 
-<!--<section class="section black_mod">-->
-	<!--<div class="section_in">-->
-		<!--<h2 class="section_title">Our Team</h2>-->
-		<!--<ul class="team_list">-->
-			<!--<li class="team_item">-->
-				<!--<div class="team_col img_mod">-->
-					<!--<div class="team_img_w">-->
-						<!--<img class="team_img" src="~/gteam/i/team/yoji.png" alt=""/>-->
-					<!--</div>-->
-				<!--</div>-->
-				<!--<div class="team_col">-->
-					<!--<div class="team_head">-->
-						<!--<div class="team_head_col">-->
-							<!--<h3 class="team_name">Yoji Kishi</h3>-->
-							<!--<span class="team_title">CEO</span>-->
-						<!--</div>-->
-						<!--<div class="team_head_col social_mod">-->
-							<!--<ul class="social_list team_mod">-->
-								<!--<li class="social_item team_mod">-->
-									<!--<a class="social_link team_mod">-->
-										<!--<svg class="icon icon-link-c size_mod">-->
-											<!--<use xlink:href="~/gteam/i/sprite/sprite.svg#link-c"></use>-->
-										<!--</svg>-->
-									<!--</a>-->
-								<!--</li>-->
-								<!--<li class="social_item team_mod">-->
-									<!--<a class="social_link team_mod">-->
-										<!--<svg class="icon icon-fb-c size_mod">-->
-											<!--<use xlink:href="~/gteam/i/sprite/sprite.svg#fb-c"></use>-->
-										<!--</svg>-->
-									<!--</a>-->
-								<!--</li>-->
-							<!--</ul>-->
-						<!--</div>-->
-					<!--</div>-->
-					<!--<div class="team_body">-->
-						<!--<div class="team_descr">-->
-							<!--<p>A rare type of High-edge Japanese technology software microminiature biometri for thermal imaging specialist with  vast international marketing experience.</p>-->
-						<!--</div>-->
-
-						<!--<ul class="team_features_list">-->
-							<!--<li class="team_features_item">-->
-								<!--<strong>Microcomputer Systems Expert</strong>-->
-							<!--</li>-->
-							<!--<li class="team_features_item">-->
-								<!--Development of circuit solutions, trace of printed circuit boards and development of embedded software for thermal imaging devices.-->
-							<!--</li>-->
-							<!--<li class="team_features_item">-->
-								<!--Development of circuit design solutions, trace of printed circuit boards for low-level devices of the Quinta music recognition system.-->
-							<!--</li>-->
-							<!--<li class="team_features_item">-->
-								<!--Development of circuit solutions and trace of printed circuit boards for Smart House devices.-->
-							<!--</li>-->
-							<!--<li class="team_features_item">-->
-								<!--Development of microminiature biometric sensors and processor control system for bioelectrical upper limb prosthesis.-->
-							<!--</li>-->
-							<!--<li class="team_features_item">-->
-								<!--Development of embedded data transmission systems based on Wi-Fi, GSM, and Bluetooth technologies.-->
-							<!--</li>-->
-						<!--</ul>-->
-					<!--</div>-->
-				<!--</div>-->
-			<!--</li>-->
-		<!--</ul>-->
-	<!--</div>-->
-<!--</section>-->
+							<div class="team_head_col social_mod">
+								<ul class="social_list team_mod">
+									@foreach (var link in item.SocialLinks) {
+										<li class="social_item team_mod">
+											<a class="social_link team_mod" href="@link.url">
+												<svg class="icon icon-link-c size_mod">
+													<use xlink:href="i/sprite/sprite.svg#link-c"></use>
+												</svg>
+											</a>
+										</li>
+									}
+								</ul>
+							</div>
+						</div>
+					</div>
+				</li>
+			}
+		</ul>
+	</div>
+</section>
