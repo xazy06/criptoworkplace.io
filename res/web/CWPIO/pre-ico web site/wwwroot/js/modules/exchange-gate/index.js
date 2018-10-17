@@ -76,6 +76,10 @@ var Gate = function () {
 				Controller.ViewModel.flags.depositAddrGetting(false);
 
 				Controller.ViewModel.flags.depositAddrGot(true);
+
+				if (returnData.error){
+					$.notify(returnData.error);
+				}
 			})
 		},
 		status: function () {

@@ -179,6 +179,14 @@ var Controller = function () {
 				rate:ko.observable(''),
 				pair:ko.observable('')
 			},
+			currentCoin: {
+				symbol:ko.observable(''),
+				name:ko.observable(''),
+				image:ko.observable(''),
+				imageSmall:ko.observable(''),
+				status:ko.observable(''),
+				minerFee:ko.observable('')
+			},
 			searchInput: ko.observable(''),
 			depositAddress: ko.observable(''),
 			selectedCurrency:ko.observable(''),
@@ -280,7 +288,18 @@ var Controller = function () {
 				}
 			},
 			initGate: function () {
+				ViewModel.obs.currentCoin.symbol(this.symbol);
+				ViewModel.obs.currentCoin.name(this.name);
+				ViewModel.obs.currentCoin.image(this.image);
+				ViewModel.obs.currentCoin.imageSmall(this.imageSmall);
+				ViewModel.obs.currentCoin.status(this.status);
+				ViewModel.obs.currentCoin.minerFee(this.minerFee);
+				
+				ViewModel.obs.selectedCurrency(this.symbol);//TODO redunant ~
+				
 				ViewModel.flags.gateOperating(true);
+
+				ViewModel.actions.gate.shiftCoin();
 
 			},
 			offGate: function () {

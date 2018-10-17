@@ -72,8 +72,8 @@
 
 <div class="row">
 	<div class="col-md-12 col-sm-12">
-
-		<div class="row">
+		
+		<div class="s-mb_40i row">
 			<div data-bind="css:{'col-md-6': flags.gateOperating, 'col-md-12': (flags.gateOperating() === false)}" class="b-currencies-wrapper">
 				<table class="table table-hover table-sm">
 					<tbody>
@@ -105,7 +105,55 @@
 				</table>
 			</div>
 		
-			<div data-bind="css:{'col-md-6': (flags.gateOperating() === true), 's-display_n': (flags.gateOperating() === false)}"></div>
+			<div data-bind="css:{'col-md-6': (flags.gateOperating() === true), 's-display_n': (flags.gateOperating() === false)}">
+				
+				<div class="currency-current-wrapper clearfix">
+					<img width="100" class="currency-current" data-bind="attr:{'src':obs.currentCoin.image}" />
+					<div class="currency-current-right">
+						<h5 data-bind="text: obs.currentCoin.name" class="m--font-primary"></h5>
+						<div style="margin-bottom: 5px">
+							<strong data-bind="text: obs.market.limit"></strong> limit 
+						</div>
+						<div style="margin-bottom: 5px">
+							<strong data-bind="text: obs.market.maxLimit"></strong> maxLimit 
+						</div>
+						<div style="margin-bottom: 5px">
+							<strong data-bind="text: obs.market.minimum"></strong> minimum 
+						</div>
+						<div>
+							<strong data-bind="text: obs.market.rate"></strong> rate 
+						</div>
+					</div>
+				</div>
+				
+				<!-- ko if:flags.depositAddrGetting -->
+				<div class="s-ta_c">
+					<div class="m-spinner m-spinner--brand m-spinner--lg"></div>
+					<div class="m-spinner m-spinner--primary m-spinner--lg"></div>
+					<div class="m-spinner m-spinner--success m-spinner--lg"></div>       
+					<div class="m-spinner m-spinner--info m-spinner--lg"></div>
+					<div class="m-spinner m-spinner--warning m-spinner--lg"></div>
+					<div class="m-spinner m-spinner--danger m-spinner--lg"></div>   
+				</div>
+				<!-- /ko -->
+
+				<!-- ko ifnot:flags.depositAddrGetting -->
+				<div style="margin-bottom: 20px;" data-bind="if: flags.depositAddrGot">
+					<div style="margin-bottom: 10px;">
+						Please send your <strong><!-- ko text: obs.selectedCurrency --><!--/ko--></strong> to the address below:
+					</div>
+					<div style="margin-bottom: 10px;">
+						<strong><!-- ko text: obs.depositAddress --><!--/ko--></strong>
+					</div>
+					<div>
+						<img width="100" data-bind="attr:{'src':('https://api.qrserver.com/v1/create-qr-code/?size=150x150&amp;data=' + obs.depositAddress())}"
+						     style="border: 1px solid #ddd;"/>
+					</div>
+				</div>
+
+				<!-- /ko -->
+
+			</div>
 		</div>
 		
 		
@@ -149,50 +197,50 @@
 <!--/ko-->
 
 
-<h5 class="m--font-primary">
-	Choose availiable currencies
-</h5>
+@*<h5 class="m--font-primary">*@
+@*	Choose availiable currencies*@
+@*</h5>*@
+@**@
+@*<div style="margin-bottom: 20px;" class="form-group m-form__group">*@
+@*	<div class="input-group">*@
+@*		<select data-bind="optionsAfterRender: actions.setOptionDisable, value:obs.selectedCurrency, options:currencies, optionsValue: 'symbol', optionsText: 'symbol'" class="form-control"></select>*@
+@*					*@
+@*		$1$					<!-- ko if:obs.hasMetamask -->#1#*@
+@*		<div class="input-group-append">*@
+@*			<button data-bind="css:{'m-loader': flags.depositAddrGetting}, disable:flags.lockFill, click:actions.gate.shiftCoin" *@
+@*			        class="btn btn-outline-focus m-btn--square m-btn--outline-2x m-btn m-loader--primary m-loader--right" *@
+@*			        type="button">*@
+@*				Buy *@
+@*				$1$							<!-- ko if: obs.selectedCurrency() !== '' -->#1#*@
+@*				$1$							<img data-bind="attr:{'src': currenciesMap[obs.selectedCurrency()]['imageSmall']}" #1#*@
+@*				$1$							     height="16" style="margin-left: 5px; vertical-align: top;" src="/images/metamask.png">#1#*@
+@*				$1$							<!-- /ko -->#1#*@
+@*			</button>*@
+@*		</div>*@
+@*		$1$					<!-- /ko -->#1#*@
+@*	</div>*@
+@*</div>*@
 
-<div style="margin-bottom: 20px;" class="form-group m-form__group">
-	<div class="input-group">
-		<select data-bind="optionsAfterRender: actions.setOptionDisable, value:obs.selectedCurrency, options:currencies, optionsValue: 'symbol', optionsText: 'symbol'" class="form-control"></select>
-					
-		@*					<!-- ko if:obs.hasMetamask -->*@
-		<div class="input-group-append">
-			<button data-bind="css:{'m-loader': flags.depositAddrGetting}, disable:flags.lockFill, click:actions.gate.shiftCoin" 
-			        class="btn btn-outline-focus m-btn--square m-btn--outline-2x m-btn m-loader--primary m-loader--right" 
-			        type="button">
-				Buy 
-				@*							<!-- ko if: obs.selectedCurrency() !== '' -->*@
-				@*							<img data-bind="attr:{'src': currenciesMap[obs.selectedCurrency()]['imageSmall']}" *@
-				@*							     height="16" style="margin-left: 5px; vertical-align: top;" src="/images/metamask.png">*@
-				@*							<!-- /ko -->*@
-			</button>
-		</div>
-		@*					<!-- /ko -->*@
-	</div>
-</div>
-
-<div style="margin-bottom: 20px;">
-	<div style="margin-bottom:5px" data-bind="text: ('limit: ' + obs.market.limit())"></div>
-	<div style="margin-bottom:5px" data-bind="text: ('maxLimit: ' + obs.market.maxLimit())"></div>
-	<div style="margin-bottom:5px" data-bind="text: ('minimum: ' + obs.market.minimum())"></div>
-	<div style="margin-bottom:5px" data-bind="text: ('rate: ' + obs.market.rate())"></div>
-</div>
-
-
-<div style="margin-bottom: 20px;" data-bind="if: flags.depositAddrGot">
-	<div style="margin-bottom: 20px;">
-		Please send your <!-- ko text: obs.selectedCurrency --><!--/ko--> to the address below:
-	</div>
-	<div style="margin-bottom: 20px;">
-		<!-- ko text: obs.depositAddress --><!--/ko-->
-	</div>
-	<div>
-		<img data-bind="attr:{'src':('https://api.qrserver.com/v1/create-qr-code/?size=150x150&amp;data=' + obs.depositAddress())}"
-		     style="border: 1px solid #ddd;"/>
-	</div>
-</div>
+@*<div style="margin-bottom: 20px;">*@
+@*	<div style="margin-bottom:5px" data-bind="text: ('limit: ' + obs.market.limit())"></div>*@
+@*	<div style="margin-bottom:5px" data-bind="text: ('maxLimit: ' + obs.market.maxLimit())"></div>*@
+@*	<div style="margin-bottom:5px" data-bind="text: ('minimum: ' + obs.market.minimum())"></div>*@
+@*	<div style="margin-bottom:5px" data-bind="text: ('rate: ' + obs.market.rate())"></div>*@
+@*</div>*@
+@**@
+@**@
+@*<div style="margin-bottom: 20px;" data-bind="if: flags.depositAddrGot">*@
+@*	<div style="margin-bottom: 20px;">*@
+@*		Please send your <!-- ko text: obs.selectedCurrency --><!--/ko--> to the address below:*@
+@*	</div>*@
+@*	<div style="margin-bottom: 20px;">*@
+@*		<!-- ko text: obs.depositAddress --><!--/ko-->*@
+@*	</div>*@
+@*	<div>*@
+@*		<img data-bind="attr:{'src':('https://api.qrserver.com/v1/create-qr-code/?size=150x150&amp;data=' + obs.depositAddress())}"*@
+@*		     style="border: 1px solid #ddd;"/>*@
+@*	</div>*@
+@*</div>*@
 
 
 

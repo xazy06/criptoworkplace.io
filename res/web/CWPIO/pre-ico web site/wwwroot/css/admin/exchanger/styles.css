@@ -52,3 +52,24 @@
 .s-display_n {
 	display: none;
 }
+
+.s-ta_c {
+	text-align:center;
+}
+
+.currency-current {
+	float:right;
+	overflow: hidden;
+}
+
+.currency-current-right {
+	margin:0 120px 0 0;
+}
+
+.currency-current-wrapper {
+	margin-bottom:30px;
+}
+
+.s-mb_40i {
+	margin-bottom:40px; !important;
+}
