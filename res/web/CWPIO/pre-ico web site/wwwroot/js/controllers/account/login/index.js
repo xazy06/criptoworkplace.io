@@ -40,7 +40,8 @@ var Controller = function () {
 				hasNumber: ko.observable(true),
 				hasSymbol: ko.observable(true),
 				charLen: ko.observable(true),
-				passesMutch: ko.observable(true)
+				passesMutch: ko.observable(true),
+				uniqueChars6: ko.observable(true)
 			}
 		},
 
@@ -70,6 +71,7 @@ var Controller = function () {
 				ViewModel.flags.validation.uppercaseletter(/[A-Z]/g.test(str()));
 				ViewModel.flags.validation.lowercaseletter(/[a-z]/g.test(str()));
 				ViewModel.flags.validation.hasSymbol(/\W/g.test(str()));
+				ViewModel.flags.validation.uniqueChars6(true);// TODO
 			}
 		}
 
