@@ -1,30 +1,46 @@
 @{
 	var data = new[] {
 		new {
-			Name = "Name 1",
+			Name = "Yoji Kishi",
+			Title = "CEO",
 			Src = "/images/team/upload-741103b0-b4e6-11e8-a0c9-8dd9face81ec.png"
 		},
 		new {
-			Name = "Name 2",
+			Name = "Alexey Gladkov",
+			Title = "CVO",
 			Src = "/images/team/upload-792ab580-b4e6-11e8-a0c9-8dd9face81ec.png"
 		},
 		new {
-			Name = "Name 3",
+			Name = "Maxim Maslich",
+			Title = "CTO",
 			Src = "/images/team/upload-7b860aa0-b4e6-11e8-a0c9-8dd9face81ec.png"
 		},
 		new {
-			Name = "Name 4",
+			Name = "Artur Enokian",
+			Title = "Software Engineer",
 			Src = "/images/team/upload-7bb69080-b4e6-11e8-a0c9-8dd9face81ec.jpg"
 		},
 	};
 }
 
-@foreach (var item in data) {
-	<div class="">
-		<img src="@(item.Src)" />
-		<p>@{ item.Name }</p>
-	</div>
-}
+<ul class="team_list">
+	@foreach (var item in data) {
+		<li class="team_item">
+			<div class="team_col img_mod">
+				<div class="team_img_w">
+					<img class="team_img" src="@(item.Src)">
+				</div>
+			</div>
+
+			<div class="team_col">
+				<div class="team_head">
+					<h3 class="team_name">@{ item.Name }</h3>
+					<span class="team_title"></span>
+				</div>
+			</div>
+		</li>
+	}
+</ul>
 
 <!--<section class="section black_mod">-->
 	<!--<div class="section_in">-->
