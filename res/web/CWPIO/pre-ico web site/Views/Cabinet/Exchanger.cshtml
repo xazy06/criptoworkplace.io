@@ -114,6 +114,25 @@
 		
 			<div data-bind="css:{'col-md-6': (flags.gateOperating() === true), 's-display_n': (flags.gateOperating() === false)}">
 				
+				<!-- ko if: flags.whiteListLess -->
+				
+				<!-- ko ifnot:flags.whiteListAskFormNotReady -->
+				<div class="s-ta_c">
+					<div class="m-spinner m-spinner--brand m-spinner--lg"></div>
+					<div class="m-spinner m-spinner--primary m-spinner--lg"></div>
+					<div class="m-spinner m-spinner--success m-spinner--lg"></div>       
+					<div class="m-spinner m-spinner--info m-spinner--lg"></div>
+					<div class="m-spinner m-spinner--warning m-spinner--lg"></div>
+					<div class="m-spinner m-spinner--danger m-spinner--lg"></div>   
+				</div>
+				<!-- /ko -->
+				
+				<!-- ko if:flags.whiteListAskFormNotReady -->
+				
+				<!-- /ko -->
+				
+				<!--/ko-->
+				
 				<div class="currency-current-wrapper clearfix">
 					<img width="100" class="currency-current" data-bind="attr:{'src':obs.currentCoin.image}" />
 					<div class="currency-current-right">

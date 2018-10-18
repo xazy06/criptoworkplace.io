@@ -216,6 +216,8 @@ var Controller = function () {
 		},
 		
 		flags:{
+			whiteListLess: ko.observable(false),
+			whiteListAskFormNotReady: ko.observable(false),
 			gateOperating: ko.observable(false),
 			depositAddrGetting: ko.observable(false),
 			depositAddrGot: ko.observable(false),
