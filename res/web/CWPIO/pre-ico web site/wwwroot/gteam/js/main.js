@@ -30,9 +30,16 @@ $(document).ready(function ($) {
 	$teamList = $('.team_list');
 
 	$moreTeamLink.on('click', function (e) {
-		e.preventDefault();
+		// $teamList.toggleClass('visible_all_mod');
+		$('.team_hidden_list').slideToggle(600);
+
+		var elementClick = $(this).attr('href');
+		var destination = $(elementClick).offset().top;
+		if ($(this).hasClass('active_mod')) {
+			$html.animate({ scrollTop: destination }, 600);
+		}
+		
 		$(this).toggleClass('active_mod');
-		$teamList.toggleClass('visible_all_mod');
 	});
 
 	$menuTrigger.on('click', function () {
