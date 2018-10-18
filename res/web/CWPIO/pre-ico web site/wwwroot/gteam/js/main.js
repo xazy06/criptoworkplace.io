@@ -1,4 +1,6 @@
-var $body,
+var
+	$html,
+	$body,
 	$partnersSlider,
 	windowHeight,
 	windowWidth,
@@ -6,6 +8,7 @@ var $body,
 	$scrollTop = 0,
 	$menuTrigger,
 	$mainMenu,
+	$mainMenuLink,
 	$moreTeamLink,
 	$teamList,
 	checkElementMove = false,
@@ -16,11 +19,13 @@ var $body,
 	mediaPoint4 = 320;
 
 $(document).ready(function ($) {
+	$html = $('html');
 	$body = $('body');
 	$header = $('.header');
 	$partnersSlider = $('.partners_slider');
 	$menuTrigger = $('.menuTrigger');
 	$mainMenu = $('.main_menu.header_mod');
+	$mainMenuLink =$('.main_menu_link');
 	$moreTeamLink = $('.moreTeamLink');
 	$teamList = $('.team_list');
 
@@ -41,6 +46,12 @@ $(document).ready(function ($) {
 	});
 
 	svg4everybody();
+
+	$mainMenuLink.click(function () {
+		var elementClick = $(this).attr('href');
+		var destination = $(elementClick).offset().top;
+		$html.animate({ scrollTop: destination }, 1000);
+	});
 
 	$partnersSlider.slick({
 		prevArrow: $('.js_slider_prev'),
