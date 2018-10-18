@@ -1,0 +1,12 @@
+{
+  "name": "monitor",
+  "version": "0.0.0",
+  "description": "Monitor",
+  "main": "app.js",
+  "author": {
+    "name": ""
+  },
+  "dependencies": {
+    "pg": "^7.5.0"
+  }
+}

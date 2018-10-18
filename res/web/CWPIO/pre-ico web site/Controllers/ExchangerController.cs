@@ -97,6 +97,14 @@ namespace pre_ico_web_site.Controllers
             return (rate: erate, amount: amount);
         }
 
+        [HttpPost("monitor")]
+        public async Task<IActionResult> StartMonitorAsyn(string tx)
+        {
+            await _dbContext.AddAsync(new ExchangeStatus { StartTx = tx, CurrentTx = tx });
+            await _dbContext.SaveChangesAsync();
+            return Ok();
+        }
+
         //[HttpGet("refund")]
         //public async Task<IActionResult> GetRefundAsync()
         //{
