@@ -6,15 +6,16 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using pre_ico_web_site.Models;
 using pre_ico_web_site.Data;
-
+using Microsoft.Extensions.Logging;
 
 namespace pre_ico_web_site.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, ILogger<ApplicationDbContext> logger)
             : base(options)
         {
+            logger?.LogInformation($"Using database: {Database.GetDbConnection().Database}");
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
