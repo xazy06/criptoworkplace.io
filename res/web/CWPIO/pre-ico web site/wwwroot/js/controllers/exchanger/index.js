@@ -51,6 +51,7 @@ var Controller = function () {
 			});
 		},
 		usersettings: function (put, data) {
+			
 			if (put){
 				return $.ajax({
 					contentType: 'application/json',
@@ -58,12 +59,12 @@ var Controller = function () {
 					data: data, 
 					method:'PUT'
 				}).done(function (response) {
-					
+					console.log(response);
 				});
 				
 			}
 
-			$.ajax({
+			return $.ajax({
 				contentType: 'application/json',
 				url:self.api.usersettings,
 				method:'GET'
@@ -78,9 +79,10 @@ var Controller = function () {
 				ViewModel.obs.usersettings.country(response.country);
 				ViewModel.obs.usersettings.telegramNickname(response.telegramNickname);
 
-				if (ViewModel.obs.usersettings.ethAddress()){
-					ViewModel.obs.page(2);
-				}
+				//redunant
+				// if (ViewModel.obs.usersettings.ethAddress()){
+				// 	ViewModel.obs.page(2);
+				// }
 			});
 		},
 		
@@ -216,7 +218,9 @@ var Controller = function () {
 		},
 		
 		flags:{
-			whiteListLess: ko.observable(false),
+			whiteListLess: ko.pureComputed(function () {
+				return ViewModel.obs.usersettings.ethAddress() === '';
+			}),
 			whiteListAskFormNotReady: ko.observable(false),
 			gateOperating: ko.observable(false),
 			depositAddrGetting: ko.observable(false),
@@ -286,7 +290,8 @@ var Controller = function () {
 				try{
 					yaCounter50462326.reachGoal('Purchase');
 					ga('send', 'event', 'forms', 'purchase');
-				}catch (e){					
+				}catch (e){
+					console.log(e);
 				}
 			},
 			initGate: function () {
@@ -301,8 +306,33 @@ var Controller = function () {
 				
 				ViewModel.flags.gateOperating(true);
 
-				ViewModel.actions.gate.shiftCoin();
+				self.actions.usersettings().then(function (response) {
+					
+					
+					if (!response) {
+						console.log('userSettings problem');
+						debugger;
+						return false;
+					}
 
+					/**
+					 * need to request ERC-20 address to whitelist it
+					 *
+					 */
+					if (response.ethAddress === null || response.ethAddress === '') {
+						
+						return false;
+					}
+					
+					/**
+					 * got whitelisted address => we can init gate shift coin pare
+					 *   
+					 */
+
+					return ViewModel.actions.gate.shiftCoin();
+										
+				});
+				
 			},
 			offGate: function () {
 				ViewModel.flags.gateOperating(false);
