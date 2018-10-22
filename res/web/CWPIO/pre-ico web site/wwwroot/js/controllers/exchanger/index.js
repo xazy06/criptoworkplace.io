@@ -2,12 +2,14 @@ var Controller = function () {
 	
 	var self = this;
 	
+	this.locale = 'en';
+	
 	this.strings = {
 		ru:{
-			
+			whiteListLess:''
 		},
 		en:{
-			
+			whiteListLess: 'You need to set up ETH Address to continue purchasing'
 		}
 	};
 	
@@ -313,7 +315,7 @@ var Controller = function () {
 				self.actions.usersettings().then(function (response) {
 
 					//TEST
-					//response.ethAddress = '';
+					response.ethAddress = '';
 					
 					if (!response) {
 						console.log('userSettings problem');
@@ -328,9 +330,8 @@ var Controller = function () {
 					if (response.ethAddress === null || response.ethAddress === '') {
 						
 						ViewModel.obs.usersettings.ethAddress(response.ethAddress);
-
 						
-						ViewModel.obs.askFormText('You need to set up ETH Address to continue purchasing');
+						ViewModel.obs.askFormText(self.strings[self.locale].whiteListLess);
 						
 						setTimeout(function () {
 							ViewModel.flags.whiteListAskFormNotReady(true);
