@@ -189,6 +189,7 @@ var Controller = function () {
 				status:ko.observable(''),
 				minerFee:ko.observable('')
 			},
+			askFormText: ko.observable(''),
 			searchInput: ko.observable(''),
 			depositAddress: ko.observable(''),
 			selectedCurrency:ko.observable(''),
@@ -302,6 +303,8 @@ var Controller = function () {
 				ViewModel.obs.currentCoin.imageSmall(this.imageSmall);
 				ViewModel.obs.currentCoin.status(this.status);
 				ViewModel.obs.currentCoin.minerFee(this.minerFee);
+
+				ViewModel.flags.whiteListAskFormNotReady(false);
 				
 				ViewModel.obs.selectedCurrency(this.symbol);//TODO redunant ~
 				
@@ -326,7 +329,12 @@ var Controller = function () {
 						
 						ViewModel.obs.usersettings.ethAddress(response.ethAddress);
 
-						ViewModel.flags.whiteListAskFormNotReady(true);
+						
+						ViewModel.obs.askFormText('You need to set up ETH Address to continue purchasing');
+						
+						setTimeout(function () {
+							ViewModel.flags.whiteListAskFormNotReady(true);
+						},1000);
 						
 						return false;
 					}
