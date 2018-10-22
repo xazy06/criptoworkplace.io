@@ -1,4 +1,4 @@
-var Gate = function () {
+var Controller = (Controller || {}), Gate = function () {
 	
 	var self = this;
 	
@@ -16,6 +16,12 @@ var Gate = function () {
 	
 	this.actions = {
 		getMap: function () {
+			try{
+				Controller.ViewModel.flags.currenciesReady(false);
+			}catch (e){
+				console.log(e);
+			}
+						
 			shapeshift.coins(function (err, coinData) {
 				var coinDataAsArray = null;
 
@@ -24,8 +30,10 @@ var Gate = function () {
 				Controller.ViewModel.currencies(coinDataAsArray);
 				Controller.ViewModel.currenciesCache(coinDataAsArray);
 				Controller.ViewModel.currenciesMap = coinData;
-								
-				console.dir(coinData) // =>
+				
+				Controller.ViewModel.flags.currenciesReady(true);
+
+				console.dir(coinData); // =>
 				/*
 					{ BTC:
 					 { name: 'Bitcoin',

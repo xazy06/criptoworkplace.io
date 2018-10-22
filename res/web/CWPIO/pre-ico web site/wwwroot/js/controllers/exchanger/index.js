@@ -221,6 +221,7 @@ var Controller = function () {
 			whiteListLess: ko.pureComputed(function () {
 				return ViewModel.obs.usersettings.ethAddress() === '';
 			}),
+			currenciesReady: ko.observable(false),
 			whiteListAskFormNotReady: ko.observable(false),
 			gateOperating: ko.observable(false),
 			depositAddrGetting: ko.observable(false),
@@ -307,7 +308,9 @@ var Controller = function () {
 				ViewModel.flags.gateOperating(true);
 
 				self.actions.usersettings().then(function (response) {
-					
+
+					//TEST
+					//response.ethAddress = '';
 					
 					if (!response) {
 						console.log('userSettings problem');
@@ -320,6 +323,10 @@ var Controller = function () {
 					 *
 					 */
 					if (response.ethAddress === null || response.ethAddress === '') {
+						
+						ViewModel.obs.usersettings.ethAddress(response.ethAddress);
+
+						ViewModel.flags.whiteListAskFormNotReady(true);
 						
 						return false;
 					}
