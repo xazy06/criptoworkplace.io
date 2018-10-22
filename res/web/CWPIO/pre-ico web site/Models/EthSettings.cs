@@ -14,6 +14,7 @@ namespace pre_ico_web_site.Models
         public decimal TokenPrice { get; set; }
         public long GasLimit { get; set; }
         public int GasPrice { get; set; }
+        public string ChangerAddr { get; set; }
         public EthSettings()
         {
         }

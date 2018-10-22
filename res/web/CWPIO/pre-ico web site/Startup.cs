@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Nethereum.Web3;
 using Nethereum.Web3.Accounts;
@@ -20,6 +21,7 @@ using pre_ico_web_site.Models;
 using pre_ico_web_site.Services;
 using Slack.Webhooks;
 using System;
+using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 
 namespace pre_ico_web_site
@@ -149,8 +151,9 @@ namespace pre_ico_web_site
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ApplicationDbContext dbContext)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ApplicationDbContext dbContext, ILogger<Startup> logger)
         {
+            //logger?.LogDebug($"Config DB: {(Configuration as IConfigurationRoot).Providers.Select(p => { p.TryGet("ConnectionStrings:CWPConnection") ? })}")
             app.UseRequestLocalization();
 
             if (env.IsDevelopment())

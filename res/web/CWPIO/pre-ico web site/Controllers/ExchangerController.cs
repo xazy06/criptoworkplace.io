@@ -72,6 +72,12 @@ namespace pre_ico_web_site.Controllers
             return Ok(_contract.Address);
         }
 
+        [HttpGet("changerAddr")]
+        public IActionResult GetChangerAddr()
+        {
+            return Ok(_options.ChangerAddr);
+        }
+
         [HttpPost("initPurchasing")]
         public async Task<IActionResult> InitPurchase([FromBody]PurchaseRequestModel model)
         {
@@ -81,11 +87,8 @@ namespace pre_ico_web_site.Controllers
                 return NotFound();
             }
 
-            var rate = await GetRateAsync(model.Count);
-
-            var fixRate = await _contract.SetRateForTransactionAsync(rate.rate, $"0x{ByteArrayToString(user.EthAddress)}", rate.amount);
-
-            return Ok(new { amount = UnitConversion.Convert.FromWei(rate.amount), fixRate });
+            var fixRate = await initPurchase(user, model);
+            return Ok(new { amount = UnitConversion.Convert.FromWei(fixRate.Amount), fixRate });
         }
 
         private async Task<(int rate, BigInteger amount)> GetRateAsync(int count)
@@ -97,12 +100,38 @@ namespace pre_ico_web_site.Controllers
             return (rate: erate, amount: amount);
         }
 
-        [HttpPost("monitor")]
-        public async Task<IActionResult> StartMonitorAsyn(string tx)
+        private async Task<FixRateModel> initPurchase(ApplicationUser user, PurchaseRequestModel model)
         {
-            await _dbContext.AddAsync(new ExchangeStatus { StartTx = tx, CurrentTx = tx });
-            await _dbContext.SaveChangesAsync();
-            return Ok();
+            var rate = await GetRateAsync(model.Count);
+
+            var fixRate = await _contract.SetRateForTransactionAsync(rate.rate, $"0x{ByteArrayToString(user.EthAddress)}", rate.amount);
+            return fixRate;
+        }
+
+        [HttpPost("monitor")]
+        public async Task<IActionResult> StartMonitorAsyn([FromBody]ExchangeRequestModel model)
+        {
+            var user = await _dbContext.GetCurrentUserAsync(User);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            var rate = await initPurchase(user, model);
+            if (rate.Time > 0)
+            {
+                await _dbContext.AddAsync(new ExchangeStatus
+                {
+                    StartTx = model.Tx,
+                    CurrentTx = model.Tx,
+                    CreatedByUser = user,
+                    EthAmount = rate.Amount.ToString(),
+                    TokenAmount = model.Count.ToString()
+                });
+                await _dbContext.SaveChangesAsync();
+            }
+
+
+            return Ok(rate);
         }
 
         //[HttpGet("refund")]

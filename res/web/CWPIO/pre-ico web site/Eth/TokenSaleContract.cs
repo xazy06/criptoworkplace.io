@@ -23,6 +23,7 @@ namespace pre_ico_web_site.Eth
         private readonly ILogger _logger;
         private readonly Web3 _web3;
         private readonly IMemoryCache _memoryCache;
+        private const string mem_key = "fixrate:{0}";
         public string Address { get { return _saleContract.Address; } }
 
         public TokenSaleContract(
@@ -91,10 +92,25 @@ namespace pre_ico_web_site.Eth
             }
         }
 
+        public async Task<FixRateModel> GetRateForBuyerAsync(string buyer)
+        {
+            var key = string.Format(mem_key, buyer);
+            if (!_memoryCache.TryGetValue(key, out FixRateModel fixRateModel))
+            {
+                fixRateModel = await _saleContract.GetFunction("fixRate").CallDeserializingToObjectAsync<FixRateModel>(buyer);
+                if (fixRateModel.Time > 0)
+                {
+                    long unixTimestamp = (long)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+                    _memoryCache.Set(key, fixRateModel, TimeSpan.FromSeconds(fixRateModel.Time - unixTimestamp));
+                }
+            }
+            return fixRateModel;
+        }
+
         public async Task<FixRateModel> SetRateForTransactionAsync(int rate, string buyer, BigInteger amount)
         {
-            var key = $"fixrate:{buyer}_{rate}_{amount}";
-            if (!_memoryCache.TryGetValue(key, out FixRateModel fixRateModel))
+            FixRateModel fixRateModel = await GetRateForBuyerAsync(buyer);
+            if (fixRateModel.Amount != amount)
             {
                 var currentGasPrice = _settings.GasPrice * UnitConversion.Convert.GetEthUnitValue(UnitConversion.EthUnit.Gwei);
 
@@ -105,8 +121,7 @@ namespace pre_ico_web_site.Eth
 
                 await WaitReciept(hash);
                 _logger.LogCritical("done");
-                fixRateModel = await _saleContract.GetFunction("fixRate").CallDeserializingToObjectAsync<FixRateModel>(buyer);
-                _memoryCache.Set(key, fixRateModel, TimeSpan.FromMinutes(12));
+                fixRateModel = await GetRateForBuyerAsync(buyer);
             }
             return fixRateModel;
         }
