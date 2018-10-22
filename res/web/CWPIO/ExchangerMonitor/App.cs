@@ -11,6 +11,7 @@ namespace ExchangerMonitor
 {
     public class App
     {
+        private readonly bool InContainer = Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") == "true";
         private Database _db;
         private Eth _eth;
 
@@ -31,7 +32,6 @@ namespace ExchangerMonitor
                 res.ForEach(item => _monitored[item.StartTx] = item);
             }
 
-            PrintCurrentMon();
             _checkDbTimer = new Timer(new TimerCallback(async (o) =>
               {
                   lock (_monitored)
@@ -41,13 +41,16 @@ namespace ExchangerMonitor
 
                   await CheckDbAsync();
               }), null, TimeSpan.FromSeconds(0), TimeSpan.FromMinutes(1));
-            _printDataTimer = new Timer(new TimerCallback((_) => { PrintCurrentMon(); }), null, 0, 5000);
+            _printDataTimer = new Timer(new TimerCallback((_) => { PrintCurrentMon(); }), null, 0, InContainer ? 30000 : 5000);
         }
 
         private void PrintCurrentMon()
         {
+            if (!InContainer)
+            {
+                Console.Clear();
+            }
 
-            Console.Clear();
             Console.WriteLine("Current monitored:");
             Console.WriteLine("------------------------------------------------");
             lock (_monitored)
@@ -59,30 +62,42 @@ namespace ExchangerMonitor
             }
 
             Console.WriteLine("------------------------------------------------");
-            lock (_actionLogs)
+
+            if (!InContainer)
             {
-                foreach (var item in _actionLogs)
+                lock (_actionLogs)
                 {
-                    var tmpColor = Console.ForegroundColor;
-                    Console.ForegroundColor = item.Color;
-                    Console.WriteLine(item.Message);
-                    Console.ForegroundColor = tmpColor;
+                    foreach (var item in _actionLogs)
+                    {
+                        var tmpColor = Console.ForegroundColor;
+                        Console.ForegroundColor = item.Color;
+                        Console.WriteLine(item.Message);
+                        Console.ForegroundColor = tmpColor;
+                    }
                 }
             }
-
         }
 
         public void AddToLog(string log, ConsoleColor color = ConsoleColor.White)
         {
-            lock (_actionLogs)
-            {
-                if (_actionLogs.Count == 10)
-                {
-                    _actionLogs.RemoveAt(0);
-                }
 
-                _actionLogs.Add(new ConsoleLogEntry { Message = log, Color = color });
+            if (!InContainer)
+            {
+                lock (_actionLogs)
+                {
+                    if (_actionLogs.Count == 10)
+                    {
+                        _actionLogs.RemoveAt(0);
+                    }
+
+                    _actionLogs.Add(new ConsoleLogEntry { Message = log, Color = color });
+                }
             }
+            else
+            {
+                Console.WriteLine(log);
+            }
+
         }
 
         private async Task CheckDbAsync()
@@ -91,12 +106,7 @@ namespace ExchangerMonitor
             lock (_monitored)
             {
                 res.ForEach(item => _monitored[item.StartTx] = item);
-            }
 
-            PrintCurrentMon();
-
-            lock (_monitored)
-            {
                 var toRemove = _monitored.Where(pair => pair.Value.Status == TXStatus.Ended || pair.Value.Status == TXStatus.Failed)
                          .Select(pair => pair.Key)
                          .ToList();
