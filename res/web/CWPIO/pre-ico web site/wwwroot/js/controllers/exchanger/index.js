@@ -315,7 +315,7 @@ var Controller = function () {
 				self.actions.usersettings().then(function (response) {
 
 					//TEST
-					response.ethAddress = '';
+					//response.ethAddress = '';
 					
 					if (!response) {
 						console.log('userSettings problem');
