@@ -1,7 +1,7 @@
-FROM microsoft/aspnetcore:2.1 AS base
+FROM microsoft/dotnet:2.1-aspnetcore-runtime AS base
 WORKDIR /app
 
-FROM microsoft/aspnetcore-build:2.1 AS build
+FROM microsoft/dotnet:2.1-sdk AS build
 WORKDIR /src
 COPY . .
 WORKDIR "/src/ExchangerMonitor"
