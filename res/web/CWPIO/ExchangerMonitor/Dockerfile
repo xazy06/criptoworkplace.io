@@ -5,7 +5,7 @@ FROM microsoft/aspnetcore-build:2.0 AS build
 WORKDIR /src
 COPY . .
 WORKDIR "/src/ExchangerMonitor"
-RUN dotnet build "pre-ico web site.csproj" -c Release -o /app
+RUN dotnet build "ExchangerMonitor.csproj" -c Release -o /app
 
 FROM build AS publish
 RUN dotnet publish "ExchangerMonitor.csproj" -c Release -o /app

@@ -80,9 +80,9 @@ namespace ExchangerMonitor
 
         public Task<string> SendToUserAsync(string to, HexBigInteger tokens)
         {
-            var contract= _web3.Eth.GetContract("[{\"constant\": false,\"inputs\": [{\"name\": \"_to\", \"type\": \"address\"},{\"name\": \"_value\", \"type\": \"uint256\"}], \"name\": \"transfer\", \"outputs\": [{\"name\": \"\",\"type\": \"bool\"}], \"payable\": false,	\"stateMutability\": \"nonpayable\", \"type\": \"function\"	}]",
-                Environment.GetEnvironmentVariable("Ether:TokenContractAddr"));
-            return contract.GetFunction("transfer").SendTransactionAsync(Environment.GetEnvironmentVariable("Ether:AppAddress"), to, tokens.Value);
+            var contract = _web3.Eth.GetContract("[{\"constant\": false,\"inputs\": [{\"name\": \"_to\", \"type\": \"address\"},{\"name\": \"_value\", \"type\": \"uint256\"}], \"name\": \"transfer\", \"outputs\": [{\"name\": \"\",\"type\": \"bool\"}], \"payable\": false,	\"stateMutability\": \"nonpayable\", \"type\": \"function\"	}]",
+                _opts.TokenContractAddr);
+            return contract.GetFunction("transfer").SendTransactionAsync(_opts.AppAddress, to, tokens.Value);
 
         }
 
@@ -92,8 +92,8 @@ namespace ExchangerMonitor
             var tx = await _web3.Eth.TransactionManager.SendTransactionAsync(
                 new TransactionInput(
                     "",
-                    Environment.GetEnvironmentVariable("Ether:SmartContractAddr"),
-                    Environment.GetEnvironmentVariable("Ether:AppAddress"),
+                    _opts.SmartContractAddr,
+                    _opts.AppAddress,
                     new HexBigInteger("0x17318"),
                     new HexBigInteger(price.Value * 2),
                     amount
@@ -108,7 +108,7 @@ namespace ExchangerMonitor
                 new TransactionInput(
                     "",
                     to,
-                    Environment.GetEnvironmentVariable("Ether:AppAddress"),
+                    _opts.AppAddress,
                     new HexBigInteger("0x55F0"),
                     new HexBigInteger(price.Value * 2),
                     amount
