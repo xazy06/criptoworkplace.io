@@ -127,7 +127,7 @@ namespace pre_ico_web_site.Controllers
         }
 
         [HttpPost("monitor")]
-        public async Task<IActionResult> StartMonitorAsyn([FromBody]ExchangeRequestModel model)
+        public async Task<IActionResult> StartMonitorAsync([FromBody]ExchangeRequestModel model)
         {
             var user = await _dbContext.GetCurrentUserAsync(User);
             if (user == null)
@@ -152,7 +152,6 @@ namespace pre_ico_web_site.Controllers
                 });
                 await _dbContext.SaveChangesAsync();
             }
-
 
             return Ok(rate);
         }

@@ -11,6 +11,8 @@ namespace pre_ico_web_site.Data
         public string Id { get; set; }
         public string StartTx { get; set; }
         public string CurrentTx { get; set; }
+        public string RefundTx { get; set; }
+        public bool IsRefunded { get; set; }
         public string EthAmount { get; set; }
         public string TokenAmount { get; set; }
         public bool IsEnded { get; set; }

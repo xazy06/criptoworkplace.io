@@ -34,7 +34,8 @@ SELECT
     es.start_tx, 
     es.current_tx,
     es.eth_amount, 
-    es.token_amount
+    es.token_amount,
+    es.refund_tx
 FROM exchange.exchange_status es
 INNER JOIN identity.users u ON es.created_by_user_id = u.id 
 WHERE es.is_ended = false AND es.is_failed = false", _connection))
@@ -51,6 +52,7 @@ WHERE es.is_ended = false AND es.is_failed = false", _connection))
                         CurrentTx = await reader.GetFieldValueAsync<string>(4),
                         EthAmount = await reader.GetFieldValueAsync<string>(5),
                         TokenAmount = await reader.GetFieldValueAsync<string>(6),
+                        RefundTx = await reader.GetFieldValueAsync<string>(7),
                         Status = TXStatus.Ok
                     });
                 }
@@ -89,6 +91,16 @@ WHERE es.is_ended = false AND es.is_failed = false", _connection))
         public async Task SetCurrentTransaction(string id, string transaction)
         {
             using (var cmd = new NpgsqlCommand(@"UPDATE exchange.exchange_status SET current_tx = @tx WHERE id = @id", _connection))
+            {
+                cmd.Parameters.AddWithValue("id", id);
+                cmd.Parameters.AddWithValue("tx", transaction);
+                await cmd.ExecuteNonQueryAsync();
+            }
+        }
+
+        public async Task SetRefundTransaction(string id, string transaction)
+        {
+            using (var cmd = new NpgsqlCommand(@"UPDATE exchange.exchange_status SET refund_tx = @tx WHERE id = @id", _connection))
             {
                 cmd.Parameters.AddWithValue("id", id);
                 cmd.Parameters.AddWithValue("tx", transaction);

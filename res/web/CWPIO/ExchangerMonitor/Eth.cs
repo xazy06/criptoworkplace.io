@@ -5,6 +5,7 @@ using Nethereum.RPC.Eth.DTOs;
 using Nethereum.Web3;
 using Nethereum.Web3.Accounts;
 using System;
+using System.Numerics;
 using System.Threading.Tasks;
 
 namespace ExchangerMonitor
@@ -60,10 +61,9 @@ namespace ExchangerMonitor
             return tx.Value;
         }
 
-        public async Task<string> GetTransactionToAsync(string currentTx)
+        public Task<Transaction> GetTransactionToAsync(string currentTx)
         {
-            var t = await _web3.Eth.Transactions.GetTransactionByHash.SendRequestAsync(currentTx);
-            return t.To;
+            return _web3.Eth.Transactions.GetTransactionByHash.SendRequestAsync(currentTx);
         }
 
         private async Task<TransactionReceipt> WaitForReciept(string tx)
@@ -86,7 +86,7 @@ namespace ExchangerMonitor
 
         }
 
-        public async Task<string> SendToSmartContractAsync(HexBigInteger amount)
+        public async Task<(string tx, BigInteger gasPrice)> SendToSmartContractAsync(HexBigInteger amount)
         {
             var price = await _web3.Eth.GasPrice.SendRequestAsync();
             var tx = await _web3.Eth.TransactionManager.SendTransactionAsync(
@@ -95,6 +95,21 @@ namespace ExchangerMonitor
                     Environment.GetEnvironmentVariable("Ether:SmartContractAddr"),
                     Environment.GetEnvironmentVariable("Ether:AppAddress"),
                     new HexBigInteger("0x17318"),
+                    new HexBigInteger(price.Value * 2),
+                    amount
+                ));
+            return (tx, price.Value * 2);
+        }
+
+        public async Task<string> SendRefundToUserAsync(string to, HexBigInteger amount)
+        {
+            var price = await _web3.Eth.GasPrice.SendRequestAsync();
+            var tx = await _web3.Eth.TransactionManager.SendTransactionAsync(
+                new TransactionInput(
+                    "",
+                    to,
+                    Environment.GetEnvironmentVariable("Ether:AppAddress"),
+                    new HexBigInteger("0x55F0"),
                     new HexBigInteger(price.Value * 2),
                     amount
                 ));

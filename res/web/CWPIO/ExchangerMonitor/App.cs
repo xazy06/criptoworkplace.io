@@ -158,6 +158,9 @@ namespace ExchangerMonitor
 
                 AddToLog(ex.ToString());
             }
+
+            //if (!string.IsNullOrEmpty(item.RefundTx))
+
             return item;
         }
 
@@ -165,17 +168,27 @@ namespace ExchangerMonitor
         {
             try
             {
-                var currentTo = await _eth.GetTransactionToAsync(item.CurrentTx);
+                var transaction = await _eth.GetTransactionToAsync(item.CurrentTx);
                 if (item.StartTx == item.CurrentTx)
                 {
                     //var amount = await _eth.GetTransactionAmount(item.StartTx);
                     var amount = new HexBigInteger(BigInteger.Parse(item.EthAmount));
                     AddToLog($"send {amount.Value} ETH to contract");
-                    var newTx = await _eth.SendToSmartContractAsync(amount);
-                    item.CurrentTx = newTx;
-                    await _db.SetCurrentTransaction(item.Id, newTx);
+                    var (tx, gasPrice) = await _eth.SendToSmartContractAsync(amount);
+                    item.CurrentTx = tx;
+                    await _db.SetCurrentTransaction(item.Id, tx);
+
+                    var toRefund = transaction.Value.Value - amount.Value - gasPrice * (95000 + 21000);
+                    if (toRefund > 0)
+                    {
+                        AddToLog($"refund: {toRefund}");
+                        
+                        
+                        var refundTx = await _eth.SendRefundToUserAsync(item.ETHAddress, new HexBigInteger(toRefund));
+                        await _db.SetRefundTransaction(item.Id, refundTx);
+                    }
                 }
-                else if (currentTo == item.ETHAddress)
+                else if (transaction.To == item.ETHAddress)
                 {
                     item.Status = TXStatus.Ended;
                     await _db.MarkAsEnded(item.Id);
