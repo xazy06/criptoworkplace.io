@@ -1,7 +1,7 @@
-FROM microsoft/aspnetcore:2.0 AS base
+FROM microsoft/aspnetcore:2.1 AS base
 WORKDIR /app
 
-FROM microsoft/aspnetcore-build:2.0 AS build
+FROM microsoft/aspnetcore-build:2.1 AS build
 WORKDIR /src
 COPY . .
 WORKDIR "/src/ExchangerMonitor"
