@@ -1,4 +1,6 @@
-﻿using Nethereum.Hex.HexTypes;
+﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using Nethereum.Hex.HexTypes;
 using Nethereum.RPC.Eth.DTOs;
 using Nethereum.Web3;
 using Nethereum.Web3.Accounts;
@@ -9,23 +11,22 @@ namespace ExchangerMonitor
 {
     public class Eth
     {
-        private readonly string _provString;
-
         private Web3 _web3;
-        private App _app;
-
-        public Eth(string providerString, App app)
+        private ILogger _logger;
+        private EthSettings _opts;
+     
+        public Eth(IOptions<EthSettings> options, ILogger<Eth> logger)
         {
-            _app = app;
-            _provString = providerString;
-            var account = new Account(Environment.GetEnvironmentVariable("Ether:AppPrivateKey"));
-            _web3 = new Web3(account, _provString);
+            _logger = logger;
+            _opts = options.Value;
+            var account = new Account(_opts.AppPrivateKey);
+            _web3 = new Web3(account, _opts.NodeUrl);
         }
 
         public async Task<ExchangeOperationStatus> GetTransactionStatus(string txHash)
         {
             //await this.waitForConnect();
-            _app.AddToLog("check transaction \"" + txHash + "\"");
+            _logger.LogDebug("check transaction \"" + txHash + "\"");
             var tx = await _web3.Eth.Transactions.GetTransactionByHash.SendRequestAsync(txHash);
             if (tx == null)
             {

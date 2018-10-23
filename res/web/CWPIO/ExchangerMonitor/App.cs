@@ -1,9 +1,11 @@
-﻿using Nethereum.Hex.HexTypes;
+﻿using Microsoft.Extensions.Logging;
+using Nethereum.Hex.HexTypes;
 using Nethereum.JsonRpc.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -11,21 +13,25 @@ namespace ExchangerMonitor
 {
     public class App
     {
-        private readonly bool InContainer = Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") == "true";
-        private Database _db;
-        private Eth _eth;
-
+        private bool _inContainer;
+        private readonly Database _db;
+        private readonly Eth _eth;
+        private readonly ILogger _logger;
         private readonly Dictionary<string, ExchangeTransaction> _monitored = new Dictionary<string, ExchangeTransaction>();
         private readonly List<ConsoleLogEntry> _actionLogs = new List<ConsoleLogEntry>(10);
         private Timer _checkDbTimer;
         private Timer _printDataTimer;
 
-        public async Task Run()
+        public App(Eth eth, Database db, ILogger<App> logger)
         {
-            _db = new Database(Environment.GetEnvironmentVariable("ConnectionStrings:CWPConnection"));
-            _eth = new Eth("https://ropsten.infura.io/roht23j583p4SPym7gx6", this);
-            //_eth = new Eth("http://104.209.40.23:8545/", this);
+            _db = db;
+            _eth = eth;
+            _logger = logger;
+        }
 
+        public async Task Run(bool inContainer)
+        {
+            _inContainer = inContainer;
             var res = await _db.GetActiveExchangeTransactionsAsync();
             lock (_monitored)
             {
@@ -41,29 +47,31 @@ namespace ExchangerMonitor
 
                   await CheckDbAsync();
               }), null, TimeSpan.FromSeconds(0), TimeSpan.FromMinutes(1));
-            _printDataTimer = new Timer(new TimerCallback((_) => { PrintCurrentMon(); }), null, 0, InContainer ? 30000 : 5000);
+            _printDataTimer = new Timer(new TimerCallback((_) => { PrintCurrentMon(); }), null, 0, _inContainer ? 30000 : 5000);
         }
 
         private void PrintCurrentMon()
         {
-            if (!InContainer)
+            if (!_inContainer)
             {
                 Console.Clear();
             }
 
-            Console.WriteLine("Current monitored:");
-            Console.WriteLine("------------------------------------------------");
+            var txt = new StringBuilder();
+            txt.AppendLine("Current monitored:");
+            txt.AppendLine("------------------------------------------------");
             lock (_monitored)
             {
                 foreach (var item in _monitored)
                 {
-                    Console.WriteLine(item.Value);
+                    txt.AppendLine(item.Value.ToString());
                 }
             }
+            txt.AppendLine("------------------------------------------------");
+            _logger.LogInformation(txt.ToString());
 
-            Console.WriteLine("------------------------------------------------");
 
-            if (!InContainer)
+            if (!_inContainer)
             {
                 lock (_actionLogs)
                 {
@@ -81,7 +89,7 @@ namespace ExchangerMonitor
         public void AddToLog(string log, ConsoleColor color = ConsoleColor.White)
         {
 
-            if (!InContainer)
+            if (!_inContainer)
             {
                 lock (_actionLogs)
                 {
@@ -95,7 +103,7 @@ namespace ExchangerMonitor
             }
             else
             {
-                Console.WriteLine(log);
+                _logger.LogDebug(log);
             }
 
         }

@@ -1,4 +1,5 @@
-﻿using Npgsql;
+﻿using Microsoft.Extensions.Logging;
+using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -9,9 +10,12 @@ namespace ExchangerMonitor
     {
         private NpgsqlConnection _connection;
         private readonly string _connectionString;
+        private readonly ILogger _logger;
 
-        public Database(string connectionString)
+        public Database(string connectionString, ILogger<Database> logger)
         {
+            _logger = logger;
+            _logger.LogInformation($"Connect to database: {connectionString}");
             _connectionString = connectionString;
             _connection = new NpgsqlConnection(_connectionString);
             _connection.Open();
