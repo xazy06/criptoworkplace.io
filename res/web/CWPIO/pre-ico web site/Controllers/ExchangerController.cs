@@ -44,12 +44,18 @@ namespace pre_ico_web_site.Controllers
                 return NotFound();
             }
 
+            if (!string.IsNullOrEmpty(user.Wallet) && !(await _contract.CheckWhitelistAsync(user.Wallet)))
+            {
+                user.EthAddress = null;
+                await _dbContext.SaveChangesAsync();
+            }
+
             return Ok(new
             {
                 Sold = UnitConversion.Convert.FromWei(await _contract.TokenSoldAsync()),
                 Cap = UnitConversion.Convert.FromWei(await _contract.GetCapAsync()),
-                Ballance = UnitConversion.Convert.FromWei(await _contract.GetBallanceAsync($"0x{ByteArrayToString(user.EthAddress)}")),
-                Refund = UnitConversion.Convert.FromWei(await _contract.GetRefundAmountAsync($"0x{ByteArrayToString(user.EthAddress)}"))
+                Ballance = string.IsNullOrEmpty(user.Wallet) ? 0 : UnitConversion.Convert.FromWei(await _contract.GetBallanceAsync(user.Wallet)),
+                Refund = string.IsNullOrEmpty(user.Wallet) ? 0 : UnitConversion.Convert.FromWei(await _contract.GetRefundAmountAsync(user.Wallet))
             });
         }
 
@@ -88,6 +94,11 @@ namespace pre_ico_web_site.Controllers
             }
 
             var fixRate = await initPurchase(user, model);
+            if (fixRate == null)
+            {
+                return BadRequest(new { error = "Not in whitelist" });
+            }
+
             return Ok(new { amount = UnitConversion.Convert.FromWei(fixRate.Amount), fixRate });
         }
 
@@ -102,10 +113,17 @@ namespace pre_ico_web_site.Controllers
 
         private async Task<FixRateModel> initPurchase(ApplicationUser user, PurchaseRequestModel model)
         {
-            var rate = await GetRateAsync(model.Count);
+            if (!string.IsNullOrEmpty(user.Wallet) && await _contract.CheckWhitelistAsync(user.Wallet))
+            {
+                var rate = await GetRateAsync(model.Count);
 
-            var fixRate = await _contract.SetRateForTransactionAsync(rate.rate, $"0x{ByteArrayToString(user.EthAddress)}", rate.amount);
-            return fixRate;
+                var fixRate = await _contract.SetRateForTransactionAsync(rate.rate, user.Wallet, rate.amount);
+                return fixRate;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         [HttpPost("monitor")]
@@ -117,6 +135,11 @@ namespace pre_ico_web_site.Controllers
                 return NotFound();
             }
             var rate = await initPurchase(user, model);
+            if (rate == null)
+            {
+                return BadRequest(new { error = "Not in whitelist" });
+            }
+
             if (rate.Time > 0)
             {
                 await _dbContext.AddAsync(new ExchangeStatus
@@ -176,10 +199,7 @@ namespace pre_ico_web_site.Controllers
         //    return Ok(result);
         //}
 
-        private static string ByteArrayToString(byte[] ba)
-        {
-            return BitConverter.ToString(ba).Replace("-", "");
-        }
+
 
         private static byte[] StringToByteArray(string hex)
         {

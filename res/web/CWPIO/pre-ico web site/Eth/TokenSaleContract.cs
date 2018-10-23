@@ -53,6 +53,11 @@ namespace pre_ico_web_site.Eth
             }
         }
 
+        public Task<bool> CheckWhitelistAsync(string wallet)
+        {
+            return _saleContract.GetFunction("whitelist").CallAsync<bool>(wallet);
+        }
+
         private static Contract LoadContractFromMetadata(Web3 web3, string netId, Stream json)
         {
             //var JSON = System.IO.File.ReadAllText(contractFile);
