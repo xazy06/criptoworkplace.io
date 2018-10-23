@@ -134,6 +134,32 @@ namespace pre_ico_web_site.Controllers
             return Ok(rate);
         }
 
+        [HttpPost("whiteList")]
+        public async Task<IActionResult> WhiteListAsync(string ercAddress)
+        {
+            if (string.IsNullOrEmpty(ercAddress))
+            {
+                return BadRequest();
+            }
+
+            var user = await _dbContext.GetCurrentUserAsync(User);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            if (user.EthAddress != null)
+            {
+                return BadRequest();
+            }
+
+            var tx = await _contract.AddAddressToWhitelistAsync(ercAddress);
+
+            user.EthAddress = StringToByteArray(ercAddress);
+            await _dbContext.SaveChangesAsync();
+            return Ok(new { txHash = tx });
+        }
+
         //[HttpGet("refund")]
         //public async Task<IActionResult> GetRefundAsync()
         //{
@@ -153,6 +179,19 @@ namespace pre_ico_web_site.Controllers
         private static string ByteArrayToString(byte[] ba)
         {
             return BitConverter.ToString(ba).Replace("-", "");
+        }
+
+        private static byte[] StringToByteArray(string hex)
+        {
+            hex = hex.Replace("0x", "");
+            int NumberChars = hex.Length;
+            byte[] bytes = new byte[NumberChars / 2];
+            for (int i = 0; i < NumberChars; i += 2)
+            {
+                bytes[i / 2] = Convert.ToByte(hex.Substring(i, 2), 16);
+            }
+
+            return bytes;
         }
     }
 }

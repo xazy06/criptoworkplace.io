@@ -27,7 +27,7 @@ namespace pre_ico_web_site.Controllers
                     return NotFound();
                 }
 
-                return File(stream.ToArray(), mime, fileName); // returns a FileStreamResult
+                return File(stream, mime, fileName);
             }
         }
     }

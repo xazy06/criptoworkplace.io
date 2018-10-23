@@ -80,16 +80,17 @@ namespace pre_ico_web_site.Eth
             return _tokenContract.GetFunction("balanceOf").CallAsync<BigInteger>(ethAddress);
         }
 
-        public async Task AddAddressToWhitelistAsync(string addr)
+        public async Task<string> AddAddressToWhitelistAsync(string addr)
         {
             if (!(await _saleContract.GetFunction("whitelist").CallAsync<bool>(addr)))
             {
 
                 var currentGasPrice = _settings.GasPrice * UnitConversion.Convert.GetEthUnitValue(UnitConversion.EthUnit.Gwei);
 
-                await _saleContract.GetFunction("addAddressToWhitelist")
-                    .SendTransactionAndWaitForReceiptAsync(_settings.AppAddress, new HexBigInteger(_settings.GasLimit), new HexBigInteger(currentGasPrice), new HexBigInteger(0), null, addr);
+                return await _saleContract.GetFunction("addAddressToWhitelist")
+                    .SendTransactionAsync(_settings.AppAddress, new HexBigInteger(_settings.GasLimit), new HexBigInteger(currentGasPrice), new HexBigInteger(0), null, addr);
             }
+            return string.Empty;
         }
 
         public async Task<FixRateModel> GetRateForBuyerAsync(string buyer)
