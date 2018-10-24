@@ -93,7 +93,7 @@ namespace pre_ico_web_site.Controllers
                 return NotFound();
             }
 
-            var fixRate = await initPurchase(user, model);
+            var fixRate = await initPurchase(user.Wallet, model);
             if (fixRate == null)
             {
                 return BadRequest(new { error = "Not in whitelist" });
@@ -111,13 +111,13 @@ namespace pre_ico_web_site.Controllers
             return (rate: erate, amount: amount);
         }
 
-        private async Task<FixRateModel> initPurchase(ApplicationUser user, PurchaseRequestModel model)
+        private async Task<FixRateModel> initPurchase(string wallet, PurchaseRequestModel model)
         {
-            if (!string.IsNullOrEmpty(user.Wallet) && await _contract.CheckWhitelistAsync(user.Wallet))
+            if (!string.IsNullOrEmpty(wallet) && await _contract.CheckWhitelistAsync(wallet))
             {
                 var rate = await GetRateAsync(model.Count);
 
-                var fixRate = await _contract.SetRateForTransactionAsync(rate.rate, user.Wallet, rate.amount);
+                var fixRate = await _contract.SetRateForTransactionAsync(rate.rate, wallet, rate.amount);
                 return fixRate;
             }
             else
@@ -134,8 +134,8 @@ namespace pre_ico_web_site.Controllers
             {
                 return NotFound(new { error = "User not found" });
             }
-            var rate = await initPurchase(user, model);
-            if (rate == null)
+            var rate = await initPurchase(_options.ChangerAddr, model);
+            if (rate == null || string.IsNullOrEmpty(user.Wallet) || !await _contract.CheckWhitelistAsync(user.Wallet))
             {
                 return BadRequest(new { error = "Not in whitelist" });
             }
