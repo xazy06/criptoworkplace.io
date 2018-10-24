@@ -224,6 +224,8 @@ var Controller = function () {
 			whiteListLess: ko.pureComputed(function () {
 				return ViewModel.obs.usersettings.ethAddress() === '';
 			}),
+
+			emptySearchRequest: ko.observable(false),
 			currenciesReady: ko.observable(false),
 			whiteListAskFormNotReady: ko.observable(false),
 			gateOperating: ko.observable(false),
@@ -315,7 +317,7 @@ var Controller = function () {
 				self.actions.usersettings().then(function (response) {
 
 					//TEST
-					//response.ethAddress = '';
+					response.ethAddress = '';
 					
 					if (!response) {
 						console.log('userSettings problem');
@@ -369,6 +371,8 @@ var Controller = function () {
 	ViewModel.obs.searchInput.subscribe(function (val) {
 		var filtered;
 
+		ViewModel.flags.emptySearchRequest(false);
+		
 		if (val !== null && val.length === 0 ){
 			ViewModel.currencies(ViewModel.currenciesCache());
 			
@@ -383,6 +387,8 @@ var Controller = function () {
 		console.log(filtered);
 		
 		ViewModel.currencies(filtered);
+
+		ViewModel.flags.emptySearchRequest(filtered.length === 0);
 		
 	});
 		

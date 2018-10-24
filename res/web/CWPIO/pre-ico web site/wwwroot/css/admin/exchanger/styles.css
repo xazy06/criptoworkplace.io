@@ -73,3 +73,8 @@
 .s-mb_40i {
 	margin-bottom:40px; !important;
 }
+
+.b-empty-search--coins {
+	text-align:center;
+	padding: 40px 0;
+}
