@@ -52,7 +52,7 @@ WHERE es.is_ended = false AND es.is_failed = false", _connection))
                         CurrentTx = await reader.GetFieldValueAsync<string>(4),
                         EthAmount = await reader.GetFieldValueAsync<string>(5),
                         TokenAmount = await reader.GetFieldValueAsync<string>(6),
-                        RefundTx = await reader.GetFieldValueAsync<string>(7),
+                        RefundTx = (await reader.IsDBNullAsync(7)) ? string.Empty : (await reader.GetFieldValueAsync<string>(7)),
                         Status = TXStatus.Ok
                     });
                 }
