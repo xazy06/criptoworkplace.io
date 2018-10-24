@@ -132,7 +132,7 @@ namespace pre_ico_web_site.Controllers
             var user = await _dbContext.GetCurrentUserAsync(User);
             if (user == null)
             {
-                return NotFound();
+                return NotFound(new { error = "User not found" });
             }
             var rate = await initPurchase(user, model);
             if (rate == null)
