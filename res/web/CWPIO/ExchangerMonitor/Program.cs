@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ExchangerMonitor
@@ -24,9 +25,18 @@ namespace ExchangerMonitor
             var serviceProvider = serviceCollection.BuildServiceProvider();
 
             // entry to run app
-            serviceProvider.GetService<App>().Run(Configuration.GetValue<bool>("RUNNING_IN_CONTAINER")).Wait();
-            while(Console.ReadKey().Key != ConsoleKey.Escape)
-            { }
+            bool inContainer = Configuration.GetValue<bool>("RUNNING_IN_CONTAINER");
+            serviceProvider.GetService<App>().Run(inContainer).Wait();
+            if (!inContainer)
+            {
+                while (Console.ReadKey().Key != ConsoleKey.Escape)
+                { }
+            }
+            else
+            {
+                while(true)
+                { Thread.Sleep(10000); }
+            }
         }
 
         private static void ConfigureServices(IServiceCollection serviceCollection)
