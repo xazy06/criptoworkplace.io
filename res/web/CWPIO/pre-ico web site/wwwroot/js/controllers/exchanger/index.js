@@ -217,6 +217,10 @@ var Controller = function () {
 		})();
 	};
 	
+	this.initCopuPurchaseAddr = function (id) {
+		var copy2 = new ClipboardJS(id || '#copy2');
+	};
+	
 	this.init = function () {
 		ko.applyBindings(ViewModel);
 

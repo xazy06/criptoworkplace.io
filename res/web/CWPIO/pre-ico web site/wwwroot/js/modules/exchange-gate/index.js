@@ -90,6 +90,8 @@ var Controller = (Controller || {}), Gate = function () {
 				if (returnData.error){
 					$.notify(returnData.error);
 				}
+
+				Controller.initCopuPurchaseAddr();
 			})
 		},
 		sendamount: function (ammount) {

@@ -110,3 +110,7 @@
 .s-overflow_h {
 	overflow: hidden;
 }
+
+.s-pointer {
+	cursor: pointer;
+}
