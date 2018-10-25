@@ -151,7 +151,7 @@ namespace pre_ico_web_site.Controllers
             var rate = await initPurchase(user.ExchangerContract, model);
             if (rate == null || string.IsNullOrEmpty(user.Wallet) || !await _contract.CheckWhitelistAsync(user.Wallet))
             {
-                return BadRequest(new { error = "Not in whitelist" });
+                return BadRequest(new {rate, user.Wallet, error = "Not in whitelist" });
             }
 
             if (rate.Time > 0)
