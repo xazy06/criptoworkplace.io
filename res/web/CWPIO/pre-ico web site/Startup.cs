@@ -168,6 +168,8 @@ namespace pre_ico_web_site
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            app.UseStatusCodePagesWithRedirects("/error/{0}");
+
             if (env.IsProduction())
             {
                 var forwardingOptions = new ForwardedHeadersOptions

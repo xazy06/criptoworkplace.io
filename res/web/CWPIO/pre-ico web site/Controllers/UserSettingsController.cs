@@ -33,7 +33,7 @@ namespace pre_ico_web_site.Controllers
                 return NotFound();
             }
 
-            return Ok(new SimpleApplicationUserSettingsDto { EthAddress = $"0x{ByteArrayToString(user.EthAddress)}" });
+            return Ok(new SimpleApplicationUserSettingsDto { EthAddress = $"0x{ByteArrayToString(user.EthAddress ?? new byte[] { 0, 0 })}" });
 
         }
 
