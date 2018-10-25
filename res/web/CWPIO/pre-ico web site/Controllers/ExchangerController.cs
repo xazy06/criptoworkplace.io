@@ -159,7 +159,7 @@ namespace pre_ico_web_site.Controllers
             if (string.IsNullOrEmpty(user.ExchangerContract))
             {
                 var addr = await _dbContext.Addresses.FindAsync(user.TempAddress);
-                string newContractAddr = await _contract.CreateExchangerAsync(_crypto.Decrypt(addr.Exchanger.StringToByteArray()).ByteArrayToString(), user.Wallet);
+                string newContractAddr = await _contract.CreateExchangerAsync(_crypto.Decrypt(addr.Exchanger.StringToByteArray()), user.Wallet);
                 await _contract.AddAddressToWhitelistAsync(newContractAddr);
                 user.ExchangerContract = newContractAddr;
                 await _dbContext.SaveChangesAsync();

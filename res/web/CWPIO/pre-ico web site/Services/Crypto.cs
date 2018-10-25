@@ -2,6 +2,7 @@
 using pre_ico_web_site.Models;
 using System;
 using System.IO;
+using System.Linq;
 using System.Security.Cryptography;
 
 namespace pre_ico_web_site.Services
@@ -28,7 +29,6 @@ namespace pre_ico_web_site.Services
 
                 using (MemoryStream msEncrypt = new MemoryStream())
                 {
-                    msEncrypt.Write(BitConverter.GetBytes(data.Length), 0, 4);
                     using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
                     {
                         csEncrypt.Write(data, 0, data.Length);
@@ -36,7 +36,7 @@ namespace pre_ico_web_site.Services
                     }
                 }
             }
-            return encrypted;
+            return BitConverter.GetBytes(data.Length).Concat(encrypted).ToArray();
         }
 
         public byte[] Decrypt(byte[] data)

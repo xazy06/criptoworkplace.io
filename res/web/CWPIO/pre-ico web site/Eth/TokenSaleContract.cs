@@ -250,7 +250,7 @@ namespace pre_ico_web_site.Eth
             return fixRateModel;
         }
 
-        public async Task<string> CreateExchangerAsync(string from, string ethAddress)
+        public async Task<string> CreateExchangerAsync(byte[] from, string ethAddress)
         {
             var account = new Account(from);
             var web3t = new Web3(account, _settings.NodeUrl ?? "http://localhost:8545");
