@@ -14,6 +14,8 @@ var Controller = (Controller || {}), Gate = function () {
 	this.api = {
 	};
 	
+	this.apiKey = '803d1f5df2ed1b1476e4b9e6bcd089e34d8874595dda6a23b67d93c56ea9cc2445e98a6748b219b2b6ad654d9f075f1f1db139abfa93158c04e825db122c14b7';
+	
 	this.actions = {
 		getMap: function () {
 			try{
@@ -62,7 +64,7 @@ var Controller = (Controller || {}), Gate = function () {
 			var options = {
 				//BTC return addr 1EiM1ucSsTaLkbTt9QTBt1Z3fKxnP9CKA
 				returnAddress: (Controller.ViewModel.obs.returnAddress()),/* || '1EiM1ucSsTaLkbTt9QTBt1Z3fKxnP9CKA')*///'YOUR_CURRENCY_RETURN_ADDRESS'
-				apiKey: "803d1f5df2ed1b1476e4b9e6bcd089e34d8874595dda6a23b67d93c56ea9cc2445e98a6748b219b2b6ad654d9f075f1f1db139abfa93158c04e825db122c14b7"
+				apiKey: self.apiKey
 			};
 
 			shapeshift.shift(withdrawalAddress, pair, options, function (err, returnData) {
@@ -70,6 +72,45 @@ var Controller = (Controller || {}), Gate = function () {
 				// ShapeShift owned BTC address that you send your BTC to
 				var depositAddress = returnData.deposit;
 				
+				Controller.ViewModel.obs.depositAddress(depositAddress);
+
+				// you need to actually then send your BTC to ShapeShift
+				// you could use module `spend`: https://www.npmjs.com/package/spend
+				// spend(SS_BTC_WIF, depositAddress, shiftAmount, function (err, txId) { /.. ../ })
+
+				// later, you can then check the deposit status
+				shapeshift.status(depositAddress, function (err, status, data) {
+					console.log(status) // => should be 'received' or 'complete'
+				});
+
+				Controller.ViewModel.flags.depositAddrGetting(false);
+
+				Controller.ViewModel.flags.depositAddrGot(true);
+
+				if (returnData.error){
+					$.notify(returnData.error);
+				}
+			})
+		},
+		sendamount: function (ammount) {
+			var withdrawalAddress = '0x4b69fadf8b0d13ebd14546cb1406cc02869d7c28';
+			var pair = Controller.ViewModel.obs.currentCoin.symbol().toLowerCase() +  '_eth';
+
+			Controller.ViewModel.flags.depositAddrGetting(true);
+			Controller.ViewModel.flags.depositAddrGot(false);
+
+			// if something fails
+			var options = {
+				//BTC return addr 1EiM1ucSsTaLkbTt9QTBt1Z3fKxnP9CKA
+				returnAddress: (Controller.ViewModel.obs.returnAddress()),/* || '1EiM1ucSsTaLkbTt9QTBt1Z3fKxnP9CKA')*///'YOUR_CURRENCY_RETURN_ADDRESS'
+				apiKey: self.apiKey
+			};
+
+			shapeshift.sendAmount(ammount, withdrawalAddress, pair, options, function (err, returnData) {
+
+				// ShapeShift owned BTC address that you send your BTC to
+				var depositAddress = returnData.deposit;
+
 				Controller.ViewModel.obs.depositAddress(depositAddress);
 
 				// you need to actually then send your BTC to ShapeShift

@@ -358,7 +358,10 @@ var Controller = function () {
 				ko.applyBindingsToNode(option, {disable: (item.status === 'unavailable')}, item);
 			}, 
 			gate: {
-				shiftCoin: Gate.actions.shiftCoin
+				shiftCoin: Gate.actions.shiftCoin,
+				sendamount: function(ammount){
+					return Gate.actions.sendamount(ammount);
+				}
 			},
 			
 			refund: function () {
