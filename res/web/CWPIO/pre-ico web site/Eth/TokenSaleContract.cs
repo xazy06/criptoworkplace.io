@@ -108,7 +108,7 @@ namespace pre_ico_web_site.Eth
                 if (fixRateModel.Time - unixTimestamp > 0)
                 {
                     
-                    _logger.LogDebug($"fixRateModel.Time: {fixRateModel.Time}, unixTimestamp: {unixTimestamp}");
+                    _logger.LogDebug($"fixRateModel.Time: {fixRateModel.Time}, unixTimestamp: {unixTimestamp}, div {fixRateModel.Time - unixTimestamp}");
                     _memoryCache.Set(key, fixRateModel, TimeSpan.FromSeconds(fixRateModel.Time - unixTimestamp));
                 }
             }
