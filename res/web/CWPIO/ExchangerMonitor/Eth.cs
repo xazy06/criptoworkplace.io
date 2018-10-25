@@ -94,7 +94,7 @@ namespace ExchangerMonitor
                     "",
                     _opts.SmartContractAddr,
                     _opts.AppAddress,
-                    new HexBigInteger("0x17318"),
+                    new HexBigInteger("0x1ADB0"),
                     new HexBigInteger(price.Value * 2),
                     amount
                 ));
