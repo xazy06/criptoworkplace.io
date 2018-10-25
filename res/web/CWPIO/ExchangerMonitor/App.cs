@@ -46,7 +46,7 @@ namespace ExchangerMonitor
                   }
 
                   await CheckDbAsync();
-              }), null, TimeSpan.FromSeconds(0), TimeSpan.FromMinutes(1));
+              }), null, TimeSpan.FromSeconds(0), TimeSpan.FromSeconds(30));
             _printDataTimer = new Timer(new TimerCallback((_) => { PrintCurrentMon(); }), null, 0, _inContainer ? 30000 : 5000);
         }
 
@@ -110,6 +110,7 @@ namespace ExchangerMonitor
 
         private async Task CheckDbAsync()
         {
+            AddToLog("Checking db...");
             var res = await _db.GetActiveExchangeTransactionsAsync();
             lock (_monitored)
             {
@@ -118,12 +119,13 @@ namespace ExchangerMonitor
                 var toRemove = _monitored.Where(pair => pair.Value.Status == TXStatus.Ended || pair.Value.Status == TXStatus.Failed)
                          .Select(pair => pair.Key)
                          .ToList();
+                AddToLog($"Remove {toRemove.Count} items");
                 foreach (var key in toRemove)
                 {
                     _monitored.Remove(key);
                 }
             }
-
+            AddToLog("DB checked...");
 
         }
 
