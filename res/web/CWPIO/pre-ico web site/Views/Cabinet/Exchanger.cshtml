@@ -18,9 +18,9 @@
 				<span></span>
 			</div>
 			<div class="m-alert__text">
-				<strong>Pre-sale</strong> in progress.  <strong>1</strong> CWT-P = <strong>0.12</strong> USD, 
+				<strong>Pre-sale</strong> in progress.  <strong>1</strong> CWT-P = <strong>0.12</strong> USD
 				<!-- ko if:obs.usersettings.ethAddress -->
-				Your <a target="_blank" href="/my/whitelist"><strong>whitelisted</strong></a> <span>ERC-20 address:</span>
+				, Your <a target="_blank" href="/my/whitelist"><strong>whitelisted</strong></a> <span>ERC-20 address:</span>
 				<strong><a data-bind="text:obs.usersettings.ethAddress, attr:{'href':('https://etherscan.io/address/'+ obs.usersettings.ethAddress())}"
 				           target="_blank" href="#">
 					<i style="margin-left: 30px" class="m-loader m-loader--brand"></i>
@@ -92,11 +92,11 @@
 
 <div data-bind="css:{'s-display_bi': flags.currenciesReady}" class="s-display_n">
 	
-	<div class="row">
+	<div class="row s-overflow_h">
 		<div class="col-md-12 col-sm-12">
 
 			<div class="s-mb_40i row">
-				<div data-bind="css:{'col-md-6': flags.gateOperating, 'col-md-12': (flags.gateOperating() === false)}" class="b-currencies-wrapper">
+				<div data-bind="css:{'col-md-5': flags.gateOperating, 'col-md-12': (flags.gateOperating() === false)}" class="b-currencies-wrapper">
 					<table class="table table-hover table-sm">
 						<tbody>
 						<!-- ko foreach: currencies -->
@@ -107,19 +107,21 @@
 									<span data-bind="text: $data.symbol"></span>
 								</div>
 							</td>
-							<td>
+							<td data-bind="attr:{'colspan': ($data.status === 'unavailable' && 2 || 0)}">
 								<!--ko text: $data.name--><!--/ko-->
 
 								<!-- ko if: ($data.status === 'unavailable')-->
 								<i>(unavailable)</i>
 								<!--/ko-->
 							</td>
+							<!-- ko ifnot: ($data.status === 'unavailable')-->
 							<td class="s-ta_r">
 								<button data-bind="disable:$data.status === 'unavailable', click:$root.actions.initGate"
 								        class="btn btn-sm btn-outline-focus m-btn--square m-btn--outline-2x m-btn m-loader--primary m-loader--right" type="button">
 									purchase
 								</button>
 							</td>
+							<!--/ko-->
 						</tr>
 						<!-- /ko -->
 
@@ -127,9 +129,9 @@
 					</table>
 				</div>
 
-				<div data-bind="css:{'col-md-6': (flags.gateOperating() === true), 's-display_n': (flags.gateOperating() === false)}">
+				<div data-bind="css:{'col-md-7': (flags.gateOperating() === true), 's-display_n': (flags.gateOperating() === false)}">
 
-					<div class="currency-current-wrapper clearfix">
+					<div data-bind="css:{'slide-up': flags.slideUpLimits, 'slide-down': flags.slideDownLimits}" class="currency-current-wrapper clearfix">
 						<img width="100" class="currency-current" data-bind="attr:{'src':obs.currentCoin.image}"/>
 						<div class="currency-current-right">
 							<h5 data-bind="text: (obs.currentCoin.name() + ' ' + obs.currentCoin.symbol())" class="m--font-primary"></h5>
@@ -162,7 +164,7 @@
 					
 					<!-- ko if: flags.whiteListLess -->
 
-					<!-- ko ifnot:flags.whiteListAskFormNotReady -->
+					<!-- ko ifnot:flags.whiteListAskFormReady -->
 					<div class="s-ta_c">
 						<div class="m-spinner m-spinner--brand m-spinner--lg"></div>
 						<div class="m-spinner m-spinner--primary m-spinner--lg"></div>
@@ -173,14 +175,47 @@
 					</div>
 					<!-- /ko -->
 
-					<!-- ko if:flags.whiteListAskFormNotReady -->
-					<!-- ko text:obs.askFormText --><!-- /ko -->
+					<!-- ko if:flags.whiteListAskFormReady -->
+					<div class="b-ask-text">
+						<!-- ko text:obs.askFormText --><!-- /ko -->
+					</div>
+					
+					<!-- ko if: flags.whiteListInputReady -->
+					<div data-bind="css:{'show-slow': flags.whiteListInputReady}" class="b-ask-wl--input">
+						<div class="form-group m-form__group">
+							<div class="input-group">
+								<input placeholder="Enter your ETH wallet address"
+								       maxlength="42" data-bind="textInput:obs.whiteListAddressField" autofocus type="text" class="form-control"/>
+					
+								<!-- ko if:flags.hasMetamask -->
+								<div class="input-group-append">
+									<button data-bind="disable:flags.lockFill, click:actions.getndFillAddressFromMetamask" 
+									        class="btn  btn-primary" type="button">Fill from MetaMask 
+										<img height="16" style="margin-left: 5px;vertical-align: top;" src="~/images/metamask.png"/></button>
+								</div>
+								<!-- /ko -->
+							</div>
+						</div>
+						
+						<!-- ko if:flags.whiteListAddressProcessing -->
+						<div class="s-ta_c">
+							<div class="m-spinner m-spinner--brand m-spinner--lg"></div>
+							<div class="m-spinner m-spinner--primary m-spinner--lg"></div>
+							<div class="m-spinner m-spinner--success m-spinner--lg"></div>
+							<div class="m-spinner m-spinner--info m-spinner--lg"></div>
+							<div class="m-spinner m-spinner--warning m-spinner--lg"></div>
+							<div class="m-spinner m-spinner--danger m-spinner--lg"></div>
+						</div>
+						<!-- /ko -->
+					
+					</div>
+					<!-- /ko -->
 					
 					<!-- /ko -->
 
 					<!--/ko-->
 					
-
+					<!-- ko ifnot: flags.whiteListLess -->
 					<!-- ko ifnot:flags.depositAddrGetting -->
 					<div style="margin-bottom: 20px;" data-bind="if: flags.depositAddrGot">
 						<div style="margin-bottom: 10px;">
@@ -194,8 +229,9 @@
 							     style="border: 1px solid #ddd;"/>
 						</div>
 					</div>
-
 					<!-- /ko -->
+					<!-- /ko -->
+					
 
 				</div>
 			</div>

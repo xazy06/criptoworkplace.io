@@ -53,7 +53,7 @@ var Controller = (Controller || {}), Gate = function () {
 		},
 		shiftCoin: function () {
 			var withdrawalAddress = '0x4b69fadf8b0d13ebd14546cb1406cc02869d7c28';
-			var pair = Controller.ViewModel.obs.selectedCurrency().toLowerCase() +  '_eth';
+			var pair = Controller.ViewModel.obs.currentCoin.symbol().toLowerCase() +  '_eth';
 
 			Controller.ViewModel.flags.depositAddrGetting(true);
 			Controller.ViewModel.flags.depositAddrGot(false);
@@ -101,7 +101,7 @@ var Controller = (Controller || {}), Gate = function () {
 				return;
 			}
 			
-			pair = Controller.ViewModel.obs.selectedCurrency().toLowerCase() +  '_eth';
+			pair = Controller.ViewModel.obs.currentCoin.symbol().toLowerCase() +  '_eth';
 			
 			shapeshift.marketInfo(pair, function (err, response, data) {
 				console.log(response);

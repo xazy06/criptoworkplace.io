@@ -67,7 +67,10 @@
 }
 
 .currency-current-wrapper {
+	top:0;
 	margin-bottom:30px;
+	position: relative;
+	transition: top cubic-bezier(0.65, 0.05, 0.36, 1) 1s;
 }
 
 .s-mb_40i {
@@ -77,4 +80,33 @@
 .b-empty-search--coins {
 	text-align:center;
 	padding: 40px 0;
+}
+
+.b-ask-text {
+	padding: 0 0 20px;
+	/*text-align: center;*/
+	background-color:#fff;
+}
+
+.slide-up {
+	top: -100%;
+	/*position: absolute;*/
+}
+
+.slide-down {
+	top: 0;
+	/*position: absolute;*/
+}
+
+.b-ask-wl--input {
+	opacity:0;
+	transition: opacity ease-out .5s;
+}
+
+.show-slow {
+	opacity:1;
+}
+
+.s-overflow_h {
+	overflow: hidden;
 }

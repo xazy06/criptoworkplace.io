@@ -6,14 +6,25 @@ var Controller = function () {
 	
 	this.strings = {
 		ru:{
-			whiteListLess:''
+			whiteListLess:'',
+			whiteListAddressFieldSave: {
+				fail: '',
+				successSaved:'',
+				success: ''
+			}
 		},
 		en:{
-			whiteListLess: 'You need to set up ETH Address to continue purchasing'
+			whiteListLess: 'You need to set up ETH Address to continue purchasing',
+			whiteListAddressFieldSave: {
+				fail: 'Look`s like some thing is wrong!',
+				successSaved:'Your ETH address successfully saved, now you can continue purchase',
+				success: 'Success!'
+			}
 		}
 	};
 	
 	this.api = {
+		wl: '/api/v1/exchanger/whiteList',
 		usersettings:'/api/v1/usersettings',
 		exchanger:'/api/v1/exchanger',
 		calc:'/api/v1/exchanger/calc/',
@@ -22,9 +33,54 @@ var Controller = function () {
 	};
 	
 	this.actions = {
+		whiteListAddressFieldSave: function(address){
+
+			return $.ajax({
+				contentType: 'application/json',
+				url: self.api.wl,
+				data: JSON.stringify({ercAddress: address}),
+				method:'POST'
+			}).done(function (response) {
+				console.log(response);
+
+				$.notify(self.strings[self.locale].whiteListAddressFieldSave.success);
+				
+				ViewModel.flags.whiteListAddressProcessing(false);
+				ViewModel.flags.whiteListInputReady(false);
+				ViewModel.obs.askFormText(self.strings[self.locale].whiteListAddressFieldSave.successSaved);
+				ViewModel.flags.whiteListAddressProcessing(true);
+				
+				setTimeout(function () {
+					ViewModel.actions.initGate.call(ko.toJS(ViewModel.obs.currentCoin));
+					ViewModel.flags.whiteListAddressProcessing(false);
+				},3000);
+				
+			}).fail(function (error) {
+				console.log(error);
+				
+				$.notify(self.strings[self.locale].whiteListAddressFieldSave.fail + ' ' + error.statusText);
+				
+				ViewModel.flags.whiteListAddressProcessing(false);
+
+				ViewModel.flags.whiteListInputReady(false);
+				ViewModel.obs.askFormText(self.strings[self.locale].whiteListAddressFieldSave.successSaved);
+				ViewModel.flags.whiteListAddressProcessing(true);
+				
+				setTimeout(function () {
+					window.addr = '11';
+					ViewModel.actions.initGate.call(ko.toJS(ViewModel.obs.currentCoin));
+					ViewModel.flags.whiteListAddressProcessing(false);
+				},3000);
+				
+			});
+			
+		},
+		
 		getContractAddr: function () {
 			$.getJSON(self.api.purchase).done(function (result) {
 				ViewModel.obs.contractAddress(result);
+			}).fail(function (response) {
+				console.log(response);
 			});
 		},
 		initPurchasing: function (count, amount) {
@@ -85,6 +141,8 @@ var Controller = function () {
 				// if (ViewModel.obs.usersettings.ethAddress()){
 				// 	ViewModel.obs.page(2);
 				// }
+			}).fail(function (response) {
+				$.notify(response.statusText);
 			});
 		},
 		
@@ -149,6 +207,13 @@ var Controller = function () {
 				// fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
 				self.web3js = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 			}
+
+			try{
+				ViewModel.flags.hasMetamask(web3.currentProvider.isMetaMask === true);
+			}catch (e){
+				console.log(e);
+			}
+			
 		})();
 	};
 	
@@ -175,6 +240,7 @@ var Controller = function () {
 		currenciesMap: null,
 		
 		obs:{
+			whiteListAddressField: ko.observable(''),
 			market:{
 				limit:ko.observable(''),
 				maxLimit:ko.observable(''),
@@ -194,7 +260,6 @@ var Controller = function () {
 			askFormText: ko.observable(''),
 			searchInput: ko.observable(''),
 			depositAddress: ko.observable(''),
-			selectedCurrency:ko.observable(''),
 			returnAddress:ko.observable(''),
 			contractAddress: ko.observable(''),
 			freezed: ko.observable(0),
@@ -221,13 +286,19 @@ var Controller = function () {
 		},
 		
 		flags:{
+			hasMetamask: ko.observable(false),
 			whiteListLess: ko.pureComputed(function () {
-				return ViewModel.obs.usersettings.ethAddress() === '';
+				return ViewModel.obs.usersettings.ethAddress() === '' || ViewModel.obs.usersettings.ethAddress() === null;
 			}),
-
+			lockFill: ko.observable(false),
+			whiteListAddressProcessing: ko.observable(false),
+			whiteListInputReady: ko.observable(false),
+			slideUpLimits: ko.observable(false),
+			slideDownLimits: ko.observable(false),
+			whiteListField: ko.observable(false),
 			emptySearchRequest: ko.observable(false),
 			currenciesReady: ko.observable(false),
-			whiteListAskFormNotReady: ko.observable(false),
+			whiteListAskFormReady: ko.observable(false),
 			gateOperating: ko.observable(false),
 			depositAddrGetting: ko.observable(false),
 			depositAddrGot: ko.observable(false),
@@ -254,6 +325,35 @@ var Controller = function () {
 		},
 		
 		actions:{
+			getndFillAddressFromMetamask: function () {
+				ViewModel.flags.lockFill(true);
+				self.web3js.eth.getAccounts().then(function(r){
+					ViewModel.flags.lockFill(false);
+					try{
+						r = r && r[0] || '';
+						ViewModel.obs.whiteListAddressField(r);
+					}catch (e){}
+				})
+			},
+			byteLength: function (str) {
+				var s = str.length;
+				for (var i=str.length-1; i>=0; i--) {
+					var code = str.charCodeAt(i);
+					if (code > 0x7f && code <= 0x7ff) s++;
+					else if (code > 0x7ff && code <= 0xffff) s+=2;
+					if (code >= 0xDC00 && code <= 0xDFFF) i--;
+				}
+				return s;
+			},
+			whiteListAddressFieldSave: function (address) {
+				if (!address || address && address.length !== 42) {
+					return false;
+				}
+
+				ViewModel.flags.whiteListAddressProcessing(true);
+				
+				self.actions.whiteListAddressFieldSave(address);
+			},
 			setOptionDisable:  function(option, item) {
 				ko.applyBindingsToNode(option, {disable: (item.status === 'unavailable')}, item);
 			}, 
@@ -301,23 +401,27 @@ var Controller = function () {
 				}
 			},
 			initGate: function () {
+								
 				ViewModel.obs.currentCoin.symbol(this.symbol);
 				ViewModel.obs.currentCoin.name(this.name);
 				ViewModel.obs.currentCoin.image(this.image);
 				ViewModel.obs.currentCoin.imageSmall(this.imageSmall);
 				ViewModel.obs.currentCoin.status(this.status);
 				ViewModel.obs.currentCoin.minerFee(this.minerFee);
-
-				ViewModel.flags.whiteListAskFormNotReady(false);
 				
-				ViewModel.obs.selectedCurrency(this.symbol);//TODO redunant ~
+				ViewModel.flags.whiteListAskFormReady(false);
 				
 				ViewModel.flags.gateOperating(true);
+
+				//ViewModel.flags.slideUpLimits(false);
+				ViewModel.flags.whiteListField(false);
+				ViewModel.flags.whiteListInputReady(false);
 
 				self.actions.usersettings().then(function (response) {
 
 					//TEST
-					response.ethAddress = '';
+					//response.ethAddress = window.addr || '';
+					//response.ethAddress = window.addr || response.ethAddress;
 					
 					if (!response) {
 						console.log('userSettings problem');
@@ -336,7 +440,10 @@ var Controller = function () {
 						ViewModel.obs.askFormText(self.strings[self.locale].whiteListLess);
 						
 						setTimeout(function () {
-							ViewModel.flags.whiteListAskFormNotReady(true);
+							//ViewModel.flags.slideUpLimits(true);
+							ViewModel.flags.whiteListAskFormReady(true);
+							ViewModel.flags.whiteListField(true);
+							ViewModel.flags.whiteListInputReady(true);
 						},1000);
 						
 						return false;
@@ -364,10 +471,12 @@ var Controller = function () {
 		self.actions.calc(val);
 	});
 
-	ViewModel.obs.selectedCurrency.subscribe(function (val) {
+	ViewModel.obs.currentCoin.symbol.subscribe(function (val) {
 		Gate.actions.marketInfo();
 	});
 
+	ViewModel.obs.whiteListAddressField.subscribe(ViewModel.actions.whiteListAddressFieldSave);
+	
 	ViewModel.obs.searchInput.subscribe(function (val) {
 		var filtered;
 
