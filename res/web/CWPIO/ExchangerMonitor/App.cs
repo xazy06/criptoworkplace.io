@@ -126,7 +126,7 @@ namespace ExchangerMonitor
                 }
             }
             AddToLog("DB checked...");
-
+            PrintCurrentMon();
         }
 
         private async Task<ExchangeTransaction> ProcessExchangeItemAsync(ExchangeTransaction item)
