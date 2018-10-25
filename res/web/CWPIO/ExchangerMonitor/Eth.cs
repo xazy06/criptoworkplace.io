@@ -4,7 +4,6 @@ using Nethereum.Hex.HexTypes;
 using Nethereum.RPC.Eth.DTOs;
 using Nethereum.Web3;
 using Nethereum.Web3.Accounts;
-using System;
 using System.Numerics;
 using System.Threading.Tasks;
 
@@ -15,7 +14,7 @@ namespace ExchangerMonitor
         private Web3 _web3;
         private ILogger _logger;
         private EthSettings _opts;
-     
+
         public Eth(IOptions<EthSettings> options, ILogger<Eth> logger)
         {
             _logger = logger;
@@ -86,20 +85,29 @@ namespace ExchangerMonitor
 
         }
 
-        public async Task<(string tx, BigInteger gasPrice)> SendToSmartContractAsync(HexBigInteger amount)
+        public async Task<(string tx, BigInteger gasPrice)> SendToSmartContractAsync(HexBigInteger amount, string contractAddr)
         {
             var price = await _web3.Eth.GasPrice.SendRequestAsync();
-            var tx = await _web3.Eth.TransactionManager.SendTransactionAsync(
-                new TransactionInput(
-                    "",
-                    _opts.SmartContractAddr,
-                    _opts.AppAddress,
-                    new HexBigInteger("0x1ADB0"),
-                    new HexBigInteger(price.Value * 2),
-                    amount
-                ));
+            var contract = _web3.Eth.GetContract("[{\"constant\": false,\"inputs\": [{\"name\": \"ethers\",\"type\": \"uint256\"}],\"name\": \"BuyTokens\",\"outputs\": [],\"payable\": false,\"stateMutability\": \"nonpayable\",\"type\": \"function\"}", contractAddr);
+            var tx = await contract.GetFunction("BuyTokens").SendTransactionAsync(_opts.AppAddress, new HexBigInteger("0x55F0"), new HexBigInteger(price.Value * 2), new HexBigInteger(0), amount);
             return (tx, price.Value * 2);
         }
+
+
+        //public async Task<(string tx, BigInteger gasPrice)> SendToSmartContractAsync(HexBigInteger amount)
+        //{
+        //    var price = await _web3.Eth.GasPrice.SendRequestAsync();
+        //    var tx = await _web3.Eth.TransactionManager.SendTransactionAsync(
+        //        new TransactionInput(
+        //            "",
+        //            _opts.SmartContractAddr,
+        //            _opts.AppAddress,
+        //            new HexBigInteger("0x1ADB0"),
+        //            new HexBigInteger(price.Value * 2),
+        //            amount
+        //        ));
+        //    return (tx, price.Value * 2);
+        //}
 
         public async Task<string> SendRefundToUserAsync(string to, HexBigInteger amount)
         {

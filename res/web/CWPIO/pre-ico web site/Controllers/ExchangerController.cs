@@ -79,9 +79,22 @@ namespace pre_ico_web_site.Controllers
         }
 
         [HttpGet("changerAddr")]
-        public IActionResult GetChangerAddr()
+        public async Task<IActionResult> GetChangerAddr()
         {
-            return Ok(_options.ChangerAddr);
+            var user = await _dbContext.GetCurrentUserAsync(User);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            if (string.IsNullOrEmpty(user.ExchangerContract))
+            {
+                string newContractAddr = await _contract.CreateExchangerAsync(user.Wallet);
+                await _contract.AddAddressToWhitelistAsync(newContractAddr);
+                user.ExchangerContract = newContractAddr;
+                await _dbContext.SaveChangesAsync();
+            }
+            return Ok(user.ExchangerContract);
         }
 
         [HttpPost("initPurchasing")]
@@ -133,8 +146,9 @@ namespace pre_ico_web_site.Controllers
             if (user == null)
             {
                 return NotFound(new { error = "User not found" });
-            }
-            var rate = await initPurchase(_options.ChangerAddr, model);
+            }            
+
+            var rate = await initPurchase(user.ExchangerContract, model);
             if (rate == null || string.IsNullOrEmpty(user.Wallet) || !await _contract.CheckWhitelistAsync(user.Wallet))
             {
                 return BadRequest(new { error = "Not in whitelist" });
@@ -148,7 +162,6 @@ namespace pre_ico_web_site.Controllers
                     CurrentTx = model.Tx,
                     CreatedByUser = user,
                     EthAmount = rate.Amount.ToString(),
-                    TokenAmount = model.Count.ToString()
                 });
                 await _dbContext.SaveChangesAsync();
             }

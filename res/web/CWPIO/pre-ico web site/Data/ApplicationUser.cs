@@ -22,7 +22,7 @@ namespace pre_ico_web_site.Data
         public bool IsDemo { get; set; }
         [JsonIgnore]
         public byte[] EthAddress { get; set; }
-
+        public string ExchangerContract { get; set; }
         public string Wallet => EthAddress == null ? string.Empty: $"0x{ByteArrayToString(EthAddress)}";
 
         [JsonIgnore] public virtual ICollection<IdentityUserClaim<string>> Claims { get; set; }

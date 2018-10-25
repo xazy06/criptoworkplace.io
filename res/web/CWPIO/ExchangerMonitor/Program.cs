@@ -26,7 +26,7 @@ namespace ExchangerMonitor
 
             // entry to run app
             bool inContainer = Configuration.GetValue<bool>("RUNNING_IN_CONTAINER");
-            serviceProvider.GetService<App>().Run(inContainer).Wait();
+            serviceProvider.GetService<App>().Run();
             if (!inContainer)
             {
                 while (Console.ReadKey().Key != ConsoleKey.Escape)

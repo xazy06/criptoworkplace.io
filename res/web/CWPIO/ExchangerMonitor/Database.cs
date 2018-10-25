@@ -33,9 +33,7 @@ SELECT
     concat('0x',encode(u.eth_address,'hex')) as eth_address, 
     es.start_tx, 
     es.current_tx,
-    es.eth_amount, 
-    es.token_amount,
-    es.refund_tx
+    es.eth_amount
 FROM exchange.exchange_status es
 INNER JOIN identity.users u ON es.created_by_user_id = u.id 
 WHERE es.is_ended = false AND es.is_failed = false", _connection))
@@ -51,8 +49,6 @@ WHERE es.is_ended = false AND es.is_failed = false", _connection))
                         StartTx = await reader.GetFieldValueAsync<string>(3),
                         CurrentTx = await reader.GetFieldValueAsync<string>(4),
                         EthAmount = await reader.GetFieldValueAsync<string>(5),
-                        TokenAmount = await reader.GetFieldValueAsync<string>(6),
-                        RefundTx = (await reader.IsDBNullAsync(7)) ? string.Empty : (await reader.GetFieldValueAsync<string>(7)),
                         Status = TXStatus.Ok
                     });
                 }
