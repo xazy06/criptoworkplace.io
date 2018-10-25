@@ -22,17 +22,20 @@ namespace pre_ico_web_site.Controllers
         private readonly ApplicationDbContext _dbContext;
         private readonly EthSettings _options;
         private readonly IRateStore _rateStore;
+        private readonly Crypto _crypto;
 
         public ExchangerController(
             ApplicationDbContext dbContext,
             TokenSaleContract contract,
             IRateStore rateStore,
-            IOptions<EthSettings> options)
+            IOptions<EthSettings> options,
+            Crypto crypto)
         {
             _dbContext = dbContext;
             _contract = contract;
             _options = options.Value;
             _rateStore = rateStore;
+            _crypto = crypto;
         }
 
         [HttpGet]
@@ -87,14 +90,16 @@ namespace pre_ico_web_site.Controllers
                 return NotFound();
             }
 
-            if (string.IsNullOrEmpty(user.ExchangerContract))
-            {
-                string newContractAddr = await _contract.CreateExchangerAsync(user.Wallet);
-                await _contract.AddAddressToWhitelistAsync(newContractAddr);
-                user.ExchangerContract = newContractAddr;
-                await _dbContext.SaveChangesAsync();
-            }
-            return Ok(user.ExchangerContract);
+            if (!string.IsNullOrEmpty(user.TempAddress))
+                return Ok(user.TempAddress);
+
+            var (address, pk) = _contract.NewAddress();
+            await _dbContext.Addresses.AddAsync(new Addresses { Address = address, Exchanger = _crypto.Encrypt(pk.StringToByteArray()).ByteArrayToString() });
+            user.TempAddress = address;
+            await _dbContext.SaveChangesAsync();
+
+            return Ok(address);
+
         }
 
         [HttpPost("initPurchasing")]
@@ -146,7 +151,19 @@ namespace pre_ico_web_site.Controllers
             if (user == null)
             {
                 return NotFound(new { error = "User not found" });
-            }            
+            }
+
+            if (string.IsNullOrEmpty(user.TempAddress))
+                return BadRequest(new { error = "Not set temp address" });
+
+            if (string.IsNullOrEmpty(user.ExchangerContract))
+            {
+                var addr = await _dbContext.Addresses.FindAsync(user.TempAddress);
+                string newContractAddr = await _contract.CreateExchangerAsync(_crypto.Decrypt(addr.Exchanger.StringToByteArray()).ByteArrayToString(), user.Wallet);
+                await _contract.AddAddressToWhitelistAsync(newContractAddr);
+                user.ExchangerContract = newContractAddr;
+                await _dbContext.SaveChangesAsync();
+            }
 
             var rate = await initPurchase(user.ExchangerContract, model);
             if (rate == null || string.IsNullOrEmpty(user.Wallet) || !await _contract.CheckWhitelistAsync(user.Wallet))
@@ -163,6 +180,7 @@ namespace pre_ico_web_site.Controllers
                     CreatedByUser = user,
                     EthAmount = rate.Amount.ToString(),
                 });
+                user.TempAddress = null;
                 await _dbContext.SaveChangesAsync();
             }
 
@@ -170,9 +188,9 @@ namespace pre_ico_web_site.Controllers
         }
 
         [HttpPost("whiteList")]
-        public async Task<IActionResult> WhiteListAsync(string ercAddress)
+        public async Task<IActionResult> WhiteListAsync([FromBody]WhitelistRequestModel model)
         {
-            if (string.IsNullOrEmpty(ercAddress))
+            if (string.IsNullOrEmpty(model.ErcAddress))
             {
                 return BadRequest();
             }
@@ -188,9 +206,9 @@ namespace pre_ico_web_site.Controllers
                 return BadRequest();
             }
 
-            var tx = await _contract.AddAddressToWhitelistAsync(ercAddress);
+            var tx = await _contract.AddAddressToWhitelistAsync(model.ErcAddress);
 
-            user.EthAddress = StringToByteArray(ercAddress);
+            user.EthAddress = model.ErcAddress.StringToByteArray();
             await _dbContext.SaveChangesAsync();
             return Ok(new { txHash = tx });
         }
@@ -213,17 +231,6 @@ namespace pre_ico_web_site.Controllers
 
 
 
-        private static byte[] StringToByteArray(string hex)
-        {
-            hex = hex.Replace("0x", "");
-            int NumberChars = hex.Length;
-            byte[] bytes = new byte[NumberChars / 2];
-            for (int i = 0; i < NumberChars; i += 2)
-            {
-                bytes[i / 2] = Convert.ToByte(hex.Substring(i, 2), 16);
-            }
 
-            return bytes;
-        }
     }
 }

@@ -147,6 +147,8 @@ namespace pre_ico_web_site
 
             services.AddSingleton<IFileRepository, FileRepository>();
 
+            services.AddSingleton<Crypto>();
+
             services.AddResponseCompression();
         }
 

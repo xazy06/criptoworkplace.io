@@ -15,6 +15,8 @@ namespace pre_ico_web_site.Models
         public long GasLimit { get; set; }
         public int GasPrice { get; set; }
         public string ChangerAddr { get; set; }
+        public string Key { get; set; }
+        public string IV { get; set; }
         public EthSettings()
         {
         }

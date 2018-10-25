@@ -17,6 +17,7 @@ namespace pre_ico_web_site.Controllers
     {
 
         [HttpGet("exchanger", Name = "Exchanger")]
+        [HttpGet]
         public IActionResult Index()
         {
             return View("Exchanger");

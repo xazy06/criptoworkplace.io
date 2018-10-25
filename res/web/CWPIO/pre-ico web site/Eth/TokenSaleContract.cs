@@ -2,9 +2,11 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Nethereum.Contracts;
+using Nethereum.Hex.HexConvertors.Extensions;
 using Nethereum.Hex.HexTypes;
 using Nethereum.Util;
 using Nethereum.Web3;
+using Nethereum.Web3.Accounts;
 using Newtonsoft.Json;
 using pre_ico_web_site.Models;
 using pre_ico_web_site.Services;
@@ -25,6 +27,114 @@ namespace pre_ico_web_site.Eth
         private readonly IMemoryCache _memoryCache;
         private const string mem_key = "fixrate:{0}";
         public string Address { get { return _saleContract.Address; } }
+
+
+        #region Exchanger contract
+        private const string EXCHANGER_BYTECODE = "608060405234801561001057600080fd5b5060405160608061051a8339810160409081528151602083015191909201516000805433600160a060020a0319918216178255600180548216600160a060020a0396871617905560038054821694861694909417909355600280549093169390911692909217905561049290819061008890396000f3006080604052600436106100615763ffffffff7c0100000000000000000000000000000000000000000000000000000000600035041663715018a6811461006b5780638da5cb5b14610080578063d81111ab146100b1578063f2fde38b146100c6575b6100696100e7565b005b34801561007757600080fd5b5061006961034b565b34801561008c57600080fd5b506100956103b7565b60408051600160a060020a039092168252519081900360200190f35b3480156100bd57600080fd5b506100696100e7565b3480156100d257600080fd5b50610069600160a060020a03600435166103c6565b600080548190600160a060020a0316331461010157600080fd5b600154600254604080517f626a9198000000000000000000000000000000000000000000000000000000008152600160a060020a0392831660048201529051919092169163626a91989160248083019260609291908290030181600087803b15801561016c57600080fd5b505af1158015610180573d6000803e3d6000fd5b505050506040513d606081101561019657600080fd5b506040908101516001549151909350600160a060020a039091169083156108fc029084906000818181858888f193505050501580156101d9573d6000803e3d6000fd5b50600354604080517f70a082310000000000000000000000000000000000000000000000000000000081523060048201529051600160a060020a03909216916370a08231916024808201926020929091908290030181600087803b15801561024057600080fd5b505af1158015610254573d6000803e3d6000fd5b505050506040513d602081101561026a57600080fd5b5051600354600254604080517fa9059cbb000000000000000000000000000000000000000000000000000000008152600160a060020a03928316600482015260248101859052905193945091169163a9059cbb916044808201926020929091908290030181600087803b1580156102e057600080fd5b505af11580156102f4573d6000803e3d6000fd5b505050506040513d602081101561030a57600080fd5b5050600254604051600160a060020a0390911690303180156108fc02916000818181858888f19350505050158015610346573d6000803e3d6000fd5b505050565b600054600160a060020a0316331461036257600080fd5b60008054604051600160a060020a03909116917ff8df31144d9c2f0f6b59d69b8b98abd5459d07f2742c4df920b25aae33c6482091a26000805473ffffffffffffffffffffffffffffffffffffffff19169055565b600054600160a060020a031681565b600054600160a060020a031633146103dd57600080fd5b6103e6816103e9565b50565b600160a060020a03811615156103fe57600080fd5b60008054604051600160a060020a03808516939216917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e091a36000805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a03929092169190911790555600a165627a7a72305820d1d360a09c56f4b6a9b7f835fa16158f3bc9fb10ef6fac3488e8d4461997835e0029";
+
+        private const string EXHCANGER_ABI = @"[
+	{
+		""constant"": false,
+		""inputs"": [],
+		""name"": ""renounceOwnership"",
+		""outputs"": [],
+		""payable"": false,
+		""stateMutability"": ""nonpayable"",
+		""type"": ""function""
+	},
+	{
+		""constant"": true,
+		""inputs"": [],
+		""name"": ""owner"",
+		""outputs"": [
+			{
+				""name"": """",
+				""type"": ""address""
+
+            }
+		],
+		""payable"": false,
+		""stateMutability"": ""view"",
+		""type"": ""function""
+	},
+	{
+		""constant"": false,
+		""inputs"": [],
+		""name"": ""BuyTokens"",
+		""outputs"": [],
+		""payable"": false,
+		""stateMutability"": ""nonpayable"",
+		""type"": ""function""
+	},
+	{
+		""constant"": false,
+		""inputs"": [
+			{
+				""name"": ""_newOwner"",
+				""type"": ""address""
+			}
+		],
+		""name"": ""transferOwnership"",
+		""outputs"": [],
+		""payable"": false,
+		""stateMutability"": ""nonpayable"",
+		""type"": ""function""
+	},
+	{
+		""inputs"": [
+			{
+				""name"": ""crowdsale"",
+				""type"": ""address""
+			},
+			{
+				""name"": ""token"",
+				""type"": ""address""
+			},
+			{
+				""name"": ""buyer"",
+				""type"": ""address""
+			}
+		],
+		""payable"": false,
+		""stateMutability"": ""nonpayable"",
+		""type"": ""constructor""
+	},
+	{
+		""payable"": true,
+		""stateMutability"": ""payable"",
+		""type"": ""fallback""
+	},
+	{
+		""anonymous"": false,
+		""inputs"": [
+			{
+				""indexed"": true,
+				""name"": ""previousOwner"",
+				""type"": ""address""
+			}
+		],
+		""name"": ""OwnershipRenounced"",
+		""type"": ""event""
+	},
+	{
+		""anonymous"": false,
+		""inputs"": [
+			{
+				""indexed"": true,
+				""name"": ""previousOwner"",
+				""type"": ""address""
+			},
+			{
+				""indexed"": true,
+				""name"": ""newOwner"",
+				""type"": ""address""
+			}
+		],
+		""name"": ""OwnershipTransferred"",
+		""type"": ""event""
+	}
+]";
+        #endregion
 
         public TokenSaleContract(
             Web3 web3,
@@ -93,7 +203,12 @@ namespace pre_ico_web_site.Eth
                 var currentGasPrice = _settings.GasPrice * UnitConversion.Convert.GetEthUnitValue(UnitConversion.EthUnit.Gwei);
 
                 return await _saleContract.GetFunction("addAddressToWhitelist")
-                    .SendTransactionAsync(_settings.AppAddress, new HexBigInteger(_settings.GasLimit), new HexBigInteger(currentGasPrice), new HexBigInteger(0), null, addr);
+                    .SendTransactionAsync(
+                        _settings.AppAddress,
+                        new HexBigInteger(_settings.GasLimit),
+                        new HexBigInteger(currentGasPrice),
+                        new HexBigInteger(0),
+                        addr);
             }
             return string.Empty;
         }
@@ -135,25 +250,35 @@ namespace pre_ico_web_site.Eth
             return fixRateModel;
         }
 
-        public async Task<string> CreateExchangerAsync(string ethAddress)
+        public async Task<string> CreateExchangerAsync(string from, string ethAddress)
         {
-            string contractByteCode = "0x608060405234801561001057600080fd5b506040516060806108b9833981018060405281019080805190602001909291908051906020019092919080519060200190929190505050336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555082600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555081600360006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555080600260006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050505061075d8061015c6000396000f300608060405260043610610062576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063715018a61461006457806389749adb1461007b5780638da5cb5b146100a8578063f2fde38b146100ff575b005b34801561007057600080fd5b50610079610142565b005b34801561008757600080fd5b506100a660048036038101908080359060200190929190505050610244565b005b3480156100b457600080fd5b506100bd6105ab565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561010b57600080fd5b50610140600480360381019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506105d0565b005b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561019d57600080fd5b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167ff8df31144d9c2f0f6b59d69b8b98abd5459d07f2742c4df920b25aae33c6482060405160405180910390a260008060006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156102a157600080fd5b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166108fc839081150290604051600060405180830381858888f19350505050158015610309573d6000803e3d6000fd5b50600360009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166370a08231306040518263ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001915050602060405180830381600087803b1580156103c757600080fd5b505af11580156103db573d6000803e3d6000fd5b505050506040513d60208110156103f157600080fd5b81019080805190602001909291905050509050600360009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663a9059cbb600260009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16836040518363ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401808373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200182815260200192505050602060405180830381600087803b1580156104eb57600080fd5b505af11580156104ff573d6000803e3d6000fd5b505050506040513d602081101561051557600080fd5b810190808051906020019092919050505050600260009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166108fc3073ffffffffffffffffffffffffffffffffffffffff16319081150290604051600060405180830381858888f193505050501580156105a6573d6000803e3d6000fd5b505050565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561062b57600080fd5b61063481610637565b50565b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff161415151561067357600080fd5b8073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a3806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550505600a165627a7a7230582005895e14cd6bb915d594ea46026fd0390224de7553f6d27adddcd72ccea8769c0029";
-           
-            var receipt = await _web3.Eth.DeployContract.SendRequestAndWaitForReceiptAsync(contractByteCode, 
-                _settings.AppAddress,
+            var account = new Account(from);
+            var web3t = new Web3(account, _settings.NodeUrl ?? "http://localhost:8545");
+
+            var receipt = await web3t.Eth.DeployContract.SendRequestAndWaitForReceiptAsync(
+                EXHCANGER_ABI,
+                EXCHANGER_BYTECODE,
+                account.Address,
                 new HexBigInteger(1000000),
-                new
-                {
-                    crowdsale = _saleContract.Address,
-                    token = _tokenContract.Address,
-                    buyer = ethAddress
-                });
+                null,
+                _saleContract.Address,
+                _tokenContract.Address,
+                 ethAddress
+                );
             return receipt.ContractAddress;
         }
 
         public Task<BigInteger> GetRefundAmountAsync(string ethAddress)
         {
             return _saleContract.GetFunction("payments").CallAsync<BigInteger>(ethAddress);
+        }
+
+        public (string address, string pk) NewAddress()
+        {
+            var ecKey = Nethereum.Signer.EthECKey.GenerateKey();
+            var privateKey = ecKey.GetPrivateKeyAsBytes().ToHex();
+            var account = new Account(privateKey);
+            return (account.Address, privateKey);
         }
 
         private async Task WaitReciept(string hash)

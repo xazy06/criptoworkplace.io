@@ -22,8 +22,9 @@ namespace pre_ico_web_site.Data
         public bool IsDemo { get; set; }
         [JsonIgnore]
         public byte[] EthAddress { get; set; }
+        public string TempAddress { get; set; }
         public string ExchangerContract { get; set; }
-        public string Wallet => EthAddress == null ? string.Empty: $"0x{ByteArrayToString(EthAddress)}";
+        public string Wallet => EthAddress == null ? string.Empty: $"0x{EthAddress.ByteArrayToString()}";
 
         [JsonIgnore] public virtual ICollection<IdentityUserClaim<string>> Claims { get; set; }
 
@@ -32,9 +33,6 @@ namespace pre_ico_web_site.Data
         [JsonIgnore] public virtual ICollection<BountyCampaingAcceptedTask> BountyCampaingAcceptedTasks { get; set; }
         [JsonIgnore] public virtual ICollection<BountyFavoriteUser> BountyFavoriteUsers { get; set; }
 
-        private static string ByteArrayToString(byte[] ba)
-        {
-            return BitConverter.ToString(ba).Replace("-", "");
-        }
+        
     }
 }

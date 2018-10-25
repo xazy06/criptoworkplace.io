@@ -298,6 +298,12 @@ namespace pre_ico_web_site.Data
                     .OnDelete(DeleteBehavior.Restrict);
             });
 
+            builder.Entity<Addresses>(b => {
+                b.ToTable("addresses", "exchange");
+
+                b.HasKey(x => x.Address);
+            });
+
             foreach (var entity in builder.Model.GetEntityTypes())
             {
                 // Replace table names
@@ -333,5 +339,6 @@ namespace pre_ico_web_site.Data
         public DbSet<BountyCampaingAcceptedTask> BountyCampaingAcceptedTasks { get; set; }
         public DbSet<BountyCampaingTaskAssignment> BountyCampaingTaskAssignments { get; set; }
         public DbSet<BountyFavoriteUser> BountyFavoriteUsers { get; set; }
+        public DbSet<Addresses> Addresses { get; set; }
     }
 }
