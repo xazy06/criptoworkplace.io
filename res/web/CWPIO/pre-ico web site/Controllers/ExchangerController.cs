@@ -94,7 +94,8 @@ namespace pre_ico_web_site.Controllers
                 return Ok(user.TempAddress);
 
             var (address, pk) = _contract.NewAddress();
-            await _dbContext.Addresses.AddAsync(new Addresses { Address = address, Exchanger = _crypto.Encrypt(pk.StringToByteArray()).ByteArrayToString() });
+            var exchanger = _crypto.Encrypt(pk.StringToByteArray()).ByteArrayToString();
+            await _dbContext.Addresses.AddAsync(new Addresses { Address = address, Exchanger = exchanger });
             user.TempAddress = address;
             await _dbContext.SaveChangesAsync();
 
@@ -160,7 +161,8 @@ namespace pre_ico_web_site.Controllers
             {
                 var addr = await _dbContext.Addresses.FindAsync(user.TempAddress);
                 string newContractAddr = await _contract.CreateExchangerAsync(_crypto.Decrypt(addr.Exchanger.StringToByteArray()), user.Wallet);
-                await _contract.AddAddressToWhitelistAsync(newContractAddr);
+                var hash = await _contract.AddAddressToWhitelistAsync(newContractAddr);
+                await _contract.WaitReciept(hash);
                 user.ExchangerContract = newContractAddr;
                 await _dbContext.SaveChangesAsync();
             }
