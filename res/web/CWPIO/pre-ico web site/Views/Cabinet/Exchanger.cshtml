@@ -109,8 +109,8 @@
 						<tr>
 							<td>
 								<div>
-									<img data-bind="css:{'grayscale': ($data.status === 'unavailable')},attr:{'src': $data.imageSmall}" src=""/>
-									<span data-bind="text: $data.symbol"></span>
+									<img class="s-icon s-mr_5" data-bind="css:{'grayscale': ($data.status === 'unavailable')},attr:{'src': $data.imageSmall}" src=""/>
+									<strong class="s-icon" data-bind="text: $data.symbol"></strong>
 								</div>
 							</td>
 							<td data-bind="attr:{'colspan': ($data.status === 'unavailable' && 2 || 0)}">
@@ -156,17 +156,6 @@
 						</div>
 					</div>
 
-					<!-- ko if:flags.depositAddrGetting -->
-					<div class="s-ta_c">
-						<div class="m-spinner m-spinner--brand m-spinner--lg"></div>
-						<div class="m-spinner m-spinner--primary m-spinner--lg"></div>
-						<div class="m-spinner m-spinner--success m-spinner--lg"></div>
-						<div class="m-spinner m-spinner--info m-spinner--lg"></div>
-						<div class="m-spinner m-spinner--warning m-spinner--lg"></div>
-						<div class="m-spinner m-spinner--danger m-spinner--lg"></div>
-					</div>
-					<!-- /ko -->
-					
 					
 					<!-- ko if: flags.whiteListLess -->
 
@@ -222,17 +211,51 @@
 					<!--/ko-->
 					
 					<!-- ko ifnot: flags.whiteListLess -->
+					<!-- ko if:flags.isFixedAmmountMode -->
+					<h6 class="m--font-primary">
+						CWT-P Token amount you want to receive
+					</h6>
+					<div class="s-mb_20">
+						<input autofocus data-bind="textInput: obs.cwtCount" type="number" class="form-control"/>
+					</div>
+					<div data-bind="css:{'s-display_bi': flags.minCont}" class="s-display_n m-alert m-alert--outline alert alert-warning alert-dismissible fade show" role="alert">
+						Minimum contribution is 500 CWT-P  	
+					</div>
+					<!--/ko-->
+					<!--/ko-->
+					
+					<!-- ko if:flags.depositAddrGetting -->
+					<div class="s-ta_c">
+						<div class="m-spinner m-spinner--brand m-spinner--lg"></div>
+						<div class="m-spinner m-spinner--primary m-spinner--lg"></div>
+						<div class="m-spinner m-spinner--success m-spinner--lg"></div>
+						<div class="m-spinner m-spinner--info m-spinner--lg"></div>
+						<div class="m-spinner m-spinner--warning m-spinner--lg"></div>
+						<div class="m-spinner m-spinner--danger m-spinner--lg"></div>
+					</div>
+					<!-- /ko -->
+					
+					<!-- ko ifnot: flags.whiteListLess -->
 					<!-- ko ifnot:flags.depositAddrGetting -->
-					<div style="margin-bottom: 20px;" data-bind="if: flags.depositAddrGot">
-						<div style="margin-bottom: 10px;">
+					<div class="s-mb_20" data-bind="if: flags.depositAddrGot">
+						<div class="s-mb_10">
+							<!-- ko if: flags.isFixedAmmountMode -->
+							<p>
+								Please send <!-- ko text: obs.needPay --><!--/ko--> 
+								<strong><!-- ko text: obs.currentCoin.symbol --><!--/ko--></strong>
+								(includs fee: <!-- ko text: obs.transactionFee --><!--/ko--> <!-- ko text: obs.currentCoin.symbol --><!--/ko-->) to the address below:
+							</p>
+							<!-- /ko -->
+							
+							<!-- ko ifnot: flags.isFixedAmmountMode -->
 							Please send your <strong><!-- ko text: obs.currentCoin.symbol --><!--/ko--></strong> to the address below:
+							<!-- /ko -->
 						</div>
-						<div style="margin-bottom: 10px;">
-							<strong id="purchaseAddr"><!-- ko text: obs.depositAddress --><!--/ko--></strong>
-							<i data-bind="click:actions.notify.bind(null, 'copied!')" 
-							        id="copy2" 
-							        data-clipboard-target="#purchaseAddr" 
-							        type="button" class="fa fa-copy s-pointer"></i>
+						<div class="s-mb_10">
+							<strong class="s-icon" id="purchaseAddr"><!-- ko text: obs.depositAddress --><!--/ko--></strong>
+							<img src="~/images/copy-ico.svg" class="btn-copy" data-bind="click:actions.notify.bind(null, 'copied!')" 
+							     id="copy2" 
+							     data-clipboard-target="#purchaseAddr"/>
 						</div>
 						<div>
 							<img width="100" data-bind="attr:{'src':('https://api.qrserver.com/v1/create-qr-code/?size=150x150&amp;data=' + obs.depositAddress())}"
@@ -281,12 +304,9 @@
 	</div>
 </div>
 
-<!-- ko if:flags.minCont -->
-<div class="m-alert m-alert--outline alert alert-success alert-dismissible fade show" role="alert">
+<div data-bind="css:{'s-display_bi': flags.minCont}" class="s-display_n m-alert m-alert--outline alert alert-success alert-dismissible fade show" role="alert">
 	Minimum contribution is 500 CWT-P  	
 </div>
-<!--/ko-->
-
 
 @*<h5 class="m--font-primary">*@
 @*	Choose availiable currencies*@

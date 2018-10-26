@@ -114,3 +114,26 @@
 .s-pointer {
 	cursor: pointer;
 }
+
+.s-icon {
+	display:inline-block;
+	vertical-align: middle;
+}
+.s-mr_5 {
+	margin-right:5px;
+}
+
+.btn-copy {
+	display: inline-block;
+	vertical-align: middle;
+	width:15px;
+	height:15px;
+	cursor: pointer;
+}
+
+.s-mb_10 {
+	margin-bottom:10px;
+}
+.s-mb_20 {
+	margin-bottom:20px;
+}

@@ -176,12 +176,31 @@ var Controller = function () {
 			});
 		},
 
+		initialFixedAmmountShift: function (currencyName, rate) {
+			console.log('initialFixedAmmountShift');
+			console.log(currencyName);
+			console.log(rate);
+			
+			return self.actions.calcWithFee(500, currencyName, rate)
+		},
+
 		_calc: function (count) {
 			count = count || 0;
 
 			return $.ajax({
 				url:self.api.calc + count,
 				method:'GET'
+			});
+		},
+		
+		calcWithFee: function (count, currencyName, rate) {
+			count = count || 0;
+
+			return $.ajax({
+				url:self.api.calc + count,
+				method:'GET'
+			}).done(function (response) {
+				ViewModel.obs.needPay(response);
 			});
 		},
 		
@@ -312,10 +331,12 @@ var Controller = function () {
 				refund:ko.observable(0),
 				stepEndTime: ko.observable(0)
 			},
-			needPay: ko.observable(0)
+			needPay: ko.observable(0),
+			transactionFee:ko.observable(0)
 		},
 		
 		flags:{
+			isFixedAmmountMode: ko.observable(false),
 			hasMetamask: ko.observable(false),
 			whiteListLess: ko.pureComputed(function () {
 				return ViewModel.obs.usersettings.ethAddress() === '' || ViewModel.obs.usersettings.ethAddress() === null;
@@ -487,7 +508,22 @@ var Controller = function () {
 					 *   
 					 */
 					if (ViewModel.obs.currentCoin.symbol() === 'ETH') {
+						
+						if (ViewModel.flags.isFixedAmmountMode()){
+							return ViewModel.actions.shiftETH();
+						}
+						
 						return ViewModel.actions.shiftETH();
+					}
+					
+					if (ViewModel.flags.isFixedAmmountMode()){
+						return self.actions.initialFixedAmmountShift(ViewModel.obs.currentCoin.symbol(), ViewModel.obs.market.rate())
+							.then(function (response) {
+								console.log('ammount got');
+								console.log(response);
+							//TODO response will be changed
+							ViewModel.actions.gate.sendamount(response);
+						});	
 					}
 					
 					return ViewModel.actions.gate.shiftCoin();
@@ -507,7 +543,16 @@ var Controller = function () {
 
 	
 	ViewModel.obs.cwtCount.subscribe(function (val) {
-		self.actions.calc(val);
+		if (val && val.toString().length < 3) {
+			return;
+		}
+		
+		self.actions.calcWithFee(val).then(function (response) {
+			console.log('ammount got');
+			console.log(response);
+			//TODO response will be changed
+			ViewModel.actions.gate.sendamount(response);
+		});
 	});
 
 	ViewModel.obs.currentCoin.symbol.subscribe(function (val) {

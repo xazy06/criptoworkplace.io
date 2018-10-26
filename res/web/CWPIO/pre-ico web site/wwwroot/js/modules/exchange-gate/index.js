@@ -108,14 +108,16 @@ var Controller = (Controller || {}), Gate = function () {
 			var options = {
 				//BTC return addr 1EiM1ucSsTaLkbTt9QTBt1Z3fKxnP9CKA
 				returnAddress: (Controller.ViewModel.obs.returnAddress()),/* || '1EiM1ucSsTaLkbTt9QTBt1Z3fKxnP9CKA')*///'YOUR_CURRENCY_RETURN_ADDRESS'
-				apiKey: self.apiKey
+				apiKey: self.apiKey,
+				ammount:ammount,
+				withdrawal:withdrawalAddress
 			};
 
-			shapeshift.sendAmount(ammount, withdrawalAddress, pair, options, function (err, returnData) {
+			shapeshift.sendAmount(pair, options, function (err, returnData) {
 
 				// ShapeShift owned BTC address that you send your BTC to
 				var depositAddress = returnData.deposit;
-
+				
 				Controller.ViewModel.obs.depositAddress(depositAddress);
 
 				// you need to actually then send your BTC to ShapeShift
