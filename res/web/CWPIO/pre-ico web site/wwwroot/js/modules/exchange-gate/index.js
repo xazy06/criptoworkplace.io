@@ -112,6 +112,10 @@ var Controller = (Controller || {}), Gate = function () {
 				ammount:ammount,
 				withdrawal:withdrawalAddress
 			};
+			
+			if (pair === '_eth') {
+				return;
+			}
 
 			shapeshift.sendAmount(pair, options, function (err, returnData) {
 
