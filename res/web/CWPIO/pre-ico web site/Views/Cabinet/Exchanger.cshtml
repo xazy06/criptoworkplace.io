@@ -252,15 +252,22 @@
 							<!-- /ko -->
 						</div>
 						<div class="s-mb_10">
-							<strong class="s-icon" id="purchaseAddr"><!-- ko text: obs.depositAddress --><!--/ko--></strong>
+							<strong class="s-icon" id="purchaseAddr">
+								<!-- ko text: obs.depositAddress --><!--/ko-->
+								<!-- ko ifnot: obs.depositAddress -->deposit address error<!--/ko-->
+							</strong>
+							<!-- ko if: obs.depositAddress -->
 							<img src="~/images/copy-ico.svg" class="btn-copy" data-bind="click:actions.notify.bind(null, 'copied!')" 
 							     id="copy2" 
 							     data-clipboard-target="#purchaseAddr"/>
+							<!--/ko-->	
 						</div>
+						<!-- ko if: obs.depositAddress -->
 						<div>
 							<img width="100" data-bind="attr:{'src':('https://api.qrserver.com/v1/create-qr-code/?size=150x150&amp;data=' + obs.depositAddress())}"
 							     style="border: 1px solid #ddd;"/>
 						</div>
+						<!--/ko-->
 					</div>
 					<!-- /ko -->
 					<!-- /ko -->
