@@ -336,7 +336,7 @@ var Controller = function () {
 		},
 		
 		flags:{
-			isFixedAmmountMode: ko.observable(true),
+			isFixedAmmountMode: ko.observable(false),
 			hasMetamask: ko.observable(false),
 			whiteListLess: ko.pureComputed(function () {
 				return ViewModel.obs.usersettings.ethAddress() === '' || ViewModel.obs.usersettings.ethAddress() === null;
