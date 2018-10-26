@@ -281,7 +281,7 @@ namespace pre_ico_web_site.Eth
             return (account.Address, privateKey);
         }
 
-        private async Task WaitReciept(string hash)
+        public async Task WaitReciept(string hash)
         {
             var receipt = await _web3.Eth.Transactions.GetTransactionReceipt.SendRequestAsync(hash);
 
