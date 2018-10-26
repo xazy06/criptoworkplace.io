@@ -173,10 +173,13 @@ var Controller = (Controller || {}), Gate = function () {
 			Controller.actions._calc(minimumPurchaseCount).then(function (response) {
 				Controller.ViewModel.obs.market.limit('-');
 				Controller.ViewModel.obs.market.maxLimit('-');
-				Controller.ViewModel.obs.market.minerFee('');
+				Controller.ViewModel.obs.market.minerFee(0);
 				Controller.ViewModel.obs.market.minimum(response);
-				Controller.ViewModel.obs.market.rate('-');
 				Controller.ViewModel.obs.market.pair(response.pair);
+			});
+
+			Controller.actions._calc(1).then(function (response) {
+				Controller.ViewModel.obs.market.rate(response);
 			});
 
 			Controller.ViewModel.flags.depositAddrGot(true);
