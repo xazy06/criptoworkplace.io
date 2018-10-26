@@ -24,8 +24,14 @@
 				<strong><a data-bind="text:obs.usersettings.ethAddress, attr:{'href':('https://etherscan.io/address/'+ obs.usersettings.ethAddress())}"
 				           target="_blank" href="#">
 					<i style="margin-left: 30px" class="m-loader m-loader--brand"></i>
-				</a></strong>
+				</a></strong>, 
 				<!-- /ko -->
+				
+				<!-- ko ifnot:obs.usersettings.ethAddress -->, <!-- /ko -->
+				
+				<span>Your ballance: </span> 
+				<strong><!-- ko text:obs.sales.ballance --><!--/ko--></strong>
+				<span> CWT-P</span>
 			</div>	
 			<div class="m-alert__close">
 		
@@ -328,58 +334,6 @@
 @*</div>*@
 
 
-
-
-
-<h2 style="margin-bottom: 20px;">Cryptoworkplace smart contract address</h2>
-@*		Minimum contribution is 500 CWT-P*@
-
-<div class="m-pricing-table-1">
-
-@*	<div class="m-alert m-alert--icon m-alert--icon-solid m-alert--outline alert alert-brand alert-dismissible fade show" role="alert">*@
-@*		<div class="m-alert__icon">*@
-@*			<i class="flaticon-exclamation-1"></i>*@
-@*			<span></span>*@
-@*		</div>*@
-@*		<div class="m-alert__text">*@
-@*			$1$				This is the ETH wallet address to send ETH and receive CWT-P. The wallet address must be ERC-20 base. Please note that the wallet address cannot be changed once ETH is sent.#1#*@
-@*			To purchase CWT-P token, send ETH from a whitelisted ether wallet to the below smart contract address. The amount must be between 0.1 and 20 ETH.*@
-@*		</div>*@
-@*		<div class="m-alert__close">*@
-@**@
-@*		</div>*@
-@*	</div>*@
-
-	<p>
-		<a data-bind="attr:{'href': ('https://etherscan.io/address/' + obs.contractAddress())}"
-		   target="_blank" style="display: block; text-overflow: ellipsis; margin-bottom: 20px; overflow: hidden;" href="">
-			<strong data-bind="text:obs.contractAddress"></strong>
-		</a>
-
-		@*		<a style="display: block; text-overflow: ellipsis; margin-bottom: 20px; overflow: hidden;" href="https://etherscan.io/token/0x844d61a974f3792914815d9eb8b9ebb6ecc8b0a7">*@
-		@*			<strong>0x844d61a974f3792914815d9eb8b9ebb6ecc8b0a7</strong>*@
-		@*		</a>*@
-		<!-- ko ifnot:flags.toggleQr -->
-		<i data-bind="click:actions.toggleQr" style="cursor: pointer; font-size: 2em;" class="fa fa-qrcode"></i>
-		@*		<i style="display: inline-block; vertical-align:middle;">&mdash;QR</i>*@
-		<!--/ko-->
-
-		<p data-bind="click:actions.toggleQr, if:flags.toggleQr" class="s-ms-c">
-			<img data-bind="attr:{'src':('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' + obs.contractAddress())}"
-			     style="border: 1px solid #ddd;" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Example"/>
-		</p>
-
-
-
-	</p>
-
-
-
-
-
-
-
-</div>
 @**@
 @*<div class="m-pricing-table-1">*@
 @*<!-- ko if: obs.page() === 0 -->*@
@@ -609,98 +563,7 @@
 </div>
 <div class="col-md-5">
 	@Html.Partial("Sales/_Index")
-	<div class="m-portlet m-portlet--head-overlay m-portlet--full-height  m-portlet--rounded-force">
-		<div class="m-portlet__head m-portlet__head--fit-">
-			<div class="m-portlet__head-caption">
-				<div class="m-portlet__head-title">
-					<h3 class="m-portlet__head-text m--font-light">
-						Total balance
-					</h3>
-				</div>
-			</div>
-			<div class="m-portlet__head-tools">
-
-			</div>
-		</div>
-		<div class="m-portlet__body">
-			<div class="m-widget27 m-portlet-fit--sides">
-				<div class="m-widget27__pic">
-					<img src="/static/bg-4.jpg" alt="">
-					<h3 class="m-widget27__title m--font-light">
-						<span>
-							<span>CWT-P</span>
-							<!-- ko text:obs.sales.ballance -->0<!--/ko-->
-						</span>
-					</h3>
-					<div class="m-widget27__btn">
-						<button type="button" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--bolder">CryptoWorkPlace Token (CWT-P)</button>
-					</div>
-				</div>
-				<div class="m-widget27__container">
-					<div class="m-widget14">
-
-						<div class="">
-							<div class="m-widget14__header">
-								<h3 class="m-widget14__title">
-									@*							Current round is <!-- ko text:obs.sales.step --><!--/ko-->        *@
-									Token's sold <!-- ko text:obs.sales.sold --><i style="padding: 0 12px" class="m-loader m-loader--brand"></i><!--/ko--> CWT-P
-								</h3>
-								<span class="m-widget14__desc">
-									@*							Token's sold <!-- ko text:obs.sales.sold --><!--/ko--> CWT-P*@
-								</span>
-							</div>
-							<div>
-								<span>Your whitelisted ERC-20 address:</span>
-								<a data-bind="text:obs.usersettings.ethAddress, attr:{'href':('https://etherscan.io/address/'+ obs.usersettings.ethAddress())}"
-								   target="_blank" href="#">
-									<i style="margin-left: 30px" class="m-loader m-loader--brand"></i>
-								</a>
-							</div>
-							<div class="s-display_n" data-bind="css:{'s-display_bi': (obs.sales.refund() > 0)}">
-								<span>Refund ammount: <strong data-bind="text:obs.sales.refund"></strong> ETH</span>
-								<a class="btn btn-outline-focus m-btn--square m-btn--outline-2x m-btn m-loader--primary m-loader--right" data-bind="click:actions.refund">
-									Refund
-								</a>
-							</div>
-							@*					<div class="row  align-items-center">*@
-							@*						<div class="col">*@
-							@*							<div id="m_chart_revenue_change" class="m-widget14__chart1" style="height: 180px">*@
-							@*							</div>*@
-							@*						</div>	*@
-							@*						<div class="col">*@
-							@*							<div class="m-widget14__legends">*@
-							@*								<div class="m-widget14__legend">*@
-							@*									<span class="m-widget14__legend-bullet m--bg-accent"></span>*@
-							@*									<span class="m-widget14__legend-text">7,431,402 CWT-P 1 round</span>*@
-							@*								</div>*@
-							@*								<div class="m-widget14__legend">*@
-							@*									<span class="m-widget14__legend-bullet m--bg-warning"></span>*@
-							@*									<span class="m-widget14__legend-text">0 CWT-P 2 round</span>*@
-							@*								</div>*@
-							@*								<div class="m-widget14__legend">*@
-							@*									<span class="m-widget14__legend-bullet m--bg-brand"></span>*@
-							@*									<span class="m-widget14__legend-text">0 CWT-P 3 round</span>*@
-							@*								</div>*@
-							@*								<div class="m-widget14__legend">*@
-							@*									<span class="m-widget14__legend-bullet m--bg-success"></span>*@
-							@*									<span class="m-widget14__legend-text">0 CWT-P 4 round</span>*@
-							@*								</div>*@
-							@*								<div class="m-widget14__legend">*@
-							@*									<span class="m-widget14__legend-bullet m--bg-danger"></span>*@
-							@*									<span class="m-widget14__legend-text">0 CWT-P 5 round</span>*@
-							@*								</div>*@
-							@*							</div>*@
-							@*						</div>*@
-							@*					</div>*@
-						</div>
-
-					</div>
-
-				</div>
-			</div>
-		</div>
-	</div>
-	
+@*	@Html.Partial("Sales/_IndexOld")*@
 </div>
 </div>
 <div class="modal fade" id="m_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">

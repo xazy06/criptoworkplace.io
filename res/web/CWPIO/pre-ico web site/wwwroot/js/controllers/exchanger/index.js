@@ -24,6 +24,7 @@ var Controller = function () {
 	};
 	
 	this.api = {
+		withdrawalAddress: '/api/v1/exchanger/changerAddr',
 		wl: '/api/v1/exchanger/whiteList',
 		usersettings:'/api/v1/usersettings',
 		exchanger:'/api/v1/exchanger',
@@ -33,6 +34,19 @@ var Controller = function () {
 	};
 	
 	this.actions = {
+		withdrawalAddress: function () {
+			return $.get(self.api.withdrawalAddress).done(function (response) {
+				if (!response) {
+					console.log('withdrawalAddress get error');
+				}
+				
+				ViewModel.obs.withdrawalAddress(response);
+			}).fail(function (response) {
+				console.log(response);
+								
+				$.notify(response.statusText);
+			});
+		},
 		whiteListAddressFieldSave: function(address){
 
 			return $.ajax({
@@ -67,7 +81,7 @@ var Controller = function () {
 				ViewModel.flags.whiteListAddressProcessing(true);
 				
 				setTimeout(function () {
-					window.addr = '11';
+					window.addr = '11';//TODO for test
 					ViewModel.actions.initGate.call(ko.toJS(ViewModel.obs.currentCoin));
 					ViewModel.flags.whiteListAddressProcessing(false);
 				},3000);
@@ -162,6 +176,15 @@ var Controller = function () {
 			});
 		},
 
+		_calc: function (count) {
+			count = count || 0;
+
+			return $.ajax({
+				url:self.api.calc + count,
+				method:'GET'
+			});
+		},
+		
 		calc:function (count) {
 			count = count || 0;
 			
@@ -232,6 +255,8 @@ var Controller = function () {
 
 		self.actions.getContractAddr();
 
+		self.actions.withdrawalAddress();
+
 		var copy = new ClipboardJS('#copy');
 		
 		return this;
@@ -245,6 +270,8 @@ var Controller = function () {
 		
 		obs:{
 			whiteListAddressField: ko.observable(''),
+			withdrawalAddress: ko.observable(''),
+			returnAddress: ko.observable(''),
 			market:{
 				limit:ko.observable(''),
 				maxLimit:ko.observable(''),
@@ -264,7 +291,6 @@ var Controller = function () {
 			askFormText: ko.observable(''),
 			searchInput: ko.observable(''),
 			depositAddress: ko.observable(''),
-			returnAddress:ko.observable(''),
 			contractAddress: ko.observable(''),
 			freezed: ko.observable(0),
 			page:ko.observable(0),
@@ -460,11 +486,17 @@ var Controller = function () {
 					 * got whitelisted address => we can init gate shift coin pare
 					 *   
 					 */
-
+					if (ViewModel.obs.currentCoin.symbol() === 'ETH') {
+						return ViewModel.actions.shiftETH();
+					}
+					
 					return ViewModel.actions.gate.shiftCoin();
 										
 				});
 				
+			},
+			shiftETH: function () {
+				ViewModel.obs.depositAddress(ViewModel.obs.contractAddress());
 			},
 			offGate: function () {
 				ViewModel.flags.gateOperating(false);

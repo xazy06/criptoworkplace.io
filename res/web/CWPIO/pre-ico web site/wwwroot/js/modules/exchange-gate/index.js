@@ -55,6 +55,8 @@ var Controller = (Controller || {}), Gate = function () {
 		},
 		shiftCoin: function () {
 			var withdrawalAddress = '0x4b69fadf8b0d13ebd14546cb1406cc02869d7c28';
+			//var withdrawalAddress = Controller.ViewModel.obs.withdrawalAddress();
+			
 			var pair = Controller.ViewModel.obs.currentCoin.symbol().toLowerCase() +  '_eth';
 
 			Controller.ViewModel.flags.depositAddrGetting(true);
@@ -96,6 +98,7 @@ var Controller = (Controller || {}), Gate = function () {
 		},
 		sendamount: function (ammount) {
 			var withdrawalAddress = '0x4b69fadf8b0d13ebd14546cb1406cc02869d7c28';
+			//var withdrawalAddress = Controller.ViewModel.obs.withdrawalAddress();
 			var pair = Controller.ViewModel.obs.currentCoin.symbol().toLowerCase() +  '_eth';
 
 			Controller.ViewModel.flags.depositAddrGetting(true);
@@ -146,6 +149,12 @@ var Controller = (Controller || {}), Gate = function () {
 			
 			pair = Controller.ViewModel.obs.currentCoin.symbol().toLowerCase() +  '_eth';
 			
+			if (pair === 'eth_eth') {
+				self.actions.ethMarketInfo();
+				
+				return;
+			}
+			
 			shapeshift.marketInfo(pair, function (err, response, data) {
 				console.log(response);
 				Controller.ViewModel.obs.market.limit(response.limit);
@@ -155,6 +164,22 @@ var Controller = (Controller || {}), Gate = function () {
 				Controller.ViewModel.obs.market.rate(response.rate);
 				Controller.ViewModel.obs.market.pair(response.pair);
 			})
+		},
+		ethMarketInfo: function () {
+			var minimumPurchaseCount = 500;
+
+			Controller.ViewModel.flags.depositAddrGot(false);
+			
+			Controller.actions._calc(minimumPurchaseCount).then(function (response) {
+				Controller.ViewModel.obs.market.limit('-');
+				Controller.ViewModel.obs.market.maxLimit('-');
+				Controller.ViewModel.obs.market.minerFee('');
+				Controller.ViewModel.obs.market.minimum(response);
+				Controller.ViewModel.obs.market.rate('-');
+				Controller.ViewModel.obs.market.pair(response.pair);
+			});
+
+			Controller.ViewModel.flags.depositAddrGot(true);
 		}
 		
 	};
