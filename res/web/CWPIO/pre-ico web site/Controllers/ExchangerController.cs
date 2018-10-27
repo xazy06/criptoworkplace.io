@@ -75,6 +75,21 @@ namespace pre_ico_web_site.Controllers
             return Ok(UnitConversion.Convert.FromWei(rate.amount).ToString());
         }
 
+        [HttpGet("calcExchange/{amount}-{rate}")]
+        public async Task<IActionResult> GetCalcAsync([FromRoute]int amount,[FromRoute]int rate)
+        {
+            var user = await _dbContext.GetCurrentUserAsync(User);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var ethrate = await GetRateAsync(amount);
+            var price = await _contract.GetGasPriceAsync();
+            var gas = (0xBB80 + 0xBB80 + 0x19A28 + 0x59D8 + 0x5208) * price * 3;
+            return Ok(UnitConversion.Convert.FromWei(ethrate.amount + gas).ToString());
+        }
+
         [HttpGet("addr")]
         public IActionResult GetAddr()
         {

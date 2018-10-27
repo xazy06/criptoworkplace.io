@@ -51,7 +51,7 @@ namespace ExchangerMonitor
                 bool result = tx.BlockNumber != null;
                 if (result)
                 {
-                    var receipt = await WaitForReciept(tx.TransactionHash);
+                    var receipt = await GetTransactionReceiptAsync(tx.TransactionHash);
                     if (receipt == null)
                     {
                         return ExchangeOperationStatus.Skip;
@@ -63,34 +63,11 @@ namespace ExchangerMonitor
             }
         }
 
-        public async Task<HexBigInteger> GetTransactionAmount(string txHash)
-        {
-            //private await this.waitForConnect();
-            var tx = await _web3.Eth.Transactions.GetTransactionByHash.SendRequestAsync(txHash);
-            if (tx == null)
-            {
-                return new HexBigInteger("0x0");
-            }
-            return tx.Value;
-        }
-
         public Task<Transaction> GetTransactionToAsync(string currentTx)
         {
             return _web3.Eth.Transactions.GetTransactionByHash.SendRequestAsync(currentTx);
         }
-
-        private async Task<TransactionReceipt> WaitForReciept(string tx)
-        {
-            var receipt = await _web3.Eth.Transactions.GetTransactionReceipt.SendRequestAsync(tx);
-
-            //while (receipt == null)
-            //{
-            //    await Task.Delay(1000);
-            //    receipt = await _web3.Eth.Transactions.GetTransactionReceipt.SendRequestAsync(tx);
-            //}
-            return receipt;
-        }
-
+        
         public async Task<string> SetRateForTransactionAsync(int rate, string buyer, BigInteger amount)
         {
             Contract contract = _web3.Eth.GetContract(_json.Sale.ABI.ToString(), _opts.SmartContractAddr);
@@ -115,34 +92,7 @@ namespace ExchangerMonitor
             var fixRateModel = await contract.GetFunction("fixRate").CallDeserializingToObjectAsync<FixRateModel>(buyer);
             return fixRateModel;
         }
-
-        //public async Task<(string tx, BigInteger gasPrice)> SendToSmartContractAsync(string pk, string contractAddr, BigInteger ethAmount)
-        //{
-        //    var account = new Account(_crypto.Decrypt(pk.StringToByteArray()));
-        //    var _web3t = new Web3(account, _opts.NodeUrl);
-        //    var price = await _web3t.Eth.GasPrice.SendRequestAsync();
-        //    var ballance = await _web3t.Eth.GetBalance.SendRequestAsync(account.Address);
-        //    Contract contract = _web3t.Eth.GetContract(_json.Exchanger.ABI.ToString(), contractAddr);
-
-        //    var func = contract.GetFunction("BuyTokens");
-        //    var gas = await func.EstimateGasAsync(
-        //        contractAddr,                   //from
-        //        new HexBigInteger(0x493E0),     //gas
-        //        new HexBigInteger(ethAmount),   //value
-        //        ethAmount);  //amount
-
-        //    var input = func.CreateTransactionInput(contractAddr,
-        //        new HexBigInteger(0x493E0),
-        //        new HexBigInteger(price.Value * 2),
-        //        new HexBigInteger(ballance.Value - (new HexBigInteger(0x493E0).Value * price.Value * 2)));
-
-        //    var tx = await _web3t.TransactionManager.SendTransactionAsync(input);
-
-        //    //var contract = _web3t.Eth.GetContract("[{\"constant\": false,\"inputs\": [{\"name\": \"ethers\",\"type\": \"uint256\"}],\"name\": \"BuyTokens\",\"outputs\": [],\"payable\": false,\"stateMutability\": \"nonpayable\",\"type\": \"function\"}", contractAddr);
-        //    //var tx = await contract.GetFunction("BuyTokens").SendTransactionAsync(account.Address, new HexBigInteger("0x01ADB0"), new HexBigInteger(price.Value * 2), new HexBigInteger(0), amount);
-        //    return (tx, price.Value * 2);
-        //}
-
+        
         public async Task<string> SendAddToWhitelist(string address)
         {
             Contract contract = _web3.Eth.GetContract(_json.Sale.ABI.ToString(), _opts.SmartContractAddr);
@@ -162,25 +112,7 @@ namespace ExchangerMonitor
         {
             return await _web3.Eth.Transactions.GetTransactionReceipt.SendRequestAsync(transactionHash);
         }
-
-        public async Task<string> CreateExchangeContract(string from, string ethAddress)
-        {
-            var account = new Account(_crypto.Decrypt(from.StringToByteArray()));
-            var web3t = new Web3(account, _opts.NodeUrl ?? "http://localhost:8545");
-
-            var txHash = await web3t.Eth.DeployContract.SendRequestAsync(
-                _json.Exchanger.ABI.ToString(),
-                _json.Exchanger.Bytecode.Object,
-                account.Address,
-                new HexBigInteger(0x6DDD0),
-                null,
-                _opts.SmartContractAddr,
-                 ethAddress
-                );
-            return txHash;
-        }
-
-
+        
         public async Task<string> SendToSmartContractAsync(string pk, BigInteger amount)
         {
             var account = new Account(_crypto.Decrypt(pk.StringToByteArray()));
@@ -209,7 +141,9 @@ namespace ExchangerMonitor
             Contract contract = _web3t.Eth.GetContract(_json.Token.ABI.ToString(), _opts.TokenContractAddr);
             var tokenBallance = await contract.GetFunction("balanceOf").CallAsync<BigInteger>(account.Address);
             if (UnitConversion.Convert.FromWei(tokenBallance) != tokensAmount)
+            {
                 throw new Exception("Tokens amount not valid!");
+            }
 
             var tx = await contract.GetFunction("transfer").SendTransactionAsync(account.Address,
                 new HexBigInteger(0x59D8),
@@ -243,7 +177,9 @@ namespace ExchangerMonitor
                 return tx;
             }
             else
+            {
                 return string.Empty;
+            }
         }
     }
 }
