@@ -11,6 +11,7 @@ namespace ExchangerMonitor
         private NpgsqlConnection _connection;
         private readonly string _connectionString;
         private readonly ILogger _logger;
+        private readonly object syncObject = new object();
 
         public Database(string connectionString, ILogger<Database> logger)
         {
@@ -25,15 +26,20 @@ namespace ExchangerMonitor
         public async Task<List<ExchangeTransaction>> GetActiveExchangeTransactionsAsync()
         {
             List<ExchangeTransaction> result = new List<ExchangeTransaction>();
-
+         
             using (var cmd = new NpgsqlCommand(@"
 SELECT 
     es.id, 
     u.id as user_id, 
     concat('0x',encode(u.eth_address,'hex')) as eth_address, 
+    u.temp_address,
     es.start_tx, 
     es.current_tx,
-    es.eth_amount
+    es.eth_amount,
+    es.current_step,
+	es.rate,
+	es.token_count,
+    es.total_gas_count
 FROM exchange.exchange_status es
 INNER JOIN identity.users u ON es.created_by_user_id = u.id 
 WHERE es.is_ended = false AND es.is_failed = false", _connection))
@@ -46,13 +52,34 @@ WHERE es.is_ended = false AND es.is_failed = false", _connection))
                         Id = await reader.GetFieldValueAsync<string>(0),
                         UserId = await reader.GetFieldValueAsync<string>(1),
                         ETHAddress = await reader.GetFieldValueAsync<string>(2),
-                        StartTx = await reader.GetFieldValueAsync<string>(3),
-                        CurrentTx = await reader.GetFieldValueAsync<string>(4),
-                        EthAmount = await reader.GetFieldValueAsync<string>(5),
+                        TempAddress = await reader.GetFieldValueAsync<string>(3),
+                        StartTx = await reader.GetFieldValueAsync<string>(4),
+                        CurrentTx = await reader.GetFieldValueAsync<string>(5),
+                        EthAmount = await reader.GetFieldValueAsync<string>(6),
+                        CurrentStep = await reader.GetFieldValueAsync<int>(7),
+                        Rate = await reader.GetFieldValueAsync<int>(8),
+                        TokenCount = await reader.GetFieldValueAsync<int>(9),
+                        TotalGasCount = await reader.IsDBNullAsync(10) ? 0 : await reader.GetFieldValueAsync<int>(10),
                         Status = TXStatus.Ok
                     });
                 }
                 return result;
+            }
+        }
+
+        public async Task<string> GetAddressExchangerAsync(string addr)
+        {
+            using (var cmd = new NpgsqlCommand(@"SELECT exchanger FROM  exchange.addresses WHERE upper(address) = upper(@addr)", _connection))
+            {
+                cmd.Parameters.AddWithValue("addr", addr);
+                using (var reader = await cmd.ExecuteReaderAsync())
+                {
+                    if (await reader.ReadAsync())
+                    {
+                        return await reader.GetFieldValueAsync<string>(0);
+                    }
+                    return "";
+                }
             }
         }
 
@@ -81,6 +108,16 @@ WHERE es.is_ended = false AND es.is_failed = false", _connection))
 
         }
 
+        public async Task SetStep(string id, int step)
+        {
+            using (var cmd = new NpgsqlCommand(@"UPDATE exchange.exchange_status SET current_step = @step WHERE id = @id", _connection))
+            {
+                cmd.Parameters.AddWithValue("id", id);
+                cmd.Parameters.AddWithValue("step", step);
+                await cmd.ExecuteNonQueryAsync();
+            }
+        }
+
         /**
          * setCurrentTransaction
          */
@@ -100,6 +137,26 @@ WHERE es.is_ended = false AND es.is_failed = false", _connection))
             {
                 cmd.Parameters.AddWithValue("id", id);
                 cmd.Parameters.AddWithValue("tx", transaction);
+                await cmd.ExecuteNonQueryAsync();
+            }
+        }
+
+        public async Task SetExchanger(string userId, string exchanger)
+        {
+            using (var cmd = new NpgsqlCommand(@"UPDATE identity.users SET exchanger_contract = @tx WHERE id = @id", _connection))
+            {
+                cmd.Parameters.AddWithValue("id", userId);
+                cmd.Parameters.AddWithValue("tx", exchanger);
+                await cmd.ExecuteNonQueryAsync();
+            }
+        }
+
+        public async Task SetTotalGasCount(string id, int gas)
+        {
+            using (var cmd = new NpgsqlCommand(@"UPDATE exchange.exchange_status SET total_gas_count = @gas WHERE id = @id", _connection))
+            {
+                cmd.Parameters.AddWithValue("id", id);
+                cmd.Parameters.AddWithValue("gas", gas);
                 await cmd.ExecuteNonQueryAsync();
             }
         }

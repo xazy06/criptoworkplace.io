@@ -91,7 +91,9 @@ namespace pre_ico_web_site.Controllers
             }
 
             if (!string.IsNullOrEmpty(user.TempAddress))
+            {
                 return Ok(user.TempAddress);
+            }
 
             var (address, pk) = _contract.NewAddress();
             var exchanger = _crypto.Encrypt(pk.StringToByteArray()).ByteArrayToString();
@@ -112,12 +114,13 @@ namespace pre_ico_web_site.Controllers
                 return NotFound();
             }
 
-            var fixRate = await initPurchase(user.Wallet, model);
-            if (fixRate == null)
+            if (string.IsNullOrEmpty(user.Wallet) || !await _contract.CheckWhitelistAsync(user.Wallet))
             {
                 return BadRequest(new { error = "Not in whitelist" });
             }
+            var rate = await GetRateAsync(model.Count);
 
+            var fixRate = await _contract.SetRateForTransactionAsync(rate.rate, user.Wallet, rate.amount);
             return Ok(new { amount = UnitConversion.Convert.FromWei(fixRate.Amount), fixRate });
         }
 
@@ -129,22 +132,7 @@ namespace pre_ico_web_site.Controllers
                 + UnitConversion.Convert.GetEthUnitValue(UnitConversion.EthUnit.Gwei);
             return (rate: erate, amount: amount);
         }
-
-        private async Task<FixRateModel> initPurchase(string wallet, PurchaseRequestModel model)
-        {
-            if (!string.IsNullOrEmpty(wallet) && await _contract.CheckWhitelistAsync(wallet))
-            {
-                var rate = await GetRateAsync(model.Count);
-
-                var fixRate = await _contract.SetRateForTransactionAsync(rate.rate, wallet, rate.amount);
-                return fixRate;
-            }
-            else
-            {
-                return null;
-            }
-        }
-
+        
         [HttpPost("monitor")]
         public async Task<IActionResult> StartMonitorAsync([FromBody]ExchangeRequestModel model)
         {
@@ -155,38 +143,54 @@ namespace pre_ico_web_site.Controllers
             }
 
             if (string.IsNullOrEmpty(user.TempAddress))
+            {
                 return BadRequest(new { error = "Not set temp address" });
-
-            if (string.IsNullOrEmpty(user.ExchangerContract))
-            {
-                var addr = await _dbContext.Addresses.FindAsync(user.TempAddress);
-                string newContractAddr = await _contract.CreateExchangerAsync(_crypto.Decrypt(addr.Exchanger.StringToByteArray()), user.Wallet);
-                var hash = await _contract.AddAddressToWhitelistAsync(newContractAddr);
-                await _contract.WaitReciept(hash);
-                user.ExchangerContract = newContractAddr;
-                await _dbContext.SaveChangesAsync();
             }
 
-            var rate = await initPurchase(user.ExchangerContract, model);
-            if (rate == null || string.IsNullOrEmpty(user.Wallet) || !await _contract.CheckWhitelistAsync(user.Wallet))
-            {
-                return BadRequest(new {rate, user.Wallet, error = "Not in whitelist" });
-            }
+            var rate = await GetRateAsync(model.Count);
 
-            if (rate.Time > 0)
+            await _dbContext.AddAsync(new ExchangeStatus
             {
-                await _dbContext.AddAsync(new ExchangeStatus
-                {
-                    StartTx = model.Tx,
-                    CurrentTx = model.Tx,
-                    CreatedByUser = user,
-                    EthAmount = rate.Amount.ToString(),
-                });
-                user.TempAddress = null;
-                await _dbContext.SaveChangesAsync();
-            }
+                StartTx = model.Tx,
+                CurrentTx = model.Tx,
+                CurrentStep = 0,
+                Rate = rate.rate,
+                CreatedByUser = user,
+                EthAmount = rate.amount.ToString(),
+                TokenCount = model.Count
+            });
+            await _dbContext.SaveChangesAsync();
 
-            return Ok(rate);
+            //if (string.IsNullOrEmpty(user.ExchangerContract))
+            //{
+            //    var rate = await GetRateAsync(model.Count);
+            //    if (string.IsNullOrEmpty(user.Wallet) || !await _contract.CheckWhitelistAsync(user.Wallet))
+            //    {
+            //        return BadRequest(new { rate, user.Wallet, error = "Not in whitelist" });
+            //    }
+            //    var addr = await _dbContext.Addresses.FindAsync(user.TempAddress);
+            //    string newContractAddr = await _contract.CreateExchangerAsync(
+            //        _crypto.Decrypt(addr.Exchanger.StringToByteArray()),
+            //        user.Wallet,
+            //        new HexBigInteger(rate.amount),
+            //        new HexBigInteger(rate.rate));
+            //    var hash = await _contract.AddAddressToWhitelistAsync(newContractAddr);
+            //    await _contract.WaitReciept(hash);
+            //    user.ExchangerContract = newContractAddr;
+            //    await _dbContext.SaveChangesAsync();
+
+            //    await _dbContext.AddAsync(new ExchangeStatus
+            //    {
+            //        StartTx = model.Tx,
+            //        CurrentTx = model.Tx,
+            //        CreatedByUser = user,
+            //        EthAmount = rate.amount.ToString(),
+            //    });
+            //    user.TempAddress = null;
+            //    await _dbContext.SaveChangesAsync();
+            //}
+
+            return Ok(new { Rate = rate.rate, Amount = rate.amount });
         }
 
         [HttpPost("whiteList")]

@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using Nethereum.Hex.HexTypes;
 using Nethereum.JsonRpc.Client;
 using System;
 using System.Collections.Generic;
@@ -35,7 +34,11 @@ namespace ExchangerMonitor
                   await CheckDbAsync();
                   lock (_monitored)
                   {
-                      Parallel.ForEach(_monitored.Keys, async item => _monitored[item] = await ProcessExchangeItemAsync(_monitored[item]));
+                      Parallel.ForEach(_monitored.Keys, async item =>
+                      {
+                          if (_monitored[item].Status != TXStatus.Processed)
+                            _monitored[item] = await ProcessExchangeItemAsync(_monitored[item]);
+                      });
                   }
               }), null, TimeSpan.FromSeconds(0), TimeSpan.FromSeconds(30));
             _printDataTimer = new Timer(new TimerCallback((_) => { PrintCurrentMon(); }), null, 0, 10000);
@@ -83,7 +86,7 @@ namespace ExchangerMonitor
             try
             {
                 ExchangeOperationStatus status = await _eth.GetTransactionStatus(item.CurrentTx);
-                
+
                 _logger.LogDebug($"Tx: {item.CurrentTx} Status: {status}");
                 switch (status)
                 {
@@ -103,7 +106,7 @@ namespace ExchangerMonitor
             {
                 _logger.LogDebug(ex.ToString());
             }
-            
+
             return item;
         }
 
@@ -111,31 +114,108 @@ namespace ExchangerMonitor
         {
             try
             {
+                item.Status = TXStatus.Processed;
                 var transaction = await _eth.GetTransactionToAsync(item.CurrentTx);
-                if (item.StartTx == item.CurrentTx)
+                var receipt = await _eth.GetTransactionReceiptAsync(transaction.TransactionHash);
+                switch ((ChangeSteps)item.CurrentStep)
                 {
-                    var amount = new HexBigInteger(BigInteger.Parse(item.EthAmount));
-                    _logger.LogDebug($"send {amount.Value} ETH to contract");
-
-                    var (tx, gasPrice) = await _eth.SendToSmartContractAsync(amount, transaction.To);
-                    item.CurrentTx = tx;
-                    await _db.SetCurrentTransaction(item.Id, tx);
-
-                    //var toRefund = transaction.Value.Value - amount.Value - gasPrice * (95000 + 21000);
-                    //if (toRefund > 0)
-                    //{
-                    //    _logger.LogDebug($"refund: {toRefund}");
-                        
-                        
-                    //    var refundTx = await _eth.SendRefundToUserAsync(item.ETHAddress, new HexBigInteger(toRefund));
-                    //    await _db.SetRefundTransaction(item.Id, refundTx);
-                    //}
+                    case ChangeSteps.AddTempAddressToWhiteList:
+                        {
+                            //var receipt = await _eth.GetTransactionReceiptAsync(transaction.TransactionHash);
+                            //item.ExchangerContract = receipt.ContractAddress;
+                            //await _db.SetExchanger(item.UserId, item.ExchangerContract);
+                            _logger.LogInformation("Add Temp address to whitelist");
+                            var tx = await _eth.SendAddToWhitelist(item.TempAddress);
+                            await _db.SetCurrentTransaction(item.Id, tx);
+                            await _db.SetStep(item.Id, (int)ChangeSteps.AddUserWalletToWhiteList);
+                        }
+                        break;
+                    case ChangeSteps.AddUserWalletToWhiteList:
+                        {
+                            _logger.LogInformation("Add user to whitelist");
+                            var tx = await _eth.SendAddToWhitelist(item.ETHAddress);
+                            await _db.SetCurrentTransaction(item.Id, tx);
+                            await _db.SetStep(item.Id, (int)ChangeSteps.SetRate);
+                        }
+                        break;
+                    case ChangeSteps.SetRate:
+                        {
+                            _logger.LogInformation("Set fix rate");
+                            var amount = BigInteger.Parse(item.EthAmount);
+                            var tx = await _eth.SetRateForTransactionAsync(item.Rate, item.TempAddress, amount);
+                            if (!string.IsNullOrEmpty(tx))
+                            {
+                                await _db.SetCurrentTransaction(item.Id, tx);
+                            }
+                            await _db.SetStep(item.Id, (int)ChangeSteps.SendEth);
+                        }
+                        break;
+                    case ChangeSteps.SendEth:
+                        {
+                            _logger.LogInformation("Send eth to exchanger contract");
+                            var exchanger = await _db.GetAddressExchangerAsync(item.TempAddress);
+                            string tx  = await _eth.SendToSmartContractAsync(exchanger, BigInteger.Parse(item.EthAmount));
+                            await _db.SetCurrentTransaction(item.Id, tx);
+                            await _db.SetStep(item.Id, (int)ChangeSteps.SendTokens);
+                        }
+                        break;
+                    case ChangeSteps.SendTokens:
+                        {
+                            _logger.LogInformation("Send tokens to customer");
+                            var exchanger = await _db.GetAddressExchangerAsync(item.TempAddress);
+                            var tx = await _eth.SendTokensToUserAsync(exchanger, item.ETHAddress, item.TokenCount);
+                            await _db.SetCurrentTransaction(item.Id, tx);
+                            await _db.SetStep(item.Id, (int)ChangeSteps.Refund);
+                        }
+                        break;
+                    case ChangeSteps.Refund:
+                        {
+                            _logger.LogInformation("Send eth to customer");
+                            var exchanger = await _db.GetAddressExchangerAsync(item.TempAddress);
+                            var tx = await _eth.SendRefundToUserAsync(exchanger, item.ETHAddress);
+                            //(string tx, _) = await _eth.SendToSmartContractAsync(exchanger, BigInteger.Parse(item.EthAmount));
+                            ////(string tx, _) = await _eth.SendToSmartContractAsync(exchanger, item.ExchangerContract, BigInteger.Parse(item.EthAmount));
+                            await _db.SetCurrentTransaction(item.Id, tx);
+                            await _db.SetStep(item.Id, (int)ChangeSteps.Finish);
+                        }
+                        break;
+                    case ChangeSteps.Finish:
+                        {
+                            item.Status = TXStatus.Ended;
+                            await _db.MarkAsEnded(item.Id);
+                        }
+                        break;
+                    default:
+                        break;
                 }
-                else// if (transaction.To == item.ETHAddress)
-                {
-                    item.Status = TXStatus.Ended;
-                    await _db.MarkAsEnded(item.Id);
-                }
+
+                item.TotalGasCount += (int)receipt.GasUsed.Value;
+                await _db.SetTotalGasCount(item.Id, item.TotalGasCount);
+
+                //if (item.StartTx == item.CurrentTx)
+                //{
+                //    var amount = new HexBigInteger(BigInteger.Parse(item.EthAmount));
+                //    _logger.LogDebug($"send {amount.Value} ETH to contract");
+                //    var exchanger = await _db.GetAddressExchangerAsync(transaction.To);
+                //    var (tx, gasPrice) = await _eth.SendToSmartContractAsync(exchanger, item.ExchangerContract);
+                //    item.CurrentTx = tx;
+                //    await _db.SetCurrentTransaction(item.Id, tx);
+
+                //    //var toRefund = transaction.Value.Value - amount.Value - gasPrice * (95000 + 21000);
+                //    //if (toRefund > 0)
+                //    //{
+                //    //    _logger.LogDebug($"refund: {toRefund}");
+
+
+                //    //    var refundTx = await _eth.SendRefundToUserAsync(item.ETHAddress, new HexBigInteger(toRefund));
+                //    //    await _db.SetRefundTransaction(item.Id, refundTx);
+                //    //}
+                //}
+                //else// if (transaction.To == item.ETHAddress)
+                //{
+                //    item.Status = TXStatus.Ended;
+                //    await _db.MarkAsEnded(item.Id);
+                //}
                 //else
                 //{
                 //    //var tokens = await _eth.GetTokensFromTransaction(item.CurrentTx);
@@ -158,6 +238,10 @@ namespace ExchangerMonitor
             {
                 _logger.LogDebug(ex.ToString());
             }
+            finally
+            {
+                item.Status = TXStatus.Ok;
+            }
         }
     }
 
@@ -165,5 +249,18 @@ namespace ExchangerMonitor
     {
         public string Message { get; set; }
         public ConsoleColor Color { get; set; }
+    }
+
+    internal enum ChangeSteps
+    {
+        //CreateExchangeContract = 0,
+        AddTempAddressToWhiteList = 0,
+        AddUserWalletToWhiteList = 1,
+        SetRate = 2,
+        SendEth = 3,
+        SendTokens = 4,
+        Refund = 5,
+        Finish = 6
+
     }
 }
