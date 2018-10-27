@@ -76,7 +76,7 @@ namespace pre_ico_web_site.Controllers
         }
 
         [HttpGet("calcExchange/{amount}-{rate}")]
-        public async Task<IActionResult> GetCalcAsync([FromRoute]int amount,[FromRoute]int rate)
+        public async Task<IActionResult> GetCalcAsync([FromRoute]int amount,[FromRoute]decimal rate)
         {
             var user = await _dbContext.GetCurrentUserAsync(User);
             if (user == null)
@@ -87,7 +87,7 @@ namespace pre_ico_web_site.Controllers
             var ethrate = await GetRateAsync(amount);
             var price = await _contract.GetGasPriceAsync();
             var gas = (0xBB80 + 0xBB80 + 0x19A28 + 0x59D8 + 0x5208) * price * 3;
-            return Ok(UnitConversion.Convert.FromWei(ethrate.amount + gas).ToString());
+            return Ok((Math.Ceiling(UnitConversion.Convert.FromWei(ethrate.amount + gas) * 1000000 / rate)/ 1000000).ToString());
         }
 
         [HttpGet("addr")]
