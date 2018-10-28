@@ -348,6 +348,7 @@ var Controller = function () {
 		},
 		
 		flags:{
+			transactionsGetting: ko.observable(false),
 			isFixedAmmountMode: ko.observable(true),
 			hasMetamask: ko.observable(false),
 			whiteListLess: ko.pureComputed(function () {
@@ -388,6 +389,9 @@ var Controller = function () {
 		},
 		
 		actions:{
+			getTransactions: function () {
+				return Gate.actions.transactions();
+			},
 			toggleTransactionItem: function(){
 				var $el = $(this);
 				

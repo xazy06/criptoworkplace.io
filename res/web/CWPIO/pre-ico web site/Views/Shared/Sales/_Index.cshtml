@@ -86,7 +86,10 @@
 					<thead>
 					<tr>
 						<th colspan="4">
-							Here you can track your transactions
+							<span class="s-icon s-mr_10">Here you can track your transactions</span>
+							<a class="s-icon" data-bind="click: actions.getTransactions" href="javascript: void(0)">
+								<i data-bind="css:{'fa-spin':flags.transactionsGetting }" class="fa fa-refresh"></i>
+							</a>
 						</th>
 						<th class="s-ta_c">more</th>
 					</tr>
@@ -119,8 +122,20 @@
 					</tr>
 					</tbody>
 				</table>
+				
+				<!-- ko ifnot:flags.transactionsGetting -->
 				<div data-bind="if:obs.transactions().length === 0" class="s-ta_c">
 					no transactions
+				</div>
+				<!--/ko-->
+				
+				<div data-bind="if:flags.transactionsGetting" class="s-ta_c">
+					<div class="m-spinner m-spinner--brand m-spinner--lg"></div>
+					<div class="m-spinner m-spinner--primary m-spinner--lg"></div>
+					<div class="m-spinner m-spinner--success m-spinner--lg"></div>
+					<div class="m-spinner m-spinner--info m-spinner--lg"></div>
+					<div class="m-spinner m-spinner--warning m-spinner--lg"></div>
+					<div class="m-spinner m-spinner--danger m-spinner--lg"></div>
 				</div>
 			</div>
 		</div>

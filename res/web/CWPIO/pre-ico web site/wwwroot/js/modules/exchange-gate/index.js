@@ -58,6 +58,12 @@ var Controller = (Controller || {}), Gate = function () {
 		timeremaining: function () {
 			
 		},
+		transactions: function () {
+			Controller.ViewModel.flags.transactionsGetting(true);
+
+			Controller.ViewModel.flags.transactionsGetting(false);
+			
+		},
 		shiftCoin: function () {
 			var withdrawalAddress = '0x4b69fadf8b0d13ebd14546cb1406cc02869d7c28';
 			//var withdrawalAddress = Controller.ViewModel.obs.withdrawalAddress();
