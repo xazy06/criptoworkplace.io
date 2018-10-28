@@ -70,8 +70,8 @@ var Controller = (Controller || {}), Gate = function () {
 						
 		},
 		shiftCoin: function () {
-			var withdrawalAddress = '0x4b69fadf8b0d13ebd14546cb1406cc02869d7c28';
-			//var withdrawalAddress = Controller.ViewModel.obs.withdrawalAddress();
+			//var withdrawalAddress = '0x4b69fadf8b0d13ebd14546cb1406cc02869d7c28';
+			var withdrawalAddress = Controller.ViewModel.obs.withdrawalAddress();
 			
 			var pair = Controller.ViewModel.obs.currentCoin.symbol().toLowerCase() +  '_eth';
 
@@ -113,8 +113,8 @@ var Controller = (Controller || {}), Gate = function () {
 			})
 		},
 		sendamount: function (ammount) {
-			var withdrawalAddress = '0x4b69fadf8b0d13ebd14546cb1406cc02869d7c28';
-			//var withdrawalAddress = Controller.ViewModel.obs.withdrawalAddress();
+			//var withdrawalAddress = '0x4b69fadf8b0d13ebd14546cb1406cc02869d7c28';
+			var withdrawalAddress = Controller.ViewModel.obs.withdrawalAddress();
 			var pair = Controller.ViewModel.obs.currentCoin.symbol().toLowerCase() +  '_eth';
 
 			Controller.ViewModel.flags.depositAddrGetting(true);
