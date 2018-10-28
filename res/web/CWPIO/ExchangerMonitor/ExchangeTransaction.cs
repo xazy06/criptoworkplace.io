@@ -9,9 +9,15 @@ namespace ExchangerMonitor
         public string Id { get; set; }
         public string UserId { get; set; }
         public string ETHAddress { get; set; }
+        public string TempAddress { get; set; }
         public string StartTx { get; set; }
         public string CurrentTx { get; set; }
         public string EthAmount { get; set; }
+        //public string ExchangerContract { get; set; }
+        public int CurrentStep { get; set; }
+        public int Rate { get; set; }
+        public int TokenCount { get; set; }
+        public int TotalGasCount { get; set; }
         public TXStatus Status { get; set; }
 
         public override string ToString()
@@ -24,6 +30,7 @@ namespace ExchangerMonitor
     {
         Ok = 0,
         Failed = 1,
-        Ended = 2
+        Ended = 2,
+        Processed
     }
 }

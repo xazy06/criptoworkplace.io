@@ -54,7 +54,7 @@ namespace ExchangerMonitor
             serviceCollection.AddSingleton(s =>
                 new Database(Configuration.GetConnectionString("CWPConnection"), s.GetRequiredService<ILogger<Database>>())
             );
-
+            serviceCollection.AddSingleton<Crypto>();
             // add app
             serviceCollection.AddTransient<App>();
         }

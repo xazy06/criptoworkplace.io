@@ -13,4 +13,10 @@
     <PackageReference Include="Npgsql" Version="4.0.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Exchanger.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
