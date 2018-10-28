@@ -92,10 +92,6 @@
 	<div class="m-spinner m-spinner--danger m-spinner--lg"></div>
 </div>
 
-<div data-bind="css:{'s-display_bi': flags.emptySearchRequest}" class="s-display_n b-empty-search--coins">
-	There is no currencies you are search 
-</div>
-
 <div data-bind="css:{'s-display_bi': flags.currenciesReady}" class="s-display_n">
 	
 	<div class="row s-overflow_h">
@@ -103,6 +99,11 @@
 
 			<div class="s-mb_40i row">
 				<div data-bind="css:{'col-md-5': flags.gateOperating, 'col-md-12': (flags.gateOperating() === false)}" class="b-currencies-wrapper">
+					
+					<div data-bind="css:{'s-display_bi': flags.emptySearchRequest}" class="s-display_n b-empty-search--coins">
+						There is no currencies you are search 
+					</div>
+					
 					<table class="table table-hover table-sm">
 						<tbody>
 						<!-- ko foreach: currencies -->
