@@ -61,8 +61,13 @@ var Controller = (Controller || {}), Gate = function () {
 		transactions: function () {
 			Controller.ViewModel.flags.transactionsGetting(true);
 
-			Controller.ViewModel.flags.transactionsGetting(false);
-			
+			shapeshift.transactions('d80356c4c5c561bac38c5e451edc2b7a535ad27088b22e46ba8506995edb0d09a70a24c1c1ffa0bc1f6acddbec49870f135897568dfbee5a6d823109bcb9073d', 
+				'0x4B69FADF8B0D13EBD14546CB1406CC02869D7C28', function(r){
+				console.log(r);
+					
+				Controller.ViewModel.flags.transactionsGetting(false);
+			});
+						
 		},
 		shiftCoin: function () {
 			var withdrawalAddress = '0x4b69fadf8b0d13ebd14546cb1406cc02869d7c28';
