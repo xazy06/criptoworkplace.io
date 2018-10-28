@@ -72,7 +72,11 @@ namespace pre_ico_web_site.Controllers
             }
 
             var rate = await GetRateAsync(amount);
-            return Ok(UnitConversion.Convert.FromWei(rate.amount).ToString());
+            return Ok(new
+            {
+                totalAmount = UnitConversion.Convert.FromWei(rate.amount).ToString(),
+                fee = "0"
+            });
         }
 
         [HttpGet("calcExchange/{amount}")]
@@ -87,7 +91,11 @@ namespace pre_ico_web_site.Controllers
             var ethrate = await GetRateAsync(amount);
             var price = await _contract.GetGasPriceAsync();
             var gas = (0xBB80 + 0xBB80 + 0x19A28 + 0x59D8 + 0x5208) * price * 3;
-            return Ok(UnitConversion.Convert.FromWei(ethrate.amount + gas).ToString());
+            return Ok(new
+            {
+                totalAmount = UnitConversion.Convert.FromWei(ethrate.amount + gas).ToString(),
+                fee = UnitConversion.Convert.FromWei(gas).ToString()
+            });
         }
 
         [HttpGet("addr")]
@@ -147,7 +155,7 @@ namespace pre_ico_web_site.Controllers
                 + UnitConversion.Convert.GetEthUnitValue(UnitConversion.EthUnit.Gwei);
             return (rate: erate, amount: amount);
         }
-        
+
         [HttpPost("monitor")]
         public async Task<IActionResult> StartMonitorAsync([FromBody]ExchangeRequestModel model)
         {
