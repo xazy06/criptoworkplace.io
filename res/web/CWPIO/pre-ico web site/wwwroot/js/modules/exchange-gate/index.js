@@ -53,6 +53,9 @@ var Controller = (Controller || {}), Gate = function () {
 				*/
 			})
 		},
+		timeremaining: function () {
+			
+		},
 		shiftCoin: function () {
 			var withdrawalAddress = '0x4b69fadf8b0d13ebd14546cb1406cc02869d7c28';
 			//var withdrawalAddress = Controller.ViewModel.obs.withdrawalAddress();
@@ -125,6 +128,7 @@ var Controller = (Controller || {}), Gate = function () {
 				var depositAddress = returnData.deposit;
 				
 				Controller.ViewModel.obs.depositAddress(depositAddress);
+				Controller.ViewModel.obs.transactionFee(returnData.minerFee);
 				
 				Controller.ViewModel.obs.fixedAmmount.depositAmount(returnData.depositAmount);
 				Controller.ViewModel.obs.fixedAmmount.expiration(returnData.expiration);
