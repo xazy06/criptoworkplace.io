@@ -288,6 +288,7 @@ var Controller = function () {
 		currenciesMap: null,
 		
 		obs:{
+			transactions: ko.observableArray([]),
 			whiteListAddressField: ko.observable(''),
 			withdrawalAddress: ko.observable(''),
 			returnAddress: ko.observable(''),
@@ -387,6 +388,12 @@ var Controller = function () {
 		},
 		
 		actions:{
+			toggleTransactionItem: function(){
+				var $el = $(this);
+				
+				$el.closest('tr').toggleClass('opened');
+				$el.closest('tr').next('tr').toggleClass('s-display_n');
+			},
 			getndFillAddressFromMetamask: function () {
 				ViewModel.flags.lockFill(true);
 				self.web3js.eth.getAccounts().then(function(r){

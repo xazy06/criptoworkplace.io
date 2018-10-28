@@ -137,3 +137,27 @@
 .s-mb_20 {
 	margin-bottom:20px;
 }
+
+.form-control.ammount-control {
+	border-radius: 0;
+	border-top: 0;
+	border-left: 0;
+	border-right: 0;
+	border-bottom-width: 2px;
+	padding: 4px 0;
+}
+
+.s-expandable .fa-angle-right{
+	display:none;
+}
+
+.s-expandable.opened .fa-angle-down{
+	display:none;
+}
+.s-expandable.opened .fa-angle-right{
+	display:inline-block;
+}
+
+.b-tx-info {
+	background-color: #f4f5f8;
+}

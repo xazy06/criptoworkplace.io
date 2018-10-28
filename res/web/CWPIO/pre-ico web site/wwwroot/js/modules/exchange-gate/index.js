@@ -14,7 +14,9 @@ var Controller = (Controller || {}), Gate = function () {
 	this.api = {
 	};
 	
-	this.apiKey = '803d1f5df2ed1b1476e4b9e6bcd089e34d8874595dda6a23b67d93c56ea9cc2445e98a6748b219b2b6ad654d9f075f1f1db139abfa93158c04e825db122c14b7';
+	this.apiKey = '803d1f5df2ed1b1476e4b9e6bcd089e34d8874595dda6a23b67d93c56ea9cc2445e98a6748b219b2b6ad654d9f075f1f1db139abfa93158c04e825db122c14b6';
+	//Public key : 08ef330fe264f674ddd4943a5156cfb1ea06f10b95d5db54781afa3d8b108100874083d53b28afa5ce58bf3e834158a3114db725bce5b49da9454ef036753599
+	//Private key : d80356c4c5c561bac38c5e451edc2b7a535ad27088b22e46ba8506995edb0d09a70a24c1c1ffa0bc1f6acddbec49870f135897568dfbee5a6d823109bcb9073d
 	
 	this.actions = {
 		getMap: function () {

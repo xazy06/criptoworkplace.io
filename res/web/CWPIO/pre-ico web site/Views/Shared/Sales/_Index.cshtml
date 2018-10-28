@@ -91,28 +91,31 @@
 						<th class="s-ta_c">more</th>
 					</tr>
 					</thead>
-					<tbody>
+					<tbody data-bind="foreach: obs.transactions">
 					
-					<tr>
+					<tr class="s-expandable">
 						<td>Completed</td>
 						<td>ETH</td>
 						<td>0.05</td>
 						<td>2018-10-12 17:04:38</td>
 						<td class="s-ta_c">
-							<a href="javascript:void(0)">
+							<a data-bind="click: $root.actions.toggleTransactionItem.bind($element)" href="javascript:void(0)">
 								<i class="fa fa-angle-down"></i>
+								<i class="fa fa-angle-right"></i>
 							</a>
 						</td>
-@*						<td rowspan="2" colspan="5">*@
-@*							<div class="s-mb_10">*@
-@*								<span>Address:</span>*@
-@*								<span></span>*@
-@*							</div>*@
-@*							<div class="s-mb_10">*@
-@*								<span>Txid:</span>*@
-@*								<span></span>*@
-@*							</div>*@
-@*						</td>*@
+					</tr>
+					<tr class="s-display_n">
+						<td class="b-tx-info" rowspan="2" colspan="5">
+							<div class="s-mb_10">
+								<span>Address:</span>
+								<span></span>
+							</div>
+							<div class="s-mb_10">
+								<span>Txid:</span>
+								<span></span>
+							</div>
+						</td>
 					</tr>
 					</tbody>
 				</table>

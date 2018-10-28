@@ -217,7 +217,7 @@
 						CWT-P Token amount you want to receive
 					</h6>
 					<div class="s-mb_20">
-						<input autofocus data-bind="textInput: obs.cwtCount" type="number" class="form-control"/>
+						<input autofocus data-bind="textInput: obs.cwtCount" type="number" class="form-control ammount-control"/>
 					</div>
 					<div data-bind="css:{'s-display_bi': flags.minCont}" class="s-display_n m-alert m-alert--outline alert alert-warning alert-dismissible fade show" role="alert">
 						Minimum contribution is 500 CWT-P  	
@@ -244,7 +244,7 @@
 							<p>
 								Please send <!-- ko text: obs.fixedAmmount.depositAmount --><!--/ko--> 
 								<strong><!-- ko text: obs.currentCoin.symbol --><!--/ko--></strong>
-								(includs fee: <!-- ko text: obs.transactionFee --><!--/ko--> <!-- ko text: obs.currentCoin.symbol --><!--/ko-->) to the address below:
+								(includs fee: <!-- ko text: obs.transactionFee --><!--/ko--> ETH) to the address below:
 							</p>
 							<p>
 								This order will expair on 
@@ -293,7 +293,8 @@
 		<h5 class="m--font-primary">
 			CWT-P Token amount you want to receive
 		</h5>
-		<input autofocus data-bind="textInput: obs.cwtCount" style="margin-bottom: 20px;" type="number" class="form-control"/>
+		<input autofocus data-bind="textInput: obs.cwtCount" style="margin-bottom: 20px;" type="number" 
+		       class="form-control"/>
 	</div>
 	<div class="col-md-4 col-sm-6">
 		<h5 class="m--font-primary">
