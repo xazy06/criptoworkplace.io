@@ -28,7 +28,7 @@ var Controller = function () {
 		wl: '/api/v1/exchanger/whiteList',
 		usersettings:'/api/v1/usersettings',
 		exchanger:'/api/v1/exchanger',
-		calc:'/api/v1/exchanger/calc/',
+		calc:'/api/v1/exchanger/calcExchange/',
 		purchase: '/api/v1/exchanger/addr',
 		initPurchasing: '/api/v1/exchanger/initPurchasing'
 	};
@@ -200,7 +200,7 @@ var Controller = function () {
 				url:self.api.calc + count,
 				method:'GET'
 			}).done(function (response) {
-				ViewModel.obs.needPay(response);
+				ViewModel.obs.needPay(response.totalAmount);
 			});
 		},
 		
@@ -399,13 +399,18 @@ var Controller = function () {
 				$el.closest('tr').next('tr').toggleClass('s-display_n');
 			},
 			getndFillAddressFromMetamask: function () {
+				ViewModel.obs.whiteListAddressField('');
+				
 				ViewModel.flags.lockFill(true);
 				self.web3js.eth.getAccounts().then(function(r){
 					ViewModel.flags.lockFill(false);
 					try{
 						r = r && r[0] || '';
 						ViewModel.obs.whiteListAddressField(r);
-					}catch (e){}
+					}catch (e){
+						console.log(e);
+						
+					}
 				})
 			},
 			byteLength: function (str) {
@@ -529,7 +534,9 @@ var Controller = function () {
 					 * got whitelisted address => we can init gate shift coin pare
 					 *   
 					 */
-					if (ViewModel.obs.currentCoin.symbol() === 'ETH') {
+					ViewModel.obs.cwtCount(500);
+					
+  				if (ViewModel.obs.currentCoin.symbol() === 'ETH') {
 						
 						if (ViewModel.flags.isFixedAmmountMode()){
 							return ViewModel.actions.shiftETH();
@@ -544,7 +551,7 @@ var Controller = function () {
 								console.log('ammount got');
 								console.log(response);
 							//TODO response will be changed
-							ViewModel.actions.gate.sendamount(response);
+							ViewModel.actions.gate.sendamount(response.totalAmount);
 						});	
 					}
 					
@@ -573,7 +580,7 @@ var Controller = function () {
 			console.log('ammount got');
 			console.log(response);
 			//TODO response will be changed
-			ViewModel.actions.gate.sendamount(response);
+			ViewModel.actions.gate.sendamount(response.totalAmount);
 		});
 	});
 
@@ -607,8 +614,6 @@ var Controller = function () {
 		
 	});
 		
-	
-	ViewModel.obs.cwtCount(500);
 	
 	self.ViewModel = ViewModel;
 	

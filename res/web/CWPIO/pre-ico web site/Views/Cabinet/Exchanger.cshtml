@@ -288,40 +288,40 @@
 	</div>
 </div>
 
-<div style="margin-bottom: 20px; display: none;" class="row">
-	<div class="col-md-6 col-sm-6">
-		<h5 class="m--font-primary">
-			CWT-P Token amount you want to receive
-		</h5>
-		<input autofocus data-bind="textInput: obs.cwtCount" style="margin-bottom: 20px;" type="number" 
-		       class="form-control"/>
-	</div>
-	<div class="col-md-4 col-sm-6">
-		<h5 class="m--font-primary">
-			ETH amount need to send
-		</h5>
-			
-		<span style="font-size: 20px;line-height: 37px;" data-bind="text: obs.needPay"></span>
-		<sup>ETH</sup>
-	</div>
-	<div class="col-md-2 col-sm-12 col-xs-12">
-		<h5 class="m--font-primary">
-			&nbsp;&nbsp;
-		</h5>
-			<div class="m--visible-desktop">
-				<button data-bind="css:{'m-loader': flags.purchasingIsInitializing}, disable:(flags.minCont()|| flags.purchasingIsInitializing()), click: actions.initPurchasing" type="button" 
-				        class="btn btn-outline-focus m-btn--square m-btn--outline-2x m-btn m-loader--primary m-loader--right">Purchase</button>
-			</div>
-		<div class="m--visible-mobile m--visible-tablet">
-			<button data-bind="css:{'m-loader': flags.purchasingIsInitializing}, disable:(flags.minCont()|| flags.purchasingIsInitializing()), click: actions.initPurchasing" type="button" 
-			        class="btn btn-outline-focus m-btn--square m-btn--outline-2x m-btn btn-block m-btn--custom m-btn--air m-loader--primary m-loader--right">Purchase</button>
-		</div>
-	</div>
-</div>
+@*<div style="margin-bottom: 20px; display: none;" class="row">*@
+@*	<div class="col-md-6 col-sm-6">*@
+@*		<h5 class="m--font-primary">*@
+@*			CWT-P Token amount you want to receive*@
+@*		</h5>*@
+@*		<input autofocus data-bind="textInput: obs.cwtCount" style="margin-bottom: 20px;" type="number" *@
+@*		       class="form-control"/>*@
+@*	</div>*@
+@*	<div class="col-md-4 col-sm-6">*@
+@*		<h5 class="m--font-primary">*@
+@*			ETH amount need to send*@
+@*		</h5>*@
+@*			*@
+@*		<span style="font-size: 20px;line-height: 37px;" data-bind="text: obs.needPay"></span>*@
+@*		<sup>ETH</sup>*@
+@*	</div>*@
+@*	<div class="col-md-2 col-sm-12 col-xs-12">*@
+@*		<h5 class="m--font-primary">*@
+@*			&nbsp;&nbsp;*@
+@*		</h5>*@
+@*			<div class="m--visible-desktop">*@
+@*				<button data-bind="css:{'m-loader': flags.purchasingIsInitializing}, disable:(flags.minCont()|| flags.purchasingIsInitializing()), click: actions.initPurchasing" type="button" *@
+@*				        class="btn btn-outline-focus m-btn--square m-btn--outline-2x m-btn m-loader--primary m-loader--right">Purchase</button>*@
+@*			</div>*@
+@*		<div class="m--visible-mobile m--visible-tablet">*@
+@*			<button data-bind="css:{'m-loader': flags.purchasingIsInitializing}, disable:(flags.minCont()|| flags.purchasingIsInitializing()), click: actions.initPurchasing" type="button" *@
+@*			        class="btn btn-outline-focus m-btn--square m-btn--outline-2x m-btn btn-block m-btn--custom m-btn--air m-loader--primary m-loader--right">Purchase</button>*@
+@*		</div>*@
+@*	</div>*@
+@*</div>*@
 
-<div style="display: none;" data-bind="css:{'s-display_bi': flags.minCont}" class="s-display_n m-alert m-alert--outline alert alert-success alert-dismissible fade show" role="alert">
-	Minimum contribution is 500 CWT-P  	
-</div>
+@*<div style="display: none;" data-bind="css:{'s-display_bi': flags.minCont}" class="s-display_n m-alert m-alert--outline alert alert-success alert-dismissible fade show" role="alert">*@
+@*	Minimum contribution is 500 CWT-P  	*@
+@*</div>*@
 
 @*<h5 class="m--font-primary">*@
 @*	Choose availiable currencies*@

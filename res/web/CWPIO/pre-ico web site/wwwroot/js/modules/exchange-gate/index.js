@@ -74,7 +74,7 @@ var Controller = (Controller || {}), Gate = function () {
 			var withdrawalAddress = Controller.ViewModel.obs.withdrawalAddress();
 			
 			var pair = Controller.ViewModel.obs.currentCoin.symbol().toLowerCase() +  '_eth';
-
+			//debugger;
 			Controller.ViewModel.flags.depositAddrGetting(true);
 			Controller.ViewModel.flags.depositAddrGot(false);
 
@@ -117,6 +117,7 @@ var Controller = (Controller || {}), Gate = function () {
 			var withdrawalAddress = Controller.ViewModel.obs.withdrawalAddress();
 			var pair = Controller.ViewModel.obs.currentCoin.symbol().toLowerCase() +  '_eth';
 
+			//debugger;
 			Controller.ViewModel.flags.depositAddrGetting(true);
 			Controller.ViewModel.flags.depositAddrGot(false);
 
