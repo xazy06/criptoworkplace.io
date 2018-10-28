@@ -245,6 +245,12 @@
 								<strong><!-- ko text: obs.currentCoin.symbol --><!--/ko--></strong>
 								(includs fee: <!-- ko text: obs.transactionFee --><!--/ko--> <!-- ko text: obs.currentCoin.symbol --><!--/ko-->) to the address below:
 							</p>
+							<p>
+								This order will expair on 
+								<strong>
+									<!-- ko text: (new Date(obs.fixedAmmount.expiration()).toLocaleString()) --><!--/ko-->
+								</strong>
+							</p>
 							<!-- /ko -->
 							
 							<!-- ko ifnot: flags.isFixedAmmountMode -->
@@ -281,7 +287,7 @@
 	</div>
 </div>
 
-<div style="margin-bottom: 20px;" class="row">
+<div style="margin-bottom: 20px; display: none;" class="row">
 	<div class="col-md-6 col-sm-6">
 		<h5 class="m--font-primary">
 			CWT-P Token amount you want to receive
@@ -311,7 +317,7 @@
 	</div>
 </div>
 
-<div data-bind="css:{'s-display_bi': flags.minCont}" class="s-display_n m-alert m-alert--outline alert alert-success alert-dismissible fade show" role="alert">
+<div style="display: none;" data-bind="css:{'s-display_bi': flags.minCont}" class="s-display_n m-alert m-alert--outline alert alert-success alert-dismissible fade show" role="alert">
 	Minimum contribution is 500 CWT-P  	
 </div>
 

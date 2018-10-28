@@ -9,63 +9,81 @@
 			</div>
 		</div>
 		<div class="m-portlet__head-tools">
+			<ul class="nav nav-pills nav-pills--brand m-nav-pills--align-right m-nav-pills--btn-pill m-nav-pills--btn-sm" role="tablist">
+				<li class="nav-item m-tabs__item">
+					<a class="nav-link m-tabs__link active show" data-toggle="tab" href="#sales-tab" role="tab" aria-selected="true">
+						Sales
+					</a>
+				</li>
+				<li class="nav-item m-tabs__item">
+					<a class="nav-link m-tabs__link" data-toggle="tab" href="#tx-tab" role="tab" aria-selected="false">
+						Transactions
+					</a>
+				</li>
+			</ul>
 		</div>
 	</div>
 	<div class="m-portlet__body">
-		<div class="m-widget25">
-			<div class="s-mb_20">
-				<span class="m-widget25__price m--font-brand">
-					<!-- ko text:obs.sales.sold --><i style="padding: 0 12px" class="m-loader m-loader--brand"></i><!--/ko-->
-				</span>
-				<span class="m-widget25__desc">CWT-P</span>
-			</div>
-		
-			<h3 style="margin-bottom: 20px;">Cryptoworkplace smart contract address</h3>
-
-			<div data-bind="css:{'s-display_bi': obs.contractAddress}" class="s-display_n m-pricing-table-1">
-				<p>
-					<a data-bind="attr:{'href': ('https://etherscan.io/address/' + obs.contractAddress())}"
-					   target="_blank" style="display: block; text-overflow: ellipsis; margin-bottom: 20px; overflow: hidden;" href="">
-						<strong data-bind="text:obs.contractAddress"></strong>
-					</a>
-					<!-- ko ifnot:flags.toggleQr -->
-					<i data-bind="click:actions.toggleQr" style="cursor: pointer; font-size: 2em;" class="fa fa-qrcode"></i>
-					<!--/ko-->
-					<p data-bind="click:actions.toggleQr, if:flags.toggleQr" class="s-ms-c">
-						<img data-bind="attr:{'src':('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' + obs.contractAddress())}"
-						     style="border: 1px solid #ddd;" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Example"/>
-					</p>
-				</p>
-			</div>
-
-			<div class="m-widget25--progress">
-				<div class="m-widget25__progress">
-					<span class="m-widget25__progress-number">
-						63%
-					</span>
-					<div class="m--space-10"></div>
-					<div class="progress m-progress--sm">
-						<div class="progress-bar m--bg-danger" role="progressbar" style="width: 63%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+		<div class="tab-content">
+			<div id="sales-tab" class="tab-pane active show">
+				<div class="m-widget25">
+					<div class="s-mb_20">
+						<span class="m-widget25__price m--font-brand">
+							<!-- ko text:obs.sales.sold --><i style="padding: 0 12px" class="m-loader m-loader--brand"></i><!--/ko-->
+						</span>
+						<span class="m-widget25__desc">CWT-P</span>
 					</div>
-					<span class="m-widget25__progress-sub">
-						Token's sold of Pre-ICO
-					</span>
-				</div>
-				<div class="m-widget25__progress">
-					<span class="m-widget25__progress-number">
-						3%
-					</span>
-					<div class="m--space-10"></div>
-					<div class="progress m-progress--sm">
-						<div class="progress-bar m--bg-warning" role="progressbar" style="width: 3%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+
+					<h3 style="margin-bottom: 20px;">Cryptoworkplace smart contract address</h3>
+
+					<div data-bind="css:{'s-display_bi': obs.contractAddress}" class="s-display_n m-pricing-table-1">
+						<p>
+							<a data-bind="attr:{'href': ('https://etherscan.io/address/' + obs.contractAddress())}"
+							   target="_blank" style="display: block; text-overflow: ellipsis; margin-bottom: 20px; overflow: hidden;" href="">
+								<strong data-bind="text:obs.contractAddress"></strong>
+							</a>
+							<!-- ko ifnot:flags.toggleQr -->
+							<i data-bind="click:actions.toggleQr" style="cursor: pointer; font-size: 2em;" class="fa fa-qrcode"></i>
+							<!--/ko-->
+							<p data-bind="click:actions.toggleQr, if:flags.toggleQr" class="s-ms-c">
+								<img data-bind="attr:{'src':('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' + obs.contractAddress())}"
+								     style="border: 1px solid #ddd;" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Example"/>
+							</p>
+						</p>
 					</div>
-					<span class="m-widget25__progress-sub">
-						Of all coins count
-					</span>
+
+					<div class="m-widget25--progress">
+						<div class="m-widget25__progress">
+							<span class="m-widget25__progress-number">
+								63%
+							</span>
+							<div class="m--space-10"></div>
+							<div class="progress m-progress--sm">
+								<div class="progress-bar m--bg-danger" role="progressbar" style="width: 63%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+							</div>
+							<span class="m-widget25__progress-sub">
+								Token's sold of Pre-ICO
+							</span>
+						</div>
+						<div class="m-widget25__progress">
+							<span class="m-widget25__progress-number">
+								3%
+							</span>
+							<div class="m--space-10"></div>
+							<div class="progress m-progress--sm">
+								<div class="progress-bar m--bg-warning" role="progressbar" style="width: 3%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+							</div>
+							<span class="m-widget25__progress-sub">
+								Of all coins count
+							</span>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>			 
-		
-	
+			
+			<div id="tx-tab" class="tab-pane">
+				
+			</div>
+		</div>
 	</div>
 </div>

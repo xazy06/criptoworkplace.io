@@ -104,12 +104,14 @@ var Controller = (Controller || {}), Gate = function () {
 			Controller.ViewModel.flags.depositAddrGetting(true);
 			Controller.ViewModel.flags.depositAddrGot(false);
 
+			ammount = ammount.replace(',', '.');
+			
 			// if something fails
 			var options = {
 				//BTC return addr 1EiM1ucSsTaLkbTt9QTBt1Z3fKxnP9CKA
 				returnAddress: (Controller.ViewModel.obs.returnAddress()),/* || '1EiM1ucSsTaLkbTt9QTBt1Z3fKxnP9CKA')*///'YOUR_CURRENCY_RETURN_ADDRESS'
 				apiKey: self.apiKey,
-				ammount:ammount,
+				amount:ammount,
 				withdrawal:withdrawalAddress
 			};
 			
@@ -123,6 +125,16 @@ var Controller = (Controller || {}), Gate = function () {
 				var depositAddress = returnData.deposit;
 				
 				Controller.ViewModel.obs.depositAddress(depositAddress);
+				
+				Controller.ViewModel.obs.fixedAmmount.depositAmount(returnData.depositAmount);
+				Controller.ViewModel.obs.fixedAmmount.expiration(returnData.expiration);
+				Controller.ViewModel.obs.fixedAmmount.maxLimit(returnData.maxLimit);
+				Controller.ViewModel.obs.fixedAmmount.minerFee(returnData.minerFee);
+				Controller.ViewModel.obs.fixedAmmount.orderId(returnData.orderId);
+				Controller.ViewModel.obs.fixedAmmount.pair(returnData.pair);
+				Controller.ViewModel.obs.fixedAmmount.quotedRate(returnData.quotedRate);
+				Controller.ViewModel.obs.fixedAmmount.withdrawal(returnData.withdrawal);
+				Controller.ViewModel.obs.fixedAmmount.withdrawalAmount(returnData.withdrawalAmount);
 
 				// you need to actually then send your BTC to ShapeShift
 				// you could use module `spend`: https://www.npmjs.com/package/spend

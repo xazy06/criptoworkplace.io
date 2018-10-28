@@ -299,6 +299,17 @@ var Controller = function () {
 				rate:ko.observable(''),
 				pair:ko.observable('')
 			},
+			fixedAmmount:{
+				depositAmount:ko.observable(''),
+				expiration:ko.observable(''),
+				maxLimit:ko.observable(''),
+				minerFee:ko.observable(''),
+				orderId:ko.observable(''),
+				pair:ko.observable(''),
+				quotedRate:ko.observable(''),
+				withdrawal:ko.observable(''),
+				withdrawalAmount:ko.observable('')
+			},
 			currentCoin: {
 				symbol:ko.observable(''),
 				name:ko.observable(''),
@@ -336,7 +347,7 @@ var Controller = function () {
 		},
 		
 		flags:{
-			isFixedAmmountMode: ko.observable(false),
+			isFixedAmmountMode: ko.observable(true),
 			hasMetamask: ko.observable(false),
 			whiteListLess: ko.pureComputed(function () {
 				return ViewModel.obs.usersettings.ethAddress() === '' || ViewModel.obs.usersettings.ethAddress() === null;
