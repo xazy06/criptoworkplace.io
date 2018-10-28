@@ -18,13 +18,17 @@ var Controller = (Controller || {}), Gate = function () {
 	//Public key : 08ef330fe264f674ddd4943a5156cfb1ea06f10b95d5db54781afa3d8b108100874083d53b28afa5ce58bf3e834158a3114db725bce5b49da9454ef036753599
 	//Private key : d80356c4c5c561bac38c5e451edc2b7a535ad27088b22e46ba8506995edb0d09a70a24c1c1ffa0bc1f6acddbec49870f135897568dfbee5a6d823109bcb9073d
 	
+	this.poolingId = null;
+
+	this.options = {
+		poolingInterval: 3000
+	};
+	
 	this.actions = {
 		getMap: function () {
 			try{
 				Controller.ViewModel.flags.currenciesReady(false);
-			}catch (e){
-				console.log(e);
-			}
+			}catch (e){}
 						
 			shapeshift.coins(function (err, coinData) {
 				var coinDataAsArray = null;
@@ -37,7 +41,7 @@ var Controller = (Controller || {}), Gate = function () {
 				
 				Controller.ViewModel.flags.currenciesReady(true);
 
-				console.dir(coinData); // =>
+				//console.dir(coinData); // =>
 				/*
 					{ BTC:
 					 { name: 'Bitcoin',
@@ -97,9 +101,11 @@ var Controller = (Controller || {}), Gate = function () {
 				// spend(SS_BTC_WIF, depositAddress, shiftAmount, function (err, txId) { /.. ../ })
 
 				// later, you can then check the deposit status
-				shapeshift.status(depositAddress, function (err, status, data) {
-					console.log(status) // => should be 'received' or 'complete'
-				});
+				// shapeshift.status(depositAddress, function (err, status, data) {
+				// 	console.log(status) // => should be 'received' or 'complete'
+				// });
+				
+				self.actions.initStatusBang();
 
 				Controller.ViewModel.flags.depositAddrGetting(false);
 
@@ -109,7 +115,7 @@ var Controller = (Controller || {}), Gate = function () {
 					$.notify(returnData.error);
 				}
 
-				Controller.initCopuPurchaseAddr();
+				Controller.initCopyPurchaseAddr();
 			})
 		},
 		sendamount: function (ammount) {
@@ -159,9 +165,10 @@ var Controller = (Controller || {}), Gate = function () {
 				// spend(SS_BTC_WIF, depositAddress, shiftAmount, function (err, txId) { /.. ../ })
 
 				// later, you can then check the deposit status
-				shapeshift.status(depositAddress, function (err, status, data) {
-					console.log(status) // => should be 'received' or 'complete'
-				});
+				// shapeshift.status(depositAddress, function (err, status, data) {
+				// 	console.log(status) // => should be 'received' or 'complete'
+				// });
+				self.actions.initStatusBang();
 
 				Controller.ViewModel.flags.depositAddrGetting(false);
 
@@ -174,8 +181,31 @@ var Controller = (Controller || {}), Gate = function () {
 		},
 		status: function () {
 			shapeshift.status(Controller.ViewModel.obs.depositAddress(), function (err, status, data) {
-				console.log(status) // => should be 'received' or 'complete'
+				console.log(status); // => should be 'received' or 'complete'
+				console.log(data);
+				
+				//TODO check status, may be need to watch complete status 
+				if (status !== 'received') {
+					return;
+				}
+				
+				Controller.actions.monitor(Controller.ViewModel.obs.cwtCount(), data.transaction);
+
+				Controller.actions.stopStatusBang();
 			})
+		},
+		stopStatusBang: function () {
+			window.clearInterval(self.poolingId);
+		},
+		initStatusBang: function () {
+			try{
+				window.clearInterval(self.poolingId);
+			}catch (e){}
+			
+			self.poolingId = window.setInterval(function () {
+				self.actions.status();
+			},self.options.poolingInterval);
+			
 		},
 		marketInfo: function () {
 			var pair;
@@ -210,12 +240,13 @@ var Controller = (Controller || {}), Gate = function () {
 				Controller.ViewModel.obs.market.limit('-');
 				Controller.ViewModel.obs.market.maxLimit('-');
 				Controller.ViewModel.obs.market.minerFee(0);
-				Controller.ViewModel.obs.market.minimum(response);
-				Controller.ViewModel.obs.market.pair(response.pair);
+				Controller.ViewModel.obs.market.minimum(response.totalAmount);
+				Controller.ViewModel.obs.market.pair('eth_eth');
 			});
 
 			Controller.actions._calc(1).then(function (response) {
-				Controller.ViewModel.obs.market.rate(response);
+				//TODO total with fee 
+				Controller.ViewModel.obs.market.rate(response.totalAmount);
 			});
 
 			Controller.ViewModel.flags.depositAddrGot(true);

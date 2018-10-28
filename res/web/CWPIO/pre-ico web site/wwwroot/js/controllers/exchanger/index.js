@@ -30,10 +30,26 @@ var Controller = function () {
 		exchanger:'/api/v1/exchanger',
 		calc:'/api/v1/exchanger/calcExchange/',
 		purchase: '/api/v1/exchanger/addr',
-		initPurchasing: '/api/v1/exchanger/initPurchasing'
+		initPurchasing: '/api/v1/exchanger/initPurchasing',
+		monitor: '/api/v1/exchanger/monitor/'
 	};
 	
 	this.actions = {
+		monitor: function (count, txId) {
+			return $.ajax({
+				contentType: 'application/json',
+				url: self.api.monitor,
+				data: JSON.stringify({count: count, tx: txId}),
+				method:'POST'
+			}).done(function (response) {
+				console.log(response);
+
+			}).fail(function (error) {
+				console.log(error);
+				
+				debugger;
+			});
+		},
 		withdrawalAddress: function () {
 			return $.get(self.api.withdrawalAddress).done(function (response) {
 				if (!response) {
@@ -259,7 +275,7 @@ var Controller = function () {
 		})();
 	};
 	
-	this.initCopuPurchaseAddr = function (id) {
+	this.initCopyPurchaseAddr = function (id) {
 		var copy2 = new ClipboardJS(id || '#copy2');
 	};
 	
@@ -472,7 +488,7 @@ var Controller = function () {
 			},
 			initPurchasing: function () {
 				ViewModel.flags.purchasingIsInitializing(true);
-				self.actions.initPurchasing(this.obs.cwtCount(), this.obs.needPay());
+				self.actions.initPurchasing(ViewModel.obs.cwtCount(), ViewModel.obs.needPay());
 
 				try{
 					yaCounter50462326.reachGoal('Purchase');
@@ -550,7 +566,7 @@ var Controller = function () {
 							.then(function (response) {
 								console.log('ammount got');
 								console.log(response);
-							//TODO response will be changed
+							
 							ViewModel.actions.gate.sendamount(response.totalAmount);
 						});	
 					}
@@ -562,6 +578,7 @@ var Controller = function () {
 			},
 			shiftETH: function () {
 				ViewModel.obs.depositAddress(ViewModel.obs.contractAddress());
+				ViewModel.actions.initPurchasing();
 			},
 			offGate: function () {
 				ViewModel.flags.gateOperating(false);
@@ -579,7 +596,7 @@ var Controller = function () {
 		self.actions.calcWithFee(val).then(function (response) {
 			console.log('ammount got');
 			console.log(response);
-			//TODO response will be changed
+
 			ViewModel.actions.gate.sendamount(response.totalAmount);
 		});
 	});
