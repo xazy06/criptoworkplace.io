@@ -125,7 +125,7 @@ var Controller = function () {
 								
 				ViewModel.flags.purchasingIsInitializing(false);
 				
-				$('#m_modal_4').modal('show');
+				//$('#m_modal_4').modal('show');
 				
 				try{
 					ViewModel.obs.freezed(response.fixRate.rate);
@@ -493,6 +493,58 @@ var Controller = function () {
 				}catch (e){
 					console.log(e);
 				}
+			},
+			/**
+			 *  @name {continueGateProceccing}
+			 *  @desctiption {}  
+			 */
+			continueGateProceccing: function () {
+				//TODO
+				var restoredGateOperation = {
+					restoring: true, 
+					cwtCount: 1000, //Viewmodel.obs.cwtCount();
+					symbol: 'BTC', //ViewModel.obs.currentCoin.symbol();
+					name:'', //ViewModel.obs.currentCoin.name();
+					image:'', //ViewModel.obs.currentCoin.image();
+					imageSmall:'', //ViewModel.obs.currentCoin.imageSmall(this.imageSmall);
+					status:'', //ViewModel.obs.currentCoin.status(this.status);
+					minerFee:'', //ViewModel.obs.currentCoin.minerFee(this.minerFee);
+					withdrawalAddress: '', //ViewModel.obs.currentCoin.withdrawalAddress();
+					depositAddress: '', //ViewModel.obs.depositAddress();
+					transactionFee: '', //ViewModel.obs.transactionFee();
+					fixedAmmount: {
+						depositAmount:'', //ViewModel.obs.fixedAmmount.depositAmount()
+						expiration:'', //ViewModel.obs.fixedAmmount.expiration();
+						maxLimit: '', //ViewModel.obs.fixedAmmount.maxLimit();
+						minerFee: '', //ViewModel.obs.fixedAmmount.minerFee();
+						orderId:'', //ViewModel.obs.fixedAmmount.orderId();
+						pair:'', //ViewModel.obs.fixedAmmount.pair();
+						quotedRate:'', //ViewModel.obs.fixedAmmount.quotedRate();
+						withdrawal: '', //ViewModel.obs.fixedAmmount.withdrawal();
+						withdrawalAmount:'' //ViewModel.obs.fixedAmmount.withdrawalAmount();
+					}
+				};
+				
+				ViewModel.actions.initGate.call(restoredGateOperation);
+
+
+				ViewModel.flags.depositAddrGetting(true);
+				ViewModel.flags.depositAddrGot(false);
+				
+
+				ViewModel.obs.depositAddress(depositAddress);
+				ViewModel.obs.transactionFee(returnData.minerFee);
+
+				ViewModel.obs.fixedAmmount.depositAmount(returnData.depositAmount);
+				ViewModel.obs.fixedAmmount.expiration(returnData.expiration);
+				ViewModel.obs.fixedAmmount.maxLimit(returnData.maxLimit);
+				ViewModel.obs.fixedAmmount.minerFee(returnData.minerFee);
+				ViewModel.obs.fixedAmmount.orderId(returnData.orderId);
+				ViewModel.obs.fixedAmmount.pair(returnData.pair);
+				ViewModel.obs.fixedAmmount.quotedRate(returnData.quotedRate);
+				ViewModel.obs.fixedAmmount.withdrawal(returnData.withdrawal);
+				ViewModel.obs.fixedAmmount.withdrawalAmount(returnData.withdrawalAmount);
+				
 			},
 			initGate: function () {
 								
