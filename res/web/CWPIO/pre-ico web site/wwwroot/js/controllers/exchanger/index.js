@@ -14,7 +14,7 @@ var Controller = function () {
 			}
 		},
 		en:{
-			whiteListLess: 'You need to set up ETH Address to continue purchasing',
+			whiteListLess: 'You need to set up ETH Address to receive CWT-P and be able to continue purchasing',
 			whiteListAddressFieldSave: {
 				fail: 'Look`s like some thing is wrong!',
 				successSaved:'Your ETH address successfully saved, now you can continue purchase',
