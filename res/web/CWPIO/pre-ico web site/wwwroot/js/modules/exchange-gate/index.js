@@ -188,7 +188,7 @@ var Controller = (Controller || {}), Gate = function () {
 				console.log(data);
 				
 				//TODO check status, may be need to watch complete status 
-				if (status !== 'received') {
+				if (status !== 'complete') {
 					return;
 				}
 				
