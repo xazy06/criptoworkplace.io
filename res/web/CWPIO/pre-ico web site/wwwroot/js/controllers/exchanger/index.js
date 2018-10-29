@@ -28,11 +28,11 @@ var Controller = function () {
 		wl: '/api/v1/exchanger/whiteList',
 		usersettings:'/api/v1/usersettings',
 		exchanger:'/api/v1/exchanger',
-		calc:'/api/v1/exchanger/calcExchange/',
+		calc:'/api/v1/exchanger/calc/',
+		calcExchange: '/api/v1/exchanger/calcExchange/',
 		purchase: '/api/v1/exchanger/addr',
 		initPurchasing: '/api/v1/exchanger/initPurchasing',
-		monitor: '/api/v1/exchanger/monitor/',
-		currentExchangeSession: ''//TODO
+		monitor: '/api/v1/exchanger/monitor/'
 	};
 	
 	this.actions = {
@@ -40,23 +40,27 @@ var Controller = function () {
 			//TODO
 		},
 		getCurrentExchangeSession: function () {
-			$.get(self.api.currentExchangeSession).done(function (response) {
-				console.log(response);
-			}).fail(function (response) {
-				console.log(response);
-			});
+			var exchangerSession = window.sessionStorage.getItem('exchangerSession');
+			
+			if (exchangerSession === null) {
+				return false;
+			}
+
+			exchangerSession = JSON.parse(exchangerSession);
+			
+			
 		},
 		saveCurrentExchangeSession: function () {
 			var gateOperation = {
 				restoring: true,
-				cwtCount: Viewmodel.obs.cwtCount(),
+				cwtCount: ViewModel.obs.cwtCount(),
 				symbol: ViewModel.obs.currentCoin.symbol(),
 				name:ViewModel.obs.currentCoin.name(),
 				image:ViewModel.obs.currentCoin.image(),
 				imageSmall:ViewModel.obs.currentCoin.imageSmall(),
 				status:ViewModel.obs.currentCoin.status(),
 				minerFee:ViewModel.obs.currentCoin.minerFee(),
-				withdrawalAddress: ViewModel.obs.currentCoin.withdrawalAddress(),
+				withdrawalAddress: ViewModel.obs.withdrawalAddress(),
 				depositAddress: ViewModel.obs.depositAddress(),
 				transactionFee: ViewModel.obs.transactionFee(),
 				fixedAmmount: {
@@ -72,13 +76,8 @@ var Controller = function () {
 				}
 			};
 			
-			$.post(self.api.currentExchangeSession, JSON.stringify(gateOperation))
-				.done(function (response) {
-				console.log(response);
-			}).fail(function (response) {
-				console.log(response);
-			})
-			
+			window.sessionStorage.setItem('exchangerSession', JSON.stringify(gateOperation));
+						
 		},
 		monitor: function (count, txId) {
 			return $.ajax({
@@ -255,15 +254,10 @@ var Controller = function () {
 			count = count || 0;
 
 			return $.ajax({
-				url:self.api.calc + count,
+				url:self.api.calcExchange + count,
 				method:'GET'
 			}).done(function (response) {
 				ViewModel.obs.needPay(response.totalAmount);
-
-				if (ViewModel.obs.currentCoin.symbol() === 'ETH') {
-					ViewModel.obs.transactionFee(response.fee);
-					ViewModel.obs.fixedAmmount.depositAmount(response.totalAmount);
-				}
 			});
 		},
 		
@@ -275,6 +269,12 @@ var Controller = function () {
 				method:'GET'
 			}).done(function (response) {
 				ViewModel.obs.needPay(response);
+				
+				ViewModel.obs.transactionFee(response.fee);
+				ViewModel.obs.fixedAmmount.depositAmount(response.totalAmount);
+				
+				
+				ViewModel.actions.initPurchasingThrottled()();
 			});
 		},
 		purchase: function () {
@@ -327,9 +327,15 @@ var Controller = function () {
 	};
 	
 	this.initUnloadingWindowProtocol = function () {
-		window.onbeforeunload = function () {
-			debugger;
-		};
+		window.addEventListener("beforeunload", function (event) {
+			
+			// Cancel the event as stated by the standard.
+			event.preventDefault();
+			// Chrome requires returnValue to be set.
+			event.returnValue = '';
+			
+			self.actions.saveCurrentExchangeSession();
+		});
 	};
 	
 	this.init = function () {
@@ -353,7 +359,7 @@ var Controller = function () {
 			console.log(e);
 		}
 
-		this.initUnloadingWindowProtocol();
+		//this.initUnloadingWindowProtocol();
 		
 		return this;
 	};
@@ -548,6 +554,8 @@ var Controller = function () {
 				self.actions.purchase();
 			},
 			initPurchasing: function () {
+				console.log('initPurchasing called');
+				
 				ViewModel.flags.purchasingIsInitializing(true);
 				self.actions.initPurchasing(ViewModel.obs.cwtCount(), ViewModel.obs.needPay());
 
@@ -558,11 +566,14 @@ var Controller = function () {
 					console.log(e);
 				}
 			},
+			initPurchasingThrottled: function(){
+				return _.throttle(self.ViewModel.actions.initPurchasing, 500);
+			},
 			/**
 			 *  @name {continueGateProceccing}
 			 *  @desctiption {}  
 			 */
-			continueGateProceccing: function () {
+			continueGateProceccing: function (restoredGateOperation) {
 				//TODO
 				var restoredGateOperation = {
 					restoring: true, 
@@ -596,18 +607,18 @@ var Controller = function () {
 				ViewModel.flags.depositAddrGot(false);
 				
 
-				ViewModel.obs.depositAddress(depositAddress);
-				ViewModel.obs.transactionFee(returnData.minerFee);
+				ViewModel.obs.depositAddress(restoredGateOperation.depositAddress);
+				ViewModel.obs.transactionFee(restoredGateOperation.minerFee);
 
-				ViewModel.obs.fixedAmmount.depositAmount(returnData.depositAmount);
-				ViewModel.obs.fixedAmmount.expiration(returnData.expiration);
-				ViewModel.obs.fixedAmmount.maxLimit(returnData.maxLimit);
-				ViewModel.obs.fixedAmmount.minerFee(returnData.minerFee);
-				ViewModel.obs.fixedAmmount.orderId(returnData.orderId);
-				ViewModel.obs.fixedAmmount.pair(returnData.pair);
-				ViewModel.obs.fixedAmmount.quotedRate(returnData.quotedRate);
-				ViewModel.obs.fixedAmmount.withdrawal(returnData.withdrawal);
-				ViewModel.obs.fixedAmmount.withdrawalAmount(returnData.withdrawalAmount);
+				ViewModel.obs.fixedAmmount.depositAmount(restoredGateOperation.fixedAmmount.depositAmount);
+				ViewModel.obs.fixedAmmount.expiration(restoredGateOperation.fixedAmmount.expiration);
+				ViewModel.obs.fixedAmmount.maxLimit(restoredGateOperation.fixedAmmount.maxLimit);
+				ViewModel.obs.fixedAmmount.minerFee(restoredGateOperation.fixedAmmount.minerFee);
+				ViewModel.obs.fixedAmmount.orderId(restoredGateOperation.fixedAmmount.orderId);
+				ViewModel.obs.fixedAmmount.pair(restoredGateOperation.fixedAmmount.pair);
+				ViewModel.obs.fixedAmmount.quotedRate(restoredGateOperation.fixedAmmount.quotedRate);
+				ViewModel.obs.fixedAmmount.withdrawal(restoredGateOperation.fixedAmmount.withdrawal);
+				ViewModel.obs.fixedAmmount.withdrawalAmount(restoredGateOperation.fixedAmmount.withdrawalAmount);
 				
 			},
 			initGate: function () {
@@ -705,15 +716,21 @@ var Controller = function () {
 		if (val && val.toString().length < 1) {//3
 			return;
 		}
-		
-		self.actions.calcWithFee(val).then(function (response) {
-			console.log('ammount got');
-			console.log(response);
 
-			if (ViewModel.obs.currentCoin.symbol() !== 'ETH') {
+		if (ViewModel.obs.currentCoin.symbol() === 'ETH') {
+			self.actions.calc(val);
+			
+		}else{
+			self.actions.calcWithFee(val).then(function (response) {
+				console.log('ammount got');
+				console.log(response);
+				
 				ViewModel.actions.gate.sendamount(response.totalAmount);
-			}
-		});
+				
+			});	
+			
+		}
+		
 	});
 
 	ViewModel.obs.currentCoin.symbol.subscribe(function (val) {
