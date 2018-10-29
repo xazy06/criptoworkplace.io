@@ -259,6 +259,11 @@ var Controller = function () {
 				method:'GET'
 			}).done(function (response) {
 				ViewModel.obs.needPay(response.totalAmount);
+
+				if (ViewModel.obs.currentCoin.symbol() === 'ETH') {
+					ViewModel.obs.transactionFee(response.fee);
+					ViewModel.obs.fixedAmmount.depositAmount(response.totalAmount);
+				}
 			});
 		},
 		
@@ -321,7 +326,15 @@ var Controller = function () {
 		var copy2 = new ClipboardJS(id || '#copy2');
 	};
 	
+	this.initUnloadingWindowProtocol = function () {
+		window.onbeforeunload = function () {
+			debugger;
+		};
+	};
+	
 	this.init = function () {
+		var copy;
+		
 		ko.applyBindings(ViewModel);
 
 		self.initWeb3Js();
@@ -334,7 +347,13 @@ var Controller = function () {
 
 		self.actions.withdrawalAddress();
 
-		var copy = new ClipboardJS('#copy');
+		try{
+			copy = new ClipboardJS('#copy');
+		}catch (e){
+			console.log(e);
+		}
+
+		this.initUnloadingWindowProtocol();
 		
 		return this;
 	};
@@ -691,7 +710,9 @@ var Controller = function () {
 			console.log('ammount got');
 			console.log(response);
 
-			ViewModel.actions.gate.sendamount(response.totalAmount);
+			if (ViewModel.obs.currentCoin.symbol() !== 'ETH') {
+				ViewModel.actions.gate.sendamount(response.totalAmount);
+			}
 		});
 	});
 

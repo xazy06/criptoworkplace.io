@@ -246,12 +246,14 @@
 								<strong><!-- ko text: obs.currentCoin.symbol --><!--/ko--></strong>
 								(includs fee: <!-- ko text: obs.transactionFee --><!--/ko--> ETH) to the address below:
 							</p>
+							<!-- ko if: (obs.currentCoin.symbol() !== 'ETH') -->
 							<p>
 								This order will expair on 
 								<strong>
 									<!-- ko text: (new Date(obs.fixedAmmount.expiration()).toLocaleString()) --><!--/ko-->
 								</strong>
 							</p>
+							<!-- /ko -->
 							<!-- /ko -->
 							
 							<!-- ko ifnot: flags.isFixedAmmountMode -->
