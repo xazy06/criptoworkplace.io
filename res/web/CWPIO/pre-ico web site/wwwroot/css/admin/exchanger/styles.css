@@ -147,14 +147,14 @@
 	padding: 4px 0;
 }
 
-.s-expandable .fa-angle-right{
+.s-expandable .fa-angle-up{
 	display:none;
 }
 
 .s-expandable.opened .fa-angle-down{
 	display:none;
 }
-.s-expandable.opened .fa-angle-right{
+.s-expandable.opened .fa-angle-up{
 	display:inline-block;
 }
 
