@@ -592,8 +592,10 @@ var Controller = function () {
 				ViewModel.actions.initGate.call(restoredGateOperation);
 
 
-				ViewModel.flags.depositAddrGetting(true);
-				ViewModel.flags.depositAddrGot(false);
+				if (restoredGateOperation.symbol !== 'ETH') {
+					ViewModel.flags.depositAddrGetting(true);
+					ViewModel.flags.depositAddrGot(false);
+				}
 				
 
 				ViewModel.obs.depositAddress(restoredGateOperation.depositAddress);
