@@ -41,6 +41,12 @@ namespace pre_ico_web_site.Controllers
             _emailSender = emailSender;
         }
 
+        [HttpGet("contractabi")]
+        public IActionResult GetSaleContractABI()
+        {
+            return Ok(_contract.GetSaleContractABI());
+        }
+
         [HttpGet]
         public async Task<IActionResult> GetAsync()
         {
@@ -77,7 +83,7 @@ namespace pre_ico_web_site.Controllers
             var rate = await GetRateAsync(amount);
             return Ok(new
             {
-                totalAmount = UnitConversion.Convert.FromWei(rate.amount).ToString(),
+                totalAmount = UnitConversion.Convert.FromWei(rate.amount).ToString(System.Globalization.CultureInfo.InvariantCulture),
                 fee = "0"
             });
         }

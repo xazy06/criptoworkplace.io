@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Nethereum.ABI.Model;
 using Nethereum.Contracts;
 using Nethereum.Hex.HexConvertors.Extensions;
 using Nethereum.Hex.HexTypes;
@@ -25,7 +26,7 @@ namespace pre_ico_web_site.Eth
         private readonly ILogger _logger;
         private readonly Web3 _web3;
         private readonly IMemoryCache _memoryCache;
-        private const string mem_key = "fixrate:{0}";
+        private const string mem_key = "fixrate:{0}:{1}";
         public string Address { get { return _saleContract.Address; } }
         
        
@@ -73,6 +74,11 @@ namespace pre_ico_web_site.Eth
             }
         }
 
+        public ContractABI GetSaleContractABI()
+        {
+            return _saleContract.ContractBuilder.ContractABI;
+        }
+
         public async Task< BigInteger> GetGasPriceAsync()
         {
             return (await _web3.Eth.GasPrice.SendRequestAsync()).Value;
@@ -111,9 +117,9 @@ namespace pre_ico_web_site.Eth
             return string.Empty;
         }
 
-        public async Task<FixRateModel> GetRateForBuyerAsync(string buyer)
+        public async Task<FixRateModel> GetRateForBuyerAsync(string buyer, BigInteger amount)
         {
-            var key = string.Format(mem_key, buyer);
+            var key = string.Format(mem_key, buyer, amount);
             if (!_memoryCache.TryGetValue(key, out FixRateModel fixRateModel))
             {
                 fixRateModel = await _saleContract.GetFunction("fixRate").CallDeserializingToObjectAsync<FixRateModel>(buyer);
@@ -130,7 +136,7 @@ namespace pre_ico_web_site.Eth
 
         public async Task<FixRateModel> SetRateForTransactionAsync(int rate, string buyer, BigInteger amount)
         {
-            FixRateModel fixRateModel = await GetRateForBuyerAsync(buyer);
+            FixRateModel fixRateModel = await GetRateForBuyerAsync(buyer, amount);
             long unixTimestamp = (long)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
             if (fixRateModel.Amount != amount || fixRateModel.Time - unixTimestamp <= 0)
             {
@@ -143,7 +149,7 @@ namespace pre_ico_web_site.Eth
 
                 await WaitReciept(hash);
                 _logger.LogDebug("done");
-                fixRateModel = await GetRateForBuyerAsync(buyer);
+                fixRateModel = await GetRateForBuyerAsync(buyer, amount);
             }
             return fixRateModel;
         }
