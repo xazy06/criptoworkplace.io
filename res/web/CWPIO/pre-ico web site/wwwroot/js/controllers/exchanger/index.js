@@ -590,7 +590,7 @@ var Controller = function () {
 
 	
 	ViewModel.obs.cwtCount.subscribe(function (val) {
-		if (val && val.toString().length < 3) {
+		if (val && val.toString().length < 1) {//3
 			return;
 		}
 		
