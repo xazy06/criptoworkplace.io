@@ -32,10 +32,17 @@ var Controller = function () {
 		purchase: '/api/v1/exchanger/addr',
 		initPurchasing: '/api/v1/exchanger/initPurchasing',
 		monitor: '/api/v1/exchanger/monitor/',
-		saveCurrentExchangeSession: ''//TODO
+		currentExchangeSession: ''//TODO
 	};
 	
 	this.actions = {
+		getCurrentExchangeSession: function () {
+			$.get(self.api.currentExchangeSession).done(function (response) {
+				console.log(response);
+			}).fail(function (response) {
+				console.log(response);
+			});
+		},
 		saveCurrentExchangeSession: function () {
 			var gateOperation = {
 				restoring: true,
@@ -62,7 +69,7 @@ var Controller = function () {
 				}
 			};
 			
-			$.post(self.api.saveCurrentExchangeSession, JSON.stringify(gateOperation))
+			$.post(self.api.currentExchangeSession, JSON.stringify(gateOperation))
 				.done(function (response) {
 				console.log(response);
 			}).fail(function (response) {
