@@ -67,7 +67,7 @@ namespace ExchangerMonitor
         {
             return _web3.Eth.Transactions.GetTransactionByHash.SendRequestAsync(currentTx);
         }
-        
+
         public async Task<string> SetRateForTransactionAsync(int rate, string buyer, BigInteger amount)
         {
             Contract contract = _web3.Eth.GetContract(_json.Sale.ABI.ToString(), _opts.SmartContractAddr);
@@ -92,7 +92,7 @@ namespace ExchangerMonitor
             var fixRateModel = await contract.GetFunction("fixRate").CallDeserializingToObjectAsync<FixRateModel>(buyer);
             return fixRateModel;
         }
-        
+
         public async Task<string> SendAddToWhitelist(string address)
         {
             Contract contract = _web3.Eth.GetContract(_json.Sale.ABI.ToString(), _opts.SmartContractAddr);
@@ -112,22 +112,25 @@ namespace ExchangerMonitor
         {
             return await _web3.Eth.Transactions.GetTransactionReceipt.SendRequestAsync(transactionHash);
         }
-        
+
         public async Task<string> SendToSmartContractAsync(string pk, BigInteger amount)
         {
             var account = new Account(_crypto.Decrypt(pk.StringToByteArray()));
             var _web3t = new Web3(account, _opts.NodeUrl);
 
-            var price = await _web3.Eth.GasPrice.SendRequestAsync();
-            var tx = await _web3t.Eth.TransactionManager.SendTransactionAsync(
-                new TransactionInput(
+            var price = await _web3t.Eth.GasPrice.SendRequestAsync();
+            var input = new TransactionInput(
                     "",
                     _opts.SmartContractAddr,
                     account.Address,
-                    new HexBigInteger(0x19A28),
+                    new HexBigInteger(0x30A28),
                     new HexBigInteger(price.Value * 2),
                     new HexBigInteger(amount)
-                ));
+                );
+
+            var gas = await _web3t.Eth.TransactionManager.EstimateGasAsync(input);
+            input.Gas = new HexBigInteger(gas.Value + 10000);
+            var tx = await _web3t.Eth.TransactionManager.SendTransactionAsync(input);
             return tx;
         }
 
@@ -145,13 +148,19 @@ namespace ExchangerMonitor
                 throw new Exception("Tokens amount not valid!");
             }
 
+            var gas = await contract.GetFunction("transfer").EstimateGasAsync(account.Address,
+                new HexBigInteger(0x9C40),
+                new HexBigInteger(0),
+                toAddress,
+                UnitConversion.Convert.ToWei(tokensAmount));
+
             var tx = await contract.GetFunction("transfer").SendTransactionAsync(account.Address,
-                new HexBigInteger(0x59D8),
-                    new HexBigInteger(price.Value * 2),
-                    new HexBigInteger(0),
-                    toAddress,
-                    UnitConversion.Convert.ToWei(tokensAmount)
-                );
+                new HexBigInteger(gas.Value + 10000),
+                new HexBigInteger(price.Value * 2),
+                new HexBigInteger(0),
+                toAddress,
+                UnitConversion.Convert.ToWei(tokensAmount)
+            );
 
             return tx;
         }
@@ -162,18 +171,21 @@ namespace ExchangerMonitor
             var _web3t = new Web3(account, _opts.NodeUrl);
             var ballance = await _web3t.Eth.GetBalance.SendRequestAsync(account.Address);
             var price = await _web3t.Eth.GasPrice.SendRequestAsync();
-
-            if (ballance.Value > 0x5208 * price.Value * 2)
-            {
-                var tx = await _web3t.Eth.TransactionManager.SendTransactionAsync(
-                    new TransactionInput(
+            var input = new TransactionInput(
                         "",
                         to,
                         account.Address,
-                        new HexBigInteger(0x5208),
+                        new HexBigInteger(0x30A28),
                         new HexBigInteger(price.Value * 2),
-                        new HexBigInteger(ballance.Value - 0x5208 * price.Value * 2)
-                    ));
+                        new HexBigInteger(0x5208 * price.Value * 2)
+                    );
+            var gas = await _web3t.Eth.TransactionManager.EstimateGasAsync(input);
+
+            if (ballance.Value > gas * price.Value * 2)
+            {
+                input.Value = new HexBigInteger(ballance.Value - gas.Value * price.Value * 2);
+                input.Gas = gas;
+                var tx = await _web3t.Eth.TransactionManager.SendTransactionAsync(input);
                 return tx;
             }
             else
