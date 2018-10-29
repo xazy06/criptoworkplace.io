@@ -41,6 +41,8 @@ var Controller = (Controller || {}), Gate = function () {
 				
 				Controller.ViewModel.flags.currenciesReady(true);
 
+				Controller.actions.getCurrentExchangeSession();
+
 				//console.dir(coinData); // =>
 				/*
 					{ BTC:
@@ -101,6 +103,23 @@ var Controller = (Controller || {}), Gate = function () {
 				apiKey: self.apiKey
 			};
 
+			if (window.restoring){
+				window.restoring = false;
+				self.actions.initStatusBang();
+
+				Controller.ViewModel.flags.depositAddrGetting(false);
+
+				Controller.ViewModel.flags.depositAddrGot(true);
+
+				Controller.initCopyPurchaseAddr();
+
+				return;
+			}
+
+			if (pair === '_eth') {
+				return;
+			}
+
 			shapeshift.shift(withdrawalAddress, pair, options, function (err, returnData) {
 
 				// ShapeShift owned BTC address that you send your BTC to
@@ -150,6 +169,20 @@ var Controller = (Controller || {}), Gate = function () {
 				withdrawal:withdrawalAddress
 			};
 			
+			
+			if (window.restoring){
+				window.restoring = false;
+				self.actions.initStatusBang();
+
+				Controller.ViewModel.flags.depositAddrGetting(false);
+
+				Controller.ViewModel.flags.depositAddrGot(true);
+
+				Controller.initCopyPurchaseAddr();
+				
+				return;
+			}
+
 			if (pair === '_eth') {
 				return;
 			}
@@ -244,6 +277,10 @@ var Controller = (Controller || {}), Gate = function () {
 			
 			shapeshift.marketInfo(pair, function (err, response, data) {
 				console.log(response);
+				if (response === undefined) {
+					return;
+				}
+				
 				Controller.ViewModel.obs.market.limit(response.limit);
 				Controller.ViewModel.obs.market.maxLimit(response.maxLimit);
 				Controller.ViewModel.obs.market.minerFee(response.minerFee);

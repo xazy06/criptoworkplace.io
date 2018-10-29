@@ -46,12 +46,23 @@ var Controller = function () {
 				return false;
 			}
 
-			exchangerSession = JSON.parse(exchangerSession);
+			window.restoring = true;
 			
+			exchangerSession = JSON.parse(exchangerSession);
+						
+			ViewModel.actions.continueGateProceccing(exchangerSession);
+
+			window.sessionStorage.removeItem('exchangerSession');
 			
 		},
 		saveCurrentExchangeSession: function () {
-			var gateOperation = {
+			var gateOperation;
+
+			if (ViewModel.flags.gateOperating() === false) {
+				return;
+			}
+			
+			gateOperation= {
 				restoring: true,
 				cwtCount: ViewModel.obs.cwtCount(),
 				symbol: ViewModel.obs.currentCoin.symbol(),
@@ -359,8 +370,8 @@ var Controller = function () {
 			console.log(e);
 		}
 
-		//this.initUnloadingWindowProtocol();
-		
+		self.initUnloadingWindowProtocol();
+				
 		return this;
 	};
 	
@@ -574,31 +585,9 @@ var Controller = function () {
 			 *  @desctiption {}  
 			 */
 			continueGateProceccing: function (restoredGateOperation) {
-				//TODO
-				var restoredGateOperation = {
-					restoring: true, 
-					cwtCount: 1000, //Viewmodel.obs.cwtCount();
-					symbol: 'BTC', //ViewModel.obs.currentCoin.symbol();
-					name:'', //ViewModel.obs.currentCoin.name();
-					image:'', //ViewModel.obs.currentCoin.image();
-					imageSmall:'', //ViewModel.obs.currentCoin.imageSmall(this.imageSmall);
-					status:'', //ViewModel.obs.currentCoin.status(this.status);
-					minerFee:'', //ViewModel.obs.currentCoin.minerFee(this.minerFee);
-					withdrawalAddress: '', //ViewModel.obs.currentCoin.withdrawalAddress();
-					depositAddress: '', //ViewModel.obs.depositAddress();
-					transactionFee: '', //ViewModel.obs.transactionFee();
-					fixedAmmount: {
-						depositAmount:'', //ViewModel.obs.fixedAmmount.depositAmount()
-						expiration:'', //ViewModel.obs.fixedAmmount.expiration();
-						maxLimit: '', //ViewModel.obs.fixedAmmount.maxLimit();
-						minerFee: '', //ViewModel.obs.fixedAmmount.minerFee();
-						orderId:'', //ViewModel.obs.fixedAmmount.orderId();
-						pair:'', //ViewModel.obs.fixedAmmount.pair();
-						quotedRate:'', //ViewModel.obs.fixedAmmount.quotedRate();
-						withdrawal: '', //ViewModel.obs.fixedAmmount.withdrawal();
-						withdrawalAmount:'' //ViewModel.obs.fixedAmmount.withdrawalAmount();
-					}
-				};
+
+				ViewModel.obs.currentCoin.symbol('');
+				ViewModel.obs.currentCoin.symbol(restoredGateOperation.symbol);
 				
 				ViewModel.actions.initGate.call(restoredGateOperation);
 
@@ -622,7 +611,8 @@ var Controller = function () {
 				
 			},
 			initGate: function () {
-								
+				var _this = this;
+				
 				ViewModel.obs.currentCoin.symbol(this.symbol);
 				ViewModel.obs.currentCoin.name(this.name);
 				ViewModel.obs.currentCoin.image(this.image);
@@ -674,7 +664,12 @@ var Controller = function () {
 					 * got whitelisted address => we can init gate shift coin pare
 					 *   
 					 */
-					ViewModel.obs.cwtCount(500);
+					if (_this.restoring === true) {
+						console.log('restoring cwtCount');
+						ViewModel.obs.cwtCount(_this.cwtCount);
+					}else{
+  					ViewModel.obs.cwtCount(500);
+					}
 					
   				if (ViewModel.obs.currentCoin.symbol() === 'ETH') {
 						
@@ -686,13 +681,18 @@ var Controller = function () {
 					}
 					
 					if (ViewModel.flags.isFixedAmmountMode()){
-						return self.actions.initialFixedAmmountShift(ViewModel.obs.currentCoin.symbol(), ViewModel.obs.market.rate())
-							.then(function (response) {
-								console.log('ammount got');
-								console.log(response);
-							
-							ViewModel.actions.gate.sendamount(response.totalAmount);
-						});	
+						if (_this.restoring !== true) {
+							return self.actions.initialFixedAmmountShift(ViewModel.obs.currentCoin.symbol(), ViewModel.obs.market.rate())
+								.then(function (response) {
+									console.log('ammount got');
+									console.log(response);
+								
+								ViewModel.actions.gate.sendamount(response.totalAmount);
+							});
+						}else{
+							return;	
+						}
+						
 					}
 					
 					return ViewModel.actions.gate.shiftCoin();
