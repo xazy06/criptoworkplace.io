@@ -185,7 +185,7 @@
 					
 								<!-- ko if:flags.hasMetamask -->
 								<div class="input-group-append">
-									<button data-bind="disable:flags.lockFill, click:actions.getndFillAddressFromMetamask" 
+									<button data-bind="disable:(flags.lockFill() || flags.whiteListAddressProcessing()), click:actions.getndFillAddressFromMetamask" 
 									        class="btn  btn-primary" type="button">Fill from MetaMask 
 										<img height="16" style="margin-left: 5px;vertical-align: top;" src="~/images/metamask.png"/></button>
 								</div>
