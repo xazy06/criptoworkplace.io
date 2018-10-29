@@ -31,10 +31,45 @@ var Controller = function () {
 		calc:'/api/v1/exchanger/calcExchange/',
 		purchase: '/api/v1/exchanger/addr',
 		initPurchasing: '/api/v1/exchanger/initPurchasing',
-		monitor: '/api/v1/exchanger/monitor/'
+		monitor: '/api/v1/exchanger/monitor/',
+		saveCurrentExchangeSession: ''//TODO
 	};
 	
 	this.actions = {
+		saveCurrentExchangeSession: function () {
+			var gateOperation = {
+				restoring: true,
+				cwtCount: Viewmodel.obs.cwtCount(),
+				symbol: ViewModel.obs.currentCoin.symbol(),
+				name:ViewModel.obs.currentCoin.name(),
+				image:ViewModel.obs.currentCoin.image(),
+				imageSmall:ViewModel.obs.currentCoin.imageSmall(),
+				status:ViewModel.obs.currentCoin.status(),
+				minerFee:ViewModel.obs.currentCoin.minerFee(),
+				withdrawalAddress: ViewModel.obs.currentCoin.withdrawalAddress(),
+				depositAddress: ViewModel.obs.depositAddress(),
+				transactionFee: ViewModel.obs.transactionFee(),
+				fixedAmmount: {
+					depositAmount:ViewModel.obs.fixedAmmount.depositAmount(),
+					expiration:ViewModel.obs.fixedAmmount.expiration(),
+					maxLimit: ViewModel.obs.fixedAmmount.maxLimit(),
+					minerFee: ViewModel.obs.fixedAmmount.minerFee(),
+					orderId:ViewModel.obs.fixedAmmount.orderId(),
+					pair:ViewModel.obs.fixedAmmount.pair(),
+					quotedRate:ViewModel.obs.fixedAmmount.quotedRate(),
+					withdrawal: ViewModel.obs.fixedAmmount.withdrawal(),
+					withdrawalAmount:ViewModel.obs.fixedAmmount.withdrawalAmount()
+				}
+			};
+			
+			$.post(self.api.saveCurrentExchangeSession, JSON.stringify(gateOperation))
+				.done(function (response) {
+				console.log(response);
+			}).fail(function (response) {
+				console.log(response);
+			})
+			
+		},
 		monitor: function (count, txId) {
 			return $.ajax({
 				contentType: 'application/json',
