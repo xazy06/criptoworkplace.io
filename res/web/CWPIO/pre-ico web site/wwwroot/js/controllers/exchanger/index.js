@@ -93,7 +93,7 @@ var Controller = function () {
 				ViewModel.flags.whiteListAddressProcessing(false);
 
 				ViewModel.flags.whiteListInputReady(false);
-				ViewModel.obs.askFormText(self.strings[self.locale].whiteListAddressFieldSave.successSaved);
+				ViewModel.obs.askFormText(self.strings[self.locale].whiteListAddressFieldSave.fail);
 				ViewModel.flags.whiteListAddressProcessing(true);
 				ViewModel.obs.whiteListAddressField('');
 				
