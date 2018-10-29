@@ -217,7 +217,7 @@
 						CWT-P Token amount you want to receive
 					</h6>
 					<div class="s-mb_20">
-						<input autofocus data-bind="textInput: obs.cwtCount" type="number" class="form-control ammount-control"/>
+						<input autofocus data-bind="textInput: obs.cwtCount, disable:flags.depositAddrGetting" type="number" class="form-control ammount-control"/>
 					</div>
 					<div data-bind="css:{'s-display_bi': flags.minCont}" class="s-display_n m-alert m-alert--outline alert alert-warning alert-dismissible fade show" role="alert">
 						Minimum contribution is 500 CWT-P  	
