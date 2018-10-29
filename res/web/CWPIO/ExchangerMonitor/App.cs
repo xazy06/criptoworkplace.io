@@ -37,7 +37,9 @@ namespace ExchangerMonitor
                       Parallel.ForEach(_monitored.Keys, async item =>
                       {
                           if (_monitored[item].Status != TXStatus.Processed)
-                            _monitored[item] = await ProcessExchangeItemAsync(_monitored[item]);
+                          {
+                              _monitored[item] = await ProcessExchangeItemAsync(_monitored[item]);
+                          }
                       });
                   }
               }), null, TimeSpan.FromSeconds(0), TimeSpan.FromSeconds(30));
@@ -85,7 +87,7 @@ namespace ExchangerMonitor
         {
             try
             {
-                ExchangeOperationStatus status = await _eth.GetTransactionStatus(item.CurrentTx);
+                ExchangeOperationStatus status = item.Status == TXStatus.Processed ? ExchangeOperationStatus.Skip : await _eth.GetTransactionStatus(item.CurrentTx);
 
                 _logger.LogDebug($"Tx: {item.CurrentTx} Status: {status}");
                 switch (status)
@@ -154,7 +156,7 @@ namespace ExchangerMonitor
                         {
                             _logger.LogInformation("Send eth to exchanger contract");
                             var exchanger = await _db.GetAddressExchangerAsync(item.TempAddress);
-                            string tx  = await _eth.SendToSmartContractAsync(exchanger, BigInteger.Parse(item.EthAmount));
+                            string tx = await _eth.SendToSmartContractAsync(exchanger, BigInteger.Parse(item.EthAmount));
                             await _db.SetCurrentTransaction(item.Id, tx);
                             await _db.SetStep(item.Id, (int)ChangeSteps.SendTokens);
                         }
@@ -233,6 +235,7 @@ namespace ExchangerMonitor
                 {
                     _logger.LogDebug("NEED TO PAY!!!!!!");
                 }
+                _logger.LogCritical(rpce.RpcError.Message);
             }
             catch (Exception ex)
             {
@@ -240,7 +243,10 @@ namespace ExchangerMonitor
             }
             finally
             {
-                item.Status = TXStatus.Ok;
+                if (item.Status == TXStatus.Processed)
+                {
+                    item.Status = TXStatus.Ok;
+                }
             }
         }
     }
