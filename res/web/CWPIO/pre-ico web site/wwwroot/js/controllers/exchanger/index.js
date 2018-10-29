@@ -95,9 +95,10 @@ var Controller = function () {
 				ViewModel.flags.whiteListInputReady(false);
 				ViewModel.obs.askFormText(self.strings[self.locale].whiteListAddressFieldSave.successSaved);
 				ViewModel.flags.whiteListAddressProcessing(true);
+				ViewModel.obs.whiteListAddressField('');
 				
 				setTimeout(function () {
-					window.addr = '11';//TODO for test
+					//window.addr = '11';//TODO for test
 					ViewModel.actions.initGate.call(ko.toJS(ViewModel.obs.currentCoin));
 					ViewModel.flags.whiteListAddressProcessing(false);
 				},3000);
