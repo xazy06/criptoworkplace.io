@@ -123,7 +123,7 @@ namespace ExchangerMonitor
                     "",
                     _opts.SmartContractAddr,
                     account.Address,
-                    new HexBigInteger(0x19A28),
+                    new HexBigInteger(0x30A28),
                     new HexBigInteger(price.Value * 2),
                     new HexBigInteger(amount)
                 );
