@@ -167,11 +167,7 @@ var Controller = function () {
 				ViewModel.obs.usersettings.ethAddress(response.ethAddress);
 				ViewModel.obs.usersettings.country(response.country);
 				ViewModel.obs.usersettings.telegramNickname(response.telegramNickname);
-
-				//redunant
-				// if (ViewModel.obs.usersettings.ethAddress()){
-				// 	ViewModel.obs.page(2);
-				// }
+				
 			}).fail(function (response) {
 				$.notify(response.statusText);
 			});

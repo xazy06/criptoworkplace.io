@@ -206,7 +206,7 @@ var Controller = (Controller || {}), Gate = function () {
 				
 				Controller.actions.monitor(Controller.ViewModel.obs.cwtCount(), data.transaction);
 
-				Controller.actions.stopStatusBang();
+				self.actions.stopStatusBang();
 			})
 		},
 		stopStatusBang: function () {
