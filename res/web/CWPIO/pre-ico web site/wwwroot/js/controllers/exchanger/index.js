@@ -567,7 +567,7 @@ var Controller = function () {
 				}
 			},
 			initPurchasingThrottled: function(){
-				return _.throttle(self.ViewModel.actions.initPurchasing, 500);
+				return _.throttle(self.ViewModel.actions.initPurchasing, 1000);
 			},
 			/**
 			 *  @name {continueGateProceccing}
