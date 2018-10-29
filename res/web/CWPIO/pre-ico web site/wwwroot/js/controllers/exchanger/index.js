@@ -36,6 +36,9 @@ var Controller = function () {
 	};
 	
 	this.actions = {
+		sendEmail: function (data) {
+			//TODO
+		},
 		getCurrentExchangeSession: function () {
 			$.get(self.api.currentExchangeSession).done(function (response) {
 				console.log(response);

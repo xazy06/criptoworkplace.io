@@ -198,8 +198,14 @@ var Controller = (Controller || {}), Gate = function () {
 			shapeshift.status(Controller.ViewModel.obs.depositAddress(), function (err, status, data) {
 				//console.log(status); // => should be 'received' or 'complete'
 				console.log(data);
+
+				if (status === 'failed') {
+					self.actions.stopStatusBang();
+					
+					Controller.actions.sendEmail(data);//TODO
+					return;
+				}
 				
-				//TODO check status, may be need to watch complete status 
 				if (status !== 'complete') {
 					return;
 				}
