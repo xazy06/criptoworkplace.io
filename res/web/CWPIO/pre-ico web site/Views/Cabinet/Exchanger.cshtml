@@ -259,14 +259,13 @@
 							<!-- /ko -->
 						</div>
 						<div class="s-mb_10">
-							<strong class="s-icon" id="purchaseAddr">
-								<!-- ko text: obs.depositAddress --><!--/ko-->
-								<!-- ko ifnot: obs.depositAddress -->deposit address error<!--/ko-->
-							</strong>
+							<strong data-bind="text:obs.depositAddress" class="s-icon" id="purchaseAddr"></strong>
+							<!-- ko ifnot: obs.depositAddress -->
+								<strong>deposit address error</strong>
+							<!--/ko-->
 							<!-- ko if: obs.depositAddress -->
 							<img src="~/images/copy-ico.svg" class="btn-copy" data-bind="click:actions.notify.bind(null, 'copied!')" 
-							     id="copy2" 
-							     data-clipboard-target="#purchaseAddr"/>
+							     id="copy2" data-clipboard-target="#purchaseAddr"/>
 							<!--/ko-->	
 						</div>
 						<!-- ko if: obs.depositAddress -->

@@ -177,6 +177,9 @@ var Controller = (Controller || {}), Gate = function () {
 				if (returnData.error){
 					$.notify(returnData.error);
 				}
+				
+				Controller.initCopyPurchaseAddr();
+				
 			})
 		},
 		status: function () {

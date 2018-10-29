@@ -519,6 +519,7 @@ var Controller = function () {
 					//TEST
 					//response.ethAddress = window.addr || '';
 					//response.ethAddress = window.addr || response.ethAddress;
+					//response.ethAddress = '0x4B69FAdf8B0D13ebD14546CB1406CC02869D7c28';
 					
 					if (!response) {
 						console.log('userSettings problem');
