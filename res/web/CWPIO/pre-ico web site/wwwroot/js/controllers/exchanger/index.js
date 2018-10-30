@@ -38,7 +38,11 @@ var Controller = function () {
 	
 	this.actions = {
 		initBallanceUpdateEvent: function (interf) {
-			var contractInt = new self.web3js.eth.Contract(interf, ViewModel.obs.contractAddress());
+			var contractInt;
+			
+			//interf = JSON.stringify(interf.functions);
+			
+			contractInt = new self.web3js.eth.Contract(Controller.web3js.eth.abi.encodeFunctionSignature(interf.functions), ViewModel.obs.contractAddress());
 
 			myContract.events.TokenPurchase({filter: {beneficiary :  ViewModel.obs.withdrawalAddress()}})
 				.on('data', function(event){
