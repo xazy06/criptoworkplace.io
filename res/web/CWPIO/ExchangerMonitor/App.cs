@@ -121,30 +121,30 @@ namespace ExchangerMonitor
                 var receipt = await _eth.GetTransactionReceiptAsync(transaction.TransactionHash);
                 switch ((ChangeSteps)item.CurrentStep)
                 {
-                    case ChangeSteps.AddTempAddressToWhiteList:
-                        {
-                            //var receipt = await _eth.GetTransactionReceiptAsync(transaction.TransactionHash);
-                            //item.ExchangerContract = receipt.ContractAddress;
-                            //await _db.SetExchanger(item.UserId, item.ExchangerContract);
-                            _logger.LogInformation("Add Temp address to whitelist");
-                            var tx = await _eth.SendAddToWhitelist(item.TempAddress);
-                            await _db.SetCurrentTransaction(item.Id, tx);
-                            await _db.SetStep(item.Id, (int)ChangeSteps.AddUserWalletToWhiteList);
-                        }
-                        break;
-                    case ChangeSteps.AddUserWalletToWhiteList:
-                        {
-                            _logger.LogInformation("Add user to whitelist");
-                            var tx = await _eth.SendAddToWhitelist(item.ETHAddress);
-                            await _db.SetCurrentTransaction(item.Id, tx);
-                            await _db.SetStep(item.Id, (int)ChangeSteps.SetRate);
-                        }
-                        break;
+                    //case ChangeSteps.AddTempAddressToWhiteList:
+                    //    {
+                    //        //var receipt = await _eth.GetTransactionReceiptAsync(transaction.TransactionHash);
+                    //        //item.ExchangerContract = receipt.ContractAddress;
+                    //        //await _db.SetExchanger(item.UserId, item.ExchangerContract);
+                    //        _logger.LogInformation("Add Temp address to whitelist");
+                    //        var tx = await _eth.SendAddToWhitelist(item.TempAddress);
+                    //        await _db.SetCurrentTransaction(item.Id, tx);
+                    //        await _db.SetStep(item.Id, (int)ChangeSteps.AddUserWalletToWhiteList);
+                    //    }
+                    //    break;
+                    //case ChangeSteps.AddUserWalletToWhiteList:
+                    //    {
+                    //        _logger.LogInformation("Add user to whitelist");
+                    //        var tx = await _eth.SendAddToWhitelist(item.ETHAddress);
+                    //        await _db.SetCurrentTransaction(item.Id, tx);
+                    //        await _db.SetStep(item.Id, (int)ChangeSteps.SetRate);
+                    //    }
+                    //    break;
                     case ChangeSteps.SetRate:
                         {
                             _logger.LogInformation("Set fix rate");
                             var amount = BigInteger.Parse(item.EthAmount);
-                            var tx = await _eth.SetRateForTransactionAsync(item.Rate, item.TempAddress, amount);
+                            var tx = await _eth.SetRateForTransactionAsync(item.Rate, item.ETHAddress, amount);
                             if (!string.IsNullOrEmpty(tx))
                             {
                                 await _db.SetCurrentTransaction(item.Id, tx);
@@ -156,20 +156,20 @@ namespace ExchangerMonitor
                         {
                             _logger.LogInformation("Send eth to exchanger contract");
                             var exchanger = await _db.GetAddressExchangerAsync(item.TempAddress);
-                            string tx = await _eth.SendToSmartContractAsync(exchanger, BigInteger.Parse(item.EthAmount));
-                            await _db.SetCurrentTransaction(item.Id, tx);
-                            await _db.SetStep(item.Id, (int)ChangeSteps.SendTokens);
-                        }
-                        break;
-                    case ChangeSteps.SendTokens:
-                        {
-                            _logger.LogInformation("Send tokens to customer");
-                            var exchanger = await _db.GetAddressExchangerAsync(item.TempAddress);
-                            var tx = await _eth.SendTokensToUserAsync(exchanger, item.ETHAddress, item.TokenCount);
+                            string tx = await _eth.SendToSmartContractAsync(exchanger, item.ETHAddress, BigInteger.Parse(item.EthAmount));
                             await _db.SetCurrentTransaction(item.Id, tx);
                             await _db.SetStep(item.Id, (int)ChangeSteps.Refund);
                         }
                         break;
+                    //case ChangeSteps.SendTokens:
+                    //    {
+                    //        _logger.LogInformation("Send tokens to customer");
+                    //        var exchanger = await _db.GetAddressExchangerAsync(item.TempAddress);
+                    //        var tx = await _eth.SendTokensToUserAsync(exchanger, item.ETHAddress, item.TokenCount);
+                    //        await _db.SetCurrentTransaction(item.Id, tx);
+                    //        await _db.SetStep(item.Id, (int)ChangeSteps.Refund);
+                    //    }
+                    //    break;
                     case ChangeSteps.Refund:
                         {
                             _logger.LogInformation("Send eth to customer");
@@ -260,13 +260,13 @@ namespace ExchangerMonitor
     internal enum ChangeSteps
     {
         //CreateExchangeContract = 0,
-        AddTempAddressToWhiteList = 0,
-        AddUserWalletToWhiteList = 1,
-        SetRate = 2,
-        SendEth = 3,
-        SendTokens = 4,
-        Refund = 5,
-        Finish = 6
+        //AddTempAddressToWhiteList = 0,
+        //AddUserWalletToWhiteList = 1,
+        SetRate = 0,
+        SendEth = 1,
+        //SendTokens = 4,
+        Refund = 2,
+        Finish = 3
 
     }
 }
