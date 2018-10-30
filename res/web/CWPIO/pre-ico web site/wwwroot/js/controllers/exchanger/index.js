@@ -54,17 +54,46 @@ var Controller = function () {
 					self.actions.usersettings();
 			})
 		},
-		contractabi: function () {
+		contractabi: function (callback) {
 			return self.actions.getContractAddr()
 				.then(function(response){
 					self.actions.withdrawalAddress().then(function () {
 						$.get(self.api.contractabi).done(function (response) {
 							console.log(response);
+							
+							if (callback){
+								return callback(response);
+							}
+							
 							self.actions.initBallanceUpdateEvent(response);
 						})
 					})
 			});
 		},
+		
+		//TODO simplify only one obs nead in real
+		getPastEvents: function () {
+			return self.actions.contractabi(self.actions.fetchTransactions)
+		},
+
+		fetchTransactions: function (contractInterface) {
+			var contractInt;
+
+			if (ViewModel.obs.contractAddress() === '' || ViewModel.obs.withdrawalAddress() === '') {
+				console.log('adresses less can`t continue');
+				return;
+			}
+
+			contractInt = new self.web3js.eth.Contract(contractInterface, ViewModel.obs.contractAddress());
+
+			contractInt.getPastEvents('TokenPurchase', {
+				fromBlock: 0,
+				toBlock: 'latest'
+			}).then(function(events){
+				console.log('getPastEvents', events);
+			});
+		},
+		
 		sendEmail: function (data) {
 			//TODO
 		},
