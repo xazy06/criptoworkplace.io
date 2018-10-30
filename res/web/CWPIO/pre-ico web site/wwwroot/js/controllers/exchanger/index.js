@@ -92,10 +92,17 @@ var Controller = function () {
 			contractInt.getPastEvents('TokenPurchase', {
 				fromBlock: 0,
 				toBlock: 'latest'
-				
+				/*,filter: {//TODO max help
+					beneficiary: ViewModel.obs.withdrawalAddress()
+				}*/
 			}).then(function(events){
 				
 				console.log('getPastEvents', events);
+				
+				_.each(events, function (item) {
+					item.timestamp = ko.observable('');
+					item.status = ko.observable('');
+				});
 
 				ViewModel.obs.transactions(events);
 				
@@ -562,6 +569,24 @@ var Controller = function () {
 				}catch (e){
 					console.log(e);
 				}
+			},
+			toDate: function () {
+				var _this = this;
+				
+				self.web3js.eth.getBlock(_this.blockNumber).then(function (result) {
+					_this.timestamp(new Date(result.timestamp).toLocaleString());
+				});
+				
+				return this.timestamp;
+			},
+			txStatus: function () {
+				var _this = this;
+				
+				self.web3js.eth.getTransactionReceipt(_this.transactionHash).then(function (result) {
+					_this.status(result.status);
+				});
+				
+				return this.status() && 'Completed' || 'Failed';
 			}
 		},
 		actions:{

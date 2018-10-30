@@ -97,10 +97,10 @@
 					<tbody data-bind="foreach: obs.transactions">
 					
 					<tr class="s-expandable">
-						<td>Completed</td>
+						<td data-bind="text:$root.helpers.txStatus.call($data)">-</td>
 						<td>CWT-P</td>
 						<td data-bind="text: $root.helpers.fromWei.call($data.returnValues.amount)">0</td>
-						<td data-bind="">2018-10-12 17:04:38</td>
+						<td data-bind="text: $root.helpers.toDate.call($data)">-</td>
 						<td class="s-ta_c">
 							<a data-bind="click: $root.actions.toggleTransactionItem.bind($element)" href="javascript:void(0)">
 								<i class="fa fa-angle-down"></i>
