@@ -462,6 +462,8 @@ var Controller = function () {
 		},
 		
 		flags:{
+			returnAddressValidating: ko.observable(false),
+			isValidReturnAddress: ko.observable(true),
 			transactionsGetting: ko.observable(false),
 			isFixedAmmountMode: ko.observable(true),
 			hasMetamask: ko.observable(false),
@@ -760,6 +762,10 @@ var Controller = function () {
 		Gate.actions.marketInfo();
 	});
 
+	ViewModel.obs.returnAddress.subscribe(function (val) {
+		Gate.actions.validateReturnAddress(val, ViewModel.obs.currentCoin.symbol());
+	});
+	
 	ViewModel.obs.whiteListAddressField.subscribe(ViewModel.actions.whiteListAddressFieldSave);
 	
 	ViewModel.obs.searchInput.subscribe(function (val) {

@@ -214,6 +214,17 @@
 					<!-- ko ifnot: flags.whiteListLess -->
 					<!-- ko if:flags.isFixedAmmountMode -->
 					<h6 class="m--font-primary">
+						Optionally you can specify return address(<strong><!-- ko text: obs.currentCoin.symbol --><!--/ko--></strong>) 
+					</h6>
+					<div data-bind="css:{'m-loader m-loader--primary m-loader--right': flags.returnAddressValidating}" class="s-mb_20">
+						<input data-bind="textInput: obs.returnAddress, disable:flags.returnAddressValidating" type="text" class="form-control ammount-control"/>
+					</div>
+					<div data-bind="css:{'s-display_bi': (!flags.isValidReturnAddress())}" 
+					     class="s-display_n m-alert m-alert alert alert-danger alert-dismissible fade show" role="alert">
+						This is not a valid <strong><!-- ko text: obs.currentCoin.symbol --><!--/ko--></strong> address  	
+					</div>
+					
+					<h6 class="m--font-primary">
 						CWT-P Token amount you want to receive
 					</h6>
 					<div class="s-mb_20">

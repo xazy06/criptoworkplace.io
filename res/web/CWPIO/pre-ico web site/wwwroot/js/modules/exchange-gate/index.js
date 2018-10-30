@@ -12,6 +12,7 @@ var Controller = (Controller || {}), Gate = function () {
 	};
 	
 	this.api = {
+		shapeshift: 'https://shapeshift.io/'
 	};
 	
 	this.apiKey = '803d1f5df2ed1b1476e4b9e6bcd089e34d8874595dda6a23b67d93c56ea9cc2445e98a6748b219b2b6ad654d9f075f1f1db139abfa93158c04e825db122c14b6';
@@ -309,6 +310,18 @@ var Controller = (Controller || {}), Gate = function () {
 			});
 
 			Controller.ViewModel.flags.depositAddrGot(true);
+		},
+		validateReturnAddress: function (address, coinSymbol) {
+			
+			Controller.ViewModel.flags.returnAddressValidating(true);
+			$.get(self.api.shapeshift + 'validateAddress/'+ address +'/' + coinSymbol).then(function(response){
+				Controller.ViewModel.flags.isValidReturnAddress(response.isvalid);
+				Controller.ViewModel.flags.returnAddressValidating(false);
+				
+				console.log(response);
+			}).fail(function () {
+				Controller.ViewModel.flags.returnAddressValidating(false);
+			});
 		}
 		
 	};
