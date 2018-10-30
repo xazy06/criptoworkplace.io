@@ -213,6 +213,13 @@
 					
 					<!-- ko ifnot: flags.whiteListLess -->
 					<!-- ko if:flags.isFixedAmmountMode -->
+					
+					<div data-bind="css:{'s-display_bi': flags.expiredOrder}" 
+					     class="s-display_n m-alert m-alert alert alert-danger alert-dismissible fade show" role="alert">
+						<p>Ths Order is expired, do not deposit any currency to address below!</p>
+						<a data-bind="click:actions.continueExpiredOrder" class="btn btn-info btn-sm m-btn--square" href="javascript: void(0)">Create new order</a>
+					</div>
+					
 					<h6 class="m--font-primary">
 						Optionally you can specify return address(<strong><!-- ko text: obs.currentCoin.symbol --><!--/ko--></strong>) 
 					</h6>

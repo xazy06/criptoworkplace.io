@@ -230,10 +230,23 @@ var Controller = (Controller || {}), Gate = function () {
 			})
 		},
 		status: function () {
-			shapeshift.status(Controller.ViewModel.obs.depositAddress(), function (err, status, data) {
-				//console.log(status); // => should be 'received' or 'complete'
+			Controller.ViewModel.flags.expiredOrder(false);
+			
+			//shapeshift.status(Controller.ViewModel.obs.depositAddress(), function (err, status, data) {
+			$.get(Gate.api.shapeshift + 'orderInfo/' + Controller.ViewModel.obs.fixedAmmount.orderId()).done(function(data){
+				
+				var status = data.status; // => should be 'received' or 'complete'
+				
 				console.log(data);
 
+				if (status === '' || data.timeRemaining < 3) {
+					self.actions.stopStatusBang();
+					
+					Controller.ViewModel.flags.expiredOrder(true);
+					
+					return;
+				}
+				
 				if (status === 'failed') {
 					self.actions.stopStatusBang();
 					
@@ -248,12 +261,15 @@ var Controller = (Controller || {}), Gate = function () {
 				Controller.actions.monitor(Controller.ViewModel.obs.cwtCount(), data.transaction);
 
 				self.actions.stopStatusBang();
-			})
+			});
 		},
 		stopStatusBang: function () {
 			window.clearInterval(self.poolingId);
 		},
 		initStatusBang: function () {
+			
+			self.actions.status();
+			
 			try{
 				window.clearInterval(self.poolingId);
 			}catch (e){}

@@ -471,6 +471,7 @@ var Controller = function () {
 		},
 		
 		flags:{
+			expiredOrder: ko.observable(false),
 			returnAddressValidating: ko.observable(false),
 			isValidReturnAddress: ko.observable(true),
 			transactionsGetting: ko.observable(false),
@@ -642,6 +643,10 @@ var Controller = function () {
 				ViewModel.obs.fixedAmmount.withdrawal(restoredGateOperation.fixedAmmount.withdrawal);
 				ViewModel.obs.fixedAmmount.withdrawalAmount(restoredGateOperation.fixedAmmount.withdrawalAmount);
 				
+			},
+			continueExpiredOrder: function () {
+				ViewModel.flags.expiredOrder(false);
+				return ViewModel.actions.initGate.call(ko.toJS(ViewModel.obs.currentCoin));
 			},
 			initGate: function () {
 				var _this = this;
