@@ -40,21 +40,30 @@ var Controller = function () {
 		initBallanceUpdateEvent: function (interf) {
 			var contractInt;
 			
-			//interf = JSON.stringify(interf.functions);
+			if (ViewModel.obs.contractAddress() === '' || ViewModel.obs.withdrawalAddress() === '') {
+				console.log('adresses less can`t attach events handling');
+				return;
+			}
 			
-			contractInt = new self.web3js.eth.Contract(Controller.web3js.eth.abi.encodeFunctionSignature(interf.functions), ViewModel.obs.contractAddress());
+			contractInt = new self.web3js.eth.Contract(interf, ViewModel.obs.contractAddress());
 
-			myContract.events.TokenPurchase({filter: {beneficiary :  ViewModel.obs.withdrawalAddress()}})
+			contractInt.events.TokenPurchase({filter: {beneficiary: ViewModel.obs.withdrawalAddress()}})
 				.on('data', function(event){
-					// same results as the optional callback above
 					console.log(event);
+					
+					self.actions.usersettings();
 			})
 		},
 		contractabi: function () {
-			return $.get(self.api.contractabi).done(function (response) {
-				console.log(response);
-				self.actions.initBallanceUpdateEvent(response);
-			})
+			return self.actions.getContractAddr()
+				.then(function(response){
+					self.actions.withdrawalAddress().then(function () {
+						$.get(self.api.contractabi).done(function (response) {
+							console.log(response);
+							self.actions.initBallanceUpdateEvent(response);
+						})
+					})
+			});
 		},
 		sendEmail: function (data) {
 			//TODO
@@ -183,7 +192,7 @@ var Controller = function () {
 		},
 		
 		getContractAddr: function () {
-			$.getJSON(self.api.purchase).done(function (result) {
+			return $.getJSON(self.api.purchase).done(function (result) {
 				ViewModel.obs.contractAddress(result);
 			}).fail(function (response) {
 				console.log(response);
