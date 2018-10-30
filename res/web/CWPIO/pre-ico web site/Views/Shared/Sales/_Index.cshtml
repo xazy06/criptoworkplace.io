@@ -15,7 +15,7 @@
 						Sales
 					</a>
 				</li>
-				<li class="nav-item m-tabs__item">
+				<li data-bind="click: actions.getTransactions" class="nav-item m-tabs__item">
 					<a class="nav-link m-tabs__link" data-toggle="tab" href="#tx-tab" role="tab" aria-selected="false">
 						Transactions
 					</a>
@@ -112,11 +112,11 @@
 						<td class="b-tx-info" colspan="5">
 							<div class="s-mb_10">
 								<span>Address:</span>
-								<span></span>
+								<a target="_blank" data-bind="text:$data.address, attr:{'href': ('https://etherscan.io/address/' + $data.address)}" href="#"></a>
 							</div>
 							<div class="s-mb_10">
 								<span>Txid:</span>
-								<span></span>
+								<a target="_blank" data-bind="text:$data.transactionHash, attr:{'href': ('https://etherscan.io/tx/' + $data.transactionHash)}" href="#"></a>
 							</div>
 						</td>
 					</tr>
