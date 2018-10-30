@@ -551,7 +551,19 @@ var Controller = function () {
 				return ViewModel.obs.cwtCount() < 500;
 			})
 		},
-		
+		helpers: {
+			fromWei: function () {
+				var fromWei;
+
+				try{
+					fromWei = self.web3js.utils.fromWei;
+
+					return fromWei(String(this));
+				}catch (e){
+					console.log(e);
+				}
+			}
+		},
 		actions:{
 			getTransactions: function () {
 				ViewModel.flags.transactionsGetting(true);
