@@ -105,6 +105,7 @@ var Controller = (Controller || {}), Gate = function () {
 
 			if (window.restoring){
 				window.restoring = false;
+				
 				self.actions.initStatusBang();
 
 				Controller.ViewModel.flags.depositAddrGetting(false);
@@ -153,7 +154,7 @@ var Controller = (Controller || {}), Gate = function () {
 			//var withdrawalAddress = '0x4b69fadf8b0d13ebd14546cb1406cc02869d7c28';
 			var withdrawalAddress = Controller.ViewModel.obs.withdrawalAddress();
 			var pair = Controller.ViewModel.obs.currentCoin.symbol().toLowerCase() +  '_eth';
-
+			
 			//debugger;
 			Controller.ViewModel.flags.depositAddrGetting(true);
 			Controller.ViewModel.flags.depositAddrGot(false);

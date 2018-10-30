@@ -32,10 +32,26 @@ var Controller = function () {
 		calcExchange: '/api/v1/exchanger/calcExchange/',
 		purchase: '/api/v1/exchanger/addr',
 		initPurchasing: '/api/v1/exchanger/initPurchasing',
-		monitor: '/api/v1/exchanger/monitor/'
+		monitor: '/api/v1/exchanger/monitor/',
+		contractabi: '/api/v1/exchanger/contractabi/'
 	};
 	
 	this.actions = {
+		initBallanceUpdateEvent: function (interf) {
+			var contractInt = new self.web3js.eth.Contract(interf, ViewModel.obs.contractAddress());
+
+			myContract.events.TokenPurchase({filter: {beneficiary :  ViewModel.obs.withdrawalAddress()}})
+				.on('data', function(event){
+					// same results as the optional callback above
+					console.log(event);
+			})
+		},
+		contractabi: function () {
+			return $.get(self.api.contractabi).done(function (response) {
+				console.log(response);
+				self.actions.initBallanceUpdateEvent(response);
+			})
+		},
 		sendEmail: function (data) {
 			//TODO
 		},
@@ -670,6 +686,7 @@ var Controller = function () {
 						console.log('restoring cwtCount');
 						ViewModel.obs.cwtCount(_this.cwtCount);
 					}else{
+						//ViewModel.obs.cwtCount(0);//bad solution
   					ViewModel.obs.cwtCount(500);
 					}
 					
