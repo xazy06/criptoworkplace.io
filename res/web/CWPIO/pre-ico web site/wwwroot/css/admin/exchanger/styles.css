@@ -165,3 +165,12 @@
 .s-mr_10 {
 	margin-right:10px;
 }
+
+td.active {
+	color:#000;
+	font-weight: 700;
+}
+
+.t-coins td {
+	vertical-align: middle;
+}

@@ -574,6 +574,7 @@ var Controller = function () {
 				var _this = this;
 				
 				self.web3js.eth.getBlock(_this.blockNumber).then(function (result) {
+					console.log(result.timestamp);
 					_this.timestamp(new Date(result.timestamp).toLocaleString());
 				});
 				

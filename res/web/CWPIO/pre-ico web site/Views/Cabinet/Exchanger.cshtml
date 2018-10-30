@@ -104,7 +104,7 @@
 						There is no currencies you are search 
 					</div>
 					
-					<table class="table table-hover table-sm">
+					<table class="table table-hover table-sm t-coins">
 						<tbody>
 						<!-- ko foreach: currencies -->
 						<tr>
@@ -114,7 +114,7 @@
 									<strong class="s-icon" data-bind="text: $data.symbol"></strong>
 								</div>
 							</td>
-							<td data-bind="attr:{'colspan': ($data.status === 'unavailable' && 2 || 0)}">
+							<td data-bind="css:{'active': ($root.obs.currentCoin.symbol() === $data.symbol) }, attr:{'colspan': ($data.status === 'unavailable' && 2 || 0)}">
 								<!--ko text: $data.name--><!--/ko-->
 
 								<!-- ko if: ($data.status === 'unavailable')-->
