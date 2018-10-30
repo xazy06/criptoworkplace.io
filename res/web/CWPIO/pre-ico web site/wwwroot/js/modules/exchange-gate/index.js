@@ -317,7 +317,12 @@ var Controller = (Controller || {}), Gate = function () {
 			$.get(self.api.shapeshift + 'validateAddress/'+ address +'/' + coinSymbol).then(function(response){
 				Controller.ViewModel.flags.isValidReturnAddress(response.isvalid);
 				Controller.ViewModel.flags.returnAddressValidating(false);
-				
+				if (response.isvalid === false) {
+					setTimeout(function () {
+						Controller.ViewModel.obs.returnAddress('');
+						Controller.ViewModel.flags.isValidReturnAddress(true);		
+					},3000)
+				}
 				console.log(response);
 			}).fail(function () {
 				Controller.ViewModel.flags.returnAddressValidating(false);
