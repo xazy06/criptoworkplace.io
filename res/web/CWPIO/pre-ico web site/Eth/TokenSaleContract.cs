@@ -27,6 +27,7 @@ namespace pre_ico_web_site.Eth
         private readonly Web3 _web3;
         private readonly IMemoryCache _memoryCache;
         private const string mem_key = "fixrate:{0}:{1}";
+        private readonly string _saleContractABI;
         public string Address { get { return _saleContract.Address; } }
         
        
@@ -47,13 +48,13 @@ namespace pre_ico_web_site.Eth
             {
                 files.GetFileByName(gdriveOptions.Value.SaleContractFileName, stream);
                 stream.Seek(0, SeekOrigin.Begin);
-                _saleContract = LoadContractFromMetadata(web3, _settings.Network.ToString(), stream);
+                (_saleContract, _saleContractABI) = LoadContractFromMetadata(web3, _settings.Network.ToString(), stream);
             }
             using (var stream = new MemoryStream())
             {
                 files.GetFileByName(gdriveOptions.Value.TokenContractFileName, stream);
                 stream.Seek(0, SeekOrigin.Begin);
-                _tokenContract = LoadContractFromMetadata(web3, _settings.Network.ToString(), stream);
+                (_tokenContract,_) = LoadContractFromMetadata(web3, _settings.Network.ToString(), stream);
             }
         }
 
@@ -62,7 +63,7 @@ namespace pre_ico_web_site.Eth
             return _saleContract.GetFunction("whitelist").CallAsync<bool>(wallet);
         }
 
-        private static Contract LoadContractFromMetadata(Web3 web3, string netId, Stream json)
+        private static (Contract contract, string abi) LoadContractFromMetadata(Web3 web3, string netId, Stream json)
         {
             //var JSON = System.IO.File.ReadAllText(contractFile);
             using (var reader = new StreamReader(json))
@@ -70,13 +71,13 @@ namespace pre_ico_web_site.Eth
                 dynamic jObject = JsonConvert.DeserializeObject<dynamic>(reader.ReadToEnd());
                 var abi = jObject.abi.ToString();
                 var contractAddress = jObject.networks[netId].address.ToString();
-                return web3.Eth.GetContract(abi, contractAddress);
+                return (web3.Eth.GetContract(abi, contractAddress), abi);
             }
         }
 
-        public ContractABI GetSaleContractABI()
+        public string GetSaleContractABI()
         {
-            return _saleContract.ContractBuilder.ContractABI;
+            return _saleContractABI;
         }
 
         public async Task< BigInteger> GetGasPriceAsync()

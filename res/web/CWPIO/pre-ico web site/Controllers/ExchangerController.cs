@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Nethereum.Util;
+using Newtonsoft.Json;
 using pre_ico_web_site.Data;
 using pre_ico_web_site.Eth;
 using pre_ico_web_site.Models;
@@ -44,7 +45,7 @@ namespace pre_ico_web_site.Controllers
         [HttpGet("contractabi")]
         public IActionResult GetSaleContractABI()
         {
-            return Ok(_contract.GetSaleContractABI());
+            return Ok(JsonConvert.DeserializeObject(_contract.GetSaleContractABI()));
         }
 
         [HttpGet]
