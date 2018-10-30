@@ -6,11 +6,11 @@ var Controller = function () {
 	
 	this.strings = {
 		ru:{
-			whiteListLess:'',
+			whiteListLess: 'You need to set up ETH Address to receive CWT-P and be able to continue purchasing',
 			whiteListAddressFieldSave: {
-				fail: '',
-				successSaved:'',
-				success: ''
+				fail: 'Look`s like some thing is wrong!',
+				successSaved:'Your ETH address successfully saved, now you can continue purchase',
+				success: 'Success!'
 			}
 		},
 		en:{
