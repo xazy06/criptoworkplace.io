@@ -23,19 +23,28 @@ namespace pre_ico_web_site.Controllers
         private readonly EthSettings _options;
         private readonly IRateStore _rateStore;
         private readonly Crypto _crypto;
+        private readonly IEmailSender _emailSender;
 
         public ExchangerController(
             ApplicationDbContext dbContext,
             TokenSaleContract contract,
             IRateStore rateStore,
             IOptions<EthSettings> options,
-            Crypto crypto)
+            Crypto crypto,
+            IEmailSender emailSender)
         {
             _dbContext = dbContext;
             _contract = contract;
             _options = options.Value;
             _rateStore = rateStore;
             _crypto = crypto;
+            _emailSender = emailSender;
+        }
+
+        [HttpGet("contractabi")]
+        public IActionResult GetSaleContractABI()
+        {
+            return Ok(_contract.GetSaleContractABI());
         }
 
         [HttpGet]
@@ -74,7 +83,7 @@ namespace pre_ico_web_site.Controllers
             var rate = await GetRateAsync(amount);
             return Ok(new
             {
-                totalAmount = UnitConversion.Convert.FromWei(rate.amount).ToString(),
+                totalAmount = UnitConversion.Convert.FromWei(rate.amount).ToString(System.Globalization.CultureInfo.InvariantCulture),
                 fee = "0"
             });
         }
@@ -258,7 +267,12 @@ namespace pre_ico_web_site.Controllers
         //    return Ok(result);
         //}
 
+        public IActionResult PostFailTransaction(FailTransactionModel model)
+        {
+            
 
+            return Ok();
+        }
 
 
     }

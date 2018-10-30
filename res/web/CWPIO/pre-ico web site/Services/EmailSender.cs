@@ -1,16 +1,11 @@
-﻿using pre_ico_web_site.Models;
-using Mailjet.Client;
+﻿using Mailjet.Client;
 using Mailjet.Client.Resources;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
+using pre_ico_web_site.Models;
 using System.Globalization;
-using System.Linq;
-using System.Net.Mail;
 using System.Threading.Tasks;
 
 namespace pre_ico_web_site.Services
@@ -19,7 +14,7 @@ namespace pre_ico_web_site.Services
     // For more details see https://go.microsoft.com/fwlink/?LinkID=532713
     public class EmailSender : IEmailSender
     {
-        private IStringLocalizer<EmailSender> _localizer;
+        private readonly IStringLocalizer<EmailSender> _localizer;
         private MailjetClient _client;
         private IOptions<MailSettings> _mailSettings;
         private ILogger _logger;
@@ -41,7 +36,9 @@ namespace pre_ico_web_site.Services
                 .Property(Send.Subject, subject)
                 .Property(Send.TextPart, message);
             if (!string.IsNullOrEmpty(html))
+            {
                 request.Property(Send.HtmlPart, html);
+            }
 
             request.Property(Send.Recipients, new JArray { new JObject { { "Email", email } } });
 
@@ -55,10 +52,10 @@ namespace pre_ico_web_site.Services
             var res = await AddUserToContactList(email, name);
             if (res)
             {
-                var welcomeTemplateId = _mailSettings.Value.WelcomeTemplateId.ContainsKey(CultureInfo.CurrentUICulture.Name) ? 
+                var welcomeTemplateId = _mailSettings.Value.WelcomeTemplateId.ContainsKey(CultureInfo.CurrentUICulture.Name) ?
                         _mailSettings.Value.WelcomeTemplateId[CultureInfo.CurrentUICulture.Name] :
                         _mailSettings.Value.WelcomeTemplateId["en-US"];
-            
+
                 MailjetRequest request = new MailjetRequest { Resource = Send.Resource }
                     .Property(Send.FromEmail, "info@cryptoworkplace.io")
                     .Property(Send.FromName, "CryptoWorkPlace Info")
@@ -79,9 +76,43 @@ namespace pre_ico_web_site.Services
                     return true;
                 }
                 else
+                {
                     _logger.LogError(response.GetErrorMessage());
-
+                }
             }
+            return false;
+        }
+
+        public async Task<bool> SendEmailFailedTransactionAsync(string email)
+        {
+            var welcomeTemplateId = _mailSettings.Value.WelcomeTemplateId.ContainsKey(CultureInfo.CurrentUICulture.Name) ?
+                    _mailSettings.Value.WelcomeTemplateId[CultureInfo.CurrentUICulture.Name] :
+                    _mailSettings.Value.WelcomeTemplateId["en-US"];
+
+            MailjetRequest request = new MailjetRequest { Resource = Send.Resource }
+                .Property(Send.FromEmail, "info@cryptoworkplace.io")
+                .Property(Send.FromName, "CryptoWorkPlace Info")
+                .Property(Send.Subject, _localizer["Subscribe_Subject"].Value)
+                .Property(Send.MjTemplateID, welcomeTemplateId.ToString())
+                .Property(Send.MjTemplateLanguage, true)
+                //.Property(Send.Vars, new JObject {
+                //{ "header", _localizer["Subscribe_Topic"].Value },
+                //{ "text1", _localizer["Subscribe_Paragraph_One"].Value },
+                //{ "text2", _localizer["Subscribe_Paragraph_Two"].Value },
+                //{ "text3", _localizer["Subscribe_Paragraph_Three"].Value }
+                //})
+                .Property(Send.Recipients, new JArray { new JObject { { "Email", email } } });
+
+            MailjetResponse response = await _client.PostAsync(request);
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                _logger.LogError(response.GetErrorMessage());
+            }
+
             return false;
         }
 
@@ -114,7 +145,7 @@ namespace pre_ico_web_site.Services
 
                 if (response.IsSuccessStatusCode)
                 {
-                    var contactListId = _mailSettings.Value.ContacListId.ContainsKey(CultureInfo.CurrentUICulture.Name) ? 
+                    var contactListId = _mailSettings.Value.ContacListId.ContainsKey(CultureInfo.CurrentUICulture.Name) ?
                         _mailSettings.Value.ContacListId[CultureInfo.CurrentUICulture.Name] :
                         _mailSettings.Value.ContacListId["en-US"];
                     request = new MailjetRequest { Resource = ContactManagecontactslists.Resource, ResourceId = ResourceId.Numeric(contactId) }
@@ -126,15 +157,24 @@ namespace pre_ico_web_site.Services
                         });
                     response = await _client.PostAsync(request);
                     if (response.IsSuccessStatusCode)
+                    {
                         return true;
+                    }
                     else
+                    {
                         _logger.LogError(response.GetErrorMessage());
+                    }
                 }
                 else
+                {
                     _logger.LogError(response.GetErrorMessage());
+                }
             }
             else
+            {
                 _logger.LogError(response.GetErrorMessage());
+            }
+
             return false;
         }
 
