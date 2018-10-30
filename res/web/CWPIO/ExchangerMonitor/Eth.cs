@@ -113,20 +113,30 @@ namespace ExchangerMonitor
             return await _web3.Eth.Transactions.GetTransactionReceipt.SendRequestAsync(transactionHash);
         }
 
-        public async Task<string> SendToSmartContractAsync(string pk, BigInteger amount)
+        public async Task<string> SendToSmartContractAsync(string pk, string buyer, BigInteger amount)
         {
             var account = new Account(_crypto.Decrypt(pk.StringToByteArray()));
             var _web3t = new Web3(account, _opts.NodeUrl);
 
             var price = await _web3t.Eth.GasPrice.SendRequestAsync();
-            var input = new TransactionInput(
-                    "",
-                    _opts.SmartContractAddr,
-                    account.Address,
-                    new HexBigInteger(0x30A28),
-                    new HexBigInteger(price.Value * 2),
-                    new HexBigInteger(amount)
-                );
+
+            Contract contract = _web3t.Eth.GetContract(_json.Sale.ABI.ToString(), _opts.SmartContractAddr);
+            var input = contract.GetFunction("buyTokens").CreateTransactionInput(
+                account.Address,
+                new HexBigInteger(0x30A28),
+                new HexBigInteger(price.Value * 2),
+                new HexBigInteger(amount),
+                buyer
+            );
+
+            //new TransactionInput(
+            //        "",
+            //        _opts.SmartContractAddr,
+            //        account.Address,
+            //        new HexBigInteger(0x30A28),
+            //        new HexBigInteger(price.Value * 2),
+            //        new HexBigInteger(amount)
+            //    );
 
             var gas = await _web3t.Eth.TransactionManager.EstimateGasAsync(input);
             input.Gas = new HexBigInteger(gas.Value + 10000);
