@@ -65,6 +65,7 @@ var Controller = (Controller || {}), Gate = function () {
 		timeremaining: function () {
 			
 		},
+		//TODO NOt USING
 		transactions: function () {
 			Controller.ViewModel.obs.transactions([]);
 			

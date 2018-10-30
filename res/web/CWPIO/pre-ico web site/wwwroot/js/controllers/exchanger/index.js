@@ -42,6 +42,7 @@ var Controller = function () {
 			
 			if (ViewModel.obs.contractAddress() === '' || ViewModel.obs.withdrawalAddress() === '') {
 				console.log('adresses less can`t attach events handling');
+				
 				return;
 			}
 			
@@ -59,7 +60,7 @@ var Controller = function () {
 				.then(function(response){
 					self.actions.withdrawalAddress().then(function () {
 						$.get(self.api.contractabi).done(function (response) {
-							console.log(response);
+							//console.log(response);
 							
 							if (callback){
 								return callback(response);
@@ -73,7 +74,8 @@ var Controller = function () {
 		
 		//TODO simplify only one obs nead in real
 		getPastEvents: function () {
-			return self.actions.contractabi(self.actions.fetchTransactions)
+			
+			return self.actions.contractabi(self.actions.fetchTransactions);
 		},
 
 		fetchTransactions: function (contractInterface) {
@@ -81,6 +83,7 @@ var Controller = function () {
 
 			if (ViewModel.obs.contractAddress() === '' || ViewModel.obs.withdrawalAddress() === '') {
 				console.log('adresses less can`t continue');
+				
 				return;
 			}
 
@@ -89,8 +92,14 @@ var Controller = function () {
 			contractInt.getPastEvents('TokenPurchase', {
 				fromBlock: 0,
 				toBlock: 'latest'
+				
 			}).then(function(events){
+				
 				console.log('getPastEvents', events);
+
+				ViewModel.obs.transactions(events);
+				
+				ViewModel.flags.transactionsGetting(false);
 			});
 		},
 		
@@ -545,7 +554,9 @@ var Controller = function () {
 		
 		actions:{
 			getTransactions: function () {
-				return Gate.actions.transactions();
+				ViewModel.flags.transactionsGetting(true);
+				//return Gate.actions.transactions();
+				return self.actions.getPastEvents();
 			},
 			toggleTransactionItem: function(){
 				var $el = $(this);
