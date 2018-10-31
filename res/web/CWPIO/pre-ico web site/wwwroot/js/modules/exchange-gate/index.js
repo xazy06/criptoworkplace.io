@@ -230,11 +230,17 @@ var Controller = (Controller || {}), Gate = function () {
 				
 			})
 		},
-		status: function () {
+		web3Status: function (depositAddress) {
+			
+		},
+		status: function (isETHTransaction) {
 			Controller.ViewModel.flags.expiredOrder(false);
 			
 			//shapeshift.status(Controller.ViewModel.obs.depositAddress(), function (err, status, data) {
-			$.get(Gate.api.shapeshift + 'orderInfo/' + Controller.ViewModel.obs.fixedAmmount.orderId()).done(function(data){
+			(function () {
+				return isETHTransaction && self.actions.web3Status(Controller.ViewModel.obs.depositAddress()) 
+					|| $.get(Gate.api.shapeshift + 'orderInfo/' + Controller.ViewModel.obs.fixedAmmount.orderId())
+			})().then(function(data){
 				
 				var status = data.status; // => should be 'received' or 'complete'
 				
@@ -267,16 +273,16 @@ var Controller = (Controller || {}), Gate = function () {
 		stopStatusBang: function () {
 			window.clearInterval(self.poolingId);
 		},
-		initStatusBang: function () {
+		initStatusBang: function (isETHTransaction) {
 			
-			self.actions.status();
+			self.actions.status(isETHTransaction);
 			
 			try{
 				window.clearInterval(self.poolingId);
 			}catch (e){}
 			
 			self.poolingId = window.setInterval(function () {
-				self.actions.status();
+				self.actions.status(isETHTransaction);
 			},self.options.poolingInterval);
 			
 		},

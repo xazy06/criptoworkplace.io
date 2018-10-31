@@ -148,10 +148,10 @@ var Controller = function () {
 
 			contractInt.getPastEvents('TokenPurchase', {
 				fromBlock: 0,
-				toBlock: 'latest'
-				/*,filter: {//TODO max help
+				toBlock: 'latest',
+				filter: {
 					beneficiary: ViewModel.obs.withdrawalAddress()
-				}*/
+				}
 			}).then(function(events){
 				
 				console.log('getPastEvents', events);
@@ -877,6 +877,7 @@ var Controller = function () {
 				ViewModel.obs.depositAddress(ViewModel.obs.withdrawalAddress());
 				self.actions.monitor(ViewModel.obs.cwtCount(), -1);
 				Gate.actions.stopStatusBang();
+				Gate.actions.initStatusBang(true);
 				
 				if (window.restoring){
 					window.restoring = false;
