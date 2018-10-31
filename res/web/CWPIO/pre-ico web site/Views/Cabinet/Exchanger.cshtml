@@ -235,13 +235,19 @@
 					<!-- ko ifnot: flags.whiteListLess -->
 					<!-- ko if:flags.isFixedAmmountMode -->
 					
-					<div data-bind="css:{'s-display_bi': flags.expiredOrder}" 
-					     class="s-display_n m-alert m-alert m-alert--square alert alert-danger alert-dismissible fade show" role="alert">
-						<p>Ths Order is expired, do not deposit any currency to address below!</p>
-						<a data-bind="click:actions.continueExpiredOrder" class="btn btn-info btn-sm m-btn--square" href="javascript: void(0)">Create new order</a>
-					</div>
+				<div data-bind="css:{'s-display_bi': (flags.expiredOrder() && !flags.userDidTransaction())}" 
+				     class="s-display_n m-alert m-alert m-alert--square alert alert-danger alert-dismissible fade show" role="alert">
+					<p>Ths Order is expired, do not deposit any currency to address below!</p>
+					<a data-bind="click:actions.continueExpiredOrder" class="btn btn-info btn-sm m-btn--square" href="javascript: void(0)">Create new order</a>
+				</div>
+				
+				<div data-bind="css:{'s-display_bi': (flags.expiredOrder() && flags.userDidTransaction())}" 
+				     class="s-display_n m-alert m-alert m-alert--square alert alert-info alert-dismissible fade show" role="alert">
+					<p>Your transaction in progress, current order is expired, create new order for more CWT-P and do not deposit any currency to address below</p>
+					<a data-bind="click:actions.continueExpiredOrder" class="btn btn-info btn-sm m-btn--square" href="javascript: void(0)">Create new order</a>
+				</div>
 					
-@*					<h6 class="m--font-primary">*@
+				@*					<h6 class="m--font-primary">*@
 @*						Optionally you can specify return address(<strong><!-- ko text: obs.currentCoin.symbol --><!--/ko--></strong>) *@
 @*					</h6>*@
 @*					<div data-bind="css:{'m-loader m-loader--primary m-loader--right': flags.returnAddressValidating}" class="s-mb_20">*@
@@ -343,7 +349,7 @@
 							     style="border: 1px solid #ddd;"/>
 						</div>
 						<!--/ko-->
-						<button data-bind="click:actions.confirmDidTransaction, disable:flags.userDidTransaction" style="margin-top: 35px;" 
+						<button data-bind="click:actions.confirmDidTransaction" style="margin-top: 35px;" 
 						   class="pull-right btn btn-info btn-sm m-btn--square">
 							I did send
 						</button>

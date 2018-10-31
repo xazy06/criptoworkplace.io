@@ -192,6 +192,7 @@ var Controller = function () {
 			
 			gateOperation= {
 				restoring: true,
+				userDidTransaction: ViewModel.flags.userDidTransaction(),
 				cwtCount: ViewModel.obs.cwtCount(),
 				symbol: ViewModel.obs.currentCoin.symbol(),
 				name:ViewModel.obs.currentCoin.name(),
@@ -601,7 +602,7 @@ var Controller = function () {
 				return ViewModel.obs.needPay() > 0;
 			}),
 			minCont: ko.pureComputed(function () {
-				return ViewModel.obs.cwtCount() < 500;
+				return ViewModel.obs.cwtCount() < 500 && ViewModel.obs.cwtCount() > 0;
 			})
 		},
 		helpers: {
@@ -747,6 +748,8 @@ var Controller = function () {
 
 				ViewModel.obs.currentCoin.symbol('');
 				ViewModel.obs.currentCoin.symbol(restoredGateOperation.symbol);
+
+				ViewModel.flags.userDidTransaction(restoredGateOperation.userDidTransaction);
 				
 				ViewModel.actions.initGate.call(restoredGateOperation);
 
