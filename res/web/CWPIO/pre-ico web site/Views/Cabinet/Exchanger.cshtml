@@ -12,7 +12,7 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<div class="m-alert m-alert--icon m-alert--icon-solid m-alert--outline alert alert-brand alert-dismissible fade show" role="alert">
+		<div class="m-alert m-alert--icon m-alert--icon-solid m-alert--square m-alert--outline alert alert-brand alert-dismissible fade show" role="alert">
 			<div class="m-alert__icon">
 				<i class="flaticon-exclamation-1"></i>
 				<span></span>
@@ -78,7 +78,13 @@
 		</div>
 	</div>
 	<div class="m-portlet__head-tools">
-		<input data-bind="textInput: obs.searchInput" placeholder="Search coin..." class="form-control" type="text"/>
+		<div class="input-group m-input-group m-input-group--nonborder">
+			<div class="m-input-icon m-input-icon--left">
+				<input data-bind="textInput: obs.searchInput" placeholder="Search coin..." class="form-control m-input"
+				       type="text"/>
+				<span class="m-input-icon__icon m-input-icon__icon--left"><span><i class="la la-search"></i></span></span>
+			</div>
+		</div>
 	</div>
 </div>
 <div class="m-portlet__body">
@@ -111,7 +117,7 @@
 							<td>
 								<div>
 									<img class="s-icon s-mr_5" data-bind="css:{'grayscale': ($data.status === 'unavailable')},attr:{'src': $data.imageSmall}" src=""/>
-									<strong class="s-icon" data-bind="text: $data.symbol"></strong>
+									<span class="s-icon s-fw_600" data-bind="text: $data.symbol"></span>
 								</div>
 							</td>
 							<td data-bind="css:{'active': ($root.obs.currentCoin.symbol() === $data.symbol) }, attr:{'colspan': ($data.status === 'unavailable' && 2 || 0)}">
@@ -124,7 +130,7 @@
 							<!-- ko ifnot: ($data.status === 'unavailable')-->
 							<td class="s-ta_r">
 								<button data-bind="disable:$data.status === 'unavailable', click:$root.actions.initGate"
-								        class="btn btn-sm btn-outline-focus m-btn--square m-btn--outline-2x m-btn m-loader--primary m-loader--right" type="button">
+								        class="btn btn-sm btn-outline-focus m-btn--square btn-outline-brand m-btn--outline-2x m-btn m-loader--primary m-loader--right" type="button">
 									purchase
 								</button>
 							</td>
@@ -139,15 +145,30 @@
 				<div data-bind="css:{'col-md-7': (flags.gateOperating() === true), 's-display_n': (flags.gateOperating() === false)}">
 
 					<div data-bind="css:{'slide-up': flags.slideUpLimits, 'slide-down': flags.slideDownLimits}" class="currency-current-wrapper clearfix">
-						<img width="100" class="currency-current" data-bind="attr:{'src':obs.currentCoin.image}"/>
+						<div class="currency-current">
+							<div class="s-mb_10">
+								<img width="100" data-bind="attr:{'src':obs.currentCoin.image}"/>
+							</div>
+						</div>
+						
+						
 						<div class="currency-current-right">
-							<h5 data-bind="text: (obs.currentCoin.name() + ' ' + obs.currentCoin.symbol())" class="m--font-primary"></h5>
+							<h5 class="m--font-primary">
+								<span class="s-icon s-mr_10" data-bind="text: (obs.currentCoin.name() + ' ' + obs.currentCoin.symbol())"></span>
+								<a data-bind="click:actions.offGate"
+								   href="javascript: void(0)" 
+								   data-toggle="tooltip" 
+								   title="cancel purchase" 
+								   class="s-icon">
+									<i class="la la-power-off"></i>
+								</a>
+							</h5>
 							<div style="margin-bottom: 5px">
 								<strong data-bind="text: obs.market.limit"></strong> limit
 							</div>
-							<div style="margin-bottom: 5px">
-								<strong data-bind="text: obs.market.maxLimit"></strong> maxLimit
-							</div>
+@*							<div style="margin-bottom: 5px">*@
+@*								<strong data-bind="text: obs.market.maxLimit"></strong> maxLimit*@
+@*							</div>*@
 							<div style="margin-bottom: 5px">
 								<strong data-bind="text: obs.market.minimum"></strong> minimum
 							</div>
@@ -215,28 +236,55 @@
 					<!-- ko if:flags.isFixedAmmountMode -->
 					
 					<div data-bind="css:{'s-display_bi': flags.expiredOrder}" 
-					     class="s-display_n m-alert m-alert alert alert-danger alert-dismissible fade show" role="alert">
+					     class="s-display_n m-alert m-alert m-alert--square alert alert-danger alert-dismissible fade show" role="alert">
 						<p>Ths Order is expired, do not deposit any currency to address below!</p>
 						<a data-bind="click:actions.continueExpiredOrder" class="btn btn-info btn-sm m-btn--square" href="javascript: void(0)">Create new order</a>
 					</div>
 					
-					<h6 class="m--font-primary">
-						Optionally you can specify return address(<strong><!-- ko text: obs.currentCoin.symbol --><!--/ko--></strong>) 
-					</h6>
-					<div data-bind="css:{'m-loader m-loader--primary m-loader--right': flags.returnAddressValidating}" class="s-mb_20">
-						<input data-bind="textInput: obs.returnAddress, disable:flags.returnAddressValidating" type="text" class="form-control ammount-control"/>
+@*					<h6 class="m--font-primary">*@
+@*						Optionally you can specify return address(<strong><!-- ko text: obs.currentCoin.symbol --><!--/ko--></strong>) *@
+@*					</h6>*@
+@*					<div data-bind="css:{'m-loader m-loader--primary m-loader--right': flags.returnAddressValidating}" class="s-mb_20">*@
+@*						<input data-bind="textInput: obs.returnAddress, disable:flags.returnAddressValidating" type="text" class="form-control ammount-control"/>*@
+@*					</div>*@
+					
+				<div class="s-mb_20">
+					<div class="input-group">
+						<div class="input-group-prepend b-receive-before s-c_777">
+							Return address (<!-- ko text: obs.currentCoin.symbol --><!--/ko-->)
+							
+							<div data-bind="css:{'m-loader m-loader--primary': flags.returnAddressValidating}" 
+							       style="width: 30px; display: inline-block;"></div>
+						</div>
+						
+							<input placeholder="This field is optional" data-bind="textInput: obs.returnAddress, disable:flags.returnAddressValidating" type="text" class="form-control ammount-control"/>
+						
 					</div>
+				</div>
+					
 					<div data-bind="css:{'s-display_bi': (!flags.isValidReturnAddress())}" 
-					     class="s-display_n m-alert m-alert alert alert-danger alert-dismissible fade show" role="alert">
+					     class="s-display_n m-alert alert alert-danger alert-dismissible fade show" role="alert">
 						This is not a valid <strong><!-- ko text: obs.currentCoin.symbol --><!--/ko--></strong> address  	
 					</div>
 					
-					<h6 class="m--font-primary">
-						CWT-P Token amount you want to receive
-					</h6>
+@*					<h6 class="m--font-primary">*@
+@*						CWT-P Token amount you want to receive*@
+@*					</h6>*@
+@*					<div class="s-mb_20">*@
+@*						<input autofocus data-bind="textInput: obs.cwtCount, disable:flags.depositAddrGetting" type="number" class="form-control ammount-control"/>*@
+@*					</div>*@
+					
 					<div class="s-mb_20">
-						<input autofocus data-bind="textInput: obs.cwtCount, disable:flags.depositAddrGetting" type="number" class="form-control ammount-control"/>
+						<div class="input-group">
+							<div class="input-group-prepend  b-receive-before" style="">
+								I want to receive
+							</div>
+							<input autofocus="" data-bind="textInput: obs.cwtCount, disable:flags.depositAddrGetting" type="number" class="form-control ammount-control">
+							<div class="input-group-append b-receive-after">CWT-P</div>
+						</div>
 					</div>
+					
+					
 					<div data-bind="css:{'s-display_bi': flags.minCont}" class="s-display_n m-alert m-alert--outline alert alert-warning alert-dismissible fade show" role="alert">
 						Minimum contribution is 500 CWT-P  	
 					</div>
@@ -262,7 +310,8 @@
 							<p>
 								Please send <!-- ko text: obs.fixedAmmount.depositAmount --><!--/ko--> 
 								<strong><!-- ko text: obs.currentCoin.symbol --><!--/ko--></strong>
-								(includs fee: <!-- ko text: obs.transactionFee --><!--/ko--> ETH) to the address below:
+								(includs fee: <!-- ko ifnot: obs.currentCoin.symbol() === 'ETH' -->0.0022<!--/ko-->
+								<!-- ko if: obs.currentCoin.symbol() === 'ETH' -->0<!--/ko--> ETH) to the address below:
 							</p>
 							<!-- ko if: (obs.currentCoin.symbol() !== 'ETH') -->
 							<p>

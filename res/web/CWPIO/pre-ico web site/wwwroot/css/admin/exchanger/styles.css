@@ -60,6 +60,7 @@
 .currency-current {
 	float:right;
 	overflow: hidden;
+	text-align: center;
 }
 
 .currency-current-right {
@@ -145,6 +146,7 @@
 	border-right: 0;
 	border-bottom-width: 2px;
 	padding: 4px 0;
+	font-weight: 600 !important;
 }
 
 .s-expandable .fa-angle-up{
@@ -167,10 +169,47 @@
 }
 
 td.active {
-	color:#000;
+	color:#222;
 	font-weight: 700;
 }
 
 .t-coins td {
 	vertical-align: middle;
+}
+
+.m-input-group--nonborder input.form-control{
+	border:0;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.input-group-append.b-receive-after {
+	padding: 0 0 0 10px;
+	font-size: 15px;
+	color: #5867dd;
+	font-weight: 500;
+	line-height: 22px;
+}
+
+.input-group-prepend.b-receive-before {
+	padding: 0 5px 0 0;
+	font-size: 15px;
+	color: #5867dd;
+	font-weight: 500;
+	line-height: 22px;
+}
+
+.m-widget25 .m-widget25--progress {
+	display: table;
+	width: 100%;
+	margin: 0 auto 0;
+	padding-top: 20px;
+}
+
+.s-c_777 {
+	color:#777 !important;
+}
+
+.s-fw_600 {
+	font-weight:600;
 }

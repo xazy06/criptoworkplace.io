@@ -329,6 +329,9 @@ var Controller = (Controller || {}), Gate = function () {
 			Controller.ViewModel.flags.depositAddrGot(true);
 		},
 		validateReturnAddress: function (address, coinSymbol) {
+			if (address === '') {
+				return;
+			}
 			
 			Controller.ViewModel.flags.returnAddressValidating(true);
 			$.get(self.api.shapeshift + 'validateAddress/'+ address +'/' + coinSymbol).then(function(response){

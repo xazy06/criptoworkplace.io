@@ -538,7 +538,7 @@ var Controller = function () {
 			depositAddrGetting: ko.observable(false),
 			depositAddrGot: ko.observable(false),
 			purchasingIsInitializing: ko.observable(false),
-			toggleQr: ko.observable(false),
+			toggleQr: ko.observable(true),
 			check1:ko.observable(false),
 			check2:ko.observable(false),
 			check3:ko.observable(false),
@@ -823,6 +823,8 @@ var Controller = function () {
 			},
 			offGate: function () {
 				ViewModel.flags.gateOperating(false);
+				ViewModel.obs.currentCoin.symbol('');
+				Gate.actions.stopStatusBang();
 			}
 		}
 		
