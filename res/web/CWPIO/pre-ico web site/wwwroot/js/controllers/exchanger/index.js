@@ -47,29 +47,36 @@ var Controller = function () {
 		refund: function () {
 			
 			$.get(self.api.contractabi).done(function (contractabi) {
+				var contract;
+				
 				try {
-					var contract = new self.web3js.eth.Contract(
-						//contractabi
-						[{ "constant": false, "inputs": [], "name": "withdrawPayments", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }],
-						ViewModel.obs.contractAddress(), 
-						{ 
+					contract = new self.web3js.eth.Contract(
+						contractabi,
+						//[{ "constant": false, "inputs": [], "name": "withdrawPayments", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }],
+						ViewModel.obs.contractAddress(),
+						{
 							from: ViewModel.obs.usersettings.ethAddress() 
 						});
 					
-					contract.methods.withdrawPayments().send()
-						.on('transactionHash', function (hash) {
+					console.log(ViewModel.obs.usersettings.ethAddress());
+					
+					contract.methods.withdrawPayments()
+						.send().on('transactionHash', function (hash) {
 							console.log(hash);
-						})
-						.on('receipt', function (receipt) {
+							
+						}).on('receipt', function (receipt) {
 							console.log(receipt);
-						})
-						.on('confirmation', function (confirmationNumber, receipt) {
-							console.log("confNumber: " + confirmationNumber + ", receipt: " + receipt);
-						})
-						.on('error', console.error);
+							
+						}).on('confirmation', function (confirmationNumber, receipt) {
+							console.log('confNumber: ' + confirmationNumber + ', receipt: ' + receipt);
+							
+						}).on('error', console.log);
+					
 				} catch (e) {
 					console.log(e.stack);
+					
 				}
+				
 			});
 		},
 		metrics:{
