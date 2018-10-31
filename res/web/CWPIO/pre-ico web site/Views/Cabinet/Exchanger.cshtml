@@ -166,9 +166,9 @@
 							<div style="margin-bottom: 5px">
 								<strong data-bind="text: obs.market.limit"></strong> limit
 							</div>
-@*							<div style="margin-bottom: 5px">*@
-@*								<strong data-bind="text: obs.market.maxLimit"></strong> maxLimit*@
-@*							</div>*@
+							<div style="margin-bottom: 5px">
+								<strong data-bind="text: obs.market.maxLimit"></strong> maxLimit
+							</div>
 							<div style="margin-bottom: 5px">
 								<strong data-bind="text: obs.market.minimum"></strong> minimum
 							</div>
@@ -248,7 +248,7 @@
 @*						<input data-bind="textInput: obs.returnAddress, disable:flags.returnAddressValidating" type="text" class="form-control ammount-control"/>*@
 @*					</div>*@
 					
-				<div class="s-mb_20">
+				<div data-bind="css:{'s-display_bi': (obs.currentCoin.symbol() !== 'ETH')}" class="s-display_n s-mb_20">
 					<div class="input-group">
 						<div class="input-group-prepend b-receive-before s-c_777">
 							Return address (<!-- ko text: obs.currentCoin.symbol --><!--/ko-->)
@@ -285,7 +285,7 @@
 					</div>
 					
 					
-					<div data-bind="css:{'s-display_bi': flags.minCont}" class="s-display_n m-alert m-alert--outline alert alert-warning alert-dismissible fade show" role="alert">
+					<div data-bind="css:{'s-display_bi': flags.minCont}" class="s-display_n m-alert m-alert--square alert alert-info alert-dismissible fade show" role="alert">
 						Minimum contribution is 500 CWT-P  	
 					</div>
 					<!--/ko-->
@@ -338,11 +338,15 @@
 							<!--/ko-->	
 						</div>
 						<!-- ko if: obs.depositAddress -->
-						<div>
+						<div class="pull-left">
 							<img width="100" data-bind="attr:{'src':('https://api.qrserver.com/v1/create-qr-code/?size=150x150&amp;data=' + obs.depositAddress())}"
 							     style="border: 1px solid #ddd;"/>
 						</div>
 						<!--/ko-->
+						<button data-bind="click:actions.confirmDidTransaction, disable:flags.userDidTransaction" style="margin-top: 35px;" 
+						   class="pull-right btn btn-info btn-sm m-btn--square">
+							I did send
+						</button>
 					</div>
 					<!-- /ko -->
 					<!-- /ko -->

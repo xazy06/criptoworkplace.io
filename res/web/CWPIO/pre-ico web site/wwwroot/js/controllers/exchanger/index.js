@@ -6,6 +6,9 @@ var Controller = function () {
 	
 	this.strings = {
 		ru:{
+			refundRequested: 'Refund requested',
+			balanceIncrese:'Your CWT-P balance has been changed',
+			confirmDidTransaction: 'Thank you for your purchase, please wait a moment',
 			whiteListLess: 'You need to set up ETH Address to receive CWT-P and be able to continue purchasing',
 			whiteListAddressFieldSave: {
 				fail: 'Look`s like some thing is wrong!',
@@ -14,6 +17,9 @@ var Controller = function () {
 			}
 		},
 		en:{
+			refundRequested: 'Refund requested',
+			balanceIncrese:'Your CWT-P balance has been changed',
+			confirmDidTransaction: 'Thank you for your purchase, please wait a moment',
 			whiteListLess: 'You need to set up ETH Address to receive CWT-P and be able to continue purchasing',
 			whiteListAddressFieldSave: {
 				fail: 'Look`s like some thing is wrong!',
@@ -33,10 +39,49 @@ var Controller = function () {
 		purchase: '/api/v1/exchanger/addr',
 		initPurchasing: '/api/v1/exchanger/initPurchasing',
 		monitor: '/api/v1/exchanger/monitor/',
-		contractabi: '/api/v1/exchanger/contractabi/'
+		contractabi: '/api/v1/exchanger/contractabi/',
+		sendMail: '/api/v1/sendMail/'
 	};
 	
 	this.actions = {
+		refund: function () {
+			
+			$.get(self.api.contractabi).done(function (contractabi) {
+				try {
+					var contract = new self.web3js.eth.Contract(
+						//contractabi
+						[{ "constant": false, "inputs": [], "name": "withdrawPayments", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }],
+						ViewModel.obs.contractAddress(), 
+						{ 
+							from: ViewModel.obs.usersettings.ethAddress() 
+						});
+					
+					contract.methods.withdrawPayments().send()
+						.on('transactionHash', function (hash) {
+							console.log(hash);
+						})
+						.on('receipt', function (receipt) {
+							console.log(receipt);
+						})
+						.on('confirmation', function (confirmationNumber, receipt) {
+							console.log("confNumber: " + confirmationNumber + ", receipt: " + receipt);
+						})
+						.on('error', console.error);
+				} catch (e) {
+					console.log(e.stack);
+				}
+			});
+		},
+		metrics:{
+			purchasing: function () {
+				try{
+					yaCounter50462326.reachGoal('Purchase');
+					ga('send', 'event', 'forms', 'purchase');
+				}catch (e){
+					console.log(e);
+				}
+			}
+		},
 		initBallanceUpdateEvent: function (interf) {
 			var contractInt;
 			
@@ -53,6 +98,12 @@ var Controller = function () {
 					console.log(event);
 					
 					self.actions.usersettings();
+
+					self.actions.getPastEvents();
+
+					ViewModel.flags.userDidTransaction(false);
+					
+					$.notify(self.strings[self.locale].balanceIncrese);
 			})
 		},
 		contractabi: function (callback) {
@@ -72,7 +123,6 @@ var Controller = function () {
 			});
 		},
 		
-		//TODO simplify only one obs nead in real
 		getPastEvents: function () {
 			
 			return self.actions.contractabi(self.actions.fetchTransactions);
@@ -110,8 +160,12 @@ var Controller = function () {
 			});
 		},
 		
-		sendEmail: function (data) {
-			//TODO
+		sendEmail: function (data, type) {
+			$.post(self.api.sendMail, {body: data, type:type}).done(function (response) {
+				console.log(response);
+			}).fail(function (response) {
+				console.log(response);
+			});
 		},
 		getCurrentExchangeSession: function () {
 			var exchangerSession = window.sessionStorage.getItem('exchangerSession');
@@ -176,7 +230,7 @@ var Controller = function () {
 			}).fail(function (error) {
 				console.log(error);
 				
-				debugger;
+				//debugger;
 			});
 		},
 		withdrawalAddress: function () {
@@ -227,7 +281,6 @@ var Controller = function () {
 				ViewModel.obs.whiteListAddressField('');
 				
 				setTimeout(function () {
-					//window.addr = '11';//TODO for test
 					ViewModel.actions.initGate.call(ko.toJS(ViewModel.obs.currentCoin));
 					ViewModel.flags.whiteListAddressProcessing(false);
 				},3000);
@@ -237,9 +290,12 @@ var Controller = function () {
 		},
 		
 		getContractAddr: function () {
+			
 			return $.getJSON(self.api.purchase).done(function (result) {
 				ViewModel.obs.contractAddress(result);
+				
 			}).fail(function (response) {
+				
 				console.log(response);
 			});
 		},
@@ -264,13 +320,14 @@ var Controller = function () {
 				
 			}).fail(function (resp, e) {
 				ViewModel.flags.purchasingIsInitializing(false);
-				debugger;
 				ViewModel.actions.notify(resp.statusText, 'danger');
+				
 			});
 		},
 		usersettings: function (put, data) {
 			
 			if (put){
+				
 				return $.ajax({
 					contentType: 'application/json',
 					url:self.api.usersettings,
@@ -287,8 +344,9 @@ var Controller = function () {
 				url:self.api.usersettings,
 				method:'GET'
 			}).done(function (response) {
+				
 				if (response.ethAddress === undefined) {
-					console.log()	
+					console.log('response.ethAddress === undefined');	
 				}
 				
 				ViewModel.obs.usersettings.name(response.name);
@@ -299,6 +357,7 @@ var Controller = function () {
 				
 			}).fail(function (response) {
 				$.notify(response.statusText);
+				
 			});
 		},
 		
@@ -309,6 +368,7 @@ var Controller = function () {
 				url:self.api.exchanger,
 				method:'GET'
 			}).done(function (response) {
+				
 				ViewModel.obs.sales.cap(response.cap);
 				ViewModel.obs.sales.rate(response.rate);
 				ViewModel.obs.sales.sold(response.sold);
@@ -318,12 +378,10 @@ var Controller = function () {
 			});
 		},
 
-		initialFixedAmmountShift: function (currencyName, rate) {
+		initialFixedAmmountShift: function () {
 			console.log('initialFixedAmmountShift');
-			console.log(currencyName);
-			console.log(rate);
-			
-			return self.actions.calcWithFee(500, currencyName, rate)
+						
+			return self.actions.calcWithFee(500)
 		},
 
 		_calc: function (count) {
@@ -335,7 +393,7 @@ var Controller = function () {
 			});
 		},
 		
-		calcWithFee: function (count, currencyName, rate) {
+		calcWithFee: function (count) {
 			count = count || 0;
 
 			return $.ajax({
@@ -353,13 +411,13 @@ var Controller = function () {
 				url:self.api.calc + count,
 				method:'GET'
 			}).done(function (response) {
-				ViewModel.obs.needPay(response);
+				ViewModel.obs.needPay(response.totalAmount);
 				
 				ViewModel.obs.transactionFee(response.fee);
 				ViewModel.obs.fixedAmmount.depositAmount(response.totalAmount);
-				
-				
-				ViewModel.actions.initPurchasingThrottled()();
+								
+				//ViewModel.actions.initPurchasingThrottled()();
+				self.actions.monitor(ViewModel.obs.cwtCount(), -1);
 			});
 		},
 		purchase: function () {
@@ -368,7 +426,7 @@ var Controller = function () {
 				try{
 				self.web3js.eth.sendTransaction({ 
 					from: ViewModel.obs.usersettings.ethAddress(), 
-					to: result, 
+					to: ViewModel.obs.depositAddress(), 
 					value: self.web3js.utils.toWei(ViewModel.obs.needPay().replace(',', '.')) 
 				});
 				}catch (e){
@@ -492,7 +550,6 @@ var Controller = function () {
 			depositAddress: ko.observable(''),
 			contractAddress: ko.observable(''),
 			freezed: ko.observable(0),
-			page:ko.observable(0),
 			cwtCount: ko.observable(0),
 			usersettings: {
 				name:ko.observable(''),
@@ -516,6 +573,7 @@ var Controller = function () {
 		},
 		
 		flags:{
+			userDidTransaction: ko.observable(false),
 			expiredOrder: ko.observable(false),
 			returnAddressValidating: ko.observable(false),
 			isValidReturnAddress: ko.observable(true),
@@ -539,18 +597,6 @@ var Controller = function () {
 			depositAddrGot: ko.observable(false),
 			purchasingIsInitializing: ko.observable(false),
 			toggleQr: ko.observable(true),
-			check1:ko.observable(false),
-			check2:ko.observable(false),
-			check3:ko.observable(false),
-			check4:ko.observable(false),
-			check5:ko.observable(false),
-			check6:ko.observable(false),
-			nextEnabled: ko.pureComputed(function () {
-				return ViewModel.flags.check1() && ViewModel.flags.check2() && ViewModel.obs.usersettings.ethAddress();
-			}),
-			next2Enabled: ko.pureComputed(function () {
-				return ViewModel.flags.check3() && ViewModel.flags.check4() && ViewModel.flags.check5() && ViewModel.flags.check6(); 
-			}),
 			payEnabled: ko.pureComputed(function () {
 				return ViewModel.obs.needPay() > 0;
 			}),
@@ -591,6 +637,13 @@ var Controller = function () {
 			}
 		},
 		actions:{
+			confirmDidTransaction: function () {
+				ViewModel.flags.userDidTransaction(true);
+				
+				Gate.actions.stopStatusBang();
+				
+				$.notify(self.strings[self.locale].confirmDidTransaction);
+			},
 			getTransactions: function () {
 				ViewModel.flags.transactionsGetting(true);
 				//return Gate.actions.transactions();
@@ -647,7 +700,9 @@ var Controller = function () {
 			},
 			
 			refund: function () {
-				
+				self.actions.refund();
+				$.notify(self.strings[self.locale].refundRequested);
+				ViewModel.obs.sales.refund(0);
 			},
 			notify: function(a, val){
 				$.notify(a, {
@@ -679,13 +734,7 @@ var Controller = function () {
 				
 				ViewModel.flags.purchasingIsInitializing(true);
 				self.actions.initPurchasing(ViewModel.obs.cwtCount(), ViewModel.obs.needPay());
-
-				try{
-					yaCounter50462326.reachGoal('Purchase');
-					ga('send', 'event', 'forms', 'purchase');
-				}catch (e){
-					console.log(e);
-				}
+				
 			},
 			initPurchasingThrottled: function(){
 				return _.throttle(self.ViewModel.actions.initPurchasing, 1000);
@@ -729,6 +778,8 @@ var Controller = function () {
 			initGate: function () {
 				var _this = this;
 				
+				self.actions.metrics.purchasing();
+				
 				ViewModel.obs.currentCoin.symbol(this.symbol);
 				ViewModel.obs.currentCoin.name(this.name);
 				ViewModel.obs.currentCoin.image(this.image);
@@ -739,20 +790,15 @@ var Controller = function () {
 				ViewModel.flags.whiteListAskFormReady(false);
 				
 				ViewModel.flags.gateOperating(true);
-
-				//ViewModel.flags.slideUpLimits(false);
+				
 				ViewModel.flags.whiteListField(false);
 				ViewModel.flags.whiteListInputReady(false);
 
 				self.actions.usersettings().then(function (response) {
-
-					//TEST
-					//response.ethAddress = window.addr || '';
-					//response.ethAddress = window.addr || response.ethAddress;
 					
 					if (!response) {
 						console.log('userSettings problem');
-						debugger;
+						//debugger;
 						return false;
 					}
 
@@ -767,7 +813,6 @@ var Controller = function () {
 						ViewModel.obs.askFormText(self.strings[self.locale].whiteListLess);
 						
 						setTimeout(function () {
-							//ViewModel.flags.slideUpLimits(true);
 							ViewModel.flags.whiteListAskFormReady(true);
 							ViewModel.flags.whiteListField(true);
 							ViewModel.flags.whiteListInputReady(true);
@@ -781,17 +826,17 @@ var Controller = function () {
 					 *   
 					 */
 					if (_this.restoring === true) {
-						console.log('restoring cwtCount');
 						ViewModel.obs.cwtCount(_this.cwtCount);
+						
 					}else{
-						//ViewModel.obs.cwtCount(0);//bad solution
-  					ViewModel.obs.cwtCount(500);
+						ViewModel.obs.cwtCount(500);
 					}
 					
   				if (ViewModel.obs.currentCoin.symbol() === 'ETH') {
 						
 						if (ViewModel.flags.isFixedAmmountMode()){
 							return ViewModel.actions.shiftETH();
+							
 						}
 						
 						return ViewModel.actions.shiftETH();
@@ -799,7 +844,8 @@ var Controller = function () {
 					
 					if (ViewModel.flags.isFixedAmmountMode()){
 						if (_this.restoring !== true) {
-							return self.actions.initialFixedAmmountShift(ViewModel.obs.currentCoin.symbol(), ViewModel.obs.market.rate())
+							
+							return self.actions.initialFixedAmmountShift()
 								.then(function (response) {
 									console.log('ammount got');
 									console.log(response);
@@ -818,8 +864,17 @@ var Controller = function () {
 				
 			},
 			shiftETH: function () {
-				ViewModel.obs.depositAddress(ViewModel.obs.contractAddress());
-				ViewModel.actions.initPurchasing();
+				ViewModel.obs.depositAddress(ViewModel.obs.withdrawalAddress());
+				self.actions.monitor(ViewModel.obs.cwtCount(), -1);
+				Gate.actions.stopStatusBang();
+				
+				if (window.restoring){
+					window.restoring = false;
+					
+					return;
+				}
+				
+				self.actions.calc(ViewModel.obs.cwtCount());
 			},
 			offGate: function () {
 				ViewModel.flags.gateOperating(false);
