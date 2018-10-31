@@ -213,3 +213,12 @@ td.active {
 .s-fw_600 {
 	font-weight:600;
 }
+
+.purch-addr{
+	overflow: hidden;
+	/* display: inline-block; */
+	text-overflow: ellipsis;
+	width: 100%;
+	/* padding-right: 25px; */
+	/* float: left; */
+}

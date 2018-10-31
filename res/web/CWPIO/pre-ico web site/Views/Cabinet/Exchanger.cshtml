@@ -21,7 +21,7 @@
 				<strong>Pre-sale</strong> in progress.  <strong>1</strong> CWT-P = <strong>0.12</strong> USD
 				<!-- ko if:obs.usersettings.ethAddress -->
 				, Your <a target="_blank" href="/my/whitelist"><strong>whitelisted</strong></a> <span>ERC-20 address:</span>
-				<strong><a data-bind="text:obs.usersettings.ethAddress, attr:{'href':('https://etherscan.io/address/'+ obs.usersettings.ethAddress())}"
+				<strong style="word-break: break-all;"><a data-bind="text:obs.usersettings.ethAddress, attr:{'href':('https://etherscan.io/address/'+ obs.usersettings.ethAddress())}"
 				           target="_blank" href="#">
 					<i style="margin-left: 30px" class="m-loader m-loader--brand"></i>
 				</a></strong>, 
@@ -328,7 +328,7 @@
 							<!-- /ko -->
 						</div>
 						<div class="s-mb_10">
-							<strong data-bind="text:obs.depositAddress" class="s-icon" id="purchaseAddr"></strong>
+							<strong data-bind="text:obs.depositAddress" class="s-icon purch-addr" id="purchaseAddr"></strong>
 							<!-- ko ifnot: obs.depositAddress -->
 								<strong>deposit address error</strong>
 							<!--/ko-->
