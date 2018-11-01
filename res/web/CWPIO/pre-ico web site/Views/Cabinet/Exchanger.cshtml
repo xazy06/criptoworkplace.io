@@ -314,7 +314,12 @@
 						<div class="s-mb_10">
 							<!-- ko if: flags.isFixedAmmountMode -->
 							<p>
-								Please send <!-- ko text: obs.fixedAmmount.depositAmount --><!--/ko--> 
+								Please send <a class="s-dashed-link" href="javascript:void(0)">
+									<strong data-bind="click:actions.notify.bind(null, 'copied!')"
+									        data-clipboard-target="#deposit-ammount" id="deposit-ammount">
+										<!-- ko text: obs.fixedAmmount.depositAmount --><!--/ko-->
+									</strong>
+								</a>
 								<strong><!-- ko text: obs.currentCoin.symbol --><!--/ko--></strong>
 								(includs fee: <!-- ko ifnot: obs.currentCoin.symbol() === 'ETH' -->0.0022<!--/ko-->
 								<!-- ko if: obs.currentCoin.symbol() === 'ETH' -->0<!--/ko--> ETH) to the address below:

@@ -222,3 +222,12 @@ td.active {
 	/* padding-right: 25px; */
 	/* float: left; */
 }
+
+.s-dashed-link {
+	border-bottom: 2px dashed #777;
+	text-decoration: none;
+}
+
+a.s-dashed-link:hover {
+	text-decoration: none;
+}

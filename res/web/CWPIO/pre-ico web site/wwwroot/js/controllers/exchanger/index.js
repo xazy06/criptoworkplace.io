@@ -477,8 +477,9 @@ var Controller = function () {
 	
 	this.initCopyPurchaseAddr = function (id) {
 		var copy2 = new ClipboardJS(id || '#copy2');
+		var copy3 = new ClipboardJS('#deposit-ammount');
 	};
-	
+		
 	this.initUnloadingWindowProtocol = function () {
 		window.addEventListener("beforeunload", function (event) {
 			
