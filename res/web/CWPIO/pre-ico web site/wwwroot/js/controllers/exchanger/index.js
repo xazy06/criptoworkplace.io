@@ -513,6 +513,8 @@ var Controller = function () {
 		}
 
 		self.initUnloadingWindowProtocol();
+
+		self.actions.contractabi();
 				
 		return this;
 	};
