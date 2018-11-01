@@ -83,24 +83,24 @@ namespace pre_ico_web_site.Services
             return false;
         }
 
-        public async Task<bool> SendEmailFailedTransactionAsync(string email)
+        public async Task<bool> SendEmailFailedTransactionAsync(string email, string htmlText)
         {
-            var welcomeTemplateId = _mailSettings.Value.WelcomeTemplateId.ContainsKey(CultureInfo.CurrentUICulture.Name) ?
-                    _mailSettings.Value.WelcomeTemplateId[CultureInfo.CurrentUICulture.Name] :
-                    _mailSettings.Value.WelcomeTemplateId["en-US"];
+            var mailTemplateId = _mailSettings.Value.MailTemplateId.ContainsKey(CultureInfo.CurrentUICulture.Name) ?
+                    _mailSettings.Value.MailTemplateId[CultureInfo.CurrentUICulture.Name] :
+                    _mailSettings.Value.MailTemplateId["en-US"];
 
             MailjetRequest request = new MailjetRequest { Resource = Send.Resource }
                 .Property(Send.FromEmail, "info@cryptoworkplace.io")
                 .Property(Send.FromName, "CryptoWorkPlace Info")
                 .Property(Send.Subject, _localizer["Subscribe_Subject"].Value)
-                .Property(Send.MjTemplateID, welcomeTemplateId.ToString())
+                .Property(Send.MjTemplateID, mailTemplateId.ToString())
                 .Property(Send.MjTemplateLanguage, true)
-                //.Property(Send.Vars, new JObject {
-                //{ "header", _localizer["Subscribe_Topic"].Value },
+                .Property(Send.Vars, new JObject {
+                    { "message", htmlText }
                 //{ "text1", _localizer["Subscribe_Paragraph_One"].Value },
                 //{ "text2", _localizer["Subscribe_Paragraph_Two"].Value },
                 //{ "text3", _localizer["Subscribe_Paragraph_Three"].Value }
-                //})
+                })
                 .Property(Send.Recipients, new JArray { new JObject { { "Email", email } } });
 
             MailjetResponse response = await _client.PostAsync(request);

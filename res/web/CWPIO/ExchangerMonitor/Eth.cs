@@ -129,15 +129,6 @@ namespace ExchangerMonitor
                 buyer
             );
 
-            //new TransactionInput(
-            //        "",
-            //        _opts.SmartContractAddr,
-            //        account.Address,
-            //        new HexBigInteger(0x30A28),
-            //        new HexBigInteger(price.Value * 2),
-            //        new HexBigInteger(amount)
-            //    );
-
             var gas = await _web3t.Eth.TransactionManager.EstimateGasAsync(input);
             input.Gas = new HexBigInteger(gas.Value + 10000);
             var tx = await _web3t.Eth.TransactionManager.SendTransactionAsync(input);
