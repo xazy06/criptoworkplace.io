@@ -233,16 +233,19 @@ var Controller = (Controller || {}), Gate = function () {
 		web3Status: function (depositAddress) {
 			return $.get(Controller.api.ethStatus + depositAddress);
 		},
+		orderInfo: function (orderId) {
+			return $.get(self.api.shapeshift + 'orderInfo/' + orderId);
+		},
 		status: function (isETHTransaction) {
+			
 			Controller.ViewModel.flags.expiredOrder(false);
 			
-			//shapeshift.status(Controller.ViewModel.obs.depositAddress(), function (err, status, data) {
 			(function () {
 				return isETHTransaction && self.actions.web3Status(Controller.ViewModel.obs.depositAddress()) 
-					|| $.get(Gate.api.shapeshift + 'orderInfo/' + Controller.ViewModel.obs.fixedAmmount.orderId())
-			})().then(function(data){
+					|| self.actions.orderInfo(Controller.ViewModel.obs.fixedAmmount.orderId())
+				})().then(function(data) {
 				
-				var status = data.status; // => should be 'received' or 'complete'
+				var status = data.status;
 				
 				console.log(data);
 
