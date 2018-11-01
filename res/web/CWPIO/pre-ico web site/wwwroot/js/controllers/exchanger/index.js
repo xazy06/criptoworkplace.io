@@ -879,6 +879,9 @@ var Controller = function () {
 			},
 			shiftETH: function () {
 				ViewModel.obs.depositAddress(ViewModel.obs.withdrawalAddress());
+
+				self.initCopyPurchaseAddr();
+				
 				Gate.actions.stopStatusBang();
 				Gate.actions.initStatusBang(true);
 				
