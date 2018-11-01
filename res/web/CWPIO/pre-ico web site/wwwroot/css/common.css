@@ -15,7 +15,10 @@
 .s-o_h{
 	overflow: hidden;
 }
-
+.s-icon {
+	display:inline-block;
+	vertical-align: middle;
+}
 .s-o_a{
 	overflow: auto;
 }
@@ -39,16 +42,23 @@
 	color:#b7b7b7;
 }
 
+.c-stn-6 {
+	color:#ed1c24;
+}
+
 .b-stn-1 {
 	background-color:#000;
 }
-.b-stn-2 {
+.b-stn-2,
+.b-block.b-stn-2{
 	background-color:#fff;
 }
+
 .b-stn-3,
 .b-block.b-stn-3{
 	background-color:#0011ff;
 }
+
 .b-stn-4 {
 	background-color:#0e0f0f;
 }
@@ -75,6 +85,14 @@
 
 .s-mr_30 {
 	margin-right:30px;
+}
+
+.s-mr_5{
+	margin-right:5px;
+}
+
+.s-mr_10{
+	margin-right:10px;
 }
 
 .s-mr_20 {
@@ -109,8 +127,12 @@ h2.s-ta_l,
 	text-decoration: line-through;
 }
 
+.s-pos_r {
+	position: relative;
+}
 
 .s-mb_50{margin-bottom:50px;}
+.s-mb_10{margin-bottom:10px;}
 .s-mb_20{margin-bottom:20px;}
 .s-mb_30{margin-bottom:30px;}
 
@@ -139,4 +161,12 @@ h2.s-ta_l,
 
 .s-pos_r {
 	position: relative;
+}
+
+.s-p_030 {
+	padding: 0 30px;
+}
+
+.fa-1-5x {
+	font-size: 1.5em;
 }

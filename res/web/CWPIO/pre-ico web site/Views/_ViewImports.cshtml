@@ -8,9 +8,11 @@
 @using Microsoft.ApplicationInsights.AspNetCore
 @using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Http
+@using Microsoft.Extensions.Options
 
 
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @addTagHelper *, pre_ico_web_site
 
 @inject IAuthorizationService Authorization
+@inject IOptions<EthSettings> EthSettings

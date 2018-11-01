@@ -280,6 +280,31 @@ namespace pre_ico_web_site.Data
 
             });
 
+            builder.Entity<ExchangeStatus>(b =>
+            {
+                b.ToTable("exchange_status", "exchange");
+
+                b.HasKey(x => x.Id);
+                b.Property(x => x.Id).ValueGeneratedOnAdd();
+                b.Property(x => x.StartTx).IsRequired(true).HasMaxLength(70);
+                b.Property(x => x.CurrentTx).IsRequired(false).HasMaxLength(70);
+                b.Property(x => x.IsEnded).HasDefaultValue(false);
+                b.Property(x => x.IsFailed).HasDefaultValue(false);
+                b.Property(x => x.DateCreated).IsRequired(true).HasDefaultValueSql("now()");
+
+                b.HasOne(x => x.CreatedByUser)
+                    .WithMany()
+                    .HasForeignKey(x => x.CreatedByUserId)
+                    .IsRequired(true)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+            builder.Entity<Addresses>(b => {
+                b.ToTable("addresses", "exchange");
+
+                b.HasKey(x => x.Address);
+            });
+
             foreach (var entity in builder.Model.GetEntityTypes())
             {
                 // Replace table names
@@ -315,5 +340,6 @@ namespace pre_ico_web_site.Data
         public DbSet<BountyCampaingAcceptedTask> BountyCampaingAcceptedTasks { get; set; }
         public DbSet<BountyCampaingTaskAssignment> BountyCampaingTaskAssignments { get; set; }
         public DbSet<BountyFavoriteUser> BountyFavoriteUsers { get; set; }
+        public DbSet<Addresses> Addresses { get; set; }
     }
 }

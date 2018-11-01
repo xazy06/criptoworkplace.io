@@ -60,7 +60,7 @@ var Controller = function () {
 			successSubscribed: ko.observable(false),
 			sendDisabled: ko.pureComputed(function () {
 				var email = ViewModel.obs.email();
-
+				
 				return email.length> 0 && email.indexOf('@') > -1;
 			})
 		},
@@ -72,7 +72,7 @@ var Controller = function () {
 		}
 
 	};
-
+	
 	return this.init();
 };
 

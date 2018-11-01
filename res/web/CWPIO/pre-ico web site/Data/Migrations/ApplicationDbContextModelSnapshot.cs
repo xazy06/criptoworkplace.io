@@ -158,6 +158,21 @@ namespace pre_ico_web_site.Data.Migrations
                     b.ToTable("user_tokens","identity");
                 });
 
+            modelBuilder.Entity("pre_ico_web_site.Data.Addresses", b =>
+                {
+                    b.Property<string>("Address")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("address");
+
+                    b.Property<string>("Exchanger")
+                        .HasColumnName("exchanger");
+
+                    b.HasKey("Address")
+                        .HasName("pk_addresses");
+
+                    b.ToTable("addresses","exchange");
+                });
+
             modelBuilder.Entity("pre_ico_web_site.Data.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -215,6 +230,9 @@ namespace pre_ico_web_site.Data.Migrations
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnName("security_stamp");
+
+                    b.Property<string>("TempAddress")
+                        .HasColumnName("temp_address");
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnName("two_factor_enabled");
@@ -530,6 +548,64 @@ namespace pre_ico_web_site.Data.Migrations
                     b.ToTable("data_protection_keys","core");
                 });
 
+            modelBuilder.Entity("pre_ico_web_site.Data.ExchangeStatus", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("id");
+
+                    b.Property<string>("CreatedByUserId")
+                        .IsRequired()
+                        .HasColumnName("created_by_user_id");
+
+                    b.Property<int>("CurrentStep")
+                        .HasColumnName("current_step");
+
+                    b.Property<string>("CurrentTx")
+                        .HasColumnName("current_tx")
+                        .HasMaxLength(70);
+
+                    b.Property<DateTime>("DateCreated")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("date_created")
+                        .HasDefaultValueSql("now()");
+
+                    b.Property<string>("EthAmount")
+                        .HasColumnName("eth_amount");
+
+                    b.Property<bool>("IsEnded")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("is_ended")
+                        .HasDefaultValue(false);
+
+                    b.Property<bool>("IsFailed")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("is_failed")
+                        .HasDefaultValue(false);
+
+                    b.Property<int>("Rate")
+                        .HasColumnName("rate");
+
+                    b.Property<string>("StartTx")
+                        .IsRequired()
+                        .HasColumnName("start_tx")
+                        .HasMaxLength(70);
+
+                    b.Property<int>("TokenCount")
+                        .HasColumnName("token_count");
+
+                    b.Property<int>("TotalGasCount")
+                        .HasColumnName("total_gas_count");
+
+                    b.HasKey("Id")
+                        .HasName("pk_exchange_status");
+
+                    b.HasIndex("CreatedByUserId")
+                        .HasName("ix_exchange_status_created_by_user_id");
+
+                    b.ToTable("exchange_status","exchange");
+                });
+
             modelBuilder.Entity("pre_ico_web_site.Data.Subscriber", b =>
                 {
                     b.Property<int>("Id")
@@ -744,6 +820,15 @@ namespace pre_ico_web_site.Data.Migrations
                         .WithMany("BountyUserCampaings")
                         .HasForeignKey("UserId")
                         .HasConstraintName("fk_user_campaing_users_user_id")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("pre_ico_web_site.Data.ExchangeStatus", b =>
+                {
+                    b.HasOne("pre_ico_web_site.Data.ApplicationUser", "CreatedByUser")
+                        .WithMany()
+                        .HasForeignKey("CreatedByUserId")
+                        .HasConstraintName("fk_exchange_status_users_created_by_user_id")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 #pragma warning restore 612, 618

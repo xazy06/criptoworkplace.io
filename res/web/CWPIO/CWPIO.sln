@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Extensions.Loggin
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pre-ico web site", "pre-ico web site\pre-ico web site.csproj", "{AD58EED5-E390-4473-8271-9387A32D4F9D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExchangerMonitor", "ExchangerMonitor\ExchangerMonitor.csproj", "{1C519D6D-1726-472A-BBBA-24E3CD2A6731}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,18 @@ Global
 		{AD58EED5-E390-4473-8271-9387A32D4F9D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AD58EED5-E390-4473-8271-9387A32D4F9D}.Release|x86.ActiveCfg = Release|Any CPU
 		{AD58EED5-E390-4473-8271-9387A32D4F9D}.Release|x86.Build.0 = Release|Any CPU
+		{1C519D6D-1726-472A-BBBA-24E3CD2A6731}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C519D6D-1726-472A-BBBA-24E3CD2A6731}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C519D6D-1726-472A-BBBA-24E3CD2A6731}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1C519D6D-1726-472A-BBBA-24E3CD2A6731}.Debug|x86.Build.0 = Debug|Any CPU
+		{1C519D6D-1726-472A-BBBA-24E3CD2A6731}.Release 3.5|Any CPU.ActiveCfg = Release|Any CPU
+		{1C519D6D-1726-472A-BBBA-24E3CD2A6731}.Release 3.5|Any CPU.Build.0 = Release|Any CPU
+		{1C519D6D-1726-472A-BBBA-24E3CD2A6731}.Release 3.5|x86.ActiveCfg = Release|Any CPU
+		{1C519D6D-1726-472A-BBBA-24E3CD2A6731}.Release 3.5|x86.Build.0 = Release|Any CPU
+		{1C519D6D-1726-472A-BBBA-24E3CD2A6731}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C519D6D-1726-472A-BBBA-24E3CD2A6731}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C519D6D-1726-472A-BBBA-24E3CD2A6731}.Release|x86.ActiveCfg = Release|Any CPU
+		{1C519D6D-1726-472A-BBBA-24E3CD2A6731}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

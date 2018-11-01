@@ -1,16 +1,583 @@
-﻿@using Microsoft.AspNetCore.Mvc.Rendering
+﻿﻿@using Microsoft.AspNetCore.Mvc.Rendering
 @{
     ViewData["Title"] = "CWP — Cyber Security Ecosystem";
 }
 @model BarModel
 
-@Html.Partial("_HeroSection")
-@Html.Partial("_HowItWorksSection")
-@Html.Partial("_FeaturesSection")
-@Html.Partial("_VideoSection")
-@Html.Partial("_SpecsSection")
-@Html.Partial("_DistributionSection")
-@Html.Partial("_RoadmapSection")
-@Html.Partial("_TeamSection")
-@Html.Partial("_PartnersSection")
-@Html.Partial("_SubscribeSection")
+<div id="home" class="b-block b-main">
+    <div class="container" style="z-index: 10;position: relative;">
+        <div class="row b-main-top">
+            <div class="col-md-6">
+                <h1 class="h1 hidden-xs">
+                    <span data-i18n="cyber">Micro-PC Powered</span><br/>
+                    <span data-i18n="eco">by Linux with Built-in</span><br/>
+                    <span data-i18n="crypto">CryptoStorage</span>
+                </h1>
+                
+                <h1 class="h1 visible-xs">
+                    Micro-PC Powered by Linux with Built-in CryptoStorage
+                </h1>
+                
+                @*                <div class="b-main_hsub pt hidden-sm hidden-xs">*@
+@*                    Our mission is to design the safest<br/>innovative devices and systems to<br/>protect personal data and the client’s<br/>finances all around the World.*@
+@*                </div>*@
+                
+                <div class="b-h1-under">
+                    
+                    <div class="b-banner-read-wp">
+                        <a target="_blank" class="b-main_link-n show-lg futurabook" href="/file/CWP_White_Paper_en.pdf">
+                            <i class="c-stn-3 far fa-file-alt s-banner-icon s-icon"></i>
+                            <span class="s-icon">Read Whitepaper</span>
+                        </a>
+                    </div>
+
+                    <div>
+                        <a class="b-main_link-n show-lg futurabook js-youtube-popup" href="https://youtu.be/4b9ZSRxHFYo">
+                            <i class="c-stn-3 fas fa-play s-banner-icon s-icon"></i>
+                            <span class="s-icon">CEO Explains</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6"></div>
+        </div>
+        
+        <div style="margin-top: 113px;" class="row hidden-sm">
+            <div class="col-md-6 s-ta_c-xs s-ta_c-ipad">
+                @Html.Partial("_ProgressPartial", Model)
+            </div>
+            
+            <div style="" class="col-md-6 s-ta_c-xs s-ta_c-ipad">
+                <div class="s-mb_10 s-mb_20-md">
+                    <a data-i18n="buy_cwt" onclick="yaCounter50462326.reachGoal('Whitelist');ga('send', 'event', 'forms', 'whitelist');return true;"
+                       target="_blank" class="enter-wl-btn btn btn-square btn-border-outline btn-blue btn-xl" href="/Account/Login#m-login--signup">BUY CWT-P TOKEN</a>
+
+                    <a target="_blank" onclick="yaCounter50462326.reachGoal('Document');ga('send', 'event', 'forms', 'document');return true;" class="read-wp-btn-link link-label futurabook"
+                       href="/file/CWP_White_Paper_en.pdf">
+                        <i class="c-stn-3 b-video-instr-icon far fa-play-circle fa-2x"></i>
+                        <span class="b-video-instr-text">Video<br/>Instruction</span>
+                    </a>
+                </div>
+                
+                <div class="b-timer-discount">
+                    <div data-i18n="" class="b-disc-text">
+                        <strong>40% Public Presale Discount,</strong>
+                    </div>
+                    <div data-i18n="" class="b-disc-text-under">
+                        Time left til price rise:
+                    </div>
+
+                                    <div class="b-timer_wrapper">
+                                        @Html.Partial("_TimerPartial")
+                                    </div>
+                </div>
+
+            </div>
+            
+        </div>
+    </div>
+    <img class="hidden-xs hidden-sm" src="~/images/upload-d01bb0f1-b44c-11e8-9a0a-ed19b45a0cd0.jpg" 
+         style="position: absolute;left: -69px;right: 0;top: -362px;width: 2224px;height: 1271px;"/>
+    
+@*    <img class="visible-xs visible-sm" src="~/images/upload-608d2a60-b48e-11e8-b5f2-0b6fb9a7fc3a.jpg" *@
+    @*         style="position: absolute;left: 0;right: 0;top: -130px;width: 100%;"/>*@
+    
+    <div class="row visible-sm hidden-xs b-ban-btns-sm">
+        <div class="col-md-12 s-ta_c-xs s-ta_c-ipad">
+            <a data-i18n="enterwl" target="_blank" class="enter-wl-btn btn btn-square btn-border-outline btn-white btn-xl s-mr_30" href="/Account/Login#m-login--signup">ENTER PRESALE</a>
+            <a target="_blank" class="read-wp-btn btn btn-square btn-border-outline btn-white btn-xl s-mr_20" href="/file/CWP_White_Paper_en.pdf">
+                <i class="far fa-file-alt"></i>
+            </a>
+            <a target="_blank" class="read-wp-btn-link link-label futurabook" href="/file/CWP_White_Paper_en.pdf">
+                Read<br/>Whitepaper
+            </a>
+            <div class="b-timer_wrapper">
+                @Html.Partial("_TimerPartial")
+            </div>
+        </div>
+    </div>
+    
+</div>
+@*<div class="b-block visible-xs visible-sm">*@
+@*    <div class="container">*@
+@*        <div class="row">*@
+@*            <div class="col-md-12">*@
+@*                <div class="b-main_hsub pt">*@
+@*                    Our mission is to design the safest<br/>innovative devices and systems to<br/>protect personal data and the client’s<br/>finances all around the World.*@
+@*                </div>*@
+@*                *@
+@*                <div class="s-ta_c-xs s-ta_c-ipad s-ta_c-sm s-mb_20">*@
+@*                    <a class="b-main_link futurabook js-youtube-popup" href="https://youtu.be/4b9ZSRxHFYo">*@
+@*                        What is CWP-computer*@
+@*                    </a>*@
+@*                </div>*@
+@*                *@
+@*                <div class="s-ta_c-xs s-ta_c-ipad s-ta_c-sm">*@
+@*                    <a target="_blank" class="btn btn-square btn-border-outline btn-white btn-lg" href="/file/CWP_White_Paper_en.pdf">*@
+@*                        <i class="far fa-file-alt"></i>&nbsp;<span class="futurabook" data-i18n="nav.whitepaper">Whitepaper</span>*@
+@*                    </a>*@
+@*                </div>*@
+@*            </div>*@
+@*        </div>*@
+@*    </div>*@
+@*</div>*@
+
+
+
+@*<div class="b-block s-p_0 s-o_h">*@
+@*    <div class="container">*@
+@*        <div class="row">*@
+@*            <div class="col-md-6 b-problem">*@
+@*                <h2 data-i18n="problem" class="b-block-h s-ta_l c-stn-2 s-ta_c-xs s-ta_c-ipad">*@
+@*                    Problem*@
+@*                </h2>*@
+@*                <p class="c-stn-2 s-fs_18">*@
+@*                    Personal data, money, and<br/>documents go digital. It<br/>became a simple target for<br/>thieves.*@
+@*                </p>*@
+@*                <div style="display: none;" class="b-problems">*@
+@*                    <div class="">*@
+@*                        <img src="~/images/problem/upload-45c857c0-b77e-11e8-8335-eb2864eea82d.png"/>*@
+@*                    </div>*@
+@*                    <div class="">*@
+@*                        <img src="~/images/problem/upload-46b046c0-b77e-11e8-a1f6-278dd96a7818.png"/>*@
+@*                    </div>*@
+@*                    <div class="">*@
+@*                        <img src="~/images/problem/upload-909c3800-b2b2-11e8-97ce-0bca7ac33d8e.png"/>*@
+@*                    </div>*@
+@*                    <div class="">*@
+@*                        <img src="~/images/problem/upload-13fc9ea0-b20a-11e8-aaeb-17d4ea4e5107.png"/>*@
+@*                    </div>*@
+@*                    <div class="">*@
+@*                        <img src="~/images/problem/upload-16d33e40-b20a-11e8-a11a-c3a09e4177f3.png"/>*@
+@*                    </div>*@
+@*                    <div class="">*@
+@*                        <img src="~/images/problem/upload-3f5ce5f0-b20a-11e8-86fd-e7f4dddbdf95.png"/>*@
+@*                    </div>*@
+@*                    <div class="">*@
+@*                        <img src="~/images/problem/upload-459d5020-b77e-11e8-a1f6-278dd96a7818.png"/>*@
+@*                    </div>*@
+@*                    <div class="">*@
+@*                        <img src="~/images/problem/upload-4587a540-b77e-11e8-8335-eb2864eea82d.png"/>*@
+@*                    </div>*@
+@*                    <div class="">*@
+@*                        <img src="~/images/problem/upload-3a8964e0-b20a-11e8-9723-358aaf7fb0c7.png"/>*@
+@*                    </div>*@
+@*                    <div class="">*@
+@*                        <img src="~/images/problem/upload-45c71f40-b77e-11e8-a4b7-7b3049bd85d9.png"/>*@
+@*                    </div>*@
+@*                    <div class="">*@
+@*                        <img src="~/images/problem/upload-f44554a0-b2b1-11e8-a82e-8db24d3c1ac8.png"/>*@
+@*                    </div>*@
+@*                </div>*@
+@*            </div>*@
+@*            <div class="col-md-6 b-stn-2 b-problem">*@
+@*                <h2 data-i18n="solution" class="b-block-h s-ta_l c-stn-1 s-ta_c-xs s-ta_c-ipad">Solution</h2>*@
+@*                *@
+@*                <p class="c-stn-1 s-fs_18">*@
+@*                    We create a microcomputer,<br/>*@
+@*                    that solves all your needs with<br/>protecting your money and data.*@
+@*                </p>*@
+@*                <div class="fff-back"></div>*@
+@*            </div>*@
+@*        </div>*@
+@*    </div>*@
+@*</div>*@
+
+<div class="b-block">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 data-i18n="how_works" class="b-block-h">How It Works</h2>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-7 s-ta_c xs-mar-how">
+                <img class="img-how" src="~/images/animation.svg"/>
+            </div>
+            
+            <div class="col-md-5">
+                <div class="b-how-text-wrapper">
+                    
+                    <p class="b-feach-c">
+                        The programs are executed in the<br/>
+                        environment isolated from the<br/>
+                        computerdonor. User data are encrypted<br/>
+                        on the device (by user’s choice) that creates<br/>
+                        a solid defense to guard against hackers.
+                    </p>
+
+                    <p class="b-feach-c">
+                        System prevents all existing security problems:<br/>
+                        Phishing by using the pre-configured browser<br/>
+                        and applications, signed by a unique key;<br/>
+                        Exploits by working in an isolated environment<br/>
+                        and by signing programs; Hacker attacks by<br/>
+                        using built-in unbreakable crypto-storage.
+                    </p>
+                </div>    
+            </div>
+        </div>
+    </div>
+</div>        
+
+<div class="b-block">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 data-i18n="key_features" class="b-block-h">Key Features</h2>
+            </div>
+        </div>
+        
+        <div class="row b-feach">
+            <div class="col-md-4 s-br_1px_dotted">
+                <div class="s-ta_r">
+                    <img src="~/images/icons_features_1.svg"/>
+                </div>
+                <div class="b-fetch-descr">
+                    <h2 data-i18n="" class="b-feach-h">External Linux OS</h2>
+
+                    <p data-i18n="" class="b-feach-c">
+                        CWP Micro-PC uses an updated kernel of operating system and applications, recompiled with new compilers, to prevent Meltdown and Spectre attacks.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4 s-br_1px_dotted">
+
+                <div class="visible-sm visible-xs">
+                    <img src="~/images/icons_features_2.svg"/>
+                </div> 
+
+
+                <div class="hidden-sm hidden-xs">
+                    <img src="~/images/icons_features_2.svg"/>
+                </div>
+                
+                <div class="b-fetch-descr">
+                    <h2 data-i18n="" class="b-feach-h">Secure Wallet</h2>
+
+                    <p data-i18n="" class="b-feach-c">
+                        Hardware non-breakable storagewas added for transaction signing to secure crypto-wallets private keys. 
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4 s-br_1px_dotted--last">
+                <div class="s-ta_c-xs">
+                    <img class="secure-m" width="360" src="~/images/icons_features_3.svg"/>
+                </div> 
+            
+                <div class="b-fetch-descr">
+                    <h2 data-i18n="" class="b-feach-h">Secure D-APPs</h2>
+
+                    <p data-i18n="" class="b-feach-c">
+                        Applications can be installed on the device only through the DAPP Store on decentralized Web-portal. It allows eliminating a possibility to install a harmful program and to secure data on the device. 
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+@*        <div class="row b-feach">*@
+@*            <div class="col-md-6 s-ta_r">*@
+@*                <img width="480" src="/images/upload-f2f8a4d0-b2bb-11e8-961a-957742adf671.png"/>*@
+@*            </div>*@
+@*            *@
+@*            <div class="col-md-6">*@
+@*                <h2 class="b-feach-h">External Linux OS</h2>*@
+@**@
+@*                <p class="b-feach-c">*@
+@*                    A common recommendation for maximum security is to use a separate PC*@
+@**@
+@*                    running Linux with all applications that have access to the internet removed*@
+@**@
+@*                    for your cryptocurrency wallet uses. The CWP Micro-PC serves exactly that*@
+@**@
+@*                    purpose but with the advanced security infrastructure*@
+@*                </p>*@
+@*            </div>*@
+@*        </div>*@
+@*        *@
+@*        <div class="row b-feach">*@
+@*            <div class="col-md-6 visible-sm visible-xs">*@
+@*                <img width="480" src="/images/upload-f2163410-b2bb-11e8-961a-957742adf670.png"/>*@
+@*            </div> *@
+@*            <div class="col-md-6">*@
+@*                <h2 class="b-feach-h">Crypto Wallet</h2>*@
+@**@
+@*                <p class="b-feach-c">*@
+@*                    CWP is a full-fledged personal computer with built-in crypto-storage*@
+@**@
+@*                    for transaction signing to secure crypto-wallets private keys.*@
+@*                </p>*@
+@*            </div>*@
+@**@
+@*            <div class="col-md-6 hidden-sm hidden-xs">*@
+@*                <img width="480" src="/images/upload-f2163410-b2bb-11e8-961a-957742adf670.png"/>*@
+@*            </div>*@
+@*        </div>*@
+@*        *@
+@*        <div class="row b-feach">           *@
+@*            <div class="col-md-6 s-ta_c-xs">*@
+@*                <img class="secure-m" width="360" src="/images/upload-f5812470-b2bb-11e8-961a-957742adf670.png"/>*@
+@*            </div> *@
+@*            *@
+@*            <div class="col-md-6">*@
+@*                <h2 class="b-feach-h">D-app store</h2>*@
+@**@
+@*                <p class="b-feach-c">*@
+@*                    Applications can be installed on the device only*@
+@**@
+@*                    through the application store. It allows eliminating a possibility to*@
+@**@
+@*                    install a harmful program and to secure data on the device. You can choose any messenger in our application store or use our CWP secured messenger.*@
+@*                </p>*@
+@*            </div>*@
+@*        </div>*@
+@*        <div class="s-ta_c">*@
+@*            <img width="70%" class="secure-2" src="/images/upload-810eb7e0-b457-11e8-8717-7ff3a37c844c.png"/>*@
+@*        </div>*@
+    </div>
+</div>
+
+<div id="background-video" class="background-video-c s-pos_r">
+  <img id="background-video-img" width="100%" src="~/images/videoplayback.png"/>
+</div>
+
+<div class="b-block">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="b-block-h">
+                    Specifications
+                </h2>
+            </div>
+        </div>
+        
+        
+        <div class="row">           
+            <div class="col-md-6 b-device-m">
+                <h2 class="h-tab">
+                    CWP
+                </h2>
+                
+                <div class="row">
+                    <div class="col-md-4 col-xs-4">
+@*                        <div class="b-spec_img-wrapper">*@
+                            <img class="device-lite" src="/images/cwplite.png"/>
+@*                        </div>*@
+                    </div>
+                    <div class="col-md-8 col-xs-8">
+                        <ul class="b-spec">
+                            <li>
+                                <i class="cw cw-2x cw-display s-mr_10"></i>
+                                <span class="s-icon s-spec_i">OLED Display</span>
+                            </li>
+                            <li>
+                                <i class="cw cw-2x cw-cpu s-mr_10"></i>
+                                <span class="s-icon s-spec_i">Quad-Core CPU</span>
+                            </li>
+                            <li>
+                                <i class="cw cw-2x cw-ram s-mr_10"></i>
+                                <span class="s-icon s-spec_i">4GB RAM & 16GB FLASH
+                                </span>
+                            </li>
+                            <li>
+                                <i class="cw cw-2x cw-usb s-mr_10"></i>
+                                <span class="s-icon s-spec_i">
+                                    USB & HDMI
+                                </span>
+                            </li>
+                            <li>
+                                <i class="cw cw-2x cw-fingerprint s-mr_10"></i>
+                                <span class="s-icon s-spec_i">
+                                    Biometric
+                                </span>
+                            </li>
+                            <li>
+                                <i class="cw cw-2x cw-wifi s-mr_10"></i>
+                                <span class="s-icon s-spec_i">
+                                    WI-FI & LTE
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+              
+            </div> 
+            
+            <div class="col-md-6">
+                <h2 class="h-tab">
+                    CWP <sup>pro</sup>
+                </h2>
+                
+                <div class="row">
+                    <div class="col-md-6 col-xs-6">
+@*                        <div class="b-spec_img-wrapper">*@
+                            <img class="device-pro" src="/images/cwppro.png"/>
+@*                        </div>*@
+                    </div>
+                    <div class="col-md-6 col-xs-6">
+                        <ul class="b-spec b-spec-pro">
+                            <li>
+                                <i class="cw cw-2x cw-display s-mr_10"></i>
+                                <span class="s-icon s-spec_i">E-Ink Display</span>
+                            </li>
+                            <li>
+                                <i class="cw cw-2x cw-cpu s-mr_10"></i>
+                                <span class="s-icon s-spec_i">Quad-Core CPU</span>
+                            </li>
+                            <li>
+                                <i class="s-pos_a_m cw cw-2x cw-ram s-mr_10"></i>
+                                <span class="s-ml_40_m s-icon s-spec_i">4GB RAM & 64 GB FLASH</span>
+                            </li>
+                            <li>
+                                <i class="cw cw-2x cw-usb s-mr_10"></i>
+                                <span class="s-icon s-spec_i">USB & HDMI</span>
+                            </li>
+                            <li>
+                                <i class="cw cw-2x cw-fingerprint s-mr_10"></i>
+                                <span class="s-icon s-spec_i">Biometric</span>
+                            </li>
+                            <li>
+                                <i class="cw cw-2x cw-wifi s-mr_10"></i>
+                                <span class="s-icon s-spec_i">Wi-Fi & LTE</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+            </div> 
+            
+        </div>
+        
+    </div>
+</div>
+
+<div id="token" class="b-block b-stn-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 data-i18n="" class="b-block-h">
+                    Token Distribution
+                </h2>
+            </div>
+        </div>
+        
+        <div class="row">           
+            <div class="col-md-12">
+                
+                <div class="b-timer_wrapper_presale">
+@*                    <p class="s-ta_c c-stn-2 s-fs_18 s-mb_30">*@
+@*                        <i class="fas fa-exclamation-circle"></i>*@
+@*                        Citizens and residents of the USA, Iran and North Korea are not allowed to participate.*@
+@*                    </p>*@
+                    @*                    @Html.Partial("_TimerPartial")*@
+                </div>
+                
+                <div class="b-sale-line">
+                    <img width="100%" src="~/images/timeline-temporrary.png"/>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="b-sale-info">
+                            <div class="b-row-item clear">
+                                <strong>1 CWT-P</strong>
+                                <div class="s-float_r">
+                                    <span class="c-stn-1">
+                                        <span class="through c-stn-6">$0,20</span>
+                                    </span> $0,12
+                                </div>
+                            </div>
+
+                            <div class="b-row-item clear">
+                                <span>Presale discount</span>
+                                <div class="s-float_r">40%</div>
+                            </div>
+
+                            <div class="b-row-item clear">
+                                <span>Tokens available now</span>
+                                <div class="s-float_r">6,968,598 / 15,000,000</div>
+                            </div>
+
+                            <div class="b-row-item clear">
+                                <span>Soft cap</span>
+                                <div class="s-float_r">$240K</div>
+                            </div>
+
+                            <div class="b-row-item clear">
+                                <span>Hard cap</span>
+                                <div class="s-float_r">$1,8M</div>
+                            </div>
+                        </div>
+                        
+                        <div class="b-sale-buy-block">
+                            <a target="_blank" 
+                               onclick="yaCounter50462326.reachGoal('Token'); ga('send', 'event', 'forms', 'token'); return true;" 
+                               class="btn btn-square btn-border-outline-i btn-white btn-xl futurabook s-mr_20" href="/Account/Login#m-login--signup">buy CWT-Token</a>
+                            
+                            <a target="_blank" onclick="yaCounter50462326.reachGoal('Document');ga('send', 'event', 'forms', 'document');return true;" 
+                               class="read-wp-btn-link link-label futurabook" href="/file/CWP_White_Paper_en.pdf">
+                                <i class="c-stn-2 b-video-instr-icon far fa-play-circle fa-2x"></i>
+                                <span class="b-video-instr-text">Video<br>Instruction</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-5">
+                        <div class="b-why-not">
+                            <h3 data-i18n="" class="b-why-not-h3">Why Buy Tokens Now?</h3>
+                            
+                            <ul class="b-why-list">
+                                <li>Limited issue of tokens</li>
+                                <li>Presale discount</li>
+                            </ul>
+                            
+                            <div class="b-why-not-footer">
+                                <span class="s-icon">We accept:</span> 
+                                <img class="i-eth" width="20" src="~/images/eth.svg"/>
+                                <span class="s-icon">ETH</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="vision" class="b-block">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="b-block-h">
+                    Roadmap
+                </h2>
+            </div>
+        </div>
+        
+        <div class="row">           
+            <div class="col-md-12 s-o_a roadmap owl-drag">
+                <img class="hidden-xs hidden-sm" src="~/images/roadmap-md.svg"/>
+                <img class="visible-xs visible-sm" src="~/images/roadmap-sm.svg"/>
+            </div> 
+            
+        </div>
+    </div>
+</div>
+
+
+@Html.Partial("_TeamPartial")
+
+@Html.Partial("_PartnersPartial")
+
+@Html.Partial("_Subscriber")
+
+
+
+
+
+
+
+
+
