@@ -2,8 +2,10 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Nethereum.Util;
 using pre_ico_web_site.Data;
 using pre_ico_web_site.Eth;
+using pre_ico_web_site.Models;
 using Slack.Webhooks;
 using System;
 using System.Security.Claims;
@@ -65,7 +67,13 @@ namespace pre_ico_web_site.Controllers
                 return RedirectToAction(nameof(WhiteListAsync));
             }
 
-            return View(a == "temp" ? "ExchangerTemp" : "Exchanger");
+            var model = new BarModel
+            {
+                Sold = (int)UnitConversion.Convert.FromWei(await _tokenSaleContract.TokenSoldAsync()),
+                Cap = (int)UnitConversion.Convert.FromWei(await _tokenSaleContract.GetCapAsync())
+            };
+
+            return View(a == "temp" ? "ExchangerTemp" : "Exchanger", model);
         }
 
         [HttpGet("whiteList", Name = "WhiteList")]
