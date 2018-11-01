@@ -240,38 +240,42 @@ var Controller = (Controller || {}), Gate = function () {
 			
 			Controller.ViewModel.flags.expiredOrder(false);
 			
-			(function () {
-				return isETHTransaction && self.actions.web3Status(Controller.ViewModel.obs.depositAddress()) 
-					|| self.actions.orderInfo(Controller.ViewModel.obs.fixedAmmount.orderId())
-				})().then(function(data) {
-				
-				var status = data.status;
-				
-				console.log(data);
+			if (isETHTransaction){
+				return self.actions.web3Status(Controller.ViewModel.obs.depositAddress()).then(self.actions.statusCallback);
+			}
+			
+			self.actions.orderInfo(Controller.ViewModel.obs.fixedAmmount.orderId()).then(self.actions.statusCallback);
+			
+			shapeshift.status(Controller.ViewModel.obs.depositAddress()).then(self.actions.statusCallback);
+		},
+		statusCallback: function(data) {
 
-				if (status === 'expired' || data.timeRemaining < 3) {
-					self.actions.stopStatusBang();
-					
-					Controller.ViewModel.flags.expiredOrder(true);
-					
-					return;
-				}
-				
-				if (status === 'failed') {
-					self.actions.stopStatusBang();
-					
-					Controller.actions.sendEmail(data.error, '');
-					return;
-				}
-				
-				if (status !== 'complete') {
-					return;
-				}
-				
-				Controller.actions.monitor(Controller.ViewModel.obs.cwtCount(), data.transaction);
+			var status = data.status;
 
+			console.log(data);
+
+			if (status === 'expired' || data.timeRemaining < 3) {
 				self.actions.stopStatusBang();
-			});
+
+				Controller.ViewModel.flags.expiredOrder(true);
+
+				return;
+			}
+
+			if (status === 'failed') {
+				self.actions.stopStatusBang();
+
+				Controller.actions.sendEmail(data.error, '');
+				return;
+			}
+
+			if (status !== 'complete') {
+				return;
+			}
+
+			Controller.actions.monitor(Controller.ViewModel.obs.cwtCount(), data.transaction);
+
+			self.actions.stopStatusBang();
 		},
 		stopStatusBang: function () {
 			window.clearInterval(self.poolingId);
