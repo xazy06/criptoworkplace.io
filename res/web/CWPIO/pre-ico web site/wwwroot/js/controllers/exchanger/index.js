@@ -53,7 +53,6 @@ var Controller = function () {
 				try {
 					contract = new self.web3js.eth.Contract(
 						contractabi,
-						//[{ "constant": false, "inputs": [], "name": "withdrawPayments", "outputs": [], "payable": false, "stateMutability": "nonpayable", "type": "function" }],
 						ViewModel.obs.contractAddress(),
 						{
 							from: ViewModel.obs.usersettings.ethAddress() 
@@ -83,7 +82,7 @@ var Controller = function () {
 		metrics:{
 			purchasing: function () {
 				try{
-					yaCounter50462326.reachGoal('Purchase');
+					window.yaCounter50462326.reachGoal('Purchase');
 					ga('send', 'event', 'forms', 'purchase');
 				}catch (e){
 					console.log(e);
@@ -149,10 +148,10 @@ var Controller = function () {
 
 			contractInt.getPastEvents('TokenPurchase', {
 				fromBlock: 0,
-				toBlock: 'latest'/*,
+				toBlock: 'latest', 
 				filter: {
 					beneficiary: ViewModel.obs.withdrawalAddress()
-				}*/
+				}
 			}).then(function(events){
 				
 				console.log('getPastEvents', events);
