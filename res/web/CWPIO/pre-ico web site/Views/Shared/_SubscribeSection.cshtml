@@ -1,6 +1,9 @@
 <section class="section bg_mod subscribe_mod">
 	<div class="section_in">
 		<h2 class="section_title white_mod">Sign Up for Updates</h2>
+		<!-- ko if: flags.successSubscribed -->
+			<!-- TODO this block will be visible on success subscribe -->
+		<!-- /ko -->
 		<div class="subscribe_form_w">
 			<form class="subscribe_form">
 				<div class="input_w">
@@ -9,11 +12,12 @@
 							<label for="email">email</label>
 						</dt>
 						<dd class="form_field_wrap form_v1_mod">
-							<input class="form_field default_mod" type="text" id="email" placeholder="Enter Your E-mail"/>
+							<input data-bind="textInput:obs.email" 
+							       class="form_field default_mod" type="text" id="email" placeholder="Enter Your E-mail"/>
 						</dd>
 					</dl>
 				</div>
-				<div class="btn_action">SUBSCRIBE</div>
+				<div data-bind="click:actions.subscribe" class="btn_action">SUBSCRIBE</div>
 			</form>
 		</div>
 	</div>
