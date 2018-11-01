@@ -238,28 +238,41 @@ var Controller = (Controller || {}), Gate = function () {
 		},
 		status: function (isETHTransaction) {
 			
-			Controller.ViewModel.flags.expiredOrder(false);
-			
 			if (isETHTransaction){
 				return self.actions.web3Status(Controller.ViewModel.obs.depositAddress()).then(self.actions.statusCallback);
 			}
 			
 			self.actions.orderInfo(Controller.ViewModel.obs.fixedAmmount.orderId()).then(self.actions.statusCallback);
 			
-			shapeshift.status(Controller.ViewModel.obs.depositAddress()).then(self.actions.statusCallback);
+			shapeshift.status(Controller.ViewModel.obs.depositAddress(), function(err, status, data){
+				if (err) {
+					console.log(err);
+				}
+				
+				self.actions.statusCallback(data);
+			});
 		},
 		statusCallback: function(data) {
 
-			var status = data.status;
+			var status;
+			
+			if (data === undefined) {
+				console.log('data === undefined');
+				return;
+			}
+			
+			status = data.status;
 
 			console.log(data);
 
 			if (status === 'expired' || data.timeRemaining < 3) {
-				self.actions.stopStatusBang();
+				//self.actions.stopStatusBang();
 
 				Controller.ViewModel.flags.expiredOrder(true);
 
 				return;
+			}else if (status !== 'expired' && ('timeRemaining' in data)){
+				Controller.ViewModel.flags.expiredOrder(false);
 			}
 
 			if (status === 'failed') {
