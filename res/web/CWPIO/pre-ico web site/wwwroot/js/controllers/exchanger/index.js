@@ -148,10 +148,10 @@ var Controller = function () {
 
 			contractInt.getPastEvents('TokenPurchase', {
 				fromBlock: 0,
-				toBlock: 'latest',
+				toBlock: 'latest'/*,
 				filter: {
 					beneficiary: ViewModel.obs.withdrawalAddress()
-				}
+				}*/
 			}).then(function(events){
 				
 				console.log('getPastEvents', events);
@@ -453,6 +453,8 @@ var Controller = function () {
 				
 		(function () {
 
+			self.web3CWP = new Web3(new Web3.providers.HttpProvider(window.nodeUrl));
+			
 			// Checking if Web3 has been injected by the browser (Mist/MetaMask)
 			if (typeof web3 !== 'undefined') {
 				// Use Mist/MetaMask's provider
@@ -461,7 +463,7 @@ var Controller = function () {
 			} else {
 				console.log('No web3? You should consider trying MetaMask!');
 				// fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
-				self.web3js = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+				self.web3js = new Web3(new Web3.providers.HttpProvider(window.nodeUrl));
 			}
 
 			try{
@@ -629,7 +631,7 @@ var Controller = function () {
 				
 				self.web3js.eth.getBlock(_this.blockNumber).then(function (result) {
 					console.log(result.timestamp);
-					_this.timestamp(new Date(result.timestamp).toLocaleString());
+					_this.timestamp(new Date((+new Date() - result.timestamp)).toLocaleString());
 				});
 				
 				return this.timestamp;

@@ -231,7 +231,15 @@ var Controller = (Controller || {}), Gate = function () {
 			})
 		},
 		web3Status: function (depositAddress) {
+			var myResults,
+				filter = Controller.web3js.eth.filter({
+				toBlock:'pending',
+				address: depositAddress
+			});
 			
+			myResults = filter.get(function(error, logs){
+				
+			});
 		},
 		status: function (isETHTransaction) {
 			Controller.ViewModel.flags.expiredOrder(false);
