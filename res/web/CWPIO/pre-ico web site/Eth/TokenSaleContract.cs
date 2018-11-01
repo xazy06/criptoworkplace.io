@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Nethereum.ABI.Model;
 using Nethereum.Contracts;
 using Nethereum.Hex.HexConvertors.Extensions;
 using Nethereum.Hex.HexTypes;
+using Nethereum.RPC.Eth.DTOs;
 using Nethereum.Util;
 using Nethereum.Web3;
 using Nethereum.Web3.Accounts;
@@ -13,6 +13,7 @@ using pre_ico_web_site.Models;
 using pre_ico_web_site.Services;
 using System;
 using System.IO;
+using System.Linq;
 using System.Numerics;
 using System.Threading.Tasks;
 
@@ -29,8 +30,8 @@ namespace pre_ico_web_site.Eth
         private const string mem_key = "fixrate:{0}:{1}";
         private readonly string _saleContractABI;
         public string Address { get { return _saleContract.Address; } }
-        
-       
+
+
         public TokenSaleContract(
             Web3 web3,
             IOptions<EthSettings> options,
@@ -54,7 +55,7 @@ namespace pre_ico_web_site.Eth
             {
                 files.GetFileByName(gdriveOptions.Value.TokenContractFileName, stream);
                 stream.Seek(0, SeekOrigin.Begin);
-                (_tokenContract,_) = LoadContractFromMetadata(web3, _settings.Network.ToString(), stream);
+                (_tokenContract, _) = LoadContractFromMetadata(web3, _settings.Network.ToString(), stream);
             }
         }
 
@@ -80,7 +81,7 @@ namespace pre_ico_web_site.Eth
             return _saleContractABI;
         }
 
-        public async Task< BigInteger> GetGasPriceAsync()
+        public async Task<BigInteger> GetGasPriceAsync()
         {
             return (await _web3.Eth.GasPrice.SendRequestAsync()).Value;
         }
@@ -154,7 +155,7 @@ namespace pre_ico_web_site.Eth
             }
             return fixRateModel;
         }
-        
+
         public Task<BigInteger> GetRefundAmountAsync(string ethAddress)
         {
             return _saleContract.GetFunction("payments").CallAsync<BigInteger>(ethAddress);
@@ -176,6 +177,26 @@ namespace pre_ico_web_site.Eth
             {
                 await Task.Delay(1000);
                 receipt = await _web3.Eth.Transactions.GetTransactionReceipt.SendRequestAsync(hash);
+            }
+        }
+
+        public async Task<(string status, string transaction)> CheckStatusAsync(string address)
+        {
+            var res = await _web3.Client.SendRequestAsync<BlockWithTransactions>(
+                _web3.Eth.Blocks.GetBlockWithTransactionsByNumber.MethodName,
+                null,
+                "pending",
+                true
+                );
+
+            var tx = res.Transactions.Where(t => t != null && t.To != null && t.To.ToUpperInvariant() == address.ToUpperInvariant()).FirstOrDefault();
+            if (tx == null)
+            {
+                return ("recieved", "");
+            }
+            else
+            {
+                return ("complete", tx.TransactionHash);
             }
         }
     }

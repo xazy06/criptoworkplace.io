@@ -258,6 +258,13 @@ namespace pre_ico_web_site.Controllers
             return Ok(new { txHash = tx });
         }
 
+        [HttpGet("status/{address}")]
+        public async Task<IActionResult> StatusAsync([FromRoute]string address)
+        {
+            var (status, transaction) = await _contract.CheckStatusAsync(address);
+            return Ok(new { Status = status, Transaction = transaction, TimeRemaining = 999 });
+        }
+
         //[HttpGet("refund")]
         //public async Task<IActionResult> GetRefundAsync()
         //{
@@ -276,7 +283,7 @@ namespace pre_ico_web_site.Controllers
 
         public IActionResult PostFailTransaction(FailTransactionModel model)
         {
-            
+
 
             return Ok();
         }
