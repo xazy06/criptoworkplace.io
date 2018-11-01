@@ -40,7 +40,8 @@ var Controller = function () {
 		initPurchasing: '/api/v1/exchanger/initPurchasing',
 		monitor: '/api/v1/exchanger/monitor/',
 		contractabi: '/api/v1/exchanger/contractabi/',
-		sendMail: '/api/v1/sendMail/'
+		sendMail: '/api/v1/sendMail/',
+		ethStatus: '/api/v1/exchanger/status/'
 	};
 	
 	this.actions = {
@@ -560,7 +561,7 @@ var Controller = function () {
 			depositAddress: ko.observable(''),
 			contractAddress: ko.observable(''),
 			freezed: ko.observable(0),
-			cwtCount: ko.observable(0),
+			cwtCount: ko.observable(0).extend({ rateLimit: 500 }),
 			usersettings: {
 				name:ko.observable(''),
 				lastName:ko.observable(''),
@@ -631,7 +632,7 @@ var Controller = function () {
 				
 				self.web3js.eth.getBlock(_this.blockNumber).then(function (result) {
 					console.log(result.timestamp);
-					_this.timestamp(new Date((+new Date() - result.timestamp)).toLocaleString());
+					_this.timestamp(new Date((+new Date('1970-01-01T12:00:00') + (result.timestamp*1000))).toLocaleString());
 				});
 				
 				return this.timestamp;

@@ -231,15 +231,7 @@ var Controller = (Controller || {}), Gate = function () {
 			})
 		},
 		web3Status: function (depositAddress) {
-			var myResults,
-				filter = Controller.web3js.eth.filter({
-				toBlock:'pending',
-				address: depositAddress
-			});
-			
-			myResults = filter.get(function(error, logs){
-				
-			});
+			return $.get(Controller.api.ethStatus + depositAddress);
 		},
 		status: function (isETHTransaction) {
 			Controller.ViewModel.flags.expiredOrder(false);
@@ -254,7 +246,7 @@ var Controller = (Controller || {}), Gate = function () {
 				
 				console.log(data);
 
-				if (status === '' || data.timeRemaining < 3) {
+				if (status === 'expired' || data.timeRemaining < 3) {
 					self.actions.stopStatusBang();
 					
 					Controller.ViewModel.flags.expiredOrder(true);
@@ -265,7 +257,7 @@ var Controller = (Controller || {}), Gate = function () {
 				if (status === 'failed') {
 					self.actions.stopStatusBang();
 					
-					Controller.actions.sendEmail(data);//TODO
+					Controller.actions.sendEmail(data.error, '');
 					return;
 				}
 				
