@@ -8,6 +8,7 @@ using pre_ico_web_site.Eth;
 using pre_ico_web_site.Models;
 using pre_ico_web_site.Services;
 using System;
+using System.Linq;
 using System.Numerics;
 using System.Threading.Tasks;
 
@@ -180,6 +181,11 @@ namespace pre_ico_web_site.Controllers
                 return BadRequest(new { error = "Not set temp address" });
             }
 
+            if (_dbContext.Set<ExchangeStatus>().Any(s => s.StartTx == model.Tx))
+            {
+                return Ok();
+            }
+
             var rate = await GetRateAsync(model.Count);
 
             await _dbContext.AddAsync(new ExchangeStatus
@@ -223,7 +229,7 @@ namespace pre_ico_web_site.Controllers
             //    await _dbContext.SaveChangesAsync();
             //}
 
-            return Ok(new { Rate = rate.rate, Amount = rate.amount });
+            return Ok();
         }
 
         [HttpPost("whiteList")]
