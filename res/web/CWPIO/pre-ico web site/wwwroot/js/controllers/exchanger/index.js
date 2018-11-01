@@ -100,7 +100,7 @@ var Controller = function () {
 			
 			contractInt = new self.web3js.eth.Contract(interf, ViewModel.obs.contractAddress());
 
-			contractInt.events.TokenPurchase({filter: {beneficiary: ViewModel.obs.withdrawalAddress()}})
+            contractInt.events.TokenPurchase({ filter: { beneficiary: ViewModel.obs.usersettings.ethAddress() } })
 				.on('data', function(event){
 					console.log(event);
 					
@@ -149,8 +149,8 @@ var Controller = function () {
 			contractInt.getPastEvents('TokenPurchase', {
 				fromBlock: 0,
 				toBlock: 'latest', 
-				filter: {
-					beneficiary: ViewModel.obs.withdrawalAddress()
+                filter: {
+                    beneficiary: ViewModel.obs.usersettings.ethAddress()
 				}
 			}).then(function(events){
 				
@@ -425,7 +425,7 @@ var Controller = function () {
 				ViewModel.obs.fixedAmmount.depositAmount(response.totalAmount);
 								
 				//ViewModel.actions.initPurchasingThrottled()();
-				self.actions.monitor(ViewModel.obs.cwtCount(), -1);
+				//self.actions.monitor(ViewModel.obs.cwtCount(), -1);
 			});
 		},
 		purchase: function () {
@@ -877,7 +877,6 @@ var Controller = function () {
 			},
 			shiftETH: function () {
 				ViewModel.obs.depositAddress(ViewModel.obs.withdrawalAddress());
-				self.actions.monitor(ViewModel.obs.cwtCount(), -1);
 				Gate.actions.stopStatusBang();
 				Gate.actions.initStatusBang(true);
 				
