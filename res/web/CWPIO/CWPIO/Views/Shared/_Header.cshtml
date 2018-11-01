@@ -1,185 +1,114 @@
-
-<header>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3 col-xs-8">
-                <div class="logo hidden-sm hidden-xs">
-                    @if (ViewBag.Area == "my")
-                    {
-                        <a asp-controller="Home" asp-action="Index">Crypto<span class="semibold">WorkPlace</span></a>
-                    }
-                    else
-                    {
-                        <a class="smoothscroll" href="#home">
-                            <span class="s-main-logo">
-                               <img src="~/static/CWP2.svg" />
-                            </span>
-                            <span class="logo-label">360&deg; Secured</span>
-                        </a>
-                    }
-                </div>
-            </div>
-            <div class="col-md-8 hidden-sm hidden-xs">
-                @if (ViewBag.Menu == null || ViewBag.Menu)
-                {
-                    <div class="menu">
-                        <nav class="menu-list">
-                            <ul>
-                                <li style="    margin: 0;
-                                      clear: both;
-                                      vertical-align: middle;">
-                                    @{
-                                        var loc = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
-                                        var link = "";
-                                        var presentationPath = "";
-                                        
-                                        if (!loc.Equals("ru") && !loc.Equals("en"))
-                                        {
-                                            loc = "en";
-                                        }
-                                        
-                                        link = "/static/docs_/CWP_White_Paper_" + loc + ".pdf";
-                                        
-                                        presentationPath = "/static/docs_/CWP 360Secured-" + loc + ".pdf";
-                                    }
-@*                                    <a style="float: left;margin-right: 10px;" class="btn btn-sm btn-round btn-g" target="_blank"*@
-@*                                       href="@presentationPath">@Locale["PRESENTATION"]</a>*@
-                                    
-                                    <a style="margin-right: 10px;float: left;" href="#mvp" class="smoothscroll btn btn-sm btn-round btn-g">@Locale["MVP"]</a>
-                                    
-                                    <a style="float: right;" class="btn btn-sm btn-round btn-g" target="_blank"
-                                       href="@link">@Locale["wp"]</a>
-
-                                </li>
-                                <li class="active"><a class="smoothscroll" href="#home">@Locale["product"]</a></li>
-                                <li><a class="smoothscroll" href="#token">@Locale["token"]</a></li>
-                                <li><a class="smoothscroll" href="#ROADMAP">@Locale["roadmap"]</a></li>
-                                <li><a class="smoothscroll" href="#team">@Locale["team"]</a></li>
-                                <li><a class="smoothscroll" href="#contact">@Locale["contacts"]</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                }
-            </div>
-@*            <div class="col-md-1 col-xs-4">*@
-@*                <div id="change-color" class="b-change-color"></div>*@
-@*                <div class="search s-lang_changer dropdown hidden-sm hidden-xs">*@
-@*                    <a class="dropdown-toggle s-lang_changer__toggle" href="#" data-toggle="dropdown">*@
-@*                        @CultureInfo.CurrentCulture.ThreeLetterISOLanguageName*@
-@*                        <i class="fa fa-angle-down"></i>*@
-@*                    </a>*@
-@*                    *@
-@*                    <ul class="dropdown-menu" aria-labelledby="language-switch">*@
-@*                        <li><a asp-controller="Home" asp-action="Index" asp-route-culture="en-US">English</a></li>*@
-@*$1$                        <li><a asp-controller="Home" asp-action="Index" asp-route-culture="ru-RU">Русский</a></li>#1#*@
-@*$1$                        <li><a href="/?culture=zh-CN">中國</a></li>#1#*@
-@*$1$                        <li><a href="/?culture=ja-JP">日本</a></li>#1#*@
-@*                    </ul>*@
-@*$1$                    <!-- search-modal-start -->#1#*@
-@*$1$                    <div id="myModal" class="search-modal modal fade" role="dialog">#1#*@
-@*$1$                        <div class="modal-dialog">#1#*@
-@*$1$                            <!-- Modal content-->#1#*@
-@*$1$                            <div class="modal-content">#1#*@
-@*$1$                                <h4 class="modal-title">Type and Press Enter</h4>#1#*@
-@*$1$                                <form action="#">#1#*@
-@*$1$                                    <input type="text" placeholder="Search Here">#1#*@
-@*$1$                                </form>#1#*@
-@*$1$                                <div class="modal-close">#1#*@
-@*$1$                                    <button type="button" data-dismiss="modal">Close</button>#1#*@
-@*$1$                                </div>#1#*@
-@*$1$                            </div>#1#*@
-@*$1$                        </div>#1#*@
-@*$1$                    </div>#1#*@
-@*$1$                    <!-- search-modal-end -->#1#*@
-@*                </div>*@
-@*            </div>*@
-        </div>
-    </div>
-    <!-- mobile-menu-start -->
-<div class="custom-mobile-menu-area visible-sm visible-xs">
-    <div class="mobile-menu">
-        <button type="button" data-toggle="collapse" data-target="#mobile_menu_show">
-            CWP
-        </button>
-        @if (ViewBag.Menu == null || ViewBag.Menu)
-        {
-            <i class="fas fa-align-justify fa-align-right collapsed" data-toggle="collapse" data-target="#mobile_menu_show"></i>
-            <div id="mobile_menu_show" class="collapse mobile_menu_show">
-                @{
-                    var loc = CultureInfo.CurrentCulture.TwoLetterISOLanguageName;
-                    var link = "";
-                    if (!loc.Equals("ru") && !loc.Equals("en"))
-                    {
-                        loc = "en";
-                    }
-                    link = "/static/docs_/CWP_White_Paper_" + loc + ".pdf";
-                }
-                <ul>
-                    <li>
-                        <a data-toggle="collapse" data-target="#mobile_menu_show" target="_blank" href="@link">@Locale["wp"]</a>
-                    </li>
-                    <li><a data-toggle="collapse" data-target="#mobile_menu_show" class="smoothscroll" href="#home">@Locale["product"]</a></li>
-                    <li><a data-toggle="collapse" data-target="#mobile_menu_show" class="smoothscroll" href="#token">@Locale["token"]</a></li>
-                    <li><a data-toggle="collapse" data-target="#mobile_menu_show" class="smoothscroll" href="#ROADMAP">@Locale["roadmap"]</a></li>
-                    <li><a data-toggle="collapse" data-target="#mobile_menu_show" class="smoothscroll" href="#team">@Locale["team"]</a></li>
-                    <li><a data-toggle="collapse" data-target="#mobile_menu_show" class="smoothscroll" href="#contact">@Locale["contacts"]</a></li>
-@*                    <li>*@
-@*                        <a href="javascript:void(0)">*@
-@*                            <div class="dropdown s-pos_r">*@
-@*                                <a style="text-transform: uppercase" class="dropdown-toggle" href="#" data-toggle="dropdown">*@
-@*                                    @CultureInfo.CurrentCulture.TwoLetterISOLanguageName*@
-@**@
-@*                                </a>*@
-@*                                <ul class="dropdown-menu" aria-labelledby="language-switch">*@
-@*                                    <li>*@
-@*                                        <a asp-controller="Home" asp-action="Index" asp-route-culture="en-US">English</a>*@
-@*                                    </li>*@
-@*                                    $1$                                    <li>#1#*@
-@*                                    $1$                                        <a asp-controller="Home" asp-action="Index" asp-route-culture="ru-RU">Русский</a>#1#*@
-@*                                    $1$                                    </li>#1#*@
-@*                                    $1$<li>#1#*@
-@*                                    $1$  <a href="/?culture=zh-CN">中國</a>#1#*@
-@*                                    $1$</li>#1#*@
-@*                                    $1$<li>#1#*@
-@*                                    $1$ <a href="/?culture=ja-JP">日本</a>#1#*@
-@*                                    $1$</li>#1#*@
-@*                                </ul>*@
-@**@
-@*                            </div>*@
-@*                        </a>*@
-@*                    </li>*@
-
-
-                </ul>
-            </div>
-        }
-        
-        <div class="l-switcher visible-sm visible-xs">
-@*            <div class="dropdown">*@
-@*                <a class="dropdown-toggle" href="#" data-toggle="dropdown">*@
-@**@
-@*                    @if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName.Equals("en"))*@
-@*                    {*@
-@*                        <i class="fa fa-globe fa-2x"></i>*@
-@*                    }*@
-@*                    else*@
-@*                    {*@
-@*                        <span class="c-locale">*@
-@*                            @CultureInfo.CurrentCulture.TwoLetterISOLanguageName*@
-@*                        </span>*@
-@*                    }*@
-@*                </a>*@
-@*                <ul class="dropdown-menu" aria-labelledby="language-switch">*@
-@*                    <li><a href="/">English</a></li>*@
-@*$1$                    <li><a href="/?culture=ru-RU">Русский</a></li>#1#*@
-@*$1$                    <li><a href="/?culture=zh-CN">中國</a></li>#1#*@
-@*$1$                    <li><a href="/?culture=ja-JP">日本</a></li>#1#*@
-@*                </ul>*@
-@*            </div>*@
-        </div>
-        
-    </div>
-</div>
-<!-- mobile-menu-end -->
+<header class="header">
+	<div class="header_info">
+		<div class="section_in header_mod">
+			<div class="menu_w_trigger menuTrigger">
+				<div class="menu_trigger">
+					<span class="menu_trigger_decor"></span>
+				</div>
+			</div>
+			<div class="presale">
+				<div class="presale_title">Token presalse is</div>
+				<div class="presale_indicator">
+					<div class="presale_indicator_title">Live</div>
+				</div>
+			</div>
+			<div class="header_info_in">
+				<a class="btn_join header_mod" href="#">
+					<span class="btn_join_title">Join our Telegram</span>
+					<div class="btn_join_w_icon">
+						<svg class="icon icon-teleg telegram_mod accent_mod">
+							<use xlink:href="~/gteam/i/sprite/sprite.svg#teleg"></use>
+						</svg>
+					</div>
+				</a>
+				<div class="social_wrap">
+					<span class="social_wrap_title">Subscribe:</span>
+					<ul class="social_list header_mod">
+						<li class="social_item header_mod hidden_mod">
+							<a class="social_link header_mod" href="#">
+								<svg class="icon icon-teleg social_mod accent_mod">
+									<use xlink:href="~/gteam/i/sprite/sprite.svg#teleg"></use>
+								</svg>
+							</a>
+						</li>
+						<li class="social_item header_mod ">
+							<a class="social_link header_mod" href="#">
+								<svg class="icon icon-tw social_mod accent_mod">
+									<use xlink:href="~/gteam/i/sprite/sprite.svg#tw"></use>
+								</svg>
+							</a>
+						</li>
+						<li class="social_item header_mod ">
+							<a class="social_link header_mod" href="#">
+								<svg class="icon icon-fb social_mod accent_mod">
+									<use xlink:href="~/gteam/i/sprite/sprite.svg#fb"></use>
+								</svg>
+							</a>
+						</li>
+						<li class="social_item header_mod ">
+							<a class="social_link header_mod" href="#">
+								<svg class="icon icon-gith social_mod accent_mod">
+									<use xlink:href="~/gteam/i/sprite/sprite.svg#gith"></use>
+								</svg>
+							</a>
+						</li>
+						<li class="social_item header_mod ">
+							<a class="social_link header_mod" href="#">
+								<svg class="icon icon-bitc social_mod accent_mod">
+									<use xlink:href="~/gteam/i/sprite/sprite.svg#bitc"></use>
+								</svg>
+							</a>
+						</li>
+						<li class="social_item header_mod ">
+							<a class="social_link header_mod" href="#">
+								<svg class="icon icon-inst social_mod accent_mod">
+									<use xlink:href="~/gteam/i/sprite/sprite.svg#inst"></use>
+								</svg>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="header_nav">
+		<div class="section_in header_mod">
+			<a class="logo header_mod" href="#">
+				<img class="logo_img" src="~/gteam/i/logo.png" alt="CWP"/>
+			</a>
+			<nav class="main_menu header_mod">
+				<div class="main_menu_in">
+					<a class="logo accent_mod main_menu_mod" href="#">
+						<img class="logo_img" src="~/gteam/i/logo_white.png" alt="CWP"/>
+					</a>
+					<ul class="main_menu_list header_mod">
+						<li class="main_menu_item active_mod"><a class="main_menu_link" href="http://www.google.com">About CWP</a></li>
+						<li class="main_menu_item"><a class="main_menu_link" href="#">Vision Outline</a></li>
+						<li class="main_menu_item"><a class="main_menu_link" href="#">Token Distribution</a></li>
+						<li class="main_menu_item"><a class="main_menu_link" href="#">Team</a></li>
+					</ul><a class="btn_base header_mod" href="#">White paper</a>
+					<div class="lang_menu">
+						<div class="lang_list">
+							<a class="lang_item active_mod" href="#">
+								<div class="lang_img_wrap">
+									<img class="lang_img" src="~/gteam/i/eng.png" alt="lang flag"/></div>
+								<div class="lang_title">Eng</div>
+							</a>
+							<a class="lang_item" href="#">
+								<div class="lang_img_wrap">
+									<img class="lang_img" src="~/gteam/i/jap.png" alt="lang flag"/></div>
+								<div class="lang_title">Jap</div>
+							</a>
+							<a class="lang_item" href="#">
+								<div class="lang_img_wrap">
+									<img class="lang_img" src="~/gteam/i/rus.png" alt="lang flag"/></div>
+								<div class="lang_title">Rus</div>
+							</a>
+						</div>
+						<div class="lang_control"></div>
+					</div>
+				</div>
+			</nav>
+		</div>
+	</div>
 </header>
-

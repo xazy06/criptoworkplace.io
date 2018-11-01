@@ -53,17 +53,17 @@
   <!-- END - Open Graph for Facebook, Google+ and Twitter Card Tags 2.2.4.1 -->
   
   <link rel="stylesheet" href="~/css/bootstrap.min.css" />  
-    <link rel="stylesheet" asp-append-version="true" 
-          href="~/css/components/Montserrat/@CultureInfo.CurrentCulture.TwoLetterISOLanguageName/styles.css" />
-      <link rel="stylesheet" asp-append-version="true" href="~/css/style.css">
+  <link rel="stylesheet" asp-append-version="true"
+        href="~/css/components/Montserrat/@CultureInfo.CurrentCulture.TwoLetterISOLanguageName/styles.css" />
+  <link rel="stylesheet" asp-append-version="true" href="~/css/style.css">
   
   <link rel="stylesheet" asp-append-version="true" href="~/css/responsive.css">
-  
-    <link rel="stylesheet" asp-append-version="true" href="~/css/components/cwp-font/styles.css"/>
+  <link rel="stylesheet" asp-append-version="true" href="~/css/components/cwp-font/styles.css"/>
   <link rel="stylesheet" asp-append-version="true" href="~/css/components/cwp-font/extentions.css"/>
   <link rel="stylesheet" asp-append-version="true" href="~/css/animate.css"/>
-    <link rel="stylesheet" href="~/css/fontawesome-all.min.css" />
-      
+  <link rel="stylesheet" href="~/css/fontawesome-all.min.css" />
+	<link rel="stylesheet" type="text/css" href="~/gteam/styles/main_global.css" />
+
        <locale include="ru-RU">
         <style>
           
@@ -95,33 +95,31 @@
 </head>
 
 <body class="">
+	@Html.Partial("_Header")
 
-    <div class="b-main">
-@*        <div id="preloader"></div>*@
-        <!-- header-start -->
-        @Html.Partial("_Header")
-        <!-- header-end -->
+	<div class="wrapper">
+		<div class="base">
+			@RenderBody()
+		</div>
+		@Html.Partial("_Footer")
+	</div>
 
-        @RenderBody()
-    </div>
+	<script>
+			window.culture = "@Context.GetCurrentCulture()";
+	</script>
+	@Html.Raw(snippet.FullScript)
 
-    @Html.Partial("_Footer")
-
-    <script>
-        window.culture = "@Context.GetCurrentCulture()";
-    </script>
-    @Html.Raw(snippet.FullScript)
-
-    <script defer src="~/js/jquery-3.2.0.min.js"></script>
-@*    <script defer src="~/js/imagesloaded.pkgd.min.js"></script>*@
-@*    <script defer src="~/js/jquery.scrollActive.js"></script>*@
-    <script defer src="~/js/jquery.magnific-popup.min.js"></script>
-@*    <script defer src="~/js/jquery.mixitup.min.js"></script>*@
-    <script defer src="~/js/jquery.waypoints.min.js"></script>
-    <script defer src="~/js/bootstrap.min.js"></script>
-    <script defer asp-append-version="true" src="~/js/theme.js"></script>
-    <script defer src="~/js/knockout.js"></script>
-    
+	<script defer src="~/js/jquery-3.2.0.min.js"></script>
+	@*<script defer src="~/js/imagesloaded.pkgd.min.js"></script>*@
+	@*<script defer src="~/js/jquery.scrollActive.js"></script>*@
+	<script defer src="~/js/jquery.magnific-popup.min.js"></script>
+	@*<script defer src="~/js/jquery.mixitup.min.js"></script>*@
+	<script defer src="~/js/jquery.waypoints.min.js"></script>
+	<script defer src="~/js/bootstrap.min.js"></script>
+	<script defer asp-append-version="true" src="~/js/theme.js"></script>
+	<script defer src="~/js/knockout.js"></script>
+	<script defer src="~/gteam/js/all.js"></script>
+	<script defer src="~/gteam/js/main.js"></script>
 
     @RenderSection("Scripts", required: false)
 

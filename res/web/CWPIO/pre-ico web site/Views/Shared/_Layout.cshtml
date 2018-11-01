@@ -54,169 +54,89 @@
     <!-- END - Open Graph for Facebook, Google+ and Twitter Card Tags 2.2.4.1 -->
 
     <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
-        <link rel="stylesheet" href="~/css/fontawesome-all.css" />
-        <link rel="stylesheet" href="~/css/owl.carousel.css" />
-        <link rel="stylesheet" href="~/css/responsive.css" />
-        <link rel="stylesheet" href="~/css/YouTubePopUp.css"/>
-        @*<link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />*@
+			<link rel="stylesheet" href="~/css/YouTubePopUp.css"/>
+			<link rel="stylesheet" type="text/css" href="~/gteam/styles/main_global.css" />
+    </environment>
+    <environment exclude="Development">
     </environment>
 
     <environment include="Production">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
-        <link rel="stylesheet" href="~/css/fontawesome-all.css" />
-        <link rel="stylesheet" href="~/css/owl.carousel.css" />
-        <link rel="stylesheet" href="~/css/responsive.css" />
-        <link rel="stylesheet" href="~/css/YouTubePopUp.css"/>
-        @*<link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />*@
+			<link rel="stylesheet" href="~/css/YouTubePopUp.css"/>
+			<link rel="stylesheet" media="all" href="~/gteam/styles/main_global.css" />
+    </environment>
+    <environment exclude="Production">
     </environment>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" id="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">
-                    @*                    <img style="-ms-opacity:.5; opacity:.5" src="/images/upload-1ffb4430-ad5b-11e8-b16c-bfc0a5bea17c.png" />*@
-                    <img alt="CWP" height="41" src="~/static/CWP2-light.svg">
-                    <span class="b-logo-text">CWP</span>
-                </a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a data-i18n="nav.about" class="smoothscroll" href="#home">About CWP</a></li>
-                    <li><a data-i18n="nav.vision" class="smoothscroll" href="#vision">Vision Outline</a></li>
-                    <li><a data-i18n="nav.token" class="smoothscroll" href="#token">Token Distribution</a></li>
-                    <li><a data-i18n="nav.team" class="smoothscroll" href="#team">Team</a></li>
-                    <li>
-                        <a onclick="yaCounter50462326.reachGoal('Whitepaper'); ga('send', 'event', 'forms', 'whitepaper');return true;"
-                           target="_blank" class="btn btn-square btn-border-outline btn-white btn-lg"
-                           href="/file/CWP_White_Paper_en.pdf">
-                            <i class="far fa-file-alt"></i>&nbsp;<span class="futurabook" data-i18n="nav.whitepaper">Whitepaper</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div class="">
-        @RenderBody()
-    </div>
-    <footer>
-        <div class="b-block">
-            <div class="container">
-                <div class="clear b-footer-top">
-                    <a class="s-cwp futurabook" href="#">Crypto<strong class="futura">WorkPlace</strong></a>
+	@Html.Partial("_Header")
+	<div class="wrapper">
+		<div class="base">
+			@RenderBody()
+		</div>
+		@Html.Partial("_Footer")
+	</div>
 
-                    <div class="s-float_r futurabook">© @DateTime.Now.Year All rights reserved</div>
-                </div>
+	<environment include="Development">
+		<script src="~/gteam/js/jquery-2.2.4.min.js"></script>
+		<script src="~/js/i18next-1.11.2/i18next-1.11.2.js"></script>
+		<script src="~/js/timer/index.js?v=2"></script>
+		<script src="~/lib/youtube/YouTubePopUp.jquery.js" asp-append-version="true"></script>
+		<script src="~/gteam/js/animation.js"></script>
+		<script src="~/gteam/js/all.js"></script>
+		<script src="~/gteam/js/main.js"></script>
+	</environment>
 
-                <div class="clear b-footer-middle">
-                    <a class="footer futurabook" target="_blank" href="http://maps.google.com/?q=Czech Republic, Prague Stepanska 704/61,11000 Praha 1-Nove Mesto">
-                        Czech Republic, Prague Stepanska 704/61,<br />11000 Praha 1-Nove Mesto
-                    </a>
+	<environment exclude="Development">
+	</environment>
 
-                    <div class="s-float_r">
-                        <img width="15" src="~/images/upload-120e90a0-b483-11e8-bbb3-1d56c6c15ad6.png" class="s-icon s-mr_10" />
-                        <a class="footer_b footer s-mr_30 futurabook" href="tel:+420728931549">
-                            +420 728 931 549
-                        </a>
-                        <img width="15" src="~/images/upload-0648c8b0-b10b-11e8-a9c9-37849140bb9e.png" class="s-icon s-mr_10" />
-                        <a class="footer_b footer futurabook" href="tel:+447937255544">
-                            +44 7937 255544
-                        </a>
-                    </div>
-                </div>
-                <div class="b-footer-policy">The CryptoWorkPlace Token Sale, Terms of Token Sale, Presentation and the Whitepaper and any documents related to the Token Sale do not constitute a prospectus or offering document and are not an offer to sell nor the solicitation of an offer to buy an investment, security, share, equity interest or debt nor a derivative interest of any of the foregoing. The sale of CryptoWorkPlace Tokens constitutes the sale of a software product under the laws of Czech Republic. CryptoWorkPlace Tokens are not intended to be a digital currency, security, commodity, bond, debt instrument or any kind of financial instrument or investment carrying equivalent rights, nor are CryptoWorkPlaceTokens intended to represent any form of money in any jurisdiction, nor any representation of money (including electronic money). The Token Sale involves the development and use of experimental software and technologies that may not achieve the objectives specified in the whitepaper and related documents. The purchase of CryptoWorkPlace Tokens represents a high risk to any purchaser.</div>
-            </div>
-        </div>
-    </footer>
+	<environment include="Production">
+	</environment>
 
-    <environment include="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script type="text/javascript" src="~/js/i18next-1.11.2/i18next-1.11.2.js"></script>
-        <script type="text/javascript" src="~/js/timer/index.js?v=2"></script>
-        <script type="text/javascript" src="~/js/owl.carousel.js"></script>
-        <script src="~/lib/youtube/YouTubePopUp.jquery.js" asp-append-version="true"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
-    </environment>
-    @*<environment exclude="Development">
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
-                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                asp-fallback-test="window.jQuery"
-                crossorigin="anonymous"
-                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
-        </script>
-        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
-                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                crossorigin="anonymous"
-                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
-        </script>
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
-    </environment>*@
+	<environment exclude="Production">
+	</environment>
 
-    <environment include="Production">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script type="text/javascript" src="~/js/i18next-1.11.2/i18next-1.11.2.js"></script>
-        <script type="text/javascript" src="~/js/timer/index.js?v=2"></script>
-        <script type="text/javascript" src="~/js/owl.carousel.js"></script>
-        <script src="~/lib/youtube/YouTubePopUp.jquery.js" asp-append-version="true"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
-        
-    </environment>
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+			(function (d, w, c) {
+					(w[c] = w[c] || []).push(function () {
+							try {
+									w.yaCounter50462326 = new Ya.Metrika2({
+											id: 50462326,
+											clickmap: true,
+											trackLinks: true,
+											accurateTrackBounce: true,
+											webvisor: true
+									});
+							} catch (e) { }
+					});
 
-    <!-- Yandex.Metrika counter -->
-    <script type="text/javascript">
-        (function (d, w, c) {
-            (w[c] = w[c] || []).push(function () {
-                try {
-                    w.yaCounter50462326 = new Ya.Metrika2({
-                        id: 50462326,
-                        clickmap: true,
-                        trackLinks: true,
-                        accurateTrackBounce: true,
-                        webvisor: true
-                    });
-                } catch (e) { }
-            });
+					var n = d.getElementsByTagName("script")[0],
+							s = d.createElement("script"),
+							f = function () { n.parentNode.insertBefore(s, n); };
+					s.type = "text/javascript";
+					s.async = true;
+					s.src = "https://mc.yandex.ru/metrika/tag.js";
 
-            var n = d.getElementsByTagName("script")[0],
-                s = d.createElement("script"),
-                f = function () { n.parentNode.insertBefore(s, n); };
-            s.type = "text/javascript";
-            s.async = true;
-            s.src = "https://mc.yandex.ru/metrika/tag.js";
+					if (w.opera == "[object Opera]") {
+							d.addEventListener("DOMContentLoaded", f, false);
+					} else { f(); }
+			})(document, window, "yandex_metrika_callbacks2");
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/50462326" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->
+	<!-- Google Analytics -->
+	<script>
+			(function (i, s, o, g, r, a, m) {
+			i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+					(i[r].q = i[r].q || []).push(arguments)
+			}, i[r].l = 1 * new Date(); a = s.createElement(o),
+					m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+			})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
-            if (w.opera == "[object Opera]") {
-                d.addEventListener("DOMContentLoaded", f, false);
-            } else { f(); }
-        })(document, window, "yandex_metrika_callbacks2");
-    </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/50462326" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <!-- /Yandex.Metrika counter -->
-    <!-- Google Analytics -->
-    <script>
-        (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date(); a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-        ga('create', 'UA-112761687-1', 'auto');
-        ga('send', 'pageview');
-    </script>
-    <!-- End Google Analytics -->
-    @RenderSection("Scripts", required: false)
+			ga('create', 'UA-112761687-1', 'auto');
+			ga('send', 'pageview');
+	</script>
+	<!-- End Google Analytics -->
+	@RenderSection("Scripts", required: false)
 </body>
 </html>
