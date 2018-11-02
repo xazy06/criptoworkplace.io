@@ -1,155 +1,134 @@
-﻿﻿@using System
-<!DOCTYPE html>
+﻿﻿<!DOCTYPE html>
 <html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta http-equiv="Cache-Control" content="no-cache" />
-    <meta name="keywords" content="cwp, cryptoworkplace, crypto computer, cryptostorage, personal data protection, cwp ico, ico">
-    <meta name="description" content="CYBER SECURITY ECOSYSTEM POWERED BY CRYPTOCOMPUTER">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"]</title>
-    <link rel="apple-touch-icon" sizes="57x57" href="~/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="~/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="~/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="~/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="~/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="~/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="~/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="~/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="~/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="~/android-icon-192x192.png">
-    <link rel="manifest" href="~/manifest.json">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="~/ms-icon-144x144.png">
-    @*    <meta name="theme-color" content="#1d7dac">*@
-    <meta name="theme-color" content="#000">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="HandheldFriendly" content="true">
-    <meta name="yandex-verification" content="91a7b09b04e22c2a" />
-    <meta name="google-site-verification" content="AL-yKDxObhWAd9APEc6iOJ4I_uvP7QAZG-nznxHtaks" />
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta http-equiv="Cache-Control" content="no-cache" />
+        <meta name="keywords" content="cwp, cryptoworkplace, crypto computer, cryptostorage, personal data protection, cwp ico, ico">
+        <meta name="description" content="CYBER SECURITY ECOSYSTEM POWERED BY CRYPTOCOMPUTER">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title> @ViewData["Title"]</title>
+        <link rel="apple-touch-icon" sizes="57x57" href="~/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="~/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="~/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="~/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="~/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="~/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="~/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="~/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="~/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="~/android-icon-192x192.png">
+        <link rel="manifest" href="~/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="~/ms-icon-144x144.png">
+        <meta name="theme-color" content="#000">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="yandex-verification" content="91a7b09b04e22c2a" />
+        <meta name="google-site-verification" content="AL-yKDxObhWAd9APEc6iOJ4I_uvP7QAZG-nznxHtaks" />
 
-    <!-- START - Open Graph for Facebook, Google+ and Twitter Card Tags 2.2.4.1 -->
-    <!-- Facebook Open Graph -->
-    <meta property="og:locale" content="en" />
-    <meta property="og:title" content="CryptoWorkPlace - Presale is LIVE!" />
-    <meta property="og:url" content="https://cryptoworkplace.io" />
-    <meta property="og:type" content="website" />
-    <meta property="og:description" content="Crowdfunding project of the first Linux OS micro-PC for cryptocommunity" />
-    <meta property="og:image" content="https://cryptoworkplace.io/images/538x408_v2.png" />
-    <!-- Google+ / Schema.org -->
-    <meta itemprop="name" content="CYBER SECURITY ECOSYSTEM POWERED BY CRYPTOCOMPUTER" />
-    <meta itemprop="headline" content="CryptoWorkPlace - Presale is LIVE!" />
-    <meta itemprop="description" content="Crowdfunding project of the first Linux OS micro-PC for cryptocommunity" />
-    <meta itemprop="image" content="https://cryptoworkplace.io/images/538x408_v2.png" />
-    <!--<meta itemprop="publisher" content="Crypto Rally 2018"/>--> <!-- To solve: The attribute publisher.itemtype has an invalid value -->
-    <!-- Twitter Cards -->
-    <meta name="twitter:title" content="CryptoWorkPlace - Presale is LIVE!" />
-    <meta name="twitter:url" content="http://www.cryptoworkplace.io" />
-    <meta name="twitter:description" content="Crowdfunding project of the first Linux OS micro-PC for cryptocommunity" />
-    <meta name="twitter:image" content="https://cryptoworkplace.io/images/538x408_v2.png" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <!-- SEO -->
-    <!-- Misc. tags -->
-    <!-- is_singular -->
-    <!-- END - Open Graph for Facebook, Google+ and Twitter Card Tags 2.2.4.1 -->
+        <!-- START - Open Graph for Facebook, Google+ and Twitter Card Tags 2.2.4.1 -->
+        <!-- Facebook Open Graph -->
+        <meta property="og:locale" content="en" />
+        <meta property="og:title" content="CryptoWorkPlace - Presale is LIVE!" />
+        <meta property="og:url" content="https://cryptoworkplace.io" />
+        <meta property="og:type" content="website" />
+        <meta property="og:description" content="Crowdfunding project of the first Linux OS micro-PC for cryptocommunity" />
+        <meta property="og:image" content="https://cryptoworkplace.io/images/538x408_v2.png" />
+        <!-- Google+ / Schema.org -->
+        <meta itemprop="name" content="CYBER SECURITY ECOSYSTEM POWERED BY CRYPTOCOMPUTER" />
+        <meta itemprop="headline" content="CryptoWorkPlace - Presale is LIVE!" />
+        <meta itemprop="description" content="Crowdfunding project of the first Linux OS micro-PC for cryptocommunity" />
+        <meta itemprop="image" content="https://cryptoworkplace.io/images/538x408_v2.png" />
+        <!--<meta itemprop="publisher" content="Crypto Rally 2018"/>--> <!-- To solve: The attribute publisher.itemtype has an invalid value -->
+        <!-- Twitter Cards -->
+        <meta name="twitter:title" content="CryptoWorkPlace - Presale is LIVE!" />
+        <meta name="twitter:url" content="http://www.cryptoworkplace.io" />
+        <meta name="twitter:description" content="Crowdfunding project of the first Linux OS micro-PC for cryptocommunity" />
+        <meta name="twitter:image" content="https://cryptoworkplace.io/images/538x408_v2.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <!-- SEO -->
+        <!-- Misc. tags -->
+        <!-- is_singular -->
+        <!-- END - Open Graph for Facebook, Google+ and Twitter Card Tags 2.2.4.1 -->
 
-    <environment include="Development">
-			<link rel="stylesheet" href="~/css/YouTubePopUp.css"/>
-			<link rel="stylesheet" type="text/css" href="~/gteam/styles/main_global.css" />
-        <link rel="stylesheet" href="~/css/Fullscreen-Youtube-Video-Background-Plugin-with-jQuery/style.css"/>
-    </environment>
-    <environment exclude="Development">
-@*        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"*@
-@*              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"*@
-@*              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />*@
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-    </environment>
+        <link rel="stylesheet" href="~/css/YouTubePopUp.css" />
+        <link rel="stylesheet" type="text/css" href="~/gteam/styles/main_global.css" />
+        <link rel="stylesheet" href="~/css/Fullscreen-Youtube-Video-Background-Plugin-with-jQuery/style.css" />
+    </head>
+    <body>
 
-    <environment include="Production">
-			<link rel="stylesheet" href="~/css/YouTubePopUp.css"/>
-			<link rel="stylesheet" media="all" href="~/gteam/styles/main_global.css" />
-        <link rel="stylesheet" href="~/css/Fullscreen-Youtube-Video-Background-Plugin-with-jQuery/style.css"/>
-    </environment>
-    <environment exclude="Production">
-@*        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"*@
-@*              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"*@
-@*              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />*@
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-    </environment>
-</head>
-<body>
-	@Html.Partial("_Header")
-	<div class="wrapper">
-		<div class="base">
-			@RenderBody()
-		</div>
-		@Html.Partial("_Footer")
-	</div>
+        @Html.Partial("_Header")
+        <div class="wrapper">
+            <div class="base">
 
-	<environment include="Development">
-		<script src="~/gteam/js/jquery-2.2.4.min.js"></script>
-		<script src="~/js/knockout.js"></script>
-		<script src="~/js/i18next-1.11.2/i18next-1.11.2.js"></script>
-		<script src="~/js/timer/index.js?v=2"></script>
-		<script src="~/lib/youtube/YouTubePopUp.jquery.js" asp-append-version="true"></script>
-		<script src="~/js/site.js"></script>
-		<script src="~/gteam/js/animation.js"></script>
-		<script src="~/gteam/js/all.js"></script>
-		<script src="~/gteam/js/main.js"></script>
-		<script src="~/js/controllers/home/index.js"></script>
-	</environment>
 
-	<environment exclude="Development">
-	</environment>
+        @RenderBody()
+        </div>
 
-	<environment include="Production">
-	</environment>
 
-	<environment exclude="Production">
-	</environment>
+        @Html.Partial("_Footer")
+        </div>
 
-    <!-- Yandex.Metrika counter -->
-    <script type="text/javascript">
-        (function (d, w, c) {
-            (w[c] = w[c] || []).push(function () {
-                try {
-                    w.yaCounter50462326 = new Ya.Metrika2({
-                        id: 50462326,
-                        clickmap: true,
-                        trackLinks: true,
-                        accurateTrackBounce: true,
-                        webvisor: true
-                    });
-                } catch (e) { 
-            }});
 
-            var n = d.getElementsByTagName("script")[0],
-                s = d.createElement("script"),
-                f = function () { n.parentNode.insertBefore(s, n); };
-            s.type = "text/javascript";
-            s.async = true;
-            s.src = "https://mc.yandex.ru/metrika/tag.js";
+        <script src="~/gteam/js/jquery-2.2.4.min.js"></script>
+        <script src="~/js/knockout.js"></script>
+        <script src="~/js/i18next-1.11.2/i18next-1.11.2.js"></script>
+        <script src="~/js/timer/index.js?v=2"></script>
+        <script src="~/lib/youtube/YouTubePopUp.jquery.js" asp-append-version="true"></script>
+        <script src="~/js/site.js"></script>
+        <script src="~/gteam/js/animation.js"></script>
+        <script src="~/gteam/js/all.js"></script>
+        <script src="~/gteam/js/main.js"></script>
+        <script src="~/js/controllers/home/index.js"></script>
 
-            if (w.opera == "[object Opera]") {
-                d.addEventListener("DOMContentLoaded", f, false);
-            } else { f(); 
-        }})(document, window, "yandex_metrika_callbacks2");
-    </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/50462326" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <!-- /Yandex.Metrika counter -->
-    <!-- Google Analytics -->
-    <script>
-        (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date(); a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
-        ga('create', 'UA-112761687-1', 'auto');
-        ga('send', 'pageview');
-    </script>
-    <!-- End Google Analytics -->
-    @RenderSection("Scripts", required: false)
-</body>
+        <!-- Yandex.Metrika counter -->
+        <script type="text/javascript">
+            (function (d, w, c) {
+                (w[c] = w[c] || []).push(function () {
+                    try {
+                        w.yaCounter50462326 = new Ya.Metrika2({
+                            id: 50462326,
+                            clickmap: true,
+                            trackLinks: true,
+                            accurateTrackBounce: true,
+                            webvisor: true
+                        });
+                    } catch (e) {
+                    }
+                });
+
+                var n = d.getElementsByTagName("script")[0],
+                    s = d.createElement("script"),
+                    f = function () { n.parentNode.insertBefore(s, n); };
+                s.type = "text/javascript";
+                s.async = true;
+                s.src = "https://mc.yandex.ru/metrika/tag.js";
+
+                if (w.opera == "[object Opera]") {
+                    d.addEventListener("DOMContentLoaded", f, false);
+                } else {
+                    f();
+                }
+            })(document, window, "yandex_metrika_callbacks2");
+        </script>
+        <noscript><div><img src="https://mc.yandex.ru/watch/50462326" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+        <!-- /Yandex.Metrika counter -->
+        <!-- Google Analytics -->
+        <script>
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+            ga('create', 'UA-112761687-1', 'auto');
+            ga('send', 'pageview');
+        </script>
+        <!-- End Google Analytics -->
+
+
+        @RenderSection("Scripts", required: false)
+    </body>
 </html>

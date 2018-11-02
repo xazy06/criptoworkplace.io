@@ -4,12 +4,12 @@
 }
 @model BarModel
 
-@Html.Partial("_HeroSection")
+@Html.Partial("_HeroSection", Model)
 @Html.Partial("_HowItWorksSection")
 @Html.Partial("_FeaturesSection")
 @Html.Partial("_VideoSection")
 @Html.Partial("_SpecsSection")
-@Html.Partial("_DistributionSection")
+@Html.Partial("_DistributionSection", Model)
 @Html.Partial("_RoadmapSection")
 @Html.Partial("_TeamSection")
 @Html.Partial("_PartnersSection")
