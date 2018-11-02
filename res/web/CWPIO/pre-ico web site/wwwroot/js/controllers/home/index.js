@@ -20,7 +20,7 @@ var Controller = function () {
 			$.post(self.api.subscribe, {
 				email:ViewModel.obs.email()
 			}).done(function (result) {
-				ViewModel.obs.flags(true);
+				ViewModel.flags.successSubscribed(true);
 				ViewModel.obs.email('');
 			});
 		}
