@@ -36,9 +36,9 @@ var Controller = function () {
 			showValidation: ko.observable(false),
 			validation: {
 				lowercaseletter: ko.observable(true),
-				uppercaseletter: ko.observable(true),
+				//uppercaseletter: ko.observable(true),
 				hasNumber: ko.observable(true),
-				hasSymbol: ko.observable(true),
+				//hasSymbol: ko.observable(true),
 				charLen: ko.observable(true),
 				passesMutch: ko.observable(true),
 				uniqueChars6: ko.observable(true)
@@ -68,7 +68,7 @@ var Controller = function () {
 				ViewModel.flags.validation.charLen(str().length >= options.passLength);
 				ViewModel.flags.validation.passesMutch(ViewModel.obs.password() !== '' && ViewModel.obs.passwordConfirmation() !== '' && (ViewModel.obs.password() === ViewModel.obs.passwordConfirmation()));
 				ViewModel.flags.validation.hasNumber(/\d/g.test(str()));
-				ViewModel.flags.validation.uppercaseletter(/[A-Z]/g.test(str()));
+				//ViewModel.flags.validation.uppercaseletter(/[A-Z]/g.test(str()));
 				ViewModel.flags.validation.lowercaseletter(/[a-z]/g.test(str()));
 				//ViewModel.flags.validation.hasSymbol(/\W/g.test(str()));
 				ViewModel.flags.validation.uniqueChars6(true);// TODO

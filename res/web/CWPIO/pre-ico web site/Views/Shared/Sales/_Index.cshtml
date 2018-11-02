@@ -1,0 +1,163 @@
+<div class="m-portlet m-portlet--bordered-semi m-portlet--space m-portlet--full-height- ">
+	<div class="m-portlet__head">
+		<div class="m-portlet__head-caption">
+			<div class="m-portlet__head-title">
+				<h3 class="m-portlet__head-text">
+					Sales and ballance 
+					<span class="m-portlet__head-desc">Total Sales on PRE-ICO</span>
+				</h3>
+			</div>
+		</div>
+		<div class="m-portlet__head-tools">
+			<ul class="nav nav-pills nav-pills--brand m-nav-pills--align-right m-nav-pills--btn-pill m-nav-pills--btn-sm" role="tablist">
+				<li class="nav-item m-tabs__item">
+					<a class="nav-link m-tabs__link active show" data-toggle="tab" href="#sales-tab" role="tab" aria-selected="true">
+						Sales
+					</a>
+				</li>
+				<li data-bind="click: actions.getTransactions" class="nav-item m-tabs__item">
+					<a class="nav-link m-tabs__link" data-toggle="tab" href="#tx-tab" role="tab" aria-selected="false">
+						Transactions
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="m-portlet__body">
+		<div class="tab-content">
+			<div id="sales-tab" class="tab-pane active show">
+				<div class="m-widget25">
+					
+					<div data-bind="css:{'s-display_bi': flags.userDidTransaction}" class="s-display_n s-ta_c s-mb_20">
+						<p>please wait a few minutes while transaction ends</p>
+						
+						<div class="m-spinner m-spinner--brand m-spinner--lg"></div>
+						<div class="m-spinner m-spinner--primary m-spinner--lg"></div>
+						<div class="m-spinner m-spinner--success m-spinner--lg"></div>
+						<div class="m-spinner m-spinner--info m-spinner--lg"></div>
+						<div class="m-spinner m-spinner--warning m-spinner--lg"></div>
+						<div class="m-spinner m-spinner--danger m-spinner--lg"></div>
+					</div>
+					
+					<div class="s-mb_20">
+						<span class="m-widget25__price m--font-brand">
+							<!-- ko text:obs.sales.ballance --><i style="padding: 0 12px" class="m-loader m-loader--brand"></i><!--/ko-->
+						</span>
+						<span class="m-widget25__desc">CWT-P</span>
+					</div>
+					
+					<div data-bind="css:{'s-display_bi': (obs.sales.refund() > 0)}" class="s-display_n">
+						<div class="m-alert m-alert--square alert alert-info alert-dismissible fade show s-display_bi" role="alert">
+							<p>We noticed that you overpaid click the refund button to return it to your wallet</p>
+							<a data-bind="click:actions.refund" class="btn btn-default btn-sm m-btn--square" href="javascript: void(0)">Refund</a>
+						</div>
+					</div>
+
+					<h3 style="margin-bottom: 20px;">Cryptoworkplace smart contract address</h3>
+
+					<div data-bind="css:{'s-display_bi': obs.contractAddress}" class="s-display_n m-pricing-table-1">
+						<p>
+							<a data-bind="attr:{'href': ('https://etherscan.io/address/' + obs.contractAddress())}"
+							   target="_blank" style="display: block; text-overflow: ellipsis; margin-bottom: 20px; overflow: hidden;" href="">
+								<strong data-bind="text:obs.contractAddress"></strong>
+							</a>
+							<!-- ko ifnot:flags.toggleQr -->
+							<i data-bind="click:actions.toggleQr" style="cursor: pointer; font-size: 2em;" class="fa fa-qrcode"></i>
+							<!--/ko-->
+							<p data-bind="click:actions.toggleQr, if:flags.toggleQr" class="s-ms-c">
+								<img data-bind="attr:{'src':('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' + obs.contractAddress())}"
+								     style="border: 1px solid #ddd;" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Example"/>
+							</p>
+						</p>
+					</div>
+
+					<div class="m-widget25--progress">
+						<div class="m-widget25__progress">
+							<span data-bind="text:(Math.round((obs.sales.sold()*100)/15000000) + '%')" class="m-widget25__progress-number">
+								0%
+							</span>
+							<div class="m--space-10"></div>
+							<div class="progress m-progress--sm">
+								<div class="progress-bar m--bg-danger" role="progressbar" data-bind="style:{width: ((obs.sales.sold()*100)/15000000 + '%')}"
+								     aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+							</div>
+							<span class="m-widget25__progress-sub">
+								Token's sold on Pre-ICO
+							</span>
+						</div>
+						@*						<div class="m-widget25__progress">*@
+						@*							<span class="m-widget25__progress-number">*@
+						@*								3%*@
+						@*							</span>*@
+						@*							<div class="m--space-10"></div>*@
+						@*							<div class="progress m-progress--sm">*@
+						@*								<div class="progress-bar m--bg-warning" role="progressbar" style="width: 3%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>*@
+						@*							</div>*@
+						@*							<span class="m-widget25__progress-sub">*@
+						@*								Of all coins count*@
+						@*							</span>*@
+						@*						</div>*@
+					</div>
+				</div>
+			</div>
+			
+			<div id="tx-tab" class="tab-pane">
+				<table class="table">
+					<thead>
+					<tr>
+						<th colspan="4">
+							<span class="s-icon s-mr_10">Here you can track your transactions</span>
+							<a class="s-icon" data-bind="click: actions.getTransactions" href="javascript: void(0)">
+								<i data-bind="css:{'fa-spin':flags.transactionsGetting }" class="fa fa-refresh"></i>
+							</a>
+						</th>
+						<th class="s-ta_c">more</th>
+					</tr>
+					</thead>
+					<tbody data-bind="foreach: obs.transactions">
+					
+					<tr class="s-expandable">
+						<td data-bind="text:$root.helpers.txStatus.call($data)">-</td>
+						<td>CWT-P</td>
+						<td data-bind="text: $root.helpers.fromWei.call($data.returnValues.amount)">0</td>
+						<td data-bind="text: $root.helpers.toDate.call($data)">-</td>
+						<td class="s-ta_c">
+							<a data-bind="click: $root.actions.toggleTransactionItem.bind($element)" href="javascript:void(0)">
+								<i class="fa fa-angle-down"></i>
+								<i class="fa fa-angle-up"></i>
+							</a>
+						</td>
+					</tr>
+					<tr class="s-display_n">
+						<td class="b-tx-info" colspan="5">
+							<div class="s-mb_10">
+								<span>Address:</span>
+								<a target="_blank" data-bind="text:$data.address, attr:{'href': ('https://etherscan.io/address/' + $data.address)}" href="#"></a>
+							</div>
+							<div class="s-mb_10">
+								<span>Txid:</span>
+								<a target="_blank" data-bind="text:$data.transactionHash, attr:{'href': ('https://etherscan.io/tx/' + $data.transactionHash)}" href="#"></a>
+							</div>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+				
+				<!-- ko ifnot:flags.transactionsGetting -->
+				<div data-bind="if:obs.transactions().length === 0" class="s-ta_c">
+					no transactions
+				</div>
+				<!--/ko-->
+				
+				<div data-bind="if:flags.transactionsGetting" class="s-ta_c">
+					<div class="m-spinner m-spinner--brand m-spinner--lg"></div>
+					<div class="m-spinner m-spinner--primary m-spinner--lg"></div>
+					<div class="m-spinner m-spinner--success m-spinner--lg"></div>
+					<div class="m-spinner m-spinner--info m-spinner--lg"></div>
+					<div class="m-spinner m-spinner--warning m-spinner--lg"></div>
+					<div class="m-spinner m-spinner--danger m-spinner--lg"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

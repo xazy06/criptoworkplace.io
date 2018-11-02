@@ -1,0 +1,28 @@
+<div id="sign-up" class="b-block b-stn-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 data-i18n="" class="b-block-h">
+                    Sign Up for Updates
+                </h2>
+            </div>
+        </div>
+        
+        <div class="row">           
+            <div class="col-md-12 s-ta_c">
+                <div class="b-subscribe">
+                    <input data-bind="textInput:obs.email" placeholder="Enter Your E-mail" class="form-control s-lg-control"/>
+                </div>
+                <button data-bind="disable: flags.sendDisabled(), click:actions.subscribe" class="subs enter-wl-btn btn btn-square btn-border-outline btn-white btn-xl s-mr_30">
+                    <span class="futurabook" data-i18n="">subscribe</span>
+                </button>
+            </div>
+            
+            <!-- ko if: flags.successSubscribed -->
+            <div class="col-md-12 s-ta_c">
+                <div class="b-success-subscribe">Thanks for subscribe</div>
+            </div>
+            <!-- /ko -->
+        </div>
+    </div>
+</div>

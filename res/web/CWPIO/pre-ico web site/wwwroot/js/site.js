@@ -63,8 +63,38 @@
 			});
 		};
 		
-		this.initYoutube =function () {
+		this.initYoutube = function () {
 			$('.js-youtube-popup').YouTubePopUp();
+		};
+		
+		this.initBackgroundVideo = function () {
+			var $video = $('#background-video');
+			
+			$video.on('click', function () {
+				$video.YTPlayer({
+					ratio: 16 / 9, // usually either 4/3 or 16/9 -- tweak as needed
+					videoId: '4b9ZSRxHFYo', // toy robot in space is a good default, no?
+					mute: false,
+					repeat: false,
+					width: $(window).width(),
+					autoplay: false,
+					wrapperZIndex: 99,
+					playButtonClass: 'playbtn',
+					pauseButtonClass: 'YTPlayer-pause',
+					muteButtonClass: 'YTPlayer-mute',
+					volumeUpClass: 'YTPlayer-volume-up',
+					volumeDownClass: 'YTPlayer-volume-down',
+					increaseVolumeBy: 10,
+					start: 0,
+					fitToBackground: true
+				});
+
+				$video.height($('#background-video-img').height());
+				
+				setTimeout(function(){
+					$video.data().ytPlayer.player.playVideo();
+				},2000);
+			});
 		};
 		
 		this.initRoadmap = function () {
@@ -74,6 +104,34 @@
 				autoHeight: true,
 				nav: false,
 				navText: ['<i class="ion-arrow-left-c"></i>', '<i class="ion-arrow-right-c"></i>']
+			});
+		};
+
+		this.initOwl = function () {
+			$('.js-owl').owlCarousel({
+				loop: false,
+				margin: 30,
+				autoHeight: true,
+				nav: true,
+				navText: ['<i class="fas fa-3x fa-angle-left"></i>', '<i class="fas fa-3x fa-angle-right"></i>'],
+				responsive: {
+					0: {
+						items: 1
+					},
+					380: {
+						items: 2
+					},
+					600: {
+						items: 2,
+						margin: 15
+					},
+					1000: {
+						items: 3
+					},
+					1199: {
+						items: 4
+					}
+				}
 			});
 		};
 		
@@ -114,8 +172,15 @@
 		App.initYoutube();
 		
 		App.initMobileToggler();
+
 		
+		App.initBackgroundVideo();	
+		
+				
 		//App.initRoadmap();
+
+		App.initOwl();
+		
 	};
 	
 	App.init();
