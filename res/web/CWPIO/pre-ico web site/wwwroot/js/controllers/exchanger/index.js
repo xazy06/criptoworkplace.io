@@ -82,7 +82,7 @@ var Controller = function () {
 		metrics:{
 			purchasing: function () {
 				try{
-					window.yaCounter50462326.reachGoal('Purchase');
+					window.yaCounter50462326 && window.yaCounter50462326.reachGoal('Purchase');
 					ga('send', 'event', 'forms', 'purchase');
 				}catch (e){
 					console.log(e);
