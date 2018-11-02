@@ -103,14 +103,16 @@ var Controller = function () {
             contractInt.events.TokenPurchase({ filter: { beneficiary: ViewModel.obs.usersettings.ethAddress() } })
 				.on('data', function(event){
 					console.log(event);
-					
-					self.actions.usersettings();
+
+                    self.actions.exchanger();
 
 					self.actions.getPastEvents();
 
 					ViewModel.flags.userDidTransaction(false);
 					
-					$.notify(self.strings[self.locale].balanceIncrese);
+                    $.notify(self.strings[self.locale].balanceIncrese);
+
+                    self.ViewModel.actions.offGate();
 			})
 		},
 		contractabi: function (callback) {
