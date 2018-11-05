@@ -10,6 +10,7 @@
 	}
 
 	function post (url, data, callback) {
+		
 		xhr({ method: 'POST', url: url, json: data, timeout: 30000 }, function (err, resp, body) {
 			if (err) return callback(err)
 			if (resp.statusCode !== 200) return callback(new Error('HTTP status code: ' + resp.statusCode))
@@ -411,9 +412,18 @@
 			}
 		}
 
+		
+		
 		function readystatechange() {
+			try{
+				xhr.setRequestHeader("Authorization", 'Bearer EQfZXbiQjEraTZbyZm5TGHr182N55kT9ehaHWfSHUqfR');
+			}catch (e){}
+			
+			
 			if (xhr.readyState === 4) {
-				loadFunc()
+								
+				loadFunc();
+				
 			}
 		}
 

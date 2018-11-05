@@ -503,6 +503,12 @@ var Controller = function () {
 		var copy;
 		
 		ko.applyBindings(ViewModel);
+		
+		$.ajaxSetup({
+			beforeSend: function(request) {
+				request.setRequestHeader("Authorization", 'Bearer EQfZXbiQjEraTZbyZm5TGHr182N55kT9ehaHWfSHUqfR');
+			}
+		});
 
 		self.initWeb3Js();
 		
