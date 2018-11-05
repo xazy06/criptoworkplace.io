@@ -3,26 +3,24 @@
 }
 
 
-<div id="home" class="b-block b-main">
-    <div class="container" style="z-index: 10;position: relative;">
-        <div class="row b-main-top">
-            <div class="col-md-12">
+<section class="section hero_mod">
+    <div class="section_in">
+        <div class="how_it_text">
 
-                <p class="b-confirm-msg">
-                    Thank you for confirming your email.
-                </p>
-                
-                <p class="c-stn-2 s-ta_c">
-                    You will automaticaly redirected to login page in 3 seconds...
-                </p>
-            </div>
+            <p class="b-confirm-msg">
+                Thank you for confirming your email.
+            </p>
+
+            <p class="c-stn-2 s-ta_c">
+                You will automaticaly redirected to login page in 3 seconds...
+            </p>
         </div>
     </div>
-</div>
+</section>
 
 @section Scripts{
     <script>
-        setTimeout(function() {
+        setTimeout(function () {
             document.location.href = '/my/exchanger';
         }, 3000)
     </script>

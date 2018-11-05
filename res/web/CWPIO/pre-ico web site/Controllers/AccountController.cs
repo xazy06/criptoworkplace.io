@@ -26,7 +26,10 @@ namespace pre_ico_web_site.Controllers
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
 
-        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
+        private Task<ApplicationUser> GetCurrentUserAsync()
+        {
+            return _userManager.GetUserAsync(HttpContext.User);
+        }
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
@@ -45,16 +48,19 @@ namespace pre_ico_web_site.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> Login(string returnUrl = null)
+        public async Task<IActionResult> Login()
         {
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction(nameof(CabinetController.Index), "Cabinet");
+                var user = await GetCurrentUserAsync();
+                if (user.EmailConfirmed)
+                    return RedirectToRoute("Exchanger");
+                else
+                    return RedirectToAction(nameof(EmailConfirm));
             }
             // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
-            ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
 
@@ -71,8 +77,11 @@ namespace pre_ico_web_site.Controllers
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-
-                    return RedirectToRoute("Exchanger");
+                    var user = await _userManager.FindByEmailAsync(model.Email);
+                    if (user.EmailConfirmed)
+                        return RedirectToRoute("Exchanger");
+                    else
+                        return RedirectToAction(nameof(EmailConfirm));
                 }
                 if (result.RequiresTwoFactor)
                 {
@@ -95,6 +104,27 @@ namespace pre_ico_web_site.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> EmailConfirm()
+        {
+            var user = await GetCurrentUserAsync();
+            if (user.EmailConfirmed)
+                return RedirectToRoute("Exchanger");
+            else
+                return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ResendConfirmationEmail([FromServices]IHostingEnvironment hostingEnvironment)
+        {
+            _logger.LogInformation("User resend confirmation email");
+            var user = await GetCurrentUserAsync();
+
+            await SendConfirmationEmail(user, hostingEnvironment);
+
+            return RedirectToAction(nameof(EmailConfirm));
+        }
+
+        [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> LoginWith2fa(bool rememberMe)
         {
@@ -114,7 +144,7 @@ namespace pre_ico_web_site.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> LoginWith2fa(LoginWith2faViewModel model, bool rememberMe, string returnUrl = null)
+        public async Task<IActionResult> LoginWith2fa(LoginWith2faViewModel model, bool rememberMe)
         {
             if (!ModelState.IsValid)
             {
@@ -134,7 +164,7 @@ namespace pre_ico_web_site.Controllers
             if (result.Succeeded)
             {
                 _logger.LogInformation("User with ID {UserId} logged in with 2fa.", user.Id);
-                return RedirectToLocal(returnUrl);
+                return RedirectToRoute("Exchanger");
             }
             else if (result.IsLockedOut)
             {
@@ -151,7 +181,7 @@ namespace pre_ico_web_site.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> LoginWithRecoveryCode(string returnUrl = null)
+        public async Task<IActionResult> LoginWithRecoveryCode()
         {
             // Ensure the user has gone through the username & password screen first
             var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
@@ -159,16 +189,13 @@ namespace pre_ico_web_site.Controllers
             {
                 throw new ApplicationException($"Unable to load two-factor authentication user.");
             }
-
-            ViewData["ReturnUrl"] = returnUrl;
-
             return View();
         }
 
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> LoginWithRecoveryCode(LoginWithRecoveryCodeViewModel model, string returnUrl = null)
+        public async Task<IActionResult> LoginWithRecoveryCode(LoginWithRecoveryCodeViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -188,7 +215,7 @@ namespace pre_ico_web_site.Controllers
             if (result.Succeeded)
             {
                 _logger.LogInformation("User with ID {UserId} logged in with a recovery code.", user.Id);
-                return RedirectToLocal(returnUrl);
+                return RedirectToRoute("Exchanger");
             }
             if (result.IsLockedOut)
             {
@@ -212,9 +239,8 @@ namespace pre_ico_web_site.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult Register(string returnUrl = null)
+        public IActionResult Register()
         {
-            ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
 
@@ -231,16 +257,9 @@ namespace pre_ico_web_site.Controllers
                 {
                     _logger.LogInformation("User created a new account with password.");
 
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
+                    await SendConfirmationEmail(user, hostingEnvironment);
 
-                    var footer = Path.Combine(hostingEnvironment.WebRootPath, "static", "email", "footer.html");
-                    var header = Path.Combine(hostingEnvironment.WebRootPath, "static", "email", "header.html");
-
-                    await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl,
-                        System.IO.File.ReadAllText(header), System.IO.File.ReadAllText(footer));
-
-                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    //await _signInManager.SignInAsync(user, isPersistent: false);
                     //var addclaimresult = await _userManager.AddClaimAsync(user, new Claim("IsAdmin", "True", ClaimValueTypes.Boolean));
                 }
                 AddErrors(result);
@@ -249,6 +268,18 @@ namespace pre_ico_web_site.Controllers
             // If we got this far, something failed, redisplay form
             return Ok(new { error = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToArray(), value = false });
 
+        }
+
+        private async Task SendConfirmationEmail(ApplicationUser user, IHostingEnvironment hostingEnvironment)
+        {
+            var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
+
+            var footer = Path.Combine(hostingEnvironment.WebRootPath, "static", "email", "footer.html");
+            var header = Path.Combine(hostingEnvironment.WebRootPath, "static", "email", "header.html");
+
+            await _emailSender.SendEmailConfirmationAsync(user.Email, callbackUrl,
+                System.IO.File.ReadAllText(header), System.IO.File.ReadAllText(footer));
         }
 
         [HttpGet]
