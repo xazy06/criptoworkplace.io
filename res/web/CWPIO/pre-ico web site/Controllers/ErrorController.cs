@@ -12,6 +12,10 @@ namespace pre_ico_web_site.Controllers
         [HttpGet("{code}")]
         public IActionResult Index([FromRoute]int code)
         {
+            if(code == 404) return View("404", "Error");
+            
+            if(code == 500) return View("500", "Error");
+            
             return View(code);
         }
     }
