@@ -1,10 +1,11 @@
+@using Microsoft.AspNetCore.Mvc.Rendering
 <div class="m-portlet m-portlet--bordered-semi m-portlet--space m-portlet--full-height- ">
 	<div class="m-portlet__head">
 		<div class="m-portlet__head-caption">
 			<div class="m-portlet__head-title">
 				<h3 class="m-portlet__head-text">
-					Sales and ballance 
-					<span class="m-portlet__head-desc">Total Sales on PRE-ICO</span>
+					Balance 
+					<span class="m-portlet__head-desc">Total Sales</span>
 				</h3>
 			</div>
 		</div>
@@ -17,7 +18,7 @@
 				</li>
 				<li data-bind="click: actions.getTransactions" class="nav-item m-tabs__item">
 					<a class="nav-link m-tabs__link" data-toggle="tab" href="#tx-tab" role="tab" aria-selected="false">
-						Transactions
+						History
 					</a>
 				</li>
 			</ul>
@@ -31,20 +32,21 @@
 					<div data-bind="css:{'s-display_bi': flags.userDidTransaction}" class="s-display_n s-ta_c s-mb_20">
 						<p>please wait a few minutes while transaction ends</p>
 						
-						<div class="m-spinner m-spinner--brand m-spinner--lg"></div>
-						<div class="m-spinner m-spinner--primary m-spinner--lg"></div>
-						<div class="m-spinner m-spinner--success m-spinner--lg"></div>
-						<div class="m-spinner m-spinner--info m-spinner--lg"></div>
-						<div class="m-spinner m-spinner--warning m-spinner--lg"></div>
-						<div class="m-spinner m-spinner--danger m-spinner--lg"></div>
+						@Html.Partial("Sales/_Loader")
+						
+						@Html.Partial("Sales/_TxStatus")
+						
 					</div>
-					
 					<div class="s-mb_20">
 						<span class="m-widget25__price m--font-brand">
 							<!-- ko text:obs.sales.ballance --><i style="padding: 0 12px" class="m-loader m-loader--brand"></i><!--/ko-->
 						</span>
 						<span class="m-widget25__desc">CWT-P</span>
 					</div>
+					
+					<p class="m--visible-mobile">	
+						<strong>1</strong> CWT-P = <strong>0.12</strong> USD
+					</p>
 					
 					<div data-bind="css:{'s-display_bi': (obs.sales.refund() > 0)}" class="s-display_n">
 						<div class="m-alert m-alert--square alert alert-info alert-dismissible fade show s-display_bi" role="alert">
@@ -53,22 +55,35 @@
 						</div>
 					</div>
 
-					<h3 style="margin-bottom: 20px;">Cryptoworkplace smart contract address</h3>
-
+					<div style="margin-bottom: 30px;" class="m--visible-mobile m-alert m-alert--icon m-alert--air m-alert--square alert alert-brand alert-dismissible fade show" role="alert">
+						<div class="m-alert__icon m--visible-desktop">
+							<i class="la la-warning"></i>
+						</div>
+						<div class="m-alert__text">
+							Do not send any ETH ammount directly to smart contract address,<br/>your transaction will be rejected.
+						</div>
+					</div>
+					
+					<h3 style="margin-bottom: 20px;">CWT-P smart contract address 
+						<img id="cwpcontract" width="15" class="s-pointer" data-clipboard-target="#cwpcontract-c" src="/images/copy-ico.svg"/></h3>
+				
 					<div data-bind="css:{'s-display_bi': obs.contractAddress}" class="s-display_n m-pricing-table-1">
-						<p>
+						<div>
 							<a data-bind="attr:{'href': ('https://etherscan.io/address/' + obs.contractAddress())}"
 							   target="_blank" style="display: block; text-overflow: ellipsis; margin-bottom: 20px; overflow: hidden;" href="">
-								<strong data-bind="text:obs.contractAddress"></strong>
+								<strong id="cwpcontract-c" data-bind="text:obs.contractAddress"></strong>
 							</a>
-							<!-- ko ifnot:flags.toggleQr -->
-							<i data-bind="click:actions.toggleQr" style="cursor: pointer; font-size: 2em;" class="fa fa-qrcode"></i>
-							<!--/ko-->
-							<p data-bind="click:actions.toggleQr, if:flags.toggleQr" class="s-ms-c">
-								<img data-bind="attr:{'src':('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' + obs.contractAddress())}"
-								     style="border: 1px solid #ddd;" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Example"/>
-							</p>
-						</p>
+							<div class="m--visible-desktop">
+								<!-- ko ifnot:flags.toggleQr -->
+								<i data-bind="click:actions.toggleQr" style="cursor: pointer; font-size: 2em;" class="fa fa-qrcode"></i>
+								<!--/ko-->
+								<p data-bind="click:actions.toggleQr, if:flags.toggleQr" class="s-ms-c">
+									<img data-bind="attr:{'src':('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' + obs.contractAddress())}"
+											 style="border: 1px solid #ddd;" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Example"/>
+								</p>
+							</div>
+						</div>
+					
 					</div>
 
 					<div class="m-widget25--progress">
@@ -106,7 +121,8 @@
 					<thead>
 					<tr>
 						<th colspan="4">
-							<span class="s-icon s-mr_10">Here you can track your transactions</span>
+							<span class="s-icon s-mr_10 m--visible-desktop-inline-block m--visible-tablet-inline-block">Here you can track your transactions</span>
+							<span class="s-icon s-mr_10 m--visible-mobile-inline-block">Transactions</span>
 							<a class="s-icon" data-bind="click: actions.getTransactions" href="javascript: void(0)">
 								<i data-bind="css:{'fa-spin':flags.transactionsGetting }" class="fa fa-refresh"></i>
 							</a>
@@ -150,12 +166,7 @@
 				<!--/ko-->
 				
 				<div data-bind="if:flags.transactionsGetting" class="s-ta_c">
-					<div class="m-spinner m-spinner--brand m-spinner--lg"></div>
-					<div class="m-spinner m-spinner--primary m-spinner--lg"></div>
-					<div class="m-spinner m-spinner--success m-spinner--lg"></div>
-					<div class="m-spinner m-spinner--info m-spinner--lg"></div>
-					<div class="m-spinner m-spinner--warning m-spinner--lg"></div>
-					<div class="m-spinner m-spinner--danger m-spinner--lg"></div>
+					@Html.Partial("Sales/_Loader")
 				</div>
 			</div>
 		</div>

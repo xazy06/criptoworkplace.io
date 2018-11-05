@@ -1,0 +1,45 @@
+<select data-bind="value: obs.mSelectedC" id="curr-list" class="form-control m--visible-mobile b-m-c-input">
+	<option value="-1">Select currency</option>
+	<!-- ko foreach: currencies -->
+	<option data-bind="attr:{'selected': ($root.obs.currentCoin.symbol() === $data.symbol)},value:$data, disable:($data.status === 'unavailable'), style:{'background-image':'url('+$data.imageSmall+')'}">
+		
+			<strong class="s-icon s-fw_600" data-bind="text: $data.symbol"></strong>
+			<!--ko text: $data.symbol--><!--/ko--> (<!--ko text: $data.name--><!--/ko-->)
+
+			<!-- ko if: ($data.status === 'unavailable')-->
+			<i>(unavailable)</i>
+			<!--/ko-->
+	</option>
+	<!-- /ko -->
+</select>
+
+<table class="m--visible-tablet-table m--visible-desktop-table table table-hover table-sm t-coins">
+	<tbody>
+	<!-- ko foreach: currencies -->
+	<tr>
+		<td>
+			<div>
+				<img class="s-icon s-mr_5" data-bind="css:{'grayscale': ($data.status === 'unavailable')},attr:{'src': $data.imageSmall}" src=""/>
+				<span class="s-icon s-fw_600" data-bind="text: $data.symbol"></span>
+			</div>
+		</td>
+		<td data-bind="css:{'active': ($root.obs.currentCoin.symbol() === $data.symbol) }, attr:{'colspan': ($data.status === 'unavailable' && 2 || 0)}">
+			<!--ko text: $data.name--><!--/ko-->
+
+			<!-- ko if: ($data.status === 'unavailable')-->
+			<i>(unavailable)</i>
+			<!--/ko-->
+		</td>
+		<!-- ko ifnot: ($data.status === 'unavailable')-->
+		<td class="s-ta_r">
+			<button data-bind="disable:$data.status === 'unavailable', click:$root.actions.initGate"
+			        class="btn btn-sm btn-outline-focus m-btn--square btn-outline-brand m-btn--outline-2x m-btn m-loader--primary m-loader--right" type="button">
+				purchase
+			</button>
+		</td>
+		<!--/ko-->
+	</tr>
+	<!-- /ko -->
+
+	</tbody>
+</table>

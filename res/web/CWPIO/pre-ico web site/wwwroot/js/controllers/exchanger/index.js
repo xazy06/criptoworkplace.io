@@ -302,7 +302,11 @@ var Controller = function () {
 		getContractAddr: function () {
 			
 			return $.getJSON(self.api.purchase).done(function (result) {
+				var copy4;
+				
 				ViewModel.obs.contractAddress(result);
+
+				copy4 = new ClipboardJS('#cwpcontract');
 				
 			}).fail(function (response) {
 				
@@ -480,6 +484,7 @@ var Controller = function () {
 	this.initCopyPurchaseAddr = function (id) {
 		var copy2 = new ClipboardJS(id || '#copy2');
 		var copy3 = new ClipboardJS('#deposit-ammount');
+		var copy5 =  new ClipboardJS('#purchaseAddr');
 	};
 		
 	this.initUnloadingWindowProtocol = function () {
@@ -584,7 +589,8 @@ var Controller = function () {
 				stepEndTime: ko.observable(0)
 			},
 			needPay: ko.observable(0),
-			transactionFee:ko.observable(0)
+			transactionFee:ko.observable(0),
+			mSelectedC: ko.observable()
 		},
 		
 		flags:{
@@ -659,6 +665,12 @@ var Controller = function () {
 				
 				$.notify(self.strings[self.locale].confirmDidTransaction);
 			},
+			confirmDidTransactionMob: function () {
+				$('#show-info').tab('show');
+				
+				return ViewModel.actions.confirmDidTransaction();
+			},
+			
 			getTransactions: function () {
 				ViewModel.flags.transactionsGetting(true);
 				//return Gate.actions.transactions();
@@ -900,6 +912,10 @@ var Controller = function () {
 				ViewModel.flags.gateOperating(false);
 				ViewModel.obs.currentCoin.symbol('');
 				Gate.actions.stopStatusBang();
+				
+				try{
+					$('#curr-list').trigger('focusIn');
+				}catch (e){}
 			}
 		}
 		
@@ -927,6 +943,15 @@ var Controller = function () {
 		
 	});
 
+
+	ViewModel.obs.mSelectedC.subscribe(function (val) {
+		if (!val || val === '-1') {
+			return;
+		}
+		
+		ViewModel.actions.initGate.call(val);
+	});
+	
 	ViewModel.obs.currentCoin.symbol.subscribe(function (val) {
 		Gate.actions.marketInfo();
 	});

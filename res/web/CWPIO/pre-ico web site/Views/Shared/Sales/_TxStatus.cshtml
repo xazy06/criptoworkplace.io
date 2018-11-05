@@ -1,0 +1,36 @@
+@*<div>*@
+@*	<div class="status-area clearfix" ng-hide="transaction.status == 'contact_support'">*@
+@*		<div class="row">*@
+@*			<div id="deposit-received-box" class="col-md-4 col-sm-4 deposit active pending" *@
+@*					 data-bind="css:{'active pending': transaction.status == 'no_deposits', 'good active': transaction.status == 'received' || transaction.status == 'complete' || transaction.status == 'resolved'}">*@
+@*				<div class="status-block">*@
+@*					<span class="status ng-hide" data-bind="visible:(transaction.status == 'received' || transaction.status == 'complete' || transaction.status == 'resolved')">*@
+@*						<span class="glyphicon glyphicon glyphicon-ok status-icon"></span>*@
+@*					</span> <span class="glyphicon glyphicon-save"></span> <label class="aw-depo ng-binding" ng-show="transaction.status == 'no_deposits'" style="">Awaiting Deposit</label> *@
+@*					<label class="depo-re ng-binding ng-hide" ng-show="transaction.status == 'received' || transaction.status == 'complete' || transaction.status == 'resolved'">Pending Confirmations</label>*@
+@*				</div>*@
+@*			</div>*@
+@*			<div id="awaiting-exchange-box" class="col-md-4 col-sm-4 exchange" ng-class="{'active pending': transaction.status == 'received', 'active good': transaction.status == 'complete' || transaction.status == 'resolved'}">*@
+@*				<div class="status-block">*@
+@*					<span class="status ng-hide" ng-show="transaction.status == 'complete' || transaction.status == 'resolved'">*@
+@*						<span class="glyphicon glyphicon glyphicon-ok status-icon"></span>*@
+@*					</span> <span class="glyphicon glyphicon-transfer"></span> <label ng-show="transaction.status == 'received' || transaction.status == 'no_deposits'" class="ng-binding" style="">Awaiting Exchange</label> <label ng-show="transaction.status == 'complete' || transaction.status == 'resolved'" class="ng-binding ng-hide">Exchange Complete</label>*@
+@*				</div>*@
+@*			</div>*@
+@*			<div id="complete-box" class="col-md-4 col-sm-4 done" ng-class="{'active good': transaction.status == 'complete' || transaction.status == 'resolved', 'active bad': transaction.status == 'failed'}">*@
+@*				<div class="status-block">*@
+@*					<div id="complete-tx" class="complete-visible">*@
+@*						<span class="status">*@
+@*							<span ng-show="transaction.status == 'complete' || transaction.status == 'resolved'" class="glyphicon glyphicon glyphicon-ok status-icon ng-hide"></span> <span ng-show="transaction.status == 'failed'" class="glyphicon glyphicon-remove ng-hide"></span>*@
+@*						</span> <span class="glyphicon glyphicon-ok"></span> <label ng-show="transaction.status == 'complete'" class="ng-binding ng-hide">All Done!</label> <label ng-show="transaction.status == 'failed'" class="ng-hide">Failed</label> <label ng-show="transaction.status == 'resolved'" class="ng-hide">Resolved</label>*@
+@*					</div>*@
+@*				</div>*@
+@*			</div>*@
+@*		</div>*@
+@*		<div class="progress">*@
+@*			<div class="progress-bar progress-bar-success none" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" ng-class="{'none': transaction.status == 'no_deposits', 'half': transaction.status == 'received', 'full': transaction.status == 'complete' || transaction.status == 'resolved'}">*@
+@*				<span class="sr-only">40% Complete (success)</span>*@
+@*			</div>*@
+@*		</div>*@
+@*	</div>*@
+@*</div>*@

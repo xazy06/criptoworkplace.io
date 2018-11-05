@@ -218,7 +218,7 @@ td.active {
 	overflow: hidden;
 	/* display: inline-block; */
 	text-overflow: ellipsis;
-	
+	/*font-size:11px;*/
 	/* padding-right: 25px; */
 	/* float: left; */
 }
@@ -230,4 +230,25 @@ td.active {
 
 a.s-dashed-link:hover {
 	text-decoration: none;
+}
+
+.s-full {
+	width: 100%;
+}
+
+.s-mb_0i {
+	margin-bottom: 0!important;
+}
+
+.b-m-c-input {
+	border: none;
+	border-bottom: 2px solid #5867dd;
+	border-radius: 0;
+	padding-left: 0;
+}
+
+@media (min-width: 768px){
+	#tab-info {
+		display: block!important;
+	}
 }
