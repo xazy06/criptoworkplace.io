@@ -259,9 +259,9 @@ namespace pre_ico_web_site.Controllers
         }
 
         [HttpGet("status/{address}")]
-        public async Task<IActionResult> StatusAsync([FromRoute]string address)
+        public async Task<IActionResult> StatusAsync([FromRoute]string address, [FromQuery]int fromBlock = -1)
         {
-            var (status, transaction) = await _contract.CheckStatusAsync(address);
+            var (status, transaction) = await _contract.CheckStatusAsync(address, fromBlock);
             return Ok(new { Status = status, Transaction = transaction, TimeRemaining = 999 });
         }
 

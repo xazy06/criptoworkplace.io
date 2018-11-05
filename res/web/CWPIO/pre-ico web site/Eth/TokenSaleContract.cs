@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 using pre_ico_web_site.Models;
 using pre_ico_web_site.Services;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Numerics;
@@ -29,7 +30,7 @@ namespace pre_ico_web_site.Eth
         private readonly IMemoryCache _memoryCache;
         private const string mem_key = "fixrate:{0}:{1}";
         private readonly string _saleContractABI;
-        public string Address { get { return _saleContract.Address; } }
+        public string Address => _saleContract.Address;
 
 
         public TokenSaleContract(
@@ -180,24 +181,48 @@ namespace pre_ico_web_site.Eth
             }
         }
 
-        public async Task<(string status, string transaction)> CheckStatusAsync(string address)
+        public async Task<(string status, string transaction)> CheckStatusAsync(string address, BigInteger fromBlock)
         {
-            var res = await _web3.Client.SendRequestAsync<BlockWithTransactions>(
-                _web3.Eth.Blocks.GetBlockWithTransactionsByNumber.MethodName,
-                null,
-                "pending",
-                true
-                );
 
-            var tx = res.Transactions.Where(t => t != null && t.To != null && t.To.ToUpperInvariant() == address.ToUpperInvariant()).FirstOrDefault();
-            if (tx == null)
+            (string status, string transaction) result = ("error", "");
+
+            if (fromBlock < 0)
             {
-                return ("recieved", "");
+                var res = await _web3.Eth.Blocks.GetBlockWithTransactionsByNumber.SendRequestAsync(BlockParameter.CreatePending());
+                var tx = res.Transactions.Where(t => t != null && t.To != null && t.To.ToUpperInvariant() == address.ToUpperInvariant()).FirstOrDefault();
+                if (tx == null)
+                {
+                    result = ("recieved", "");
+                }
+                else
+                {
+                    result = ("complete", tx.TransactionHash);
+                }
             }
             else
             {
-                return ("complete", tx.TransactionHash);
+                List<Task<BlockWithTransactions>> tasks = new List<Task<BlockWithTransactions>>();
+
+                for (BigInteger i = fromBlock; i < (await _web3.Eth.Blocks.GetBlockNumber.SendRequestAsync()).Value; i++)
+                {
+                    tasks.Add(_web3.Eth.Blocks.GetBlockWithTransactionsByNumber.SendRequestAsync(new HexBigInteger(i)));
+                }
+                tasks.Add(_web3.Eth.Blocks.GetBlockWithTransactionsByNumber.SendRequestAsync(BlockParameter.CreatePending()));
+
+                var allTransactions = (await Task.WhenAll(tasks)).SelectMany(t => t.Transactions).Distinct(new TransactionComparer());
+                var tx = allTransactions.Where(t => t != null && t.To != null && t.To.ToUpperInvariant() == address.ToUpperInvariant()).FirstOrDefault();
+
+                if (tx == null)
+                {
+                    result = ("recieved", "");
+                }
+                else
+                {
+                    result = ("complete", tx.TransactionHash);
+                }
             }
+
+            return result;
         }
     }
 }
