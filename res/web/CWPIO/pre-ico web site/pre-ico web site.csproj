@@ -58,7 +58,7 @@
     <Content Update="Views\Cabinet\WhiteList.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Update="Views\Cabinet\_AdminLayout.cshtml">
+    <Content Update="Views\Shared\_AdminLayout.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
     <Content Update="Views\Cabinet\_LoginUser.cshtml">
