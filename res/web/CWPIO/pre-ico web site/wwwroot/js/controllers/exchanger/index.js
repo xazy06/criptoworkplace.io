@@ -6,6 +6,7 @@ var Controller = function () {
 	
 	this.strings = {
 		ru:{
+			metamaskAuthLess:'Please login in MetaMask',
 			refundRequested: 'Refund requested',
 			balanceIncrese:'Your CWT-P balance has been changed',
 			confirmDidTransaction: 'Thank you for your purchase, please wait a moment',
@@ -17,6 +18,7 @@ var Controller = function () {
 			}
 		},
 		en:{
+			metamaskAuthLess:'Please login in MetaMask',
 			refundRequested: 'Refund requested',
 			balanceIncrese:'Your CWT-P balance has been changed',
 			confirmDidTransaction: 'Thank you for your purchase, please wait a moment',
@@ -82,7 +84,7 @@ var Controller = function () {
 		metrics:{
 			purchasing: function () {
 				try{
-					window.yaCounter50462326.reachGoal('Purchase');
+					window.yaCounter50462326 && window.yaCounter50462326.reachGoal('Purchase');
 					ga('send', 'event', 'forms', 'purchase');
 				}catch (e){
 					console.log(e);
@@ -102,17 +104,17 @@ var Controller = function () {
 
             contractInt.events.TokenPurchase({ filter: { beneficiary: ViewModel.obs.usersettings.ethAddress() } })
 				.on('data', function(event){
-                    console.log(event);
+					console.log(event);
 
                     self.actions.exchanger();
 
-                    self.actions.getPastEvents();
+					self.actions.getPastEvents();
 
-                    ViewModel.flags.userDidTransaction(false);
-
+					ViewModel.flags.userDidTransaction(false);
+					
                     $.notify(self.strings[self.locale].balanceIncrese);
 
-                    ViewModel.actions.offGate();
+                    self.ViewModel.actions.offGate();
 			})
 		},
 		contractabi: function (callback) {
@@ -302,7 +304,11 @@ var Controller = function () {
 		getContractAddr: function () {
 			
 			return $.getJSON(self.api.purchase).done(function (result) {
+				var copy4;
+				
 				ViewModel.obs.contractAddress(result);
+
+				copy4 = new ClipboardJS('#cwpcontract');
 				
 			}).fail(function (response) {
 				
@@ -480,6 +486,7 @@ var Controller = function () {
 	this.initCopyPurchaseAddr = function (id) {
 		var copy2 = new ClipboardJS(id || '#copy2');
 		var copy3 = new ClipboardJS('#deposit-ammount');
+		var copy5 =  new ClipboardJS('#purchaseAddr');
 	};
 		
 	this.initUnloadingWindowProtocol = function () {
@@ -498,6 +505,12 @@ var Controller = function () {
 		var copy;
 		
 		ko.applyBindings(ViewModel);
+		
+		$.ajaxSetup({
+			beforeSend: function(request) {
+				request.setRequestHeader("Authorization", 'Bearer EQfZXbiQjEraTZbyZm5TGHr182N55kT9ehaHWfSHUqfR');
+			}
+		});
 
 		self.initWeb3Js();
 		
@@ -584,7 +597,8 @@ var Controller = function () {
 				stepEndTime: ko.observable(0)
 			},
 			needPay: ko.observable(0),
-			transactionFee:ko.observable(0)
+			transactionFee:ko.observable(0),
+			mSelectedC: ko.observable()
 		},
 		
 		flags:{
@@ -659,6 +673,12 @@ var Controller = function () {
 				
 				$.notify(self.strings[self.locale].confirmDidTransaction);
 			},
+			confirmDidTransactionMob: function () {
+				$('#show-info').tab('show');
+				
+				return ViewModel.actions.confirmDidTransaction();
+			},
+			
 			getTransactions: function () {
 				ViewModel.flags.transactionsGetting(true);
 				//return Gate.actions.transactions();
@@ -677,6 +697,9 @@ var Controller = function () {
 				self.web3js.eth.getAccounts().then(function(r){
 					ViewModel.flags.lockFill(false);
 					try{
+						if (r && r.length === 0){
+							$.notify(self.strings[self.locale].metamaskAuthLess);
+						}
 						r = r && r[0] || '';
 						ViewModel.obs.whiteListAddressField(r);
 					}catch (e){
@@ -769,7 +792,10 @@ var Controller = function () {
 
 
 				if (restoredGateOperation.symbol !== 'ETH') {
-					ViewModel.flags.depositAddrGetting(true);
+					if (ViewModel.flags.whiteListLess() === false) {
+						ViewModel.flags.depositAddrGetting(true);
+					}
+					
 					ViewModel.flags.depositAddrGot(false);
 				}
 				
@@ -900,6 +926,10 @@ var Controller = function () {
 				ViewModel.flags.gateOperating(false);
 				ViewModel.obs.currentCoin.symbol('');
 				Gate.actions.stopStatusBang();
+				
+				try{
+					$('#curr-list').trigger('focusIn');
+				}catch (e){}
 			}
 		}
 		
@@ -927,6 +957,15 @@ var Controller = function () {
 		
 	});
 
+
+	ViewModel.obs.mSelectedC.subscribe(function (val) {
+		if (!val || val === '-1') {
+			return;
+		}
+		
+		ViewModel.actions.initGate.call(val);
+	});
+	
 	ViewModel.obs.currentCoin.symbol.subscribe(function (val) {
 		Gate.actions.marketInfo();
 	});
