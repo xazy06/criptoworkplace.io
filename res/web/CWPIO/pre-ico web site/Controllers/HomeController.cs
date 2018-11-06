@@ -119,9 +119,9 @@ namespace pre_ico_web_site.Controllers
                     }
                 }
             });
-            var sendResult = await _emailSender.SendEmailSubscription(model.Email, model.Email);
+            //var sendResult = await _emailSender.SendEmailSubscription(model.Email, model.Email);
 
-            return Json(new { result = sendResult, Error = "" });
+            return Json(new { result = true/*sendResult*/, Error = "" });
         }
         public async Task<IActionResult> Unsubscribe(string email)
         {
