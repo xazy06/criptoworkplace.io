@@ -6,6 +6,7 @@ var Controller = function () {
 	
 	this.strings = {
 		ru:{
+			metamaskAuthLess:'Please login in MetaMask',
 			refundRequested: 'Refund requested',
 			balanceIncrese:'Your CWT-P balance has been changed',
 			confirmDidTransaction: 'Thank you for your purchase, please wait a moment',
@@ -17,6 +18,7 @@ var Controller = function () {
 			}
 		},
 		en:{
+			metamaskAuthLess:'Please login in MetaMask',
 			refundRequested: 'Refund requested',
 			balanceIncrese:'Your CWT-P balance has been changed',
 			confirmDidTransaction: 'Thank you for your purchase, please wait a moment',
@@ -695,6 +697,9 @@ var Controller = function () {
 				self.web3js.eth.getAccounts().then(function(r){
 					ViewModel.flags.lockFill(false);
 					try{
+						if (r && r.length === 0){
+							$.notify(self.strings[self.locale].metamaskAuthLess);
+						}
 						r = r && r[0] || '';
 						ViewModel.obs.whiteListAddressField(r);
 					}catch (e){
@@ -787,7 +792,10 @@ var Controller = function () {
 
 
 				if (restoredGateOperation.symbol !== 'ETH') {
-					ViewModel.flags.depositAddrGetting(true);
+					if (ViewModel.flags.whiteListLess() === false) {
+						ViewModel.flags.depositAddrGetting(true);
+					}
+					
 					ViewModel.flags.depositAddrGot(false);
 				}
 				

@@ -2,20 +2,27 @@
     ViewData["Title"] = "Confirm email";
 }
 
+<style>
+    .section.hero_mod:after {
+        background-image: none;
+    }
+    .section.hero_mod:before {
+        background: none;
+    }
+</style>
 
-<div id="home" class="b-block b-main">
-    <div class="container" style="z-index: 10;position: relative;">
-        <div class="row b-main-top">
-            <div class="col-md-12">
-
-                <p class="b-confirm-msg">
+<section class="section hero_mod">
+    <div class="section_in" >
+        <div style="text-align: center;" class="how_it_text">
+                <p>
                     Please confirm your email.
                 </p>
-                
-            </div>
+                <p>
+                    <a asp-action="ResendConfirmationEmail" asp-controller="Account">Resend</a> confirmation E-Mail.
+                </p>
         </div>
     </div>
-</div>
+</section>
 
 @section Scripts {
     

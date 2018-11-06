@@ -1,14 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Nethereum.Util;
 using pre_ico_web_site.Data;
-using pre_ico_web_site.Eth;
-using pre_ico_web_site.Models;
-using Slack.Webhooks;
-using System;
-using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace pre_ico_web_site.Controllers
@@ -17,12 +9,26 @@ namespace pre_ico_web_site.Controllers
     [Route("my")]
     public class CabinetController : Controller
     {
+        private readonly ApplicationDbContext _dbContext;
+        public CabinetController(ApplicationDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
 
         [HttpGet("exchanger", Name = "Exchanger")]
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Exchanger()
         {
-            return View("Exchanger");
+            var user = await _dbContext.GetCurrentUserAsync(User);
+            if (user.EmailConfirmed)
+            {
+                return View();
+
+            }
+            else
+            {
+                return RedirectToAction(nameof(AccountController.EmailConfirm), "Account");
+            }
         }
 
         [HttpGet("faq", Name = "Faq")]
@@ -30,13 +36,13 @@ namespace pre_ico_web_site.Controllers
         {
             return View();
         }
-        
+
         [HttpGet("kyc", Name = "KYC")]
         public IActionResult Kyc()
         {
             return View();
-        }      
+        }
 
-        
+
     }
 }
