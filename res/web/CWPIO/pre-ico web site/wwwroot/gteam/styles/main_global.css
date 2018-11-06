@@ -3241,14 +3241,14 @@ a {
         left: 0;
         background: transparent; }
       .distribution_schedule_item:nth-child(2) {
-        top: 0;
-        left: 40%; }
-      .distribution_schedule_item:nth-child(3) {
         bottom: 0;
         left: 20%;
         -webkit-box-pack: end;
             -ms-flex-pack: end;
                 justify-content: flex-end; }
+      .distribution_schedule_item:nth-child(3) {
+        top: 0;
+        left: 40%; }
       .distribution_schedule_item:nth-child(4) {
         bottom: 0;
         right: 0;
@@ -5576,3 +5576,4 @@ a {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover; }
+
