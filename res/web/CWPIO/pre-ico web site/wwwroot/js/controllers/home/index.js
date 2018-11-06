@@ -22,6 +22,10 @@ var Controller = function () {
 			}).done(function (result) {
 				ViewModel.flags.successSubscribed(true);
 				ViewModel.obs.email('');
+				
+				setTimeout(function () {
+					ViewModel.flags.successSubscribed(false);
+				},4000)
 			});
 		}
 	};
