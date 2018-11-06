@@ -44,7 +44,7 @@ namespace pre_ico_web_site
                 .AddLocalization(options => options.ResourcesPath = "Resources")
                 .AddEntityFrameworkNpgsql()
                 .AddDbContext<ApplicationDbContext>(options =>
-                    options.UseNpgsql(Configuration.GetConnectionString("CWPConnection")), ServiceLifetime.Singleton, ServiceLifetime.Singleton)
+                    options.UseNpgsql(Configuration.GetConnectionString("CWPConnection")), ServiceLifetime.Scoped, ServiceLifetime.Singleton)
                 .AddAuthorization()
                 .AddTransient<IEmailSender, EmailSender>()
                 .AddSingleton<ISlackClient, SlackClient>(config =>
