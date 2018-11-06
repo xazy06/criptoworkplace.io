@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Globalization;
-using System.Linq;
-using System.Net.Mail;
-using System.Threading.Tasks;
-using DnsClient;
+﻿using DnsClient;
 using DnsClient.Protocol;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +8,13 @@ using pre_ico_web_site.Eth;
 using pre_ico_web_site.Models;
 using pre_ico_web_site.Services;
 using Slack.Webhooks;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Globalization;
+using System.Linq;
+using System.Net.Mail;
+using System.Threading.Tasks;
 
 namespace pre_ico_web_site.Controllers
 {
@@ -61,16 +61,17 @@ namespace pre_ico_web_site.Controllers
 
         public IActionResult Error()
         {
-            return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
         [HttpPost]
         public async Task<IActionResult> Subscribe(SubscribeViewModel model)
         {
             if (string.IsNullOrEmpty(model.Email) || !(await IsValidAsync(model.Email)))
+            {
                 return Json(new { result = false, Error = "Email field is empty" });
+            }
 
-            var postToSlack = false;
             var dbSet = _context.Set<Subscriber>();
             var entry = await dbSet.FirstOrDefaultAsync(s => s.Email == model.Email);
             if (entry == null)
@@ -83,25 +84,24 @@ namespace pre_ico_web_site.Controllers
                     DateCreated = DateTime.Now,
                     Culture = CultureInfo.CurrentUICulture.ToString()
                 })).Entity;
-                postToSlack = true;
-
             }
             else
             {
                 if (entry.Unsubscribe)
                 {
                     entry.Unsubscribe = false;
-                    postToSlack = true;
+                }
+                else
+                {
+                    return Json(new { result = false, Error = "User is already subscribed to the newsletter" });
                 }
             }
 
             await _context.SaveChangesAsync();
 
-            if (postToSlack)
+            _slack.Post(new SlackMessage
             {
-                _slack.Post(new SlackMessage
-                {
-                    Attachments = new List<SlackAttachment> {
+                Attachments = new List<SlackAttachment> {
                     new SlackAttachment
                     {
                         Color = "#120a8f",
@@ -118,8 +118,7 @@ namespace pre_ico_web_site.Controllers
                         Pretext = $"Дата регистрации: {entry.DateCreated.ToString("dd:MM:yyyy HH:mm")}"
                     }
                 }
-                });
-            }
+            });
             var sendResult = await _emailSender.SendEmailSubscription(model.Email, model.Email);
 
             return Json(new { result = sendResult, Error = "" });
