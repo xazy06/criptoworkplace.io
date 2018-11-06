@@ -10,7 +10,7 @@ var Controller = function () {
 			refundRequested: 'Refund requested',
 			balanceIncrese:'Your CWT-P balance has been changed',
 			confirmDidTransaction: 'Thank you for your purchase, please wait a moment',
-			whiteListLess: 'You need to set up ETH Address to receive CWT-P and be able to continue purchasing',
+			whiteListLess: 'You need to add ETH Address into whitelist to receive CWT-P and be able to continue purchasing',
 			whiteListAddressFieldSave: {
 				fail: 'Look`s like some thing is wrong!',
 				successSaved:'Your ETH address successfully saved, now you can continue purchase',
@@ -22,7 +22,7 @@ var Controller = function () {
 			refundRequested: 'Refund requested',
 			balanceIncrese:'Your CWT-P balance has been changed',
 			confirmDidTransaction: 'Thank you for your purchase, please wait a moment',
-			whiteListLess: 'You need to set up ETH Address to receive CWT-P and be able to continue purchasing',
+			whiteListLess: 'You need to add ETH Address into whitelist to receive CWT-P and be able to continue purchasing',
 			whiteListAddressFieldSave: {
 				fail: 'Look`s like some thing is wrong!',
 				successSaved:'Your ETH address successfully saved, now you can continue purchase',
