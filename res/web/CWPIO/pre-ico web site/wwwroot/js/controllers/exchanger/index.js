@@ -278,8 +278,10 @@ var Controller = function () {
 				setTimeout(function () {
 					ViewModel.actions.initGate.call(ko.toJS(ViewModel.obs.currentCoin));
 					ViewModel.flags.whiteListAddressProcessing(false);
+					self.actions.exchanger();
+					self.actions.getPastEvents();
 				},3000);
-				
+								
 			}).fail(function (error) {
 				console.log(error);
 				
