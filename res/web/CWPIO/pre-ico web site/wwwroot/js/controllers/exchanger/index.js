@@ -463,7 +463,7 @@ var Controller = function () {
 				
 		(function () {
 
-			self.web3CWP = new Web3(new Web3.providers.HttpProvider(window.nodeUrl));
+			self.web3CWP = new Web3(window.nodeUrl);
 			
 			// Checking if Web3 has been injected by the browser (Mist/MetaMask)
 			if (typeof web3 !== 'undefined') {
