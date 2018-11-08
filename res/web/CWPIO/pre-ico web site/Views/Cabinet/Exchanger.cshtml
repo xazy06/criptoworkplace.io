@@ -385,7 +385,7 @@
 
 @section Scripts {
 	<script>
-		window.nodeUrl = '@(EthSettings?.Value.NodeUrl ?? "http://localehost:8545")';
+		window.nodeUrl = '@(EthSettings?.Value.WebNodeUrl ?? "http://localehost:8545")';
 	</script>
 	<script src="~/js/web3.min.js" asp-append-version="true"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>

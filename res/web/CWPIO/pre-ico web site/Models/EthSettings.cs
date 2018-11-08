@@ -7,6 +7,7 @@ namespace pre_ico_web_site.Models
 {
     public class EthSettings
     {
+        public string WebNodeUrl { get; set; }
         public string NodeUrl { get; set; }
         public int Network { get; set; }
         public string AppAddress { get; set; }
