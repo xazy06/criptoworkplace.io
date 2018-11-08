@@ -83,15 +83,6 @@ namespace pre_ico_web_site.Data
                 b.Property(s => s.Culture).IsRequired().HasDefaultValue("");
             });
 
-            builder.Entity<DataProtectionKey>(b =>
-            {
-                b.ToTable("data_protection_keys","core");
-
-                b.HasKey(x => x.FriendlyName);
-                b.Property(p => p.FriendlyName).HasColumnName("FriendlyName").HasColumnType("text");
-                b.Property(p => p.XmlData).HasColumnName("XmlData").HasColumnType("text");
-            });
-
             builder.Entity<BountyCampaing>(b =>
             {
                 b.ToTable("campaing", "bounty");

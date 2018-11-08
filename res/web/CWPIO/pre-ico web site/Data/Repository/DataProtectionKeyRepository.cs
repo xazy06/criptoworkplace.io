@@ -11,29 +11,29 @@ namespace pre_ico_web_site.Data
 {
     public class DataProtectionKeyRepository : IXmlRepository
     {
-        ApplicationDbContext _dbContext;
+        DataProtectionDbContext _dbContext;
 
-        public DataProtectionKeyRepository(ApplicationDbContext dbContext)
+        public DataProtectionKeyRepository(DataProtectionDbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
         public IReadOnlyCollection<XElement> GetAllElements()
         {
-            return new ReadOnlyCollection<XElement>(_dbContext.Set<DataProtectionKey>().Select(k => XElement.Parse(k.XmlData)).ToList());
+            return new ReadOnlyCollection<XElement>(_dbContext.DataProtectionKeys.Select(k => XElement.Parse(k.XmlData)).ToList());
         }
 
         public void StoreElement(XElement element, string friendlyName)
         {
-            var entity = _dbContext.Set<DataProtectionKey>().SingleOrDefault(k => k.FriendlyName == friendlyName);
+            var entity = _dbContext.DataProtectionKeys.SingleOrDefault(k => k.FriendlyName == friendlyName);
             if (null != entity)
             {
                 entity.XmlData = element.ToString();
-                _dbContext.Set<DataProtectionKey>().Update(entity);
+                _dbContext.DataProtectionKeys.Update(entity);
             }
             else
             {
-                _dbContext.Set<DataProtectionKey>().Add(new DataProtectionKey
+                _dbContext.DataProtectionKeys.Add(new DataProtectionKey
                 {
                     FriendlyName = friendlyName,
                     XmlData = element.ToString()

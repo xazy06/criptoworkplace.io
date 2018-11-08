@@ -45,6 +45,9 @@ namespace pre_ico_web_site
                 .AddEntityFrameworkNpgsql()
                 .AddDbContext<ApplicationDbContext>(options =>
                     options.UseNpgsql(Configuration.GetConnectionString("CWPConnection")), 
+                    ServiceLifetime.Scoped, ServiceLifetime.Singleton)
+                .AddDbContext<DataProtectionDbContext>(options =>
+                    options.UseNpgsql(Configuration.GetConnectionString("DPConnection")),
                     ServiceLifetime.Singleton, ServiceLifetime.Singleton)
                 .AddAuthorization()
                 .AddTransient<IEmailSender, EmailSender>()

@@ -18,7 +18,7 @@ namespace Microsoft.AspNetCore.DataProtection
 
             builder.Services.AddSingleton<IConfigureOptions<KeyManagementOptions>>(services =>
             {
-                var dbContext = services.GetService<ApplicationDbContext>() ?? new ApplicationDbContext(new EntityFrameworkCore.DbContextOptions<ApplicationDbContext>(), services.GetService<ILogger<ApplicationDbContext>>());
+                var dbContext = services.GetService<DataProtectionDbContext>() ?? new DataProtectionDbContext(new EntityFrameworkCore.DbContextOptions<DataProtectionDbContext>(), services.GetService<ILogger<DataProtectionDbContext>>());
                 return new ConfigureOptions<KeyManagementOptions>(options =>
                 {
                     options.XmlRepository = new DataProtectionKeyRepository(dbContext);
