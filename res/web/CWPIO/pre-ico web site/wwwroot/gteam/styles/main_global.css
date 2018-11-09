@@ -721,6 +721,8 @@ a {
     -webkit-transform: translateY(-100%);
         -ms-transform: translateY(-100%);
             transform: translateY(-100%); }
+  .header_nav.bg_mod {
+    background-color: #000; }
   @media screen and (min-width: 1024px) {
     .header_nav {
       height: 8.8em;
