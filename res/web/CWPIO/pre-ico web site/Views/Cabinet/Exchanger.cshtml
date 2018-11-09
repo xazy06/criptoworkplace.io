@@ -301,7 +301,8 @@
 	</div>
 	<div class="s-mb_20">
 		<a href="javascript: void(0)" class=" s-dashed-link">
-		<strong data-clipboard-target="#purchaseAddr" data-bind="text:obs.depositAddress" class="s-icon purch-addr" id="purchaseAddr"></strong>
+			<strong data-clipboard-target="#purchaseAddr" data-bind="text:obs.depositAddress, click:actions.notify.bind(null, 'copied!')" 
+			        class="s-icon purch-addr" id="purchaseAddr"></strong>
 		</a>
 		<!-- ko ifnot: obs.depositAddress -->
 		<strong>deposit address error</strong>

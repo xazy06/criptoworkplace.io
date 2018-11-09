@@ -745,10 +745,7 @@ var Controller = function () {
 				ViewModel.obs.sales.refund(0);
 			},
 			notify: function(a, val){
-				$.notify(a, {
-					type: (val || 'success'),
-					timer: 1000
-				});
+				$.notify(a);
 			}, 
 			toggleQr: function(){
 				ViewModel.flags.toggleQr(!ViewModel.flags.toggleQr());

@@ -224,7 +224,7 @@ td.active {
 }
 
 .s-dashed-link {
-	border-bottom: 2px dashed #777;
+	border-bottom: 2px dotted #777;
 	text-decoration: none;
 }
 
