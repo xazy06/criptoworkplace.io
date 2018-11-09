@@ -3628,6 +3628,8 @@ a {
   -webkit-box-flex: 0;
       -ms-flex: none;
           flex: none; }
+  .why_info_icon_title.v1_mod {
+    margin: 0 0 0 0.4em; }
   @media screen and (max-width: 1023px) {
     .why_info_icon_title {
       font-size: 1.9em; } }
@@ -5576,6 +5578,3 @@ a {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover; }
-
-
-
