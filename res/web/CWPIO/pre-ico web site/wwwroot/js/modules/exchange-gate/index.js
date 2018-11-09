@@ -232,6 +232,7 @@ var Controller = (Controller || {}), Gate = function () {
 				
 			})
 		},
+		//TODO need change to WS subscribe method
 		web3Status: function (depositAddress) {
 			return $.get(Controller.api.ethStatus + depositAddress);
 		},
@@ -286,6 +287,7 @@ var Controller = (Controller || {}), Gate = function () {
 				self.actions.stopStatusBang();
 
 				Controller.actions.sendEmail(data.error, '');
+				
 				return;
 			}
 
@@ -296,6 +298,7 @@ var Controller = (Controller || {}), Gate = function () {
 			Controller.actions.monitor(Controller.ViewModel.obs.cwtCount(), data.transaction);
 
 			self.actions.stopStatusBang();
+			
 		},
 		stopStatusBang: function () {
 			window.clearInterval(self.poolingId);
