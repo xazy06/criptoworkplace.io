@@ -671,7 +671,9 @@ var Controller = function () {
 			confirmDidTransaction: function () {
 				ViewModel.flags.userDidTransaction(true);
 				
-				Gate.actions.stopStatusBang();
+				//TODO watch https://dev.azure.com/unidefence/ico/_workitems/edit/154
+				//не надо стопать опрос поидее
+				//Gate.actions.stopStatusBang();
 				
 				$.notify(self.strings[self.locale].confirmDidTransaction);
 			},

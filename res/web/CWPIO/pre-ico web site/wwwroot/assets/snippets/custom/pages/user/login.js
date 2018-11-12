@@ -45,7 +45,7 @@ var SnippetLogin = function () {
 						agree: {required: !0},
 						whitepaper: {required: !0}
 					}
-				}), r.valid() && (t.addClass('m-loader m-loader--right m-loader--light').attr('disabled', !0), r.ajaxSubmit({
+				}), r.valid() && (t.addClass('m-loader m-loader--right m-loader--brand').attr('disabled', !0), r.ajaxSubmit({
                     url: '/Account/Register',
 					success: function (l, s, n, o) {
                     	if (l.error.length > 0){

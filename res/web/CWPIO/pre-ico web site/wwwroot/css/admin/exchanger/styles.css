@@ -245,6 +245,7 @@ a.s-dashed-link:hover {
 	border-bottom: 2px solid #5867dd;
 	border-radius: 0;
 	padding-left: 0;
+	background: #fff !important;
 }
 
 @media (min-width: 768px){
