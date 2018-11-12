@@ -5,7 +5,9 @@ var
 	windowHeight,
 	windowWidth,
 	$header,
+	$headerNav,
 	$scrollTop = 0,
+	lastScrollTop = 0,
 	$menuTrigger,
 	$mainMenu,
 	$mainMenuLink,
@@ -19,9 +21,11 @@ var
 	mediaPoint4 = 320;
 
 $(document).ready(function ($) {
+	lastScrollTop = 0;
 	$html = $('html');
 	$body = $('body');
 	$header = $('.header');
+	$headerNav = $('.header_nav');
 	$partnersSlider = $('.partners_slider');
 	$menuTrigger = $('.menuTrigger');
 	$mainMenu = $('.main_menu.header_mod');
@@ -58,6 +62,7 @@ $(document).ready(function ($) {
 		var elementClick = $(this).attr('href');
 		var destination = $(elementClick).offset().top;
 		$html.animate({ scrollTop: destination }, 1000);
+		$menuTrigger.trigger('click');
 	});
 
 	$partnersSlider.slick({
@@ -177,7 +182,26 @@ function resizeFunc() {
 function scrollFunc() {
 	$scrollTop = $(window).scrollTop();
 
-	headerScroll();
+	var stored_scrollTop = false;
+
+	if (!stored_scrollTop && lastScrollTop > $scrollTop) {
+		stored_scrollTop = lastScrollTop;
+	}
+
+	if ($scrollTop === 0 && $header.hasClass('scroll_mod') || stored_scrollTop - 10 > $scrollTop && $header.hasClass('scroll_mod')) {
+		$header.removeClass('scroll_mod');
+	} else if ($scrollTop > 0 && lastScrollTop < $scrollTop && !$header.hasClass('scroll_mod')) {
+		$header.addClass('scroll_mod');
+		stored_scrollTop = false;
+	}
+
+	if ($scrollTop < 10) {
+		$headerNav.removeClass('bg_mod');
+	} else {
+		$headerNav.addClass('bg_mod');
+	}
+
+	lastScrollTop = $scrollTop;
 }
 
 function moveElement() {
@@ -192,15 +216,15 @@ function moveElement() {
 	}
 }
 
-function headerScroll() {
-	if($scrollTop > 10) {
-			if (!$header.hasClass('scroll_mod')) {
-				$header.addClass('scroll_mod');
-			}
-		} else if ($scrollTop < 10) {
-			$header.removeClass('scroll_mod');
-		}
-}
+// function headerScroll() {
+// 	if($scrollTop > 10) {
+// 			if (!$header.hasClass('scroll_mod')) {
+// 				$header.addClass('scroll_mod');
+// 			}
+// 		} else if ($scrollTop < 10) {
+// 			$header.removeClass('scroll_mod');
+// 		}
+// }
 
 function updateSizes() {
 	windowWidth = window.innerWidth;
