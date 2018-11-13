@@ -121,9 +121,9 @@ namespace pre_ico_web_site
                 var account = new Account(settings.AppPrivateKey);
 //                var authHeader = "Basic " + Convert.ToBase64String(Encoding.UTF8.GetBytes($"{settings.NodeLogin}:{settings.NodePass}"));
                 var uri = new Uri(settings.NodeUrl ?? "http://localhost:8545");
-                var authHeader = "Basic " + Convert.ToBase64String(Encoding.UTF8.GetBytes(uri.UserInfo));
+                var authHeader = Convert.ToBase64String(Encoding.UTF8.GetBytes(uri.UserInfo));
                 var client = new RpcClient(uri,
-                    new AuthenticationHeaderValue("Authorization", authHeader));
+                    new AuthenticationHeaderValue("Basic", authHeader));
                 return new Web3(account, client);
             });
 
