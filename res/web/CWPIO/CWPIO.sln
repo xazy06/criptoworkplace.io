@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Extensions.Loggin
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pre-ico web site", "pre-ico web site\pre-ico web site.csproj", "{AD58EED5-E390-4473-8271-9387A32D4F9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExchangerMonitor", "ExchangerMonitor\ExchangerMonitor.csproj", "{1C519D6D-1726-472A-BBBA-24E3CD2A6731}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExchangerMonitor", "ExchangerMonitor\ExchangerMonitor.csproj", "{1C519D6D-1726-472A-BBBA-24E3CD2A6731}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

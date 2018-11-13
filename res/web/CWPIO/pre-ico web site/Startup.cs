@@ -12,17 +12,19 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Nethereum.JsonRpc.Client;
 using Nethereum.Web3;
 using Nethereum.Web3.Accounts;
-using Nethereum.Web3.Accounts.Managed;
 using pre_ico_web_site.Data;
 using pre_ico_web_site.Eth;
 using pre_ico_web_site.Models;
 using pre_ico_web_site.Services;
 using Slack.Webhooks;
 using System;
-using System.Linq;
+using System.Buffers.Text;
+using System.Net.Http.Headers;
 using System.Security.Cryptography.X509Certificates;
+using System.Text;
 
 namespace pre_ico_web_site
 {
@@ -44,7 +46,7 @@ namespace pre_ico_web_site
                 .AddLocalization(options => options.ResourcesPath = "Resources")
                 .AddEntityFrameworkNpgsql()
                 .AddDbContext<ApplicationDbContext>(options =>
-                    options.UseNpgsql(Configuration.GetConnectionString("CWPConnection")), 
+                    options.UseNpgsql(Configuration.GetConnectionString("CWPConnection")),
                     ServiceLifetime.Scoped, ServiceLifetime.Singleton)
                 .AddDbContext<DataProtectionDbContext>(options =>
                     options.UseNpgsql(Configuration.GetConnectionString("DPConnection")),
@@ -117,7 +119,12 @@ namespace pre_ico_web_site
                 var password = settings.AppPrivateKey;
 
                 var account = new Account(settings.AppPrivateKey);
-                return new Web3(account, settings.NodeUrl ?? "http://localhost:8545");
+//                var authHeader = "Basic " + Convert.ToBase64String(Encoding.UTF8.GetBytes($"{settings.NodeLogin}:{settings.NodePass}"));
+                var uri = new Uri(settings.NodeUrl ?? "http://localhost:8545");
+                var authHeader = Convert.ToBase64String(Encoding.UTF8.GetBytes(uri.UserInfo));
+                var client = new RpcClient(uri,
+                    new AuthenticationHeaderValue("Basic", authHeader));
+                return new Web3(account, client);
             });
 
             services.AddSingleton<TokenSaleContract>();
