@@ -1,5 +1,5 @@
 @using Microsoft.AspNetCore.Mvc.Rendering
-<div class="m-portlet m-portlet--bordered-semi m-portlet--space m-portlet--full-height- ">
+<div class="m-portlet--dark m-portlet--nopadd m-portlet m-portlet--bordered-semi m-portlet--space m-portlet--full-height">
 	<div class="m-portlet__head">
 		<div class="m-portlet__head-caption">
 			<div class="m-portlet__head-title">
@@ -61,7 +61,7 @@
 						<div class="m-alert__icon m--visible-desktop">
 							<i class="la la-warning"></i>
 						</div>
-						<div data-i18n="lk.dont_send" class="m-alert__text">
+						<div data-i18n="[html]lk.dont_send" class="m-alert__text">
 							Do not send any ETH ammount directly to smart contract address,<br/>your transaction will be rejected.
 						</div>
 					</div>
@@ -73,7 +73,7 @@
 				
 					<div data-bind="css:{'s-display_bi': obs.contractAddress}" class="s-display_n m-pricing-table-1">
 						<div>
-							<a data-bind="attr:{'href': ('https://etherscan.io/address/' + obs.contractAddress())}"
+							<a class="s-mb_0m" data-bind="attr:{'href': ('https://etherscan.io/address/' + obs.contractAddress())}"
 							   target="_blank" style="display: block; text-overflow: ellipsis; margin-bottom: 20px; overflow: hidden;" href="">
 								<strong id="cwpcontract-c" data-bind="text:obs.contractAddress"></strong>
 							</a>
@@ -116,7 +116,9 @@
 						@*								Of all coins count*@
 						@*							</span>*@
 						@*						</div>*@
+						
 					</div>
+					<input name="#tab-info" type="hidden" autofocus=""/>
 				</div>
 			</div>
 			

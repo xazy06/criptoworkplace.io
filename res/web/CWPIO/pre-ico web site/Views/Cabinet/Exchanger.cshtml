@@ -35,7 +35,19 @@
 </div>
 
 
-<div class="m--visible-mobile">
+<div class="m--visible-mobile b-exchanger-nav">
+@*	<div style="width: 65px; height: 65px; background-color: #000000; border-radius: 50%; position: absolute; left: 12px; bottom: 40px; text-align: center; color: #36a3f782; font-size: 25px; padding: 20px 0; line-height: 25px; /* box-shadow: -3px 1px 38px 0 rgb(54, 163, 247); *//* background: linear-gradient(to right, #232323, #101010); */opacity: 1;">*@
+@*		<i class="fa fa-bitcoin" style="font-size: 25px;">*@
+@*		</i>*@
+@*	</div>*@
+@*	<div style="width: 65px; height: 65px; background-color: #000000; border-radius: 50%; position: absolute; left: 104px; bottom: 40px; text-align: center; color: #5d5f77; font-size: 25px; padding: 20px 0; line-height: 25px; box-shadow: 0 19px 38px 0 rgba(34, 36, 43, .3);">*@
+@*		<i class="fa fa-exchange" style="font-size: 25px;">*@
+@*		</i>*@
+@*	</div>*@
+@*	<div style="width: 65px; height: 65px; background-color: #000000; border-radius: 50%; position: absolute; left: 194px; bottom: 40px; text-align: center; color: #5d5f77; font-size: 25px; padding: 20px 0; line-height: 25px; box-shadow: 0 19px 38px 0 rgba(34, 36, 43, .3);">*@
+@*		<i class="fa fa-send" style="font-size: 25px;">*@
+@*		</i>*@
+@*	</div>*@
 	<ul class="nav nav-pills nav-fill" role="tablist">
 		<li class="nav-item">
 			<a class="nav-link active" data-i18n="lk.exchanger" data-toggle="tab" href="#tab-exchanger">Exchanger</a>
@@ -43,13 +55,25 @@
 		<li class="nav-item">
 			<a id="show-info" class="nav-link" data-i18n="lk.balance" data-toggle="tab" href="#tab-info">Balance</a>
 		</li>
+		<li class="nav-item">
+			<a data-toggle="tab" href="#tab-info" data-bind="click:actions.confirmDidTransactionMob"
+			   class="nav-link"
+			   data-i18n="lk.ididsend">
+				I did send
+			</a>
+		</li>
+		<li class="nav-item">
+			<a onclick="jivo_api.open();" class="nav-link">
+				<i style="font-size: 2rem;" class="fa fa-3x fa-comments"></i>
+			</a>
+		</li>
 	</ul>
 </div>
 
 <div class="row tab-content">
 <div class="col-md-7 tab-pane active" id="tab-exchanger">
-<div class="m-portlet">
-<div class="m-portlet__head">
+<div class="m-portlet m-portlet--dark m-portlet--nopadd">
+<div class="m-portlet__head m--visible-desktop-table  m--visible-tablet-table">
 	<div class="m-portlet__head-caption">
 		<div class="m-portlet__head-title m--visible-desktop-table m--visible-tablet-table">
 			<h3 data-i18n="lk.choose_h" class="m-portlet__head-text">
@@ -121,7 +145,7 @@
 			<img width="100" data-bind="attr:{'src':obs.currentCoin.image}"/>
 		</div>
 		<div class="s-mb_10 m--visible-mobile m--visible-tablet">
-			<img width="60" data-bind="attr:{'src':obs.currentCoin.image}"/>
+			<img width="80" style="opacity: .5;" data-bind="attr:{'src':obs.currentCoin.image}"/>
 		</div>
 	</div>
 
@@ -208,7 +232,7 @@
 </div>
 
 <div data-bind="css:{'s-display_bi': (flags.expiredOrder() && flags.userDidTransaction())}"
-     class="s-display_n m-alert m-alert--square alert alert-info alert-dismissible fade show" role="alert">
+     class="s-display_n m-alert m-alert--square alert m-alert--air alert-brand alert-dismissible fade show" role="alert">
 	<p data-i18n="lk.expired_order_did_transaction">
 		Your transaction in progress, current order is expired, create new order for more CWT-P and do not deposit any currency to address below
 	</p>
@@ -226,7 +250,9 @@
 <div data-bind="css:{'s-display_bi': (obs.currentCoin.symbol() !== 'ETH')}" class="s-display_n s-mb_20">
 	<div class="input-group">
 		<div class="input-group-prepend b-receive-before s-c_777">
-			<span data-i18n="lk.return_address">Return address</span>&nbsp;(<!-- ko text: obs.currentCoin.symbol --><!--/ko-->)
+			<span class="m--visible-desktop-inline m--visible-tablet-inline s-mr_5" 
+			      data-i18n="lk.return_address">Return address</span>
+			<span class="m--visible-desktop-inline m--visible-tablet-inline">(<!-- ko text: obs.currentCoin.symbol --><!--/ko-->)</span>
 
 			<div data-bind="css:{'m-loader m-loader--primary': flags.returnAddressValidating}"
 			     style="width: 30px; display: inline-block;">
@@ -236,14 +262,14 @@
 		<input placeholder="This field is optional" data-bind="textInput: obs.returnAddress, disable:flags.returnAddressValidating" type="text"
 		       class="m--visible-desktop m--visible-tablet form-control ammount-control"/>
 
-		<input placeholder="This field is optional" data-bind="textInput: obs.returnAddress, disable:flags.returnAddressValidating" type="text"
+		<input placeholder="Return address (optional)" data-bind="textInput: obs.returnAddress, disable:flags.returnAddressValidating" type="text"
 		       class="m--visible-mobile form-control ammount-control" style="width: 100%;"/>
 
 	</div>
 </div>
 
 <div data-bind="css:{'s-display_bi': (!flags.isValidReturnAddress())}"
-     class="s-display_n m-alert alert alert-danger alert-dismissible fade show" role="alert">
+     class="s-display_n m-alert alert m-alert--square alert-danger alert-dismissible fade show" style="z-index: 1" role="alert">
 	<span data-i18n="lk.invalid">This is not a valid</span> <strong><!-- ko text: obs.currentCoin.symbol --><!--/ko--></strong> 
 	<span data-i18n="lk.address">address</span>
 </div>
@@ -260,13 +286,14 @@
 		<div data-i18n="lk.wanna_receive" class="input-group-prepend  b-receive-before">
 			I want to receive
 		</div>
-		<input autofocus="" data-bind="textInput: obs.cwtCount, disable:flags.depositAddrGetting" type="number" class="form-control ammount-control">
+		<input autofocus="" data-bind="textInput: obs.cwtCount, disable:flags.depositAddrGetting" type="number" 
+		       class="form-control ammount-control control-xxl">
 		<div class="input-group-append b-receive-after">CWT-P</div>
 	</div>
 </div>
 
 <div data-bind="css:{'s-display_bi': flags.minCont}"  data-i18n="lk.min_contr"  
-     class="s-display_n m-alert m-alert--square alert alert-info alert-dismissible fade show" role="alert">
+     class="s-display_n m-alert m-alert--square m-alert--air alert alert-brand alert-dismissible fade show" role="alert">
 	Minimum contribution is 500 CWT-P
 </div>
 <!--/ko-->
@@ -333,11 +360,11 @@
 	        data-i18n="lk.ididsend">
 		I did send
 	</button>
-	<a data-toggle="tab" href="#tab-info"  data-bind="click:actions.confirmDidTransactionMob"
-	   class="pull-right btn btn-info btn-sm m-btn--square s-full m--visible-mobile" 
-	   data-i18n="lk.ididsend">
-		I did send
-	</a>
+@*	<a data-toggle="tab" href="#tab-info"  data-bind="click:actions.confirmDidTransactionMob"*@
+@*	   class="pull-right btn btn-info btn-sm m-btn--square s-full m--visible-mobile" *@
+@*	   data-i18n="lk.ididsend">*@
+@*		I did send*@
+@*	</a>*@
 </div>
 <!-- /ko -->
 <!-- /ko -->
