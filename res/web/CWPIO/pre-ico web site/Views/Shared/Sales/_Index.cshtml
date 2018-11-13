@@ -4,20 +4,21 @@
 		<div class="m-portlet__head-caption">
 			<div class="m-portlet__head-title">
 				<h3 class="m-portlet__head-text">
-					Balance 
-					<span class="m-portlet__head-desc">Total Sales</span>
+					<span data-i18n="lk.balance">Balance</span> 
+					<span data-i18n="lk.t_sales" class="m-portlet__head-desc">Total Sales</span>
 				</h3>
 			</div>
 		</div>
 		<div class="m-portlet__head-tools">
 			<ul class="nav nav-pills nav-pills--brand m-nav-pills--align-right m-nav-pills--btn-pill m-nav-pills--btn-sm" role="tablist">
 				<li class="nav-item m-tabs__item">
-					<a class="nav-link m-tabs__link active show" data-toggle="tab" href="#sales-tab" role="tab" aria-selected="true">
+					<a  data-i18n="lk.sales" class="nav-link m-tabs__link active show" data-toggle="tab" href="#sales-tab" 
+					    role="tab" aria-selected="true">
 						Sales
 					</a>
 				</li>
 				<li data-bind="click: actions.getTransactions" class="nav-item m-tabs__item">
-					<a class="nav-link m-tabs__link" data-toggle="tab" href="#tx-tab" role="tab" aria-selected="false">
+					<a data-i18n="lk.hist" class="nav-link m-tabs__link" data-toggle="tab" href="#tx-tab" role="tab" aria-selected="false">
 						History
 					</a>
 				</li>
@@ -30,7 +31,7 @@
 				<div class="m-widget25">
 					
 					<div data-bind="css:{'s-display_bi': flags.userDidTransaction}" class="s-display_n s-ta_c s-mb_20">
-						<p>please wait a few minutes while transaction ends</p>
+						<p data-i18n="lk.pl_whait">please wait a few minutes while transaction ends</p>
 						
 						@Html.Partial("Sales/_Loader")
 						
@@ -50,8 +51,9 @@
 					
 					<div data-bind="css:{'s-display_bi': (obs.sales.refund() > 0)}" class="s-display_n">
 						<div class="m-alert m-alert--square alert alert-info alert-dismissible fade show s-display_bi" role="alert">
-							<p>We noticed that you overpaid click the refund button to return it to your wallet</p>
-							<a data-bind="click:actions.refund" class="btn btn-default btn-sm m-btn--square" href="javascript: void(0)">Refund</a>
+							<p data-i18n="lk.overpaid">We noticed that you overpaid click the refund button to return it to your wallet</p>
+							<a data-i18n="lk.refund" data-bind="click:actions.refund" class="btn btn-default btn-sm m-btn--square" 
+							   href="javascript: void(0)">Refund</a>
 						</div>
 					</div>
 
@@ -59,13 +61,15 @@
 						<div class="m-alert__icon m--visible-desktop">
 							<i class="la la-warning"></i>
 						</div>
-						<div class="m-alert__text">
+						<div data-i18n="lk.dont_send" class="m-alert__text">
 							Do not send any ETH ammount directly to smart contract address,<br/>your transaction will be rejected.
 						</div>
 					</div>
 					
-					<h3 style="margin-bottom: 20px;">CWT-P smart contract address 
-						<img id="cwpcontract" width="15" class="s-pointer" data-clipboard-target="#cwpcontract-c" src="/images/copy-ico.svg"/></h3>
+					<h3 style="margin-bottom: 20px;">
+						<span data-i18n="lk.smart_add">CWT-P smart contract address</span>
+						<img id="cwpcontract" width="15" class="s-pointer" data-clipboard-target="#cwpcontract-c" src="/images/copy-ico.svg" />
+					</h3>
 				
 					<div data-bind="css:{'s-display_bi': obs.contractAddress}" class="s-display_n m-pricing-table-1">
 						<div>
@@ -96,7 +100,7 @@
 								<div class="progress-bar m--bg-danger" role="progressbar" data-bind="style:{width: ((obs.sales.sold()*100)/15000000 + '%')}"
 								     aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
 							</div>
-							<span class="m-widget25__progress-sub">
+							<span data-i18n="lk.sold" class="m-widget25__progress-sub">
 								Token's sold on Pre-SALE
 							</span>
 						</div>
@@ -121,13 +125,17 @@
 					<thead>
 					<tr>
 						<th colspan="4">
-							<span class="s-icon s-mr_10 m--visible-desktop-inline-block m--visible-tablet-inline-block">Here you can track your transactions</span>
-							<span class="s-icon s-mr_10 m--visible-mobile-inline-block">Transactions</span>
+							<span data-i18n="lk.track" class="s-icon s-mr_10 m--visible-desktop-inline-block m--visible-tablet-inline-block">
+								Here you can track your transactions
+							</span>
+							
+							<span data-i18n="lk.transactions" class="s-icon s-mr_10 m--visible-mobile-inline-block">Transactions</span>
+							
 							<a class="s-icon" data-bind="click: actions.getTransactions" href="javascript: void(0)">
 								<i data-bind="css:{'fa-spin':flags.transactionsGetting }" class="fa fa-refresh"></i>
 							</a>
 						</th>
-						<th class="s-ta_c">more</th>
+						<th data-i18n="lk.more" class="s-ta_c">more</th>
 					</tr>
 					</thead>
 					<tbody data-bind="foreach: obs.transactions">
@@ -147,11 +155,11 @@
 					<tr class="s-display_n">
 						<td class="b-tx-info" colspan="5">
 							<div class="s-mb_10">
-								<span>Address:</span>
+								<span data-i18n="lk.Address">Address:</span>
 								<a target="_blank" data-bind="text:$data.address, attr:{'href': ('https://etherscan.io/address/' + $data.address)}" href="#"></a>
 							</div>
 							<div class="s-mb_10">
-								<span>Txid:</span>
+								<span data-i18n="lk.txid">Txid:</span>
 								<a target="_blank" data-bind="text:$data.transactionHash, attr:{'href': ('https://etherscan.io/tx/' + $data.transactionHash)}" href="#"></a>
 							</div>
 						</td>
@@ -160,7 +168,7 @@
 				</table>
 				
 				<!-- ko ifnot:flags.transactionsGetting -->
-				<div data-bind="if:obs.transactions().length === 0" class="s-ta_c">
+				<div data-i18n="lk.no_transactions" data-bind="if:obs.transactions().length === 0" class="s-ta_c">
 					no transactions
 				</div>
 				<!--/ko-->

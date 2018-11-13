@@ -6,11 +6,11 @@
 				<span></span>
 			</div>
 			<div class="m-alert__text">
-				<strong>Pre-sale</strong> in progress. <strong>1</strong> CWT-P = <strong>0.12</strong> USD
+				<strong data-i18n="lk.presale">Pre-sale</strong>&nbsp;<span data-i18n="lk.in_progress">in progress</span>. <strong>1</strong> CWT-P = <strong>0.12</strong> USD
 				<!-- ko if:obs.usersettings.ethAddress -->
 				@*				, *@
 				<br/>
-				Your <strong>whitelisted</strong>
+				<span data-i18n="lk.your">Your</span>&nbsp;<strong data-i18n="lk.whitelisted">whitelisted</strong>
 				<span>ERC-20 address:</span>
 				<strong style="word-break: break-all;">
 					<a data-bind="text:obs.usersettings.ethAddress, attr:{'href':('https://etherscan.io/address/'+ obs.usersettings.ethAddress())}"
@@ -38,7 +38,7 @@
 			<div class="m-alert__icon">
 				<i class="la la-warning"></i>
 			</div>
-			<div class="m-alert__text">
+			<div data-i18n="lk.dont_send" class="m-alert__text">
 				Do not send any ETH ammount directly to smart contract address,<br/>your transaction will be rejected.
 			</div>
 			<div class="m-alert__close m--visible-mobile">

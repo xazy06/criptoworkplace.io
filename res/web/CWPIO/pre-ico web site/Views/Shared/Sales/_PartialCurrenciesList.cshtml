@@ -7,7 +7,7 @@
 			<!--ko text: $data.symbol--><!--/ko--> (<!--ko text: $data.name--><!--/ko-->)
 
 			<!-- ko if: ($data.status === 'unavailable')-->
-			<i>(unavailable)</i>
+			<i data-i18n="lk.unavail">(unavailable)</i>
 			<!--/ko-->
 	</option>
 	<!-- /ko -->
@@ -27,12 +27,13 @@
 			<!--ko text: $data.name--><!--/ko-->
 
 			<!-- ko if: ($data.status === 'unavailable')-->
-			<i>(unavailable)</i>
+			<i data-i18n="lk.unavail">(unavailable)</i>
 			<!--/ko-->
 		</td>
 		<!-- ko ifnot: ($data.status === 'unavailable')-->
 		<td class="s-ta_r">
-			<button data-bind="disable:$data.status === 'unavailable', click:$root.actions.initGate"
+			<button  data-i18n="lk.purch" 
+			         data-bind="disable:$data.status === 'unavailable', click:$root.actions.initGate"
 			        class="btn btn-sm btn-outline-focus m-btn--square btn-outline-brand m-btn--outline-2x m-btn m-loader--primary m-loader--right" type="button">
 				purchase
 			</button>
