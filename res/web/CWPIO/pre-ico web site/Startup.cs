@@ -192,9 +192,12 @@ namespace pre_ico_web_site
                 app.UseForwardedHeaders(forwardingOptions);
 
                 app.UseRewriter(new RewriteOptions().AddRedirectToHttpsPermanent());
+                app.UseHsts(c => c.MaxAge(days:365).IncludeSubdomains());
             }
 
             app.UseStaticFiles();
+
+            app.UseNoCacheHttpHeaders();
 
             app.UseAuthentication();
 
