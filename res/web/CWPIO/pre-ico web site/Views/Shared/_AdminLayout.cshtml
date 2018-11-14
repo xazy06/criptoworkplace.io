@@ -3,7 +3,7 @@
 <!-- begin::Head -->
 @{
     ViewData["theme"] = "#fff";
-    
+
 }
 <head>
     <title>@ViewData["Title"] - CWPIO</title>
@@ -30,327 +30,281 @@
     <!--begin::Web font -->
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
     <script>
-      WebFont.load({
-        google: { "families": ["Poppins:300,400,500,600,700", "Roboto:300,400,500,600,700"] },
-        active: function() {
-          sessionStorage.fonts = true;
-        }
-      });
+        WebFont.load({
+            google: { "families": ["Poppins:300,400,500,600,700", "Roboto:300,400,500,600,700"] },
+            active: function () {
+                sessionStorage.fonts = true;
+            }
+        });
     </script>
     <style>
-        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
 
-        ::-webkit-scrollbar-thumb { background: #ddd; }
+        ::-webkit-scrollbar-thumb {
+            background: #ddd;
+        }
 
-        ::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.001); }
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.001);
+        }
     </style>
     <!--end::Web font -->
     <!--begin::Base Styles -->
     <!--begin::Page Vendors -->
-    <link href="~/assets/vendors/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css"/>
+    <link href="~/assets/vendors/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
     <!--end::Page Vendors -->
-    <link href="~/assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css"/>
-    <link href="~/assets/demo/demo9/base/style.bundle.css" rel="stylesheet" type="text/css"/>
+    <link href="~/assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="~/assets/demo/demo9/base/style.bundle.css" rel="stylesheet" type="text/css" />
 
     <!--end::Base Styles -->
 </head>
 <!-- end::Head -->
 <!-- end::Body -->
-<body class="black m--skin- m-content--skin-light m-header--fixed m-header--fixed-mobile m-aside-left--offcanvas-default m-aside-left--enabled 
+<body class="black m--skin- m-content--skin-light m-header--fixed m-header--fixed-mobile m-aside-left--offcanvas-default m-aside-left--enabled
 m-aside-left--fixed m-aside-left--skin-dark m-aside--offcanvas-default">
-<!-- begin:: Page -->
-<div class="m-grid m-grid--hor m-grid--root m-page">
-    <!-- BEGIN: Header -->
-    <header id="m_header" class="m-grid__item    m-header " m-minimize="minimize" m-minimize-mobile="minimize" m-minimize-offset="200" m-minimize-mobile-offset="200">
-    <div class="m-container m-container--fluid m-container--full-height">
-        <div class="m-stack m-stack--ver m-stack--desktop  m-header__wrapper">
-            <!-- BEGIN: Brand -->
-            <div class="m-stack__item m-brand m-brand--mobile">
-                <div class="m-stack m-stack--ver m-stack--general">
-                    <div class="m-stack__item m-stack__item--middle m-brand__logo">
-                        <a href="/my/exchanger" class="m-brand__logo-wrapper">
-                            <img class="b-logo" alt="CWP" height="41" src="/static/CWP2.svg"/>
-                            <img class="b-logo-black" style="display: none" alt="CWP" height="41" src="/static/CWP2L.svg">
-                        </a>
-                    </div>
-                    <div class="m-stack__item m-stack__item--middle m-brand__tools">
-                        <!-- BEGIN: Responsive Aside Left Menu Toggler -->
-                        <a href="javascript:;" id="m_aside_left_toggle_mobile" class="m-brand__icon m-brand__toggler m-brand__toggler--left  m--visible-desktop-inline-block">
-                            <span></span>
-                        </a>
-                        <!-- END -->
-                        <!-- BEGIN: Responsive Header Menu Toggler -->
-                        <a id="m_aside_header_menu_mobile_toggle" href="javascript:;" class="m-brand__icon m-brand__toggler m--visible-mobile-inline-block m--visible-tablet-inline-block">
-                            <span></span>
-                        </a>
-                        <!-- END -->
-                        <!-- BEGIN: Topbar Toggler -->
-                        <a id="m_aside_header_topbar_mobile_toggle" href="javascript:;" class="m-brand__icon">
-                            <i class="flaticon-more"></i>
-                        </a>
-                        <!-- BEGIN: Topbar Toggler -->
-                    </div>
-                </div>
-            </div>
-            <!-- END: Brand -->
-            <div class="m-stack__item m-stack__item--middle m-stack__item--left m-header-head" id="m_header_nav">
-                <div class="m-stack m-stack--ver m-stack--desktop">
-                    <div class="m-stack__item m-stack__item--middle m-stack__item--fit">
-                        <!-- BEGIN: Aside Left Toggle -->
-@*                        <a href="javascript:;" id="m_aside_left_toggle" class="m-aside-left-toggler m-aside-left-toggler--left m_aside_left_toggler">*@
-@*                            <span></span>*@
-@*                        </a>*@
-                        <a href="/my/exchanger" class="m-brand m-brand--desktop">
-                            @*                                        <img height="41" src="/static/CWP2.svg">*@
-                        </a>
-                        <!-- END: Aside Left Toggle -->
-                    </div>
-                    <div class="m-stack__item m-stack__item--fluid">
-                        <!-- BEGIN: Horizontal Menu -->
-                        @Html.Partial("_PartialHorizontalMenu")
-                        <!-- END: Horizontal Menu -->
-                    </div>
-                </div>
-            </div>
-            <div class="m-stack__item m-stack__item--middle m-stack__item--center">
-                <!-- BEGIN: Brand -->
-                <a href="/" class="m-brand m-brand--desktop">
-                    <img height="41" src="/static/CWP2.svg">
-                </a>
-                <!-- END: Brand -->
-            </div>
-            <div class="m-stack__item m-stack__item--right">
-                <!-- BEGIN: Topbar -->
-                <div id="m_header_topbar" class="m-topbar  m-stack m-stack--ver m-stack--general">
-                    <div class="m-stack__item m-topbar__nav-wrapper">
-                        <ul class="m-topbar__nav m-nav m-nav--inline">
-                            <li style="display: none;" class="
-	m-nav__item m-nav__item--focus m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center m-dropdown--mobile-full-width m-dropdown--skin-light	m-list-search m-list-search--skin-light"
-                                m-dropdown-toggle="click" m-dropdown-persistent="1" id="m_quicksearch" m-quicksearch-mode="dropdown">
-                                <a href="#" class="m-nav__link m-dropdown__toggle">
-                                    <span class="m-nav__link-icon">
-                                        <span class="m-nav__link-icon-wrapper">
-                                            <i class="flaticon-search-1"></i>
-                                        </span>
-                                    </span>
+    <!-- begin:: Page -->
+    <div class="m-grid m-grid--hor m-grid--root m-page">
+        <!-- BEGIN: Header -->
+        <header id="m_header" class="m-grid__item    m-header " m-minimize="minimize" m-minimize-mobile="minimize" m-minimize-offset="200" m-minimize-mobile-offset="200">
+            <div class="m-container m-container--fluid m-container--full-height">
+                <div class="m-stack m-stack--ver m-stack--desktop  m-header__wrapper">
+                    <!-- BEGIN: Brand -->
+                    <div class="m-stack__item m-brand m-brand--mobile">
+                        <div class="m-stack m-stack--ver m-stack--general">
+                            <div class="m-stack__item m-stack__item--middle m-brand__logo">
+                                <a href="/my/exchanger" class="m-brand__logo-wrapper">
+                                    <img class="b-logo" alt="CWP" height="41" src="/static/CWP2.svg" />
+                                    <img class="b-logo-black" style="display: none" alt="CWP" height="41" src="/static/CWP2L.svg">
                                 </a>
-                                <div class="m-dropdown__wrapper">
-                                    <span class="m-dropdown__arrow m-dropdown__arrow--center"></span>
-                                    <div class="m-dropdown__inner ">
-                                        <div class="m-dropdown__header">
-                                            <form class="m-list-search__form">
-                                                <div class="m-list-search__form-wrapper">
-                                                    <span class="m-list-search__form-input-wrapper">
-                                                        <input id="m_quicksearch_input" autocomplete="off" type="text" name="q" class="m-list-search__form-input" value="" placeholder="Search...">
-                                                    </span>
-                                                    <span class="m-list-search__form-icon-close" id="m_quicksearch_close">
-                                                        <i class="la la-remove"></i>
-                                                    </span>
+                            </div>
+                            <div class="m-stack__item m-stack__item--middle m-brand__tools">
+                                <!-- BEGIN: Responsive Aside Left Menu Toggler -->
+                                <a href="javascript:;" id="m_aside_left_toggle_mobile" class="m-brand__icon m-brand__toggler m-brand__toggler--left  m--visible-desktop-inline-block">
+                                    <span></span>
+                                </a>
+                                <!-- END -->
+                                <!-- BEGIN: Responsive Header Menu Toggler -->
+                                <a id="m_aside_header_menu_mobile_toggle" href="javascript:;" class="m-brand__icon m-brand__toggler m--visible-mobile-inline-block m--visible-tablet-inline-block">
+                                    <span></span>
+                                </a>
+                                <!-- END -->
+                                <!-- BEGIN: Topbar Toggler -->
+                                <a id="m_aside_header_topbar_mobile_toggle" href="javascript:;" class="m-brand__icon">
+                                    <i class="flaticon-more"></i>
+                                </a>
+                                <!-- BEGIN: Topbar Toggler -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END: Brand -->
+                    <div class="m-stack__item m-stack__item--middle m-stack__item--left m-header-head" id="m_header_nav">
+                        <div class="m-stack m-stack--ver m-stack--desktop">
+                            <div class="m-stack__item m-stack__item--middle m-stack__item--fit">
+                                <!-- BEGIN: Aside Left Toggle -->
+                                @*                        <a href="javascript:;" id="m_aside_left_toggle" class="m-aside-left-toggler m-aside-left-toggler--left m_aside_left_toggler">*@
+                                @*                            <span></span>*@
+                                @*                        </a>*@
+                                <a href="/my/exchanger" class="m-brand m-brand--desktop">
+                                    @*                                        <img height="41" src="/static/CWP2.svg">*@
+                                </a>
+                                <!-- END: Aside Left Toggle -->
+                            </div>
+                            <div class="m-stack__item m-stack__item--fluid">
+                                <!-- BEGIN: Horizontal Menu -->
+                                @Html.Partial("_PartialHorizontalMenu")
+                                <!-- END: Horizontal Menu -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-stack__item m-stack__item--middle m-stack__item--center">
+                        <!-- BEGIN: Brand -->
+                        <a href="/" class="m-brand m-brand--desktop">
+                            <img height="41" src="/static/CWP2.svg">
+                        </a>
+                        <!-- END: Brand -->
+                    </div>
+                    <div class="m-stack__item m-stack__item--right">
+                        <!-- BEGIN: Topbar -->
+                        <div id="m_header_topbar" class="m-topbar  m-stack m-stack--ver m-stack--general">
+                            <div class="m-stack__item m-topbar__nav-wrapper">
+                                <ul class="m-topbar__nav m-nav m-nav--inline">
+                                    <li style="display: none;" class="
+	m-nav__item m-nav__item--focus m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center m-dropdown--mobile-full-width m-dropdown--skin-light	m-list-search m-list-search--skin-light"
+                                        m-dropdown-toggle="click" m-dropdown-persistent="1" id="m_quicksearch" m-quicksearch-mode="dropdown">
+                                        <a href="#" class="m-nav__link m-dropdown__toggle">
+                                            <span class="m-nav__link-icon">
+                                                <span class="m-nav__link-icon-wrapper">
+                                                    <i class="flaticon-search-1"></i>
+                                                </span>
+                                            </span>
+                                        </a>
+                                        <div class="m-dropdown__wrapper">
+                                            <span class="m-dropdown__arrow m-dropdown__arrow--center"></span>
+                                            <div class="m-dropdown__inner ">
+                                                <div class="m-dropdown__header">
+                                                    <form class="m-list-search__form">
+                                                        <div class="m-list-search__form-wrapper">
+                                                            <span class="m-list-search__form-input-wrapper">
+                                                                <input id="m_quicksearch_input" autocomplete="off" type="text" name="q" class="m-list-search__form-input" value="" placeholder="Search...">
+                                                            </span>
+                                                            <span class="m-list-search__form-icon-close" id="m_quicksearch_close">
+                                                                <i class="la la-remove"></i>
+                                                            </span>
+                                                        </div>
+                                                    </form>
                                                 </div>
-                                            </form>
-                                        </div>
-                                        <div class="m-dropdown__body">
-                                            <div class="m-dropdown__scrollable m-scrollable" data-scrollable="true" data-max-height="300" data-mobile-max-height="200">
-                                                <div class="m-dropdown__content"></div>
+                                                <div class="m-dropdown__body">
+                                                    <div class="m-dropdown__scrollable m-scrollable" data-scrollable="true" data-max-height="300" data-mobile-max-height="200">
+                                                        <div class="m-dropdown__content"></div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </li>
-@*                            @Html.Partial("_PartialNotifications")*@
-                            @Html.Partial("_PartialLangs")
-@*                            @Html.Partial("_PartialQuickActionsHeader")*@
+                                    </li>
+                                    @*                            @Html.Partial("_PartialNotifications")*@
+                                    @Html.Partial("_PartialLangs")
+                                    @*                            @Html.Partial("_PartialQuickActionsHeader")*@
 
-                            <li class="m-nav__item m-dropdown m-dropdown--medium m-dropdown--arrow  m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light">
-@*                                m-dropdown-toggle="click"*@
-                                @Html.Partial("_PartialUserDropdown")
-                            </li>
-                            <li class="m-nav__separator m-nav__separator--fit"></li>
-                            <li class="m-nav__item">
-                                <a href="/account/Logout" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
-                                    Logout
-                                </a>
-                            </li>
-                        </ul>
+                                    <li class="m-nav__item m-dropdown m-dropdown--medium m-dropdown--arrow  m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light">
+                                        @*                                m-dropdown-toggle="click"*@
+                                        @Html.Partial("_PartialUserDropdown")
+                                    </li>
+                                    <li class="m-nav__separator m-nav__separator--fit"></li>
+                                    <li class="m-nav__item">
+                                        <a href="/account/Logout" class="btn m-btn--pill btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
+                                            Logout
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
+                </div>
+                </li>
+                @*        <li id="m_quick_sidebar_toggle" class="m-nav__item m-nav__item--info m-nav__item--qs">*@
+                @*            <a href="#" class="m-nav__link m-dropdown__toggle">*@
+                @*                <span class="m-nav__link-icon m-nav__link-icon-alt">*@
+                @*                    <span class="m-nav__link-icon-wrapper">*@
+                @*                        <i class="flaticon-grid-menu"></i>*@
+                @*                    </span>*@
+                @*                </span>*@
+                @*            </a>*@
+                @*        </li>*@
+                </ul>
+            </div>
+    </div>
+    <!-- END: Topbar -->
+    </div>
+    </div>
+    </div>
+    </header>
+    <!-- END: Header -->
+    <!-- BEGIN: Left Aside -->
+    @Html.Partial("_PartialLeftAside")
+    <!-- END: Left Aside -->
+    <!-- begin::Body -->
+    <div class="m-grid__item m-grid__item--fluid m-grid m-grid--hor-desktop m-grid--desktop m-body">
+        <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-container m-container--fluid m-container--full-height">
+            <div class="m-grid__item m-grid__item--fluid m-wrapper">
+                <!-- BEGIN: Subheader -->
+                <div class="m-subheader ">
+                    <div class="d-flex align-items-center">
+                        <div class="mr-auto">
+                            <h3 class="m-subheader__title *m-subheader__title--separator">
+                                @ViewData["Title"]
+                            </h3>
+                            @*                                    @Html.Partial("_PartialBreadCrumbs")*@
+                        </div>
+                        @*                                                                    @Html.Partial("_PartialQuickActions")*@
+
+                    </div>
+                </div>
+                <!-- END: Subheader -->
+                <div class="m-content">
+                    @RenderBody()
                 </div>
             </div>
         </div>
-        </li>
-@*        <li id="m_quick_sidebar_toggle" class="m-nav__item m-nav__item--info m-nav__item--qs">*@
-@*            <a href="#" class="m-nav__link m-dropdown__toggle">*@
-@*                <span class="m-nav__link-icon m-nav__link-icon-alt">*@
-@*                    <span class="m-nav__link-icon-wrapper">*@
-@*                        <i class="flaticon-grid-menu"></i>*@
-@*                    </span>*@
-@*                </span>*@
-@*            </a>*@
-@*        </li>*@
-        </ul>
     </div>
-</div>
-<!-- END: Topbar -->
-</div>
-</div>
-</div>
-</header>
-<!-- END: Header -->
-<!-- BEGIN: Left Aside -->
-@Html.Partial("_PartialLeftAside")
-<!-- END: Left Aside -->
-<!-- begin::Body -->
-<div class="m-grid__item m-grid__item--fluid m-grid m-grid--hor-desktop m-grid--desktop m-body">
-    <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-container m-container--fluid m-container--full-height">
-        <div class="m-grid__item m-grid__item--fluid m-wrapper">
-            <!-- BEGIN: Subheader -->
-            <div class="m-subheader ">
-                <div class="d-flex align-items-center">
-                    <div class="mr-auto">
-                        <h3 class="m-subheader__title *m-subheader__title--separator">
-                            @ViewData["Title"]
-                        </h3>
-                        @*                                    @Html.Partial("_PartialBreadCrumbs")*@
-                    </div>
-                    @*                                                                    @Html.Partial("_PartialQuickActions")*@
-
+    <!-- end:: Body -->
+    <!-- begin::Footer -->
+    <footer class="m-grid__item  m-footer m--visible-desktop m--visible-tablet">
+        <div class="m-container m-container--fluid m-container--full-height">
+            <div class="m-stack m-stack--flex-tablet-and-mobile m-stack--ver m-stack--desktop">
+                <div class="m-stack__item m-stack__item--left m-stack__item--middle m-stack__item--last">
+                    <span class="m-footer__copyright">
+                        2018 &copy; CryptoWorkPlace
+                        <a href="https://cryptoworkplace.io" class="m-link">
+                            cwp
+                        </a>
+                    </span>
                 </div>
             </div>
-            <!-- END: Subheader -->
-            <div class="m-content">
-                @RenderBody()
-            </div>
         </div>
+    </footer>
+    <!-- end::Footer -->
     </div>
-</div>
-<!-- end:: Body -->
-<!-- begin::Footer -->
-<footer class="m-grid__item  m-footer m--visible-desktop m--visible-tablet">
-    <div class="m-container m-container--fluid m-container--full-height">
-        <div class="m-stack m-stack--flex-tablet-and-mobile m-stack--ver m-stack--desktop">
-            <div class="m-stack__item m-stack__item--left m-stack__item--middle m-stack__item--last">
-                <span class="m-footer__copyright">
-                    2018 &copy; CryptoWorkPlace
-                    <a href="https://cryptoworkplace.io" class="m-link">
-                        cwp
-                    </a>
-                </span>
-            </div>
-        </div>
+    <!-- end:: Page -->
+    <!-- begin::Quick Sidebar -->
+    @*        @Html.Partial("_PartialQuickSidebar")*@
+    <!-- end::Quick Sidebar -->
+    <!-- begin::Scroll Top -->
+    <div id="m_scroll_top" class="m-scroll-top">
+        <i class="la la-arrow-up"></i>
     </div>
-</footer>
-<!-- end::Footer -->
-</div>
-<!-- end:: Page -->
-<!-- begin::Quick Sidebar -->
-@*        @Html.Partial("_PartialQuickSidebar")*@
-<!-- end::Quick Sidebar -->
-<!-- begin::Scroll Top -->
-<div id="m_scroll_top" class="m-scroll-top">
-    <i class="la la-arrow-up"></i>
-</div>
-<!-- end::Scroll Top --> <!-- begin::Quick Nav -->
-<!-- begin::Quick Nav -->
-<!--begin::Base Scripts -->
-<script src="~/assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
-<script src="~/assets/demo/demo9/base/scripts.bundle.js" type="text/javascript"></script>
-<script src="~/js/i18next-1.11.2/i18next-1.11.2.min.js" type="text/javascript"></script>
-<script>
-    window.i18n.init({lng: "en"}, function(err, t) {
-        $("body").i18n();
-    });
-</script>
-<!--end::Base Scripts -->
-<!--begin::Page Vendors -->
-<script src="~/assets/vendors/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
-<!--end::Page Vendors -->
-<!--begin::Page Snippets -->
-<script src="~/assets/app/js/dashboard.js" type="text/javascript"></script>
-<script src="~/js/knockout.js" type="text/javascript"></script>
-<!--end::Page Snippets -->
-<!-- BEGIN JIVOSITE CODE {literal} -->
-<script type='text/javascript'>
-  (function() {
-    var widget_id = '67sVoKO5GY';
-    var d = document;
-    var w = window;
-
-    function l() {
-      var s = document.createElement('script');
-      s.type = 'text/javascript';
-      s.async = true;
-      s.src = '//code.jivosite.com/script/widget/' + widget_id;
-      var ss = document.getElementsByTagName('script')[0];
-      ss.parentNode.insertBefore(s, ss);
-    }
-
-    if (d.readyState == 'complete') {
-      l();
-    } else {
-      if (w.attachEvent) {
-        w.attachEvent('onload', l);
-      } else {
-        w.addEventListener('load', l, false);
-      }
-    }
-  })();
-</script>
-<!-- {/literal} END JIVOSITE CODE -->
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-  (function(d, w, c) {
-    (w[c] = w[c] || []).push(function() {
-      try {
-        w.yaCounter50462326 = new Ya.Metrika2({
-          id: 50462326,
-          clickmap: true,
-          trackLinks: true,
-          accurateTrackBounce: true,
-          webvisor: true
+    <!-- end::Scroll Top --> <!-- begin::Quick Nav -->
+    <!-- begin::Quick Nav -->
+    <!--begin::Base Scripts -->
+    <script src="~/assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
+    <script src="~/assets/demo/demo9/base/scripts.bundle.js" type="text/javascript"></script>
+    <script src="~/js/i18next-1.11.2/i18next-1.11.2.min.js" type="text/javascript"></script>
+    <script>
+        window.i18n.init({ lng: "en" }, function (err, t) {
+            $("body").i18n();
         });
-      } catch (e) {
-      }
-    });
+    </script>
+    <!--end::Base Scripts -->
+    <!--begin::Page Vendors -->
+    <script src="~/assets/vendors/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
+    <!--end::Page Vendors -->
+    <!--begin::Page Snippets -->
+    <script src="~/assets/app/js/dashboard.js" type="text/javascript"></script>
+    <script src="~/js/knockout.js" type="text/javascript"></script>
+    <!--end::Page Snippets -->
+    <!-- BEGIN JIVOSITE CODE {literal} -->
+    <script type='text/javascript'>
+        (function () {
+            var widget_id = '67sVoKO5GY';
+            var d = document;
+            var w = window;
 
-    var n = d.getElementsByTagName("script")[0],
-      s = d.createElement("script"),
-      f = function() { n.parentNode.insertBefore(s, n); };
-    s.type = "text/javascript";
-    s.async = true;
-    s.src = "https://mc.yandex.ru/metrika/tag.js";
+            function l() {
+                var s = document.createElement('script');
+                s.type = 'text/javascript';
+                s.async = true;
+                s.src = '//code.jivosite.com/script/widget/' + widget_id;
+                var ss = document.getElementsByTagName('script')[0];
+                ss.parentNode.insertBefore(s, ss);
+            }
 
-    if (w.opera == "[object Opera]") {
-      d.addEventListener("DOMContentLoaded", f, false);
-    } else {
-      f();
-    }
-  })(document, window, "yandex_metrika_callbacks2");
-</script>
-<noscript>
-    <div>
-        <img src="https://mc.yandex.ru/watch/50462326" style="position: absolute; left: -9999px;" alt=""/>
-    </div>
-</noscript>
-<!-- /Yandex.Metrika counter -->
-<!-- Google Analytics -->
-<script>
-  (function(i, s, o, g, r, a, m) {
-    i['GoogleAnalyticsObject'] = r;
-    i[r] = i[r] ||
-      function() {
-        (i[r].q = i[r].q || []).push(arguments)
-      }, i[r].l = 1 * new Date();
-    a = s.createElement(o),
-      m = s.getElementsByTagName(o)[0];
-    a.async = 1;
-    a.src = g;
-    m.parentNode.insertBefore(a, m)
-  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-  ga('create', 'UA-112761687-1', 'auto');
-  ga('send', 'pageview');
-</script>
-<!-- End Google Analytics -->
-@RenderSection("Scripts", required: false)
+            if (d.readyState == 'complete') {
+                l();
+            } else {
+                if (w.attachEvent) {
+                    w.attachEvent('onload', l);
+                } else {
+                    w.addEventListener('load', l, false);
+                }
+            }
+        })();
+    </script>
+    <!-- {/literal} END JIVOSITE CODE -->
+    <environment include="Production">
+        @await Html.PartialAsync("_MetricsPartial")
+    </environment>
+    @RenderSection("Scripts", required: false)
 </body>
 <!-- end::Body -->
 </html>
