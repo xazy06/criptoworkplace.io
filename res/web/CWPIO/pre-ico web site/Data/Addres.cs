@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace pre_ico_web_site.Data
 {
-    public class Addresses
+    public class Addres
     {
         public string Address { get; set; }
         public string Exchanger { get; set; }

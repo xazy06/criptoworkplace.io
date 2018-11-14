@@ -164,7 +164,7 @@ namespace pre_ico_web_site
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ApplicationDbContext dbContext, ILogger<Startup> logger)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ApplicationDbContext dbContext, DataProtectionDbContext dpContext, ILogger<Startup> logger)
         {
             //logger?.LogDebug($"Config DB: {(Configuration as IConfigurationRoot).Providers.Select(p => { p.TryGet("ConnectionStrings:CWPConnection") ? })}")
             app.UseRequestLocalization();
@@ -206,6 +206,7 @@ namespace pre_ico_web_site
             app.UseResponseCompression();
 
             dbContext.Database.Migrate();
+            dpContext.Database.Migrate();
         }
     }
 }

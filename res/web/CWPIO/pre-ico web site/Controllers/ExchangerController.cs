@@ -131,7 +131,7 @@ namespace pre_ico_web_site.Controllers
 
             var (address, pk) = _contract.NewAddress();
             var exchanger = _crypto.Encrypt(pk.StringToByteArray()).ByteArrayToString();
-            await _dbContext.Addresses.AddAsync(new Addresses { Address = address, Exchanger = exchanger });
+            await _dbContext.Addresses.AddAsync(new Addres { Address = address, Exchanger = exchanger });
             user.TempAddress = address;
             await _dbContext.SaveChangesAsync();
 

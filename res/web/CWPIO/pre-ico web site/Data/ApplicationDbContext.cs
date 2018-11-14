@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using pre_ico_web_site.Models;
-using pre_ico_web_site.Data;
 using Microsoft.Extensions.Logging;
 
 namespace pre_ico_web_site.Data
@@ -103,11 +97,11 @@ namespace pre_ico_web_site.Data
 
             builder.Entity<BountyUserCampaing>(b =>
             {
-                b.ToTable("user_campaing","bounty");
+                b.ToTable("user_campaing", "bounty");
 
                 b.HasKey(x => new { x.UserId, x.BountyCampaingId });
                 b.Property(x => x.IsDeleted);
-                b.Property(x=> x.DateCreated).IsRequired(true).HasDefaultValueSql("now()");
+                b.Property(x => x.DateCreated).IsRequired(true).HasDefaultValueSql("now()");
                 b.Property(x => x.TotalItemCount).IsRequired(true).HasDefaultValue(0);
                 b.Property(x => x.TotalCoinEarned).IsRequired(true).HasDefaultValue(0m);
 
@@ -123,7 +117,7 @@ namespace pre_ico_web_site.Data
                     .IsRequired(true)
                     .OnDelete(DeleteBehavior.Restrict);
 
-                b.HasOne(x=> x.CreatedByUser)
+                b.HasOne(x => x.CreatedByUser)
                     .WithMany()
                     .HasForeignKey(x => x.CreatedByUserId)
                     .IsRequired(true)
@@ -142,7 +136,7 @@ namespace pre_ico_web_site.Data
                 b.Property(x => x.IsPrivate);
 
 
-                b.HasOne(x=> x.BountyCampaingActivity)
+                b.HasOne(x => x.BountyCampaingActivity)
                     .WithMany()
                     .HasForeignKey(c => c.BountyCampaingActivityId)
                     .IsRequired(true)
@@ -290,10 +284,29 @@ namespace pre_ico_web_site.Data
                     .OnDelete(DeleteBehavior.Restrict);
             });
 
-            builder.Entity<Addresses>(b => {
+            builder.Entity<Addres>(b =>
+            {
                 b.ToTable("addresses", "exchange");
 
                 b.HasKey(x => x.Address);
+            });
+
+            builder.Entity<Notification>(b =>
+            {
+                b.ToTable("notifications");
+
+                b.HasKey(x => x.Id);
+                b.Property(x => x.Id).ValueGeneratedOnAdd();
+                b.Property(x => x.DateCreated).IsRequired(true).HasDefaultValueSql("now()");
+                b.Property(x => x.DateReaded).IsRequired(false);
+                b.Property(x => x.Text).HasMaxLength(250).IsRequired(true);
+                b.Property(x => x.Type).IsRequired(true);
+
+                b.HasOne(x => x.ToUser)
+                    .WithMany(x => x.Notifications)
+                    .HasForeignKey(x => x.ToUserId)
+                    .IsRequired(true)
+                    .OnDelete(DeleteBehavior.Restrict);
             });
 
             foreach (var entity in builder.Model.GetEntityTypes())
@@ -331,7 +344,9 @@ namespace pre_ico_web_site.Data
         public DbSet<BountyCampaingAcceptedTask> BountyCampaingAcceptedTasks { get; set; }
         public DbSet<BountyCampaingTaskAssignment> BountyCampaingTaskAssignments { get; set; }
         public DbSet<BountyFavoriteUser> BountyFavoriteUsers { get; set; }
-        public DbSet<Addresses> Addresses { get; set; }
         public DbSet<ExchangeStatus> ExchangeStatuses { get; set; }
+        public DbSet<Addres> Addresses { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
+
     }
 }
