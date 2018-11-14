@@ -180,25 +180,23 @@ namespace pre_ico_web_site.Controllers
             {
                 return BadRequest(new { error = "Not set temp address" });
             }
-
-            if (_dbContext.Set<ExchangeStatus>().Any(s => s.StartTx == model.Tx))
+            var item = _dbContext.ExchangeStatuses.FirstOrDefault(s => s.StartTx == model.Tx);
+            if (item == null)
             {
-                return Ok();
+                var rate = await GetRateAsync(model.Count);
+                item = new ExchangeStatus
+                {
+                    StartTx = model.Tx,
+                    CurrentTx = model.Tx,
+                    CurrentStep = 0,
+                    Rate = rate.rate,
+                    CreatedByUser = user,
+                    EthAmount = rate.amount.ToString(),
+                    TokenCount = model.Count
+                };
+                await _dbContext.AddAsync(item);
+                await _dbContext.SaveChangesAsync();
             }
-
-            var rate = await GetRateAsync(model.Count);
-
-            await _dbContext.AddAsync(new ExchangeStatus
-            {
-                StartTx = model.Tx,
-                CurrentTx = model.Tx,
-                CurrentStep = 0,
-                Rate = rate.rate,
-                CreatedByUser = user,
-                EthAmount = rate.amount.ToString(),
-                TokenCount = model.Count
-            });
-            await _dbContext.SaveChangesAsync();
 
             //if (string.IsNullOrEmpty(user.ExchangerContract))
             //{
@@ -229,7 +227,7 @@ namespace pre_ico_web_site.Controllers
             //    await _dbContext.SaveChangesAsync();
             //}
 
-            return Ok();
+            return Ok(item.Id);
         }
 
         [HttpPost("whiteList")]
@@ -265,6 +263,33 @@ namespace pre_ico_web_site.Controllers
 
             var (status, transaction) = await _contract.CheckStatusAsync(address, res ? fromBlockInt : -1);
             return Ok(new { Status = status, Transaction = transaction, TimeRemaining = 999 });
+        }
+
+        [HttpGet("purchasestatus/{id}")]
+        public async Task<IActionResult> PurchaseStatus([FromRoute]string id)
+        {
+            var item = await _dbContext.ExchangeStatuses.FindAsync(id);
+            if (item == null)
+            {
+                return NotFound();
+            }
+
+            var result = new[]{
+                new ExchangeStatusModel(),
+                new ExchangeStatusModel(),
+                new ExchangeStatusModel()
+            };
+
+            for (int i = 0; i < item.CurrentStep - 1; i++)
+            {
+                result[i].Name = "Complete";
+                result[i].Description = "Complete";
+            }
+
+            var step = (item.CurrentStep - 1 < 0 ? 0 : item.CurrentStep - 1);
+            result[step].Name = item.IsFailed ? "Failed" : "In Progress";
+            result[step].Description = item.IsFailed ? "Failed" : "In Progress";
+            return Ok();
         }
 
         //[HttpGet("refund")]

@@ -332,5 +332,6 @@ namespace pre_ico_web_site.Data
         public DbSet<BountyCampaingTaskAssignment> BountyCampaingTaskAssignments { get; set; }
         public DbSet<BountyFavoriteUser> BountyFavoriteUsers { get; set; }
         public DbSet<Addresses> Addresses { get; set; }
+        public DbSet<ExchangeStatus> ExchangeStatuses { get; set; }
     }
 }
