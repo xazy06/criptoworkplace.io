@@ -287,9 +287,9 @@ namespace pre_ico_web_site.Controllers
             }
 
             var step = (item.CurrentStep - 1 < 0 ? 0 : item.CurrentStep - 1);
-            result[step].Name = item.IsFailed ? "Failed" : "In Progress";
+            result[step].Name = item.CurrentStep == 3 ? (item.IsEnded ? "Complete" : (item.IsFailed ? "Failed" : "In Progress")) : ( item.IsFailed ? "Failed" : "In Progress");
             result[step].Description = item.IsFailed ? "Failed" : "In Progress";
-            return Ok();
+            return Ok(result);
         }
 
         //[HttpGet("refund")]
