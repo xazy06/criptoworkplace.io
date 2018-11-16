@@ -10,6 +10,24 @@
     "team": "Team",
     "whitepaper": "white paper"
   },
+  "hero_h": "Micro-PC Powered by Linux with Built-in CryptoStorage",
+  "read_wp":"Read White Paper",
+  "ceo_explains":"CEO explains",
+  "raised_ocr":"Raised on closed round",
+  "soft_cap":"Soft cap",
+  "t_raised":"Total raised",
+  "hard_cap":"Hard cap",
+  "buy_cwtt":"BUY CWT-TOKEN",
+  "video_instr":"Video instruction",
+  "40per_pub":"40% Public Presale Discount. ",
+  "time_left":"Time left till price rise:",
+  "timer": {
+    "day": "day",
+    "days": "days",
+    "hour": "hour",
+    "min": "min"
+  },
+  
   "cyber": "Micro-PC Powered",
   "eco":"by Linux with Built-in",
   "crypto":"CryptoStorage",
@@ -18,12 +36,7 @@
   "problem": "Problem",
   "solution": "Solution",
   "key_features": "Key Features",
-  "timer": {
-    "day": "day",
-    "days": "days",
-    "hour": "hour",
-    "min": "min"
-  },
+
   "members": {
     "yoji": "",
     "gladkov": "",
