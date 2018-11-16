@@ -14,6 +14,7 @@
   "read_wp":"Read White Paper",
   "ceo_explains":"CEO explains",
   "raised_ocr":"Raised on closed round",
+  "raised_ocr_s":"raised on closed round",
   "soft_cap":"Soft cap",
   "t_raised":"Total raised",
   "hard_cap":"Hard cap",
@@ -46,6 +47,16 @@
   "wifi_lte":"WI-FI &amp; LTE",
   "eink_dis":"E-Ink Display",
   "sec_mess":"Secure Messaging",
+  "token_d": "Token Distribution",
+  "presale":"Presale",
+  "sale":"Sale",
+  "discount":"discount",
+  "cwtp_raised":"CWT-P raised",
+  "p_discount":"Presale discount",
+  "why_b_t_now":"Why Buy Tokens Now?",
+  "lim_i_o_t":"Limited issue of tokens",
+  "we_acc":"We accept",
+  "and_other":"and other.",
   
   "cyber": "Micro-PC Powered",
   "eco":"by Linux with Built-in",
@@ -81,6 +92,5 @@
   "mission":"Our mission is to design the safest innovative devices and systems to protect personal data and the client’s finances all around the World.",
   "pre_sale":"Pre-sale",
   "pre_sale_text":"Users who have purchased the CWT tokens, receive discounts whose size will decrease with increasing amounts attracted as follows",
-  "discount":"discount",
   "roadmap":"roadmap"
 }
