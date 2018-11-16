@@ -944,6 +944,7 @@ var Controller = function () {
 				
 				try{
 					$('#curr-list').trigger('focusIn');
+					ViewModel.actions.closeConfirm();
 				}catch (e){}
 			}
 		}

@@ -12,8 +12,8 @@
 	<div class="b-confirm">
 		<div data-bind="text:obs.confirmText" class="b-confirm_body"></div>
 		<div class="b-confirm_footer">
-			<button class="btn" data-bind="click:function(){obs.confirmCallback()();}" data-i18n="lk.ok">Ok</button>
-			<button class="btn" data-bind="click:actions.closeConfirm" data-i18n="lk.cancel">Cancel</button>
+			<button class="btn b-confirm_footer_btn btn-ok btn-info m-btn--square" data-bind="click:function(){obs.confirmCallback()();}" data-i18n="lk.ok">Ok</button>
+			<button class="btn b-confirm_footer_btn btn-cancel btn-default m-btn--square" data-bind="click:actions.closeConfirm" data-i18n="lk.cancel">Cancel</button>
 		</div>
 	</div>
 </div>
@@ -163,7 +163,7 @@
 	<div class="currency-current-right">
 		<h5 class="m--font-primary m--visible-desktop m--visible-tablet">
 			<span class="s-icon s-mr_10" data-bind="text: (obs.currentCoin.name() + ' ' + obs.currentCoin.symbol())"></span>
-			<a data-bind="click:actions.offGate"
+			<a data-bind="click:actions.offGateInit"
 			   href="javascript: void(0)"
 			   data-toggle="tooltip"
 			   title="cancel purchase"
