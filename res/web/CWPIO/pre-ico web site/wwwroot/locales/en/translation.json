@@ -37,6 +37,15 @@
   "sec_wal_t":"Hardware non - breakable storage was added for transaction signing to secure crypto - wallets private keys.",
   "sec_d_app":"Secure D-APPs",
   "sec_d_app_t":"Applications can be installed on the device only through the D-APP Store on decentralized Web-portal. It allows eliminating a possibility to install a harmful program and to secure data on the device.",
+  "specifications":"Specifications",
+  "odisplay":"OLED Display",
+  "qc_cpu":"Quad-Core CPU",
+  "4gb32gb":"4GB RAM &amp; 32GB FLASH",
+  "usbhdmi":"USB &amp; HDMI",
+  "biometric":"Biometric",
+  "wifi_lte":"WI-FI &amp; LTE",
+  "eink_dis":"E-Ink Display",
+  "sec_mess":"Secure Messaging",
   
   "cyber": "Micro-PC Powered",
   "eco":"by Linux with Built-in",
@@ -73,6 +82,5 @@
   "pre_sale":"Pre-sale",
   "pre_sale_text":"Users who have purchased the CWT tokens, receive discounts whose size will decrease with increasing amounts attracted as follows",
   "discount":"discount",
-  "roadmap":"roadmap",
-  "specifications":"Specifications"
+  "roadmap":"roadmap"
 }
