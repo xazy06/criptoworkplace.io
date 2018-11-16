@@ -1,18 +1,21 @@
-<select data-bind="value: obs.mSelectedC" id="curr-list" class="form-control m--visible-mobile b-m-c-input">
-	<option value="-1">Select currency</option>
-	<!-- ko foreach: currencies -->
-	<option data-bind="attr:{'selected': ($root.obs.currentCoin.symbol() === $data.symbol)},value:$data, disable:($data.status === 'unavailable'), style:{'background-image':'url('+$data.imageSmall+')'}">
+<div class=" m--visible-mobile s-pos_r">
+	<select data-bind="value: obs.mSelectedC" id="curr-list" class="form-control b-m-c-input">
+		<option value="-1">Select currency</option>
+		<!-- ko foreach: currencies -->
+		<option data-bind="attr:{'selected': ($root.obs.currentCoin.symbol() === $data.symbol)},value:$data, disable:($data.status === 'unavailable'), style:{'background-image':'url('+$data.imageSmall+')'}">
 		
 			<strong class="s-icon s-fw_600" data-bind="text: $data.symbol"></strong>
 			<!--ko text: $data.symbol--><!--/ko--> (<!--ko text: $data.name--><!--/ko-->)
 
 			<!-- ko if: ($data.status === 'unavailable')-->
-			<i>(unavailable)</i>
+			<i data-i18n="lk.unavail">(unavailable)</i>
 			<!--/ko-->
-	</option>
-	<!-- /ko -->
-</select>
-
+		</option>
+		<!-- /ko -->
+	</select>
+	<i class="fa fa-angle-down s-angle" style=""></i>
+	<i class="la la-search s-search" style=""></i>
+</div>
 <table class="m--visible-tablet-table m--visible-desktop-table table table-hover table-sm t-coins">
 	<tbody>
 	<!-- ko foreach: currencies -->
@@ -27,12 +30,13 @@
 			<!--ko text: $data.name--><!--/ko-->
 
 			<!-- ko if: ($data.status === 'unavailable')-->
-			<i>(unavailable)</i>
+			<i data-i18n="lk.unavail">(unavailable)</i>
 			<!--/ko-->
 		</td>
 		<!-- ko ifnot: ($data.status === 'unavailable')-->
 		<td class="s-ta_r">
-			<button data-bind="disable:$data.status === 'unavailable', click:$root.actions.initGate"
+			<button  data-i18n="lk.purch" 
+			         data-bind="disable:$data.status === 'unavailable', click:$root.actions.initGate"
 			        class="btn btn-sm btn-outline-focus m-btn--square btn-outline-brand m-btn--outline-2x m-btn m-loader--primary m-loader--right" type="button">
 				purchase
 			</button>

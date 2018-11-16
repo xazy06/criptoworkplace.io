@@ -246,6 +246,7 @@ a.s-dashed-link:hover {
 	border-radius: 0;
 	padding-left: 0;
 	background: #fff !important;
+
 }
 
 @media (min-width: 768px){
@@ -253,3 +254,202 @@ a.s-dashed-link:hover {
 		display: block!important;
 	}
 }
+
+.s-pos_r {
+	position: relative;
+}
+
+.b-confirm-wrapper{
+	display:none;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	background-color: rgba(0,0,0,0.5);
+	z-index: 999;
+	/*opacity: 0;*/
+}
+
+.b-confirm {
+	background-color: #FFF;
+	padding: 50px 50px 130px 50px;
+	margin: auto;
+	-webkit-transform: translateY(-50%) scale(0.8);
+	-ms-transform: translateY(-50%) scale(0.8);
+	transform: translateY(-50%) scale(0.8);
+	position: relative;
+	top: 50%;
+	z-index: 99999;
+	box-shadow: 0px 30px 30px rgba(0,0,0,0.12);
+	/*opacity: 0;*/
+}
+
+.b-confirm_body {
+	
+}
+
+.b-confirm_footer {
+
+}
+
+@media (max-width: 768px){
+	body.black {
+		background-color: #000;
+	}
+
+	.m-brand {
+		background: #000;
+	}
+
+	.alert-brand:not(.m-alert--outline) {
+		background: -webkit-linear-gradient(to right, #00dbde, #fc00ff);
+		background: linear-gradient(to right, #003f40, #8600ff);
+		color: #fff;
+	}
+
+	.b-logo {
+		display: none;
+	}
+	
+	.b-logo-black {
+		display:inline-block !important;
+	}
+
+	.m-portlet--dark {
+		background-color:#000;
+		box-shadow: none;
+	}
+	
+	.m-portlet--nopadd .m-portlet__body {
+		padding: 2.2rem 0;
+	}
+
+	.m-portlet.m-portlet--space.m-portlet--nopadd {
+		padding: 2.2rem 0;
+	}
+	
+	.b-exchanger-nav {
+		position: fixed;
+		z-index: 10;
+		bottom: -20px;
+		left: 0px;
+		right: 0px;
+		background-color: rgb(0, 0, 0);
+	}
+
+	.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+		background-color: rgba(90, 20, 192, 0.48);
+	}
+
+	.nav-pills .nav-link {
+		padding: 1rem 1rem;
+		border-radius: 0;
+	}
+	
+	.b-m-c-input {
+		background: #000 !important;
+	}
+	
+	.form-control {
+		background: #000 !important;
+	}
+	
+	.control-xxl {
+		text-align: center;
+		font-size: 40px;
+		line-height: 12px;
+		position: relative;
+		top: -15px;
+		color: #5d5f77;
+		border-bottom:0;
+	}
+
+	.b-m-c-input {
+		width:80%;
+	}
+	.s-angle{
+
+		position: absolute;
+		right: 20%;
+		top: 7px;
+		font-size: 25px;
+		background-color: #000;
+	}
+	
+	.s-search {
+
+		position: absolute;
+		right: 0;
+		top: 10px;
+		font-size: 25px;
+	}
+
+	.m-widget25 .m-widget25__price {
+		font-size: 28px;
+	}
+
+	.m-widget25 .m-widget25__desc {
+		margin-bottom: 10px;
+		 display: inline-block; 
+	}
+	
+	.s-mb_0m {
+		margin-bottom:0 !important;
+	}
+
+	.m-portlet.m-portlet--space .m-portlet__head {
+		padding: 0;
+	}
+
+	.table td, .table th {
+		
+		 border-top: 0; 
+	}
+
+	.m-subheader {
+		margin: 5px 0 20px 0;
+	}
+	
+	.__jivoMobileButton{
+		display: none !important;
+	}
+
+	.b-exchanger-nav {
+		position: fixed;
+		z-index: 10;
+		bottom: -20px;
+		left: 0px;
+		right: 0px;
+		background-color: rgba(0, 0, 0, 0.59);
+		height: 92px;
+		background: linear-gradient(to right, #012122eb, #20003dfc);
+		
+	}
+	.nav-pills .nav-link {
+		padding: 2rem 1rem;
+		border-radius: 0;
+	}
+
+	.m-content {
+		padding-bottom:80px;
+	}
+
+	.form-control.ammount-control {
+		
+		border-bottom-width: 1px;
+		border-color:#5867dd ;
+		font-weight: 600 !important;
+	}
+
+	.purch-addr {
+		width: 100%;
+	}
+
+	.m-topbar {
+		background-color: #151515;
+	}
+
+}
+
+

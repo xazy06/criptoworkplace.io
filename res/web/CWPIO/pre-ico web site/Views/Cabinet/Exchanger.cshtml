@@ -2,10 +2,21 @@
 
 @{
 	ViewData["Title"] = "Sales Dashboard";
+	ViewData["theme"] = "#000000";
 	Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <link href="~/css/admin/exchanger/styles.css" rel="stylesheet" type="text/css"/>
 
+
+<div data-bind="css:{'s-display_bi': flags.confirmVisible}" class="b-confirm-wrapper">
+	<div class="b-confirm">
+		<div data-bind="text:obs.confirmText" class="b-confirm_body"></div>
+		<div class="b-confirm_footer">
+			<button class="btn" data-bind="click:function(){obs.confirmCallback()();}" data-i18n="lk.ok">Ok</button>
+			<button class="btn" data-bind="click:actions.closeConfirm" data-i18n="lk.cancel">Cancel</button>
+		</div>
+	</div>
+</div>
 
 <div class="m--visible-desktop m--visible-tablet">
 	@Html.Partial("Sales/_Infos")
@@ -17,9 +28,10 @@
 			<i class="la la-warning"></i>
 		</div>
 		<div class="m-alert__text">
-			<!-- ko if:obs.usersettings.ethAddress -->Your
-			<strong>whitelisted</strong>
-			<span>ETH address:</span>
+			<!-- ko if:obs.usersettings.ethAddress -->
+			<span data-i18n="lk.your">Your</span>
+			<strong data-i18n="lk.whitelisted">whitelisted</strong>
+			<span data-i18n="lk.ethaddr">ETH address:</span>
 			<br/>
 			
 				<a style="word-break: break-all; font-size: 11px;color:#fff" data-bind="text:obs.usersettings.ethAddress, attr:{'href':('https://etherscan.io/address/'+ obs.usersettings.ethAddress())}"
@@ -34,24 +46,48 @@
 </div>
 
 
-<div class="m--visible-mobile">
+<div class="m--visible-mobile b-exchanger-nav">
+@*	<div style="width: 65px; height: 65px; background-color: #000000; border-radius: 50%; position: absolute; left: 12px; bottom: 40px; text-align: center; color: #36a3f782; font-size: 25px; padding: 20px 0; line-height: 25px; /* box-shadow: -3px 1px 38px 0 rgb(54, 163, 247); *//* background: linear-gradient(to right, #232323, #101010); */opacity: 1;">*@
+@*		<i class="fa fa-bitcoin" style="font-size: 25px;">*@
+@*		</i>*@
+@*	</div>*@
+@*	<div style="width: 65px; height: 65px; background-color: #000000; border-radius: 50%; position: absolute; left: 104px; bottom: 40px; text-align: center; color: #5d5f77; font-size: 25px; padding: 20px 0; line-height: 25px; box-shadow: 0 19px 38px 0 rgba(34, 36, 43, .3);">*@
+@*		<i class="fa fa-exchange" style="font-size: 25px;">*@
+@*		</i>*@
+@*	</div>*@
+@*	<div style="width: 65px; height: 65px; background-color: #000000; border-radius: 50%; position: absolute; left: 194px; bottom: 40px; text-align: center; color: #5d5f77; font-size: 25px; padding: 20px 0; line-height: 25px; box-shadow: 0 19px 38px 0 rgba(34, 36, 43, .3);">*@
+@*		<i class="fa fa-send" style="font-size: 25px;">*@
+@*		</i>*@
+@*	</div>*@
 	<ul class="nav nav-pills nav-fill" role="tablist">
 		<li class="nav-item">
-			<a class="nav-link active" data-toggle="tab" href="#tab-exchanger">Exchanger</a>
+			<a class="nav-link active" data-i18n="lk.exchanger" data-toggle="tab" href="#tab-exchanger">Exchanger</a>
 		</li>
 		<li class="nav-item">
-			<a id="show-info" class="nav-link" data-toggle="tab" href="#tab-info">Balance</a>
+			<a id="show-info" class="nav-link" data-i18n="lk.balance" data-toggle="tab" href="#tab-info">Balance</a>
+		</li>
+		<li class="nav-item">
+			<a data-toggle="tab" href="#tab-info" data-bind="click:actions.confirmDidTransactionMob"
+			   class="nav-link"
+			   data-i18n="lk.ididsend">
+				I did send
+			</a>
+		</li>
+		<li class="nav-item">
+			<a onclick="jivo_api.open();" class="nav-link">
+				<i style="font-size: 2rem;" class="fa fa-3x fa-comments"></i>
+			</a>
 		</li>
 	</ul>
 </div>
 
 <div class="row tab-content">
 <div class="col-md-7 tab-pane active" id="tab-exchanger">
-<div class="m-portlet">
-<div class="m-portlet__head">
+<div class="m-portlet m-portlet--dark m-portlet--nopadd">
+<div class="m-portlet__head m--visible-desktop-table  m--visible-tablet-table">
 	<div class="m-portlet__head-caption">
 		<div class="m-portlet__head-title m--visible-desktop-table m--visible-tablet-table">
-			<h3 class="m-portlet__head-text">
+			<h3 data-i18n="lk.choose_h" class="m-portlet__head-text">
 				Choose currency to purchase CWT-P
 			</h3>
 		</div>
@@ -87,7 +123,8 @@
 <div class="*s-mb_40i row">
 <div data-bind="css:{'col-md-5 col-sm-12': flags.gateOperating, 'col-md-12': (flags.gateOperating() === false)}" class="b-currencies-wrapper">
 
-	<div data-bind="css:{'s-display_bi': flags.emptySearchRequest}" class="s-display_n b-empty-search--coins">
+	<div data-bind="css:{'s-display_bi': flags.emptySearchRequest}" data-i18n="lk.empty_c_list"  
+	     class="s-display_n b-empty-search--coins">
 		There is no currencies you are search
 	</div>
 
@@ -105,7 +142,7 @@
 <div data-bind="css:{'slide-up': flags.slideUpLimits, 'slide-down': flags.slideDownLimits}" class="currency-current-wrapper clearfix">
 	<h5 class="m--font-primary m--visible-mobile">
 		<span class="s-icon s-mr_10" data-bind="text: (obs.currentCoin.name() + ' ' + obs.currentCoin.symbol())"></span>
-		<a data-bind="click:actions.offGate"
+		<a data-bind="click:actions.offGateInit"
 		   href="javascript: void(0)"
 		   data-toggle="tooltip"
 		   title="cancel purchase"
@@ -119,7 +156,7 @@
 			<img width="100" data-bind="attr:{'src':obs.currentCoin.image}"/>
 		</div>
 		<div class="s-mb_10 m--visible-mobile m--visible-tablet">
-			<img width="60" data-bind="attr:{'src':obs.currentCoin.image}"/>
+			<img width="80" style="opacity: .5;" data-bind="attr:{'src':obs.currentCoin.image}"/>
 		</div>
 	</div>
 
@@ -135,16 +172,16 @@
 			</a>
 		</h5>
 		<div class="m--visible-desktop" style="margin-bottom: 5px">
-			<strong data-bind="text: obs.market.limit"></strong> limit
+			<strong data-bind="text: obs.market.limit"></strong>&nbsp;<span data-i18n="lk.limit">limit</span>
 		</div>
 		<div style="margin-bottom: 5px">
-			<strong data-bind="text: obs.market.maxLimit"></strong> maxLimit
+			<strong data-bind="text: obs.market.maxLimit"></strong>&nbsp;<span data-i18n="lk.max_limit">maxLimit</span>
 		</div>
 		<div style="margin-bottom: 5px">
-			<strong data-bind="text: obs.market.minimum"></strong> minimum
+			<strong data-bind="text: obs.market.minimum"></strong>&nbsp;<span data-i18n="lk.minimum">minimum</span>
 		</div>
 		<div>
-			<strong data-bind="text: obs.market.rate"></strong> rate
+			<strong data-bind="text: obs.market.rate"></strong>&nbsp;<span data-i18n="lk.rate">rate</span>
 		</div>
 	</div>
 </div>
@@ -173,7 +210,7 @@
 			<div class="input-group-append">
 				<button data-bind="disable:(flags.lockFill() || flags.whiteListAddressProcessing()), click:actions.getndFillAddressFromMetamask"
 				        class="btn  btn-primary" type="button">
-					Fill from MetaMask
+					<span data-i18n="lk.fill_f_mm">Fill from MetaMask</span>
 					<img height="16" style="margin-left: 5px; vertical-align: top;" src="~/images/metamask.png"/>
 				</button>
 			</div>
@@ -198,15 +235,20 @@
 <!-- ko if:flags.isFixedAmmountMode -->
 
 <div data-bind="css:{'s-display_bi': (flags.expiredOrder() && !flags.userDidTransaction())}"
-     class="s-display_n m-alert m-alert m-alert--square alert alert-danger alert-dismissible fade show" role="alert">
-	<p>Ths Order is expired, do not deposit any currency to address below!</p>
-	<a data-bind="click:actions.continueExpiredOrder" class="btn btn-info btn-sm m-btn--square" href="javascript: void(0)">Create new order</a>
+     class="s-display_n m-alert m-alert--square alert alert-brand m-alert--air alert-dismissible fade show" role="alert">
+	<p data-i18n="lk.expired_order">Ths Order is expired, do not deposit any currency to address below!</p>
+	<a data-i18n="lk.create_order" data-bind="click:actions.continueExpiredOrder" 
+	   class="btn btn-info btn-sm m-btn--square" 
+	   href="javascript: void(0)">Create new order</a>
 </div>
 
 <div data-bind="css:{'s-display_bi': (flags.expiredOrder() && flags.userDidTransaction())}"
-     class="s-display_n m-alert m-alert m-alert--square alert alert-info alert-dismissible fade show" role="alert">
-	<p>Your transaction in progress, current order is expired, create new order for more CWT-P and do not deposit any currency to address below</p>
-	<a data-bind="click:actions.continueExpiredOrder" class="btn btn-info btn-sm m-btn--square" href="javascript: void(0)">Create new order</a>
+     class="s-display_n m-alert m-alert--square alert m-alert--air alert-brand alert-dismissible fade show" role="alert">
+	<p data-i18n="lk.expired_order_did_transaction">
+		Your transaction in progress, current order is expired, create new order for more CWT-P and do not deposit any currency to address below
+	</p>
+	<a data-i18n="lk.create_order" data-bind="click:actions.continueExpiredOrder" 
+	   class="btn btn-info btn-sm m-btn--square" href="javascript: void(0)">Create new order</a>
 </div>
 
 @*					<h6 class="m--font-primary">*@
@@ -219,7 +261,9 @@
 <div data-bind="css:{'s-display_bi': (obs.currentCoin.symbol() !== 'ETH')}" class="s-display_n s-mb_20">
 	<div class="input-group">
 		<div class="input-group-prepend b-receive-before s-c_777">
-			Return address (<!-- ko text: obs.currentCoin.symbol --><!--/ko-->)
+			<span class="m--visible-desktop-inline m--visible-tablet-inline s-mr_5" 
+			      data-i18n="lk.return_address">Return address</span>
+			<span class="m--visible-desktop-inline m--visible-tablet-inline">(<!-- ko text: obs.currentCoin.symbol --><!--/ko-->)</span>
 
 			<div data-bind="css:{'m-loader m-loader--primary': flags.returnAddressValidating}"
 			     style="width: 30px; display: inline-block;">
@@ -229,15 +273,16 @@
 		<input placeholder="This field is optional" data-bind="textInput: obs.returnAddress, disable:flags.returnAddressValidating" type="text"
 		       class="m--visible-desktop m--visible-tablet form-control ammount-control"/>
 
-		<input placeholder="This field is optional" data-bind="textInput: obs.returnAddress, disable:flags.returnAddressValidating" type="text"
+		<input placeholder="Return address (optional)" data-bind="textInput: obs.returnAddress, disable:flags.returnAddressValidating" type="text"
 		       class="m--visible-mobile form-control ammount-control" style="width: 100%;"/>
 
 	</div>
 </div>
 
 <div data-bind="css:{'s-display_bi': (!flags.isValidReturnAddress())}"
-     class="s-display_n m-alert alert alert-danger alert-dismissible fade show" role="alert">
-	This is not a valid <strong><!-- ko text: obs.currentCoin.symbol --><!--/ko--></strong> address
+     class="s-display_n m-alert alert m-alert--square alert-danger alert-dismissible fade show" style="z-index: 1" role="alert">
+	<span data-i18n="lk.invalid">This is not a valid</span> <strong><!-- ko text: obs.currentCoin.symbol --><!--/ko--></strong> 
+	<span data-i18n="lk.address">address</span>
 </div>
 
 @*					<h6 class="m--font-primary">*@
@@ -249,15 +294,17 @@
 
 <div class="s-mb_20">
 	<div class="input-group">
-		<div class="input-group-prepend  b-receive-before" style="">
+		<div data-i18n="lk.wanna_receive" class="input-group-prepend  b-receive-before">
 			I want to receive
 		</div>
-		<input autofocus="" data-bind="textInput: obs.cwtCount, disable:flags.depositAddrGetting" type="number" class="form-control ammount-control">
+		<input autofocus="" data-bind="textInput: obs.cwtCount, disable:flags.depositAddrGetting" type="number" 
+		       class="form-control ammount-control control-xxl">
 		<div class="input-group-append b-receive-after">CWT-P</div>
 	</div>
 </div>
 
-<div data-bind="css:{'s-display_bi': flags.minCont}" class="s-display_n m-alert m-alert--square alert alert-info alert-dismissible fade show" role="alert">
+<div data-bind="css:{'s-display_bi': flags.minCont}"  data-i18n="lk.min_contr"  
+     class="s-display_n m-alert m-alert--square m-alert--air alert alert-brand alert-dismissible fade show" role="alert">
 	Minimum contribution is 500 CWT-P
 </div>
 <!--/ko-->
@@ -275,19 +322,19 @@
 	<div class="s-mb_10">
 		<!-- ko if: flags.isFixedAmmountMode -->
 		<p>
-			Please send <a class="s-dashed-link" href="javascript:void(0)">
+			<span data-i18n="lk.pl_send">Please send</span>&nbsp;<a class="s-dashed-link" href="javascript:void(0)">
 				<strong data-bind="click:actions.notify.bind(null, 'copied!')"
 				        data-clipboard-target="#deposit-ammount" id="deposit-ammount">
 					<!-- ko text: obs.fixedAmmount.depositAmount --><!--/ko-->
 				</strong>
 			</a>
 			<strong><!-- ko text: obs.currentCoin.symbol --><!--/ko--></strong>
-			(includs fee: <!-- ko ifnot: obs.currentCoin.symbol() === 'ETH' -->0.0022<!--/ko-->
-			<!-- ko if: obs.currentCoin.symbol() === 'ETH' -->0<!--/ko--> ETH) to the address below:
+			(<span data-i18n="lk.inc_fee">includs fee</span>: <!-- ko ifnot: obs.currentCoin.symbol() === 'ETH' -->0.0022<!--/ko-->
+			<!-- ko if: obs.currentCoin.symbol() === 'ETH' -->0<!--/ko--> ETH) <span data-i18n="lk.to_addr_bel">to the address below</span>:
 		</p>
 		<!-- ko if: (obs.currentCoin.symbol() !== 'ETH') -->
 		<p>
-			This order will expair on
+			<span data-i18n="lk.order_exp_on">This order will expair on</span>
 			<strong>
 				<!-- ko text: (new Date(obs.fixedAmmount.expiration()).toLocaleString()) --><!--/ko-->
 			</strong>
@@ -296,7 +343,8 @@
 		<!-- /ko -->
 
 		<!-- ko ifnot: flags.isFixedAmmountMode -->
-		Please send your <strong><!-- ko text: obs.currentCoin.symbol --><!--/ko--></strong> to the address below:
+		<span data-i18n="lk.pl_send_y">Please send your</span>&nbsp;<strong><!-- ko text: obs.currentCoin.symbol --><!--/ko--></strong> 
+		&nbsp;<span data-i18n="lk.to_addr_bel">to the address below</span>:
 		<!-- /ko -->
 	</div>
 	<div class="s-mb_20">
@@ -305,7 +353,7 @@
 			        class="s-icon purch-addr" id="purchaseAddr"></strong>
 		</a>
 		<!-- ko ifnot: obs.depositAddress -->
-		<strong>deposit address error</strong>
+		<strong data-i18n="lk.dep_addr_error">deposit address error</strong>
 		<!--/ko-->
 		<!-- ko if: obs.depositAddress -->
 		@*		<img src="~/images/copy-ico.svg" class="btn-copy" data-bind="click:actions.notify.bind(null, 'copied!')"*@
@@ -319,13 +367,15 @@
 	</div>
 	<!--/ko-->
 	<button data-bind="click:actions.confirmDidTransaction" style="margin-top: 35px;"
-	        class="m--visible-desktop pull-right btn btn-info btn-sm m-btn--square">
+	        class="m--visible-desktop pull-right btn btn-info btn-sm m-btn--square" 
+	        data-i18n="lk.ididsend">
 		I did send
 	</button>
-	<a data-toggle="tab" href="#tab-info"  data-bind="click:actions.confirmDidTransactionMob"
-	   class="pull-right btn btn-info btn-sm m-btn--square s-full m--visible-mobile">
-		I did send
-	</a>
+@*	<a data-toggle="tab" href="#tab-info"  data-bind="click:actions.confirmDidTransactionMob"*@
+@*	   class="pull-right btn btn-info btn-sm m-btn--square s-full m--visible-mobile" *@
+@*	   data-i18n="lk.ididsend">*@
+@*		I did send*@
+@*	</a>*@
 </div>
 <!-- /ko -->
 <!-- /ko -->

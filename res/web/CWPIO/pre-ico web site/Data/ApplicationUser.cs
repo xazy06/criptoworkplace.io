@@ -32,6 +32,6 @@ namespace pre_ico_web_site.Data
         [JsonIgnore] public virtual ICollection<BountyCampaingAcceptedTask> BountyCampaingAcceptedTasks { get; set; }
         [JsonIgnore] public virtual ICollection<BountyFavoriteUser> BountyFavoriteUsers { get; set; }
 
-        
+        [JsonIgnore] public virtual ICollection<Notification> Notifications { get; set; }
     }
 }

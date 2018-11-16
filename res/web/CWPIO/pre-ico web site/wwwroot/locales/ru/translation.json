@@ -52,8 +52,5 @@
   "pre_sale_text":"Users who have purchased the CWT tokens, receive discounts whose size will decrease with increasing amounts attracted as follows",
   "discount":"discount",
   "roadmap":"roadmap",
-  "specifications":"Specifications",
-  "lk":{
-    "select_lang": "Select your language"
-  }
+  "specifications":"Specifications"
 }
