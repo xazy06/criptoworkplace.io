@@ -49,7 +49,9 @@
     "more":"more",
     "Address": "address",
     "txid":"Txid",
-    "no_transactions":"no transactions"
+    "no_transactions":"no transactions",
+    "ok":"Ok",
+    "cancel":"Cancel"
     
   }
 }

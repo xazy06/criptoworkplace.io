@@ -544,6 +544,8 @@ var Controller = function () {
 		currenciesMap: null,
 		
 		obs:{
+			confirmText: ko.observable(''),
+			confirmCallback: ko.observable(''),
 			transactions: ko.observableArray([]),
 			whiteListAddressField: ko.observable(''),
 			withdrawalAddress: ko.observable(''),
@@ -604,6 +606,7 @@ var Controller = function () {
 		},
 		
 		flags:{
+			confirmVisible: ko.observable(false),
 			userDidTransaction: ko.observable(false),
 			expiredOrder: ko.observable(false),
 			returnAddressValidating: ko.observable(false),
@@ -922,6 +925,17 @@ var Controller = function () {
 				}
 				
 				self.actions.calc(ViewModel.obs.cwtCount());
+			},
+			initConfirm: function (confirmText, callback) {
+				ViewModel.obs.confirmText(confirmText);
+				ViewModel.obs.confirmCallback(callback);
+				ViewModel.flags.confirmVisible(true);
+			},
+			closeConfirm: function () {
+				ViewModel.flags.confirmVisible(false);
+			},
+			offGateInit: function () {
+				ViewModel.actions.initConfirm('Cancel purchasing?', ViewModel.actions.offGate);
 			},
 			offGate: function () {
 				ViewModel.flags.gateOperating(false);
