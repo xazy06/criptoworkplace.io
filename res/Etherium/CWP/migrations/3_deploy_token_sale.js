@@ -41,8 +41,8 @@ module.exports = function (deployer, network) {
     const walletAddr = "0x0a0C2318D11807d465C6886A5A4707872fbdd82F";
     var cwpInstance = CWTPToken.at(CWTPToken.address), //CWTPToken.at("0x1ae18c56f7e0c1f466b4471a3724bb6f465838b2"),
       min = 60,
-      startTime = ~~(Date.now() / 1000) + 100 ,
-      endTime = 1542283200,
+      startTime = 1542380400,
+      endTime = 1546300800,
       tsale;
 
     deployer.chain
@@ -78,8 +78,8 @@ module.exports = function (deployer, network) {
     const walletAddr = "0x312c8cdb4520196c9000036b58296cad2579f541";
     const dappAddr = "0x7987A3Bb820736Dbf28B8a10DCA2BFa1514d33F7"
     var cwpInstance = CWTPToken.at(CWTPToken.address), //CWTPToken.at("0x1ae18c56f7e0c1f466b4471a3724bb6f465838b2"),
-      startTime = 1538395200,
-      endTime = 1542283200,
+      startTime = 1542380400,
+      endTime = 1546300800,
       tsale;
 
     deployer.chain

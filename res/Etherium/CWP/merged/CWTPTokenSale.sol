@@ -1326,7 +1326,7 @@ contract CWTPTokenSale is WhitelistedCrowdsale, MintedCrowdsale, RBACWithAdmin, 
     require(hasClosed());
     if(Ownable(token).owner() == address(this))
       transferTokenOwnership();
-    selfdestruct(msg.sender);
+    //selfdestruct(msg.sender);
   }
 
   function ForceCloseContract() onlyOwner public {

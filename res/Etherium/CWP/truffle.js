@@ -1,7 +1,7 @@
  var HDWalletProvider = require("truffle-hdwallet-provider-privkey");
 // var infura_apikey = "roht23j583p4SPym7gx6";
 
-
+console.log(process.env.CWP_PK);
 module.exports = {
   // See <http://truffleframework.com/docs/advanced/configuration>
   // to customize your Truffle configuration!
@@ -21,11 +21,10 @@ module.exports = {
       gasPrice:20000000000
     },
     main: {
-        host: "192.168.68.4",
-        port: 8545,
-        //provider: new HDWalletProvider("", "https://ethnode.cryptoworkplace.io"),
+        // host: "192.168.68.4",
+        // port: 8545,
+        provider: new HDWalletProvider("", "https://mainnet.infura.io/roht23j583p4SPym7gx6"),
         network_id: 1,
-        from: "0x00406edfc8e186e2fff7394f1a6e3796dca4e59f",
         gas: 4612388,
         gasPrice:8000000000
     }

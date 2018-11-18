@@ -7,13 +7,12 @@
     "test": "test"
   },
   "dependencies": {
-    "openzeppelin-solidity": "^1.12.0",
-    "pg": "^7.4.3",
-    "truffle-hdwallet-provider": "0.0.5",
-    "truffle-hdwallet-provider-privkey": "^0.2.0"
+    "openzeppelin-solidity": "1.12.0",
+    "pg": "7.6.1",
+    "truffle-hdwallet-provider": "0.0.5"
   },
   "devDependencies": {
-    "sol-merger": "^0.1.2"
+    "sol-merger": "0.1.2"
   },
   "scripts": {
     "merge": "sol-merger \"./contracts/*.sol\" ./merged",
