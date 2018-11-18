@@ -259,45 +259,15 @@ a.s-dashed-link:hover {
 	position: relative;
 }
 
-.b-confirm-wrapper{
-	display:none;
-	width: 100%;
-	height: 100%;
-	position: fixed;
-	left: 0px;
-	top: 0px;
-	background-color: rgba(0,0,0,0.5);
-	z-index: 999;
-	/*opacity: 0;*/
-}
-
-.b-confirm {
-	background-color: #FFF;
-	padding: 50px 50px 130px 50px;
-	margin: auto;
-	-webkit-transform: translateY(-50%) scale(0.8);
-	-ms-transform: translateY(-50%) scale(0.8);
-	transform: translateY(-50%) scale(0.8);
-	position: relative;
-	top: 50%;
-	z-index: 99999;
-	box-shadow: 0px 30px 30px rgba(0,0,0,0.12);
-	/*opacity: 0;*/
-}
-
-.b-confirm_body {
-	
-}
-
-.b-confirm_footer {
-
-}
-
 @media (max-width: 768px){
 	body.black {
 		background-color: #000;
 	}
 
+	.b-ask-text {
+		background-color: #000;
+	}
+	
 	.m-brand {
 		background: #000;
 	}
@@ -448,6 +418,22 @@ a.s-dashed-link:hover {
 
 	.m-topbar {
 		background-color: #151515;
+	}
+
+	.b-confirm {
+		background-color: #010f10;
+		color: #ccc;
+	}
+
+	.b-confirm .btn-info {
+		background-color: #310866;
+		border-color: #310866;
+	}
+
+	.b-confirm  .btn.btn-default {
+		background: #10122b;
+		border-color: #10122b;
+		color: #ccc;
 	}
 
 }

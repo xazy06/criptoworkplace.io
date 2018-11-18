@@ -53,6 +53,7 @@
     <!--end::Page Vendors -->
     <link href="~/assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
     <link href="~/assets/demo/demo9/base/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/admin/components/confirm/styles.css" rel="stylesheet" type="text/css" />
 
     <!--end::Base Styles -->
 </head>
@@ -251,7 +252,19 @@ m-aside-left--fixed m-aside-left--skin-dark m-aside--offcanvas-default">
     <i class="la la-arrow-up"></i>
 </div>
 <!-- end::Scroll Top --> <!-- begin::Quick Nav -->
+
 <!-- begin::Quick Nav -->
+
+<div data-bind="css:{'s-display_bi': flags.confirmVisible}" class="b-confirm-wrapper">
+    <div class="b-confirm">
+        <div data-bind="text:obs.confirmText" class="b-confirm_body"></div>
+        <div class="b-confirm_footer">
+            <button class="btn b-confirm_footer_btn btn-ok btn-info m-btn--square" data-bind="click:function(){obs.confirmCallback()();}" data-i18n="lk.ok">Ok</button>
+            <button class="btn b-confirm_footer_btn btn-cancel btn-default m-btn--square" data-bind="click:actions.closeConfirm" data-i18n="lk.cancel">Cancel</button>
+        </div>
+    </div>
+</div>
+
 <!--begin::Base Scripts -->
 <script src="~/assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
 <script src="~/assets/demo/demo9/base/scripts.bundle.js" type="text/javascript"></script>

@@ -8,16 +8,6 @@
 <link href="~/css/admin/exchanger/styles.css" rel="stylesheet" type="text/css"/>
 
 
-<div data-bind="css:{'s-display_bi': flags.confirmVisible}" class="b-confirm-wrapper">
-	<div class="b-confirm">
-		<div data-bind="text:obs.confirmText" class="b-confirm_body"></div>
-		<div class="b-confirm_footer">
-			<button class="btn" data-bind="click:function(){obs.confirmCallback()();}" data-i18n="lk.ok">Ok</button>
-			<button class="btn" data-bind="click:actions.closeConfirm" data-i18n="lk.cancel">Cancel</button>
-		</div>
-	</div>
-</div>
-
 <div class="m--visible-desktop m--visible-tablet">
 	@Html.Partial("Sales/_Infos")
 </div>
@@ -156,14 +146,14 @@
 			<img width="100" data-bind="attr:{'src':obs.currentCoin.image}"/>
 		</div>
 		<div class="s-mb_10 m--visible-mobile m--visible-tablet">
-			<img width="80" style="opacity: .5;" data-bind="attr:{'src':obs.currentCoin.image}"/>
+			<img width="80" style="opacity: .9;" data-bind="attr:{'src':obs.currentCoin.image}"/>
 		</div>
 	</div>
 
 	<div class="currency-current-right">
 		<h5 class="m--font-primary m--visible-desktop m--visible-tablet">
 			<span class="s-icon s-mr_10" data-bind="text: (obs.currentCoin.name() + ' ' + obs.currentCoin.symbol())"></span>
-			<a data-bind="click:actions.offGate"
+			<a data-bind="click:actions.offGateInit"
 			   href="javascript: void(0)"
 			   data-toggle="tooltip"
 			   title="cancel purchase"
