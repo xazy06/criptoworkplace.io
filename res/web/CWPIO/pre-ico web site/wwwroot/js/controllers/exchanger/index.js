@@ -606,6 +606,7 @@ var Controller = function () {
 		},
 		
 		flags:{
+			searchInited:  ko.observable(false),
 			confirmVisible: ko.observable(false),
 			userDidTransaction: ko.observable(false),
 			expiredOrder: ko.observable(false),
@@ -671,6 +672,9 @@ var Controller = function () {
 			}
 		},
 		actions:{
+			initSearchMobile: function () {
+				ViewModel.flags.searchInited(!ViewModel.flags.searchInited());
+			},
 			confirmDidTransaction: function () {
 				ViewModel.flags.userDidTransaction(true);
 				
@@ -687,8 +691,9 @@ var Controller = function () {
 			},
 			
 			getTransactions: function () {
+				ViewModel.obs.transactions([]);
 				ViewModel.flags.transactionsGetting(true);
-				//return Gate.actions.transactions();
+				
 				return self.actions.getPastEvents();
 			},
 			toggleTransactionItem: function(){
@@ -980,6 +985,8 @@ var Controller = function () {
 		if (!val || val === '-1') {
 			return;
 		}
+
+		ViewModel.flags.searchInited(false);
 		
 		ViewModel.actions.initGate.call(val);
 	});
