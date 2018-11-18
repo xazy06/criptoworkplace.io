@@ -8,16 +8,6 @@
 <link href="~/css/admin/exchanger/styles.css" rel="stylesheet" type="text/css"/>
 
 
-<div data-bind="css:{'s-display_bi': flags.confirmVisible}" class="b-confirm-wrapper">
-	<div class="b-confirm">
-		<div data-bind="text:obs.confirmText" class="b-confirm_body"></div>
-		<div class="b-confirm_footer">
-			<button class="btn b-confirm_footer_btn btn-ok btn-info m-btn--square" data-bind="click:function(){obs.confirmCallback()();}" data-i18n="lk.ok">Ok</button>
-			<button class="btn b-confirm_footer_btn btn-cancel btn-default m-btn--square" data-bind="click:actions.closeConfirm" data-i18n="lk.cancel">Cancel</button>
-		</div>
-	</div>
-</div>
-
 <div class="m--visible-desktop m--visible-tablet">
 	@Html.Partial("Sales/_Infos")
 </div>

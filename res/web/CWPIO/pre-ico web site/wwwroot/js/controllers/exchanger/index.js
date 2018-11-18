@@ -930,9 +930,11 @@ var Controller = function () {
 				ViewModel.obs.confirmText(confirmText);
 				ViewModel.obs.confirmCallback(callback);
 				ViewModel.flags.confirmVisible(true);
+				$('body').addClass('conf-opened');
 			},
 			closeConfirm: function () {
 				ViewModel.flags.confirmVisible(false);
+				$('body').removeClass('conf-opened');
 			},
 			offGateInit: function () {
 				ViewModel.actions.initConfirm('Cancel purchasing?', ViewModel.actions.offGate);
