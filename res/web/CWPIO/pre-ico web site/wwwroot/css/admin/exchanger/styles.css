@@ -264,6 +264,10 @@ a.s-dashed-link:hover {
 		background-color: #000;
 	}
 
+	.b-ask-text {
+		background-color: #000;
+	}
+	
 	.m-brand {
 		background: #000;
 	}
@@ -414,6 +418,22 @@ a.s-dashed-link:hover {
 
 	.m-topbar {
 		background-color: #151515;
+	}
+
+	.b-confirm {
+		background-color: #010f10;
+		color: #ccc;
+	}
+
+	.b-confirm .btn-info {
+		background-color: #310866;
+		border-color: #310866;
+	}
+
+	.b-confirm  .btn.btn-default {
+		background: #10122b;
+		border-color: #10122b;
+		color: #ccc;
 	}
 
 }
