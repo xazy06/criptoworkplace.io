@@ -1,0 +1,12 @@
+{
+  "name": "pre-ico web site",
+  "version": "0.0.1",
+  "description": "",
+  "license": "",
+  "dependencies": {
+    "gulp": "3.9.1",
+    "rimraf": "2.5.4",
+    "gulp-less": "3.1.0",
+    "gulp-sass": "2.3.2"
+  }
+}
