@@ -27,7 +27,7 @@ namespace pre_ico_web_site.Services
             var searched = list.Execute();
             if (searched.Files.Count == 0)
             {
-                throw new ArgumentNullException($"File {fileName} not found in google drive");
+                throw new FileNotFoundException($"File {fileName} not found in google drive");
             }
             var file = searched.Files.First();
             var getRequest = _drive.Files.Get(file.Id);
@@ -44,7 +44,7 @@ namespace pre_ico_web_site.Services
             var searched = await list.ExecuteAsync();
             if (searched.Files.Count == 0)
             {
-                throw new ArgumentNullException($"File {fileName} not found in google drive");
+                throw new FileNotFoundException($"File {fileName} not found in google drive");
             }
             var file = searched.Files.First();
             var getRequest = _drive.Files.Get(file.Id);
