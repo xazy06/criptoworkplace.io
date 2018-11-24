@@ -2868,9 +2868,12 @@ a {
       margin: 10.2em 0 0; }
   .timeline_item.offset_top_mod {
     padding-top: 2em; }
+  .timeline_item.offset_bottom_mod {
+    padding-bottom: 8.6em;  }
 
 .timeline_list {
-  margin: -1.2em 0 6.6em; }
+    margin: -1.2em 0 6.6em;
+}
 
 .timeline_list_item {
   position: relative;
