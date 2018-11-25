@@ -122,7 +122,13 @@
   "email":"email",
   "enter_email":"Enter Your E-mail",
   "th_subscr":"Thanks for subscribe",
-
+  "_crypto":"Crypto",
+  "workplace":"WorkPlace",
+  "copyr":"© 2018 All rights reserved",
+  "addr":"Czech Republic,<br>Prague Zelenohorská 499/31<br>18100 Praha 8",
+  "":"",
+  "":"",
+  "":"",
   
   "members": {
     "yoji": "",
