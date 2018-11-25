@@ -15,6 +15,14 @@ namespace pre_ico_web_site.Controllers
             _dbContext = dbContext;
         }
 
+        [HttpGet("locales/{locale}/{file}.json")]
+        public IActionResult GetTranslation([FromRoute]string locale, [FromRoute] string file)
+        {
+            var path = $"https://raw.githubusercontent.com/cryptoworkplace/translations/master/my/locales/{locale}/{file}.json";
+
+            return RedirectPermanent(path);
+        }
+
         [HttpGet("exchanger", Name = "Exchanger")]
         [HttpGet]
         public async Task<IActionResult> Exchanger()
