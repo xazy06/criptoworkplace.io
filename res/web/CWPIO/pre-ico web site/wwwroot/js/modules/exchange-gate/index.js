@@ -232,6 +232,18 @@ var Controller = (Controller || {}), Gate = function () {
 				
 			})
 		},
+		wsStatus: function (depositAddress) {
+			//TODO
+			Controller.web3CWP.eth.subscribe('pendingTransactions',function(error, result){
+				if (!error)
+					console.log(result);
+			})
+				.on("data", function(transaction){
+					console.log(transaction);
+				});
+			
+			
+		},
 		//TODO need change to WS subscribe method
 		web3Status: function (depositAddress) {
 			return $.get(Controller.api.ethStatus + depositAddress);
