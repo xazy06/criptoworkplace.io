@@ -126,12 +126,12 @@
   "workplace":"WorkPlace",
   "copyr":"© 2018 All rights reserved",
   "addr":"Czech Republic,<br>Prague Zelenohorská 499/31<br>18100 Praha 8",
-  "":"",
-  "":"",
-  "":"",
+  "our_team":"Our Team",
+  "ceo":"CEO",
+  "joji_b":"Rare type of High-edge Japanese technology specialist with wide international marketing experience.",
   
   "members": {
-    "yoji": "",
+    "yoji": "Yoji Kishi",
     "gladkov": "",
     "maslich": "",
     "enokian": "",
@@ -147,9 +147,6 @@
     "fedorovskikh": "",
     "myshinsky": "",
     "ryzhkov": ""
-  },
-  "partners":{
-    
   },
   
   "cyber": "Micro-PC Powered",
