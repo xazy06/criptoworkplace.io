@@ -533,7 +533,9 @@ var Controller = function () {
 		self.initUnloadingWindowProtocol();
 
 		self.actions.contractabi();
-				
+
+		self.ViewModel.actions.initConfirmHandlers();
+						
 		return this;
 	};
 	
@@ -934,6 +936,26 @@ var Controller = function () {
 				}
 				
 				self.actions.calc(ViewModel.obs.cwtCount());
+			},
+			initConfirmHandlers: function () {
+				
+				function keyUp(e) {
+										
+					if (ViewModel.flags.confirmVisible() === false) {
+						return;
+					}
+					
+					if (e.which === 13){
+						ViewModel.obs.confirmCallback()();		
+					}
+
+					if (e.which === 27){
+						ViewModel.actions.closeConfirm();
+					}
+				}
+				
+				$(document).on('keyup', keyUp);
+				
 			},
 			initConfirm: function (confirmText, callback) {
 				ViewModel.obs.confirmText(confirmText);
