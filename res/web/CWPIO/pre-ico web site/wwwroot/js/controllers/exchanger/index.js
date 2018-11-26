@@ -946,7 +946,11 @@ var Controller = function () {
 					}
 					
 					if (e.which === 13){
-						ViewModel.obs.confirmCallback()();		
+						try{
+						ViewModel.obs.confirmCallback()();
+						}catch (e){
+							
+						}
 					}
 
 					if (e.which === 27){
@@ -954,7 +958,7 @@ var Controller = function () {
 					}
 				}
 				
-				$(document).on('keyup', keyUp);
+				$(document).on('keyup', setTimeout.bind(null, keyUp, 0));
 				
 			},
 			initConfirm: function (confirmText, callback) {
