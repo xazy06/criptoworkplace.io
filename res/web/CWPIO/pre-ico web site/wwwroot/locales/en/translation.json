@@ -5,11 +5,16 @@
   
   "nav": {
     "about": "About CWP",
-    "vision": "Vision Outline",
     "token": "Token Distribution",
+    "vision": "Vision Outline",
     "team": "Team",
     "whitepaper": "white paper"
   },
+  
+  "t_p_": "Token presale is",
+  "live": "Live",
+  "join_t": "Join our Telegram",
+  
   "hero_h": "Micro-PC Powered by Linux with Built-in CryptoStorage",
   "read_wp":"Read White Paper",
   "ceo_explains":"CEO explains",
@@ -119,6 +124,7 @@
   "p5":"C-Alley delivers a solution to all types of Printed Circuits Boards in the high tech industry. Located in Shiyan Town, China.",
   "p6":"Three-dimensional scalable blockchain with multi-layer architecture, sharding and synchronous consensus. 100,000 on-chain transaction per second. Software & blockchain partner",
   "_subscribe":"SUBSCRIBE",
+  "subscribe":"Subscribe:",
   "email":"email",
   "enter_email":"Enter Your E-mail",
   "th_subscr":"Thanks for subscribe",

@@ -7,14 +7,14 @@
 				</div>
 			</div>
 			<div class="presale">
-				<div class="presale_title">Token presale is</div>
+				<div data-i18n="t_p_" class="presale_title">Token presale is</div>
 				<div class="presale_indicator">
-					<div class="presale_indicator_title">Live</div>
+					<div data-i18n="live" class="presale_indicator_title">Live</div>
 				</div>
 			</div>
 			<div class="header_info_in">
 				<a class="btn_join header_mod" href="https://t.me/joinchat/Fh5zlk097Vw3P78vKLWfBg" target="_blank">
-					<span class="btn_join_title">Join our Telegram</span>
+					<span data-i18n="join_t" class="btn_join_title">Join our Telegram</span>
 					<div class="btn_join_w_icon">
 						<svg class="icon icon-teleg telegram_mod accent_mod">
 							<use xlink:href="/gteam/i/sprite/sprite.svg#teleg"></use>
@@ -22,7 +22,7 @@
 					</div>
 				</a>
 				<div class="social_wrap">
-					<span class="social_wrap_title">Subscribe:</span>
+					<span data-i18n="subscribe" class="social_wrap_title">Subscribe:</span>
 					<ul class="social_list header_mod">
 						<li class="social_item header_mod hidden_mod">
 							<a class="social_link header_mod" href="https://t.me/joinchat/Fh5zlk097Vw3P78vKLWfBg" target="_blank">
@@ -85,12 +85,23 @@
 						<img class="logo_img" src="~/gteam/i/logo_white.png" alt="CWP"/>
 					</a>
 					<ul class="main_menu_list header_mod">
-						<li class="main_menu_item active_mod"><a class="main_menu_link" href="#how">About CWP</a></li>
-						<li class="main_menu_item"><a class="main_menu_link" href="#tokens">Token Distribution</a></li>
-						<li class="main_menu_item"><a class="main_menu_link" href="#roadmap">Vision Outline</a></li>
-						<li class="main_menu_item"><a class="main_menu_link" href="#team">Team</a></li>
+						<li class="main_menu_item active_mod">
+							<a data-i18n="nav.about" class="main_menu_link" href="#how">About CWP</a>
+						</li>
+						<li class="main_menu_item">
+							<a data-i18n="nav.token" class="main_menu_link" href="#tokens">Token Distribution</a>
+						</li>
+						<li class="main_menu_item">
+							<a data-i18n="nav.vision" class="main_menu_link" href="#roadmap">Vision Outline</a>
+						</li>
+						<li class="main_menu_item">
+							<a data-i18n="nav.team" class="main_menu_link" href="#team">Team</a>
+						</li>
 					</ul>
-					<a class="btn_base header_mod" href="/file/CWP_White_Paper_en.pdf" target="_blank" onclick="ga('send', 'event', 'forms', 'Whitepaper'); yaCounter50462326.reachGoal('Whitepaper'); return true;">White paper</a>
+					<a class="btn_base header_mod" href="/file/CWP_White_Paper_en.pdf"
+					   data-i18n="nav.whitepaper" 
+					   target="_blank" 
+					   onclick="ga('send', 'event', 'forms', 'Whitepaper'); yaCounter50462326.reachGoal('Whitepaper'); return true;">White paper</a>
 @*					<div class="lang_menu">*@
 @*						<div class="lang_list">*@
 @*							<a class="lang_item active_mod" href="#">*@
