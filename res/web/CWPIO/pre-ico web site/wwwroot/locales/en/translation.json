@@ -131,7 +131,18 @@
   "cvo":"CVO",
   "ceo":"CEO",
   "cto":"CTO",
+  "cfo":"CFO",
+  "cmo":"CMO",
   "s_engin":"Software Engineer",
+  "h_h_p":"Head of Hardware Production",
+  "h_mat":"Head Mathematician",
+  "s_analist":"Senior System Analyst",
+  "d_cre":"Digital Creative",
+  "ph_d_mba":"Ph.D., MBA",
+  "pr_s_amd":"Principal Member of Technical Staff at AMD",
+  "f_ceo":"FlexLab CEO",
+  "b_d_e_u":"Business Development Executive, Universa Corporation",
+  "lu_cof":"LuneCase Co-Founder",
     
   "yoji": "Yoji Kishi",
   "yoji1": "Shin-Nippon Research (Hong Kong) Co., Ltd. Vice-President",
@@ -169,20 +180,55 @@
   "enokian13": "Development of special software - for monitoring and managing network security",
   "enokian14": "Development of implemented collector agents for analyzing and collecting data on network and peripheral PC activity",
   
-  "polansky": "",
-  "kuznetsov": "",
-  "maslov": "",
-  "fedko": "",
-  "osarukhanov": "",
-  "tcytkin": "",
-  "podelko": "",
-  "sagalovitch": "",
-  "wsarukhanov": "",
-  "fedorovskikh": "",
+  "polansky": "Anton Polansky",
+  "polansky1": "Head of Hardware Production",
+  "polansky2": "Hardware Engineer",
+  "polansky3": "Embedded Software Engineer",
+  "polansky4": "Microcomputer Systems Expert",
+  "polansky5": "Development of circuit solutions, trace of printed circuit boards and development of embedded software for thermal imaging devices",
+  "polansky6": "Development of circuit design solutions, trace of printed circuit boards for low - level devices of the Quinta music recognition system",
+  "polansky7": "Development of circuit solutions and trace of printed circuit boards for Smart House devices",
+  "polansky8": "Development of microminiature biometric sensors and processor control system for bioelectrical upper limb prosthesis",
+  "polansky9": "Development of embedded data transmission systems based on Wi - Fi, GSM and Bluetooth technologies",
+  
+  "kuznetsov": "Denis Kuznetsov",
+  "kuznetsov1": "Lead Mathematician, Senior Architect Developer. Embedded Systems Programmer. Expert in Machine Learning and AI. Development of an agent for the conduct of non-targeted dialogue in the banking system. Development Telegram-bots with AI support. Embedded Software Development for Quinta Music Recognition System Devices. Co-author of a patent for music recognition algorithms",
+    
+  "maslov": "Anton Maslov",
+  "maslov1": "Senior System Analyst, PHP-Developer. Optimization and automation of DAICHI logistics business processes. System analytics of multimodule high-loaded systems with various integrations for METRO C & C, Lenta. The development of a supply planning system for TOC (Theory of Constraints) for the production of IKEA, integrated with 1C. Product development and positioning management.",
+  
+  "fedko": "Alexander Fedko",
+  "fedko1": "An expert in financial market and risk management, founder & CEO at Advise Finance LLC.",
+  
+  "osarukhanov": "Oleg Sarukhanov",
+  "osarukhanov1": "Co-founder and COO of Glory Event Agency LLC., In event & marketing since 2006, experience with international brands on major projects (BIC, General Electric)",
+  
+  "tcytkin": "Danil Tcytkin",
+  "tcytkin1": "Red Dot Award owner. Creative producer, worked with biggest advertisement agencies, like ADV holding, and bests creative boutiques like MOST Creative Club. Made campaigns for Coca-Cola, Tele2, Apple, Gazprom, Unilever, Hyundai.",
+  
+  "podelko": "Alexander Podelko",
+  "podelko1": "Ph.D., MBA An expert in software development and testing Member of the Board of Directors of the Computer Measurement Group Oracle, Consulting Member of Technical Staff Hyperion, Distinguished Performance Engineer Aetna, Sr. Architect II",
+  
+  "sagalovitch": "Sergey Sagalovitch",
+  "sagalovitch1": "An expert in software development including design and implementation of device drivers and embedded systems, as well as graphics and compute solutions with the strict robust and security requirements. Serguei has experience working with customers on product delivery. Serguei has experience working with small and big companies including Nortel and AMD in positions of Team Lead as well as Principal Member of Technical Staff. Serguei has experience working with scientific organizations including University of Vienna. Serguei has been co-authors of several patent applications. Serguei has more than 25 years of experience.",
+  
+  "wsarukhanov": "Wagan Sarukhanov",
+  "wsarukhanov1": "CEO Flexlab Blockchain researcher and expert 30 years of experience in contract manufacturing of electronics and software More than 20 projects in various industries Mentor Wagan's competencies help the project in the business development and technical issues of product development and manufacturing",
+  
+  "v_fedko": "Vasiliy Fedko",
+  "v_fedko1": "Vasiliy Fedko has a wealth of experience as a founder & CFO in several development companies. Licensed auditor.",
+  
+  "fedorovskikh": "Nikolay Fedorovskikh",
+  "fedorovskikh1": "Over 11 years’ experience in TVMedia, VAS & Data field. Strong focus on Telecom/Media with expertise in DVB/IPTV/ Online Video (OTT), VAS, CDN. Creating overall architecture and engineering of complex TV & Pilot Blockchain projects. Proven track record in identifying customer needs and implementing technical strategies to secure long-term revenue growth on TV/Media markets (IPTV, VOD, OTT, CDN).",
+  
+  "ryzhkov": "Dmitry Ryzhkov",
+  "ryzhkov1": "The businessman, the crypto-currency investor. Co-founder of a successful international brand LuneCase. ICO adviser, a pool of more than $15,000,000.",
+  
   "myshinsky": "",
-  "ryzhkov": "",
+  "myshinsky1": "",  
   
-  
+  "a_team": "All Team",
+  "f_list": "FOLD LIST",
   "cyber": "Micro-PC Powered",
   "eco":"by Linux with Built-in",
   "crypto":"CryptoStorage",
