@@ -680,6 +680,10 @@ var Controller = function () {
 		actions:{
 			initSearchMobile: function () {
 				ViewModel.flags.searchInited(!ViewModel.flags.searchInited());
+				
+				setTimeout(function () {
+					$('#m-search').focus();
+				},0);
 			},
 			confirmDidTransaction: function () {
 				ViewModel.flags.userDidTransaction(true);
