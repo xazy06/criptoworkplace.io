@@ -22,6 +22,9 @@ var Controller = (Controller || {}), Gate = function () {
 	//Private key : d80356c4c5c561bac38c5e451edc2b7a535ad27088b22e46ba8506995edb0d09a70a24c1c1ffa0bc1f6acddbec49870f135897568dfbee5a6d823109bcb9073d
 	
 	this.poolingId = null;
+	
+	//The web3.eth.subscribe function lets you subscribe to specific events in the blockchain.
+	this.subscriber = null;
 
 	this.options = {
 		poolingInterval: 3000
@@ -232,19 +235,39 @@ var Controller = (Controller || {}), Gate = function () {
 				
 			})
 		},
-		wsStatus: function (depositAddress) {
-			//TODO
-			Controller.web3CWP.eth.subscribe('pendingTransactions',function(error, result){
-				if (!error)
-					console.log(result);
-			})
-				.on("data", function(transaction){
-					console.log(transaction);
-				});
+		
+		wsStatus: function () {
 			
+			if (self.subscriber !== null) {
+				return;	
+			}
+			
+			/**
+			 * @info https://web3js.readthedocs.io/en/1.0/web3-eth-subscribe.html?highlight=subscribe%5C#subscribe 
+			 */
+			self.subscriber = Controller.web3CWP.eth.subscribe('pendingTransactions', function(error, result){
+				if (!error || _.isEmpty(error)) {
+					
+					console.log('pendingTransactions', result);
+
+					if (result === null) {
+						return;
+					}
+					
+					return Controller.actions.monitor(Controller.ViewModel.obs.cwtCount(), result);
+				}
+
+				try{
+					$.notify(JSON.stringify(error));
+				}catch (e){
+					console.log(e);
+				}
+								
+			}).on("data", function(transaction){
+					console.log(transaction);
+			});
 			
 		},
-		//TODO need change to WS subscribe method
 		web3Status: function (depositAddress) {
 			return $.get(Controller.api.ethStatus + depositAddress);
 		},
@@ -259,7 +282,9 @@ var Controller = (Controller || {}), Gate = function () {
 			}
 			
 			if (isETHTransaction){
-				return self.actions.web3Status(Controller.ViewModel.obs.depositAddress()).then(self.actions.statusCallback);
+				//return self.actions.web3Status(Controller.ViewModel.obs.depositAddress()).then(self.actions.statusCallback);
+				
+				return self.actions.wsStatus();
 			}
 			
 			self.actions.orderInfo(Controller.ViewModel.obs.fixedAmmount.orderId()).then(self.actions.statusCallback);

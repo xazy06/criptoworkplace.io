@@ -85,9 +85,9 @@ var Controller = function () {
 			purchasing: function () {
 				try{
 					window.yaCounter50462326 && window.yaCounter50462326.reachGoal('Purchase');
-					ga('send', 'event', 'forms', 'purchase');
+					window.ga('send', 'event', 'forms', 'purchase');
 				}catch (e){
-					console.log(e);
+					//console.log(e);
 				}
 			}
 		},
