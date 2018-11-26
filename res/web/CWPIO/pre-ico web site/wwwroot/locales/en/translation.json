@@ -130,8 +130,9 @@
   "joji_b":"Rare type of High-edge Japanese technology specialist with wide international marketing experience.",
   "cvo":"CVO",
   "ceo":"CEO",
-  
-  
+  "cto":"CTO",
+  "s_engin":"Software Engineer",
+    
   "yoji": "Yoji Kishi",
   "yoji1": "Shin-Nippon Research (Hong Kong) Co., Ltd. Vice-President",
   "yoji2": "International Society of Stem Cells Development, Director",
@@ -146,9 +147,28 @@
   "gladkov4": "30 years of experience in running own business",
   "gladkov5": "20 years of doing business in Singapore and Japan",
   
+  "maslich": "Maxim Maslich",
+  "maslich1": "An expert in the management of the software development process, the construction of distributed, highly loaded and secure systems.",
+  "maslich2": "Development of transport monitoring systems (cargo, passenger cars, special equipment, passenger transportation, weight control, production line control, taxi park automation) for Alrosa, GAZPROM, Lukoil, Rusal, RZD, Satori, Autoline, city taxi.",
+  "maslich3": "Microsoft Certified Professional",
+  "maslich4": "Microsoft Certified Technology Specialist",
+  "maslich5": "Blockchain and smart contracts developer",
   
-  "maslich": "",
-  "enokian": "",
+  "enokian": "Artur Enokian",
+  "enokian2": "Senior JavaScript Developer Full Stack",
+  "enokian3": "Certified Middle End Android Developer",
+  "enokian4": "Certified Middle End iOS Developer",
+  "enokian5": "Java EE, С#, PHP, Lua, Python, GO developer",
+  "enokian6": "Unity 3D developer",
+  "enokian7": "Expert in developing Highload applications",
+  "enokian8": "Custom Trading Platforms Development",
+  "enokian9": "Development of special software for major retailers",
+  "enokian10": "Cryptography, electronic document management",
+  "enokian11": "Development of special software for the Ministry of Defense of Russia",
+  "enokian12": "Development of special software and participation in the development of software and hardware for federal agencies of the Russian Federation",
+  "enokian13": "Development of special software - for monitoring and managing network security",
+  "enokian14": "Development of implemented collector agents for analyzing and collecting data on network and peripheral PC activity",
+  
   "polansky": "",
   "kuznetsov": "",
   "maslov": "",
