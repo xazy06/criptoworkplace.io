@@ -541,9 +541,13 @@ var Controller = function () {
 		currencies: ko.observableArray([]),
 		currenciesCache: ko.observableArray([]),
 		
+		transaction:{
+			
+		},
+		
 		currenciesMap: null,
 		
-		obs:{
+		obs: {
 			confirmText: ko.observable(''),
 			confirmCallback: ko.observable(''),
 			transactions: ko.observableArray([]),
