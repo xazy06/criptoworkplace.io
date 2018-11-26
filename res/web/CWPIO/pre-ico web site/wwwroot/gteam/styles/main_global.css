@@ -1,3 +1,14 @@
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ddd;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.001);
+}
 .footer_head, .footer_body, .timeline_wrap {
   display: -webkit-box;
   display: -ms-flexbox;
