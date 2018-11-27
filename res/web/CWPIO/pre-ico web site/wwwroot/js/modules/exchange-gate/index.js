@@ -235,7 +235,18 @@ var Controller = (Controller || {}), Gate = function () {
 				
 			})
 		},
-		
+		unsubscribeWsStatus: function () {
+			if (self.subscriber === null) {
+				return;
+			}
+
+			self.subscriber.unsubscribe(function(error, success){
+				if(success){
+					console.log('Successfully unsubscribed!');
+				}
+			});
+			
+		},
 		wsStatus: function () {
 			
 			if (self.subscriber !== null) {
@@ -354,6 +365,8 @@ var Controller = (Controller || {}), Gate = function () {
 		},
 		stopStatusBang: function () {
 			window.clearInterval(self.poolingId);
+
+			self.actions.unsubscribeWsStatus();
 		},
 		initStatusBang: function (isETHTransaction) {
 			
