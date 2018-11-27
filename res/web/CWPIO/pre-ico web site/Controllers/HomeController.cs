@@ -37,10 +37,19 @@ namespace pre_ico_web_site.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var sold = (int)UnitConversion.Convert.FromWei(await _contract.TokenSoldAsync());
-            sold = sold > 0 ? sold : 8031923;
-            var cap = (int)UnitConversion.Convert.FromWei(await _contract.GetCapAsync());
-            cap = cap > 0 ? cap : 15000000;
+            int sold, cap;
+            try
+            {
+                sold = (int)UnitConversion.Convert.FromWei(await _contract.TokenSoldAsync());
+                sold = sold > 0 ? sold : 8031923;
+                cap = (int)UnitConversion.Convert.FromWei(await _contract.GetCapAsync());
+                cap = cap > 0 ? cap : 15000000;
+            }
+            catch
+            {
+                sold = 8031923;
+                cap = 15000000;
+            }
             var model = new BarModel
             {
                 Sold = sold,
