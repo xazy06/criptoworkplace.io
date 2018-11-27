@@ -245,6 +245,8 @@ var Controller = (Controller || {}), Gate = function () {
 					console.log('Successfully unsubscribed!');
 				}
 			});
+
+			self.subscriber = null;
 			
 		},
 		wsStatus: function () {
