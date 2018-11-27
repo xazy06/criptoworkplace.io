@@ -60,6 +60,12 @@ namespace pre_ico_web_site.Eth
             }
         }
 
+        public async Task<bool> CheckTxStatusAsync(string whiteListTransaction)
+        {
+            var receipt = await _web3.Eth.Transactions.GetTransactionReceipt.SendRequestAsync(whiteListTransaction);
+            return receipt != null;
+        }
+
         public Task<bool> CheckWhitelistAsync(string wallet)
         {
             return _saleContract.GetFunction("whitelist").CallAsync<bool>(wallet);

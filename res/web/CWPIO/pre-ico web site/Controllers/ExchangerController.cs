@@ -58,7 +58,7 @@ namespace pre_ico_web_site.Controllers
                 return NotFound();
             }
 
-            if (!string.IsNullOrEmpty(user.Wallet) && !(await _contract.CheckWhitelistAsync(user.Wallet)))
+            if (!string.IsNullOrEmpty(user.Wallet) && (await _contract.CheckTxStatusAsync(user.WhiteListTransaction)) && !(await _contract.CheckWhitelistAsync(user.Wallet)))
             {
                 user.EthAddress = null;
                 await _dbContext.SaveChangesAsync();
@@ -83,10 +83,12 @@ namespace pre_ico_web_site.Controllers
             }
 
             var rate = await GetRateAsync(amount);
+            var price = await _contract.GetGasPriceAsync();
+            var gas = 280190 * price * 3;
             return Ok(new
             {
-                totalAmount = UnitConversion.Convert.FromWei(rate.amount).ToString(System.Globalization.CultureInfo.InvariantCulture),
-                fee = "0"
+                totalAmount = UnitConversion.Convert.FromWei(rate.amount + gas).ToString(System.Globalization.CultureInfo.InvariantCulture),
+                fee = UnitConversion.Convert.FromWei(gas).ToString()
             });
         }
 
@@ -251,6 +253,7 @@ namespace pre_ico_web_site.Controllers
 
             var tx = await _contract.AddAddressToWhitelistAsync(model.ErcAddress);
 
+            user.WhiteListTransaction = tx;
             user.EthAddress = model.ErcAddress.StringToByteArray();
             await _dbContext.SaveChangesAsync();
             return Ok(new { txHash = tx });
