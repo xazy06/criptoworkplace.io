@@ -35,13 +35,13 @@ namespace pre_ico_web_site.Controllers
             _slack = slack;
         }
 
-        [HttpGet("locales/{locale}/{file}.json")]
-        public IActionResult GetTranslation([FromRoute]string locale, [FromRoute] string file)
-        {
-            var path = $"https://raw.githubusercontent.com/cryptoworkplace/translations/master/site/locales/{locale}/{file}.json";
+        //[HttpGet("locales/{locale}/{file}.json")]
+        //public IActionResult GetTranslation([FromRoute]string locale, [FromRoute] string file)
+        //{
+        //    var path = $"https://raw.githubusercontent.com/cryptoworkplace/translations/master/site/locales/{locale}/{file}.json";
 
-            return RedirectPermanent(path);
-        }
+        //    return RedirectPermanent(path);
+        //}
 
         public async Task<IActionResult> Index()
         {

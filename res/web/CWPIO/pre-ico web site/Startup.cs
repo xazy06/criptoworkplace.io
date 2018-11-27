@@ -195,6 +195,8 @@ namespace pre_ico_web_site
                 app.UseHsts(c => c.MaxAge(days:365).IncludeSubdomains());
             }
 
+            app.UseRewriter(new RewriteOptions().AddRewrite("my/locales/(.*)/translation.json", "/locales/$1/translation.json", true));
+
             app.UseStaticFiles();
 
             app.UseNoCacheHttpHeaders();
