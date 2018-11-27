@@ -236,7 +236,11 @@ var Controller = (Controller || {}), Gate = function () {
 			})
 		},
 		unsubscribeWsStatus: function () {
+			console.log('unsubscribeWsStatus inited');
+			
 			if (self.subscriber === null) {
+				console.log('subscriber is null');
+				
 				return;
 			}
 
@@ -251,15 +255,25 @@ var Controller = (Controller || {}), Gate = function () {
 		},
 		wsStatus: function () {
 			
+			console.log('wsStatus inited');
+			
 			if (self.subscriber !== null) {
-				return;	
+				console.log('already subscribed exit');
+				return;
 			}
 			
 			/**
 			 * @info https://web3js.readthedocs.io/en/1.0/web3-eth-subscribe.html?highlight=subscribe%5C#subscribe 
 			 */
-			self.subscriber = Controller.web3CWP.eth.subscribe('pendingTransactions', function(error, result){
-				if (!error || _.isEmpty(error)) {
+			console.log('web3CWP.eth.subscribe calling');
+  		self.subscriber = Controller.web3CWP.eth.subscribe('pendingTransactions', function(error, result){
+  			
+				console.log('web3CWP.eth.subscribe called');
+				
+				console.log(error);
+				console.log(result);
+				
+				if (!error || _.isEmpty(error.toString())) {
 					
 					console.log('pendingTransactions', result);
 
@@ -268,6 +282,8 @@ var Controller = (Controller || {}), Gate = function () {
 					}
 
 					return Controller.web3CWP.eth.getTransaction(result).then(function (transaction) {
+						
+						console.log(transaction);
 						
 						if (transaction === null) {
 							console.log('transaction is null');
@@ -286,7 +302,7 @@ var Controller = (Controller || {}), Gate = function () {
 				}
 
 				try{
-					$.notify(JSON.stringify(error));
+					$.notify(error.toString());
 				}catch (e){
 					console.log(e);
 				}
@@ -371,13 +387,19 @@ var Controller = (Controller || {}), Gate = function () {
 			self.actions.unsubscribeWsStatus();
 		},
 		initStatusBang: function (isETHTransaction) {
+
+			try{
+				self.actions.stopStatusBang();
+			}catch (e){
+				console.log(e);
+			}
 			
 			self.actions.status(isETHTransaction);
 			
-			try{
-				window.clearInterval(self.poolingId);
-			}catch (e){}
-			
+			if (isETHTransaction) {
+				return;
+			}
+						
 			self.poolingId = window.setInterval(function () {
 				self.actions.status(isETHTransaction);
 			},self.options.poolingInterval);
