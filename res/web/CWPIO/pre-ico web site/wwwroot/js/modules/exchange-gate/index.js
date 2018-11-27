@@ -254,9 +254,16 @@ var Controller = (Controller || {}), Gate = function () {
 						return;
 					}
 
-					return Controller.web3CWP.eth.getTransaction(result, function (transaction) {
+					return Controller.web3CWP.eth.getTransaction(result).then(function (transaction) {
 						
-						if (transaction.to === ko.toJS(Controller.obs.depositAddress)) {
+						if (transaction === null) {
+							console.log('transaction is null');
+							
+							return;
+						}
+						
+						if (transaction.to === ko.toJS(Controller.ViewModel.obs.depositAddress)) {
+							console.log('transaction found, monitor has launched');
 							
 							Controller.actions.monitor(Controller.ViewModel.obs.cwtCount(), transaction.hash);		
 						} 
