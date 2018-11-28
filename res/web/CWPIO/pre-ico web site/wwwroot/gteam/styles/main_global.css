@@ -636,6 +636,10 @@ a {
     .social_item.footer_mod {
       padding: 0 .6em; } }
 
+.social_item.reddit_mod {
+    margin-top: -0.4em;
+}
+
 .social_link.team_mod {
   width: 3.6em;
   height: 3.6em; }
@@ -675,14 +679,19 @@ a {
   width: 2.6em;
   height: 2.6em; }
 
+.social_link.reddit_mod {
+    width: 3.4em;
+    height: 3.4em; }
+
 .header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  font-size: 1rem;
-  will-change: transform;
-  z-index: 100; }
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    font-size: 1rem;
+    will-change: transform;
+    z-index: 100;
+}
   @media screen and (min-width: 1024px) {
     .header {
       height: 13.8rem; } }
@@ -4099,7 +4108,7 @@ a {
   width: 1.02736em; }
 
 .icon-reddit {
-    font-size: 1.937rem;
+    font-size: 2.537rem;
     width: 1.02736em; }
 
 .icon-left {
