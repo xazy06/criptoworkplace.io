@@ -241,7 +241,7 @@
     "empty_c_list": "В списке нет валюты, которую Вы ищите",
     "limit": "лимит",
     "max_limit": "максимальный лимит",
-    "minimum": "minimum",
+    "minimum": "минимум",
     "rate": "rate",
     "fill_f_mm": "Заполните из MetaMask",
     "expired_order": "Ths Order is expired, do not deposit any currency to address below!",
