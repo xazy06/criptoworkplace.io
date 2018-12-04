@@ -85,7 +85,8 @@
     "wanna_receive": "",
     "min_contr": "",
     "pl_send": "",
-    "inc_fee": ""
+    "inc_fee": "",
+    "to_addr_bel": ""
   },
   "cwtp_raised": "",
   "idea_m_sec": "",
