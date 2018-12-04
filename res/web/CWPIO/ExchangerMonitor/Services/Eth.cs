@@ -13,7 +13,7 @@ using System.IO;
 using System.Numerics;
 using System.Threading.Tasks;
 
-namespace ExchangerMonitor
+namespace ExchangerMonitor.Services
 {
     public class Eth
     {
