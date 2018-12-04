@@ -62,7 +62,8 @@
   "lk": {
     "ok": "",
     "t_sales": "",
-    "txid": ""
+    "txid": "",
+    "invalid": ""
   },
   "cwtp_raised": "",
   "idea_m_sec": "",
