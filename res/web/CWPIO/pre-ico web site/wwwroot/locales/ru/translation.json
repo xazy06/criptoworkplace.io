@@ -233,7 +233,7 @@
   "lk": {
     "select_lang": "Выберите язык",
     "whitelisted": "В Белом Списке",
-    "ethaddr": "ETH address",
+    "ethaddr": "ETH адрес кошелька",
     "your": "Your",
     "exchanger": "Exchanger",
     "balance": "Balance",
