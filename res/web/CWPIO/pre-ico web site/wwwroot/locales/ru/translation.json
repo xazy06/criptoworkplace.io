@@ -264,7 +264,7 @@
     "dont_send": "Do not send any ETH ammount directly to smart contract address,<br/>your transaction will be rejected.",
     "unavail": "(unavailable)",
     "purch": "purchase",
-    "t_sales": "Total Sales",
+    "t_sales": "Общие продажи",
     "sales": "Sales",
     "hist": "History",
     "pl_whait": "please wait a few minutes while transaction ends",
