@@ -39,7 +39,7 @@
   "sec_wal": "Защищенное Хранилище",
   "sec_wal_t": "В качестве дополнительной меры защиты приватных ключей криптокошельков,   работающих   в   CWP,  устройство   оснащается встроенным аппаратным невскрываемым криптохранилищем, непосредственно в котором происходит подпись транзакции.",
   "sec_d_app": "Безопасные Приложения",
-  "sec_d_app_t": "Applications can be installed on the device only through the D-APP Store on decentralized Web-portal. It allows eliminating a possibility to install a harmful program and to secure data on the device.",
+  "sec_d_app_t": "Магазин с децентрализованными приложениями, такими как мультивалютные кошельки от широкого спектра поставщиков услуг, мессенджеры, биржи, хранилище файлов и многое другое.",
   "specifications": "Specifications",
   "odisplay": "OLED Display",
   "qc_cpu": "Quad-Core CPU",
