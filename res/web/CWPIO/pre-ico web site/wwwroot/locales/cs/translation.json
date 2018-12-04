@@ -87,7 +87,8 @@
     "pl_send": "",
     "inc_fee": "",
     "to_addr_bel": "",
-    "order_exp_on": ""
+    "order_exp_on": "",
+    "no_transactions": ""
   },
   "cwtp_raised": "",
   "idea_m_sec": "",
