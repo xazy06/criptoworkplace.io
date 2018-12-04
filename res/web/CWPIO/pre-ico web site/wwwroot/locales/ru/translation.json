@@ -252,7 +252,7 @@
     "address": "адрес",
     "wanna_receive": "Я хочу получить",
     "min_contr": "Минимальная покупка: 500 CWT-P",
-    "pl_send": "",
+    "pl_send": "Please send",
     "inc_fee": "includs fee",
     "to_addr_bel": "to the address below",
     "order_exp_on": "This order will expair on",
