@@ -81,7 +81,8 @@
     "create_order": "",
     "expired_order_did_transaction": "",
     "return_address": "",
-    "address": ""
+    "address": "",
+    "wanna_receive": ""
   },
   "cwtp_raised": "",
   "idea_m_sec": "",
