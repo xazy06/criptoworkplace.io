@@ -72,7 +72,8 @@
     "balance": "",
     "choose_h": "",
     "empty_c_list": "",
-    "limit": ""
+    "limit": "",
+    "max_limit": ""
   },
   "cwtp_raised": "",
   "idea_m_sec": "",
