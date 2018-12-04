@@ -65,7 +65,8 @@
     "txid": "",
     "invalid": "",
     "ethaddr": "",
-    "select_lang": ""
+    "select_lang": "",
+    "whitelisted": ""
   },
   "cwtp_raised": "",
   "idea_m_sec": "",
