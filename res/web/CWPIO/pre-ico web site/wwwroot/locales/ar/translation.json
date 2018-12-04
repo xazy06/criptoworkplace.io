@@ -2,7 +2,8 @@
   "nav": {
     "token": "Token Distribution",
     "about": "About CWP",
-    "vision": ""
+    "vision": "",
+    "team": ""
   },
   "app": {
     "name": "cwp"
