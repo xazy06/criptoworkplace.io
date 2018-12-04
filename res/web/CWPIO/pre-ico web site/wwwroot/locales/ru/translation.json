@@ -240,7 +240,7 @@
     "choose_h": "Выберите валюту для приобритения CWT-P",
     "empty_c_list": "В списке нет валюты, которую Вы ищите",
     "limit": "лимит",
-    "max_limit": "maxLimit",
+    "max_limit": "максимальный лимит",
     "minimum": "minimum",
     "rate": "rate",
     "fill_f_mm": "Заполните из MetaMask",
