@@ -33,7 +33,7 @@
   "how_works": "Как это работает",
   "how_t1": "The programs are executed in the environment isolated from the computer - donor. User data are encrypted on the device (by user’s choice) that creates a solid defense to guard against hackers.",
   "how_t2": "System prevents all existing security problems:<br>Phishing - by using the pre-configured browser and applications, signed by a unique key;<br>Exploits - by working in an isolated environment and by signing programs;<br>Hacker attacks - by using built-in unbreakable crypto-storage.",
-  "key_features": "Key Features",
+  "key_features": "Ключевые Функции",
   "ext_l_os": "External Linux OS",
   "k_feature": "CWP Micro-PC uses an updated kernel of operating system and applications, recompiled with new compilers, to prevent Meltdown and Spectre attacks.",
   "sec_wal": "Secure Wallet",
