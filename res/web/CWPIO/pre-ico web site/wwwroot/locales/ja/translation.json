@@ -23,5 +23,8 @@
   "buy_cwtt": "",
   "video_instr": "",
   "40per_pub": "",
-  "time_left": ""
+  "time_left": "",
+  "timer": {
+    "day": ""
+  }
 }
