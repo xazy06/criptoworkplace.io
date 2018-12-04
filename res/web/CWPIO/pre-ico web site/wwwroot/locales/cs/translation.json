@@ -27,6 +27,7 @@
   "timer": {
     "day": "",
     "days": "",
-    "hour": ""
+    "hour": "",
+    "min": ""
   }
 }
