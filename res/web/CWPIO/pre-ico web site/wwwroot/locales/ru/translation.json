@@ -251,7 +251,7 @@
     "invalid": "Некорректные данные",
     "address": "адрес",
     "wanna_receive": "Я хочу получить",
-    "min_contr": "Minimum contribution is 500 CWT-P",
+    "min_contr": "Минимальная покупка: 500 CWT-P",
     "pl_send": "Please send",
     "inc_fee": "includs fee",
     "to_addr_bel": "to the address below",

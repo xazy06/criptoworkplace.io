@@ -82,7 +82,8 @@
     "expired_order_did_transaction": "",
     "return_address": "",
     "address": "",
-    "wanna_receive": ""
+    "wanna_receive": "",
+    "min_contr": ""
   },
   "cwtp_raised": "",
   "idea_m_sec": "",
