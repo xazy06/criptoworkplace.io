@@ -37,7 +37,7 @@
   "ext_l_os": "External Linux OS",
   "k_feature": "Hardware non - breakable storage was added for transaction signing to secure crypto - wallets private keys.",
   "sec_wal": "Secure Wallet",
-  "sec_wal_t": "Hardware non - breakable storage was added for transaction signing to secure crypto - wallets private keys.",
+  "sec_wal_t": "В качестве дополнительной меры защиты приватных ключей криптокошельков,   работающих   в   CWP,  устройство   оснащается встроенным аппаратным невскрываемым криптохранилищем, непосредственно в котором происходит подпись транзакции.",
   "sec_d_app": "Secure D-APPs",
   "sec_d_app_t": "Applications can be installed on the device only through the D-APP Store on decentralized Web-portal. It allows eliminating a possibility to install a harmful program and to secure data on the device.",
   "specifications": "Specifications",
