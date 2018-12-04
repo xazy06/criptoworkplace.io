@@ -238,7 +238,7 @@
     "exchanger": "Обменник",
     "balance": "Баланс",
     "choose_h": "Выберите валюту для приобритения CWT-P",
-    "empty_c_list": "There is no currencies you are search",
+    "empty_c_list": "В списке нет валюты, которую Вы ищите",
     "limit": "limit",
     "max_limit": "maxLimit",
     "minimum": "minimum",
