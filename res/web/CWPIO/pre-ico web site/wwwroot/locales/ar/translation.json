@@ -25,6 +25,7 @@
   "40per_pub": "",
   "time_left": "",
   "timer": {
-    "day": ""
+    "day": "",
+    "days": ""
   }
 }
