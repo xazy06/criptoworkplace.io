@@ -245,7 +245,7 @@
     "rate": "rate",
     "fill_f_mm": "Заполните из MetaMask",
     "expired_order": "Ths Order is expired, do not deposit any currency to address below!",
-    "create_order": "Create new order",
+    "create_order": "Создать заказ",
     "expired_order_did_transaction": "Your transaction in progress, current order is expired, create new order for more CWT-P and do not deposit any currency to address below",
     "return_address": "Return address",
     "invalid": "This is not a valid",
