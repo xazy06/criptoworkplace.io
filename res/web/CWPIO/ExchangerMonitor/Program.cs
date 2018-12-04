@@ -1,9 +1,13 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using ExchangerMonitor.Services;
+using ExchangerMonitor.Workflow;
+using ExchangerMonitor.WorkflowSteps;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
 using System.Threading;
-using System.Threading.Tasks;
+using WorkflowCore.Interface;
 
 namespace ExchangerMonitor
 {
@@ -15,7 +19,8 @@ namespace ExchangerMonitor
             Configuration = new ConfigurationBuilder()
                 .AddEnvironmentVariables("ASPNETCORE_")
                 .AddEnvironmentVariables("DOTNET_")
-                .AddEnvironmentVariables().Build();
+                .AddEnvironmentVariables()
+                .Build();
 
             // create service collection
             var serviceCollection = new ServiceCollection();
@@ -26,7 +31,13 @@ namespace ExchangerMonitor
 
             // entry to run app
             bool inContainer = Configuration.GetValue<bool>("RUNNING_IN_CONTAINER");
-            serviceProvider.GetService<App>().Run();
+            //serviceProvider.GetService<App>().Run();
+            var host = serviceProvider.GetRequiredService<IWorkflowHost>();
+            host.RegisterWorkflow<MonitorDBWorkflow>();
+            host.RegisterWorkflow<BuyTokensWorkflow, ExchangeTransaction>();
+            host.RegisterWorkflow<PrintStatusWorkflow, Dictionary<string, ExchangeTransaction>>();
+            host.Start();
+            host.StartWorkflow("Monitor DB", reference: "MonitorDB");
             if (!inContainer)
             {
                 while (Console.ReadKey().Key != ConsoleKey.Escape)
@@ -34,29 +45,53 @@ namespace ExchangerMonitor
             }
             else
             {
-                while(true)
+                while (true)
                 { Thread.Sleep(10000); }
             }
+
+            host.Stop();
         }
 
         private static void ConfigureServices(IServiceCollection serviceCollection)
         {
             // add logging
-            serviceCollection.AddSingleton(new LoggerFactory().AddConsole(LogLevel.Debug));
-            serviceCollection.AddLogging();
+            //serviceCollection.AddSingleton(new LoggerFactory().AddConsole(LogLevel.Information));
+            serviceCollection.AddLogging(c =>
+            {
+                c.AddConfiguration(Configuration.GetSection("Logging"));
+                c.AddConsole();
+                c.AddDebug();
+            });
 
             //add  options
             serviceCollection.AddOptions();
             serviceCollection.Configure<EthSettings>(Configuration.GetSection("Ether"));
 
-            // add services
+            serviceCollection.AddWorkflow(config =>
+            {
+                //config.UsePersistence(s => s.);
+            });
+
+            //// add services
             serviceCollection.AddSingleton<Eth>();
             serviceCollection.AddSingleton(s =>
                 new Database(Configuration.GetConnectionString("CWPConnection"), s.GetRequiredService<ILogger<Database>>())
             );
             serviceCollection.AddSingleton<Crypto>();
+
+            serviceCollection.AddTransient<LoadData>();
+            serviceCollection.AddTransient<CheckStatus>();
+            serviceCollection.AddTransient<PrintData>();
+            serviceCollection.AddTransient<CustomMessage>();
+            serviceCollection.AddTransient<SendEth>();
+            serviceCollection.AddTransient<Refund>();
+            serviceCollection.AddTransient<FailedTransaction>();
+            serviceCollection.AddTransient<Finish>();
+            serviceCollection.AddTransient<CheckStatus>();
+            serviceCollection.AddTransient<SetRate>();
+
             // add app
-            serviceCollection.AddTransient<App>();
+            //serviceCollection.AddTransient<App>();
         }
     }
 }

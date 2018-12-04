@@ -1,6 +1,8 @@
-﻿using System;
+﻿using ExchangerMonitor.Data;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using WorkflowCore.Interface;
 
 namespace ExchangerMonitor
 {
@@ -19,6 +21,8 @@ namespace ExchangerMonitor
         public int TokenCount { get; set; }
         public int TotalGasCount { get; set; }
         public TXStatus Status { get; set; }
+
+        public string Workflow { get; set; }
 
         public override string ToString()
         {

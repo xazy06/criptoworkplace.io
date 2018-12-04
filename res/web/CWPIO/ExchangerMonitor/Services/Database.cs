@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ExchangerMonitor
+namespace ExchangerMonitor.Services
 {
     public class Database : IDisposable
     {
