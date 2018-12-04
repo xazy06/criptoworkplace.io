@@ -64,7 +64,8 @@
     "t_sales": "",
     "txid": "",
     "invalid": "",
-    "ethaddr": ""
+    "ethaddr": "",
+    "select_lang": ""
   },
   "cwtp_raised": "",
   "idea_m_sec": "",
