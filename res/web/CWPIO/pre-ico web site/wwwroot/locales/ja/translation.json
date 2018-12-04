@@ -78,7 +78,8 @@
     "rate": "",
     "fill_f_mm": "",
     "expired_order": "",
-    "create_order": ""
+    "create_order": "",
+    "expired_order_did_transaction": ""
   },
   "cwtp_raised": "",
   "idea_m_sec": "",
