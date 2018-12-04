@@ -81,5 +81,6 @@
   "dev_cwp_mess": "",
   "launch_portal": "",
   "test_prod": "",
-  "prep_site_prod": ""
+  "prep_site_prod": "",
+  "dev_dist_chan": ""
 }
