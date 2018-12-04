@@ -249,7 +249,7 @@
     "expired_order_did_transaction": "Your transaction in progress, current order is expired, create new order for more CWT-P and do not deposit any currency to address below",
     "return_address": "Вернуть адрес",
     "invalid": "Некорректные данные",
-    "address": "address",
+    "address": "адрес",
     "wanna_receive": "I want to receive",
     "min_contr": "Minimum contribution is 500 CWT-P",
     "pl_send": "Please send",
