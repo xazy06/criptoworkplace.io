@@ -59,7 +59,9 @@ var Controller = function () {
 
 		try{
 
-			i18n.setLng(locale);
+			i18n.setLng(locale).then(function(){
+				$("body").i18n();
+			});
 
 			console.log('locale changed');
 			
