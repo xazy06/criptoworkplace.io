@@ -278,20 +278,19 @@ namespace pre_ico_web_site.Controllers
             }
 
             var result = new[]{
-                new ExchangeStatusModel(),
-                new ExchangeStatusModel(),
-                new ExchangeStatusModel()
+                new ExchangeStatusModel(){Name="Step 1", Description = "Step 1" },
+                new ExchangeStatusModel(){Name="Step 2", Description = "Step 2" },
+                new ExchangeStatusModel(){Name="Step 3", Description = "Step 3" }
             };
 
             for (int i = 0; i < item.CurrentStep - 1; i++)
             {
-                result[i].Name = "Complete";
-                result[i].Description = "Complete";
+                result[i].Status = "Complete";
             }
 
             var step = (item.CurrentStep - 1 < 0 ? 0 : item.CurrentStep - 1);
-            result[step].Name = item.CurrentStep == 3 ? (item.IsEnded ? "Complete" : (item.IsFailed ? "Failed" : "In Progress")) : ( item.IsFailed ? "Failed" : "In Progress");
-            result[step].Description = item.IsFailed ? "Failed" : "In Progress";
+            result[step].Status = item.CurrentStep == 3 ? (item.IsEnded ? "Complete" : (item.IsFailed ? "Failed" : "In Progress")) : (item.IsFailed ? "Failed" : "In Progress");
+
             return Ok(result);
         }
 
