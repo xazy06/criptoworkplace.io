@@ -2,6 +2,10 @@ var Controller = function () {
 
 	var self = this;
 
+	this.options = {
+		flagsPath: '/assets/app/media/img/flags/'
+	};
+
 	this.strings = {
 		ru:{
 
@@ -49,6 +53,23 @@ var Controller = function () {
 		})();
 	};
 
+	this.changeLocale = function (locale) {
+		
+		console.log('locale changing to ', locale);
+
+		try{
+
+			i18n.setLng(locale).then(function(){
+				$("body").i18n();
+			});
+
+			console.log('locale changed');
+			
+		}catch (e){
+
+		}
+	};
+
 	this.init = function () {
 		ko.applyBindings(ViewModel);
 
@@ -72,6 +93,9 @@ var Controller = function () {
 		actions:{
 			subscribe: function () {
 				return self.actions.subscribe();
+			},
+			changeLang: function () {
+				return self.changeLocale(''+this);
 			}
 		}
 

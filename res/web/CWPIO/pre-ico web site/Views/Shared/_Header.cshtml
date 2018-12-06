@@ -109,26 +109,26 @@
 					   data-i18n="nav.whitepaper" 
 					   target="_blank" 
 					   onclick="ga('send', 'event', 'forms', 'Whitepaper'); yaCounter50462326.reachGoal('Whitepaper'); return true;">White paper</a>
-@*					<div class="lang_menu">*@
-@*						<div class="lang_list">*@
-@*							<a class="lang_item active_mod" href="#">*@
-@*								<div class="lang_img_wrap">*@
-@*									<img class="lang_img" src="~/gteam/i/eng.png" alt="lang flag"/></div>*@
-@*								<div class="lang_title">Eng</div>*@
-@*							</a>*@
-@*							<a class="lang_item" href="#">*@
-@*								<div class="lang_img_wrap">*@
-@*									<img class="lang_img" src="~/gteam/i/jap.png" alt="lang flag"/></div>*@
-@*								<div class="lang_title">Jap</div>*@
-@*							</a>*@
-@*							<a class="lang_item" href="#">*@
-@*								<div class="lang_img_wrap">*@
-@*									<img class="lang_img" src="~/gteam/i/rus.png" alt="lang flag"/></div>*@
-@*								<div class="lang_title">Rus</div>*@
-@*							</a>*@
-@*						</div>*@
-@*						<div class="lang_control"></div>*@
-@*					</div>*@
+					<div class="lang_menu">
+						<div class="lang_list">
+							<a data-bind="click: actions.changeLang.bind('en')" class="lang_item active_mod" href="#">
+								<div class="lang_img_wrap">
+									<img class="lang_img" src="~/gteam/i/eng.png" alt="lang flag"/></div>
+								<div class="lang_title">Eng</div>
+							</a>
+							<a data-bind="click: actions.changeLang.bind('jp')" class="lang_item" href="#">
+								<div class="lang_img_wrap">
+									<img class="lang_img" src="~/gteam/i/jap.png" alt="lang flag"/></div>
+								<div class="lang_title">Jap</div>
+							</a>
+							<a data-bind="click: actions.changeLang.bind('ru')" class="lang_item" href="#">
+								<div class="lang_img_wrap">
+									<img class="lang_img" src="~/gteam/i/rus.png" alt="lang flag"/></div>
+								<div class="lang_title">Rus</div>
+							</a>
+						</div>
+						<div class="lang_control"></div>
+					</div>
 				</div>
 			</nav>
 		</div>

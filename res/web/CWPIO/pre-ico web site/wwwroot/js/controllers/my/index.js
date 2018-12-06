@@ -2,6 +2,10 @@
 	var App = new function () {
 
 		var self = this;
+		
+		this.options = {
+			flagsPath: '/assets/app/media/img/flags/'
+		};
 
 		this.getGMT = function() {
 			return (new Date().getTimezoneOffset() / 60) * (-1);
@@ -14,13 +18,30 @@
 		};
 		
 		this.changeLocale = function (locale) {
+			
+			locale = locale || $(this).data('lang'); 
+			
+			console.log('locale changing to ', locale);
+				
 			try{
 				
-				i18n.setLng(locale);
+				i18n.setLng(locale).then(function(){
+					$("body").i18n();
+				});
+
+				console.log('locale changed');
+
+				$('.js-current-lang').prop('src', [self.options.flagsPath, locale, '.svg'].join(''));
 				
 			}catch (e){
 				
 			}
+		};
+		
+		this.addHandlers = function () {
+			$('.js-change-lang').on('click.changeLocale', function(){
+				self.changeLocale($(this).data('lang'));
+			});
 		};
 				
 		this.public = {
@@ -35,6 +56,8 @@
 		});
 		
 		App.initJIvo();
+		
+		App.addHandlers();
 		
 	};
 	
