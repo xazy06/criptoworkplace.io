@@ -83,6 +83,36 @@ namespace pre_ico_web_site.Services
             return false;
         }
 
+        public async Task<bool> SendEmailValidationAsync(string email, string validateLink)
+        {
+            var mailTemplateId = _mailSettings.Value.MailValidationTemplateId.ContainsKey(CultureInfo.CurrentUICulture.Name) ?
+                    _mailSettings.Value.MailValidationTemplateId[CultureInfo.CurrentUICulture.Name] :
+                    _mailSettings.Value.MailValidationTemplateId["en-US"];
+
+            MailjetRequest request = new MailjetRequest { Resource = Send.Resource }
+                .Property(Send.FromEmail, "support@cryptoworkplace.io")
+                .Property(Send.FromName, "CryptoWorkPlace Support")
+                .Property(Send.Subject, "Customer account verification")
+                .Property(Send.MjTemplateID, mailTemplateId.ToString())
+                .Property(Send.MjTemplateLanguage, true)
+                .Property(Send.Vars, new JObject {
+                    { "link", validateLink }
+                })
+                .Property(Send.Recipients, new JArray { new JObject { { "Email", email } } });
+
+            MailjetResponse response = await _client.PostAsync(request);
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                _logger.LogError(response.GetErrorMessage());
+            }
+
+            return false;
+        }
+
         public async Task<bool> SendEmailFailedTransactionAsync(string email, string htmlText)
         {
             var mailTemplateId = _mailSettings.Value.MailTemplateId.ContainsKey(CultureInfo.CurrentUICulture.Name) ?

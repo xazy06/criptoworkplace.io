@@ -16,6 +16,8 @@ namespace pre_ico_web_site.Models
         public Dictionary<string, int> ContacListId { get; set; }
         public Dictionary<string, int> WelcomeTemplateId { get; set; }
         public Dictionary<string, int> MailTemplateId { get; set; }
+        public Dictionary<string, int> MailValidationTemplateId { get; set; }
+        
 
         public MailSettings()
         {
