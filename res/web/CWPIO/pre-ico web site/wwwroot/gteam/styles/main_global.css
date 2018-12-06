@@ -564,8 +564,17 @@ a {
   a:hover, a:focus {
     text-decoration: underline; }
 
-.hidden_mod {
-  display: none !important; }
+@media screen and (max-width: 320px) {
+    .hidden_mod_mob {
+        display: none !important;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .hidden_mod_pc {
+        display: none !important;
+    }
+}
 
 @-webkit-keyframes blink {
   from {
@@ -613,7 +622,7 @@ a {
       max-width: 8.6em; } }
 
 .social_list.footer_mod {
-  margin: 0 -.8em;
+  margin: 0 -1.6em;
   padding: 0;
   list-style: none; }
   @media screen and (max-width: 767px) {
