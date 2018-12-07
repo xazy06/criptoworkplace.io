@@ -1,4 +1,5 @@
-﻿using ExchangerMonitor.Services;
+﻿using ExchangerMonitor.Model;
+using ExchangerMonitor.Services;
 using Microsoft.Extensions.Logging;
 using System.Numerics;
 using System.Threading.Tasks;
@@ -9,13 +10,13 @@ namespace ExchangerMonitor.WorkflowSteps
 {
     public class SetRate : StepBodyAsync
     {
-        private readonly Database _db;
+        private readonly IDatabaseService _db;
         private readonly ILogger _logger;
-        private readonly Eth _eth;
+        private readonly IEthService _eth;
 
         public ExchangeTransaction Transaction { get; set; }
 
-        public SetRate(Database db, Eth eth, ILogger<SetRate> logger)
+        public SetRate(IDatabaseService db, IEthService eth, ILogger<SetRate> logger)
         {
             _db = db;
             _logger = logger;
@@ -26,7 +27,7 @@ namespace ExchangerMonitor.WorkflowSteps
         {
             _logger.LogInformation("Set fix rate");
             var amount = BigInteger.Parse(Transaction.EthAmount);
-            var tx = await _eth.SetRateForTransactionAsync(Transaction.Rate, Transaction.ETHAddress, amount);
+            var tx = await _eth.SetRateAsync(Transaction.Rate, Transaction.ETHAddress, amount);
 
             Transaction.CurrentTx = tx;
             Transaction.CurrentStep = (int)ChangeSteps.SendEth;

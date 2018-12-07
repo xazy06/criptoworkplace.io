@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using ExchangerMonitor.Model;
+using Microsoft.Extensions.Logging;
 using Npgsql;
 using System;
 using System.Collections.Generic;
@@ -6,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace ExchangerMonitor.Services
 {
-    public class Database : IDisposable
+    public class DatabaseService : IDisposable, IDatabaseService
     {
         private NpgsqlConnection _connection;
         private readonly string _connectionString;
         private readonly ILogger _logger;
         private readonly object syncObject = new object();
 
-        public Database(string connectionString, ILogger<Database> logger)
+        public DatabaseService(string connectionString, ILogger<DatabaseService> logger)
         {
             _logger = logger;
             _logger.LogInformation($"Connect to database: {connectionString}");
@@ -26,7 +27,7 @@ namespace ExchangerMonitor.Services
         public async Task<List<ExchangeTransaction>> GetActiveExchangeTransactionsAsync()
         {
             List<ExchangeTransaction> result = new List<ExchangeTransaction>();
-         
+
             using (var cmd = new NpgsqlCommand(@"
 SELECT 
     es.id, 
@@ -131,25 +132,25 @@ WHERE es.is_ended = false AND es.is_failed = false", _connection))
             }
         }
 
-        public async Task SetRefundTransaction(string id, string transaction)
-        {
-            using (var cmd = new NpgsqlCommand(@"UPDATE exchange.exchange_status SET refund_tx = @tx WHERE id = @id", _connection))
-            {
-                cmd.Parameters.AddWithValue("id", id);
-                cmd.Parameters.AddWithValue("tx", transaction);
-                await cmd.ExecuteNonQueryAsync();
-            }
-        }
+        //public async Task SetRefundTransaction(string id, string transaction)
+        //{
+        //    using (var cmd = new NpgsqlCommand(@"UPDATE exchange.exchange_status SET refund_tx = @tx WHERE id = @id", _connection))
+        //    {
+        //        cmd.Parameters.AddWithValue("id", id);
+        //        cmd.Parameters.AddWithValue("tx", transaction);
+        //        await cmd.ExecuteNonQueryAsync();
+        //    }
+        //}
 
-        public async Task SetExchanger(string userId, string exchanger)
-        {
-            using (var cmd = new NpgsqlCommand(@"UPDATE identity.users SET exchanger_contract = @tx WHERE id = @id", _connection))
-            {
-                cmd.Parameters.AddWithValue("id", userId);
-                cmd.Parameters.AddWithValue("tx", exchanger);
-                await cmd.ExecuteNonQueryAsync();
-            }
-        }
+        //public async Task SetExchanger(string userId, string exchanger)
+        //{
+        //    using (var cmd = new NpgsqlCommand(@"UPDATE identity.users SET exchanger_contract = @tx WHERE id = @id", _connection))
+        //    {
+        //        cmd.Parameters.AddWithValue("id", userId);
+        //        cmd.Parameters.AddWithValue("tx", exchanger);
+        //        await cmd.ExecuteNonQueryAsync();
+        //    }
+        //}
 
         public async Task SetTotalGasCount(string id, int gas)
         {

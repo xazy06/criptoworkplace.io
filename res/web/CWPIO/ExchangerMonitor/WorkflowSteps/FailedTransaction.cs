@@ -1,4 +1,5 @@
-﻿using ExchangerMonitor.Services;
+﻿using ExchangerMonitor.Model;
+using ExchangerMonitor.Services;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 using WorkflowCore.Interface;
@@ -9,12 +10,12 @@ namespace ExchangerMonitor.WorkflowSteps
     public class FailedTransaction : StepBodyAsync
     {
 
-        private readonly Database _db;
+        private readonly IDatabaseService _db;
         private readonly ILogger _logger;
 
         public ExchangeTransaction Transaction { get; set; }
 
-        public FailedTransaction(Database db, ILogger<FailedTransaction> logger)
+        public FailedTransaction(IDatabaseService db, ILogger<FailedTransaction> logger)
         {
             _db = db;
             _logger = logger;
@@ -24,7 +25,7 @@ namespace ExchangerMonitor.WorkflowSteps
         {
             _logger.LogInformation("Mark transaction as failed");
             Transaction.Status = TXStatus.Failed;
-            await _db.MarkAsFailed(Transaction.Id);            
+            await _db.MarkAsFailed(Transaction.Id);
             return ExecutionResult.Next();
         }
     }

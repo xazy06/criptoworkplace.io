@@ -1,4 +1,5 @@
-﻿using ExchangerMonitor.Services;
+﻿using ExchangerMonitor.Model;
+using ExchangerMonitor.Services;
 using System.Threading.Tasks;
 using WorkflowCore.Interface;
 using WorkflowCore.Models;
@@ -10,8 +11,8 @@ namespace ExchangerMonitor.WorkflowSteps
         public string Tx { get; set; }
         public TXStatus Status { get; set; }
 
-        private readonly Eth _eth;
-        public CheckStatus(Eth eth)
+        private readonly IEthService _eth;
+        public CheckStatus(IEthService eth)
         {
             _eth = eth;
         }

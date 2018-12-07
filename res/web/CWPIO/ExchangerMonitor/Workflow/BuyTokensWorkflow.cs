@@ -1,4 +1,5 @@
-﻿using ExchangerMonitor.WorkflowSteps;
+﻿using ExchangerMonitor.Model;
+using ExchangerMonitor.WorkflowSteps;
 using System;
 using WorkflowCore.Interface;
 using WorkflowCore.Models;
@@ -37,21 +38,24 @@ namespace ExchangerMonitor.Workflow
                                 .Schedule(d => TimeSpan.FromSeconds(10))
                                 .Do(isb => isb.StartWith<CustomMessage>(cfgMessage).Then(s));
                             })
-                            .If(d => (ChangeSteps)d.CurrentStep == ChangeSteps.SendEth).Do(sb => {
+                            .If(d => (ChangeSteps)d.CurrentStep == ChangeSteps.SendEth).Do(sb =>
+                            {
                                 sb.StartWith<SendEth>(c => c
                                     .Name("Send Eth")
                                     .Input(step => step.Transaction, data => data))
                                 .Schedule(d => TimeSpan.FromSeconds(10))
                                 .Do(isb => isb.StartWith<CustomMessage>(cfgMessage).Then(s));
                             })
-                            .If(d => (ChangeSteps)d.CurrentStep == ChangeSteps.Refund).Do(sb => {
+                            .If(d => (ChangeSteps)d.CurrentStep == ChangeSteps.Refund).Do(sb =>
+                            {
                                 sb.StartWith<Refund>(c => c
                                     .Name("Refund")
                                     .Input(step => step.Transaction, data => data))
                                 .Schedule(d => TimeSpan.FromSeconds(10))
                                 .Do(isb => isb.StartWith<CustomMessage>(cfgMessage).Then(s));
                             })
-                            .If(d => (ChangeSteps)d.CurrentStep == ChangeSteps.Finish).Do(sb => {
+                            .If(d => (ChangeSteps)d.CurrentStep == ChangeSteps.Finish).Do(sb =>
+                            {
                                 sb.StartWith<Finish>(c => c
                                     .Name("Finish")
                                     .Input(step => step.Transaction, data => data))

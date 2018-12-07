@@ -1,4 +1,5 @@
-﻿using ExchangerMonitor.Services;
+﻿using ExchangerMonitor.Model;
+using ExchangerMonitor.Services;
 using Microsoft.Extensions.Logging;
 using System.Numerics;
 using System.Threading.Tasks;
@@ -9,13 +10,13 @@ namespace ExchangerMonitor.WorkflowSteps
 {
     public class SendEth : StepBodyAsync
     {
-        private readonly Database _db;
+        private readonly IDatabaseService _db;
         private readonly ILogger _logger;
-        private readonly Eth _eth;
+        private readonly IEthService _eth;
 
         public ExchangeTransaction Transaction { get; set; }
 
-        public SendEth(Database db, Eth eth, ILogger<SendEth> logger)
+        public SendEth(IDatabaseService db, IEthService eth, ILogger<SendEth> logger)
         {
             _db = db;
             _logger = logger;
@@ -33,7 +34,7 @@ namespace ExchangerMonitor.WorkflowSteps
 
             await _db.SetCurrentTransaction(Transaction.Id, tx);
             await _db.SetStep(Transaction.Id, (int)ChangeSteps.Refund);
-            
+
             return ExecutionResult.Next();
         }
     }

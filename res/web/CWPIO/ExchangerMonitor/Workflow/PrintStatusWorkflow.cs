@@ -1,7 +1,7 @@
-﻿using ExchangerMonitor.WorkflowSteps;
+﻿using ExchangerMonitor.Model;
+using ExchangerMonitor.WorkflowSteps;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using WorkflowCore.Interface;
 
 namespace ExchangerMonitor.Workflow

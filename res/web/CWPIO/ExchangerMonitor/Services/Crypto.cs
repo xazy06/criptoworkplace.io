@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Options;
+﻿using ExchangerMonitor.Settings;
+using Microsoft.Extensions.Options;
 using System;
 using System.IO;
 using System.Linq;
@@ -6,18 +7,28 @@ using System.Security.Cryptography;
 
 namespace ExchangerMonitor.Services
 {
-    public class Crypto
+    public class CryptoService : ICryptoService
     {
         private readonly byte[] _key;
         private readonly byte[] _iv;
-        public Crypto(IOptions<EthSettings> settings)
+        public CryptoService(IOptions<EthSettings> settings)
         {
+            if (settings == null)
+            {
+                throw new ArgumentNullException(nameof(settings));
+            }
+
             _key = settings.Value.Key.StringToByteArray();
             _iv = settings.Value.IV.StringToByteArray();
         }
 
         public byte[] Decrypt(byte[] data)
         {
+            if (data == null || data.Length == 0)
+            {
+                throw new ArgumentNullException(nameof(data));
+            }
+
             using (Aes aes = Aes.Create())
             {
                 aes.KeySize = 256;

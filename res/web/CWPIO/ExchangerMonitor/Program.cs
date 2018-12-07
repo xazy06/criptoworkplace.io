@@ -1,4 +1,6 @@
-﻿using ExchangerMonitor.Services;
+﻿using ExchangerMonitor.Model;
+using ExchangerMonitor.Services;
+using ExchangerMonitor.Settings;
 using ExchangerMonitor.Workflow;
 using ExchangerMonitor.WorkflowSteps;
 using Microsoft.Extensions.Configuration;
@@ -73,11 +75,11 @@ namespace ExchangerMonitor
             });
 
             //// add services
-            serviceCollection.AddSingleton<Eth>();
-            serviceCollection.AddSingleton(s =>
-                new Database(Configuration.GetConnectionString("CWPConnection"), s.GetRequiredService<ILogger<Database>>())
+            serviceCollection.AddSingleton<IEthService, EthService>();
+            serviceCollection.AddSingleton<IDatabaseService>(s =>
+                new DatabaseService(Configuration.GetConnectionString("CWPConnection"), s.GetRequiredService<ILogger<DatabaseService>>())
             );
-            serviceCollection.AddSingleton<Crypto>();
+            serviceCollection.AddSingleton<ICryptoService,CryptoService>();
 
             serviceCollection.AddTransient<LoadData>();
             serviceCollection.AddTransient<CheckStatus>();

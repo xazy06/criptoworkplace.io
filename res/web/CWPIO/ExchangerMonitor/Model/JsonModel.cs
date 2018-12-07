@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace ExchangerMonitor
+namespace ExchangerMonitor.Model
 {
     public class JsonModel
     {

@@ -1,4 +1,5 @@
-﻿using ExchangerMonitor.Services;
+﻿using ExchangerMonitor.Model;
+using ExchangerMonitor.Services;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 using WorkflowCore.Interface;
@@ -8,12 +9,12 @@ namespace ExchangerMonitor.WorkflowSteps
 {
     public class Finish : StepBodyAsync
     {
-        private readonly Database _db;
+        private readonly IDatabaseService _db;
         private readonly ILogger _logger;
 
         public ExchangeTransaction Transaction { get; set; }
 
-        public Finish(Database db, ILogger<Finish> logger)
+        public Finish(IDatabaseService db, ILogger<Finish> logger)
         {
             _db = db;
             _logger = logger;
@@ -25,7 +26,7 @@ namespace ExchangerMonitor.WorkflowSteps
 
             Transaction.Status = TXStatus.Ended;
             await _db.MarkAsEnded(Transaction.Id);
-            
+
             return ExecutionResult.Next();
         }
     }

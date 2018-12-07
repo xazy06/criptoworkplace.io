@@ -1,4 +1,5 @@
-﻿using ExchangerMonitor.Services;
+﻿using ExchangerMonitor.Model;
+using ExchangerMonitor.Services;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 using WorkflowCore.Interface;
@@ -8,13 +9,13 @@ namespace ExchangerMonitor.WorkflowSteps
 {
     public class Refund : StepBodyAsync
     {
-        private readonly Database _db;
+        private readonly IDatabaseService _db;
         private readonly ILogger _logger;
-        private readonly Eth _eth;
+        private readonly IEthService _eth;
 
         public ExchangeTransaction Transaction { get; set; }
 
-        public Refund(Database db, Eth eth, ILogger<Refund> logger)
+        public Refund(IDatabaseService db, IEthService eth, ILogger<Refund> logger)
         {
             _db = db;
             _logger = logger;
@@ -31,7 +32,7 @@ namespace ExchangerMonitor.WorkflowSteps
             Transaction.CurrentStep = (int)ChangeSteps.Finish;
             await _db.SetCurrentTransaction(Transaction.Id, tx);
             await _db.SetStep(Transaction.Id, (int)ChangeSteps.Finish);
-            
+
             return ExecutionResult.Next();
         }
     }

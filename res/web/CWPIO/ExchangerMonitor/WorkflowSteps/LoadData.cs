@@ -1,4 +1,5 @@
-﻿using ExchangerMonitor.Services;
+﻿using ExchangerMonitor.Model;
+using ExchangerMonitor.Services;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -14,12 +15,12 @@ namespace ExchangerMonitor.WorkflowSteps
         public TimeSpan Period { get; set; }
         public string BuyWorkflowName { get; set; }
 
-        private readonly Database _db;
+        private readonly IDatabaseService _db;
 
         private readonly ILogger _logger;
         private readonly IWorkflowHost _host;
 
-        public LoadData(Database db, ILogger<LoadData> logger, IWorkflowHost host)
+        public LoadData(IDatabaseService db, ILogger<LoadData> logger, IWorkflowHost host)
         {
             _db = db;
             _logger = logger;

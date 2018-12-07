@@ -1,4 +1,4 @@
-﻿namespace ExchangerMonitor
+﻿namespace ExchangerMonitor.Model
 {
     public enum ChangeSteps
     {

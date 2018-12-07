@@ -1,10 +1,4 @@
-﻿using ExchangerMonitor.Data;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using WorkflowCore.Interface;
-
-namespace ExchangerMonitor
+﻿namespace ExchangerMonitor.Model
 {
     public class ExchangeTransaction
     {
@@ -29,7 +23,7 @@ namespace ExchangerMonitor
             return $"Id: {Id}\tStartTx: {StartTx}\tCurrentTx: {CurrentTx}";
         }
     }
-    
+
     public enum TXStatus
     {
         Ok = 0,
