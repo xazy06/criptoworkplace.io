@@ -864,10 +864,23 @@ a {
           align-items: center; }
   @media screen and (min-width: 1024px) {
     .btn_join.header_mod {
-      margin-right: 4.4em; } }
+      margin-right: 4.4em; 
+    }
+    .social_item-visible-sm {
+      display:none;
+    }
+  }
   @media screen and (max-width: 1023px) {
     .btn_join.header_mod {
-      display: none; } }
+      display: none; 
+    }
+    .social_wrap_title {
+      display: none;
+    }
+    .social_item-visible-sm {
+      display:list-item;
+    }
+  }
   .btn_join:hover, .btn_join:focus {
     text-decoration: none; }
 
