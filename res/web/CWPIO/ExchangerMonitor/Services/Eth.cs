@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Nethereum.Contracts;
 using Nethereum.Hex.HexTypes;
+using Nethereum.JsonRpc.Client;
 using Nethereum.RPC.Eth.DTOs;
 using Nethereum.Util;
 using Nethereum.Web3;
@@ -11,7 +12,9 @@ using Nethereum.Web3.Accounts;
 using Newtonsoft.Json;
 using System;
 using System.IO;
+using System.Net.Http.Headers;
 using System.Numerics;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace ExchangerMonitor.Services
@@ -35,7 +38,11 @@ namespace ExchangerMonitor.Services
             _crypto = crypto ?? throw new ArgumentNullException(nameof(crypto));
             _opts = options.Value;
             var account = new Account(_opts.AppPrivateKey);
-            _web3 = new Web3(account, _opts.NodeUrl);
+            var uri = new Uri(_opts.NodeUrl ?? "http://localhost:8545");
+            var authHeader = Convert.ToBase64String(Encoding.UTF8.GetBytes(uri.UserInfo));
+            var client = new RpcClient(uri,
+                    new AuthenticationHeaderValue("Basic", authHeader));
+            _web3 = new Web3(account, client);
             
             var json = File.ReadAllText("Exchanger.json");
 
