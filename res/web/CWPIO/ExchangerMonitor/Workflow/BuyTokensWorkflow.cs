@@ -17,10 +17,10 @@ namespace ExchangerMonitor.Workflow
             void cfgMessage(IStepBuilder<ExchangeTransaction, CustomMessage> c) => c.Name("Message").Input(step => step.Message, data => "Check status running: " + data.CurrentTx);
 
             builder.StartWith<CustomMessage>(cfgMessage)
-                .Saga(saga => 
+                .Saga(saga =>
                     saga
                     .StartWith<CustomMessage>(cfgMessage)
-                    .Then<CheckStatus>(s => 
+                    .Then<CheckStatus>(s =>
                     {
                         s
                             .Name("Check status")
@@ -58,7 +58,7 @@ namespace ExchangerMonitor.Workflow
                                     .Schedule(d => TimeSpan.FromSeconds(10))
                                     .Do(isb => isb.StartWith<CustomMessage>(cfgMessage).Then(s));
                                 })
-                                .If(d => (ChangeSteps)d.CurrentStep == ChangeSteps.Finish).Do(sb =>
+                                .If(d => (ChangeSteps)d.CurrentStep == ChangeSteps.Finish && d.Status != TXStatus.Failed).Do(sb =>
                                 {
                                     sb.StartWith<Finish>(c => c
                                         .Name("Finish")
@@ -92,7 +92,7 @@ namespace ExchangerMonitor.Workflow
                                     c
                                         .Name("Mark as failed")
                                         .Input(st => st.Transaction, d => d))
-                                .Then<Refund>(c => 
+                                .Then<Refund>(c =>
                                     c
                                         .Name("Refund")
                                         .Input(step => step.Transaction, data => data))
@@ -100,10 +100,19 @@ namespace ExchangerMonitor.Workflow
                         });
                     })
                 )
-                .CompensateWith<Refund>(c => 
-                    c
+                .CompensateWith<CustomMessage>(b =>
+                    b
+                        .Name("Fail message")
+                        .Input(step => step.Message, data => "Failed transaction: " + data.CurrentTx))
+                .Then<FailedTransaction>(b =>
+                    b
+                        .Name("Mark as failed")
+                        .Input(st => st.Transaction, d => d))
+                .Then<Refund>(b =>
+                    b
                         .Name("Refund")
                         .Input(step => step.Transaction, data => data))
+                .EndWorkflow()
                 .OnError(WorkflowErrorHandling.Compensate);
         }
     }
