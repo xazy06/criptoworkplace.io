@@ -105,23 +105,27 @@
 							<a data-i18n="nav.team" class="main_menu_link" href="#team">Team</a>
 						</li>
 					</ul>
+
 					<a class="btn_base header_mod" href="/file/CWP_White_Paper_en.pdf"
-					   data-i18n="nav.whitepaper" 
-					   target="_blank" 
-					   onclick="ga('send', 'event', 'forms', 'Whitepaper'); yaCounter50462326.reachGoal('Whitepaper'); return true;">White paper</a>
+					   data-i18n="nav.whitepaper"
+					   target="_blank"
+					   onclick="ga('send', 'event', 'forms', 'Whitepaper');yaCounter50462326.reachGoal('Whitepaper');return true;">
+						White paper
+					</a>
+
 					<div class="lang_menu">
 						<div class="lang_list">
-							<a data-bind="click: actions.changeLang.bind('en')" class="lang_item active_mod" href="#">
+							<a data-bind="css:{'active_mod': obs.activeLang() === 'en'}, click: actions.changeLang.bind('en')" class="lang_item active_mod" href="#">
 								<div class="lang_img_wrap">
 									<img class="lang_img" src="~/gteam/i/eng.png" alt="lang flag"/></div>
 								<div class="lang_title">Eng</div>
 							</a>
-							<a data-bind="click: actions.changeLang.bind('jp')" class="lang_item" href="#">
+							<a data-bind="css:{'active_mod': obs.activeLang() === 'jp'}, click: actions.changeLang.bind('jp')" class="lang_item" href="#">
 								<div class="lang_img_wrap">
 									<img class="lang_img" src="~/gteam/i/jap.png" alt="lang flag"/></div>
 								<div class="lang_title">Jap</div>
 							</a>
-							<a data-bind="click: actions.changeLang.bind('ru')" class="lang_item" href="#">
+							<a data-bind="css:{'active_mod': obs.activeLang() === 'ru'}, click: actions.changeLang.bind('ru')" class="lang_item" href="#">
 								<div class="lang_img_wrap">
 									<img class="lang_img" src="~/gteam/i/rus.png" alt="lang flag"/></div>
 								<div class="lang_title">Rus</div>

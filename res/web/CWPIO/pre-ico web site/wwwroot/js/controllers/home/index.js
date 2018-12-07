@@ -57,6 +57,8 @@ var Controller = function () {
 		
 		console.log('locale changing to ', locale);
 
+		ViewModel.actions.storeLang(locale);
+		
 		try{
 
 			i18n.setLng(locale).then(function(){
@@ -73,12 +75,15 @@ var Controller = function () {
 	this.init = function () {
 		ko.applyBindings(ViewModel);
 
+		ViewModel.actions.getStoredLang();
+		
 		return this;
 	};
 
 	var ViewModel = {
 		obs:{
-			email: ko.observable('')
+			email: ko.observable(''),
+			activeLang: ko.observable('en')
 		},
 
 		flags:{
@@ -96,6 +101,17 @@ var Controller = function () {
 			},
 			changeLang: function () {
 				return self.changeLocale(''+this);
+			},
+			storeLang: function (locale) {
+				window.localStorage.setItem('activeLang', locale);
+				
+			},
+			getStoredLang: function () {
+				var activeLang = window.localStorage.getItem('activeLang');
+				
+				ViewModel.obs.activeLang(activeLang);
+				
+				ViewModel.actions.changeLang.call(activeLang);
 			}
 		}
 
