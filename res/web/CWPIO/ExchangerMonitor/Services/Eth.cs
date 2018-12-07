@@ -26,6 +26,7 @@ namespace ExchangerMonitor.Services
         private EthSettings _opts;
         private ICryptoService _crypto;
         private JsonModel _json;
+        private RpcClient _client;
 
         public EthService(IOptions<EthSettings> options, ICryptoService crypto, ILogger<EthService> logger)
         {
@@ -40,9 +41,8 @@ namespace ExchangerMonitor.Services
             var account = new Account(_opts.AppPrivateKey);
             var uri = new Uri(_opts.NodeUrl ?? "http://localhost:8545");
             var authHeader = Convert.ToBase64String(Encoding.UTF8.GetBytes(uri.UserInfo));
-            var client = new RpcClient(uri,
-                    new AuthenticationHeaderValue("Basic", authHeader));
-            _web3 = new Web3(account, client);
+            _client = new RpcClient(uri, new AuthenticationHeaderValue("Basic", authHeader));
+            _web3 = new Web3(account, _client);
             
             var json = File.ReadAllText("Exchanger.json");
 
@@ -143,11 +143,11 @@ namespace ExchangerMonitor.Services
             _logger?.LogDebug("Send ETH to smart contract from {0} amount {1}", buyer, amount);
 
             var account = new Account(_crypto.Decrypt(privateKey.StringToByteArray()));
-            var _web3t = new Web3(account, _opts.NodeUrl);
+            var web3local = new Web3(account, _client);
 
-            var price = await _web3t.Eth.GasPrice.SendRequestAsync();
+            var price = await web3local.Eth.GasPrice.SendRequestAsync();
 
-            Contract contract = _web3t.Eth.GetContract(_json.Sale.ABI.ToString(), _opts.SmartContractAddr);
+            Contract contract = web3local.Eth.GetContract(_json.Sale.ABI.ToString(), _opts.SmartContractAddr);
             var input = contract.GetFunction("buyTokens").CreateTransactionInput(
                 account.Address,
                 new HexBigInteger(0x30A28),
@@ -156,9 +156,9 @@ namespace ExchangerMonitor.Services
                 buyer
             );
 
-            var gas = await _web3t.Eth.TransactionManager.EstimateGasAsync(input);
+            var gas = await web3local.Eth.TransactionManager.EstimateGasAsync(input);
             input.Gas = new HexBigInteger(gas.Value + 10000);
-            var tx = await _web3t.Eth.TransactionManager.SendTransactionAsync(input);
+            var tx = await web3local.Eth.TransactionManager.SendTransactionAsync(input);
             return tx;
         }
 
@@ -198,9 +198,9 @@ namespace ExchangerMonitor.Services
             _logger?.LogDebug("Send refund to user {0}", to);
 
             var account = new Account(_crypto.Decrypt(pk.StringToByteArray()));
-            var _web3t = new Web3(account, _opts.NodeUrl);
-            var ballance = await _web3t.Eth.GetBalance.SendRequestAsync(account.Address);
-            var price = await _web3t.Eth.GasPrice.SendRequestAsync();
+            var web3local = new Web3(account, _client);
+            var ballance = await web3local.Eth.GetBalance.SendRequestAsync(account.Address);
+            var price = await web3local.Eth.GasPrice.SendRequestAsync();
             var input = new TransactionInput(
                         "",
                         to,
@@ -209,13 +209,13 @@ namespace ExchangerMonitor.Services
                         new HexBigInteger(price.Value * 2),
                         new HexBigInteger(0x5208 * price.Value * 2)
                     );
-            var gas = await _web3t.Eth.TransactionManager.EstimateGasAsync(input);
+            var gas = await web3local.Eth.TransactionManager.EstimateGasAsync(input);
 
             if (ballance.Value > gas * price.Value * 2)
             {
                 input.Value = new HexBigInteger(ballance.Value - gas.Value * price.Value * 2);
                 input.Gas = gas;
-                var tx = await _web3t.Eth.TransactionManager.SendTransactionAsync(input);
+                var tx = await web3local.Eth.TransactionManager.SendTransactionAsync(input);
                 return tx;
             }
             else
