@@ -22,6 +22,8 @@
 			locale = locale || $(this).data('lang'); 
 			
 			console.log('locale changing to ', locale);
+
+			self.storeLang(locale);
 				
 			try{
 				
@@ -36,6 +38,16 @@
 			}catch (e){
 				
 			}
+		};
+
+		this.storeLang = function (locale) {
+			window.localStorage.setItem('activeLang', locale);
+		};
+		
+		this.getStoredLang = function () {
+			var activeLang = window.localStorage.getItem('activeLang');
+			
+			self.changeLocale(activeLang);
 		};
 		
 		this.addHandlers = function () {
@@ -58,6 +70,8 @@
 		App.initJIvo();
 		
 		App.addHandlers();
+		
+		App.getStoredLang();
 		
 	};
 	
