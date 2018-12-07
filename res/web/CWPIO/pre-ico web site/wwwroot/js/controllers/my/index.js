@@ -46,6 +46,12 @@
 		
 		this.getStoredLang = function () {
 			var activeLang = window.localStorage.getItem('activeLang');
+
+			try{
+				if(activeLang.indexOf('[') > -1) {
+					activeLang = 'en';
+				}
+			}catch(e){}
 			
 			self.changeLocale(activeLang);
 		};
