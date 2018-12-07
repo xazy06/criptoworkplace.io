@@ -36,7 +36,7 @@ namespace ExchangerMonitor.Services
             _opts = options.Value;
             var account = new Account(_opts.AppPrivateKey);
             _web3 = new Web3(account, _opts.NodeUrl);
-
+            
             var json = File.ReadAllText("Exchanger.json");
 
             _json = JsonConvert.DeserializeObject<JsonModel>(json);
@@ -47,25 +47,34 @@ namespace ExchangerMonitor.Services
         {
             //await this.waitForConnect();
             _logger?.LogDebug("check transaction \"{0}\"", txHash);
-            var tx = await _web3.Eth.Transactions.GetTransactionByHash.SendRequestAsync(txHash);
-            if (tx == null)
+            try
             {
-                return ExchangeOperationStatus.Skip;
-            }
-            else
-            {
-                bool result = tx.BlockNumber != null;
-                if (result)
+                var tx = await _web3.Eth.Transactions.GetTransactionByHash.SendRequestAsync(txHash);
+                if (tx == null)
                 {
-                    var receipt = await GetTransactionReceiptAsync(tx.TransactionHash);
-                    if (receipt == null)
-                    {
-                        return ExchangeOperationStatus.Skip;
-                    }
-
-                    result = result && (receipt.Status.Value > 0);
+                    return ExchangeOperationStatus.Skip;
                 }
-                return result ? ExchangeOperationStatus.Ok : ExchangeOperationStatus.Failed;
+                else
+                {
+                    bool result = tx.BlockNumber != null;
+                    if (result)
+                    {
+                        var receipt = await GetTransactionReceiptAsync(tx.TransactionHash);
+                        if (receipt == null)
+                        {
+                            return ExchangeOperationStatus.Skip;
+                        }
+
+                        result = result && (receipt.Status.Value > 0);
+                    }
+                    return result ? ExchangeOperationStatus.Ok : ExchangeOperationStatus.Failed;
+                }
+            }
+            catch(Exception ex)
+            {
+                _logger.LogCritical(ex, "Error");
+                _logger.LogCritical(ex.ToString());
+                throw;
             }
         }
 
