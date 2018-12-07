@@ -33,11 +33,12 @@ namespace ExchangerMonitor
 
             // entry to run app
             bool inContainer = Configuration.GetValue<bool>("RUNNING_IN_CONTAINER");
-            //serviceProvider.GetService<App>().Run();
+            var logger = serviceProvider.GetService<ILogger<Program>>();
             var host = serviceProvider.GetRequiredService<IWorkflowHost>();
             host.RegisterWorkflow<MonitorDBWorkflow>();
             host.RegisterWorkflow<BuyTokensWorkflow, ExchangeTransaction>();
             host.RegisterWorkflow<PrintStatusWorkflow, Dictionary<string, ExchangeTransaction>>();
+            host.OnStepError += (w,s,e) => logger?.LogError(e,"Error in workflow {0} at step {1}", w.Reference, string.IsNullOrEmpty(s.Name)? s.Id.ToString(): s.Name);
             host.Start();
             host.StartWorkflow("Monitor DB", reference: "MonitorDB");
             if (!inContainer)
