@@ -58,7 +58,7 @@ namespace pre_ico_web_site.Controllers
                 return NotFound();
             }
 
-            if (!string.IsNullOrEmpty(user.Wallet) && (await _contract.CheckTxStatusAsync(user.WhiteListTransaction)) && !(await _contract.CheckWhitelistAsync(user.Wallet)))
+            if (!string.IsNullOrEmpty(user.Wallet) && (string.IsNullOrEmpty(user.WhiteListTransaction) || await _contract.CheckTxStatusAsync(user.WhiteListTransaction)) && !(await _contract.CheckWhitelistAsync(user.Wallet)))
             {
                 user.EthAddress = null;
                 await _dbContext.SaveChangesAsync();
@@ -252,8 +252,11 @@ namespace pre_ico_web_site.Controllers
             }
 
             var tx = await _contract.AddAddressToWhitelistAsync(model.ErcAddress);
+            if (!string.IsNullOrEmpty(tx))
+            {
+                user.WhiteListTransaction = tx;
+            }
 
-            user.WhiteListTransaction = tx;
             user.EthAddress = model.ErcAddress.StringToByteArray();
             await _dbContext.SaveChangesAsync();
             return Ok(new { txHash = tx });
