@@ -73,7 +73,7 @@ namespace ExchangerMonitor.Services
             catch(Exception ex)
             {
                 _logger.LogCritical(ex, "Error");
-                _logger.LogCritical(ex.ToString());
+                _logger.LogDebug(_opts.NodeUrl);
                 throw;
             }
         }
