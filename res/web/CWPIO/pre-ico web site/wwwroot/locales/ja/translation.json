@@ -100,7 +100,8 @@
     "sold": "",
     "refund": "",
     "overpaid": "",
-    "unavail": ""
+    "unavail": "",
+    "in_progress": ""
   },
   "cwtp_raised": "",
   "idea_m_sec": "",
