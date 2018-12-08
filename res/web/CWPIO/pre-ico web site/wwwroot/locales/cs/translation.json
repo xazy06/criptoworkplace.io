@@ -90,7 +90,8 @@
     "order_exp_on": "",
     "no_transactions": "",
     "Address": "",
-    "dep_addr_error": ""
+    "dep_addr_error": "",
+    "pl_whait": ""
   },
   "cwtp_raised": "",
   "idea_m_sec": "",
