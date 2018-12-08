@@ -277,7 +277,7 @@
     "more": "more",
     "Address": "address",
     "txid": "Txid",
-    "no_transactions": "no transactions",
+    "no_transactions": "Данный заказ истекает",
     "ok": "Ok",
     "cancel": "Cancel"
   }

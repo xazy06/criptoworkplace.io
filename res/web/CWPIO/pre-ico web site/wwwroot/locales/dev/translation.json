@@ -277,7 +277,7 @@
     "more": "more",
     "Address": "address",
     "txid": "Txid",
-    "no_transactions": "no transactions",
+    "no_transactions": "This order will expair on",
     "ok": "Ok",
     "cancel": "Cancel"
   }
