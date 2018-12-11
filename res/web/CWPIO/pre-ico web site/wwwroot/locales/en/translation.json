@@ -1,4 +1,4 @@
-﻿{
+{
   "app": {
     "name": "cwp"
   },
@@ -20,7 +20,7 @@
   "soft_cap": "Soft cap",
   "t_raised": "Total raised",
   "hard_cap": "Hard cap",
-  "buy_cwtt": "BUY CWT-TOKEN",
+  "buy_cwtt": "PARTICIPATE",
   "video_instr": "Video instruction",
   "40per_pub": "40% Public Presale Discount. ",
   "time_left": "Time left till price rise:",
@@ -230,13 +230,13 @@
   "pre_sale": "Pre-sale",
   "pre_sale_text": "Users who have purchased the CWT tokens, receive discounts whose size will decrease with increasing amounts attracted as follows",
   "roadmap": "Subscribe:",
-  "cwt_exch":"Exchange: the CWT-P token to the primary token CWT at 1 CWT-P = 1 CWT",
-  "cwt_croud":"Crowd Sale TGE",
-  "cwt_kyc":"KYC procedure",
-  "cwt_beta":"Beta Version Web Portal",
-  "cwt_p_pl":"Product presentation LIVE",
-  "cwt_cz":"Opening of the Czech Republic office",
-  "cwt_l_c_c_e":"CWT listing on cryptocurrency exchanges",
+  "cwt_exch": "Exchange: the CWT-P token to the primary token CWT at 1 CWT-P = 1 CWT",
+  "cwt_croud": "Crowd Sale TGE",
+  "cwt_kyc": "KYC procedure",
+  "cwt_beta": "Beta Version Web Portal",
+  "cwt_p_pl": "Product presentation LIVE",
+  "cwt_cz": "Opening of the Czech Republic office",
+  "cwt_l_c_c_e": "CWT listing on cryptocurrency exchanges",
   "t_avail":"Tokens available now",
   "":"",
   "":"",
