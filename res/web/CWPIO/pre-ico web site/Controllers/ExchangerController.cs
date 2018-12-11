@@ -1,13 +1,16 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Nethereum.Util;
 using Newtonsoft.Json;
+using Npgsql;
 using pre_ico_web_site.Data;
 using pre_ico_web_site.Eth;
 using pre_ico_web_site.Models;
 using pre_ico_web_site.Services;
 using System;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Numerics;
 using System.Threading.Tasks;
@@ -85,28 +88,28 @@ namespace pre_ico_web_site.Controllers
             var rate = await GetRateAsync(amount);
             var price = await _contract.GetGasPriceAsync();
             var gas = 280190 * price * 3;
+
+            var ethAmount = UnitConversion.Convert.FromWei(rate.amount + gas).ToString(System.Globalization.CultureInfo.InvariantCulture);
+            var blockNo = await _contract.GetCurrentBlockNumberAsync();
+
+
+            _dbContext.Database.ExecuteSqlCommand(@"INSERT INTO exchange.exchange_parameters(
+    exchanger, eth_amount, rate, token_count, from_block)
+    VALUES(@exchanger, @eth_amount, @rate, @token_count, @from_block)
+ON CONFLICT(exchanger) DO UPDATE
+  SET eth_amount = excluded.eth_amount,
+      rate = excluded.rate,
+      token_count = excluded.token_count,
+      from_block = excluded.from_block; ",
+      new NpgsqlParameter("exchanger", user.TempAddress),
+      new NpgsqlParameter("eth_amount", (rate.amount + gas).ToString(System.Globalization.CultureInfo.InvariantCulture)),
+      new NpgsqlParameter("rate", rate.rate),
+      new NpgsqlParameter("token_count", amount),
+      new NpgsqlParameter("from_block", (int)blockNo)
+      );
             return Ok(new
             {
-                totalAmount = UnitConversion.Convert.FromWei(rate.amount + gas).ToString(System.Globalization.CultureInfo.InvariantCulture),
-                fee = UnitConversion.Convert.FromWei(gas).ToString()
-            });
-        }
-
-        [HttpGet("calcExchange/{amount}")]
-        public async Task<IActionResult> GetCalcExchangeAsync([FromRoute]int amount)
-        {
-            var user = await _dbContext.GetCurrentUserAsync(User);
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            var ethrate = await GetRateAsync(amount);
-            var price = await _contract.GetGasPriceAsync();
-            var gas = (0xBB80 + 0xBB80 + 0x19A28 + 0x59D8 + 0x5208) * price * 3;
-            return Ok(new
-            {
-                totalAmount = UnitConversion.Convert.FromWei(ethrate.amount + gas).ToString(),
+                totalAmount = ethAmount,
                 fee = UnitConversion.Convert.FromWei(gas).ToString()
             });
         }

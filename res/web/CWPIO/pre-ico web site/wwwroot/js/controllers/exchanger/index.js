@@ -37,7 +37,6 @@ var Controller = function () {
 		usersettings:'/api/v1/usersettings',
 		exchanger:'/api/v1/exchanger',
 		calc:'/api/v1/exchanger/calc/',
-		calcExchange: '/api/v1/exchanger/calcExchange/',
 		purchase: '/api/v1/exchanger/addr',
 		initPurchasing: '/api/v1/exchanger/initPurchasing',
 		monitor: '/api/v1/exchanger/monitor/',
@@ -415,7 +414,7 @@ var Controller = function () {
 			count = count || 0;
 
 			return $.ajax({
-				url:self.api.calcExchange + count,
+				url:self.api.calc + count,
 				method:'GET'
 			}).done(function (response) {
 				ViewModel.obs.needPay(response.totalAmount);

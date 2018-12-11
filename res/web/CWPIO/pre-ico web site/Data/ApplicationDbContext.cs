@@ -309,6 +309,13 @@ namespace pre_ico_web_site.Data
                     .OnDelete(DeleteBehavior.Restrict);
             });
 
+            builder.Entity<ExchangeParameters>(b =>
+            {
+                b.ToTable("exchange_parameters", "exchange");
+
+                b.HasKey(x => x.Exchanger);
+            });
+
             foreach (var entity in builder.Model.GetEntityTypes())
             {
                 // Replace table names
@@ -347,6 +354,7 @@ namespace pre_ico_web_site.Data
         public DbSet<ExchangeStatus> ExchangeStatuses { get; set; }
         public DbSet<Addres> Addresses { get; set; }
         public DbSet<Notification> Notifications { get; set; }
+        public DbSet<ExchangeParameters> ExchangeParameters { get; set; }
 
     }
 }

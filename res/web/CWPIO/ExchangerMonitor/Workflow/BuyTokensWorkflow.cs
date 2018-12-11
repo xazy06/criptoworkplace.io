@@ -20,98 +20,70 @@ namespace ExchangerMonitor.Workflow
                 .Saga(saga =>
                     saga
                     .StartWith<CustomMessage>(cfgMessage)
-                    .Then<CheckStatus>(s =>
+                    .Then<CheckStatus>(checkStatusStep =>
                     {
-                        s
+                        checkStatusStep
                             .Name("Check status")
-                            .Input(st => st.Status, d => d.Status)
-                            .Input(st => st.Tx, d => d.CurrentTx);
+                            .Input(s => s.Status, d => d.Status)
+                            .Input(s => s.Tx, d => d.CurrentTx);
 
-                        s.When(d => ExchangeOperationStatus.Ok, "Status OK").Do(b =>
-                        {
-                            b
-                                .StartWith<CustomMessage>(c =>
-                                    c
-                                        .Name("Ok Message")
-                                        .Input(step => step.Message, data => "OK transaction: " + data.CurrentTx))
-                                .If(d => (ChangeSteps)d.CurrentStep == ChangeSteps.SetRate).Do(sb =>
-                                {
-                                    sb.StartWith<SetRate>(c => c
-                                        .Name("Set Rate")
-                                        .Input(step => step.Transaction, data => data))
+                        checkStatusStep
+                            .When(d => ExchangeOperationStatus.Ok, "Status OK")
+                            .Do(doBuilder =>
+                            {
+                                doBuilder
+                                    .StartWith<CustomMessage>(s => s.Name("Ok Message").Input(step => step.Message, data => "OK transaction: " + data.CurrentTx))
+                                    .Then<SetGasCount>(c => c.Name("Set gas count").Input(step => step.Transaction, data => data))
+                                    .If(d => (ChangeSteps)d.CurrentStep == ChangeSteps.SetRate).Do(sb =>
+                                    {
+                                        sb.StartWith<SetRate>(s => s.Name("Set Rate").Input(step => step.Transaction, data => data))
+                                        .Schedule(d => TimeSpan.FromSeconds(10))
+                                        .Do(isb => isb.StartWith<CustomMessage>(cfgMessage).Then(checkStatusStep));
+                                    })
+                                    .If(d => (ChangeSteps)d.CurrentStep == ChangeSteps.SendEth).Do(sb =>
+                                    {
+                                        sb.StartWith<SendEth>(s => s.Name("Send Eth").Input(step => step.Transaction, data => data))
+                                        .Schedule(d => TimeSpan.FromSeconds(10))
+                                        .Do(isb => isb.StartWith<CustomMessage>(cfgMessage).Then(checkStatusStep));
+                                    })
+                                    .If(d => (ChangeSteps)d.CurrentStep == ChangeSteps.Refund).Do(sb =>
+                                    {
+                                        sb.StartWith<Refund>(s => s.Name("Refund").Input(step => step.Transaction, data => data))
+                                        .Schedule(d => TimeSpan.FromSeconds(10))
+                                        .Do(isb => isb.StartWith<CustomMessage>(cfgMessage).Then(checkStatusStep));
+                                    })
+                                    .If(d => (ChangeSteps)d.CurrentStep == ChangeSteps.Finish && d.Status != TXStatus.Failed).Do(sb =>
+                                    {
+                                        sb.StartWith<Finish>(s => s.Name("Finish").Input(step => step.Transaction, data => data))
+                                        .EndWorkflow();
+                                    });
+                            });
+
+                        checkStatusStep
+                            .When(d => ExchangeOperationStatus.Skip, "Status Skip")
+                            .Do(doBuilder =>
+                            {
+                                doBuilder
+                                    .StartWith<CustomMessage>(s => s.Name("Skip message").Input(step => step.Message, data => "Skip transaction: " + data.CurrentTx))
                                     .Schedule(d => TimeSpan.FromSeconds(10))
-                                    .Do(isb => isb.StartWith<CustomMessage>(cfgMessage).Then(s));
-                                })
-                                .If(d => (ChangeSteps)d.CurrentStep == ChangeSteps.SendEth).Do(sb =>
-                                {
-                                    sb.StartWith<SendEth>(c => c
-                                        .Name("Send Eth")
-                                        .Input(step => step.Transaction, data => data))
-                                    .Schedule(d => TimeSpan.FromSeconds(10))
-                                    .Do(isb => isb.StartWith<CustomMessage>(cfgMessage).Then(s));
-                                })
-                                .If(d => (ChangeSteps)d.CurrentStep == ChangeSteps.Refund).Do(sb =>
-                                {
-                                    sb.StartWith<Refund>(c => c
-                                        .Name("Refund")
-                                        .Input(step => step.Transaction, data => data))
-                                    .Schedule(d => TimeSpan.FromSeconds(10))
-                                    .Do(isb => isb.StartWith<CustomMessage>(cfgMessage).Then(s));
-                                })
-                                .If(d => (ChangeSteps)d.CurrentStep == ChangeSteps.Finish && d.Status != TXStatus.Failed).Do(sb =>
-                                {
-                                    sb.StartWith<Finish>(c => c
-                                        .Name("Finish")
-                                        .Input(step => step.Transaction, data => data))
+                                    .Do(sb => sb.StartWith<CustomMessage>(cfgMessage).Then(checkStatusStep));
+                            });
+
+                        checkStatusStep
+                            .When(d => ExchangeOperationStatus.Failed, "Status Failed")
+                            .Do(doBuilder =>
+                            {
+                                doBuilder
+                                    .StartWith<CustomMessage>(s => s.Name("Fail message").Input(step => step.Message, data => "Failed transaction: " + data.CurrentTx))
+                                    .Then<FailedTransaction>(s => s.Name("Mark as failed").Input(st => st.Transaction, d => d))
+                                    .Then<Refund>(s => s.Name("Refund").Input(step => step.Transaction, data => data))
                                     .EndWorkflow();
-                                });
-                        });
-
-                        s.When(d => ExchangeOperationStatus.Skip, "Status Skip").Do(b =>
-                        {
-                            b
-                                .StartWith<CustomMessage>(c =>
-                                    c
-                                        .Name("Skip message")
-                                        .Input(step => step.Message, data => "Skip transaction: " + data.CurrentTx))
-                                .Schedule(d => TimeSpan.FromSeconds(10))
-                                .Do(sb =>
-                                    sb
-                                        .StartWith<CustomMessage>(cfgMessage)
-                                        .Then(s));
-                        });
-
-                        s.When(d => ExchangeOperationStatus.Failed, "Status Failed").Do(b =>
-                        {
-                            b
-                                .StartWith<CustomMessage>(c =>
-                                    c
-                                        .Name("Fail message")
-                                        .Input(step => step.Message, data => "Failed transaction: " + data.CurrentTx))
-                                .Then<FailedTransaction>(c =>
-                                    c
-                                        .Name("Mark as failed")
-                                        .Input(st => st.Transaction, d => d))
-                                .Then<Refund>(c =>
-                                    c
-                                        .Name("Refund")
-                                        .Input(step => step.Transaction, data => data))
-                                .EndWorkflow();
-                        });
+                            });
                     })
                 )
-                .CompensateWith<CustomMessage>(b =>
-                    b
-                        .Name("Fail message")
-                        .Input(step => step.Message, data => "Failed transaction: " + data.CurrentTx))
-                .Then<FailedTransaction>(b =>
-                    b
-                        .Name("Mark as failed")
-                        .Input(st => st.Transaction, d => d))
-                .Then<Refund>(b =>
-                    b
-                        .Name("Refund")
-                        .Input(step => step.Transaction, data => data))
+                .CompensateWith<CustomMessage>(b => b.Name("Fail message").Input(step => step.Message, data => "Failed transaction: " + data.CurrentTx))
+                    .Then<FailedTransaction>(b => b.Name("Mark as failed").Input(st => st.Transaction, d => d))
+                    .Then<Refund>(b => b.Name("Refund").Input(step => step.Transaction, data => data))
                 .EndWorkflow()
                 .OnError(WorkflowErrorHandling.Compensate);
         }

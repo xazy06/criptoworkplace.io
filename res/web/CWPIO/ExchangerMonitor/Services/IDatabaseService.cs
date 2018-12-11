@@ -13,5 +13,8 @@ namespace ExchangerMonitor.Services
         Task SetCurrentTransaction(string id, string transaction);
         Task SetStep(string id, int step);
         Task SetTotalGasCount(string id, int gas);
+        Task<List<MonitoringExchangeTransaction>> GetMonitoringExchangeAsync();
+        Task StartTransactionAsync(string tx, int rate, string exchanger, string ethAmount, int tokenCount);
+        Task UpdateFromBlockAsync(string exchanger, int blockNumber);
     }
 }
