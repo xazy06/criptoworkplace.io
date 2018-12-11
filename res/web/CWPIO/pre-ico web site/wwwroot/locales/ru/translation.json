@@ -230,6 +230,13 @@
   "pre_sale": "Pre-sale",
   "pre_sale_text": "Users who have purchased the CWT tokens, receive discounts whose size will decrease with increasing amounts attracted as follows",
   "roadmap": "Ресурсы:",
+  "cwt_exch":"Exchange: the CWT-P token to the primary token CWT at 1 CWT-P = 1 CWT",
+  "cwt_croud":"Crowd Sale TGE",
+  "cwt_kyc":"KYC procedure",
+  "cwt_beta":"Beta Version Web Portal",
+  "cwt_p_pl":"Product presentation LIVE",
+  "cwt_cz":"Opening of the Czech Republic office",
+  "cwt_l_c_c_e":"CWT listing on cryptocurrency exchanges",
   "lk": {
     "select_lang": "Выберите язык",
     "whitelisted": "В Белом Списке",
