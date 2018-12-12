@@ -101,7 +101,8 @@
     "refund": "",
     "overpaid": "",
     "unavail": "",
-    "in_progress": ""
+    "in_progress": "",
+    "dont_send": ""
   },
   "cwtp_raised": "",
   "idea_m_sec": "",
