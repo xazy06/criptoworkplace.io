@@ -60,6 +60,12 @@ namespace pre_ico_web_site.Eth
             }
         }
 
+        public async Task<bool> CheckTxStatusAsync(string whiteListTransaction)
+        {
+            var receipt = await _web3.Eth.Transactions.GetTransactionReceipt.SendRequestAsync(whiteListTransaction);
+            return receipt != null;
+        }
+
         public Task<bool> CheckWhitelistAsync(string wallet)
         {
             return _saleContract.GetFunction("whitelist").CallAsync<bool>(wallet);
@@ -188,19 +194,20 @@ namespace pre_ico_web_site.Eth
 
             if (fromBlock < 0)
             {
-                var res = await _web3.Eth.Blocks.GetBlockWithTransactionsByNumber.SendRequestAsync(BlockParameter.CreatePending());
-                var tx = res.Transactions.Where(t => t != null && t.To != null && t.To.ToUpperInvariant() == address.ToUpperInvariant()).FirstOrDefault();
-                if (tx == null)
-                {
-                    result = ("recieved", "");
-                }
-                else
-                {
-                    result = ("complete", tx.TransactionHash);
-                }
+                fromBlock = (await _web3.Eth.Blocks.GetBlockNumber.SendRequestAsync()).Value - 50;
+                //var res = await _web3.Eth.Blocks.GetBlockWithTransactionsByNumber.SendRequestAsync(BlockParameter.CreatePending());
+                //var tx = res.Transactions.Where(t => t != null && t.To != null && t.To.ToUpperInvariant() == address.ToUpperInvariant()).FirstOrDefault();
+                //if (tx == null)
+                //{
+                //    result = ("recieved", "");
+                //}
+                //else
+                //{
+                //    result = ("complete", tx.TransactionHash);
+                //}
             }
-            else
-            {
+            //else
+            //{
                 List<Task<BlockWithTransactions>> tasks = new List<Task<BlockWithTransactions>>();
 
                 for (BigInteger i = fromBlock; i < (await _web3.Eth.Blocks.GetBlockNumber.SendRequestAsync()).Value; i++)
@@ -220,7 +227,7 @@ namespace pre_ico_web_site.Eth
                 {
                     result = ("complete", tx.TransactionHash);
                 }
-            }
+            //}
 
             return result;
         }

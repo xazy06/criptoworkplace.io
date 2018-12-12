@@ -1,3 +1,14 @@
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ddd;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.001);
+}
 .footer_head, .footer_body, .timeline_wrap {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -564,8 +575,17 @@ a {
   a:hover, a:focus {
     text-decoration: underline; }
 
-.hidden_mod {
-  display: none !important; }
+@media screen and (max-width: 320px) {
+    .hidden_mod_mob {
+        display: none !important;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .hidden_mod_pc {
+        display: none !important;
+    }
+}
 
 @-webkit-keyframes blink {
   from {
@@ -613,7 +633,7 @@ a {
       max-width: 8.6em; } }
 
 .social_list.footer_mod {
-  margin: 0 -.8em;
+  margin: 0 -1.6em;
   padding: 0;
   list-style: none; }
   @media screen and (max-width: 767px) {
@@ -635,6 +655,10 @@ a {
   @media screen and (max-width: 1023px) {
     .social_item.footer_mod {
       padding: 0 .6em; } }
+
+.social_item.reddit_mod {
+    margin-top: -0.4em;
+}
 
 .social_link.team_mod {
   width: 3.6em;
@@ -675,14 +699,19 @@ a {
   width: 2.6em;
   height: 2.6em; }
 
+.social_link.reddit_mod {
+    width: 3.4em;
+    height: 3.4em; }
+
 .header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  font-size: 1rem;
-  will-change: transform;
-  z-index: 100; }
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    font-size: 1rem;
+    will-change: transform;
+    z-index: 100;
+}
   @media screen and (min-width: 1024px) {
     .header {
       height: 13.8rem; } }
@@ -846,10 +875,23 @@ a {
           align-items: center; }
   @media screen and (min-width: 1024px) {
     .btn_join.header_mod {
-      margin-right: 4.4em; } }
+      margin-right: 4.4em; 
+    }
+    .social_item-visible-sm {
+      display:none;
+    }
+  }
   @media screen and (max-width: 1023px) {
     .btn_join.header_mod {
-      display: none; } }
+      display: none; 
+    }
+    .social_wrap_title {
+      display: none;
+    }
+    .social_item-visible-sm {
+      display:list-item;
+    }
+  }
   .btn_join:hover, .btn_join:focus {
     text-decoration: none; }
 
@@ -2870,9 +2912,12 @@ a {
       margin: 10.2em 0 0; }
   .timeline_item.offset_top_mod {
     padding-top: 2em; }
+  .timeline_item.offset_bottom_mod {
+    padding-bottom: 8.6em;  }
 
 .timeline_list {
-  margin: -1.2em 0 6.6em; }
+    margin: -1.2em 0 6.6em;
+}
 
 .timeline_list_item {
   position: relative;
@@ -4096,6 +4141,10 @@ a {
 .icon-inst {
   font-size: 1.937rem;
   width: 1.02736em; }
+
+.icon-reddit {
+    font-size: 2.537rem;
+    width: 1.02736em; }
 
 .icon-left {
   font-size: 5.2rem;

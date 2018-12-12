@@ -241,6 +241,9 @@ namespace pre_ico_web_site.Data.Migrations
                         .HasColumnName("user_name")
                         .HasMaxLength(256);
 
+                    b.Property<string>("WhiteListTransaction")
+                        .HasColumnName("white_list_transaction");
+
                     b.HasKey("Id")
                         .HasName("pk_users");
 

@@ -1,0 +1,22 @@
+
+$base-color:#f7f7fa;
+$article-font-size:13px;
+$font:Verdana;
+
+
+body{
+  
+  
+  
+}
+
+div{
+  
+  margin:10px;
+  .article{
+    font-size:$article-font-size;
+  }
+}
+h2{font-size:$article-font-size+7; }
+
+

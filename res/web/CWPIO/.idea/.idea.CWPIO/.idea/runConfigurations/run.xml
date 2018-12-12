@@ -1,0 +1,20 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="run" type="DotNetProject" factoryName=".NET Project">
+    <option name="EXE_PATH" value="$PROJECT_DIR$/pre-ico web site/bin/Debug/netcoreapp2.0/pre-ico web site.dll" />
+    <option name="PROGRAM_PARAMETERS" value="" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pre-ico web site" />
+    <option name="PASS_PARENT_ENVS" value="1" />
+    <envs>
+      <env name="ASPNETCORE_ENVIRONMENT" value="Development" />
+      <env name="ASPNETCORE_URLS" value="http://localhost:5000" />
+    </envs>
+    <option name="USE_MONO" value="0" />
+    <option name="USE_EXTERNAL_CONSOLE" value="0" />
+    <option name="PROJECT_PATH" value="$PROJECT_DIR$/pre-ico web site/pre-ico web site.csproj" />
+    <option name="PROJECT_OUTPUT_TRACKING" value="1" />
+    <option name="PROJECT_KIND" value="DotNetCore" />
+    <option name="PROJECT_TFM" value=".NETCoreApp,Version=v2.0" />
+    <browser url="http://localhost:5000" />
+    <method />
+  </configuration>
+</component>

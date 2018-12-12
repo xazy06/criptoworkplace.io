@@ -27,25 +27,24 @@ namespace pre_ico_web_site.Services
         }
 
 
-        public async Task<bool> SendEmailAsync(string email, string subject, string message, string html = null)
-        {
+        //public async Task<bool> SendEmailAsync(string email, string subject, string message, string html = null)
+        //{
 
-            MailjetRequest request = new MailjetRequest { Resource = Send.Resource }
-                .Property(Send.FromEmail, "info@cryptoworkplace.io")
-                .Property(Send.FromName, "CryptoWorkPlace Info")
-                .Property(Send.Subject, subject)
-                .Property(Send.TextPart, message);
-            if (!string.IsNullOrEmpty(html))
-            {
-                request.Property(Send.HtmlPart, html);
-            }
+        //    MailjetRequest request = new MailjetRequest { Resource = Send.Resource }
+        //        .Property(Send.FromEmail, "info@cryptoworkplace.io")
+        //        .Property(Send.FromName, "CryptoWorkPlace Info")
+        //        .Property(Send.Subject, subject)
+        //        .Property(Send.TextPart, message);
+        //    if (!string.IsNullOrEmpty(html))
+        //    {
+        //        request.Property(Send.HtmlPart, html);
+        //    }
 
-            request.Property(Send.Recipients, new JArray { new JObject { { "Email", email } } });
+        //    request.Property(Send.Recipients, new JArray { new JObject { { "Email", email } } });
 
 
-            MailjetResponse response = await _client.PostAsync(request);
-            return response.IsSuccessStatusCode;
-        }
+        //    return await SendRequestAsync(request);
+        //}
 
         public async Task<bool> SendEmailSubscription(string email, string name)
         {
@@ -62,27 +61,52 @@ namespace pre_ico_web_site.Services
                     .Property(Send.Subject, _localizer["Subscribe_Subject"].Value)
                     .Property(Send.MjTemplateID, welcomeTemplateId.ToString())
                     .Property(Send.MjTemplateLanguage, true)
-                    //.Property(Send.Vars, new JObject {
-                    //{ "header", _localizer["Subscribe_Topic"].Value },
-                    //{ "text1", _localizer["Subscribe_Paragraph_One"].Value },
-                    //{ "text2", _localizer["Subscribe_Paragraph_Two"].Value },
-                    //{ "text3", _localizer["Subscribe_Paragraph_Three"].Value }
-                    //})
                     .Property(Send.Recipients, new JArray { new JObject { { "Email", email } } });
 
-                MailjetResponse response = await _client.PostAsync(request);
-                if (response.IsSuccessStatusCode)
-                {
-                    return true;
-                }
-                else
-                {
-                    _logger.LogError(response.GetErrorMessage());
-                }
+                return await SendRequestAsync(request);
             }
             return false;
         }
 
+        public async Task<bool> SendEmailValidationAsync(string email, string validateLink)
+        {
+            var mailTemplateId = _mailSettings.Value.MailValidationTemplateId.ContainsKey(CultureInfo.CurrentUICulture.Name) ?
+                    _mailSettings.Value.MailValidationTemplateId[CultureInfo.CurrentUICulture.Name] :
+                    _mailSettings.Value.MailValidationTemplateId["en-US"];
+
+            MailjetRequest request = new MailjetRequest { Resource = Send.Resource }
+                .Property(Send.FromEmail, "support@cryptoworkplace.io")
+                .Property(Send.FromName, "CryptoWorkPlace Support")
+                .Property(Send.Subject, "Customer account verification")
+                .Property(Send.MjTemplateID, mailTemplateId.ToString())
+                .Property(Send.MjTemplateLanguage, true)
+                .Property(Send.Vars, new JObject {
+                    { "link", validateLink }
+                })
+                .Property(Send.Recipients, new JArray { new JObject { { "Email", email } } });
+
+            return await SendRequestAsync(request);
+        }
+
+        public async Task<bool> SendEmailResetPasswordAsync(string email, string resetPasswordLink)
+        {
+            var mailTemplateId = _mailSettings.Value.MailResetPasswordTemplateId.ContainsKey(CultureInfo.CurrentUICulture.Name) ?
+                    _mailSettings.Value.MailResetPasswordTemplateId[CultureInfo.CurrentUICulture.Name] :
+                    _mailSettings.Value.MailResetPasswordTemplateId["en-US"];
+
+            MailjetRequest request = new MailjetRequest { Resource = Send.Resource }
+                .Property(Send.FromEmail, "support@cryptoworkplace.io")
+                .Property(Send.FromName, "CryptoWorkPlace Support")
+                .Property(Send.Subject, "Reset password request")
+                .Property(Send.MjTemplateID, mailTemplateId.ToString())
+                .Property(Send.MjTemplateLanguage, true)
+                .Property(Send.Vars, new JObject {
+                    { "link", resetPasswordLink }
+                })
+                .Property(Send.Recipients, new JArray { new JObject { { "Email", email } } });
+            return await SendRequestAsync(request);
+        }
+        
         public async Task<bool> SendEmailFailedTransactionAsync(string email, string htmlText)
         {
             var mailTemplateId = _mailSettings.Value.MailTemplateId.ContainsKey(CultureInfo.CurrentUICulture.Name) ?
@@ -97,23 +121,10 @@ namespace pre_ico_web_site.Services
                 .Property(Send.MjTemplateLanguage, true)
                 .Property(Send.Vars, new JObject {
                     { "message", htmlText }
-                //{ "text1", _localizer["Subscribe_Paragraph_One"].Value },
-                //{ "text2", _localizer["Subscribe_Paragraph_Two"].Value },
-                //{ "text3", _localizer["Subscribe_Paragraph_Three"].Value }
                 })
                 .Property(Send.Recipients, new JArray { new JObject { { "Email", email } } });
 
-            MailjetResponse response = await _client.PostAsync(request);
-            if (response.IsSuccessStatusCode)
-            {
-                return true;
-            }
-            else
-            {
-                _logger.LogError(response.GetErrorMessage());
-            }
-
-            return false;
+            return await SendRequestAsync(request);
         }
 
         private async Task<bool> AddUserToContactList(string email, string name)
@@ -169,6 +180,21 @@ namespace pre_ico_web_site.Services
                 {
                     _logger.LogError(response.GetErrorMessage());
                 }
+            }
+            else
+            {
+                _logger.LogError(response.GetErrorMessage());
+            }
+
+            return false;
+        }
+
+        private async Task<bool> SendRequestAsync(MailjetRequest request)
+        {
+            MailjetResponse response = await _client.PostAsync(request);
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
             }
             else
             {

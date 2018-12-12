@@ -73,8 +73,8 @@
 				
 					<div data-bind="css:{'s-display_bi': obs.contractAddress}" class="s-display_n m-pricing-table-1">
 						<div>
-							<a class="s-mb_0m" data-bind="attr:{'href': ('https://etherscan.io/address/' + obs.contractAddress())}"
-							   target="_blank" style="display: block; text-overflow: ellipsis; margin-bottom: 20px; overflow: hidden;" href="">
+							<a class="s-mb_0m b-c_address" data-bind="attr:{'href': ('https://etherscan.io/address/' + obs.contractAddress())}"
+							   target="_blank" style="" href="">
 								<strong id="cwpcontract-c" data-bind="text:obs.contractAddress"></strong>
 							</a>
 							<div class="m--visible-desktop">
@@ -82,8 +82,8 @@
 								<i data-bind="click:actions.toggleQr" style="cursor: pointer; font-size: 2em;" class="fa fa-qrcode"></i>
 								<!--/ko-->
 								<p data-bind="click:actions.toggleQr, if:flags.toggleQr" class="s-ms-c">
-									<img data-bind="attr:{'src':('https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' + obs.contractAddress())}"
-											 style="border: 1px solid #ddd;" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Example"/>
+									<img data-bind="attr:{'src':('https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=' + obs.contractAddress())}"
+											 style="border: 1px solid #ddd;" src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=Example"/>
 								</p>
 							</div>
 						</div>

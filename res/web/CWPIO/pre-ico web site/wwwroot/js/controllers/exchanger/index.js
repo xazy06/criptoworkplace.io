@@ -85,9 +85,9 @@ var Controller = function () {
 			purchasing: function () {
 				try{
 					window.yaCounter50462326 && window.yaCounter50462326.reachGoal('Purchase');
-					ga('send', 'event', 'forms', 'purchase');
+					window.ga('send', 'event', 'forms', 'purchase');
 				}catch (e){
-					console.log(e);
+					//console.log(e);
 				}
 			}
 		},
@@ -533,7 +533,9 @@ var Controller = function () {
 		self.initUnloadingWindowProtocol();
 
 		self.actions.contractabi();
-				
+
+		self.ViewModel.actions.initConfirmHandlers();
+						
 		return this;
 	};
 	
@@ -541,9 +543,15 @@ var Controller = function () {
 		currencies: ko.observableArray([]),
 		currenciesCache: ko.observableArray([]),
 		
+		transaction:{
+			
+		},
+		
 		currenciesMap: null,
 		
-		obs:{
+		obs: {
+			confirmText: ko.observable(''),
+			confirmCallback: ko.observable(''),
 			transactions: ko.observableArray([]),
 			whiteListAddressField: ko.observable(''),
 			withdrawalAddress: ko.observable(''),
@@ -604,6 +612,8 @@ var Controller = function () {
 		},
 		
 		flags:{
+			searchInited:  ko.observable(false),
+			confirmVisible: ko.observable(false),
 			userDidTransaction: ko.observable(false),
 			expiredOrder: ko.observable(false),
 			returnAddressValidating: ko.observable(false),
@@ -668,6 +678,13 @@ var Controller = function () {
 			}
 		},
 		actions:{
+			initSearchMobile: function () {
+				ViewModel.flags.searchInited(!ViewModel.flags.searchInited());
+				
+				setTimeout(function () {
+					$('#m-search').focus();
+				},0);
+			},
 			confirmDidTransaction: function () {
 				ViewModel.flags.userDidTransaction(true);
 				
@@ -684,8 +701,9 @@ var Controller = function () {
 			},
 			
 			getTransactions: function () {
+				ViewModel.obs.transactions([]);
 				ViewModel.flags.transactionsGetting(true);
-				//return Gate.actions.transactions();
+				
 				return self.actions.getPastEvents();
 			},
 			toggleTransactionItem: function(){
@@ -923,6 +941,43 @@ var Controller = function () {
 				
 				self.actions.calc(ViewModel.obs.cwtCount());
 			},
+			initConfirmHandlers: function () {
+				
+				function keyUp(e) {
+										
+					if (ViewModel.flags.confirmVisible() === false) {
+						return;
+					}
+					
+					if (e.which === 13){
+						try{
+						ViewModel.obs.confirmCallback()();
+						}catch (e){
+							
+						}
+					}
+
+					if (e.which === 27){
+						ViewModel.actions.closeConfirm();
+					}
+				}
+				
+				$(document).on('keyup', setTimeout.bind(null, keyUp, 0));
+				
+			},
+			initConfirm: function (confirmText, callback) {
+				ViewModel.obs.confirmText(confirmText);
+				ViewModel.obs.confirmCallback(callback);
+				ViewModel.flags.confirmVisible(true);
+				$('body').addClass('conf-opened');
+			},
+			closeConfirm: function () {
+				ViewModel.flags.confirmVisible(false);
+				$('body').removeClass('conf-opened');
+			},
+			offGateInit: function () {
+				ViewModel.actions.initConfirm('Cancel purchasing?', ViewModel.actions.offGate);
+			},
 			offGate: function () {
 				ViewModel.flags.gateOperating(false);
 				ViewModel.obs.currentCoin.symbol('');
@@ -930,6 +985,7 @@ var Controller = function () {
 				
 				try{
 					$('#curr-list').trigger('focusIn');
+					ViewModel.actions.closeConfirm();
 				}catch (e){}
 			}
 		}
@@ -963,6 +1019,8 @@ var Controller = function () {
 		if (!val || val === '-1') {
 			return;
 		}
+
+		ViewModel.flags.searchInited(false);
 		
 		ViewModel.actions.initGate.call(val);
 	});

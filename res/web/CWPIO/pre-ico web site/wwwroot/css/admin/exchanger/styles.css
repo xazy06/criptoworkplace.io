@@ -41,6 +41,14 @@
 	border-radius: 50% !important;
 }
 
+.s-h_0 {
+	height:0;
+}
+
+.s-h_si {
+	height:auto;
+}
+
 .grayscale {
 	filter: grayscale(1);
 }
@@ -149,6 +157,10 @@
 	font-weight: 600 !important;
 }
 
+.s-b_0 {
+	border: 0;
+}
+
 .s-expandable .fa-angle-up{
 	display:none;
 }
@@ -249,6 +261,10 @@ a.s-dashed-link:hover {
 
 }
 
+.b-c_address {
+	display: inline-block; max-width: 100%;text-overflow: ellipsis; margin-bottom: 20px; overflow: hidden;
+}
+
 @media (min-width: 768px){
 	#tab-info {
 		display: block!important;
@@ -264,6 +280,10 @@ a.s-dashed-link:hover {
 		background-color: #000;
 	}
 
+	.b-ask-text {
+		background-color: #000;
+	}
+	
 	.m-brand {
 		background: #000;
 	}
@@ -315,6 +335,7 @@ a.s-dashed-link:hover {
 	
 	.b-m-c-input {
 		background: #000 !important;
+		border-bottom: 2px solid #5d5f77;
 	}
 	
 	.form-control {
@@ -332,12 +353,12 @@ a.s-dashed-link:hover {
 	}
 
 	.b-m-c-input {
-		width:80%;
+		width:85%;
 	}
 	.s-angle{
 
 		position: absolute;
-		right: 20%;
+		right: 15%;
 		top: 7px;
 		font-size: 25px;
 		background-color: #000;
@@ -363,6 +384,8 @@ a.s-dashed-link:hover {
 	.s-mb_0m {
 		margin-bottom:0 !important;
 	}
+	
+	
 
 	.m-portlet.m-portlet--space .m-portlet__head {
 		padding: 0;
@@ -373,10 +396,7 @@ a.s-dashed-link:hover {
 		 border-top: 0; 
 	}
 
-	.m-subheader {
-		margin: 5px 0 20px 0;
-	}
-	
+		
 	.__jivoMobileButton{
 		display: none !important;
 	}
@@ -414,6 +434,22 @@ a.s-dashed-link:hover {
 
 	.m-topbar {
 		background-color: #151515;
+	}
+
+	.b-confirm {
+		background-color: #010f10;
+		color: #ccc;
+	}
+
+	.b-confirm .btn-info {
+		background-color: #310866;
+		border-color: #310866;
+	}
+
+	.b-confirm  .btn.btn-default {
+		background: #10122b;
+		border-color: #10122b;
+		color: #ccc;
 	}
 
 }

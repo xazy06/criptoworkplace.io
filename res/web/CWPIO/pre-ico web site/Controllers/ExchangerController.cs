@@ -58,7 +58,7 @@ namespace pre_ico_web_site.Controllers
                 return NotFound();
             }
 
-            if (!string.IsNullOrEmpty(user.Wallet) && !(await _contract.CheckWhitelistAsync(user.Wallet)))
+            if (!string.IsNullOrEmpty(user.Wallet) && (string.IsNullOrEmpty(user.WhiteListTransaction) || await _contract.CheckTxStatusAsync(user.WhiteListTransaction)) && !(await _contract.CheckWhitelistAsync(user.Wallet)))
             {
                 user.EthAddress = null;
                 await _dbContext.SaveChangesAsync();
@@ -83,10 +83,12 @@ namespace pre_ico_web_site.Controllers
             }
 
             var rate = await GetRateAsync(amount);
+            var price = await _contract.GetGasPriceAsync();
+            var gas = 280190 * price * 3;
             return Ok(new
             {
-                totalAmount = UnitConversion.Convert.FromWei(rate.amount).ToString(System.Globalization.CultureInfo.InvariantCulture),
-                fee = "0"
+                totalAmount = UnitConversion.Convert.FromWei(rate.amount + gas).ToString(System.Globalization.CultureInfo.InvariantCulture),
+                fee = UnitConversion.Convert.FromWei(gas).ToString()
             });
         }
 
@@ -250,6 +252,10 @@ namespace pre_ico_web_site.Controllers
             }
 
             var tx = await _contract.AddAddressToWhitelistAsync(model.ErcAddress);
+            if (!string.IsNullOrEmpty(tx))
+            {
+                user.WhiteListTransaction = tx;
+            }
 
             user.EthAddress = model.ErcAddress.StringToByteArray();
             await _dbContext.SaveChangesAsync();
@@ -275,20 +281,19 @@ namespace pre_ico_web_site.Controllers
             }
 
             var result = new[]{
-                new ExchangeStatusModel(),
-                new ExchangeStatusModel(),
-                new ExchangeStatusModel()
+                new ExchangeStatusModel(){Name="Step 1", Description = "Step 1" },
+                new ExchangeStatusModel(){Name="Step 2", Description = "Step 2" },
+                new ExchangeStatusModel(){Name="Step 3", Description = "Step 3" }
             };
 
             for (int i = 0; i < item.CurrentStep - 1; i++)
             {
-                result[i].Name = "Complete";
-                result[i].Description = "Complete";
+                result[i].Status = "Complete";
             }
 
             var step = (item.CurrentStep - 1 < 0 ? 0 : item.CurrentStep - 1);
-            result[step].Name = item.CurrentStep == 3 ? (item.IsEnded ? "Complete" : (item.IsFailed ? "Failed" : "In Progress")) : ( item.IsFailed ? "Failed" : "In Progress");
-            result[step].Description = item.IsFailed ? "Failed" : "In Progress";
+            result[step].Status = item.CurrentStep == 3 ? (item.IsEnded ? "Complete" : (item.IsFailed ? "Failed" : "In Progress")) : (item.IsFailed ? "Failed" : "In Progress");
+
             return Ok(result);
         }
 
