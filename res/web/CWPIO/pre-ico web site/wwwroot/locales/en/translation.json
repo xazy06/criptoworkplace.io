@@ -35,7 +35,7 @@
   "how_t2": "Hardware non - breakable storage was added for transaction signing to secure crypto - wallets private keys.",
   "key_features": "Key Features",
   "ext_l_os": "External Linux OS",
-  "k_feature": "The system prevents all existing security problems:<br>Phishing - by using the pre-configured browser and applications, signed by a unique key;<br>Exploits - by working in an isolated environment and by signing programs;<br>Hacker attacks - by using built-in unbreakable crypto-storage.",
+  "k_feature": "",
   "sec_wal": "Secure Wallet",
   "sec_wal_t": "Hardware non - breakable storage was added for transaction signing to secure crypto - wallets private keys.",
   "sec_d_app": "Secure D-APPs",
