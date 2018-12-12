@@ -1,4 +1,4 @@
-﻿{
+{
   "app": {
     "name": "cwp"
   },
@@ -230,10 +230,10 @@
   "pre_sale": "Pre-sale",
   "pre_sale_text": "Users who have purchased the CWT tokens, receive discounts whose size will decrease with increasing amounts attracted as follows",
   "roadmap": "Subscribe:",
-  "t_avail":"Tokens available now",
-  "up_20_c":"Up to 20 corp units per quarter",
-  "buy_cwt_t":"BUY CWT-TOKEN",
-  "sign_up_4up":"Sign Up for Updates",
+  "t_avail": "Tokens available now",
+  "up_20_c": "Up to 20 corp units per quarter",
+  "buy_cwt_t": "BUY CWT-TOKEN",
+  "sign_up_4up": "Sign Up for Updates",
   "lk": {
     "select_lang": "Select your language",
     "whitelisted": "whitelisted",
@@ -288,5 +288,6 @@
   "cwt_l_c_c_e": "",
   "cwt_p_pl": "",
   "cwt_beta": "",
-  "cwt_exch": ""
+  "cwt_exch": "",
+  "cwt_kyc": ""
 }
