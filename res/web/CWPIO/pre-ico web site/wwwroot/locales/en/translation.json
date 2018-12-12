@@ -32,7 +32,7 @@
   },
   "how_works": "How It Works",
   "how_t1": "The programs are executed in the environment isolated from the computer - donor. User data are encrypted on the device (by user’s choice) that creates a solid defense to guard against hackers.",
-  "how_t2": "The system prevents all existing security problems:<br>Phishing - by using the pre-configured browser and applications, signed by a unique key;<br>Exploits - by working in an isolated environment and by signing programs;<br>Hacker attacks - by using built-in unbreakable crypto-storage.",
+  "how_t2": "Hardware non - breakable storage was added for transaction signing to secure crypto - wallets private keys.",
   "key_features": "Key Features",
   "ext_l_os": "External Linux OS",
   "k_feature": "Hardware non - breakable storage was added for transaction signing to secure crypto - wallets private keys.",
