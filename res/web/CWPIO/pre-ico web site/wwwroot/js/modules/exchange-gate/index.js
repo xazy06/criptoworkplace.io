@@ -253,6 +253,7 @@ var Controller = (Controller || {}), Gate = function () {
 			self.subscriber = null;
 			
 		},
+		//REMOVED
 		wsStatus: function () {
 			
 			console.log('wsStatus inited');
@@ -329,7 +330,8 @@ var Controller = (Controller || {}), Gate = function () {
 			if (isETHTransaction){
 				//return self.actions.web3Status(Controller.ViewModel.obs.depositAddress()).then(self.actions.statusCallback);
 				
-				return self.actions.wsStatus();
+				//return self.actions.wsStatus();
+				return undefined;
 			}
 			
 			self.actions.orderInfo(Controller.ViewModel.obs.fixedAmmount.orderId()).then(self.actions.statusCallback);
@@ -378,7 +380,7 @@ var Controller = (Controller || {}), Gate = function () {
 			}
 
 			//TODO need to remove
-			Controller.actions.monitor(Controller.ViewModel.obs.cwtCount(), data.transaction);
+			//Controller.actions.monitor(Controller.ViewModel.obs.cwtCount(), data.transaction);
 
 			self.actions.stopStatusBang();
 			
