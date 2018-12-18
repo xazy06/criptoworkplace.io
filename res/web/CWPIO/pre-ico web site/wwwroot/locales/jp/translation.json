@@ -37,7 +37,7 @@
   "ext_l_os": "",
   "k_feature": "",
   "sec_wal": "Secure Wallet",
-  "sec_wal_t": "Hardware non - breakable storage was added for transaction signing to secure crypto - wallets private keys.",
+  "sec_wal_t": "CWPには、トランザクションが安全に署名されているオープンすることができないハードウェア暗号化ストレージが組み込まれています。\n",
   "sec_d_app": "Secure D-APPs",
   "sec_d_app_t": "分散したアプリケーションとロボットによる立ち上げるスマート契約を備えた安全なマーケットプレイス。\n",
   "specifications": "Specifications",
