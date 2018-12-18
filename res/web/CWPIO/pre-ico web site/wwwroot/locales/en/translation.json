@@ -30,7 +30,7 @@
     "hour": "hour",
     "min": "min"
   },
-  "how_works": "",
+  "how_works": "How it Works?",
   "how_t1": "The programs are executed in the environment isolated from the computer - donor. User data are encrypted on the device (by user’s choice) that creates a solid defense to guard against hackers.",
   "how_t2": "Hardware non - breakable storage was added for transaction signing to secure crypto - wallets private keys.",
   "key_features": "Key Features",
