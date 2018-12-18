@@ -38,9 +38,11 @@ namespace ExchangerMonitor
             host.RegisterWorkflow<MonitorDBWorkflow>();
             host.RegisterWorkflow<BuyTokensWorkflow, ExchangeTransaction>();
             host.RegisterWorkflow<PrintStatusWorkflow, Dictionary<string, ExchangeTransaction>>();
+            host.RegisterWorkflow<MonitorWorkflow>();
             host.OnStepError += (w,s,e) => logger?.LogError(e,"Error in workflow {0} at step {1}", w.Reference, string.IsNullOrEmpty(s.Name)? s.Id.ToString(): s.Name);
             host.Start();
             host.StartWorkflow("Monitor DB", reference: "MonitorDB");
+            host.StartWorkflow("Monitor", reference: "Monitor");
             if (!inContainer)
             {
                 while (Console.ReadKey().Key != ConsoleKey.Escape)
@@ -92,6 +94,8 @@ namespace ExchangerMonitor
             serviceCollection.AddTransient<Finish>();
             serviceCollection.AddTransient<CheckStatus>();
             serviceCollection.AddTransient<SetRate>();
+            serviceCollection.AddTransient<LoadMonitorData>();
+            serviceCollection.AddTransient<SetGasCount>();
 
             // add app
             //serviceCollection.AddTransient<App>();

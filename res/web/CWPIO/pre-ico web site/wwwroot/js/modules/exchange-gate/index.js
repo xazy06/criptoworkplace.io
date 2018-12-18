@@ -253,6 +253,7 @@ var Controller = (Controller || {}), Gate = function () {
 			self.subscriber = null;
 			
 		},
+		//REMOVED
 		wsStatus: function () {
 			
 			console.log('wsStatus inited');
@@ -275,7 +276,7 @@ var Controller = (Controller || {}), Gate = function () {
 				
 				if (!error || _.isEmpty(error.toString())) {
 					
-					console.log('pendingTransactions', result);
+					//console.log('pendingTransactions', result);
 
 					if (result === null) {
 						return;
@@ -293,7 +294,8 @@ var Controller = (Controller || {}), Gate = function () {
 						
 						if (transaction.to === ko.toJS(Controller.ViewModel.obs.depositAddress)) {
 							console.log('transaction found, monitor has launched');
-							
+
+							//TODO need to remove
 							Controller.actions.monitor(Controller.ViewModel.obs.cwtCount(), transaction.hash);		
 						} 
 						
@@ -328,7 +330,8 @@ var Controller = (Controller || {}), Gate = function () {
 			if (isETHTransaction){
 				//return self.actions.web3Status(Controller.ViewModel.obs.depositAddress()).then(self.actions.statusCallback);
 				
-				return self.actions.wsStatus();
+				//return self.actions.wsStatus();
+				return undefined;
 			}
 			
 			self.actions.orderInfo(Controller.ViewModel.obs.fixedAmmount.orderId()).then(self.actions.statusCallback);
@@ -376,7 +379,8 @@ var Controller = (Controller || {}), Gate = function () {
 				return;
 			}
 
-			Controller.actions.monitor(Controller.ViewModel.obs.cwtCount(), data.transaction);
+			//TODO need to remove
+			//Controller.actions.monitor(Controller.ViewModel.obs.cwtCount(), data.transaction);
 
 			self.actions.stopStatusBang();
 			

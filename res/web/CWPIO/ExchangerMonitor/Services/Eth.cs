@@ -6,12 +6,12 @@ using Nethereum.Contracts;
 using Nethereum.Hex.HexTypes;
 using Nethereum.JsonRpc.Client;
 using Nethereum.RPC.Eth.DTOs;
-using Nethereum.Util;
 using Nethereum.Web3;
 using Nethereum.Web3.Accounts;
 using Newtonsoft.Json;
 using System;
 using System.IO;
+using System.Linq;
 using System.Net.Http.Headers;
 using System.Numerics;
 using System.Text;
@@ -26,7 +26,7 @@ namespace ExchangerMonitor.Services
         private EthSettings _opts;
         private ICryptoService _crypto;
         private JsonModel _json;
-        private RpcClient _client;
+        private readonly RpcClient _client;
 
         public EthService(IOptions<EthSettings> options, ICryptoService crypto, ILogger<EthService> logger)
         {
@@ -43,7 +43,7 @@ namespace ExchangerMonitor.Services
             var authHeader = Convert.ToBase64String(Encoding.UTF8.GetBytes(uri.UserInfo));
             _client = new RpcClient(uri, new AuthenticationHeaderValue("Basic", authHeader));
             _web3 = new Web3(account, _client);
-            
+
             var json = File.ReadAllText("Exchanger.json");
 
             _json = JsonConvert.DeserializeObject<JsonModel>(json);
@@ -77,7 +77,7 @@ namespace ExchangerMonitor.Services
                     return result ? ExchangeOperationStatus.Ok : ExchangeOperationStatus.Failed;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.LogCritical(ex, "Error");
                 _logger.LogDebug(_opts.NodeUrl);
@@ -222,6 +222,22 @@ namespace ExchangerMonitor.Services
             {
                 return string.Empty;
             }
+        }
+
+        public async Task<(string tx, int blockNumber)> GetInTransactionFromBlockAsync(string exchanger, int fromBlock)
+        {
+            int lastBlock = fromBlock;
+            for (int i = fromBlock; i <= (await _web3.Eth.Blocks.GetBlockNumber.SendRequestAsync()).Value; i++)
+            {
+                lastBlock = i;
+                _logger.LogDebug("Check block {0}", i);
+                var block = await _web3.Eth.Blocks.GetBlockWithTransactionsByNumber.SendRequestAsync(new HexBigInteger(i));
+                var tr = block.Transactions.Where(t => t.To != null && t.To.ToLowerInvariant() == exchanger.ToLowerInvariant()).FirstOrDefault();
+                if (tr != null)
+                    return (tr.TransactionHash, i);
+            }
+
+            return (null, lastBlock);
         }
     }
 }

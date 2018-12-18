@@ -37,7 +37,6 @@ var Controller = function () {
 		usersettings:'/api/v1/usersettings',
 		exchanger:'/api/v1/exchanger',
 		calc:'/api/v1/exchanger/calc/',
-		calcExchange: '/api/v1/exchanger/calcExchange/',
 		purchase: '/api/v1/exchanger/addr',
 		initPurchasing: '/api/v1/exchanger/initPurchasing',
 		monitor: '/api/v1/exchanger/monitor/',
@@ -230,6 +229,7 @@ var Controller = function () {
 			window.sessionStorage.setItem('exchangerSession', JSON.stringify(gateOperation));
 						
 		},
+		//TODO need to remove -- больше не нужен -- надо тестировать
 		monitor: function (count, txId) {
 			return $.ajax({
 				contentType: 'application/json',
@@ -415,7 +415,7 @@ var Controller = function () {
 			count = count || 0;
 
 			return $.ajax({
-				url:self.api.calcExchange + count,
+				url:self.api.calc + count,
 				method:'GET'
 			}).done(function (response) {
 				ViewModel.obs.needPay(response.totalAmount);
@@ -685,7 +685,14 @@ var Controller = function () {
 					$('#m-search').focus();
 				},0);
 			},
+			/**
+			 * TODO  
+			 * необходимо выпилить кнопку i did send, но чтобы это сделать,
+			 * надо чтобы было событие контракта которое бы вызывало метод confirmDidTransaction
+			 * чтобы появился лоадер ожидания и уведомление
+			 */
 			confirmDidTransaction: function () {
+				
 				ViewModel.flags.userDidTransaction(true);
 				
 				//TODO watch https://dev.azure.com/unidefence/ico/_workitems/edit/154

@@ -185,5 +185,79 @@ WHERE es.is_ended = false AND es.is_failed = false", connection))
                 }
             }
         }
+
+        public async Task<List<MonitoringExchangeTransaction>> GetMonitoringExchangeAsync()
+        {
+            var result = new List<MonitoringExchangeTransaction>();
+
+            using (var connection = new NpgsqlConnection(_connectionString))
+            {
+                await connection.OpenAsync();
+                using (var cmd = new NpgsqlCommand("SELECT exchanger, eth_amount, rate, token_count, from_block FROM exchange.exchange_parameters;", connection))
+                using (var reader = await cmd.ExecuteReaderAsync())
+                {
+                    while (await reader.ReadAsync())
+                    {
+                        result.Add(new MonitoringExchangeTransaction
+                        {
+                            Exchanger = await reader.GetFieldValueAsync<string>(0),
+                            EthAmount = await reader.GetFieldValueAsync<string>(1),
+                            Rate = await reader.GetFieldValueAsync<int>(2),
+                            TokenCount = await reader.GetFieldValueAsync<int>(3),
+                            FromBlock = await reader.GetFieldValueAsync<int>(4)
+                        });
+                    }
+                    return result;
+                }
+            }
+        }
+
+        public async Task RemoveFromMonitoringAsync(string id)
+        {
+            using (var connection = new NpgsqlConnection(_connectionString))
+            {
+                await connection.OpenAsync();
+                using (var cmd = new NpgsqlCommand("DELETE FROM exchange.exchange_parameters WHERE exchanger = @exchanger;", connection))
+                {
+                    cmd.Parameters.AddWithValue("exchanger", id);
+                    await cmd.ExecuteNonQueryAsync();
+                }
+            }
+        }
+
+        public async Task StartTransactionAsync(string tx, int rate, string exchanger, string ethAmount, int tokenCount)
+        {
+            using (var connection = new NpgsqlConnection(_connectionString))
+            {
+                await connection.OpenAsync();
+                using (var cmd = new NpgsqlCommand(@"INSERT INTO exchange.exchange_status(id, start_tx, current_tx, is_ended, is_failed, created_by_user_id, eth_amount, rate, token_count)
+SELECT @guid, @tx, @tx, false, false, id, @eth, @rate, @token_count
+FROM identity.users WHERE temp_address = @exchanger", connection))
+                {
+                    cmd.Parameters.AddWithValue("guid", Guid.NewGuid());
+                    cmd.Parameters.AddWithValue("exchanger", exchanger);
+                    cmd.Parameters.AddWithValue("tx", tx);
+                    cmd.Parameters.AddWithValue("eth", ethAmount);
+                    cmd.Parameters.AddWithValue("rate", rate);
+                    cmd.Parameters.AddWithValue("token_count", tokenCount);
+                    await cmd.ExecuteNonQueryAsync();
+                }
+            }
+            await RemoveFromMonitoringAsync(exchanger);
+        }
+
+        public async Task UpdateFromBlockAsync(string exchanger, int blockNumber)
+        {
+            using (var connection = new NpgsqlConnection(_connectionString))
+            {
+                await connection.OpenAsync();
+                using (var cmd = new NpgsqlCommand("UPDATE exchange.exchange_parameters SET from_block = @block WHERE exchanger = @exchanger;", connection))
+                {
+                    cmd.Parameters.AddWithValue("exchanger", exchanger);
+                    cmd.Parameters.AddWithValue("block", blockNumber);
+                    await cmd.ExecuteNonQueryAsync();
+                }
+            }
+        }
     }
 }

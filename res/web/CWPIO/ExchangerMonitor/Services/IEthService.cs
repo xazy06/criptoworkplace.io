@@ -13,5 +13,6 @@ namespace ExchangerMonitor.Services
         Task<string> SendRefundToUserAsync(string pk, string to);
         Task<string> SendToSmartContractAsync(string privateKey, string buyer, BigInteger amount);
         Task<string> SetRateAsync(int rate, string buyer, BigInteger amount);
+        Task<(string tx, int blockNumber)> GetInTransactionFromBlockAsync(string exchanger, int fromBlock);
     }
 }
