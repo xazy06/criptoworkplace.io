@@ -350,8 +350,21 @@
     background-color: #00c9ff; }
 
   .b-bench {
-    float:right;
+    /*float:right;*/
+    margin-left: auto;
+    order: 2;
   }
+  .bench_img {
+    width:80px;
+    height:80px;
+  }
+
+@media screen and (max-width: 767px){
+  .bench_img {
+    width:60px;
+    height:60px;
+  }
+}
   
 .btn_base {
   min-width: 6.9em;
