@@ -2,6 +2,7 @@ var
 	$html,
 	$body,
 	$partnersSlider,
+	$ratingSlider,
 	windowHeight,
 	windowWidth,
 	$header,
@@ -13,6 +14,9 @@ var
 	$mainMenuLink,
 	$moreTeamLink,
 	$teamList,
+	maxRating,
+	ratingStar,
+	activeRating,
 	checkElementMove = false,
 	degree = 0.0174532925,
 	mediaPoint1 = 1024,
@@ -27,6 +31,7 @@ $(document).ready(function ($) {
 	$header = $('.header');
 	$headerNav = $('.header_nav');
 	$partnersSlider = $('.partners_slider');
+	$ratingSlider = $('.rating_list');
 	$menuTrigger = $('.menuTrigger');
 	$mainMenu = $('.main_menu.header_mod');
 	$mainMenuLink =$('.main_menu_link');
@@ -58,11 +63,43 @@ $(document).ready(function ($) {
 
 	svg4everybody();
 
+	$('.rating_block').each(function(index, element) {
+		maxRating = $(this).find('.rating_stars_w').data('max');
+		ratingStar = $(this).find('.rating_amount').text();
+		activeRating = Math.round(ratingStar / maxRating * 5);
+		if (activeRating > 0) {
+			for (var i = 0; i < activeRating; i++) {
+				$(this).find('.icon.rating_mod').eq(i).addClass('active_mod');
+			}
+		}
+	})
+
 	$mainMenuLink.click(function () {
 		var elementClick = $(this).attr('href');
 		var destination = $(elementClick).offset().top;
 		$html.animate({ scrollTop: destination }, 1000);
 		$menuTrigger.trigger('click');
+	});
+
+	$ratingSlider.slick({
+		prevArrow: $('.rating_slider_prev'),
+		nextArrow: $('.rating_slider_next'),
+		infinite: true,
+		slidesToShow: 5,
+		slidesToScroll: 1,
+		dots: false,
+		arrows: true,
+		autoplay: false,
+		autoplaySpeed: 2000,
+		draggable: false,
+		swipe: true,
+		touchMove: true,
+		responsive: [
+			{
+				breakpoint: 767,
+				settings: 'unslick'
+			}
+		]
 	});
 
 	$partnersSlider.slick({
