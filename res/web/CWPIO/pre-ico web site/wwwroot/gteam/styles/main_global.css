@@ -349,6 +349,10 @@
   .btn_buy:hover, .btn_buy:active, .btn_buy:focus {
     background-color: #00c9ff; }
 
+  .b-bench {
+    float:right;
+  }
+  
 .btn_base {
   min-width: 6.9em;
   height: 2.1em;
