@@ -1,4 +1,5 @@
-﻿using Google.Apis.Auth.OAuth2;
+﻿using AspNetCoreRateLimit;
+using Google.Apis.Auth.OAuth2;
 using Google.Apis.Drive.v3;
 using Google.Apis.Services;
 using Microsoft.AspNetCore.Builder;
@@ -139,6 +140,16 @@ namespace pre_ico_web_site
 
             services.AddMemoryCache();
 
+            //load general configuration from appsettings.json
+            services.Configure<ClientRateLimitOptions>(Configuration.GetSection("ClientRateLimiting"));
+
+            //load client rules from appsettings.json
+            services.Configure<ClientRateLimitPolicies>(Configuration.GetSection("ClientRateLimitPolicies"));
+
+            // inject counter and rules stores
+            services.AddSingleton<IClientPolicyStore, MemoryCacheClientPolicyStore>();
+            services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>();
+
             services.Configure<GoogleDriveSettings>(Configuration.GetSection("GDrive"));
 
             services.AddSingleton(s =>
@@ -198,6 +209,8 @@ namespace pre_ico_web_site
 
                 app.UseRewriter(new RewriteOptions().AddRedirectToHttpsPermanent());
                 app.UseHsts(c => c.MaxAge(days:365).IncludeSubdomains());
+
+                app.UseClientRateLimiting();
             }
 
             app.UseRewriter(new RewriteOptions().AddRewrite("my/locales/(.*)/translation.json", "/locales/$1/translation.json", true));
