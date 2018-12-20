@@ -136,13 +136,13 @@ namespace pre_ico_web_site
             services.AddMemoryCache();
 
             //load general configuration from appsettings.json
-            services.Configure<ClientRateLimitOptions>(Configuration.GetSection("ClientRateLimiting"));
+            services.Configure<IpRateLimitOptions>(Configuration.GetSection("IpRateLimiting"));
 
             //load client rules from appsettings.json
-            services.Configure<ClientRateLimitPolicies>(Configuration.GetSection("ClientRateLimitPolicies"));
+            services.Configure<IpRateLimitPolicies>(Configuration.GetSection("IpRateLimitPolicies"));
 
             // inject counter and rules stores
-            services.AddSingleton<IClientPolicyStore, MemoryCacheClientPolicyStore>();
+            services.AddSingleton<IIpPolicyStore, MemoryCacheIpPolicyStore>();
             services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>();
 
             services.Configure<GoogleDriveSettings>(Configuration.GetSection("GDrive"));
@@ -205,7 +205,7 @@ namespace pre_ico_web_site
                 app.UseRewriter(new RewriteOptions().AddRedirectToHttpsPermanent());
                 app.UseHsts(c => c.MaxAge(days:365).IncludeSubdomains());
 
-                app.UseClientRateLimiting();
+                app.UseIpRateLimiting();
             }
 
             app.UseStaticFiles();
