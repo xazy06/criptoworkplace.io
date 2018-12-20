@@ -30,7 +30,7 @@
     "hour": "час",
     "min": "мин"
   },
-  "how_works": "Как Это Работает?",
+  "how_works": "Как Это Работает",
   "how_t1": "Мы предлагаем рынку новый продукт - это микрокомпьютер с операционной системой Linux, магазином приложенией, встроенным крипто хранилищем и роботом для запуска смарт контрактов. Система создает надежную защиту:",
   "how_t2": "<br>Phishing - by using the pre-configured browser and applications, signed by a unique key. <br> <br>Expoilts - by working in an isolated environment and by signing programs.<br> <br>Hacker attacks - by using built-in unbreakable crypto-storage.",
   "key_features": "Ключевые Функции",
