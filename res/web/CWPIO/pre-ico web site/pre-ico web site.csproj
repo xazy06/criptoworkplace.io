@@ -13,6 +13,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="AspNetCoreRateLimit" Version="2.1.0" />
     <PackageReference Include="DnsClient" Version="1.2.0" />
     <PackageReference Include="Google.Apis" Version="1.36.0" />
     <PackageReference Include="Google.Apis.Drive.v3" Version="1.35.2.1358" />
