@@ -1998,7 +1998,7 @@ a {
     border-radius: 50%;
     background-color: #1210ff; }
 
-.team_more {
+.more {
   display: block;
   padding: 0 0 1em;
   color: #1210ff;
@@ -2010,48 +2010,50 @@ a {
   -webkit-transition: .3s;
   -o-transition: .3s;
   transition: .3s; }
-  .team_more:hover, .team_more:active, .team_more:focus {
+  .more:hover, .more:active, .more:focus {
     text-decoration: none;
     color: #00c9ff; }
+  .more.posts_mod {
+    padding: 1em 0 0; }
   @media screen and (max-width: 1023px) {
-    .team_more {
+    .more {
       font-size: 2.8em; } }
   @media screen and (max-width: 768px) {
-    .team_more {
+    .more {
       font-size: 2em; } }
 
-.team_more_in {
+.more_in {
   overflow: hidden; }
-  .team_more_in.normal_mod {
+  .more_in.normal_mod {
     opacity: 1;
     pointer-events: initial; }
-    .team_more.active_mod .team_more_in.normal_mod {
+    .more.active_mod .more_in.normal_mod {
       height: 0;
       opacity: 0;
       pointer-events: none; }
-  .team_more_in.active_mod {
+  .more_in.active_mod {
     height: 0;
     opacity: 0;
     pointer-events: none; }
-    .team_more.active_mod .team_more_in.active_mod {
+    .more.active_mod .more_in.active_mod {
       height: auto;
       opacity: 1;
       pointer-events: initial; }
 
-.team_more.active_mod .team_more_line {
+.more.active_mod .more_line {
   -webkit-transform: rotate(180deg);
       -ms-transform: rotate(180deg);
           transform: rotate(180deg); }
 
-.team_more_svg_wrap {
+.more_svg_wrap {
   width: 100%; }
 
-.team_more_svg {
+.more_svg {
   stroke: #1210ff;
   -webkit-transition: .3s;
   -o-transition: .3s;
   transition: .3s; }
-  .team_more:hover .team_more_svg {
+  .more:hover .more_svg {
     stroke: #00c9ff; }
 
 .subscribe_form_w {
@@ -3910,6 +3912,9 @@ a {
   cursor: pointer; }
   .post_link:hover, .post_link:active, .post_link:focus {
     text-decoration: none; }
+
+.posts_hidden_list {
+  display: none; }
 
 @media screen and (max-width: 640px) {
   .how_it_wrap {
