@@ -32,7 +32,7 @@
   },
   "how_works": "它是如何工作的\n",
   "how_t1": "我们为市场提供了一个新的产品--一个具有操作Linux系统、M asazin应用程序、内置加密存储库和机器人的微型机器人，以运行智能合同。该系统提供可靠的保护：\n",
-  "how_t2": "Hardware non - breakable storage was added for transaction signing to secure crypto - wallets private keys. ",
+  "how_t2": "鱼钩-使用应用程序签名特殊的密钥。<br> <br>从开发上--孤立环境的存在与签名程序机制。\n<br> <br>关于 T黑客等使用内置的非隐藏的加密存储库。\n",
   "key_features": "Key Features",
   "ext_l_os": "External Linux OS",
   "k_feature": "",
