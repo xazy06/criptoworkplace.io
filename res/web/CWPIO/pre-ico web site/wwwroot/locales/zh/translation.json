@@ -35,7 +35,7 @@
   "how_t2": "鱼钩-使用应用程序签名特殊的密钥。<br> <br>从开发上--孤立环境的存在与签名程序机制。\n<br> <br>关于 T黑客等使用内置的非隐藏的加密存储库。\n",
   "key_features": "Key Features",
   "ext_l_os": "External Linux OS",
-  "k_feature": "",
+  "k_feature": "我们已经完全重新设计了 Linux 内核\n排除了容易受到恶意攻击的模块和\n应用程序修改了更新系统 ",
   "sec_wal": "加密存储\n",
   "sec_wal_t": "CWP 配备了内置的硬件非隐藏加密技术, 其中智能合同事务被安全地签名\n",
   "sec_d_app": "应用商店\n",
