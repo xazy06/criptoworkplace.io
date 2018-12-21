@@ -31,7 +31,7 @@
     "min": "min"
   },
   "how_works": "How it Works",
-  "how_t1": "Phishing - by using the pre-configured browser and applications, signed by a unique key. <br> <br>Expoilts - by working in an isolated environment and by signing programs.<br> <br>Hacker attacks - by using built-in unbreakable crypto-storage.",
+  "how_t1": "How it Works",
   "how_t2": "Phishing - by using the pre-configured browser and applications, signed by a unique key. <br> <br>Expoilts - by working in an isolated environment and by signing programs.<br> <br>Hacker attacks - by using built-in unbreakable crypto-storage.",
   "key_features": "Key Features",
   "ext_l_os": "External Linux OS",
