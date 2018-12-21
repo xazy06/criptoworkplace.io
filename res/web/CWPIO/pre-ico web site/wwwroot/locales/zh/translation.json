@@ -27,7 +27,7 @@
   "timer": {
     "day": "天",
     "days": "天",
-    "hour": "hour",
+    "hour": "",
     "min": "min"
   },
   "how_works": "",
