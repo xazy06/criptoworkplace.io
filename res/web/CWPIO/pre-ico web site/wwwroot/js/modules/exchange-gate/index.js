@@ -345,7 +345,7 @@ var Controller = (Controller || {}), Gate = function () {
 			});
 		},
 		statusCallback: function(data) {
-
+			
 			var status;
 			
 			if (data === undefined) {
