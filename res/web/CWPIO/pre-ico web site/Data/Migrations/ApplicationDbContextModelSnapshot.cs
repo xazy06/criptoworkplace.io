@@ -534,6 +534,30 @@ namespace pre_ico_web_site.Data.Migrations
                     b.ToTable("user_campaing","bounty");
                 });
 
+            modelBuilder.Entity("pre_ico_web_site.Data.ExchangeParameters", b =>
+                {
+                    b.Property<string>("Exchanger")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("exchanger");
+
+                    b.Property<string>("EthAmount")
+                        .HasColumnName("eth_amount");
+
+                    b.Property<int>("FromBlock")
+                        .HasColumnName("from_block");
+
+                    b.Property<int>("Rate")
+                        .HasColumnName("rate");
+
+                    b.Property<int>("TokenCount")
+                        .HasColumnName("token_count");
+
+                    b.HasKey("Exchanger")
+                        .HasName("pk_exchange_parameters");
+
+                    b.ToTable("exchange_parameters","exchange");
+                });
+
             modelBuilder.Entity("pre_ico_web_site.Data.ExchangeStatus", b =>
                 {
                     b.Property<string>("Id")

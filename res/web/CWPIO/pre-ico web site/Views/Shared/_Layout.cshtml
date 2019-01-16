@@ -79,8 +79,8 @@
     <script src="~/js/site.js"></script>
     <script src="~/gteam/js/animation.js"></script>
     <script src="~/gteam/js/all.js"></script>
-    <script src="~/gteam/js/main.js"></script>
-    <script src="~/js/controllers/home/index.js"></script>
+    <script asp-append-version="true" src="~/gteam/js/main.js"></script>
+    <script asp-append-version="true" src="~/js/controllers/home/index.js"></script>
 
     <environment include="Production">
         @await Html.PartialAsync("_MetricsPartial")

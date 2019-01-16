@@ -114,12 +114,12 @@ namespace pre_ico_web_site.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> ResendConfirmationEmail([FromServices]IHostingEnvironment hostingEnvironment)
+        public async Task<IActionResult> ResendConfirmationEmail()
         {
             _logger.LogInformation("User resend confirmation email");
             var user = await GetCurrentUserAsync();
 
-            await SendConfirmationEmail(user, hostingEnvironment);
+            await SendConfirmationEmail(user);
 
             return RedirectToAction(nameof(EmailConfirm));
         }
@@ -247,7 +247,7 @@ namespace pre_ico_web_site.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterViewModel model, [FromServices]IHostingEnvironment hostingEnvironment)
+        public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -257,7 +257,7 @@ namespace pre_ico_web_site.Controllers
                 {
                     _logger.LogInformation("User created a new account with password.");
 
-                    await SendConfirmationEmail(user, hostingEnvironment);
+                    await SendConfirmationEmail(user);
 
                     //await _signInManager.SignInAsync(user, isPersistent: false);
                     //var addclaimresult = await _userManager.AddClaimAsync(user, new Claim("IsAdmin", "True", ClaimValueTypes.Boolean));
@@ -270,16 +270,11 @@ namespace pre_ico_web_site.Controllers
 
         }
 
-        private async Task SendConfirmationEmail(ApplicationUser user, IHostingEnvironment hostingEnvironment)
+        private async Task SendConfirmationEmail(ApplicationUser user)
         {
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
             var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
-
-            var footer = Path.Combine(hostingEnvironment.WebRootPath, "static", "email", "footer.html");
-            var header = Path.Combine(hostingEnvironment.WebRootPath, "static", "email", "header.html");
-
-            await _emailSender.SendEmailConfirmationAsync(user.Email, callbackUrl,
-                System.IO.File.ReadAllText(header), System.IO.File.ReadAllText(footer));
+            await _emailSender.SendEmailValidationAsync(user.Email, callbackUrl);
         }
 
         [HttpGet]
@@ -423,9 +418,7 @@ namespace pre_ico_web_site.Controllers
                 // visit https://go.microsoft.com/fwlink/?LinkID=532713
                 var code = await _userManager.GeneratePasswordResetTokenAsync(user);
                 var callbackUrl = Url.ResetPasswordCallbackLink(user.Id, code, Request.Scheme);
-                await _emailSender.SendEmailAsync(model.Email, "Reset Password",
-                    $"Please reset your password by copy and paste this link: {callbackUrl}",
-                   $"Please reset your password by clicking here: <a href='{callbackUrl}'>link</a>");
+                await _emailSender.SendEmailResetPasswordAsync(model.Email, callbackUrl);
                 return RedirectToAction(nameof(ForgotPasswordConfirmation));
             }
 

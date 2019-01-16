@@ -1,25 +1,27 @@
 <section class="section bg_mod subscribe_mod">
 	<div class="section_in">
-		<h2 class="section_title white_mod">Sign Up for Updates</h2>
+		<h2 data-i18n="sign_up_4up" class="section_title white_mod">Sign Up for Updates</h2>
 		<!-- ko if: flags.successSubscribed -->
 		<!-- TODO this block will be visible on success subscribe -->
 		<!-- TODO Андрей заверстаеь когда будет дизайн у вас -->
-		<div style="text-align: center;position: absolute;left: 0;right: 0;margin: auto;margin-top: -33px;font-size: 18px;">Thanks for subscribe</div>
+		<div data-i18n="th_subscr" style="text-align: center; position: absolute; left: 0; right: 0; margin: auto; margin-top: -33px; font-size: 18px;">
+			Thanks for subscribe
+		</div>
 		<!-- /ko -->
 		<div class="subscribe_form_w">
 			<form class="subscribe_form">
 				<div class="input_w">
 					<dl class="form_cell form_cell_v1_mod">
 						<dt class="form_cell_title form_v1_mod">
-							<label for="email">email</label>
+							<label data-i18n="email" for="email">email</label>
 						</dt>
 						<dd class="form_field_wrap form_v1_mod">
-							<input data-bind="textInput:obs.email" 
+							<input data-i18n="[placeholder]enter_email" data-bind="textInput:obs.email" 
 							       class="form_field default_mod" type="text" id="email" placeholder="Enter Your E-mail"/>
 						</dd>
 					</dl>
 				</div>
-				<div data-bind="click:actions.subscribe" class="btn_action">SUBSCRIBE</div>
+				<div data-i18n="_subscribe" data-bind="click:actions.subscribe" class="btn_action">SUBSCRIBE</div>
 			</form>
 		</div>
 	</div>

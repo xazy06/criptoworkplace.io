@@ -37,7 +37,6 @@ var Controller = function () {
 		usersettings:'/api/v1/usersettings',
 		exchanger:'/api/v1/exchanger',
 		calc:'/api/v1/exchanger/calc/',
-		calcExchange: '/api/v1/exchanger/calcExchange/',
 		purchase: '/api/v1/exchanger/addr',
 		initPurchasing: '/api/v1/exchanger/initPurchasing',
 		monitor: '/api/v1/exchanger/monitor/',
@@ -85,9 +84,9 @@ var Controller = function () {
 			purchasing: function () {
 				try{
 					window.yaCounter50462326 && window.yaCounter50462326.reachGoal('Purchase');
-					ga('send', 'event', 'forms', 'purchase');
+					window.ga('send', 'event', 'forms', 'purchase');
 				}catch (e){
-					console.log(e);
+					//console.log(e);
 				}
 			}
 		},
@@ -230,6 +229,7 @@ var Controller = function () {
 			window.sessionStorage.setItem('exchangerSession', JSON.stringify(gateOperation));
 						
 		},
+		//TODO need to remove -- больше не нужен -- надо тестировать
 		monitor: function (count, txId) {
 			return $.ajax({
 				contentType: 'application/json',
@@ -415,7 +415,7 @@ var Controller = function () {
 			count = count || 0;
 
 			return $.ajax({
-				url:self.api.calcExchange + count,
+				url:self.api.calc + count,
 				method:'GET'
 			}).done(function (response) {
 				ViewModel.obs.needPay(response.totalAmount);
@@ -533,7 +533,9 @@ var Controller = function () {
 		self.initUnloadingWindowProtocol();
 
 		self.actions.contractabi();
-				
+
+		self.ViewModel.actions.initConfirmHandlers();
+						
 		return this;
 	};
 	
@@ -541,9 +543,13 @@ var Controller = function () {
 		currencies: ko.observableArray([]),
 		currenciesCache: ko.observableArray([]),
 		
+		transaction:{
+			
+		},
+		
 		currenciesMap: null,
 		
-		obs:{
+		obs: {
 			confirmText: ko.observable(''),
 			confirmCallback: ko.observable(''),
 			transactions: ko.observableArray([]),
@@ -674,8 +680,19 @@ var Controller = function () {
 		actions:{
 			initSearchMobile: function () {
 				ViewModel.flags.searchInited(!ViewModel.flags.searchInited());
+				
+				setTimeout(function () {
+					$('#m-search').focus();
+				},0);
 			},
+			/**
+			 * TODO  
+			 * необходимо выпилить кнопку i did send, но чтобы это сделать,
+			 * надо чтобы было событие контракта которое бы вызывало метод confirmDidTransaction
+			 * чтобы появился лоадер ожидания и уведомление
+			 */
 			confirmDidTransaction: function () {
+				
 				ViewModel.flags.userDidTransaction(true);
 				
 				//TODO watch https://dev.azure.com/unidefence/ico/_workitems/edit/154
@@ -930,6 +947,30 @@ var Controller = function () {
 				}
 				
 				self.actions.calc(ViewModel.obs.cwtCount());
+			},
+			initConfirmHandlers: function () {
+				
+				function keyUp(e) {
+										
+					if (ViewModel.flags.confirmVisible() === false) {
+						return;
+					}
+					
+					if (e.which === 13){
+						try{
+						ViewModel.obs.confirmCallback()();
+						}catch (e){
+							
+						}
+					}
+
+					if (e.which === 27){
+						ViewModel.actions.closeConfirm();
+					}
+				}
+				
+				$(document).on('keyup', setTimeout.bind(null, keyUp, 0));
+				
 			},
 			initConfirm: function (confirmText, callback) {
 				ViewModel.obs.confirmText(confirmText);

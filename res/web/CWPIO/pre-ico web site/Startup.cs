@@ -47,8 +47,7 @@ namespace pre_ico_web_site
                 .AddLocalization(options => options.ResourcesPath = "Resources")
                 .AddEntityFrameworkNpgsql()
                 .AddDbContext<ApplicationDbContext>(options =>
-                    options.UseNpgsql(Configuration.GetConnectionString("CWPConnection")),
-                    ServiceLifetime.Scoped, ServiceLifetime.Singleton)
+                    options.UseNpgsql(Configuration.GetConnectionString("CWPConnection")))
                 .AddDbContext<DataProtectionDbContext>(options =>
                     options.UseNpgsql(Configuration.GetConnectionString("DPConnection")),
                     ServiceLifetime.Singleton, ServiceLifetime.Singleton)
@@ -83,6 +82,12 @@ namespace pre_ico_web_site
                     options.SignIn.RequireConfirmedEmail = false;
                     options.SignIn.RequireConfirmedPhoneNumber = false;
                 });
+
+            services.Configure<DataProtectionTokenProviderOptions>(o =>
+            {
+                o.Name = "Default";
+                o.TokenLifespan = TimeSpan.FromHours(24);
+            });
 
             services.AddMvc();
 
@@ -207,6 +212,8 @@ namespace pre_ico_web_site
 
                 app.UseIpRateLimiting();
             }
+
+            app.UseRewriter(new RewriteOptions().AddRewrite("my/locales/(.*)/translation.json", "/locales/$1/translation.json", true));
 
             app.UseStaticFiles();
 

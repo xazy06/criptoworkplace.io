@@ -22,6 +22,9 @@ var Controller = (Controller || {}), Gate = function () {
 	//Private key : d80356c4c5c561bac38c5e451edc2b7a535ad27088b22e46ba8506995edb0d09a70a24c1c1ffa0bc1f6acddbec49870f135897568dfbee5a6d823109bcb9073d
 	
 	this.poolingId = null;
+	
+	//The web3.eth.subscribe function lets you subscribe to specific events in the blockchain.
+	this.subscriber = null;
 
 	this.options = {
 		poolingInterval: 3000
@@ -232,7 +235,85 @@ var Controller = (Controller || {}), Gate = function () {
 				
 			})
 		},
-		//TODO need change to WS subscribe method
+		unsubscribeWsStatus: function () {
+			console.log('unsubscribeWsStatus inited');
+			
+			if (self.subscriber === null) {
+				console.log('subscriber is null');
+				
+				return;
+			}
+
+			self.subscriber.unsubscribe(function(error, success){
+				if(success){
+					console.log('Successfully unsubscribed!');
+				}
+			});
+
+			self.subscriber = null;
+			
+		},
+		//REMOVED
+		wsStatus: function () {
+			
+			console.log('wsStatus inited');
+			
+			if (self.subscriber !== null) {
+				console.log('already subscribed exit');
+				return;
+			}
+			
+			/**
+			 * @info https://web3js.readthedocs.io/en/1.0/web3-eth-subscribe.html?highlight=subscribe%5C#subscribe 
+			 */
+			console.log('web3CWP.eth.subscribe calling');
+  		self.subscriber = Controller.web3CWP.eth.subscribe('pendingTransactions', function(error, result){
+  			
+				console.log('web3CWP.eth.subscribe called');
+				
+				console.log(error);
+				console.log(result);
+				
+				if (!error || _.isEmpty(error.toString())) {
+					
+					//console.log('pendingTransactions', result);
+
+					if (result === null) {
+						return;
+					}
+
+					return Controller.web3CWP.eth.getTransaction(result).then(function (transaction) {
+						
+						console.log(transaction);
+						
+						if (transaction === null) {
+							console.log('transaction is null');
+							
+							return;
+						}
+						
+						if (transaction.to === ko.toJS(Controller.ViewModel.obs.depositAddress)) {
+							console.log('transaction found, monitor has launched');
+
+							//TODO need to remove
+							Controller.actions.monitor(Controller.ViewModel.obs.cwtCount(), transaction.hash);		
+						} 
+						
+					});
+					
+				}
+
+				try{
+					$.notify(error.toString());
+				}catch (e){
+					console.log(e);
+				}
+								
+			}).on("data", function(transaction){
+					console.log(transaction);
+			});
+			
+		},
 		web3Status: function (depositAddress) {
 			return $.get(Controller.api.ethStatus + depositAddress);
 		},
@@ -247,7 +328,10 @@ var Controller = (Controller || {}), Gate = function () {
 			}
 			
 			if (isETHTransaction){
-				return self.actions.web3Status(Controller.ViewModel.obs.depositAddress()).then(self.actions.statusCallback);
+				//return self.actions.web3Status(Controller.ViewModel.obs.depositAddress()).then(self.actions.statusCallback);
+				
+				//return self.actions.wsStatus();
+				return undefined;
 			}
 			
 			self.actions.orderInfo(Controller.ViewModel.obs.fixedAmmount.orderId()).then(self.actions.statusCallback);
@@ -261,7 +345,7 @@ var Controller = (Controller || {}), Gate = function () {
 			});
 		},
 		statusCallback: function(data) {
-
+			
 			var status;
 			
 			if (data === undefined) {
@@ -295,22 +379,31 @@ var Controller = (Controller || {}), Gate = function () {
 				return;
 			}
 
-			Controller.actions.monitor(Controller.ViewModel.obs.cwtCount(), data.transaction);
+			//TODO need to remove
+			//Controller.actions.monitor(Controller.ViewModel.obs.cwtCount(), data.transaction);
 
 			self.actions.stopStatusBang();
 			
 		},
 		stopStatusBang: function () {
 			window.clearInterval(self.poolingId);
+
+			self.actions.unsubscribeWsStatus();
 		},
 		initStatusBang: function (isETHTransaction) {
+
+			try{
+				self.actions.stopStatusBang();
+			}catch (e){
+				console.log(e);
+			}
 			
 			self.actions.status(isETHTransaction);
 			
-			try{
-				window.clearInterval(self.poolingId);
-			}catch (e){}
-			
+			if (isETHTransaction) {
+				return;
+			}
+						
 			self.poolingId = window.setInterval(function () {
 				self.actions.status(isETHTransaction);
 			},self.options.poolingInterval);

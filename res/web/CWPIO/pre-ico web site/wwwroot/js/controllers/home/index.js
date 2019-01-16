@@ -2,6 +2,10 @@ var Controller = function () {
 
 	var self = this;
 
+	this.options = {
+		flagsPath: '/assets/app/media/img/flags/'
+	};
+
 	this.strings = {
 		ru:{
 
@@ -49,15 +53,37 @@ var Controller = function () {
 		})();
 	};
 
+	this.changeLocale = function (locale) {
+		
+		console.log('locale changing to ', locale);
+
+		ViewModel.actions.storeLang(locale);
+		
+		try{
+
+			i18n.setLng(locale).then(function(){
+				$("body").i18n();
+			});
+
+			console.log('locale changed');
+			
+		}catch (e){
+
+		}
+	};
+
 	this.init = function () {
 		ko.applyBindings(ViewModel);
 
+		ViewModel.actions.getStoredLang();
+		
 		return this;
 	};
 
 	var ViewModel = {
 		obs:{
-			email: ko.observable('')
+			email: ko.observable(''),
+			activeLang: ko.observable('en')
 		},
 
 		flags:{
@@ -72,6 +98,20 @@ var Controller = function () {
 		actions:{
 			subscribe: function () {
 				return self.actions.subscribe();
+			},
+			changeLang: function () {
+				return self.changeLocale(''+this);
+			},
+			storeLang: function (locale) {
+				window.localStorage.setItem('activeLang', locale);
+				
+			},
+			getStoredLang: function () {
+				var activeLang = window.localStorage.getItem('activeLang');
+				
+				ViewModel.obs.activeLang(activeLang);
+				
+				ViewModel.actions.changeLang.call(activeLang);
 			}
 		}
 

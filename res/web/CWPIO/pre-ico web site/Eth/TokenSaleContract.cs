@@ -231,5 +231,10 @@ namespace pre_ico_web_site.Eth
 
             return result;
         }
+
+        public async Task<BigInteger> GetCurrentBlockNumberAsync()
+        {
+            return (await _web3.Eth.Blocks.GetBlockNumber.SendRequestAsync()).Value;
+        }
     }
 }

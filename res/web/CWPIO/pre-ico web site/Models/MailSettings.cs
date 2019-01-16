@@ -16,11 +16,17 @@ namespace pre_ico_web_site.Models
         public Dictionary<string, int> ContacListId { get; set; }
         public Dictionary<string, int> WelcomeTemplateId { get; set; }
         public Dictionary<string, int> MailTemplateId { get; set; }
+        public Dictionary<string, int> MailValidationTemplateId { get; set; }
+        public Dictionary<string, int> MailResetPasswordTemplateId { get; set; }       
+
 
         public MailSettings()
         {
             ContacListId = new Dictionary<string, int>();
             WelcomeTemplateId = new Dictionary<string, int>();
+            MailTemplateId = new Dictionary<string, int>();
+            MailValidationTemplateId = new Dictionary<string, int>();
+            MailResetPasswordTemplateId = new Dictionary<string, int>();
         }
     }
 }
